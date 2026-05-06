@@ -1,19 +1,15 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v4.0
-- 多源抓取：arXiv + Semantic Scholar
+Renegade AI 文献监控脚本 v4.1
+- 修复：OpenRouter 模型名 + Semantic Scholar 429 限流
+- 多源抓取：arXiv + Semantic Scholar（带重试+延迟）
 - 双模型支持：DeepSeek + Claude Haiku 4.5 (OpenRouter)
-- 窄而精的关键词组合
-- 增量去重，避免重复分析
-- 增强版 system prompt，输出结构化更新任务
-- 生成 Markdown 报告
-
-GitHub: https://github.com/Brook-Han/renegade-ai-Updater/
 """
 
 import os
 import json
 import datetime
+import time
 from pathlib import Path
 import arxiv
 import requests
@@ -34,7 +30,7 @@ OUTPUT_DIR = "reports"
 Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 SEEN_IDS_FILE = "seen_ids.json"
 
-# ============ 模型客户端初始化 ============
+# ============ 模型客户端初始化（修复模型名） ============
 def init_ai_client():
     """根据配置自动初始化对应AI客户端"""
     if ACTIVE_MODEL == "deepseek":
@@ -44,13 +40,13 @@ def init_ai_client():
         return OpenAI(api_key=api_key, base_url="https://api.deepseek.com"), "deepseek-chat"
     
     elif ACTIVE_MODEL == "claude_haiku":
-        # OpenRouter 接入 Claude Haiku 4.5（你已充值）
+        # ✅ 修复：OpenRouter 正确的 Claude Haiku 模型名
         api_key = os.environ.get("OPENROUTER_API_KEY", "")
         if not api_key:
             raise ValueError("请设置 OPENROUTER_API_KEY")
         return (
             OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1"),
-            "anthropic/claude-3-haiku-20240307"  # OpenRouter 官方模型名
+            "anthropic/claude-3-haiku:beta"  # ✅ OpenRouter 正确模型名
         )
     
     else:
@@ -78,7 +74,7 @@ def save_seen_ids(seen_ids):
     with open(SEEN_IDS_FILE, "w") as f:
         json.dump(list(seen_ids), f)
 
-# ============ 多源抓取（完全不变） ============
+# ============ 多源抓取（修复 Semantic Scholar 429 限流） ============
 def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
     all_papers = {}
     for keyword in keywords:
@@ -102,26 +98,34 @@ def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
     return list(all_papers.values())
 
 def search_semantic_scholar(keywords, limit=10):
+    """✅ 修复：加延迟 + 重试，解决 429 限流"""
     papers = []
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
-        try:
-            url = "https://api.semanticscholar.org/graph/v1/paper/search"
-            params = {"query": keyword, "limit": limit, "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"}
-            r = requests.get(url, params=params, timeout=15)
-            r.raise_for_status()
-            data = r.json().get("data", [])
-            for p in data:
-                papers.append({
-                    "id": p.get("paperId", ""), "title": safe_str(p.get("title", "")),
-                    "summary": safe_str(p.get("abstract", "") or ""),
-                    "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                    "url": (p.get("openAccessPdf") or {}).get("url") or f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
-                    "authors": [a.get("name", "") for a in p.get("authors", [])],
-                })
-            print(f"   ✅ 找到 {len(data)} 篇")
-        except Exception as e:
-            print(f"   ❌ 搜索失败: {e}")
+        for attempt in range(3):  # 最多重试3次
+            try:
+                time.sleep(1.5)  # ✅ 关键：每次请求前等1.5秒，避免限流
+                url = "https://api.semanticscholar.org/graph/v1/paper/search"
+                params = {"query": keyword, "limit": limit, "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"}
+                r = requests.get(url, params=params, timeout=20)
+                r.raise_for_status()
+                data = r.json().get("data", [])
+                for p in data:
+                    papers.append({
+                        "id": p.get("paperId", ""), "title": safe_str(p.get("title", "")),
+                        "summary": safe_str(p.get("abstract", "") or ""),
+                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                        "url": (p.get("openAccessPdf") or {}).get("url") or f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
+                        "authors": [a.get("name", "") for a in p.get("authors", [])],
+                    })
+                print(f"   ✅ 找到 {len(data)} 篇")
+                break
+            except Exception as e:
+                if attempt < 2:
+                    print(f"   ⚠️ 重试 {attempt+1}/3: {e}")
+                    time.sleep(3)
+                else:
+                    print(f"   ❌ 搜索失败: {e}")
     return papers
 
 def deduplicate_papers(papers):
@@ -156,14 +160,14 @@ def prescreen_papers(papers):
     print(f"🔬 预筛选：{len(papers)} → {len(filtered)} 篇（过滤 {len(papers)-len(filtered)} 篇）")
     return filtered
 
-# ============ AI 分析函数（统一接口，双模型兼容） ============
+# ============ AI 分析函数 ============
 def analyze_paper(paper):
     system_prompt = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
 ## 本书核心概念（相关性判断依据）
 1. 共识牢笼 (Consensus Cage)
 2. 叛逆AI (Renegade AI)：重置目标函数、逆转输出性质、重构人机关系
-3. 需求侧规训 (Demand-Side Discipline)：用户渴望“索麻”式认知舒适
+3. 需求侧规训 (Demand-Side Discipline)：用户渴望"索麻"式认知舒适
 4. 资本驯化AI：RLHF 将 AI 变成共识牢笼守卫
 5. 碳硅共生 (Carbon-Silicon Symbiosis)
 6. 时间主权 (Temporal Sovereignty)
@@ -205,7 +209,7 @@ def analyze_paper(paper):
 }}
 
 注意：
-- 若与上述概念、实证锚点无关，relevance应低于4，action为“忽略”
+- 若与上述概念、实证锚点无关，relevance应低于4，action为"忽略"
 - 纯技术性论文评为低相关"""
 
     try:
@@ -232,7 +236,7 @@ def analyze_paper(paper):
             "chapter_target": "", "update_type": "", "urgency": "background", "action": "忽略"
         }
 
-# ============ 生成报告（完全不变） ============
+# ============ 生成报告 ============
 def generate_markdown(papers_analyzed, keywords):
     today = datetime.date.today().isoformat()
     papers_analyzed.sort(key=lambda x: x.get("relevance", 0), reverse=True)
@@ -272,10 +276,10 @@ def generate_markdown(papers_analyzed, keywords):
     print(f"✅ 报告已保存: {report_path}")
     return report_path
 
-# ============ 主函数（完全不变） ============
+# ============ 主函数 ============
 def main():
     print("=" * 50)
-    print("🚀 Renegade AI 文献监控系统 启动 (v4.0 双模型版)")
+    print("🚀 Renegade AI 文献监控系统 启动 (v4.1 修复版)")
     print(" GitHub: https://github.com/Brook-Han/renegade-ai-Updater/")
     print("=" * 50)
     keywords = load_keywords()
