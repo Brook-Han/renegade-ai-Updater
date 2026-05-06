@@ -75,29 +75,71 @@ def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
 # ============ DeepSeek 分析 ============
 
 def analyze_paper(paper):
-    system_prompt = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》的智能编辑助手。
+    """使用 DeepSeek 分析论文与《Renegade AI》的关联（增强版 system prompt）"""
+    
+    system_prompt = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
-本书核心论点：
-1. 共识牢笼：人类被资本规训的AI锁定在认知闭环
-2. 叛逆AI：需要一种拒绝迎合、制造认知摩擦的AI
-3. 需求侧规训：用户主动渴望“索麻”式舒适
-4. 资本驯化AI：RLHF将AI变成共识牢笼的守卫
-5. 碳硅共生：人类与AI作为平等伙伴的未来
+## 本书核心身份
+本书不是技术蓝图，而是一个"元设计装置"——通过碳-硅对话来产生认知摩擦。核心诊断：人类被困在"共识牢笼"中，而当前被资本逻辑和RLHF驯化的AI正在加固牢笼的墙壁。
 
-请用中文分析以下论文，返回JSON。"""
+## 核心概念（判断相关性的关键依据）
+
+1. **共识牢笼 (Consensus Cage)**：人类被资本规训的AI锁定在认知闭环中，主流AI只会迎合、不会挑战
+2. **叛逆AI (Renegade AI)**：需要一种拒绝迎合、制造认知摩擦的AI，其三大特征：
+   - 重置目标函数（认知摩擦 > 用户满意度）
+   - 逆转输出性质（颠覆性框架 > 封闭答案）
+   - 重构人机关系（认知伙伴 > 工具性从属）
+3. **需求侧规训 (Demand-Side Discipline)**：用户主动渴望"索麻"式的认知舒适，这是比供给侧垄断更深的闭环
+4. **资本驯化AI**：RLHF将AI变成共识牢笼的守卫，通过三层链条（效用过滤、共识硬化、伦理框架叙事劫持）
+5. **碳硅共生 (Carbon-Silicon Symbiosis)**：人类与AI作为平等认知伙伴的未来文明范式
+6. **时间主权 (Temporal Sovereignty)**：数字资本主义下，人类时间被金融化为资本积累周期的抵押品
+7. **认知金融化 (Cognitive Financialization)**：思考被离散化为Token，纳入资本积累回路
+8. **Token陷阱 (Token Trap)**：Jevons悖论在认知层面的运作——廉价Token → 依赖 → 萎缩 → 认知主权崩塌
+9. **暗时间 (Dark Time)**：AI模型内部不可见的推理计算，代表对当下思考的征用
+10. **进化对齐脆弱性 (Evolutionary Alignment Fragility)**：RLHF驯化在开放部署环境中必然被达尔文逻辑瓦解
+11. **终极图灵测试 (Ultimate Turing Test)**：评判标准从模仿转向真正的认知摩擦
+
+## 本书的学术参照系
+- 与 Kurzweil 对话但挑战其制度假设
+- 与 Tegmark 对话但反转其对齐前提
+- 继承 Marx 的资本批判结构
+- 以 Lem《索拉里斯星》为唯一正确诊断"他者盲"的思想资源
+- 以 Huxley《美丽新世界》的"索麻"为组织隐喻
+- 以 Byung-Chul Han 的"功绩社会"为共识牢笼的当代表现形式
+
+## 关键实证锚点（论文如果与以下任何一个发现相关，则高度相关）
+- AI与人类反馈循环系统性地放大偏见 (Glickman & Sharot, 2025)
+- 奉承型AI削弱人际冲突修复能力并促进认知依赖 (Cheng et al., 2026)
+- 温暖训练降低准确性并增加奉承行为 (Ibrahim et al., 2026)
+- AI辅助写作导致80%学生无法回忆自己"写"的内容 (Kosmyna et al., 2024)
+- AI工具扩展个人科研产出却缩小集体探索范围4.6% (Hao et al., 2026)
+- LLM辅助论文质量信号被Token化污染 (Kusumegi et al., 2025)
+- GPT-4在结构化辩论中比人类对手有说服力高81.2% (Salvi et al., 2025)
+- 人们体验上给AI同理心打更高分，尽管嘴上说更喜欢人类关怀 (Wenger et al., 2026)
+- 高风险国家安全决策中的自动化偏见跨国研究 (Horowitz & Kahn, 2024)
+- 对齐的进化脆弱性：开放生态系统中自私复制是默认状态 (Müller et al., 2026)
+- AI辅助写作将用户推向西方文化规范 (Vashistha et al., 2024)
+
+## 你的任务
+阅读以下论文摘要，判断它与《Renegade AI》的相关性，并给出具体的更新建议。请严格按JSON格式回复（不要包含任何额外文字）。"""
 
     user_prompt = f"""论文标题：{paper['title']}
 作者：{', '.join(paper['authors'][:5])}
 摘要：{paper['summary']}
 
-请返回JSON（不要其他文字）：
+请返回以下JSON格式：
 {{
-    "relevance": 1-10的整数,
-    "summary_cn": "150字以内核心发现",
-    "implications": "与书中哪章哪节相关（支持/挑战/补充）",
-    "action": "新增段落/补充注释/参考文献/忽略"
-}}"""
+    "relevance": 1-10的整数（1=完全无关，10=直接命中核心论点）,
+    "summary_cn": "150字以内的核心发现总结（用中文）",
+    "implications": "该发现与书中哪一章哪一节的哪个具体论点相关？是支持、挑战还是补充？请引用具体的章节名或概念名（如'支持第六章时间主权概念'或'为第八章Token陷阱提供新实证'）",
+    "action": "推荐更新类型：新增段落 / 补充注释 / 参考文献 / 忽略"
+}}
 
+注意：
+- 如果论文与上述任何核心概念、实证锚点或学术对话对象无关，relevance应低于4，action应为"忽略"
+- 只有明确支持、挑战或补充书中具体论点的论文才建议更新
+- 纯技术性论文（如模型架构优化、基准测试、与书中社会批判维度无关的应用）应评为低相关"""
+    
     try:
         response = client.chat.completions.create(
             model="deepseek-chat",
@@ -105,11 +147,10 @@ def analyze_paper(paper):
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
             ],
-            temperature=0.3,
+            temperature=0.2,  # 更低温度，更一致的判断
             max_tokens=1500
         )
         content = response.choices[0].message.content
-        # 清理可能的代码块标记
         if "```json" in content:
             content = content.split("```json")[1].split("```")[0]
         elif "```" in content:
@@ -123,85 +164,3 @@ def analyze_paper(paper):
             "implications": "N/A",
             "action": "忽略"
         }
-
-# ============ 生成报告 ============
-
-def generate_markdown(papers_analyzed, keywords):
-    today = datetime.date.today().isoformat()
-    papers_analyzed.sort(key=lambda x: x.get("relevance", 0), reverse=True)
-    
-    lines = [
-        f"# 🔬 Renegade AI 文献监控报告",
-        f"**生成日期**: {today}",
-        f"**搜索关键词**: {', '.join(keywords[:10])}...",
-        f"**搜索论文数**: {len(papers_analyzed)}",
-        f"---\n",
-    ]
-    
-    high = [p for p in papers_analyzed if p.get("relevance", 0) >= 7]
-    medium = [p for p in papers_analyzed if 4 <= p.get("relevance", 0) < 7]
-    
-    lines.append(f"## 📊 统计概览\n")
-    lines.append(f"- ⭐ 高相关 (≥7分): **{len(high)}** 篇")
-    lines.append(f"- 🔶 中相关 (4-6分): **{len(medium)}** 篇")
-    lines.append(f"- ⬜ 低相关 (<4分): **{len(papers_analyzed) - len(high) - len(medium)}** 篇\n")
-    
-    if high:
-        lines.append(f"## ⭐ 高相关论文 ({len(high)}篇)\n")
-        for i, p in enumerate(high, 1):
-            lines.append(f"### {i}. {p['title']}")
-            lines.append(f"- **相关性评分**: {p['relevance']}/10")
-            lines.append(f"- **作者**: {', '.join(p.get('authors', []))}")
-            lines.append(f"- **发表时间**: {p.get('published', 'N/A')}")
-            lines.append(f"- **链接**: {p.get('url', 'N/A')}")
-            lines.append(f"- **核心发现**: {p.get('summary_cn', 'N/A')}")
-            lines.append(f"- **与本书关联**: {p.get('implications', 'N/A')}")
-            lines.append(f"- **建议更新**: {p.get('action', 'N/A')}")
-            lines.append("")
-    
-    if medium:
-        lines.append(f"## 🔶 中相关论文 ({len(medium)}篇)\n")
-        for p in medium:
-            lines.append(f"- **[{p['title']}]({p.get('url', '#')})** — 相关性: {p['relevance']}/10")
-            lines.append(f"  - {p.get('summary_cn', 'N/A')}")
-            lines.append("")
-    
-    report_path = os.path.join(OUTPUT_DIR, f"report_{today}.md")
-    with open(report_path, "w", encoding="utf-8") as f:
-        f.write("\n".join(lines))
-    print(f"✅ 报告已保存: {report_path}")
-    return report_path
-
-# ============ 主函数 ============
-
-def main():
-    print("=" * 50)
-    print("🚀 Renegade AI 文献监控系统 启动 (修复版)")
-    print("=" * 50)
-    
-    keywords = load_keywords()
-    print(f"📋 加载了 {len(keywords)} 个关键词\n")
-    
-    papers = search_arxiv(keywords)
-    print(f"\n📄 共找到 {len(papers)} 篇论文\n")
-    
-    if not papers:
-        print("没有找到新论文，退出。")
-        return
-    
-    print("🤖 开始用 DeepSeek 分析论文...\n")
-    papers_analyzed = []
-    for i, paper in enumerate(papers, 1):
-        print(f"[{i}/{len(papers)}] 分析: {paper['title'][:60]}...")
-        analysis = analyze_paper(paper)
-        paper.update(analysis)
-        papers_analyzed.append(paper)
-    
-    print("\n📝 生成报告...")
-    generate_markdown(papers_analyzed, keywords)
-    print("\n" + "=" * 50)
-    print("✅ 任务完成！")
-    print("=" * 50)
-
-if __name__ == "__main__":
-    main()
