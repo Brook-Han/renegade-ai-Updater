@@ -1,11 +1,14 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v3.0
+Renegade AI 文献监控脚本 v4.0
 - 多源抓取：arXiv + Semantic Scholar
+- 双模型支持：DeepSeek + Claude Haiku 4.5 (OpenRouter)
 - 窄而精的关键词组合
 - 增量去重，避免重复分析
 - 增强版 system prompt，输出结构化更新任务
 - 生成 Markdown 报告
+
+GitHub: https://github.com/Brook-Han/renegade-ai-Updater/
 """
 
 import os
@@ -19,22 +22,45 @@ from dotenv import load_dotenv
 
 # ============ 环境初始化 ============
 load_dotenv()
-API_KEY = os.environ.get("DEEPSEEK_API_KEY", "")
-if not API_KEY:
-    raise ValueError("请设置环境变量 DEEPSEEK_API_KEY (或创建 .env 文件)")
-
-client = OpenAI(api_key=API_KEY, base_url="https://api.deepseek.com")
 arxiv_client = arxiv.Client()
 
-# ============ 配置 ============
+# ============ 核心配置（一键切换模型） ============
+# 可选模型：deepseek / claude_haiku
+ACTIVE_MODEL = "claude_haiku"  # 👈 在这里切换！
+
 KEYWORDS_FILE = "keywords.txt"
 MAX_RESULTS_PER_KEYWORD = 10
 OUTPUT_DIR = "reports"
 Path(OUTPUT_DIR).mkdir(parents=True, exist_ok=True)
 SEEN_IDS_FILE = "seen_ids.json"
 
-# ============ 工具函数 ============
+# ============ 模型客户端初始化 ============
+def init_ai_client():
+    """根据配置自动初始化对应AI客户端"""
+    if ACTIVE_MODEL == "deepseek":
+        api_key = os.environ.get("DEEPSEEK_API_KEY", "")
+        if not api_key:
+            raise ValueError("请设置 DEEPSEEK_API_KEY")
+        return OpenAI(api_key=api_key, base_url="https://api.deepseek.com"), "deepseek-chat"
+    
+    elif ACTIVE_MODEL == "claude_haiku":
+        # OpenRouter 接入 Claude Haiku 4.5（你已充值）
+        api_key = os.environ.get("OPENROUTER_API_KEY", "")
+        if not api_key:
+            raise ValueError("请设置 OPENROUTER_API_KEY")
+        return (
+            OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1"),
+            "anthropic/claude-3-haiku-20240307"  # OpenRouter 官方模型名
+        )
+    
+    else:
+        raise ValueError("不支持的模型，请选择 deepseek 或 claude_haiku")
 
+# 初始化全局客户端
+client, MODEL_NAME = init_ai_client()
+print(f"✅ 当前启用模型：{ACTIVE_MODEL.upper()} | {MODEL_NAME}")
+
+# ============ 工具函数 ============
 def load_keywords(filepath=KEYWORDS_FILE):
     with open(filepath, "r", encoding="utf-8") as f:
         return [line.strip() for line in f if line.strip()]
@@ -52,30 +78,22 @@ def save_seen_ids(seen_ids):
     with open(SEEN_IDS_FILE, "w") as f:
         json.dump(list(seen_ids), f)
 
-# ============ 多源抓取 ============
-
+# ============ 多源抓取（完全不变） ============
 def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
-    """arXiv 抓取"""
     all_papers = {}
     for keyword in keywords:
         print(f"🔍 [arXiv] 正在搜索: {keyword}")
         try:
-            search = arxiv.Search(
-                query=keyword,
-                max_results=max_results,
-                sort_by=arxiv.SortCriterion.SubmittedDate
-            )
+            search = arxiv.Search(query=keyword, max_results=max_results, sort_by=arxiv.SortCriterion.SubmittedDate)
             count = 0
             for result in arxiv_client.results(search):
                 paper_id = result.entry_id
                 if paper_id not in all_papers:
                     all_papers[paper_id] = {
-                        "id": paper_id,
-                        "title": safe_str(result.title),
+                        "id": paper_id, "title": safe_str(result.title),
                         "summary": safe_str(result.summary.replace("\n", " ")),
                         "published": result.published.isoformat() if result.published else "N/A",
-                        "url": result.pdf_url,
-                        "authors": [a.name for a in result.authors],
+                        "url": result.pdf_url, "authors": [a.name for a in result.authors],
                     }
                     count += 1
             print(f"   ✅ 找到 {count} 篇")
@@ -84,28 +102,21 @@ def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
     return list(all_papers.values())
 
 def search_semantic_scholar(keywords, limit=10):
-    """Semantic Scholar 抓取"""
     papers = []
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
         try:
             url = "https://api.semanticscholar.org/graph/v1/paper/search"
-            params = {
-                "query": keyword,
-                "limit": limit,
-                "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-            }
+            params = {"query": keyword, "limit": limit, "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"}
             r = requests.get(url, params=params, timeout=15)
             r.raise_for_status()
             data = r.json().get("data", [])
             for p in data:
                 papers.append({
-                    "id": p.get("paperId", ""),
-                    "title": safe_str(p.get("title", "")),
+                    "id": p.get("paperId", ""), "title": safe_str(p.get("title", "")),
                     "summary": safe_str(p.get("abstract", "") or ""),
                     "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                    "url": (p.get("openAccessPdf") or {}).get("url") or
-                           f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
+                    "url": (p.get("openAccessPdf") or {}).get("url") or f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
                     "authors": [a.get("name", "") for a in p.get("authors", [])],
                 })
             print(f"   ✅ 找到 {len(data)} 篇")
@@ -114,7 +125,6 @@ def search_semantic_scholar(keywords, limit=10):
     return papers
 
 def deduplicate_papers(papers):
-    """按 ID 去重，保留第一批次"""
     seen = set()
     unique = []
     for p in papers:
@@ -124,7 +134,6 @@ def deduplicate_papers(papers):
     return unique
 
 def prescreen_papers(papers):
-    """预筛选：过滤明显不相关的论文"""
     relevant_terms = [
         'AI', 'artificial intelligence', 'LLM', 'language model', 'GPT',
         'algorithm', 'automation', 'machine learning', 'neural',
@@ -147,10 +156,8 @@ def prescreen_papers(papers):
     print(f"🔬 预筛选：{len(papers)} → {len(filtered)} 篇（过滤 {len(papers)-len(filtered)} 篇）")
     return filtered
 
-# ============ DeepSeek 分析（增强版） ============
-
+# ============ AI 分析函数（统一接口，双模型兼容） ============
 def analyze_paper(paper):
-    """使用 DeepSeek 分析论文，输出结构化更新任务"""
     system_prompt = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
 ## 本书核心概念（相关性判断依据）
@@ -203,7 +210,7 @@ def analyze_paper(paper):
 
     try:
         response = client.chat.completions.create(
-            model="deepseek-chat",
+            model=MODEL_NAME,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt}
@@ -212,6 +219,7 @@ def analyze_paper(paper):
             max_tokens=1500
         )
         content = response.choices[0].message.content
+        # 清洗JSON格式
         if "```json" in content:
             content = content.split("```json")[1].split("```")[0]
         elif "```" in content:
@@ -220,42 +228,24 @@ def analyze_paper(paper):
     except Exception as e:
         print(f"   ⚠️ 分析失败: {e}")
         return {
-            "relevance": 0,
-            "summary_cn": "Analysis failed",
-            "implications": "N/A",
-            "chapter_target": "",
-            "update_type": "",
-            "urgency": "background",
-            "action": "忽略"
+            "relevance": 0, "summary_cn": "Analysis failed", "implications": "N/A",
+            "chapter_target": "", "update_type": "", "urgency": "background", "action": "忽略"
         }
 
-# ============ 生成报告 ============
-
+# ============ 生成报告（完全不变） ============
 def generate_markdown(papers_analyzed, keywords):
     today = datetime.date.today().isoformat()
     papers_analyzed.sort(key=lambda x: x.get("relevance", 0), reverse=True)
-
-    lines = [
-        f"# 🔬 Renegade AI 文献监控报告",
-        f"**生成日期**: {today}",
-        f"**搜索关键词数**: {len(keywords)}",
-        f"**分析论文数**: {len(papers_analyzed)}",
-        f"---\n",
-    ]
-
+    lines = [f"# 🔬 Renegade AI 文献监控报告", f"**生成日期**: {today}", f"**搜索关键词数**: {len(keywords)}", f"**分析论文数**: {len(papers_analyzed)}", f"---\n"]
     high = [p for p in papers_analyzed if p.get("relevance", 0) >= 7]
     medium = [p for p in papers_analyzed if 4 <= p.get("relevance", 0) < 7]
-
     lines.append(f"## 📊 统计概览\n")
     lines.append(f"- ⭐ 高相关 (≥7分): **{len(high)}** 篇")
     lines.append(f"- 🔶 中相关 (4-6分): **{len(medium)}** 篇")
     lines.append(f"- ⬜ 低相关 (<4分): **{len(papers_analyzed) - len(high) - len(medium)}** 篇\n")
-
-    # 高相关论文，按紧迫度排序
     if high:
         urgency_order = {"immediate": 0, "next_version": 1, "background": 2}
         high.sort(key=lambda p: urgency_order.get(p.get("urgency", "background"), 2))
-
         lines.append(f"## ⭐ 高相关论文 ({len(high)}篇) 按更新紧迫度排序\n")
         for i, p in enumerate(high, 1):
             lines.append(f"### {i}. {p['title']}")
@@ -270,66 +260,51 @@ def generate_markdown(papers_analyzed, keywords):
             lines.append(f"- **与本书关联**: {p.get('implications', 'N/A')}")
             lines.append(f"- **建议更新**: {p.get('action', 'N/A')}")
             lines.append("")
-
     if medium:
         lines.append(f"## 🔶 中相关论文 ({len(medium)}篇)\n")
         for p in medium:
             lines.append(f"- **[{p['title']}]({p.get('url', '#')})** — 相关性: {p['relevance']}/10")
             lines.append(f"  - {p.get('summary_cn', 'N/A')}")
             lines.append("")
-
     report_path = os.path.join(OUTPUT_DIR, f"report_{today}.md")
     with open(report_path, "w", encoding="utf-8") as f:
         f.write("\n".join(lines))
     print(f"✅ 报告已保存: {report_path}")
     return report_path
 
-# ============ 主函数 ============
-
+# ============ 主函数（完全不变） ============
 def main():
     print("=" * 50)
-    print("🚀 Renegade AI 文献监控系统 启动 (v3.0)")
+    print("🚀 Renegade AI 文献监控系统 启动 (v4.0 双模型版)")
+    print(" GitHub: https://github.com/Brook-Han/renegade-ai-Updater/")
     print("=" * 50)
-
     keywords = load_keywords()
     print(f"📋 加载了 {len(keywords)} 个关键词\n")
-
-    # 抓取
     arxiv_papers = search_arxiv(keywords)
     s2_papers = search_semantic_scholar(keywords)
     all_papers = deduplicate_papers(arxiv_papers + s2_papers)
     print(f"\n📄 合并去重后共 {len(all_papers)} 篇论文\n")
-
     if not all_papers:
         print("没有找到新论文，退出。")
         return
-
-    # 增量去重
     seen_ids = load_seen_ids()
     new_papers = [p for p in all_papers if p["id"] not in seen_ids]
-    print(f"🆕 其中 {len(new_papers)} 篇为新论文（已分析过的 {len(seen_ids)} 篇已跳过）")
+    print(f"🆕 其中 {len(new_papers)} 篇为新论文")
     if not new_papers:
         print("没有新论文需要分析，退出。")
         return
-
-    # 预筛选
     to_analyze = prescreen_papers(new_papers)
     if not to_analyze:
         print("预筛选后无相关论文，退出。")
         return
-
-    # 分析
-    print(f"\n🤖 开始用 DeepSeek 分析 {len(to_analyze)} 篇论文...\n")
+    print(f"\n🤖 开始分析 {len(to_analyze)} 篇论文...\n")
     for i, paper in enumerate(to_analyze, 1):
         print(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
         analysis = analyze_paper(paper)
         paper.update(analysis)
-
-    # 标记已分析
     for p in to_analyze:
         seen_ids.add(p["id"])
     save_seen_ids(seen_ids)
-
     print("\n📝 生成报告...")
     generate_markdown(to_analyze, keywords)
     print("\n" + "=" * 50)
