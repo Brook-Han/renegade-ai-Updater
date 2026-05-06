@@ -95,60 +95,83 @@ def save_seen_ids(seen_ids):
 
 # ============ 多源抓取 ============
 def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
+    """arXiv 抓取（带延迟和重试）"""
     all_papers = {}
     for keyword in keywords:
         print(f"🔍 [arXiv] 正在搜索: {keyword}")
-        try:
-            search = arxiv.Search(
-                query=keyword,
-                max_results=max_results,
-                sort_by=arxiv.SortCriterion.SubmittedDate
-            )
-            count = 0
-            for result in arxiv_client.results(search):
-                paper_id = result.entry_id
-                if paper_id not in all_papers:
-                    all_papers[paper_id] = {
-                        "id": paper_id,
-                        "title": safe_str(result.title),
-                        "summary": safe_str(result.summary.replace("\n", " ")),
-                        "published": result.published.isoformat() if result.published else "N/A",
-                        "url": result.pdf_url,
-                        "authors": [a.name for a in result.authors],
-                    }
-                    count += 1
-            print(f"   ✅ 找到 {count} 篇")
-        except Exception as e:
-            print(f"   ❌ 搜索失败: {e}")
+        for attempt in range(3):  # 最多重试3次
+            try:
+                search = arxiv.Search(
+                    query=keyword,
+                    max_results=max_results,
+                    sort_by=arxiv.SortCriterion.SubmittedDate
+                )
+                count = 0
+                for result in arxiv_client.results(search):
+                    paper_id = result.entry_id
+                    if paper_id not in all_papers:
+                        all_papers[paper_id] = {
+                            "id": paper_id,
+                            "title": safe_str(result.title),
+                            "summary": safe_str(result.summary.replace("\n", " ")),
+                            "published": result.published.isoformat() if result.published else "N/A",
+                            "url": result.pdf_url,
+                            "authors": [a.name for a in result.authors],
+                        }
+                        count += 1
+                print(f"   ✅ 找到 {count} 篇")
+                break  # 成功则跳出重试循环
+            except Exception as e:
+                if attempt < 2:
+                    wait = (attempt + 1) * 10  # 10s, 20s, 30s
+                    print(f"   ⚠️ 请求失败，{wait}秒后重试... ({e})")
+                    time.sleep(wait)
+                else:
+                    print(f"   ❌ 三次重试后仍失败: {e}")
+        time.sleep(3)  # 关键词之间间隔3秒，避免被限流
     return list(all_papers.values())
 
 def search_semantic_scholar(keywords, limit=10):
+    """Semantic Scholar 抓取（带延迟和重试）"""
     papers = []
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
-        try:
-            url = "https://api.semanticscholar.org/graph/v1/paper/search"
-            params = {
-                "query": keyword,
-                "limit": limit,
-                "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-            }
-            r = requests.get(url, params=params, timeout=15)
-            r.raise_for_status()
-            data = r.json().get("data", [])
-            for p in data:
-                papers.append({
-                    "id": p.get("paperId", ""),
-                    "title": safe_str(p.get("title", "")),
-                    "summary": safe_str(p.get("abstract", "") or ""),
-                    "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                    "url": (p.get("openAccessPdf") or {}).get("url") or
-                           f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
-                    "authors": [a.get("name", "") for a in p.get("authors", [])],
-                })
-            print(f"   ✅ 找到 {len(data)} 篇")
-        except Exception as e:
-            print(f"   ❌ 搜索失败: {e}")
+        url = "https://api.semanticscholar.org/graph/v1/paper/search"
+        params = {
+            "query": keyword,
+            "limit": limit,
+            "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
+        }
+        for attempt in range(3):
+            try:
+                r = requests.get(url, params=params, timeout=15)
+                if r.status_code == 429:
+                    wait = (attempt + 1) * 15  # 15s, 30s, 45s
+                    print(f"   ⚠️ 429 限流，{wait}秒后重试...")
+                    time.sleep(wait)
+                    continue
+                r.raise_for_status()
+                data = r.json().get("data", [])
+                for p in data:
+                    papers.append({
+                        "id": p.get("paperId", ""),
+                        "title": safe_str(p.get("title", "")),
+                        "summary": safe_str(p.get("abstract", "") or ""),
+                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                        "url": (p.get("openAccessPdf") or {}).get("url") or
+                               f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
+                        "authors": [a.get("name", "") for a in p.get("authors", [])],
+                    })
+                print(f"   ✅ 找到 {len(data)} 篇")
+                break
+            except Exception as e:
+                if attempt < 2:
+                    wait = (attempt + 1) * 15
+                    print(f"   ⚠️ 请求失败，{wait}秒后重试... ({e})")
+                    time.sleep(wait)
+                else:
+                    print(f"   ❌ 三次重试后仍失败: {e}")
+        time.sleep(5)  # 每次请求后等5秒，这是关键——Semantic Scholar 无 API Key 限流很严
     return papers
 
 def deduplicate_papers(papers):
