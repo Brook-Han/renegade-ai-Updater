@@ -404,7 +404,7 @@ def main():
     print(f"📋 加载了 {len(keywords)} 个关键词\n")
 
     arxiv_papers = search_arxiv(keywords)
-    s2_papers = search_semantic_scholar(keywords)
+    # s2_papers = search_semantic_scholar(keywords)
     all_papers = deduplicate_papers(arxiv_papers + s2_papers)
     print(f"\n📄 合并去重后共 {len(all_papers)} 篇论文\n")
 
