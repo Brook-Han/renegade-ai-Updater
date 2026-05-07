@@ -59,6 +59,10 @@ CHEAP_PAID_MODELS = [
     "deepseek/deepseek-chat",
     "mistralai/mistral-small-3.1-24b",
 ]
+STRONG_PAID_MODELS = [
+    "anthropic/claude-sonnet-4",
+    "openai/gpt-4o-mini",
+]
 ANALYSIS_MODELS = FREE_MODELS + CHEAP_PAID_MODELS
 
 # ============ 工具函数 ============
