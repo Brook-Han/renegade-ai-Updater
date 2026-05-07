@@ -340,14 +340,17 @@ def merge_results(results: list[dict]) -> dict:
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
     tasks: list[tuple[str, OpenAI]] = []
-    if deepseek_client:
-        tasks.append(("deepseek-v4-pro", deepseek_client))
+    
+    # 暂时关闭 DeepSeek 直连（官网 ID 报错）
+    # if deepseek_client:
+    #     tasks.append(("deepseek-v4-flash", deepseek_client))
+    
+    # 只用 OpenRouter + 已验证的模型
     if openrouter_client:
-        for m in models:
-            tasks.append((m, openrouter_client))
-
+        tasks.append(("deepseek/deepseek-chat", openrouter_client))  # OpenRouter 会自动路由
+    
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 3)) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:  # 单线程，避免限流
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
