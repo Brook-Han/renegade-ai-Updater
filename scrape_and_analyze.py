@@ -39,7 +39,7 @@ openrouter_client = (
     ) if OPENROUTER_KEY else None
 )
 
-arxiv_client = arxiv.Client()
+arxiv_client = arxiv.Client(page_size=100, delay_seconds=5.0, num_retries=5)
 
 # ============ 配置 ============
 KEYWORDS_FILE = "keywords.txt"
