@@ -404,8 +404,13 @@ def main():
     print(f"📋 加载了 {len(keywords)} 个关键词\n")
 
     arxiv_papers = search_arxiv(keywords)
+
+    # 暂时跳过 Semantic Scholar（因为 429 限速），使用空列表代替
+    s2_papers = []   # ← 加上这一行
     # s2_papers = search_semantic_scholar(keywords)
+
     all_papers = deduplicate_papers(arxiv_papers + s2_papers)
+    
     print(f"\n📄 合并去重后共 {len(all_papers)} 篇论文\n")
 
     if not all_papers:
