@@ -10,12 +10,15 @@ Renegade AI 文献监控脚本 v4.2 — 多模型复证版（完整终版）
 5. 主函数增加草稿生成阶段（带间隔保护）
 """
 
+from __future__ import annotations
+
 import os
 import json
 import time
 import datetime
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from typing import Optional
 
 import arxiv
 import requests
@@ -392,7 +395,7 @@ DRAFT_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evol
 - 中文原著，英文版保持同等力度"""
 
 
-def draft_patch(paper: dict, merged: dict) -> str | None:
+def draft_patch(paper: dict, merged: dict) -> Optional[str]:
     """
     为 immediate + 高分论文自动生成可直接参考的书稿段落。
     只在 openrouter_client 可用时运行。
