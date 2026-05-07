@@ -41,6 +41,20 @@ class Config:
     DRAFT_RELEVANCE_THRESHOLD = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
     DRAFT_URGENCY_REQUIRED = os.getenv("DRAFT_URGENCY_REQUIRED", "immediate")
 
+    # ---------- News aggregation ----------
+    NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
+    ENABLE_NEWS_API = os.getenv("ENABLE_NEWS_API", "false").lower() in ("true", "1", "yes")
+    ENABLE_RSS_FEEDS = os.getenv("ENABLE_RSS_FEEDS", "true").lower() in ("true", "1", "yes")
+    NEWS_DAYS_BACK = int(os.getenv("NEWS_DAYS_BACK", "7"))
+
+    # 预设的 RSS 订阅源，可直接在代码里增删，或留一个字符串在 .env 中解析
+    RSS_FEEDS = {
+        "MIT Technology Review": "https://www.technologyreview.com/feed/",
+        "Hacker News": "https://hnrss.org/frontpage",
+        "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
+        "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    }
+
     # ---------- Paths ----------
     KEYWORDS_FILE = os.getenv("KEYWORDS_FILE", "keywords.txt")
     OUTPUT_DIR = os.getenv("OUTPUT_DIR", "reports")
