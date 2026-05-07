@@ -116,7 +116,7 @@ def search_arxiv(keywords, max_results=MAX_RESULTS_PER_KEYWORD):
         time.sleep(3)
     return list(all_papers.values())
 
-def search_semantic_scholar(keywords, limit=10):
+def search_semantic_scholar(keywords, limit=5):
     papers = []
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
@@ -128,25 +128,26 @@ def search_semantic_scholar(keywords, limit=10):
                 "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
             }
             
-            # 重试机制
+            # 改进后的重试机制：更长初始等待、更大间隔
             max_retries = 3
+            r = None
             for attempt in range(max_retries):
                 try:
-                    r = requests.get(url, params=params, timeout=15)
+                    r = requests.get(url, params=params, timeout=30)
                     if r.status_code == 429:
-                        wait = (attempt + 1) * 10  # 10s → 20s → 30s
-                        print(f"   ⚠️ 触发限速，等待 {wait} 秒后重试...")
+                        wait = (attempt + 1) * 15  # 15s → 30s → 45s
+                        print(f"   ⚠️ Semantic Scholar 限速，等待 {wait} 秒...")
                         time.sleep(wait)
                         continue
                     r.raise_for_status()
-                    break  # 成功，跳出重试循环
-                except requests.exceptions.HTTPError as e:
-                    if r.status_code == 429:
+                    break  # 成功跳出
+                except requests.exceptions.RequestException as e:
+                    if r is not None and r.status_code == 429:
                         continue
                     raise e
             
-            if r.status_code == 429:
-                print(f"   ❌ 重试 {max_retries} 次后仍然被限速，跳过此关键词")
+            if r is None or r.status_code == 429:
+                print(f"   ❌ Semantic Scholar 搜索失败（重试耗尽），跳过: {keyword}")
                 continue
             
             data = r.json().get("data", [])
@@ -165,8 +166,8 @@ def search_semantic_scholar(keywords, limit=10):
         except Exception as e:
             print(f"   ❌ 搜索失败: {e}")
         
-        # 每个关键词之间等待 5 秒，防止连续请求触发限速
-        time.sleep(5)
+        # 每个关键词之间等待，降低请求频率
+        time.sleep(3)
     
     return papers
 
