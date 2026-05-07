@@ -341,7 +341,7 @@ def merge_results(results: list[dict]) -> dict:
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
     tasks: list[tuple[str, OpenAI]] = []
     if deepseek_client:
-        tasks.append(("deepseek/deepseek-chat", deepseek_client))
+        tasks.append(("deepseek-v4-pro", deepseek_client))
     if openrouter_client:
         for m in models:
             tasks.append((m, openrouter_client))
