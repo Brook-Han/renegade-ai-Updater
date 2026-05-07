@@ -145,7 +145,7 @@ def search_arxiv(keywords: list[str], max_results: int = MAX_RESULTS_PER_KEYWORD
                 break
             except Exception as e:
                 if attempt < 2:
-                    wait = (attempt + 1) * 10
+                    wait = (attempt + 1) * 20
                     print(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
                     time.sleep(wait)
                 else:
