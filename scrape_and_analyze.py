@@ -154,62 +154,73 @@ def search_arxiv(keywords: list[str], max_results: int = MAX_RESULTS_PER_KEYWORD
     return list(all_papers.values())
 
 
-def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
+def search_semantic_scholar(keywords, limit=5):
     """
-    抓取 Semantic Scholar。
-    URL 修复：使用 paperId 构造标准网页链接，而不是 CorpusID API 路径。
+    从 Semantic Scholar 搜索最新论文，并自动使用 API Key。
     """
-    papers: list[dict] = []
-    api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
+    # 从 .env 文件中读取 API Key
+    S2_API_KEY = os.environ.get("SEMANTIC_SCHOLAR_API_KEY", "")
+    
+    papers = []
+    headers = {}  # 用于存储请求头
+    if S2_API_KEY:
+        headers["x-api-key"] = S2_API_KEY  # 如果存在 API Key，就加到请求头里
+        print(f"🔍 [Semantic Scholar] 已使用 API Key，将享有更高频率。")
+    else:
+        print(f"🔍 [Semantic Scholar] 未找到 API Key，将使用公共频率（可能触发限速）。")
 
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
-        params = {
-            "query":  keyword,
-            "limit":  limit,
-            "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf",
-        }
-        r = None
-        for attempt in range(3):
-            try:
-                r = requests.get(api_url, params=params, timeout=30)
-                if r.status_code == 429:
-                    wait = (attempt + 1) * 15
-                    print(f"   ⚠️ 429 限速，等待 {wait}s…")
-                    time.sleep(wait)
-                    continue
-                r.raise_for_status()
-                break
-            except requests.exceptions.RequestException as e:
-                if r is not None and r.status_code == 429:
-                    continue
-                print(f"   ❌ 请求异常: {e}")
-                break
-
-        if r is None or r.status_code != 200:
-            print(f"   ❌ Semantic Scholar 搜索失败，跳过: {keyword}")
-            time.sleep(3)
-            continue
-
-        for p in r.json().get("data", []):
-            paper_id = p.get("paperId", "")
-            # ✅ 修复：使用 paperId 构造标准 S2 网页 URL
-            web_url = (
-                (p.get("openAccessPdf") or {}).get("url")
-                or (f"https://www.semanticscholar.org/paper/{paper_id}" if paper_id else "")
-            )
-            papers.append({
-                "id":        paper_id,
-                "title":     safe_str(p.get("title", "")),
-                "summary":   safe_str(p.get("abstract", "") or ""),
-                "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                "url":       web_url,
-                "authors":   [a.get("name", "") for a in p.get("authors", [])],
-            })
-
-        print(f"   ✅ 找到 {len(r.json().get('data', []))} 篇")
+        try:
+            url = "https://api.semanticscholar.org/graph/v1/paper/search"
+            params = {
+                "query": keyword,
+                "limit": limit,
+                "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
+            }
+            
+            # 改进后的重试机制：更长初始等待、更大间隔
+            max_retries = 3
+            r = None
+            for attempt in range(max_retries):
+                try:
+                    # 发送请求时带上 headers
+                    r = requests.get(url, params=params, headers=headers, timeout=30)
+                    if r.status_code == 429:
+                        wait = (attempt + 1) * 15  # 15s → 30s → 45s
+                        print(f"   ⚠️ Semantic Scholar 限速，等待 {wait} 秒...")
+                        time.sleep(wait)
+                        continue
+                    r.raise_for_status()
+                    break  # 成功跳出
+                except requests.exceptions.RequestException as e:
+                    if r is not None and r.status_code == 429:
+                        continue
+                    raise e
+            
+            if r is None or r.status_code == 429:
+                print(f"   ❌ Semantic Scholar 搜索失败（重试耗尽），跳过: {keyword}")
+                continue
+            
+            data = r.json().get("data", [])
+            for p in data:
+                papers.append({
+                    "id": p.get("paperId", ""),
+                    "title": safe_str(p.get("title", "")),
+                    "summary": safe_str(p.get("abstract", "") or ""),
+                    "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                    "url": (p.get("openAccessPdf") or {}).get("url") or
+                           f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
+                    "authors": [a.get("name", "") for a in p.get("authors", [])],
+                })
+            print(f"   ✅ 找到 {len(data)} 篇")
+            
+        except Exception as e:
+            print(f"   ❌ 搜索失败: {e}")
+        
+        # 关键词之间友好等待，降低请求频率
         time.sleep(3)
-
+    
     return papers
 
 
