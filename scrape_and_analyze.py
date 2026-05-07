@@ -56,14 +56,14 @@ FREE_MODELS = [
 ]
 CHEAP_PAID_MODELS = [
     "google/gemini-2.5-flash",
-    "deepseek/deepseek-chat",
-    "mistralai/mistral-small-3.1-24b",
+    "anthropic/claude-haiku-4.5",
 ]
 STRONG_PAID_MODELS = [
     "anthropic/claude-sonnet-4",
     "openai/gpt-4o-mini",
 ]
 ANALYSIS_MODELS = FREE_MODELS + CHEAP_PAID_MODELS
+DRAFTING_MODEL = "anthropic/claude-sonnet-4.5"  # ← 补丁用 Sonnet 4.5
 
 # ============ 工具函数 ============
 def load_keywords(filepath=KEYWORDS_FILE):
@@ -406,11 +406,12 @@ def main():
     arxiv_papers = search_arxiv(keywords)
 
     # 暂时跳过 Semantic Scholar（因为 429 限速），使用空列表代替
-    s2_papers = []   # ← 加上这一行
-    # s2_papers = search_semantic_scholar(keywords)
+    # s2_papers = []   # ← 加上这一行
+
+    s2_papers = search_semantic_scholar(keywords)
 
     all_papers = deduplicate_papers(arxiv_papers + s2_papers)
-    
+
     print(f"\n📄 合并去重后共 {len(all_papers)} 篇论文\n")
 
     if not all_papers:
