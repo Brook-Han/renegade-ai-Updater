@@ -153,74 +153,85 @@ def search_arxiv(keywords: list[str], max_results: int = MAX_RESULTS_PER_KEYWORD
         time.sleep(3)
     return list(all_papers.values())
 
-
-def search_semantic_scholar(keywords, limit=5):
+def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
     """
-    从 Semantic Scholar 搜索最新论文，并自动使用 API Key。
+    语义学者搜索优化版 v4.3
+    - 修复：URL 构造逻辑（改用 web_url）
+    - 优化：针对 429 的指数退避策略
+    - 增加：重复项过滤
     """
-    # 从 .env 文件中读取 API Key
-    S2_API_KEY = os.environ.get("SEMANTIC_SCHOLAR_API_KEY", "")
+    # 建议统一变量名
+    S2_API_KEY = os.environ.get("S2_API_KEY") or os.environ.get("SEMANTIC_SCHOLAR_API_KEY", "")
     
-    papers = []
-    headers = {}  # 用于存储请求头
+    papers: list[dict] = []
+    seen_ids = set() # 函数内去重，避免同一个词搜到重复的
+    headers = {"x-api-key": S2_API_KEY} if S2_API_KEY else {}
+    
     if S2_API_KEY:
-        headers["x-api-key"] = S2_API_KEY  # 如果存在 API Key，就加到请求头里
-        print(f"🔍 [Semantic Scholar] 已使用 API Key，将享有更高频率。")
+        print("🔑 [S2] 检测到 API Key，正在以高频率模式运行。")
     else:
-        print(f"🔍 [Semantic Scholar] 未找到 API Key，将使用公共频率（可能触发限速）。")
+        print("⚠️ [S2] 未发现 API Key，使用匿名限速模式（极易触发 429）。")
+
+    api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
     for keyword in keywords:
-        print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
-        try:
-            url = "https://api.semanticscholar.org/graph/v1/paper/search"
-            params = {
-                "query": keyword,
-                "limit": limit,
-                "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-            }
-            
-            # 改进后的重试机制：更长初始等待、更大间隔
-            max_retries = 3
-            r = None
-            for attempt in range(max_retries):
-                try:
-                    # 发送请求时带上 headers
-                    r = requests.get(url, params=params, headers=headers, timeout=30)
-                    if r.status_code == 429:
-                        wait = (attempt + 1) * 15  # 15s → 30s → 45s
-                        print(f"   ⚠️ Semantic Scholar 限速，等待 {wait} 秒...")
-                        time.sleep(wait)
-                        continue
-                    r.raise_for_status()
-                    break  # 成功跳出
-                except requests.exceptions.RequestException as e:
-                    if r is not None and r.status_code == 429:
-                        continue
-                    raise e
-            
-            if r is None or r.status_code == 429:
-                print(f"   ❌ Semantic Scholar 搜索失败（重试耗尽），跳过: {keyword}")
-                continue
-            
-            data = r.json().get("data", [])
-            for p in data:
-                papers.append({
-                    "id": p.get("paperId", ""),
-                    "title": safe_str(p.get("title", "")),
-                    "summary": safe_str(p.get("abstract", "") or ""),
-                    "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                    "url": (p.get("openAccessPdf") or {}).get("url") or
-                           f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
-                    "authors": [a.get("name", "") for a in p.get("authors", [])],
-                })
-            print(f"   ✅ 找到 {len(data)} 篇")
-            
-        except Exception as e:
-            print(f"   ❌ 搜索失败: {e}")
+        print(f"🔍 [S2] 正在检索: {keyword}")
         
-        # 关键词之间友好等待，降低请求频率
-        time.sleep(3)
-    
+        # 指数退避重试逻辑
+        for attempt in range(4):
+            try:
+                params = {
+                    "query": keyword,
+                    "limit": limit,
+                    "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
+                }
+                r = requests.get(api_url, params=params, headers=headers, timeout=30)
+                
+                if r.status_code == 429:
+                    # 如果没有 Key，等待时间需要大幅拉长
+                    wait = (attempt + 1) * (30 if not S2_API_KEY else 5)
+                    print(f"   ⚠️ 限速封锁！第 {attempt+1} 次尝试，等待 {wait}s...")
+                    time.sleep(wait)
+                    continue
+                
+                r.raise_for_status()
+                data = r.json().get("data", [])
+                
+                count = 0
+                for p in data:
+                    pid = p.get("paperId")
+                    if not pid or pid in seen_ids:
+                        continue
+                    
+                    # ✅ 核心修复：构造用户可以直接访问的网页链接
+                    # 优先使用 OpenAccess PDF，其次是 S2 论文主页
+                    pdf_url = (p.get("openAccessPdf") or {}).get("url")
+                    web_url = f"https://www.semanticscholar.org/paper/{pid}"
+                    
+                    papers.append({
+                        "id": pid,
+                        "title": safe_str(p.get("title", "")),
+                        "summary": safe_str(p.get("abstract") or ""),
+                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                        "url": pdf_url if pdf_url else web_url,
+                        "authors": [a.get("name", "") for a in p.get("authors", [])],
+                    })
+                    seen_ids.add(pid)
+                    count += 1
+                
+                print(f"   ✅ 成功提取 {count} 篇新论文")
+                break # 成功则跳出重试循环
+
+            except Exception as e:
+                if attempt < 3:
+                    print(f"   ⏳ 网络波动 ({e})，正在重试...")
+                    time.sleep(5)
+                else:
+                    print(f"   ❌ 该关键词抓取失败: {keyword}")
+
+        # 关键词之间的强制冷却（保护 IP）
+        time.sleep(1.5 if S2_API_KEY else 6.0)
+
     return papers
 
 
