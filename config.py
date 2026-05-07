@@ -49,12 +49,28 @@ class Config:
 
     # 预设的 RSS 订阅源，可直接在代码里增删，或留一个字符串在 .env 中解析
     RSS_FEEDS = {
-        "MIT Technology Review": "https://www.technologyreview.com/feed/",
-        "Hacker News": "https://hnrss.org/frontpage",
+       "MIT Tech Review": "https://www.technologyreview.com/feed/",
+        "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial+intelligence",
         "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
         "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
     }
-
+        # ---------- News pre‑screening ----------
+    NEWS_CONCEPT_TERMS = [
+        "openai", "anthropic", "deepmind", "google ai", "microsoft ai",
+        "musk", "altman", "court", "lawsuit", "regulat",
+        "align", "safety test", "trust", "lie", "promise",
+        "search summar", "overview", "ai overview", "quote reddit",
+        "manipulat", "persua", "sycophan", "companion",
+        "cognitive", "consensus", "renegade", "time sovereignty",
+        "dark forest", "token trap", "financialization",
+        "rlhf", "alignment tax", "open source", "decentraliz",
+        "compute egalitarian", "edge computing",
+        "democracy", "public opinion", "misinformation",
+        "military", "national security", "weapon",
+        "copyright", "ip", "intellectual property",
+        "labor", "job", "work", "ubi", "universal basic income",
+    ]
+    
     # ---------- Paths ----------
     KEYWORDS_FILE = os.getenv("KEYWORDS_FILE", "keywords.txt")
     OUTPUT_DIR = os.getenv("OUTPUT_DIR", "reports")
