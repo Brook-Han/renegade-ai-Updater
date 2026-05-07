@@ -341,16 +341,17 @@ def merge_results(results: list[dict]) -> dict:
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
     tasks: list[tuple[str, OpenAI]] = []
     
-    # 暂时关闭 DeepSeek 直连（官网 ID 报错）
-    # if deepseek_client:
-    #     tasks.append(("deepseek-v4-flash", deepseek_client))
+    # DeepSeek 官网直连 (使用 V4 Pro)
+    if deepseek_client:
+        tasks.append(("deepseek-v4-pro", deepseek_client))  # ← 改这里
     
-    # 只用 OpenRouter + 已验证的模型
+    # OpenRouter 模型
     if openrouter_client:
-        tasks.append(("deepseek/deepseek-chat", openrouter_client))  # OpenRouter 会自动路由
-    
+        for m in models:
+            tasks.append((m, openrouter_client))
+
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=1) as executor:  # 单线程，避免限流
+    with ThreadPoolExecutor(max_workers=min(len(tasks), 3)) as executor:
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
@@ -370,11 +371,12 @@ DRAFT_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evol
 本书为中文原著，英文章节保持同等力度。"""
 
 def draft_patch(paper: dict, merged: dict) -> Optional[str]:
-    if not openrouter_client:
+    """为 immediate + 高分论文生成书稿草稿 (DeepSeek 直连)"""
+    if not deepseek_client:
         return None
 
     first_author = paper["authors"][0].split()[-1] if paper["authors"] else "et al."
-    year = paper.get("published", "")[:4]
+    year = paper.get("published", "")[:4] if paper.get("published") else ""
     cite = f"({first_author} et al., {year})" if year else f"({first_author} et al.)"
 
     user_prompt = f"""将以下论文整合进书中：
@@ -395,7 +397,7 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
 - 段落以论点开头，以引用结尾"""
 
     try:
-        resp = openrouter_client.chat.completions.create(
+        resp = deepseek_client.chat.completions.create(   # ← 改为 deepseek_client
             model=DRAFTING_MODEL,
             messages=[
                 {"role": "system", "content": DRAFT_SYSTEM_PROMPT},
