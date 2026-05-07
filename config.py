@@ -26,7 +26,7 @@ class Config:
 
     # OpenRouter 模型列表（全部使用 DeepSeek，稳定不掉线）
     OPENROUTER_MODELS = [
-        "deepseek/deepseek-chat",     # OpenRouter 自动路由到 DeepInfra/Novita
+        "deepseek/deepseek-v4-pro",     # OpenRouter 自动路由到 DeepInfra/Novita
     ]
 
     # 实际分析模型列表（只在 OpenRouter 上跑的模型）
