@@ -16,31 +16,35 @@ class Config:
     ARXIV_DELAY_SECONDS = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
 
     # ============================================================
-    # 模型配置 (2026-05-07 调整)
-    # 说明：
-    #   - DeepSeek V4 Pro 通过官网直连 (已在 scrape_and_analyze.py 中配置)
-    #   - OpenRouter 仅用于免费/廉价模型 (避免 Anthropic/Google/OpenAI 因地区封禁 403)
+    # 模型配置 (2026-05-07 优化)
+    # 原则：
+    #   - 分析任务（大量调用）→ deepseek-v4-flash 直连（便宜快速）
+    #   - 草稿任务（少量调用）→ deepseek-v4-pro 直连（强推理）
+    #   - 辅助对比 → 保留 OpenRouter 免费模型
+    #   - 移除 OpenRouter 中的 DeepSeek 路由（避免 double billing）
     # ============================================================
 
-    # OpenRouter 免费模型 (目前仅保留已验证可用的)
+    # OpenRouter 免费模型（辅助对比，提供第二意见）
     FREE_MODELS = [
         "meta-llama/llama-3.3-70b-instruct:free",
     ]
 
-    # OpenRouter 廉价付费模型 (避免 Anthropic/Google/OpenAI)
-    CHEAP_PAID_MODELS = [
-        "deepseek/deepseek-chat",     # OpenRouter 自动路由到 DeepInfra/Novita
-    ]
+    # OpenRouter 付费模型（当前不使用，避免重复计费）
+    CHEAP_PAID_MODELS = []
 
-    # 强推理模型 (暂不使用，因上游封禁)
+    # 强推理模型（暂不使用，因上游封禁）
     STRONG_PAID_MODELS = []
 
-    # 实际分析模型列表
+    # 实际分析模型列表（只包含通过 OpenRouter 调用的模型）
+    # 注意：DeepSeek V4 Flash 直连是在脚本中单独添加的，不在这里
     ANALYSIS_MODELS = FREE_MODELS + CHEAP_PAID_MODELS
 
-    # ---------- Draft generation ----------
-    # 草稿模型先用 DeepSeek 直连 (因 Anthropic 被封禁)
-    DRAFTING_MODEL = "deepseek-v4-pro"   # 注意：这是 DeepSeek 官网直连模型名
+    # ---------- 直连模型指定 ----------
+    # 用于大量论文分析的模型（速度快、成本低）
+    ANALYSIS_MODEL_DIRECT = "deepseek-v4-flash"
+    # 用于生成书稿草稿的模型（需要强推理和写作能力）
+    DRAFTING_MODEL = "deepseek-v4-pro"
+
     DRAFT_RELEVANCE_THRESHOLD = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
     DRAFT_URGENCY_REQUIRED = os.getenv("DRAFT_URGENCY_REQUIRED", "immediate")
 
