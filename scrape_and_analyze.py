@@ -120,41 +120,54 @@ def search_semantic_scholar(keywords, limit=10):
     papers = []
     for keyword in keywords:
         print(f"🔍 [Semantic Scholar] 正在搜索: {keyword}")
-        url = "https://api.semanticscholar.org/graph/v1/paper/search"
-        params = {
-            "query": keyword, "limit": limit,
-            "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-        }
-        for attempt in range(3):
-            try:
-                r = requests.get(url, params=params, timeout=15)
-                if r.status_code == 429:
-                    wait = (attempt + 1) * 15
-                    print(f"   ⚠️ 429 限流，{wait}秒后重试...")
-                    time.sleep(wait)
-                    continue
-                r.raise_for_status()
-                data = r.json().get("data", [])
-                for p in data:
-                    papers.append({
-                        "id": p.get("paperId", ""),
-                        "title": safe_str(p.get("title", "")),
-                        "summary": safe_str(p.get("abstract", "") or ""),
-                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                        "url": (p.get("openAccessPdf") or {}).get("url") or
-                               f"https://www.semanticscholar.org/paper/{p.get('paperId', '')}",
-                        "authors": [a.get("name", "") for a in p.get("authors", [])],
-                    })
-                print(f"   ✅ 找到 {len(data)} 篇")
-                break
-            except Exception as e:
-                if attempt < 2:
-                    wait = (attempt + 1) * 15
-                    print(f"   ⚠️ 请求失败，{wait}秒后重试... ({e})")
-                    time.sleep(wait)
-                else:
-                    print(f"   ❌ 三次重试后仍失败: {e}")
+        try:
+            url = "https://api.semanticscholar.org/graph/v1/paper/search"
+            params = {
+                "query": keyword,
+                "limit": limit,
+                "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
+            }
+            
+            # 重试机制
+            max_retries = 3
+            for attempt in range(max_retries):
+                try:
+                    r = requests.get(url, params=params, timeout=15)
+                    if r.status_code == 429:
+                        wait = (attempt + 1) * 10  # 10s → 20s → 30s
+                        print(f"   ⚠️ 触发限速，等待 {wait} 秒后重试...")
+                        time.sleep(wait)
+                        continue
+                    r.raise_for_status()
+                    break  # 成功，跳出重试循环
+                except requests.exceptions.HTTPError as e:
+                    if r.status_code == 429:
+                        continue
+                    raise e
+            
+            if r.status_code == 429:
+                print(f"   ❌ 重试 {max_retries} 次后仍然被限速，跳过此关键词")
+                continue
+            
+            data = r.json().get("data", [])
+            for p in data:
+                papers.append({
+                    "id": p.get("paperId", ""),
+                    "title": safe_str(p.get("title", "")),
+                    "summary": safe_str(p.get("abstract", "") or ""),
+                    "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                    "url": (p.get("openAccessPdf") or {}).get("url") or
+                           f"https://api.semanticscholar.org/CorpusID:{p.get('externalIds', {}).get('CorpusId', '')}",
+                    "authors": [a.get("name", "") for a in p.get("authors", [])],
+                })
+            print(f"   ✅ 找到 {len(data)} 篇")
+            
+        except Exception as e:
+            print(f"   ❌ 搜索失败: {e}")
+        
+        # 每个关键词之间等待 5 秒，防止连续请求触发限速
         time.sleep(5)
+    
     return papers
 
 def deduplicate_papers(papers):
@@ -289,7 +302,7 @@ def analyze_paper_multi_model(paper, models):
             tasks.append((model_name, openrouter_client))
 
     results = []
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 8)) as executor:
+    with ThreadPoolExecutor(max_workers=min(len(tasks), 3)) as executor:
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
