@@ -383,7 +383,6 @@ DRAFT_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evol
 本书为中文原著，英文章节保持同等力度。"""
 
 def draft_patch(paper: dict, merged: dict) -> Optional[str]:
-    """为 immediate + 高分论文生成书稿草稿 (DeepSeek 直连)"""
     if not deepseek_client:
         return None
 
@@ -391,17 +390,25 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
     year = paper.get("published", "")[:4] if paper.get("published") else ""
     cite = f"({first_author} et al., {year})" if year else f"({first_author} et al.)"
 
+    # 截断超长文本，防止超出模型上下文窗口
+    summary_cn = merged.get('summary_cn', '')
+    implications = merged.get('implications', '')
+    if len(summary_cn) > 300:
+        summary_cn = summary_cn[:300] + '...'
+    if len(implications) > 300:
+        implications = implications[:300] + '...'
+
     user_prompt = f"""将以下论文整合进书中：
 
 论文标题：{paper['title']}
 作者：{', '.join(paper['authors'][:3])}
 引用格式：{cite}
-核心发现（中文摘要）：{merged.get('summary_cn', '')}
+核心发现（中文摘要）：{summary_cn}
 目标章节：{merged.get('chapter_target', '')}
 更新类型：{merged.get('update_type', '')}
-与书的关联：{merged.get('implications', '')}
+与书的关联：{implications}
 
-请生成一段 150-250 字的英文书稿，要求：
+请生成一段 150-250 字的中英双语书稿，要求：
 - 直接点明论文发现与书中具体论点的连接
 - 以 {cite} 格式引用
 - 风格与全书一致：论断式，有锋芒，论证密度高
@@ -409,14 +416,14 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
 - 段落以论点开头，以引用结尾"""
 
     try:
-        resp = deepseek_client.chat.completions.create(   # DeepSeek 直连
+        resp = deepseek_client.chat.completions.create(
             model=DRAFTING_MODEL,
             messages=[
                 {"role": "system", "content": DRAFT_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.3,
-            max_tokens=800,
+            max_tokens=1200,
         )
         return resp.choices[0].message.content.strip()
     except Exception as e:
@@ -565,7 +572,8 @@ def main() -> None:
 
     # 更新缓存（仅对成功分析的论文）
     for d in papers_data:
-        mark_paper_cached(d["paper"], d["merged"], cache)
+        if d["merged"].get("relevance", 0) > 0:  # 或 > 2
+           mark_paper_cached(d["paper"], d["merged"], cache)
 
     # 生成草稿（仅对 immediate 高分论文）
     draft_candidates = [
