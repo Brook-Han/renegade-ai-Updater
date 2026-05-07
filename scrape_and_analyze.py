@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v4.3.1 — 多模型复证终版（信息对齐修正）
+Renegade AI 文献监控脚本 v4.3.2 — 多模型复证终版（全面修正）
 - 配置抽离：所有参数统一从 config.Config 读取
 - 日志系统：使用 logger 记录关键流程，同时写入 radar.log
 - 增量缓存：基于论文内容指纹（MD5）去重，正式替换 seen_ids
@@ -63,7 +63,7 @@ arxiv_client = arxiv.Client(
 OUTPUT_DIR = Path(Config.OUTPUT_DIR)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 分析模型列表（仅OpenRouter，不含直连）
+# 分析模型列表（仅 OpenRouter，不含直连）
 ANALYSIS_MODELS = Config.ANALYSIS_MODELS
 
 # 草稿生成设置（统一从配置读取）
@@ -72,7 +72,7 @@ DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD   # 默认 8
 DRAFT_URGENCY_REQUIRED    = Config.DRAFT_URGENCY_REQUIRED      # 默认 "immediate"
 
 # 所有分析模型的完整名称（用于报告展示）
-ALL_MODEL_NAMES = ["DeepSeek V4 Pro (直连)"] + ANALYSIS_MODELS
+ALL_MODEL_NAMES = [f"{Config.ANALYSIS_MODEL_DIRECT} (直连)"] + ANALYSIS_MODELS
 
 # ------------------------------------------------------------------
 # 工具函数
@@ -326,14 +326,10 @@ def merge_results(results: list[dict]) -> dict:
 
     # 异常值剔除（仅用于计算最终均值和确定文本来源）
     if max(scores) - avg > 3 and len(scores) > 2:
-        # 去除最高分后重新计算均值和有效列表
         trimmed_scores = sorted(scores)[:-1]
         avg = sum(trimmed_scores) / len(trimmed_scores)
-        # 重新确定有效集合（排除了最高分的那一个结果）
         max_val = max(scores)
-        valid = [r for r in valid if r["relevance"] != max_val]  # 如果有多个相同最高分，会全部去除，需要更精细控制，但简单用第一个即可
-        # 简单处理：只剔除第一个遇到的最高分结果
-        # 由于 valid 是列表，遍历剔除第一个最高分匹配项
+        # 剔除第一个遇到的最高分结果
         found = False
         new_valid = []
         for r in valid:
@@ -360,11 +356,6 @@ def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict
     # DeepSeek 官网直连 (使用分析专用模型，默认 deepseek-v4-flash)
     if deepseek_client:
         tasks.append((Config.ANALYSIS_MODEL_DIRECT, deepseek_client))
-    
-    # OpenRouter 模型（目前只有免费 Llama）
-    if openrouter_client:
-        for m in models:
-            tasks.append((m, openrouter_client))
     
     # OpenRouter 模型
     if openrouter_client:
@@ -419,7 +410,7 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
 
     try:
         resp = deepseek_client.chat.completions.create(   # DeepSeek 直连
-            model=DRAFTING_MODEL,                        # 使用统一配置的模型名
+            model=DRAFTING_MODEL,
             messages=[
                 {"role": "system", "content": DRAFT_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
@@ -486,9 +477,12 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str]) -> str
                 lines.append("|------|--------|")
                 for mn, sc in sorted(m["model_scores"].items(), key=lambda x: x[1], reverse=True):
                     # 美化模型显示名
-                    display_name = mn.split("/")[-1][:28]
-                    if mn == Config.DRAFTING_MODEL:
-                        display_name = "DeepSeek V4 Pro"
+                    if mn == Config.ANALYSIS_MODEL_DIRECT:
+                        display_name = "DeepSeek V4 Flash (直连)"
+                    elif mn == Config.DRAFTING_MODEL:
+                        display_name = "DeepSeek V4 Pro (草稿)"
+                    else:
+                        display_name = mn.split("/")[-1][:28]
                     lines.append(f"| {display_name} | {sc} |")
 
             if d.get("draft"):
@@ -523,7 +517,7 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str]) -> str
 # 主函数
 # ------------------------------------------------------------------
 def main() -> None:
-    logger.info("🚀 Renegade AI 文献监控系统 v4.3.1 启动")
+    logger.info("🚀 Renegade AI 文献监控系统 v4.3.2 启动")
     logger.info(f"配置: 分析模型 {len(ALL_MODEL_NAMES)} 个, 草稿模型 {DRAFTING_MODEL}")
 
     # 加载关键词
