@@ -1,154 +1,133 @@
 #!/usr/bin/env python3
-"""解析最新资讯报告，将紧急高相关条目推送到钉钉群"""
+"""解析最新资讯报告，将中高相关条目整理成简报推送到钉钉"""
 
-import os
-import re
-import sys
-import time
-import hmac
-import hashlib
-import base64
-import urllib.parse
-import requests
+import os, sys, time, hmac, hashlib, base64, urllib.parse, re, requests
 from pathlib import Path
 from datetime import date
 
 
 def generate_sign(secret: str) -> tuple:
-    """生成钉钉加签"""
-    timestamp = str(round(time.time() * 1000))
-    string_to_sign = f"{timestamp}\n{secret}"
-    hmac_code = hmac.new(
-        secret.encode(), string_to_sign.encode(), digestmod=hashlib.sha256
-    ).digest()
-    sign = urllib.parse.quote_plus(base64.b64encode(hmac_code))
-    return timestamp, sign
+    ts = str(round(time.time() * 1000))
+    to_sign = f"{ts}\n{secret}".encode()
+    sign = urllib.parse.quote_plus(base64.b64encode(hmac.new(secret.encode(), to_sign, hashlib.sha256).digest()))
+    return ts, sign
 
 
-def send_dingtalk(webhook: str, secret: str, title: str, text: str) -> bool:
-    """发送 Markdown 消息到钉钉"""
-    timestamp, sign = generate_sign(secret)
-    url = f"{webhook}&timestamp={timestamp}&sign={sign}"
-    payload = {"msgtype": "markdown", "markdown": {"title": title, "text": text}}
-    try:
-        r = requests.post(url, json=payload, timeout=10)
-        if r.status_code == 200 and r.json().get("errcode") == 0:
-            print("✅ 钉钉推送成功")
-            return True
-        print(f"❌ 钉钉推送失败: {r.text}")
-    except Exception as e:
-        print(f"❌ 推送异常: {e}")
-    return False
+def send_dingtalk(webhook, secret, title, text):
+    ts, sign = generate_sign(secret)
+    url = f"{webhook}&timestamp={ts}&sign={sign}"
+    r = requests.post(url, json={"msgtype":"markdown","markdown":{"title":title,"text":text}}, timeout=10)
+    return r.json().get("errcode") == 0
 
 
-def extract_field_from_line(line: str, field_name: str) -> str:
-    """从 Markdown 列表项中提取字段值，如 '- **最终评分**: 8.5/10'"""
-    # 匹配 "- **字段名**: 值" 或 "- **字段名**: **值**"
+def extract_field(line: str, field_name: str) -> str:
     pattern = rf"-\s*\*+\s*{re.escape(field_name)}\s*\*+\s*:\s*(.*)"
     m = re.search(pattern, line, re.IGNORECASE)
     if m:
         val = m.group(1).strip()
-        # 去除可能的 markdown 加粗
-        val = re.sub(r"\*+", "", val).strip()
-        return val
+        return re.sub(r"\*+", "", val).strip()
     return ""
 
 
-def extract_high_relevance_immediate(report_path: str) -> list[dict]:
-    """从 Markdown 报告中提取评分≥7 且 urgency=immediate 的条目"""
-    items, current = [], {}
-    try:
-        content = Path(report_path).read_text(encoding="utf-8")
-    except Exception:
-        return []
-
+def parse_items(report_path: str, min_score: float = 4.0) -> list[dict]:
+    """提取评分>=min_score的所有条目"""
+    content = Path(report_path).read_text(encoding="utf-8")
+    items, cur = [], {}
     for line in content.split("\n"):
-        stripped = line.strip()
-        # 标题行：以 ### 开头且后面有文字
-        if stripped.startswith("### ") and len(stripped) > 4:
-            if current.get("title"):
-                items.append(current)
-            current = {"title": stripped[4:].strip()}
+        s = line.strip()
+        if s.startswith("### ") and len(s) > 4:
+            if cur.get("title"):
+                items.append(cur)
+            cur = {"title": s[4:].strip()}
             continue
-
-        # 提取字段
-        if not current.get("score"):
-            s = extract_field_from_line(stripped, "最终评分")
-            if s:
-                current["score"] = s
-
-        if not current.get("urgency"):
-            s = extract_field_from_line(stripped, "紧迫度")
-            if s:
-                current["urgency"] = s
-
-        if not current.get("summary"):
-            s = extract_field_from_line(stripped, "核心发现")
-            if s:
-                current["summary"] = s
-
-        if not current.get("url"):
-            s = extract_field_from_line(stripped, "链接")
-            if s:
-                current["url"] = s
-
-    if current.get("title"):
-        items.append(current)
+        if not cur.get("score"):
+            cur["score"] = extract_field(s, "最终评分")
+        if not cur.get("urgency"):
+            cur["urgency"] = extract_field(s, "紧迫度")
+        if not cur.get("summary"):
+            cur["summary"] = extract_field(s, "核心发现")
+        if not cur.get("url"):
+            cur["url"] = extract_field(s, "链接")
+    if cur.get("title"):
+        items.append(cur)
 
     result = []
-    for i in items:
-        urgency = i.get("urgency", "").strip().lower()
-        score_str = i.get("score", "0").strip()
+    for it in items:
         try:
-            score = float(score_str.split("/")[0].strip())
+            score = float(it.get("score","0").split("/")[0])
         except ValueError:
             continue
-        if urgency == "immediate" and score >= 7:
-            result.append(i)
+        if score >= min_score:
+            result.append(it)
     return result
 
 
-def build_markdown(items: list[dict]) -> str:
-    """构建简洁的手机可读消息"""
+def build_brief(items: list[dict]) -> str:
+    total = len(items)
+    urgent_count = sum(1 for i in items if i.get("urgency","").strip().lower() == "immediate")
     lines = [
-        f"## 🔬 Renegade AI 新发现📢",
-        f"**日期**: {date.today().isoformat()}  |  **紧急条目**: {len(items)} 篇\n",
-        "---\n",
+        f"## 📰 Renegade AI 每日资讯简报",
+        f"**{date.today().isoformat()}** · 共 {total} 条",
+        "",
     ]
-    for idx, item in enumerate(items[:5], 1):
-        title = item.get("title", "N/A")[:60]
-        score = item.get("score", "N/A")
-        summary = item.get("summary", "")[:120]
-        url = item.get("url", "#")
-        lines.append(f"### {idx}. [{title}]({url})")
-        lines.append(f"- 评分: **{score}**")
-        lines.append(f"- {summary}")
-        lines.append("")
-    if len(items) > 5:
-        lines.append(f"\n> 共 {len(items)} 条，仅显示前 5 条")
+    # 先放紧急条目
+    if urgent_count:
+        lines.append("### 🚨 紧急更新")
+        for i in items:
+            if i.get("urgency","").strip().lower() == "immediate":
+                title = i.get("title","")[:60]
+                score = i.get("score","")
+                summary = i.get("summary","")[:100]
+                url = i.get("url","#")
+                lines.append(f"** [{title}]({url})**  ")
+                lines.append(f"评分: {score} · {summary}")
+                lines.append("")
+
+    # 再放其他高相关（评分>=7 但非紧急）
+    high = [i for i in items if float(i.get("score","0").split("/")[0]) >= 7 and i.get("urgency","").strip().lower() != "immediate"]
+    if high:
+        lines.append("### 🔥 高相关")
+        for i in high:
+            title = i.get("title","")[:60]
+            score = i.get("score","")
+            url = i.get("url","#")
+            lines.append(f"- [{title}]({url})  (评分: {score})")
+
+    # 中相关 (4-6)
+    medium = [i for i in items if 4 <= float(i.get("score","0").split("/")[0]) < 7]
+    if medium:
+        lines.append("### 📌 其他关注")
+        for i in medium[:5]:   # 最多显示5条，避免消息太长
+            title = i.get("title","")[:60]
+            score = i.get("score","")
+            url = i.get("url","#")
+            lines.append(f"- [{title}]({url})  (评分: {score})")
+
+    if total > len([i for i in items if i.get("urgency","").strip().lower() == "immediate"]) + len(high) + len(medium[:5]):
+        lines.append(f"\n> 更多内容详见 [完整报告](https://github.com/Brook-Han/renegade-ai-Updater/blob/main/reports/news_report_multi_{date.today().isoformat()}.md)")
+
     return "\n".join(lines)
 
 
 if __name__ == "__main__":
-    webhook = os.getenv("DINGTALK_WEBHOOK", "")
-    secret = os.getenv("DINGTALK_SECRET", "")
+    webhook = os.getenv("DINGTALK_WEBHOOK","")
+    secret = os.getenv("DINGTALK_SECRET","")
     if not webhook or not secret:
-        print("❌ 缺少 DINGTALK_WEBHOOK 或 DINGTALK_SECRET 环境变量")
-        sys.exit(1)
+        sys.exit("missing env")
 
-    # 获取最新报告文件
     report_files = sorted(Path("reports").glob("news_report_multi_*.md"))
     if not report_files:
-        print("ℹ️ 未找到资讯报告，跳过推送")
+        print("no report")
         sys.exit(0)
 
     latest = report_files[-1]
-    print(f"📄 解析报告: {latest}")
-    items = extract_high_relevance_immediate(str(latest))
+    print(f"📄 {latest}")
+    items = parse_items(str(latest), min_score=4.0)
 
     if not items:
-        print("ℹ️ 今日无紧急高相关条目，跳过推送")
+        print("no relevant items")
         sys.exit(0)
 
-    message = build_markdown(items)
-    send_dingtalk(webhook, secret, f"Renegade AI 新发现📢 ({len(items)}条)", message)
+    msg = build_brief(items)
+    ok = send_dingtalk(webhook, secret, f"Renegade AI 每日简报 ({len(items)}条)", msg)
+    print("✅" if ok else "❌")
