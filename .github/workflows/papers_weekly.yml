@@ -56,12 +56,8 @@ jobs:
               git pull --rebase origin main && git push origin main && break || sleep 10
           done
 
-      - name: 推送紧急警报到钉钉（可选）
+      - name: 推送到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-        run: |
-          LATEST=$(ls -t reports/papers_report_multi_*.md 2>/dev/null | head -1)
-          if [ -n "$LATEST" ]; then
-              python notify_dingtalk.py "$LATEST"
-          fi
+        run: python notify_dingtalk.py --type papers
