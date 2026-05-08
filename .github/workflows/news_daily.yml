@@ -2,18 +2,20 @@ name: News Radar Daily
 
 on:
   schedule:
-    - cron: '0 2 * * *'   # UTC 02:00 ≈ 北京时间 10:00
+    - cron: '0 2 * * *'
   workflow_dispatch:
 
 jobs:
   run-news:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v5
+      - name: 检出仓库代码
+        uses: actions/checkout@v5
         with:
-          fetch-depth: 0   # 拉取完整历史，方便 rebase
+          fetch-depth: 0
 
-      - uses: actions/setup-python@v6
+      - name: 设置 Python
+        uses: actions/setup-python@v6
         with:
           python-version: '3.10'
 
@@ -33,7 +35,9 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git pull --rebase origin main
           git add reports/news_report_multi_*.md
           git commit -m "Daily news report" || echo "No changes to commit"
-          git pull --rebase origin main
-          git push origin main
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && break || sleep 5
+          done
