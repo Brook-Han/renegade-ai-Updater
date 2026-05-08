@@ -43,7 +43,7 @@ jobs:
           git fetch origin main
           git reset --soft origin/main
           # 2. 添加报告文件
-          git add reports/papers_report_multi_*.md
+          git add --ignore-errors reports/news_report_multi_*.md
           # 3. 提交（无变动则跳过）
           git commit -m "Weekly paper report" || echo "No changes to commit"
           # 4. 推送（重试 3 次）
