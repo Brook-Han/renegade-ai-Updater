@@ -70,10 +70,10 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
     urgent_count = sum(1 for i in items if i.get("urgency","").strip().lower() == "immediate")
 
     if report_type == "papers":
-        title_prefix = "📚 Renegade AI 每周论文简报"
+        title_prefix = "📚 **Renegade AI 每周论文简报**"
         report_url = f"https://github.com/Brook-Han/renegade-ai-Updater/blob/main/reports/papers_report_multi_{date.today().isoformat()}.md"
     else:
-        title_prefix = "📰 Renegade AI 每日资讯简报"
+        title_prefix = "📰 **Renegade AI 每日资讯简报**"
         report_url = f"https://github.com/Brook-Han/renegade-ai-Updater/blob/main/reports/news_report_multi_{date.today().isoformat()}.md"
 
     lines = [
@@ -86,44 +86,52 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
     if urgent_count:
         urgency_title = "🕙 及时更新" if report_type == "news" else "🚨 紧急更新"
         lines.append(f"### {urgency_title}")
+        lines.append("")
         for i in items:
             if i.get("urgency","").strip().lower() == "immediate":
-                title = i.get("title","")[:80]
+                # 放宽长度，不再粗暴截断
+                title = i.get("title","")[:150]
                 score = i.get("score","")
-                summary = i.get("summary","")[:150]
-                implications = i.get("implications","")[:200]
+                summary = i.get("summary","")
+                implications = i.get("implications","")
                 url = i.get("url","#")
-                lines.append(f"**{title}** [查看]({url})")
-                lines.append(f"评分: {score} · {summary}")
+                
+                lines.append(f"**{title}** [查看原文]({url})")
+                lines.append(f"- 评分：{score}")
+                lines.append(f"- 概要：{summary}")
                 if implications:
-                    lines.append(f"📖 关联: {implications}")
+                    lines.append(f"- 关联：{implications}")
+                # 每条之间空一行分隔
                 lines.append("")
 
     # 高相关
     high = [i for i in items if float(i.get("score","0").split("/")[0]) >= 7 and i.get("urgency","").strip().lower() != "immediate"]
     if high:
         lines.append("### 🔥 高相关")
+        lines.append("")
         for i in high:
-            title = i.get("title","")[:80]
+            title = i.get("title","")[:150]
             score = i.get("score","")
-            summary = i.get("summary","")[:80]
+            summary = i.get("summary","")
             url = i.get("url","#")
-            lines.append(f"- **{title}** [查看]({url})  (评分: {score})")
-            if summary:
-                lines.append(f"  {summary}")
+            lines.append(f"- **{title}** [查看原文]({url})")
+            lines.append(f"  评分：{score}｜{summary}")
+            lines.append("")
 
     # 中相关
     medium = [i for i in items if 4 <= float(i.get("score","0").split("/")[0]) < 7]
     if medium:
         lines.append("### 📌 其他关注")
+        lines.append("")
         for i in medium[:5]:
-            title = i.get("title","")[:80]
+            title = i.get("title","")[:150]
             score = i.get("score","")
             url = i.get("url","#")
-            lines.append(f"- **{title}** [查看]({url})  (评分: {score})")
+            lines.append(f"- **{title}** [查看原文]({url}) （评分：{score}）")
+            lines.append("")
 
     if total > len(high) + len(medium) + urgent_count:
-        lines.append(f"\n> 更多见[完整报告]({report_url})")
+        lines.append(f"\n> 更多完整内容见 [完整报告]({report_url})")
 
     return "\n".join(lines)
 
