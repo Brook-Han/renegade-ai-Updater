@@ -1,4 +1,3 @@
-# config.py
 import os
 from dotenv import load_dotenv
 
@@ -7,7 +6,8 @@ load_dotenv()
 class Config:
     # ---------- API Keys ----------
     DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
-    OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
+    # 已弃用：OpenRouter 地区限制+已退款，彻底下线
+    # OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
     SEMANTIC_SCHOLAR_API_KEY = os.getenv("SEMANTIC_SCHOLAR_API_KEY", "")
 
     # ---------- Fetch settings ----------
@@ -16,21 +16,17 @@ class Config:
     ARXIV_DELAY_SECONDS = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
 
     # ============================================================
-    # 模型配置 (2026-05-07 最终版)
-    # 策略：
-    #   - 不用免费模型（避免 429 限流导致分析不完整）
-    #   - DeepSeek V4 Flash 直连 → 大量分析任务（快速便宜）
-    #   - DeepSeek 路由（OpenRouter）→ 辅助对比（消耗 OpenRouter 余额）
-    #   - DeepSeek V4 Pro 直连 → 书稿草稿生成（少量调用，强推理）
+    # 模型配置 (2026-05-08 最终落地版)
+    # 策略：彻底弃用 OpenRouter，全程只用 DeepSeek 官网直连
+    #   - 不用任何海外受限聚合平台
+    #   - DeepSeek V4 Flash → 大量论文/资讯分析（快速便宜）
+    #   - DeepSeek V4 Pro → 书稿草稿生成（强推理少量调用）
     # ============================================================
 
-    # OpenRouter 模型列表（全部使用 DeepSeek，稳定不掉线）
-    OPENROUTER_MODELS = [
-        "deepseek/deepseek-v4-pro",     # OpenRouter 自动路由到 DeepInfra/Novita
+    # 全部分析任务统一走 DeepSeek 直连，不再路由 OpenRouter
+    ANALYSIS_MODELS = [
+        "deepseek-v4-flash"
     ]
-
-    # 实际分析模型列表（只在 OpenRouter 上跑的模型）
-    ANALYSIS_MODELS = OPENROUTER_MODELS
 
     # ---------- 直连模型指定 ----------
     # 大量论文分析用（速度快、成本低，走 DeepSeek 官网余额）
@@ -47,8 +43,7 @@ class Config:
     ENABLE_RSS_FEEDS = os.getenv("ENABLE_RSS_FEEDS", "true").lower() in ("true", "1", "yes")
     NEWS_DAYS_BACK = int(os.getenv("NEWS_DAYS_BACK", "7"))
 
-    # 预设的 RSS 订阅源，可直接在代码里增删，或留一个字符串在 .env 中解析
-    
+    # 预设的 RSS 订阅源 完整保留
     RSS_FEEDS = {
     # === 已有稳定源（保留）===
     "MIT Tech Review": "https://www.technologyreview.com/feed/",
@@ -76,9 +71,8 @@ class Config:
     "Hugging Face Daily Papers": "https://huggingface.co/papers/feed.rss",
 
     }
-    
-    # ---------- News pre‑screening (v1.1 追加 Zotero 词库) ----------
-    # 字典结构: { "关键词": "中文释义", ... }
+
+    # ---------- News pre‑screening 完整保留全部词库 ----------
     NEWS_CONCEPT_TERMS = {
         # 公司/人物/事件
         "openai": "OpenAI公司",
@@ -169,7 +163,6 @@ class Config:
         "Densing Law": "密度定律",
         
         # 新增：这些词对应新增资讯源的主题，用于提高预筛选的命中率
-        
         "regulation": "AI监管",
         "data center": "数据中心/算力",
         "recycling": "硬件回收",
@@ -193,4 +186,5 @@ class Config:
 
     # ---------- Rate limiting ----------
     S2_RATE_LIMIT = float(os.getenv("S2_RATE_LIMIT", "1.0"))
-    OPENROUTER_RATE_LIMIT = float(os.getenv("OPENROUTER_RATE_LIMIT", "3.0"))
+    # OpenRouter 已下线，相关限流配置删除
+    # OPENROUTER_RATE_LIMIT = float(os.getenv("OPENROUTER_RATE_LIMIT", "3.0"))
