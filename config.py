@@ -54,7 +54,7 @@ class Config:
         "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
         "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
     }
-        # ---------- News pre‑screening ----------
+        # ----------  News pre‑screening (v1.1 追加 Zotero 词库) ----------
     NEWS_CONCEPT_TERMS = [
         "openai", "anthropic", "deepmind", "google ai", "microsoft ai",
         "musk", "altman", "court", "lawsuit", "regulat",
@@ -68,7 +68,11 @@ class Config:
         "democracy", "public opinion", "misinformation",
         "military", "national security", "weapon",
         "copyright", "ip", "intellectual property",
-        "labor", "job", "work", "ubi", "universal basic income",
+        "labor", "job", "work", "ubi", "universal basic income","post-anthropocentrism", "demand-side discipline", "desire reproduction",
+        "innovation turnaround", "product cycle ethics", "commodification of ethics",
+        "cognitive experience management", "experimental appendix",
+        "carbon-silicon dialogue", "supply-demand feedback loop",
+        "scientific narrowing", "signal collapse",
     ]
     
     # ---------- Paths ----------
