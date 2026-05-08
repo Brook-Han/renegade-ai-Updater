@@ -93,6 +93,7 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
                 summary = i.get("summary","")[:150]
                 implications = i.get("implications","")[:200]
                 url = i.get("url","#")
+                title = re.sub(r"^\d+\.\s*", "", title)
                 lines.append(f"**{title}** [查看]({url})")
                 lines.append(f"评分: {score} · {summary}")
                 if implications:
