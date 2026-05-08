@@ -1,5 +1,5 @@
 # 🔬 Renegade AI 资讯监控报告（多模型复证）
-**生成日期**: 2026-05-08
+**生成日期**: 2026-05-05
 **模型阵容**: deepseek-v4-flash (直连), deepseek/deepseek-v4-pro（共 2 个）
 **草稿模型**: deepseek-v4-pro
 **分析条目数**: 19
