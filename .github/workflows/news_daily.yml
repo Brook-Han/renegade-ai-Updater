@@ -40,25 +40,21 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           
-          # 暂存所有已跟踪文件的更改（通常只有 .gitignore 和现有文件）
+          # 暂存无关更改
           git stash push -m "temp" || true
-          
-          # 拉取远程并变基
           git pull --rebase origin main
-          
-          # 恢复暂存内容（如缓存文件被忽略，不会有影响）
           git stash pop || true
           
-          # 查找并添加新生成的报告
+          # 🔥 核心修复：强制添加被 .gitignore 忽略的报告文件
           REPORT_FILES=$(find reports/ -maxdepth 1 -name "news_report_multi_*.md" 2>/dev/null)
           if [ -n "$REPORT_FILES" ]; then
-              git add reports/news_report_multi_*.md
+              git add -f reports/news_report_multi_*.md
               git commit -m "Daily news report" || echo "No changes to commit"
           else
               echo "ℹ️ 没有匹配的报告文件，跳过提交"
           fi
           
-          # 推送（带重试）
+          # 重试推送
           for i in 1 2 3; do
               git pull --rebase origin main && git push origin main && break || sleep 10
           done
