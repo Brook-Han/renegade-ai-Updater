@@ -35,23 +35,8 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --news
 
-      - name: 提交并推送报告
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-
-          # 🔥 清空所有脏文件（缓存、日志），只留报告
-          rm -f paper_cache.json radar.log
-          git checkout -- . || true
-          git pull origin main
-
-          # 只提交报告
-          if ls reports/news_report_multi_*.md 1> /dev/null 2>&1; then
-              git add -f reports/news_report_multi_*.md
-              git commit -m "Daily news report" || true
-              git push origin main
-          fi
-
+      # 🔥 直接删除了所有 Git 提交代码！
+      
       - name: 推送到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
