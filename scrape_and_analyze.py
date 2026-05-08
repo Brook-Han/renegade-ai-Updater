@@ -95,6 +95,7 @@ def get_paper_fingerprint(paper: dict) -> str:
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
     all_papers: dict[str, dict] = {}
+    from requests.exceptions import HTTPError  # 专门捕获HTTP状态码错误
     for keyword in keywords:
         logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
         for attempt in range(3):
@@ -120,14 +121,29 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                         count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
                 break
+
+            except HTTPError as e:
+                # ✅ 核心：专门处理 arXiv 429 限速
+                if e.response.status_code == 429:
+                    wait = (attempt + 1) * 30  # 429 专用更长等待时间
+                    logger.warning(f"   ⚠️ arXiv 429 限速！第 {attempt+1} 次重试，等待 {wait}s...")
+                    time.sleep(wait)
+                else:
+                    # 其他HTTP错误
+                    wait = (attempt + 1) * 20
+                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
+                    time.sleep(wait)
+
             except Exception as e:
+                # 网络/解析等其他错误
                 if attempt < 2:
                     wait = (attempt + 1) * 20
                     logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
                     time.sleep(wait)
                 else:
                     logger.error(f"   ❌ 三次重试后仍失败: {e}")
-        time.sleep(3)
+        # 关键词间冷却，避免触发限流
+        time.sleep(4)
     return list(all_papers.values())
 
 
@@ -185,11 +201,13 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 break
             except Exception as e:
                 if attempt < 3:
-                    logger.warning(f"   ⏳ 网络波动 ({e})，重试中...")
-                    time.sleep(5)
+                    logger.warning(f"   ⏳ 网络波动/限速 ({e})，重试中...")
+                    # 统一增加等待时间，避免频繁请求
+                    time.sleep(10 if "429" in str(e) else 5)
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
-        time.sleep(1.5 if API_KEY else 6.0)
+        # 延长基础冷却，更稳定
+        time.sleep(2.5 if API_KEY else 8.0)
     return papers
 
 
