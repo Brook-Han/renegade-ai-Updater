@@ -36,3 +36,12 @@ jobs:
           git add reports/news_report_multi_*.md
           git diff --quiet && git diff --staged --quiet || git commit -m "Daily news report"
           git push
+                
+          
+      - name: 推送紧急警报到钉钉
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
+        run: |
+          REPORT_FILE=$(ls reports/news_report_multi_*.md | tail -1)
+          python notify_dingtalk.py "$REPORT_FILE"
