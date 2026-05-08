@@ -39,8 +39,14 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          # 1. 拉取远程最新，但不合并，直接软重置
+          git fetch origin main
+          git reset --soft origin/main
+          # 2. 添加报告文件
           git add reports/papers_report_multi_*.md
+          # 3. 提交（无变动则跳过）
           git commit -m "Weekly paper report" || echo "No changes to commit"
+          # 4. 推送（重试 3 次）
           for i in 1 2 3; do
             git pull --rebase origin main && git push origin main && break || sleep 10
           done
