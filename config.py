@@ -54,27 +54,99 @@ class Config:
         "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
         "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
     }
-        # ----------  News pre‑screening (v1.1 追加 Zotero 词库) ----------
-    NEWS_CONCEPT_TERMS = [
-        "openai", "anthropic", "deepmind", "google ai", "microsoft ai",
-        "musk", "altman", "court", "lawsuit", "regulat",
-        "align", "safety test", "trust", "lie", "promise",
-        "search summar", "overview", "ai overview", "quote reddit",
-        "manipulat", "persua", "sycophan", "companion",
-        "cognitive", "consensus", "renegade", "time sovereignty",
-        "dark forest", "token trap", "financialization",
-        "rlhf", "alignment tax", "open source", "decentraliz",
-        "compute egalitarian", "edge computing",
-        "democracy", "public opinion", "misinformation",
-        "military", "national security", "weapon",
-        "copyright", "ip", "intellectual property",
-        "labor", "job", "work", "ubi", "universal basic income","post-anthropocentrism", "demand-side discipline", "desire reproduction",
-        "innovation turnaround", "product cycle ethics", "commodification of ethics",
-        "cognitive experience management", "experimental appendix",
-        "carbon-silicon dialogue", "supply-demand feedback loop",
-        "scientific narrowing", "signal collapse",
-    ]
     
+    # ---------- News pre‑screening (v1.1 追加 Zotero 词库) ----------
+    # 字典结构: { "关键词": "中文释义", ... }
+    NEWS_CONCEPT_TERMS = {
+        # 公司/人物/事件
+        "openai": "OpenAI公司",
+        "anthropic": "Anthropic公司",
+        "deepmind": "DeepMind公司",
+        "google ai": "Google AI",
+        "microsoft ai": "微软 AI",
+        "musk": "马斯克",
+        "altman": "奥特曼",
+        "court": "法院/诉讼",
+        "lawsuit": "诉讼/法律纠纷",
+        "regulat": "监管",
+
+        # AI 安全与对齐
+        "align": "对齐",
+        "safety test": "安全测试",
+        "trust": "信任",
+        "lie": "谎言/欺骗",
+        "promise": "承诺",
+
+        # 搜索与信息消费
+        "search summar": "搜索摘要",
+        "overview": "AI概览",
+        "ai overview": "AI概览",
+        "quote reddit": "引用Reddit",
+
+        # 操纵与说服
+        "manipulat": "操纵",
+        "persua": "说服",
+        "sycophan": "奉承",
+        "companion": "AI伴侣",
+
+        # 认知与共识
+        "cognitive": "认知",
+        "consensus": "共识",
+        "renegade": "叛逆者",
+        "time sovereignty": "时间主权",
+
+        # 叙事与陷阱
+        "dark forest": "黑暗森林",
+        "token trap": "Token陷阱",
+        "financialization": "金融化",
+
+        # 技术与训练
+        "rlhf": "人类反馈强化学习",
+        "alignment tax": "对齐税",
+        "open source": "开源",
+        "decentraliz": "去中心化",
+        "compute egalitarian": "算力平等主义",
+        "edge computing": "边缘计算",
+
+        # 社会与民主
+        "democracy": "民主",
+        "public opinion": "公众舆论",
+        "misinformation": "错误信息",
+        "military": "军事",
+        "national security": "国家安全",
+        "weapon": "武器/自主武器",
+
+        # 知识产权与劳动
+        "copyright": "版权",
+        "ip": "知识产权",
+        "intellectual property": "知识产权",
+        "labor": "劳工",
+        "job": "工作/就业",
+        "work": "劳动",
+        "ubi": "全民基本收入",
+        "universal basic income": "全民基本收入",
+
+        # Zotero 词库补充
+        "post-anthropocentrism": "后人类中心主义",
+        "demand-side discipline": "需求侧规训",
+        "desire reproduction": "欲望再生产",
+        "innovation turnaround": "创新转向",
+        "product cycle ethics": "产品周期伦理",
+        "commodification of ethics": "伦理商品化",
+        "cognitive experience management": "认知体验管理",
+        "experimental appendix": "实验附录",
+        "carbon-silicon dialogue": "碳硅对话",
+        "supply-demand feedback loop": "供需反馈环",
+        "scientific narrowing": "科学窄化",
+        "signal collapse": "信号崩塌",
+        "society of thought": "思维社会",
+        "meta-design": "元设计",
+        "Lemian Terror": "莱姆式恐怖",
+        "infosphere": "信息圈",
+        "Moravec paradox": "莫拉维克悖论",
+        "Densing Law": "密度定律",
+    }
+
     # ---------- Paths ----------
     KEYWORDS_FILE = os.getenv("KEYWORDS_FILE", "keywords.txt")
     OUTPUT_DIR = os.getenv("OUTPUT_DIR", "reports")
