@@ -1,21 +1,11 @@
 #!/usr/bin/env python3
 """
 Renegade AI 文献监控系统 — 资讯源聚合模块 (v1.1)
-
 功能:
 - 支持 NewsAPI 结构化新闻检索，带指数退避重试
 - 支持 RSS/Atom 订阅源解析
 - 输出格式与论文抓取模块完全兼容 (id, title, summary, published, url, ...)
 - 内置日期解析兼容性增强
-
-使用前:
-  1. 确保已安装依赖: pip install feedparser requests
-  2. 在 config.py 中配置:
-     - NEWS_API_KEY: str            # NewsAPI 密钥 (免费版: https://newsapi.org)
-     - ENABLE_NEWS_API: bool        # 是否启用 NewsAPI
-     - ENABLE_RSS_FEEDS: bool       # 是否启用 RSS
-     - RSS_FEEDS: dict[str, str]    # {名称: 订阅地址}
-     - NEWS_DAYS_BACK: int          # NewsAPI 回溯天数 (默认 7)
 """
 
 from __future__ import annotations
@@ -28,7 +18,7 @@ from typing import List, Dict, Optional
 import requests
 import feedparser
 
-# 尝试导入项目全局配置与日志，如未配置则使用内置 fallback
+# 导入项目全局配置与日志
 try:
     from config import Config
 except ImportError:
@@ -67,20 +57,14 @@ def normalize_date(date_str: str) -> str:
     if not date_str or date_str.strip() in ("", "N/A", "None"):
         return "N/A"
 
-    # 常见格式，按出现频率排序
     formats = [
-        "%Y-%m-%dT%H:%M:%S%z",      # 2024-01-01T12:00:00+00:00
-        "%Y-%m-%dT%H:%M:%SZ",       # 2024-01-01T12:00:00Z
-        "%Y-%m-%d %H:%M:%S",        # 2024-01-01 12:00:00
-        "%a, %d %b %Y %H:%M:%S %z", # RSS 常见格式
+        "%Y-%m-%dT%H:%M:%S%z",
+        "%Y-%m-%dT%H:%M:%SZ",
+        "%Y-%m-%d %H:%M:%S",
+        "%a, %d %b %Y %H:%M:%S %z",
     ]
 
     clean_str = date_str.strip()
-    # 移除末尾可能多余的时区冒号 "2024-01-01T12:00:00+00:00" 有时写成 +0000
-    if clean_str.endswith("Z") or clean_str.endswith("z"):
-        # 标准 ISO 或带 Z 的格式已在 formats 中尝试
-        pass
-
     for fmt in formats:
         try:
             dt = datetime.datetime.strptime(clean_str, fmt)
@@ -88,7 +72,6 @@ def normalize_date(date_str: str) -> str:
         except ValueError:
             continue
 
-    # 最后尝试用 dateutil 解析（如果可用）
     try:
         from dateutil import parser
         dt = parser.parse(clean_str)
@@ -117,11 +100,7 @@ def normalize_rss_date(entry: feedparser.FeedParserDict) -> str:
 
 def fetch_newsapi(keywords: List[str], days_back: int = 7,
                   max_retries: int = 3) -> List[Dict]:
-    """
-    通过 NewsAPI 检索新闻。
-    - 自动处理 429 限速 (指数退避重试)
-    - 单关键词结果最多返回 Config 中设置的条数 (默认 15)
-    """
+    """通过 NewsAPI 检索新闻，自动处理 429 限速"""
     if not getattr(Config, "NEWS_API_KEY", ""):
         logger.warning("⏭️  [NewsAPI] 未配置 API Key，跳过")
         return []
@@ -138,7 +117,7 @@ def fetch_newsapi(keywords: List[str], days_back: int = 7,
             "language": "en",
             "sortBy": "relevancy",
             "from": from_date,
-            "pageSize": 15,  # 可通过 Config 调整
+            "pageSize": 15,
         }
 
         for attempt in range(max_retries):
@@ -172,7 +151,7 @@ def fetch_newsapi(keywords: List[str], days_back: int = 7,
                     })
                     count += 1
                 logger.info(f"   ✅ 获取 {count} 篇")
-                break  # 成功，跳出重试循环
+                break
 
             except requests.exceptions.RequestException as e:
                 if attempt == max_retries - 1:
@@ -185,7 +164,6 @@ def fetch_newsapi(keywords: List[str], days_back: int = 7,
                 logger.error(f"❌ [NewsAPI] 未知错误 [{kw}]: {e}")
                 break
 
-        # 关键词间冷却，遵守免费版限制
         time.sleep(2)
 
     return articles
@@ -206,9 +184,7 @@ def fetch_rss_feeds(max_entries_per_feed: int = 10) -> List[Dict]:
     for feed_name, url in feeds.items():
         logger.info(f"📡 [RSS] 正在解析: {feed_name}")
         try:
-            # 设置 user-agent 以避免某些源的拒绝
-            feed = feedparser.parse(url,
-                                    agent="RenegadeAI-Updater/1.0")
+            feed = feedparser.parse(url, agent="RenegadeAI-Updater/1.0")
             if feed.bozo and feed.bozo_exception:
                 logger.debug(f"   ⚠️  {feed_name} 解析警告: {feed.bozo_exception}")
 
@@ -232,7 +208,6 @@ def fetch_rss_feeds(max_entries_per_feed: int = 10) -> List[Dict]:
         except Exception as e:
             logger.error(f"❌ [RSS] 解析失败 [{feed_name}]: {e}")
 
-        # 避免对源站造成冲击
         time.sleep(1)
 
     return articles
@@ -243,31 +218,13 @@ def fetch_rss_feeds(max_entries_per_feed: int = 10) -> List[Dict]:
 # =============================================================================
 
 def fetch_all_news(keywords: List[str]) -> List[Dict]:
-    """
-    聚合所有可用资讯源 (NewsAPI + RSS)，返回标准化文章列表。
-    输出格式:
-    [
-        {
-            "id": str,          # 唯一标识
-            "title": str,
-            "summary": str,     # 截断至 500 字符
-            "published": str,   # ISO 8601 或 "N/A"
-            "url": str,
-            "authors": List[str],
-            "source": "newsapi"|"rss",
-            "source_name": str,
-        },
-        ...
-    ]
-    """
+    """聚合所有可用资讯源 (NewsAPI + RSS)，返回标准化文章列表"""
     all_articles: List[Dict] = []
 
-    # 1. NewsAPI
     if getattr(Config, "ENABLE_NEWS_API", False):
         days = getattr(Config, "NEWS_DAYS_BACK", 7)
         all_articles.extend(fetch_newsapi(keywords, days_back=days))
 
-    # 2. RSS Feeds
     if getattr(Config, "ENABLE_RSS_FEEDS", False):
         all_articles.extend(fetch_rss_feeds())
 
@@ -275,11 +232,4 @@ def fetch_all_news(keywords: List[str]) -> List[Dict]:
     return all_articles
 
 
-# 暴露给外部使用的公共接口
-__all__ = [
-    "fetch_all_news",
-    "fetch_newsapi",
-    "fetch_rss_feeds",
-    "generate_article_id",
-    "normalize_date",
-]
+__all__ = ["fetch_all_news", "fetch_newsapi", "fetch_rss_feeds"]
