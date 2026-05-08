@@ -30,7 +30,7 @@ def extract_field(line: str, field_name: str) -> str:
 
 
 def parse_items(report_path: str, min_score: float = 4.0) -> list[dict]:
-    """提取评分>=min_score的所有条目"""
+    """提取评分>=min_score的所有条目，包含核心发现和关联"""
     content = Path(report_path).read_text(encoding="utf-8")
     items, cur = [], {}
     for line in content.split("\n"):
@@ -48,6 +48,9 @@ def parse_items(report_path: str, min_score: float = 4.0) -> list[dict]:
             cur["summary"] = extract_field(s, "核心发现")
         if not cur.get("url"):
             cur["url"] = extract_field(s, "链接")
+        # 新增：与本书关联
+        if not cur.get("implications"):
+            cur["implications"] = extract_field(s, "与本书关联")
     if cur.get("title"):
         items.append(cur)
 
@@ -70,41 +73,47 @@ def build_brief(items: list[dict]) -> str:
         f"**{date.today().isoformat()}** · 共 {total} 条",
         "",
     ]
-    # 先放紧急条目
+    # 紧急条目（显示完整核心发现和关联）
     if urgent_count:
         lines.append("### 🚨 紧急更新")
         for i in items:
             if i.get("urgency","").strip().lower() == "immediate":
                 title = i.get("title","")[:60]
                 score = i.get("score","")
-                summary = i.get("summary","")[:100]
+                summary = i.get("summary","")[:120]
+                implications = i.get("implications","")[:100]
                 url = i.get("url","#")
                 lines.append(f"** [{title}]({url})**  ")
                 lines.append(f"评分: {score} · {summary}")
+                if implications:
+                    lines.append(f"📖 关联: {implications}")
                 lines.append("")
 
-    # 再放其他高相关（评分>=7 但非紧急）
+    # 高相关非紧急（显示核心发现，截取80字）
     high = [i for i in items if float(i.get("score","0").split("/")[0]) >= 7 and i.get("urgency","").strip().lower() != "immediate"]
     if high:
         lines.append("### 🔥 高相关")
         for i in high:
             title = i.get("title","")[:60]
             score = i.get("score","")
+            summary = i.get("summary","")[:80]
             url = i.get("url","#")
             lines.append(f"- [{title}]({url})  (评分: {score})")
+            if summary:
+                lines.append(f"  {summary}")
 
     # 中相关 (4-6)
     medium = [i for i in items if 4 <= float(i.get("score","0").split("/")[0]) < 7]
     if medium:
         lines.append("### 📌 其他关注")
-        for i in medium[:5]:   # 最多显示5条，避免消息太长
+        for i in medium[:5]:
             title = i.get("title","")[:60]
             score = i.get("score","")
             url = i.get("url","#")
             lines.append(f"- [{title}]({url})  (评分: {score})")
 
-    if total > len([i for i in items if i.get("urgency","").strip().lower() == "immediate"]) + len(high) + len(medium[:5]):
-        lines.append(f"\n> 更多内容详见 [完整报告](https://github.com/Brook-Han/renegade-ai-Updater/blob/main/reports/news_report_multi_{date.today().isoformat()}.md)")
+    if total > len(high) + len(medium) + urgent_count:
+        lines.append(f"\n> 更多见[完整报告](https://github.com/Brook-Han/renegade-ai-Updater/blob/main/reports/news_report_multi_{date.today().isoformat()}.md)")
 
     return "\n".join(lines)
 
