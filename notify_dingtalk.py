@@ -102,7 +102,7 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
                     lines.append(f"- 关联：{implications}")
                 lines.append("")
 
-    # 高相关（删除多余的 `- ` 前缀，修复序号重复）
+    # 高相关（统一格式：分行+空行，和第一条完全一致）
     high = [i for i in items if float(i.get("score","0").split("/")[0]) >= 7 and i.get("urgency","").strip().lower() != "immediate"]
     if high:
         lines.append("### 🔥 高相关")
@@ -112,12 +112,13 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
             score = i.get("score","")
             summary = i.get("summary","")
             url = i.get("url","#")
-            # 🔥 修复点：去掉 `- `，只保留标题原生序号
+            # 统一排版：标题单独行 + 评分单独行 + 空行分隔
             lines.append(f"**{title}** [查看原文]({url})")
-            lines.append(f"  评分：{score}｜{summary}")
+            lines.append(f"- 评分：{score}")
+            lines.append(f"- 概要：{summary}")
             lines.append("")
 
-    # 中相关（删除多余的 `- ` 前缀，修复序号重复）
+    # 中相关（统一格式）
     medium = [i for i in items if 4 <= float(i.get("score","0").split("/")[0]) < 7]
     if medium:
         lines.append("### 📌 其他关注")
@@ -125,9 +126,11 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
         for i in medium[:5]:
             title = i.get("title","")[:150]
             score = i.get("score","")
+            summary = i.get("summary","")
             url = i.get("url","#")
-            # 🔥 修复点：去掉 `- `，只保留标题原生序号
-            lines.append(f"**{title}** [查看原文]({url}) （评分：{score}）")
+            lines.append(f"**{title}** [查看原文]({url})")
+            lines.append(f"- 评分：{score}")
+            lines.append(f"- 概要：{summary}")
             lines.append("")
 
     if total > len(high) + len(medium) + urgent_count:
