@@ -39,17 +39,26 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          # 1. 拉取远程最新，但不合并，直接软重置
-          git fetch origin main
-          git reset --soft origin/main
-          # 2. 添加报告文件
-          git add --ignore-errors reports/news_report_multi_*.md
-          # 3. 提交（无变动则跳过）
-          git commit -m "Weekly paper report" || echo "No changes to commit"
-          # 4. 推送（重试 3 次）
-          for i in 1 2 3; do
-            git pull --rebase origin main && git push origin main && break || sleep 10
-          done
+
+          # 1. 先拉取远程，避免推送冲突
+          git pull --rebase origin main
+
+          # 2. 仅在至少存在一个匹配文件时才 add
+          if compgen -G "reports/news_report_multi_*.md" > /dev/null; then
+              git add reports/news_report_multi_*.md
+              git commit -m "Daily news report" || echo "No changes to commit"
+          else
+              echo "ℹ️ 没有匹配的报告文件，跳过提交"
+          fi
+
+          # 3. 推送（带重试）
+          if git status --porcelain | grep -q .; then
+              for i in 1 2 3; do
+                  git pull --rebase origin main && git push origin main && break || sleep 10
+              done
+          else
+              echo "ℹ️ 没有需要推送的更改"
+          fi
 
       - name: 推送紧急警报到钉钉（可选）
         env:
