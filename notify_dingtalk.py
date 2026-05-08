@@ -66,10 +66,6 @@ def parse_items(report_path: str, min_score: float = 4.0) -> list[dict]:
 
 def build_brief(items: list[dict], report_type: str = "news") -> str:
     """根据报告类型构建不同样式的简报"""
-    # 调试：打印所有标题，检查是否有额外标记
-    print("=== 调试：提取到的标题 ===")
-    for item in items:
-    print(repr(item.get('title', '')))
     total = len(items)
     urgent_count = sum(1 for i in items if i.get("urgency","").strip().lower() == "immediate")
 
