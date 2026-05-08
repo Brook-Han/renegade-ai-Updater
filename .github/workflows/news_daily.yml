@@ -39,26 +39,26 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-
-          # Stash 所有未跟踪的更改（例如缓存文件），否则后续 pull 会报错
-          git stash push --include-untracked -m "temp-stash"
-
-          # 拉取远程最新并变基
+          
+          # 暂存所有已跟踪文件的更改（通常只有 .gitignore 和现有文件）
+          git stash push -m "temp" || true
+          
+          # 拉取远程并变基
           git pull --rebase origin main
-
-          # 恢复之前 stash 的缓存文件等
+          
+          # 恢复暂存内容（如缓存文件被忽略，不会有影响）
           git stash pop || true
-
-          # 用 find 检测是否有新生成的资讯报告
+          
+          # 查找并添加新生成的报告
           REPORT_FILES=$(find reports/ -maxdepth 1 -name "news_report_multi_*.md" 2>/dev/null)
-
           if [ -n "$REPORT_FILES" ]; then
               git add reports/news_report_multi_*.md
               git commit -m "Daily news report" || echo "No changes to commit"
           else
               echo "ℹ️ 没有匹配的报告文件，跳过提交"
           fi
-
+          
+          # 推送（带重试）
           for i in 1 2 3; do
               git pull --rebase origin main && git push origin main && break || sleep 10
           done
