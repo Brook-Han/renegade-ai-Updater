@@ -625,7 +625,8 @@ def main() -> None:
     news_articles = []
 
     if run_mode in ("all", "papers"):
-        arxiv_papers = search_arxiv(keywords)
+        # 🔥 临时禁用 arXiv，仅测试 Semantic Scholar
+        arxiv_papers = []
         s2_papers = search_semantic_scholar(keywords)
 
     if run_mode in ("all", "news"):
