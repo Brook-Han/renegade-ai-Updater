@@ -89,7 +89,6 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
         lines.append("")
         for i in items:
             if i.get("urgency","").strip().lower() == "immediate":
-                # 放宽长度，不再粗暴截断
                 title = i.get("title","")[:150]
                 score = i.get("score","")
                 summary = i.get("summary","")
@@ -101,10 +100,9 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
                 lines.append(f"- 概要：{summary}")
                 if implications:
                     lines.append(f"- 关联：{implications}")
-                # 每条之间空一行分隔
                 lines.append("")
 
-    # 高相关
+    # 高相关（删除多余的 `- ` 前缀，修复序号重复）
     high = [i for i in items if float(i.get("score","0").split("/")[0]) >= 7 and i.get("urgency","").strip().lower() != "immediate"]
     if high:
         lines.append("### 🔥 高相关")
@@ -114,11 +112,12 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
             score = i.get("score","")
             summary = i.get("summary","")
             url = i.get("url","#")
-            lines.append(f"- **{title}** [查看原文]({url})")
+            # 🔥 修复点：去掉 `- `，只保留标题原生序号
+            lines.append(f"**{title}** [查看原文]({url})")
             lines.append(f"  评分：{score}｜{summary}")
             lines.append("")
 
-    # 中相关
+    # 中相关（删除多余的 `- ` 前缀，修复序号重复）
     medium = [i for i in items if 4 <= float(i.get("score","0").split("/")[0]) < 7]
     if medium:
         lines.append("### 📌 其他关注")
@@ -127,7 +126,8 @@ def build_brief(items: list[dict], report_type: str = "news") -> str:
             title = i.get("title","")[:150]
             score = i.get("score","")
             url = i.get("url","#")
-            lines.append(f"- **{title}** [查看原文]({url}) （评分：{score}）")
+            # 🔥 修复点：去掉 `- `，只保留标题原生序号
+            lines.append(f"**{title}** [查看原文]({url}) （评分：{score}）")
             lines.append("")
 
     if total > len(high) + len(medium) + urgent_count:
