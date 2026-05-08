@@ -2,18 +2,18 @@ name: News Radar Daily
 
 on:
   schedule:
-    - cron: '0 2 * * *'
+    - cron: '0 2 * * *'   # UTC 02:00 ≈ 北京时间 10:00
   workflow_dispatch:
 
 jobs:
   run-news:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出仓库代码
-        uses: actions/checkout@v5
+      - uses: actions/checkout@v5
+        with:
+          fetch-depth: 0   # 拉取完整历史，方便 rebase
 
-      - name: 设置 Python
-        uses: actions/setup-python@v6
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.10'
 
@@ -34,14 +34,6 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add reports/news_report_multi_*.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Daily news report"
-          git push
-                
-          
-      - name: 推送紧急警报到钉钉
-        env:
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-        run: |
-          REPORT_FILE=$(ls reports/news_report_multi_*.md | tail -1)
-          python notify_dingtalk.py "$REPORT_FILE"
+          git commit -m "Daily news report" || echo "No changes to commit"
+          git pull --rebase origin main
+          git push origin main
