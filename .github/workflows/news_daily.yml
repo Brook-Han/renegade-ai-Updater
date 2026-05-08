@@ -40,21 +40,22 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           
-          # 拉取远程最新，避免竞争冲突
-          git pull --rebase origin main
-          
-          # 仅当有匹配的报告文件时才 add 和 commit
+          # 检测文件是否存在
+          HAS_FILES=false
           if compgen -G "reports/news_report_multi_*.md" > /dev/null; then
-              git add reports/news_report_multi_*.md
-              git commit -m "Daily news report" || echo "No changes to commit"
-          else
-              echo "ℹ️ 没有匹配的报告文件，跳过提交"
+              HAS_FILES=true
           fi
           
-          # 推送（带3次重试）
-          for i in 1 2 3; do
-              git pull --rebase origin main && git push origin main && break || sleep 10
-          done
+          if [ "$HAS_FILES" = true ]; then
+              git pull --rebase origin main
+              git add reports/news_report_multi_*.md
+              git commit -m "Daily news report" || echo "No changes to commit"
+              for i in 1 2 3; do
+                  git pull --rebase origin main && git push origin main && break || sleep 10
+              done
+          else
+              echo "ℹ️ 无匹配报告文件，跳过提交推送"
+          fi
 
       - name: 推送紧急警报到钉钉（可选）
         env:
