@@ -5,12 +5,18 @@ on:
     - cron: '0 3 * * 1'   # 每周一 UTC 03:00
   workflow_dispatch:
 
+concurrency:
+  group: repo-push-${{ github.repository }}
+  cancel-in-progress: false
+
 jobs:
   run-papers:
     runs-on: ubuntu-latest
     steps:
       - name: 检出仓库代码
         uses: actions/checkout@v5
+        with:
+          fetch-depth: 0
 
       - name: 设置 Python
         uses: actions/setup-python@v6
@@ -34,5 +40,17 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
           git add reports/papers_report_multi_*.md
-          git diff --quiet && git diff --staged --quiet || git commit -m "Weekly paper report"
-          git push
+          git commit -m "Weekly paper report" || echo "No changes to commit"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin main && break || sleep 10
+          done
+
+      - name: 推送紧急警报到钉钉（可选）
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
+        run: |
+          LATEST=$(ls -t reports/papers_report_multi_*.md 2>/dev/null | head -1)
+          if [ -n "$LATEST" ]; then
+            python notify_dingtalk.py "$LATEST"
+          fi
