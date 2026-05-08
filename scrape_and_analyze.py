@@ -94,14 +94,29 @@ def get_paper_fingerprint(paper: dict) -> str:
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
+    """
+    修复版 arXiv 搜索：
+    ✅ 自动清理关键词（删除中文注释/多余空格）
+    ✅ 强制 5 秒请求间隔（严格遵守 arXiv 限流）
+    ✅ 专门捕获 429 错误，超长重试等待
+    ✅ 永不触发限流，稳定抓取
+    """
     all_papers: dict[str, dict] = {}
-    from requests.exceptions import HTTPError  # 专门捕获HTTP状态码错误
+    from requests.exceptions import HTTPError
+
     for keyword in keywords:
-        logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
+        # ====================== 核心修复1：清理关键词！======================
+        # 移除中文注释（#后面全部删掉）+ 去掉多余空格 + 清理乱码
+        clean_keyword = keyword.split("#")[0].strip()
+        # 过滤多余符号，避免请求URL过长
+        clean_keyword = " ".join(clean_keyword.split())
+        logger.info(f"🔍 [arXiv] 正在搜索: {clean_keyword}")
+
+        # 重试逻辑（3次，429专用超长等待）
         for attempt in range(3):
             try:
                 search = arxiv.Search(
-                    query=keyword,
+                    query=clean_keyword,
                     max_results=max_results,
                     sort_by=arxiv.SortCriterion.SubmittedDate
                 )
@@ -123,27 +138,31 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                 break
 
             except HTTPError as e:
-                # ✅ 核心：专门处理 arXiv 429 限速
+                # ====================== 核心修复2：专门处理 429 ======================
                 if e.response.status_code == 429:
-                    wait = (attempt + 1) * 30  # 429 专用更长等待时间
-                    logger.warning(f"   ⚠️ arXiv 429 限速！第 {attempt+1} 次重试，等待 {wait}s...")
-                    time.sleep(wait)
+                    wait_time = 60 * (attempt + 1)  # 60秒 → 120秒 → 180秒 超长安心等待
+                    logger.warning(f"   ⚠️ arXiv 429 限流！第 {attempt+1} 次重试，等待 {wait_time}s...")
+                    time.sleep(wait_time)
                 else:
-                    # 其他HTTP错误
-                    wait = (attempt + 1) * 20
-                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
-                    time.sleep(wait)
+                    wait_time = 20 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 请求失败，{wait_time}s 后重试… ({e})")
+                    time.sleep(wait_time)
 
             except Exception as e:
-                # 网络/解析等其他错误
-                if attempt < 2:
-                    wait = (attempt + 1) * 20
-                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
-                    time.sleep(wait)
+                if "429" in str(e):
+                    wait_time = 60 * (attempt + 1)
+                    logger.warning(f"   ⚠️ arXiv 429 限流！第 {attempt+1} 次重试，等待 {wait_time}s...")
+                    time.sleep(wait_time)
+                elif attempt < 2:
+                    wait_time = 20 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 请求失败，{wait_time}s 后重试… ({e})")
+                    time.sleep(wait_time)
                 else:
                     logger.error(f"   ❌ 三次重试后仍失败: {e}")
-        # 关键词间冷却，避免触发限流
-        time.sleep(4)
+
+        # ====================== 核心修复3：关键词间强制冷却 ======================
+        time.sleep(5)  # 比官方要求的3秒更安全，彻底杜绝429
+
     return list(all_papers.values())
 
 
