@@ -48,11 +48,33 @@ class Config:
     NEWS_DAYS_BACK = int(os.getenv("NEWS_DAYS_BACK", "7"))
 
     # 预设的 RSS 订阅源，可直接在代码里增删，或留一个字符串在 .env 中解析
+    
     RSS_FEEDS = {
-       "MIT Tech Review": "https://www.technologyreview.com/feed/",
-        "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial+intelligence",
-        "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
-        "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    # === 已有稳定源（保留）===
+    "MIT Tech Review": "https://www.technologyreview.com/feed/",
+    "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial+intelligence",
+    "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
+    "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+
+    # === 新增：权威科技与商业叙事 ===
+    "WIRED - AI": "https://www.wired.com/feed/category/ai/latest/rss",
+    "IEEE Spectrum - AI": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+    "Bloomberg - Technology": "https://feeds.bloomberg.com/technology/news.rss",
+
+    # === 新增：深度分析与跨学科批判 ===
+    "The Conversation - Tech": "https://theconversation.com/technology/articles.atom",
+    "AIAAIC (AI争议库)": "https://www.aiaaic.org/feed",
+    "Aeon - Technology": "https://aeon.co/feeds/technology",
+    "Tech Policy Press": "https://techpolicy.press/feed",
+
+    # === 新增：非西方视角 ===
+    "Rest of World": "https://restofworld.org/feed/",
+    "MIT News - AI": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+
+    # === 新增：开发者与社区视角 ===
+    "TLDR AI": "https://tldr.tech/ai/rss",
+    "Hugging Face Daily Papers": "https://huggingface.co/papers/feed.rss",
+
     }
     
     # ---------- News pre‑screening (v1.1 追加 Zotero 词库) ----------
@@ -145,6 +167,22 @@ class Config:
         "infosphere": "信息圈",
         "Moravec paradox": "莫拉维克悖论",
         "Densing Law": "密度定律",
+        
+        # 新增：这些词对应新增资讯源的主题，用于提高预筛选的命中率
+        
+        "regulation": "AI监管",
+        "data center": "数据中心/算力",
+        "recycling": "硬件回收",
+        "accessibility": "可及性",
+        "indigenous": "本土/在地化",
+        "carbon": "碳排放",
+        "sustainability": "可持续性",
+        "chip": "AI芯片",
+        "benchmark": "基准测试",
+        "synthetic data": "合成数据",
+        "open weight": "开放权重",
+        "local deployment": "本地部署",
+        "model collapse": "模型崩溃",        
     }
 
     # ---------- Paths ----------
