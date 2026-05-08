@@ -111,7 +111,7 @@ def extract_high_relevance_immediate(report_path: str) -> list[dict]:
 def build_markdown(items: list[dict]) -> str:
     """构建简洁的手机可读消息"""
     lines = [
-        f"## 🔬 Renegade AI 紧急警报",
+        f"## 🔬 Renegade AI 新发现📢",
         f"**日期**: {date.today().isoformat()}  |  **紧急条目**: {len(items)} 篇\n",
         "---\n",
     ]
@@ -151,4 +151,4 @@ if __name__ == "__main__":
         sys.exit(0)
 
     message = build_markdown(items)
-    send_dingtalk(webhook, secret, f"Renegade AI 紧急警报 ({len(items)}条)", message)
+    send_dingtalk(webhook, secret, f"Renegade AI 新发现📢 ({len(items)}条)", message)
