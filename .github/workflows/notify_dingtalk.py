@@ -1,7 +1,5 @@
 #!/usr/bin/env python3
-"""
-钉钉通知脚本 — 将高相关警报推送到钉钉群
-"""
+"""钉钉通知脚本 — 将高相关警报推送到钉钉群"""
 
 import sys
 import json
@@ -50,7 +48,6 @@ def parse_high_relevance_items(report_path: str) -> list[dict]:
     content = Path(report_path).read_text(encoding="utf-8")
     items = []
     
-    # 简单解析 Markdown 报告中的高相关条目
     in_high_section = False
     current_item = {}
     
@@ -78,11 +75,9 @@ def parse_high_relevance_items(report_path: str) -> list[dict]:
     if current_item.get("title"):
         items.append(current_item)
     
-    # 只保留 urgency 为 immediate 的
     return [it for it in items if it.get("urgency") == "immediate"]
 
 def build_markdown_message(report_date: str, items: list[dict]) -> str:
-    """构建钉钉 Markdown 消息"""
     lines = [
         f"## 🔬 Renegade AI 资讯警报",
         f"**日期**: {report_date}",
@@ -90,7 +85,7 @@ def build_markdown_message(report_date: str, items: list[dict]) -> str:
         "---\n",
     ]
     
-    for i, item in enumerate(items[:5], 1):  # 最多显示5条
+    for i, item in enumerate(items[:5], 1):
         url = item.get("url", "#")
         lines.append(f"### {i}. [{item.get('title', 'N/A')[:50]}...]({url})")
         lines.append(f"- **评分**: {item.get('score', 'N/A')}")
@@ -124,5 +119,4 @@ if __name__ == "__main__":
         message = build_markdown_message(report_date, high_items)
         send_dingtalk(webhook, secret, f"Renegade AI 紧急警报 ({len(high_items)}条)", message)
     else:
-        # 也可以选择不推无紧急条目，或推送一条"今日无紧急条目"
         print("ℹ️ 今日无紧急条目，跳过推送")
