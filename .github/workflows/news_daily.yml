@@ -39,23 +39,21 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git pull --rebase origin main
           
-          # 检测文件是否存在
-          HAS_FILES=false
-          if compgen -G "reports/news_report_multi_*.md" > /dev/null; then
-              HAS_FILES=true
-          fi
+          # 用 find 检测是否有匹配的报告文件
+          REPORT_FILES=$(find reports/ -maxdepth 1 -name "news_report_multi_*.md" 2>/dev/null)
           
-          if [ "$HAS_FILES" = true ]; then
-              git pull --rebase origin main
+          if [ -n "$REPORT_FILES" ]; then
               git add reports/news_report_multi_*.md
               git commit -m "Daily news report" || echo "No changes to commit"
-              for i in 1 2 3; do
-                  git pull --rebase origin main && git push origin main && break || sleep 10
-              done
           else
-              echo "ℹ️ 无匹配报告文件，跳过提交推送"
+              echo "ℹ️ 没有匹配的报告文件，跳过提交"
           fi
+          
+          for i in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break || sleep 10
+          done
 
       - name: 推送紧急警报到钉钉（可选）
         env:
