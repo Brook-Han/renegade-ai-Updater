@@ -63,7 +63,7 @@ jobs:
               git pull --rebase origin main && git push origin main && break || sleep 10
           done
 
-      - name: 推送紧急警报到钉钉
+      - name: 推送到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
