@@ -2,7 +2,7 @@ name: Paper Radar Weekly
 
 on:
   schedule:
-    - cron: '0 3 * * 1'   # 每周一 UTC 03:00
+    - cron: '0 3 * * 1'
   workflow_dispatch:
 
 concurrency:
@@ -35,28 +35,8 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      - name: 提交并推送报告
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-          
-          git stash push -m "temp" || true
-          git pull --rebase origin main
-          git stash pop || true
-          
-          REPORT_FILES=$(find reports/ -maxdepth 1 -name "papers_report_multi_*.md" 2>/dev/null)
-          if [ -n "$REPORT_FILES" ]; then
-              # 🔥 核心修复：强制添加被 .gitignore 忽略的文件
-              git add -f reports/papers_report_multi_*.md
-              git commit -m "Weekly paper report" || echo "No changes to commit"
-          else
-              echo "ℹ️ 没有匹配的报告文件，跳过提交"
-          fi
-          
-          for i in 1 2 3; do
-              git pull --rebase origin main && git push origin main && break || sleep 10
-          done
-
+      # 🔥 直接删除了所有 Git 提交代码！
+      
       - name: 推送到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
