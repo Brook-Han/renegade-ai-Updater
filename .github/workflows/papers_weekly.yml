@@ -46,7 +46,8 @@ jobs:
           
           REPORT_FILES=$(find reports/ -maxdepth 1 -name "papers_report_multi_*.md" 2>/dev/null)
           if [ -n "$REPORT_FILES" ]; then
-              git add reports/papers_report_multi_*.md
+              # 🔥 核心修复：强制添加被 .gitignore 忽略的文件
+              git add -f reports/papers_report_multi_*.md
               git commit -m "Weekly paper report" || echo "No changes to commit"
           else
               echo "ℹ️ 没有匹配的报告文件，跳过提交"
