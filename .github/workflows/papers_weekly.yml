@@ -1,5 +1,4 @@
 name: Paper Radar Weekly
-
 on:
   schedule:
     - cron: '0 3 * * 1'
@@ -13,31 +12,30 @@ jobs:
   run-papers:
     runs-on: ubuntu-latest
     steps:
-      - name: 检出仓库代码
-        uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - name: 设置 Python
-        uses: actions/setup-python@v6
-        with:
-          python-version: '3.10'
-
-      - name: 安装依赖
-        run: |
+      - uses: actions/checkout@v5
+        with: {fetch-depth: 0}
+      - uses: actions/setup-python@v6
+        with: {python-version: '3.10'}
+      - run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-
-      - name: 运行论文雷达
+      - name: 运行雷达
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      # 🔥 直接删除了所有 Git 提交代码！
-      
-      - name: 推送到钉钉
+      - name: 提交报告到仓库
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull origin main
+          git add reports/*.md
+          git commit -m "Add weekly paper report" || true
+          git push origin main
+
+      - name: 钉钉推送
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
