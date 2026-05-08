@@ -75,13 +75,13 @@ def build_brief(items: list[dict]) -> str:
     ]
     # 紧急条目（显示完整核心发现和关联）
     if urgent_count:
-        lines.append("### 🚨 紧急更新")
+        lines.append("### 🕙 及时更新")
         for i in items:
             if i.get("urgency","").strip().lower() == "immediate":
                 title = i.get("title","")[:60]
                 score = i.get("score","")
                 summary = i.get("summary","")[:120]
-                implications = i.get("implications","")[:100]
+                implications = i.get("implications","")[:200]
                 url = i.get("url","#")
                 lines.append(f"** [{title}]({url})**  ")
                 lines.append(f"评分: {score} · {summary}")
