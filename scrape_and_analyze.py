@@ -639,6 +639,42 @@ def main() -> None:
             logger.warning(f"未知参数 {arg}，将运行全部模式")
 
     logger.info(f"🚀 Renegade AI 监控系统 v4.4.2 启动 (模式: {run_mode})")
+        # ---------- 环境就绪检查 (v4.4.2) ----------
+    import os as _os
+
+    errors = []
+    # 1. 检查必需的关键词文件
+    if not _os.path.isfile(Config.KEYWORDS_FILE):
+        errors.append(f"关键词文件不存在: {Config.KEYWORDS_FILE}")
+
+    # 2. 检查 DeepSeek API Key (已在模块初始化时做了一次，这里作为双重保险)
+    if not Config.DEEPSEEK_API_KEY:
+        errors.append("DEEPSEEK_API_KEY 未配置，无法进行任何分析！")
+
+    if errors:
+        print("❌ 环境检查失败，请先修复以下问题：")
+        for e in errors:
+            print(f"  - {e}")
+        sys.exit(1)
+
+    # 3. 自动创建必要的输出目录
+    for _path in [Config.OUTPUT_DIR, "logs", "data"]:
+        _os.makedirs(_path, exist_ok=True)
+
+    # 4. 可选组件的温和提醒 (不影响后续运行)
+    warnings = []
+    if not Config.SEMANTIC_SCHOLAR_API_KEY:
+        warnings.append("SEMANTIC_SCHOLAR_API_KEY 未配置，Semantic Scholar 可能限速。")
+    if not getattr(Config, 'ENABLE_RSS_FEEDS', False) and not getattr(Config, 'ENABLE_NEWS_API', False):
+        warnings.append("未启用任何资讯源，本次将只分析学术论文。")
+
+    if warnings:
+        print("⚠️  环境提醒：")
+        for w in warnings:
+            print(f"  - {w}")
+
+    print("✅ 环境检查通过，开始执行。\n")
+    
     logger.info(f"配置: 分析模型 {len(ALL_MODEL_NAMES)} 个, 草稿模型 {DRAFTING_MODEL}")
 
     keywords = load_keywords()
