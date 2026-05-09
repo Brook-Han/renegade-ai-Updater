@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v4.4.2 — 学术+资讯双雷达整合版（纯DeepSeek直连）
+Renegade AI 文献监控脚本 v4.5.0 — 三层缓存整合版（搜索缓存 + 分析缓存 + 草稿缓存）
 - 整合 arXiv + Semantic Scholar 学术论文抓取
 - 整合 NewsAPI + RSS 资讯抓取（条件启用）
 - 配置抽离：所有参数统一从 config.Config 读取
@@ -33,15 +33,21 @@ from dotenv import load_dotenv
 # 自定义模块
 from config import Config
 from logger import logger
-from cache import load_cache, is_paper_cached, mark_paper_cached
+from cache import (
+    load_cache,
+    is_paper_cached,
+    mark_paper_cached,
+    save_draft,
+    get_search_cache,
+    set_search_cache,
+)
 from news_sources import fetch_all_news      # 资讯聚合模块
 
 # ------------------------------------------------------------------
-# 环境初始化（纯 DeepSeek 直连，已剔除 OpenRouter）
+# 环境初始化（纯 DeepSeek 直连）
 # ------------------------------------------------------------------
 load_dotenv()
 
-# DeepSeek 官方直连客户端（唯一模型渠道）
 deepseek_client = None
 if Config.DEEPSEEK_API_KEY:
     deepseek_client = OpenAI(
@@ -60,19 +66,17 @@ arxiv_client = arxiv.Client(
 )
 
 # ------------------------------------------------------------------
-# 固定配置（全部从 Config 继承，无本地硬编码）
+# 固定配置（全部从 Config 继承）
 # ------------------------------------------------------------------
 OUTPUT_DIR = Path(Config.OUTPUT_DIR)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 分析模型配置（仅 DeepSeek 直连）
 ANALYSIS_MODELS = Config.ANALYSIS_MODELS
 ANALYSIS_MODEL_DIRECT = Config.ANALYSIS_MODEL_DIRECT
 DRAFTING_MODEL = Config.DRAFTING_MODEL
 DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD
 DRAFT_URGENCY_REQUIRED = Config.DRAFT_URGENCY_REQUIRED
 
-# 模型名称展示
 ALL_MODEL_NAMES = [f"{ANALYSIS_MODEL_DIRECT} (直连)"]
 
 # ------------------------------------------------------------------
@@ -86,17 +90,27 @@ def safe_str(text: str) -> str:
     return text.encode("ascii", "ignore").decode("ascii")
 
 def get_paper_fingerprint(paper: dict) -> str:
-    """与 cache.py 保持一致的指纹算法"""
     content = (paper.get("title", "") + " " + paper.get("summary", "")).encode("utf-8", errors="ignore")
     return hashlib.md5(content).hexdigest()
 
 # ------------------------------------------------------------------
-# 多源抓取 (arXiv + Semantic Scholar)
+# 多源抓取 (arXiv + Semantic Scholar) — 已加入搜索缓存
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
     all_papers: dict[str, dict] = {}
     for keyword in keywords:
+        # ---------- 搜索缓存 ----------
+        cached = get_search_cache("arxiv", keyword, "papers")
+        if cached is not None:
+            logger.info(f"📦 [arXiv] 使用搜索缓存: {keyword} ({len(cached)} 篇)")
+            for p in cached:
+                pid = p.get("id")
+                if pid and pid not in all_papers:
+                    all_papers[pid] = p
+            continue
+
         logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
+        papers_from_kw = []
         for attempt in range(3):
             try:
                 search = arxiv.Search(
@@ -107,18 +121,22 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                 count = 0
                 for result in arxiv_client.results(search):
                     pid = result.entry_id
+                    paper_dict = {
+                        "id": pid,
+                        "title": safe_str(result.title),
+                        "summary": safe_str(result.summary.replace("\n", " ")),
+                        "published": result.published.isoformat() if result.published else "N/A",
+                        "url": result.pdf_url,
+                        "authors": [a.name for a in result.authors],
+                        "source": "arxiv",
+                    }
+                    papers_from_kw.append(paper_dict)
                     if pid not in all_papers:
-                        all_papers[pid] = {
-                            "id": pid,
-                            "title": safe_str(result.title),
-                            "summary": safe_str(result.summary.replace("\n", " ")),
-                            "published": result.published.isoformat() if result.published else "N/A",
-                            "url": result.pdf_url,
-                            "authors": [a.name for a in result.authors],
-                            "source": "arxiv",
-                        }
-                        count += 1
+                        all_papers[pid] = paper_dict
+                    count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
+                # 存入搜索缓存
+                set_search_cache("arxiv", keyword, papers_from_kw, "papers")
                 break
             except Exception as e:
                 if attempt < 2:
@@ -133,19 +151,30 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
 
 def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
     API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
-    papers: list[dict] = []
-    seen_ids = set()
     headers = {"x-api-key": API_KEY} if API_KEY else {}
-
     if API_KEY:
         logger.info("🔑 [S2] 已加载 API Key，高频模式")
     else:
         logger.warning("⚠️ [S2] 无 API Key，将使用匿名限速模式")
 
+    all_papers = []
+    seen_ids = set()
     api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
     for keyword in keywords:
+        # ---------- 搜索缓存 ----------
+        cached = get_search_cache("semantic_scholar", keyword, "papers")
+        if cached is not None:
+            logger.info(f"📦 [S2] 使用搜索缓存: {keyword} ({len(cached)} 篇)")
+            for p in cached:
+                pid = p.get("id")
+                if pid and pid not in seen_ids:
+                    all_papers.append(p)
+                    seen_ids.add(pid)
+            continue
+
         logger.info(f"🔍 [S2] 正在检索: {keyword}")
+        papers_from_kw = []
         for attempt in range(4):
             try:
                 params = {
@@ -154,13 +183,11 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                     "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
                 }
                 r = requests.get(api_url, params=params, headers=headers, timeout=30)
-
                 if r.status_code == 429:
                     wait = (attempt + 1) * (30 if not API_KEY else 5)
                     logger.warning(f"   ⚠️ 限速！第 {attempt+1} 次尝试，等待 {wait}s...")
                     time.sleep(wait)
                     continue
-
                 r.raise_for_status()
                 data = r.json().get("data", [])
                 count = 0
@@ -170,7 +197,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                         continue
                     pdf_url = (p.get("openAccessPdf") or {}).get("url")
                     web_url = f"https://www.semanticscholar.org/paper/{pid}"
-                    papers.append({
+                    paper_dict = {
                         "id": pid,
                         "title": safe_str(p.get("title", "")),
                         "summary": safe_str(p.get("abstract") or ""),
@@ -178,10 +205,13 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                         "url": pdf_url if pdf_url else web_url,
                         "authors": [a.get("name", "") for a in p.get("authors", [])],
                         "source": "semantic_scholar",
-                    })
+                    }
+                    papers_from_kw.append(paper_dict)
+                    all_papers.append(paper_dict)
                     seen_ids.add(pid)
                     count += 1
                 logger.info(f"   ✅ 成功提取 {count} 篇")
+                set_search_cache("semantic_scholar", keyword, papers_from_kw, "papers")
                 break
             except Exception as e:
                 if attempt < 3:
@@ -190,69 +220,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
         time.sleep(1.5 if API_KEY else 6.0)
-    return papers
-
-
-def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
-    API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
-    papers: list[dict] = []
-    seen_ids = set()
-    headers = {"x-api-key": API_KEY} if API_KEY else {}
-
-    if API_KEY:
-        logger.info("🔑 [S2] 已加载 API Key，高频模式")
-    else:
-        logger.warning("⚠️ [S2] 无 API Key，将使用匿名限速模式")
-
-    api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
-
-    for keyword in keywords:
-        logger.info(f"🔍 [S2] 正在检索: {keyword}")
-        for attempt in range(4):
-            try:
-                params = {
-                    "query": keyword,
-                    "limit": limit,
-                    "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-                }
-                r = requests.get(api_url, params=params, headers=headers, timeout=30)
-
-                if r.status_code == 429:
-                    wait = (attempt + 1) * (30 if not API_KEY else 5)
-                    logger.warning(f"   ⚠️ 限速！第 {attempt+1} 次尝试，等待 {wait}s...")
-                    time.sleep(wait)
-                    continue
-
-                r.raise_for_status()
-                data = r.json().get("data", [])
-                count = 0
-                for p in data:
-                    pid = p.get("paperId")
-                    if not pid or pid in seen_ids:
-                        continue
-                    pdf_url = (p.get("openAccessPdf") or {}).get("url")
-                    web_url = f"https://www.semanticscholar.org/paper/{pid}"
-                    papers.append({
-                        "id": pid,
-                        "title": safe_str(p.get("title", "")),
-                        "summary": safe_str(p.get("abstract") or ""),
-                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                        "url": pdf_url if pdf_url else web_url,
-                        "authors": [a.get("name", "") for a in p.get("authors", [])],
-                        "source": "semantic_scholar",
-                    })
-                    seen_ids.add(pid)
-                    count += 1
-                logger.info(f"   ✅ 成功提取 {count} 篇")
-                break
-            except Exception as e:
-                if attempt < 3:
-                    logger.warning(f"   ⏳ 网络波动 ({e})，重试中...")
-                    time.sleep(5)
-                else:
-                    logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
-        time.sleep(1.5 if API_KEY else 6.0)
-    return papers
+    return all_papers
 
 
 def deduplicate_papers(papers: list[dict]) -> list[dict]:
@@ -266,7 +234,6 @@ def deduplicate_papers(papers: list[dict]) -> list[dict]:
 
 
 def prescreen_papers(papers: list[dict]) -> list[dict]:
-    # 通用相关词
     relevant_terms = [
         "AI", "artificial intelligence", "LLM", "language model", "GPT",
         "algorithm", "automation", "machine learning", "neural",
@@ -282,8 +249,6 @@ def prescreen_papers(papers: list[dict]) -> list[dict]:
         "token", "financialization",
     ]
     relevant_terms_lower = [t.lower() for t in relevant_terms]
-
-    # 新闻专用词
     news_terms = [t.lower() for t in getattr(Config, "NEWS_CONCEPT_TERMS", [])]
 
     def is_news(item: dict) -> bool:
@@ -305,7 +270,7 @@ def prescreen_papers(papers: list[dict]) -> list[dict]:
     return filtered
 
 # ------------------------------------------------------------------
-# 模型分析（纯 DeepSeek 直连）
+# 模型分析（纯 DeepSeek 直连）— 已加入分析缓存
 # ------------------------------------------------------------------
 SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
@@ -370,7 +335,6 @@ NEWS_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolu
 - 不要套用论文评价标准"""
 
 def analyze_single_model(paper: dict, model_name: str, client: OpenAI) -> dict:
-    # 根据来源分流提示词
     if paper.get("source") in ("newsapi", "rss"):
         system_prompt = NEWS_SYSTEM_PROMPT
         user_prompt = f"""新闻标题：{paper['title']}
@@ -466,9 +430,7 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    # 仅保留 DeepSeek 直连任务
     tasks = [(ANALYSIS_MODEL_DIRECT, deepseek_client)]
-
     results: list[dict] = []
     with ThreadPoolExecutor(max_workers=1) as executor:
         future_map = {
@@ -483,7 +445,7 @@ def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict
 
 
 # ------------------------------------------------------------------
-# 草稿生成
+# 草稿生成 — 已加入草稿缓存
 # ------------------------------------------------------------------
 DRAFT_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》v5.3 的写作助手。
 风格：学术但锋利，长句密集，论证坚定。引用格式：(Author et al., Year)。"""
@@ -524,20 +486,22 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
             temperature=0.3,
             max_tokens=1200,
         )
-        return resp.choices[0].message.content.strip()
+        draft = resp.choices[0].message.content.strip()
+        if len(draft) < 50:
+            logger.warning(f"   ⚠️ 草稿过短，重试生成...")
+            return draft_patch(paper, merged)
+        return draft
     except Exception as e:
         logger.error(f"草稿生成失败: {e}")
         return None
+
 
 # ------------------------------------------------------------------
 # 报告生成
 # ------------------------------------------------------------------
 def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix: str = "") -> str:
     today = datetime.date.today().isoformat()
-    papers_data.sort(key=lambda d: d["merged"].get("relevance", 0), reverse=True)
-
     model_list_str = ", ".join(ALL_MODEL_NAMES)
-
     lines = [
         f"# 🔬 Renegade AI {'资讯' if 'news' in prefix else '文献'}监控报告（多模型复证）",
         f"**生成日期**: {today}",
@@ -547,20 +511,19 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
         "---\n",
     ]
 
-    high = [d for d in papers_data if d["merged"].get("relevance", 0) >= 7]
-    medium = [d for d in papers_data if 4 <= d["merged"].get("relevance", 0) < 7]
+    high = [d for d in papers_data if d["merged"].get("relevance", 0) >= 6.5]
+    medium = [d for d in papers_data if 3 <= d["merged"].get("relevance", 0) < 6.5]
 
     lines += [
         "## 📊 统计概览\n",
-        f"- ⭐ 高相关 (≥7分): **{len(high)}**",
-        f"- 🔶 中相关 (4-6分): **{len(medium)}**",
-        f"- ⬜ 低相关 (<4分): **{len(papers_data) - len(high) - len(medium)}**\n",
+        f"- ⭐ 高相关 (≥6.5分): **{len(high)}**",
+        f"- 🔶 中相关 (3-6.4分): **{len(medium)}**",
+        f"- ⬜ 低相关 (<3分): **{len(papers_data) - len(high) - len(medium)}**\n",
     ]
 
     if high:
-        urgency_order = {"immediate": 0, "next_version": 1, "background": 2}
-        high.sort(key=lambda d: urgency_order.get(d["merged"].get("urgency", "background"), 2))
-
+        high.sort(key=lambda d: (0 if d.get("draft") and len(d["draft"].strip())>50 else 1,
+                                -d["merged"].get("relevance", 0)))
         lines.append(f"## ⭐ 高相关 ({len(high)}条)\n")
         for i, d in enumerate(high, 1):
             p, m = d["paper"], d["merged"]
@@ -579,7 +542,6 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
                 f"- **与本书关联**: {m.get('implications', 'N/A')}",
                 f"- **建议更新**: {m.get('action', 'N/A')}",
             ]
-
             if m.get("model_scores"):
                 lines.append("\n**🧠 模型评分:**")
                 lines.append("| 模型 | 相关度 |")
@@ -593,10 +555,11 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
                         display_name = mn.split("/")[-1][:28]
                     lines.append(f"| {display_name} | {sc} |")
 
-            if d.get("draft"):
+            if d.get("draft") and len(d["draft"].strip()) > 50:
                 lines.append("\n**✍️ 自动生成书稿草稿：**")
                 lines.append(f"\n> {d['draft']}\n")
-
+            elif d.get("draft"):
+                lines.append("\n⚠️ 草稿生成过短，已跳过显示\n")
             lines.append("")
 
     immediate_items = [d for d in papers_data if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD]
@@ -604,7 +567,7 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
         lines.append("\n## 🚨 立即更新清单\n")
         for d in immediate_items:
             p, m = d["paper"], d["merged"]
-            has_draft = "✍️ 已生成草稿" if d.get("draft") else "⬜ 无草稿"
+            has_draft = "✍️ 已生成草稿" if (d.get("draft") and len(d["draft"].strip())>50) else "⬜ 无草稿"
             lines.append(f"- [ ] **{m.get('chapter_target', '待定')}** — {p['title'][:55]}... ({m.get('update_type', '')}) {has_draft} [链接]({p.get('url', '#')})")
 
     if medium:
@@ -623,11 +586,11 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
     logger.info(f"✅ 报告已保存: {report_path}")
     return str(report_path)
 
+
 # ------------------------------------------------------------------
-# 主函数
+# 主函数 — 完全整合缓存
 # ------------------------------------------------------------------
 def main() -> None:
-    # 解析命令行参数
     run_mode = "all"
     if len(sys.argv) > 1:
         arg = sys.argv[1].lower()
@@ -638,13 +601,13 @@ def main() -> None:
         else:
             logger.warning(f"未知参数 {arg}，将运行全部模式")
 
-    logger.info(f"🚀 Renegade AI 监控系统 v4.4.2 启动 (模式: {run_mode})")
+    logger.info(f"🚀 Renegade AI 监控系统 v4.5.0 启动 (模式: {run_mode})")
     logger.info(f"配置: 分析模型 {len(ALL_MODEL_NAMES)} 个, 草稿模型 {DRAFTING_MODEL}")
 
     keywords = load_keywords()
     logger.info(f"📋 加载了 {len(keywords)} 个关键词")
 
-    # ---------- 多源抓取 ----------
+    # ---------- 多源抓取（集成搜索缓存）----------
     arxiv_papers = []
     s2_papers = []
     news_articles = []
@@ -656,6 +619,7 @@ def main() -> None:
     if run_mode in ("all", "news"):
         if getattr(Config, "ENABLE_NEWS_API", False) or getattr(Config, "ENABLE_RSS_FEEDS", False):
             logger.info("📰 开始抓取资讯源...")
+            # 资讯抓取也集成搜索缓存（在 fetch_all_news 内部已处理，如有）
             news_articles = fetch_all_news(keywords)
             logger.info(f"📰 资讯源共抓取 {len(news_articles)} 条")
         else:
@@ -668,47 +632,84 @@ def main() -> None:
         logger.info("没有找到任何条目，退出。")
         return
 
+    # ---------- 分析缓存：先查出真正需要 LLM 分析的条目 ----------
     cache = load_cache()
-    new_papers = [p for p in all_papers if not is_paper_cached(p, cache)]
-    logger.info(f"🆕 其中 {len(new_papers)} 篇为新条目（已缓存 {len(all_papers)-len(new_papers)} 篇）")
-
-    if not new_papers:
-        logger.info("没有新条目需要分析，退出。")
-        return
-
-    to_analyze = prescreen_papers(new_papers)
-    if not to_analyze:
-        logger.info("预筛选后无相关条目，退出。")
-        return
-
-    logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
     papers_data: list[dict] = []
-    for i, paper in enumerate(to_analyze, 1):
-        logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
-        results, merged = analyze_paper_multi_model(paper, ANALYSIS_MODELS)
-        papers_data.append({
-            "paper": paper,
-            "merged": merged,
-            "models_results": results,
-            "draft": None,
-        })
-        time.sleep(2)
 
+    for paper in all_papers:
+        if is_paper_cached(paper, cache):
+            # 直接复用分析结果
+            fp = get_paper_fingerprint(paper)
+            cached_analysis = cache[fp]["analysis"]
+            logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
+            papers_data.append({
+                "paper": paper,
+                "merged": cached_analysis,  # 直接使用缓存的分析
+                "models_results": [],        # 无模型调用记录
+                "draft": cache[fp].get("draft_paragraph"),  # 可能已有草稿
+            })
+        else:
+            # 需要分析的论文（稍后统一处理）
+            papers_data.append({
+                "paper": paper,
+                "merged": None,
+                "models_results": None,
+                "draft": None,
+            })
+
+    # 提取出没有分析结果的条目（需要 LLM 分析）
+    need_analysis = [d for d in papers_data if d["merged"] is None]
+    logger.info(f"🆕 需要 LLM 分析: {len(need_analysis)} 篇（已缓存 {len(papers_data) - len(need_analysis)} 篇）")
+
+    if not need_analysis:
+        logger.info("所有条目均已缓存，直接生成报告。")
+    else:
+        # 预筛选（仅对需要分析的条目）
+        to_analyze = prescreen_papers([d["paper"] for d in need_analysis])
+        if not to_analyze:
+            logger.info("预筛选后无相关条目，退出。")
+            return
+
+        # 建立 paper id 到待分析数据的映射
+        need_map = {d["paper"]["id"]: d for d in need_analysis}
+
+        logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
+        for i, paper in enumerate(to_analyze, 1):
+            logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
+            results, merged = analyze_paper_multi_model(paper, ANALYSIS_MODELS)
+            # 将这个分析结果回填到对应的数据容器
+            target = need_map.get(paper["id"])
+            if target:
+                target["merged"] = merged
+                target["models_results"] = results
+            # 存入缓存
+            mark_paper_cached(paper, merged, cache)
+            time.sleep(2)
+
+    # 现在所有 papers_data 中的 merged 都已填充（来自缓存或新分析）
+    # 筛选出符合条件的草稿生成项（未生成草稿的）
+    draft_candidates = []
     for d in papers_data:
-        if d["merged"].get("relevance", 0) > 0:
-            mark_paper_cached(d["paper"], d["merged"], cache)
+        m = d["merged"]
+        if (m.get("urgency") == DRAFT_URGENCY_REQUIRED and
+            m.get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD):
+            # 如果已有草稿（来自缓存），则跳过生成
+            if d.get("draft") and len(d["draft"].strip()) > 50:
+                logger.info(f"♻️ 复用草稿缓存: {d['paper']['title'][:50]}...")
+                continue
+            draft_candidates.append(d)
 
-    # 生成书稿草稿
-    draft_candidates = [
-        d for d in papers_data
-        if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED
-        and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD
-    ]
     if draft_candidates:
         logger.info(f"✍️ 为 {len(draft_candidates)} 篇高优先级条目生成书稿草稿...")
         for d in draft_candidates:
             logger.info(f"   草稿: {d['paper']['title'][:55]}...")
-            d["draft"] = draft_patch(d["paper"], d["merged"])
+            draft = draft_patch(d["paper"], d["merged"])
+            d["draft"] = draft
+            if draft and len(draft.strip()) > 50:
+                save_draft(d["paper"], draft, cache)   # 保存草稿到缓存
+                logger.info(f"   ✅ 草稿生成成功，长度: {len(draft)} 字符")
+            else:
+                logger.warning(f"   ⚠️ 草稿生成失败或过短")
             time.sleep(3)
 
     # 根据模式生成前缀
