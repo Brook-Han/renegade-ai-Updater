@@ -1,118 +1,49 @@
+# cache.py
 import json
-import os  # Add this line
 import hashlib
 import datetime
 from pathlib import Path
 from config import Config
 
-# ======================
-# 你原版的缓存逻辑（完整保留，无修改）
-# ======================
 def get_paper_fingerprint(paper):
-    """生成论文/资讯标题+摘要的哈希指纹（MD5）"""
+    """生成论文标题+摘要的哈希指纹（MD5）"""
     content = (paper.get("title", "") + " " + paper.get("summary", "")).encode('utf-8', errors='ignore')
     return hashlib.md5(content).hexdigest()
 
 def load_cache():
-    cache_file = Path(Config.CACHE_FILE)
-    if not cache_file.exists():
-        return {}
-    try:
+    cache_file = Config.CACHE_FILE
+    if Path(cache_file).exists():
         with open(cache_file, encoding='utf-8') as f:
             return json.load(f)
-    except json.JSONDecodeError:
-        return {}
+    return {}
 
 def is_paper_cached(paper, cache):
-    """判断是否有缓存（不校验过期，只判断是否存在）"""
     fp = get_paper_fingerprint(paper)
     return fp in cache
 
-def is_cache_valid(cache_item, expire_days: int = 7) -> bool:
-    """判断缓存是否在有效期内（默认7天过期重分析）"""
-    try:
-        cached_at = datetime.datetime.fromisoformat(cache_item["cached_at"])
-        now = datetime.datetime.now()
-        return (now - cached_at).days < expire_days
-    except Exception:
-        return False
-
-def get_cached_analysis(paper, cache):
-    """读取有效的缓存分析结果，过期返回None"""
-    fp = get_paper_fingerprint(paper)
-    if fp not in cache:
-        return None
-    item = cache[fp]
-    if is_cache_valid(item, expire_days=7):
-        return item.get("merged_result")
-    return None
-
-def mark_paper_cached(paper, merged_result, cache):
-    """把完整合并分析结果写入缓存，下次直接复用省Token"""
+def mark_paper_cached(paper, analysis_result, cache):
     fp = get_paper_fingerprint(paper)
     cache[fp] = {
         "cached_at": datetime.datetime.now().isoformat(),
-        "title": paper.get("title", "")[:100],
-        "merged_result": merged_result
+        "title": paper.get("title", "")[:80],
+        "relevance": analysis_result.get("relevance", 0),
+        "urgency": analysis_result.get("urgency", "background"),
+        "model_scores": analysis_result.get("model_scores", {}),
     }
-
+    # 同时保留原始 ID 以便兼容旧逻辑
+    if "id" in paper:
+        cache[paper["id"]] = fp   # 建立 id → 指纹的映射
+    
     with open(Config.CACHE_FILE, "w", encoding="utf-8") as f:
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
-# 保留原版空函数
 def load_seen_ids():
+    # 从旧 seen_ids.json 迁移或直接使用缓存中的 id 集合
+    # 这一步可以逐渐废弃，但先保留兼容
     cache = load_cache()
-    seen_ids = set()
-    for data in cache.values():
-        pass
-    return seen_ids
+    # 只返回那些 id 类型的 key 作为已分析过的 ID 集合
+    return {k for k, v in cache.items() if k.startswith("arxiv:") or k.startswith("s2_") or k.startswith("gnews_")}
 
 def save_seen_ids(seen_ids):
+    # 用缓存替代，不再单独写入 seen_ids.json，但保留兼容性
     pass
-
-# ======================
-# 新增：省Token 分析+搜索缓存（完整保留）
-# ======================
-ANALYSIS_CACHE = "analysis_draft_cache.json"
-SEARCH_CACHE = "search_results_cache.json"
-
-# 分析 + 草稿 缓存
-def load_analysis_cache():
-    if os.path.exists(ANALYSIS_CACHE):
-        with open(ANALYSIS_CACHE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-def save_analysis_cache(data):
-    with open(ANALYSIS_CACHE, "w", encoding="utf-8") as f:
-        json.dump(data, f, ensure_ascii=False, indent=2)
-
-def get_cached_analysis_single(paper):
-    cache = load_analysis_cache()
-    return cache.get(get_paper_fingerprint(paper))
-
-def save_analysis(paper, analysis, draft=None):
-    cache = load_analysis_cache()
-    cache[get_paper_fingerprint(paper)] = {
-        "title": paper["title"][:80],
-        "analysis": analysis,
-        "draft": draft
-    }
-    save_analysis_cache(cache)
-
-# 搜索结果缓存
-def load_search_cache():
-    if os.path.exists(SEARCH_CACHE):
-        with open(SEARCH_CACHE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    return {}
-
-def save_search_cache(key, results):
-    cache = load_search_cache()
-    cache[key] = results
-    with open(SEARCH_CACHE, "w", encoding="utf-8") as f:
-        json.dump(cache, f, ensure_ascii=False, indent=2)
-
-def get_search_cache(key):
-    cache = load_search_cache()
-    return cache.get(key)
