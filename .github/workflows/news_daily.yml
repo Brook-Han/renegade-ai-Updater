@@ -1,5 +1,5 @@
-name: News Radar Daily 
-# 多次修改崩溃版 v 4.30
+# 多次修改崩溃版 news_daily.yml v 4.30
+name: News Radar Daily
 on:
   schedule:
     - cron: '0 2 * * *'
@@ -38,14 +38,14 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # 🔥 强制重置，保证工作区绝对干净
+          # 🔥 强制重置：丢弃所有本地修改、删除未跟踪文件
           git reset --hard HEAD
           git clean -fd -e reports
 
           # 拉取远程
           git pull --rebase --autostash origin main
 
-          # 仅添加报告文件
+          # 仅提交报告文件
           git add reports/news_*.md reports/news_*.html 2>/dev/null || true
           git commit -m "📰 Add daily news report" || true
           git push origin main
