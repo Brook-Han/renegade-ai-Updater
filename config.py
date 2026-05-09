@@ -1,78 +1,97 @@
 import os
+from pathlib import Path
 from dotenv import load_dotenv
 
 load_dotenv()
 
 class Config:
-    # ---------- API Keys ----------
+    # =========================================================================
+    #  API 密钥
+    # =========================================================================
     DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
-    # 已弃用：OpenRouter 地区限制+已退款，彻底下线
-    # OPENROUTER_API_KEY = os.getenv("OPENROUTER_API_KEY", "")
     SEMANTIC_SCHOLAR_API_KEY = os.getenv("SEMANTIC_SCHOLAR_API_KEY", "")
 
-    # ---------- Fetch settings ----------
+    # =========================================================================
+    #  抓取设置
+    # =========================================================================
     MAX_RESULTS_PER_KEYWORD = int(os.getenv("MAX_RESULTS_PER_KEYWORD", "10"))
     ARXIV_PAGE_SIZE = int(os.getenv("ARXIV_PAGE_SIZE", "100"))
     ARXIV_DELAY_SECONDS = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
 
-    # ============================================================
-    # 模型配置 (2026-05-08 最终落地版)
-    # 策略：彻底弃用 OpenRouter，全程只用 DeepSeek 官网直连
-    #   - 不用任何海外受限聚合平台
-    #   - DeepSeek V4 Flash → 大量论文/资讯分析（快速便宜）
-    #   - DeepSeek V4 Pro → 书稿草稿生成（强推理少量调用）
-    # ============================================================
+    # =========================================================================
+    #  模型配置 (2026-05-09 完美版)
+    #  策略：全程 DeepSeek 官网直连，彻底弃用 OpenRouter
+    #   - DeepSeek V4 Flash (deepseek-v4-flash) → 大量论文/资讯分析（快速便宜）
+    #   - DeepSeek V4 Pro  (deepseek-v4-pro)  → 书稿草稿生成（强推理，少量调用）
+    # =========================================================================
+    ANALYSIS_MODEL_DIRECT = "deepseek-v4-flash"          # 分析专用
+    DRAFTING_MODEL        = "deepseek-v4-pro"            # 草稿专用
 
-    # 全部分析任务统一走 DeepSeek 直连，不再路由 OpenRouter
-    ANALYSIS_MODELS = [
-        "deepseek-v4-flash"
-    ]
+    # 分析模型列表（目前只有直连，保留结构方便未来扩展）
+    ANALYSIS_MODELS = [ANALYSIS_MODEL_DIRECT]
 
-    # ---------- 直连模型指定 ----------
-    # 大量论文分析用（速度快、成本低，走 DeepSeek 官网余额）
-    ANALYSIS_MODEL_DIRECT = "deepseek-v4-flash"
-    # 书稿草稿生成用（需要强推理和写作能力，走 DeepSeek 官网余额）
-    DRAFTING_MODEL = "deepseek-v4-pro"
-
+    # 草稿自动生成阈值
     DRAFT_RELEVANCE_THRESHOLD = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
-    DRAFT_URGENCY_REQUIRED = os.getenv("DRAFT_URGENCY_REQUIRED", "immediate")
+    DRAFT_URGENCY_REQUIRED    = os.getenv("DRAFT_URGENCY_REQUIRED", "immediate")
 
-    # ---------- News aggregation ----------
+    # -------------------------------------------------------------------------
+    #  预留：DeepSeek V4 推理深度控制（当前主流程未使用，可后续接入）
+    # -------------------------------------------------------------------------
+    REASONING_EFFORT = os.getenv("REASONING_EFFORT", "high")     # low / medium / high
+    ENABLE_COT_PROMPT = os.getenv("ENABLE_COT_PROMPT", "true").lower() in ("true", "1", "yes")
+
+    # -------------------------------------------------------------------------
+    #  预留：万级文献缓存升级（当前使用 JSON，数据量激增后可启用 SQLite）
+    # -------------------------------------------------------------------------
+    USE_SQLITE_CACHE = False
+    DATABASE_URL = os.getenv("DATABASE_URL", "renegade_radar.db")
+
+    # =========================================================================
+    #  资讯聚合 (News + RSS)
+    # =========================================================================
     NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
     ENABLE_NEWS_API = os.getenv("ENABLE_NEWS_API", "false").lower() in ("true", "1", "yes")
     ENABLE_RSS_FEEDS = os.getenv("ENABLE_RSS_FEEDS", "true").lower() in ("true", "1", "yes")
     NEWS_DAYS_BACK = int(os.getenv("NEWS_DAYS_BACK", "7"))
 
-    # 预设的 RSS 订阅源 完整保留
+    # -------------------------------------------------------------------------
+    #  预留：RSS 源异常保护（后续接入 news_sources.py，当前仅占位）
+    # -------------------------------------------------------------------------
+    RSS_TIMEOUT = int(os.getenv("RSS_TIMEOUT", "10"))          # 单源超时秒数
+    RSS_MAX_FAILURES = int(os.getenv("RSS_MAX_FAILURES", "3")) # 连续失败次数后自动暂停
+    SUSPENDED_FEEDS = []                                       # 自动暂停的源列表
+
+    # 预设的 RSS 订阅源（完整版，共 16 个源）
     RSS_FEEDS = {
-    # === 已有稳定源（保留）===
-    "MIT Tech Review": "https://www.technologyreview.com/feed/",
-    "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial+intelligence",
-    "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
-    "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+        # === 已有稳定源（保留）===
+        "MIT Tech Review": "https://www.technologyreview.com/feed/",
+        "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial-intelligence",
+        "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
+        "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
 
-    # === 新增：权威科技与商业叙事 ===
-    "WIRED - AI": "https://www.wired.com/feed/category/ai/latest/rss",
-    "IEEE Spectrum - AI": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
-    "Bloomberg - Technology": "https://feeds.bloomberg.com/technology/news.rss",
+        # === 新增：权威科技与商业叙事 ===
+        "WIRED - AI": "https://www.wired.com/feed/category/ai/latest/rss",
+        "IEEE Spectrum - AI": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
+        "Bloomberg - Technology": "https://feeds.bloomberg.com/technology/news.rss",
 
-    # === 新增：深度分析与跨学科批判 ===
-    "The Conversation - Tech": "https://theconversation.com/technology/articles.atom",
-    "AIAAIC (AI争议库)": "https://www.aiaaic.org/feed",
-    "Aeon - Technology": "https://aeon.co/feeds/technology",
-    "Tech Policy Press": "https://techpolicy.press/feed",
+        # === 新增：深度分析与跨学科批判 ===
+        "The Conversation - Tech": "https://theconversation.com/technology/articles.atom",
+        "AIAAIC (AI争议库)": "https://www.aiaaic.org/feed",
+        "Aeon - Technology": "https://aeon.co/feeds/technology",
+        "Tech Policy Press": "https://techpolicy.press/feed",
 
-    # === 新增：非西方视角 ===
-    "Rest of World": "https://restofworld.org/feed/",
-    "MIT News - AI": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+        # === 新增：非西方视角 ===
+        "Rest of World": "https://restofworld.org/feed/",
+        "MIT News - AI": "https://news.mit.edu/rss/topic/artificial-intelligence2",
 
-    # === 新增：开发者与社区视角 ===
-    "TLDR AI": "https://tldr.tech/ai/rss",
-    "Hugging Face Daily Papers": "https://huggingface.co/papers/feed.rss",
-
+        # === 新增：开发者与社区视角 ===
+        "TLDR AI": "https://tldr.tech/ai/rss",
+        "Hugging Face Daily Papers": "https://huggingface.co/papers/feed.rss",
     }
 
-    # ---------- News pre‑screening 完整保留全部词库 ----------
+    # =========================================================================
+    #  新闻预筛选关键词（完整词库，带中文注释）
+    # =========================================================================
     NEWS_CONCEPT_TERMS = {
         # 公司/人物/事件
         "openai": "OpenAI公司",
@@ -161,8 +180,8 @@ class Config:
         "infosphere": "信息圈",
         "Moravec paradox": "莫拉维克悖论",
         "Densing Law": "密度定律",
-        
-        # 新增：这些词对应新增资讯源的主题，用于提高预筛选的命中率
+
+        # 全球化/伦理/硬件等扩展主题
         "regulation": "AI监管",
         "data center": "数据中心/算力",
         "recycling": "硬件回收",
@@ -175,16 +194,22 @@ class Config:
         "synthetic data": "合成数据",
         "open weight": "开放权重",
         "local deployment": "本地部署",
-        "model collapse": "模型崩溃",        
+        "model collapse": "模型崩溃",
     }
 
-    # ---------- Paths ----------
+    # =========================================================================
+    #  路径配置
+    # =========================================================================
+    BASE_DIR = Path(__file__).parent                         # 项目根目录
     KEYWORDS_FILE = os.getenv("KEYWORDS_FILE", "keywords.txt")
     OUTPUT_DIR = os.getenv("OUTPUT_DIR", "reports")
+    LOG_DIR = BASE_DIR / "logs"                             # 日志目录（自动创建）
     SEEN_IDS_FILE = os.getenv("SEEN_IDS_FILE", "seen_ids.json")
     CACHE_FILE = os.getenv("CACHE_FILE", "paper_cache.json")
 
-    # ---------- Rate limiting ----------
+    # =========================================================================
+    #  速率限制
+    # =========================================================================
     S2_RATE_LIMIT = float(os.getenv("S2_RATE_LIMIT", "1.0"))
-    # OpenRouter 已下线，相关限流配置删除
-    # OPENROUTER_RATE_LIMIT = float(os.getenv("OPENROUTER_RATE_LIMIT", "3.0"))
+
+    # OpenRouter 相关配置已全部删除（2026-05-08）
