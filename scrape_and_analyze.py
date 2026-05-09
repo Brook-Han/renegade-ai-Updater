@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v4.4.1 — 学术+资讯双雷达整合版（支持分跑）
+Renegade AI 文献监控脚本 v4.4.2 — 学术+资讯双雷达整合版（纯DeepSeek直连）
 - 整合 arXiv + Semantic Scholar 学术论文抓取
 - 整合 NewsAPI + RSS 资讯抓取（条件启用）
 - 配置抽离：所有参数统一从 config.Config 读取
@@ -37,28 +37,22 @@ from cache import load_cache, is_paper_cached, mark_paper_cached
 from news_sources import fetch_all_news      # 资讯聚合模块
 
 # ------------------------------------------------------------------
-# 环境初始化
+# 环境初始化（纯 DeepSeek 直连，已剔除 OpenRouter）
 # ------------------------------------------------------------------
 load_dotenv()
 
+# DeepSeek 官方直连客户端（唯一模型渠道）
 deepseek_client = None
 if Config.DEEPSEEK_API_KEY:
     deepseek_client = OpenAI(
         api_key=Config.DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com"
     )
+else:
+    logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
+    sys.exit(1)
 
-openrouter_client = None
-if Config.OPENROUTER_API_KEY:
-    openrouter_client = OpenAI(
-        api_key=Config.OPENROUTER_API_KEY,
-        base_url="https://openrouter.ai/api/v1",
-        default_headers={
-            "HTTP-Referer": "https://github.com/Brook-Han/renegade-ai-Updater",
-            "X-Title": "Renegade AI Radar",
-        },
-    )
-
+# arXiv 客户端
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
     delay_seconds=Config.ARXIV_DELAY_SECONDS,
@@ -71,16 +65,15 @@ arxiv_client = arxiv.Client(
 OUTPUT_DIR = Path(Config.OUTPUT_DIR)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 分析模型列表（仅 OpenRouter，不含直连）
+# 分析模型配置（仅 DeepSeek 直连）
 ANALYSIS_MODELS = Config.ANALYSIS_MODELS
-
-# 草稿生成设置
+ANALYSIS_MODEL_DIRECT = Config.ANALYSIS_MODEL_DIRECT
 DRAFTING_MODEL = Config.DRAFTING_MODEL
 DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD
 DRAFT_URGENCY_REQUIRED = Config.DRAFT_URGENCY_REQUIRED
 
-# 所有分析模型的完整名称
-ALL_MODEL_NAMES = [f"{Config.ANALYSIS_MODEL_DIRECT} (直连)"] + ANALYSIS_MODELS
+# 模型名称展示
+ALL_MODEL_NAMES = [f"{ANALYSIS_MODEL_DIRECT} (直连)"]
 
 # ------------------------------------------------------------------
 # 工具函数
@@ -250,7 +243,7 @@ def prescreen_papers(papers: list[dict]) -> list[dict]:
     return filtered
 
 # ------------------------------------------------------------------
-# 多模型分析
+# 模型分析（纯 DeepSeek 直连）
 # ------------------------------------------------------------------
 SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
@@ -411,15 +404,11 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    tasks: list[tuple[str, OpenAI]] = []
-    if deepseek_client:
-        tasks.append((Config.ANALYSIS_MODEL_DIRECT, deepseek_client))
-    if openrouter_client:
-        for m in models:
-            tasks.append((m, openrouter_client))
+    # 仅保留 DeepSeek 直连任务
+    tasks = [(ANALYSIS_MODEL_DIRECT, deepseek_client)]
 
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=min(len(tasks), 3)) as executor:
+    with ThreadPoolExecutor(max_workers=1) as executor:
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
@@ -530,7 +519,7 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
             ]
 
             if m.get("model_scores"):
-                lines.append("\n**🧠 多模型评分对比:**")
+                lines.append("\n**🧠 模型评分:**")
                 lines.append("| 模型 | 相关度 |")
                 lines.append("|------|--------|")
                 for mn, sc in sorted(m["model_scores"].items(), key=lambda x: x[1], reverse=True):
@@ -587,7 +576,7 @@ def main() -> None:
         else:
             logger.warning(f"未知参数 {arg}，将运行全部模式")
 
-    logger.info(f"🚀 Renegade AI 监控系统 v4.4.1 启动 (模式: {run_mode})")
+    logger.info(f"🚀 Renegade AI 监控系统 v4.4.2 启动 (模式: {run_mode})")
     logger.info(f"配置: 分析模型 {len(ALL_MODEL_NAMES)} 个, 草稿模型 {DRAFTING_MODEL}")
 
     keywords = load_keywords()
@@ -630,7 +619,7 @@ def main() -> None:
         logger.info("预筛选后无相关条目，退出。")
         return
 
-    logger.info(f"🤖 开始用 {len(ALL_MODEL_NAMES)} 个模型并发分析 {len(to_analyze)} 篇...")
+    logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
     papers_data: list[dict] = []
     for i, paper in enumerate(to_analyze, 1):
         logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
