@@ -637,25 +637,25 @@ def main() -> None:
     papers_data: list[dict] = []
 
     for paper in all_papers:
-        if is_paper_cached(paper, cache):
-            # 直接复用分析结果
-            fp = get_paper_fingerprint(paper)
-            cached_analysis = cache[fp]["analysis"]
-            logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
-            papers_data.append({
-                "paper": paper,
-                "merged": cached_analysis,  # 直接使用缓存的分析
-                "models_results": [],        # 无模型调用记录
-                "draft": cache[fp].get("draft_paragraph"),  # 可能已有草稿
-            })
-        else:
-            # 需要分析的论文（稍后统一处理）
-            papers_data.append({
-                "paper": paper,
-                "merged": None,
-                "models_results": None,
-                "draft": None,
-            })
+    fp = get_paper_fingerprint(paper)   # 统一使用 cache 模块的函数
+    if fp in cache and "analysis" in cache[fp]:
+        # 新格式缓存（包含完整分析结果）
+        cached_entry = cache[fp]
+        logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
+        papers_data.append({
+            "paper": paper,
+            "merged": cached_entry["analysis"],
+            "models_results": [],
+            "draft": cached_entry.get("draft_paragraph"),
+        })
+    else:
+        # 旧缓存或无缓存，需要 LLM 分析
+        papers_data.append({
+            "paper": paper,
+            "merged": None,
+            "models_results": None,
+            "draft": None,
+        })
 
     # 提取出没有分析结果的条目（需要 LLM 分析）
     need_analysis = [d for d in papers_data if d["merged"] is None]
