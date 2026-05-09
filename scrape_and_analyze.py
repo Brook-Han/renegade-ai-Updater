@@ -93,49 +93,14 @@ def get_paper_fingerprint(paper: dict) -> str:
 # ------------------------------------------------------------------
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
-def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
-    """
-    ✅ 修复：关键词自动清洗（删除中文注释、多余空格、乱码）
-    ✅ 修复：arXiv 429 限流（超长重试 + 强制间隔）
-    """
+arxiv是不是也加上放429呢?      def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
     all_papers: dict[str, dict] = {}
-    from requests.exceptions import HTTPError
-
-    # ====================== 【核心】关键词清洗函数 ======================
-    def clean_arxiv_query(raw_keyword: str) -> str:
-        """
-        全自动清洗关键词：
-        1. 删除 # 及后面所有中文注释
-        2. 删除多余空格、换行、制表符
-        3. 只保留英文/数字/空格，适配 arXiv API
-        """
-        # 1. 切掉中文注释（# 后面全部丢弃）
-        query = raw_keyword.split("#")[0]
-        # 2. 替换所有空白符（空格/制表符/换行）为单个空格
-        query = " ".join(query.split())
-        # 3. 过滤掉非英文、非空格的字符（防止乱码）
-        cleaned = []
-        for ch in query:
-            if ch.isascii() or ch == " ":
-                cleaned.append(ch)
-        return "".join(cleaned).strip()
-
-    # ==================================================================
-
     for keyword in keywords:
-        # 清洗后的纯英文合法关键词
-        query = clean_arxiv_query(keyword)
-        if not query:  # 空关键词跳过
-            logger.info(f"⏭️ [arXiv] 跳过空关键词: {keyword}")
-            continue
-
-        logger.info(f"🔍 [arXiv] 正在搜索: {query}")
-
-        # 重试机制（专门对付 429）
+        logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
         for attempt in range(3):
             try:
                 search = arxiv.Search(
-                    query=query,
+                    query=keyword,
                     max_results=max_results,
                     sort_by=arxiv.SortCriterion.SubmittedDate
                 )
@@ -155,33 +120,77 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                         count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
                 break
-
-            except HTTPError as e:
-                if e.response.status_code == 429:
-                    wait = 60 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 429 限流！等待 {wait}s 重试...")
-                    time.sleep(wait)
-                else:
-                    wait = 20 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 错误，{wait}s 重试：{e}")
-                    time.sleep(wait)
-
             except Exception as e:
-                if "429" in str(e):
-                    wait = 60 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 429 限流！等待 {wait}s 重试...")
-                    time.sleep(wait)
-                elif attempt < 2:
-                    wait = 20 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 错误，{wait}s 重试：{e}")
+                if attempt < 2:
+                    wait = (attempt + 1) * 20
+                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
                     time.sleep(wait)
                 else:
-                    logger.error(f"   ❌ 重试失败：{e}")
-
-        # 关键词之间强制等待，防 429
-        time.sleep(5)
-
+                    logger.error(f"   ❌ 三次重试后仍失败: {e}")
+        time.sleep(3)
     return list(all_papers.values())
+
+
+def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
+    API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
+    papers: list[dict] = []
+    seen_ids = set()
+    headers = {"x-api-key": API_KEY} if API_KEY else {}
+
+    if API_KEY:
+        logger.info("🔑 [S2] 已加载 API Key，高频模式")
+    else:
+        logger.warning("⚠️ [S2] 无 API Key，将使用匿名限速模式")
+
+    api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
+
+    for keyword in keywords:
+        logger.info(f"🔍 [S2] 正在检索: {keyword}")
+        for attempt in range(4):
+            try:
+                params = {
+                    "query": keyword,
+                    "limit": limit,
+                    "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
+                }
+                r = requests.get(api_url, params=params, headers=headers, timeout=30)
+
+                if r.status_code == 429:
+                    wait = (attempt + 1) * (30 if not API_KEY else 5)
+                    logger.warning(f"   ⚠️ 限速！第 {attempt+1} 次尝试，等待 {wait}s...")
+                    time.sleep(wait)
+                    continue
+
+                r.raise_for_status()
+                data = r.json().get("data", [])
+                count = 0
+                for p in data:
+                    pid = p.get("paperId")
+                    if not pid or pid in seen_ids:
+                        continue
+                    pdf_url = (p.get("openAccessPdf") or {}).get("url")
+                    web_url = f"https://www.semanticscholar.org/paper/{pid}"
+                    papers.append({
+                        "id": pid,
+                        "title": safe_str(p.get("title", "")),
+                        "summary": safe_str(p.get("abstract") or ""),
+                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
+                        "url": pdf_url if pdf_url else web_url,
+                        "authors": [a.get("name", "") for a in p.get("authors", [])],
+                        "source": "semantic_scholar",
+                    })
+                    seen_ids.add(pid)
+                    count += 1
+                logger.info(f"   ✅ 成功提取 {count} 篇")
+                break
+            except Exception as e:
+                if attempt < 3:
+                    logger.warning(f"   ⏳ 网络波动 ({e})，重试中...")
+                    time.sleep(5)
+                else:
+                    logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
+        time.sleep(1.5 if API_KEY else 6.0)
+    return papers
 
 
 def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
