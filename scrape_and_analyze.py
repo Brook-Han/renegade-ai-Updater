@@ -33,7 +33,11 @@ from dotenv import load_dotenv
 # 自定义模块
 from config import Config
 from logger import logger
-from cache import load_cache, is_paper_cached, mark_paper_cached
+# 🔥 导入新增的缓存函数（无修改原有代码）
+from cache import (
+    load_cache, is_paper_cached, mark_paper_cached,
+    get_cached_analysis, save_analysis, get_search_cache, save_search_cache
+)
 from news_sources import fetch_all_news      # 资讯聚合模块
 
 # ------------------------------------------------------------------
@@ -94,6 +98,13 @@ def get_paper_fingerprint(paper: dict) -> str:
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
+    # 🔥 新增：搜索结果缓存，跳过重复爬取
+    cache_key = f"arxiv_{'_'.join(keywords)}"
+    cached_data = get_search_cache(cache_key)
+    if cached_data:
+        logger.info(f"✅ 读取arXiv搜索缓存，跳过爬取")
+        return cached_data
+
     all_papers: dict[str, dict] = {}
     for keyword in keywords:
         logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
@@ -128,10 +139,20 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                 else:
                     logger.error(f"   ❌ 三次重试后仍失败: {e}")
         time.sleep(3)
+    
+    # 🔥 新增：保存搜索缓存
+    save_search_cache(cache_key, list(all_papers.values()))
     return list(all_papers.values())
 
 
 def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
+    # 🔥 新增：搜索结果缓存，跳过重复爬取
+    cache_key = f"s2_{'_'.join(keywords)}"
+    cached_data = get_search_cache(cache_key)
+    if cached_data:
+        logger.info(f"✅ 读取Semantic Scholar搜索缓存，跳过爬取")
+        return cached_data
+
     API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
     papers: list[dict] = []
     seen_ids = set()
@@ -190,68 +211,9 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
         time.sleep(1.5 if API_KEY else 6.0)
-    return papers
-
-
-def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
-    API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
-    papers: list[dict] = []
-    seen_ids = set()
-    headers = {"x-api-key": API_KEY} if API_KEY else {}
-
-    if API_KEY:
-        logger.info("🔑 [S2] 已加载 API Key，高频模式")
-    else:
-        logger.warning("⚠️ [S2] 无 API Key，将使用匿名限速模式")
-
-    api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
-
-    for keyword in keywords:
-        logger.info(f"🔍 [S2] 正在检索: {keyword}")
-        for attempt in range(4):
-            try:
-                params = {
-                    "query": keyword,
-                    "limit": limit,
-                    "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
-                }
-                r = requests.get(api_url, params=params, headers=headers, timeout=30)
-
-                if r.status_code == 429:
-                    wait = (attempt + 1) * (30 if not API_KEY else 5)
-                    logger.warning(f"   ⚠️ 限速！第 {attempt+1} 次尝试，等待 {wait}s...")
-                    time.sleep(wait)
-                    continue
-
-                r.raise_for_status()
-                data = r.json().get("data", [])
-                count = 0
-                for p in data:
-                    pid = p.get("paperId")
-                    if not pid or pid in seen_ids:
-                        continue
-                    pdf_url = (p.get("openAccessPdf") or {}).get("url")
-                    web_url = f"https://www.semanticscholar.org/paper/{pid}"
-                    papers.append({
-                        "id": pid,
-                        "title": safe_str(p.get("title", "")),
-                        "summary": safe_str(p.get("abstract") or ""),
-                        "published": str(p.get("year", "")) if p.get("year") else "N/A",
-                        "url": pdf_url if pdf_url else web_url,
-                        "authors": [a.get("name", "") for a in p.get("authors", [])],
-                        "source": "semantic_scholar",
-                    })
-                    seen_ids.add(pid)
-                    count += 1
-                logger.info(f"   ✅ 成功提取 {count} 篇")
-                break
-            except Exception as e:
-                if attempt < 3:
-                    logger.warning(f"   ⏳ 网络波动 ({e})，重试中...")
-                    time.sleep(5)
-                else:
-                    logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
-        time.sleep(1.5 if API_KEY else 6.0)
+    
+    # 🔥 新增：保存搜索缓存
+    save_search_cache(cache_key, papers)
     return papers
 
 
@@ -665,7 +627,7 @@ def main() -> None:
     warnings = []
     if not Config.SEMANTIC_SCHOLAR_API_KEY:
         warnings.append("SEMANTIC_SCHOLAR_API_KEY 未配置，Semantic Scholar 可能限速。")
-    if not getattr(Config, 'ENABLE_RSS_FEEDS', False) and not getattr(Config, 'ENABLE_NEWS_API', False):
+    if not getattr(Config, "ENABLE_RSS_FEEDS", False) and not getattr(Config, "ENABLE_NEWS_API", False):
         warnings.append("未启用任何资讯源，本次将只分析学术论文。")
 
     if warnings:
@@ -705,7 +667,7 @@ def main() -> None:
         return
 
     cache = load_cache()
-    new_papers = [p for p in all_papers if not is_paper_cached(p, cache)]
+    new_papers = [p for p in all_papers if not is_paper_cached(p)]
     logger.info(f"🆕 其中 {len(new_papers)} 篇为新条目（已缓存 {len(all_papers)-len(new_papers)} 篇）")
 
     if not new_papers:
@@ -719,32 +681,55 @@ def main() -> None:
 
     logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
     papers_data: list[dict] = []
+    
+    # 🔥 核心：LLM分析 + 草稿 双层缓存
     for i, paper in enumerate(to_analyze, 1):
+        # 先读缓存：有缓存直接跳过分析，0 Token消耗
+        cached_data = get_cached_analysis(paper)
+        if cached_data:
+            logger.info(f"✅ [{i}/{len(to_analyze)}] 缓存读取: {paper['title'][:60]}...")
+            papers_data.append({
+                "paper": paper,
+                "merged": cached_data["analysis"],
+                "models_results": [],
+                "draft": cached_data.get("draft"),
+            })
+            mark_paper_cached(paper)
+            continue
+
+        # 无缓存：执行分析
         logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
         results, merged = analyze_paper_multi_model(paper, ANALYSIS_MODELS)
-        papers_data.append({
+        data_item = {
             "paper": paper,
             "merged": merged,
             "models_results": results,
             "draft": None,
-        })
+        }
+        papers_data.append(data_item)
         time.sleep(2)
 
+    # 标记论文缓存 + 保存分析/草稿缓存
     for d in papers_data:
         if d["merged"].get("relevance", 0) > 0:
-            mark_paper_cached(d["paper"], d["merged"], cache)
+            mark_paper_cached(d["paper"])
+            # 🔥 保存分析+草稿到缓存
+            save_analysis(d["paper"], d["merged"], d.get("draft"))
 
     # 生成书稿草稿
     draft_candidates = [
         d for d in papers_data
         if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED
         and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD
+        and not d.get("draft")  # 仅无缓存草稿才生成
     ]
     if draft_candidates:
         logger.info(f"✍️ 为 {len(draft_candidates)} 篇高优先级条目生成书稿草稿...")
         for d in draft_candidates:
             logger.info(f"   草稿: {d['paper']['title'][:55]}...")
             d["draft"] = draft_patch(d["paper"], d["merged"])
+            # 🔥 生成后立即保存草稿到缓存
+            save_analysis(d["paper"], d["merged"], d["draft"])
             time.sleep(3)
 
     # 根据模式生成前缀
