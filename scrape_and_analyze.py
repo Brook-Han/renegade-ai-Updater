@@ -726,8 +726,13 @@ def main() -> None:
     elif run_mode == "papers":
         prefix = "papers_"
 
-    generate_markdown_multi(papers_data, keywords, prefix)
-    logger.info("✅ 任务完成！")
+    # 只调用一次，同时获得报告路径
+    report_path = generate_markdown_multi(papers_data, keywords, prefix)
+    logger.info(f"✅ 报告已生成: {report_path}")
+
+    # 自动生成 HTML 版（使用同一个路径）
+    import subprocess
+    subprocess.run(['python', 'md_to_html.py', report_path])
 
 if __name__ == "__main__":
     main()
