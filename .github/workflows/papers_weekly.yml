@@ -12,6 +12,8 @@ concurrency:
 jobs:
   run-papers:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with:
@@ -26,42 +28,42 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 运行论文雷达
+      - name: 运行论文雷达（抓取 + 分析 + 生成 MD + HTML）
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      - name: 提交并推送报告
+      - name: 提交报告到仓库
         run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          # ====================== 🔥 核心修复：彻底清理所有缓存/日志/临时文件 ======================
-          # 丢弃所有日志、缓存、编译文件（解决 Git 冲突的终极方案）
-          git checkout -- . || true
-          # 强制删除所有被 .gitignore 忽略的缓存文件
-          rm -f radar.log *.json logs/* __pycache__/* cache/* 2>/dev/null || true
+          # 强制重置工作区
+          git reset --hard HEAD
+          git clean -fd -e reports
 
-          # 同步远程代码（无任何本地修改，100% 不报错）
-          git pull --rebase origin main
+          # 拉取远程
+          git pull --rebase --autostash origin main
 
-          # 添加并提交报告文件
-          REPORT_FILES=$(find reports/ -maxdepth 1 -name "papers_report_multi_*.md" 2>/dev/null)
-          if [ -n "$REPORT_FILES" ]; then
-              git add $REPORT_FILES
-              git commit -m "Weekly paper report" || echo "No changes to commit"
-          else
-              echo "ℹ️ 没有匹配的报告文件，跳过提交"
-          fi
+          # 仅提交论文报告文件（MD + HTML）
+          git add reports/papers_*.md reports/papers_*.html 2>/dev/null || true
+          git commit -m "📚 Add weekly paper report" || true
+          git push origin main
 
-          # 重试推送
-          for i in 1 2 3; do
-            git pull --rebase origin main && git push origin main && break || sleep 10
-          done
+      - name: Deploy HTML to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./reports
+          publish_branch: gh-pages
+          keep_files: true
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
 
       - name: 推送论文简报到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
+          REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
         run: python notify_dingtalk.py --type papers
