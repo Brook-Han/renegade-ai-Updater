@@ -582,11 +582,9 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
             lines.append(f"  - {m.get('summary_cn', 'N/A')}")
             lines.append("")
 
-    def generate_markdown_multi(...) -> str:
-        now = datetime.datetime.now()          # 新增：获取当前日期时间
-        today = now.date().isoformat()
-        timestamp = now.strftime("%H%M%S")     # 新增：时分秒
-    report_path = OUTPUT_DIR / f"{prefix}report_multi_{today}_{timestamp}.md"
+        now = datetime.datetime.now()
+        timestamp = now.strftime("%H%M%S")
+    report_path = OUTPUT_DIR / f"{prefix}report_multi_{now.date().isoformat()}_{timestamp}.md"
     report_path.write_text("\n".join(lines), encoding="utf-8")
     logger.info(f"✅ 报告已保存: {report_path}")
     return str(report_path)
