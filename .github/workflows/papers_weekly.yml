@@ -37,23 +37,27 @@ jobs:
           git config user.name github-actions
           git config user.email github-actions@github.com
 
-          # 丢弃可能被误跟踪的日志文件本地修改，防止 pull 冲突
-          git checkout -- radar.log 2>/dev/null || true
-          git checkout -- logs/ 2>/dev/null || true
+          # ====================== 🔥 核心修复：彻底清理所有缓存/日志/临时文件 ======================
+          # 丢弃所有日志、缓存、编译文件（解决 Git 冲突的终极方案）
+          git checkout -- . || true
+          # 强制删除所有被 .gitignore 忽略的缓存文件
+          rm -f radar.log *.json logs/* __pycache__/* cache/* 2>/dev/null || true
 
+          # 同步远程代码（无任何本地修改，100% 不报错）
           git pull --rebase origin main
 
+          # 添加并提交报告文件
           REPORT_FILES=$(find reports/ -maxdepth 1 -name "papers_report_multi_*.md" 2>/dev/null)
           if [ -n "$REPORT_FILES" ]; then
-              git add reports/papers_report_multi_*.md
+              git add $REPORT_FILES
               git commit -m "Weekly paper report" || echo "No changes to commit"
           else
               echo "ℹ️ 没有匹配的报告文件，跳过提交"
           fi
 
-          # 推送（3次重试，避免临时冲突）
+          # 重试推送
           for i in 1 2 3; do
-              git pull --rebase origin main && git push origin main && break || sleep 10
+            git pull --rebase origin main && git push origin main && break || sleep 10
           done
 
       - name: 推送论文简报到钉钉
