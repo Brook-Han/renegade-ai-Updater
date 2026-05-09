@@ -702,8 +702,8 @@ def main() -> None:
     d for d in papers_data
     if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED
     and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD
-   ]
-   if draft_candidates:
+    ]
+    if draft_candidates:
     logger.info(f"✍️ 为 {len(draft_candidates)} 篇高优先级条目生成书稿草稿...")
     # 用索引遍历，保证直接修改原 papers_data 里的元素，不丢失草稿
     for idx, item in enumerate(papers_data):
