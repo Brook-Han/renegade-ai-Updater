@@ -699,15 +699,17 @@ def main() -> None:
             mark_paper_cached(d["paper"], d["merged"], cache)
 
     draft_candidates = [
-        d for d in papers_data
-        if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED
-        and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD
-    ]
-    if draft_candidates:
-        logger.info(f"✍️ 为 {len(draft_candidates)} 篇高优先级条目生成书稿草稿...")
-        for d in draft_candidates:
-            logger.info(f"   草稿: {d['paper']['title'][:55]}...")
-            d["draft"] = draft_patch(d["paper"], d["merged"])
+    d for d in papers_data
+    if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED
+    and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD
+   ]
+   if draft_candidates:
+    logger.info(f"✍️ 为 {len(draft_candidates)} 篇高优先级条目生成书稿草稿...")
+    # 用索引遍历，保证直接修改原 papers_data 里的元素，不丢失草稿
+    for idx, item in enumerate(papers_data):
+        if item in draft_candidates:
+            logger.info(f"   草稿: {item['paper']['title'][:55]}...")
+            item["draft"] = draft_patch(item["paper"], item["merged"])
             time.sleep(3)
 
     # 根据模式生成前缀
