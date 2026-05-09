@@ -40,6 +40,7 @@ from cache import (
     save_draft,
     get_search_cache,
     set_search_cache,
+    get_paper_fingerprint,  
 )
 from news_sources import fetch_all_news      # 资讯聚合模块
 
@@ -686,8 +687,12 @@ def main() -> None:
             mark_paper_cached(paper, merged, cache)
             time.sleep(2)
 
-    # 现在所有 papers_data 中的 merged 都已填充（来自缓存或新分析）
-    # 筛选出符合条件的草稿生成项（未生成草稿的）
+        # 现在所有 papers_data 中的 merged 都已填充（来自缓存或新分析）
+        # 过滤掉所有未获得有效分析结果的条目（如被预筛选掉的）
+    papers_data = [d for d in papers_data if d["merged"] is not None]
+    logger.info(f"📊 最终有效分析条目: {len(papers_data)}")
+    
+        # 筛选出符合条件的草稿生成项（未生成草稿的）
     draft_candidates = []
     for d in papers_data:
         m = d["merged"]
