@@ -1,7 +1,8 @@
 name: Paper Radar Weekly
+
 on:
   schedule:
-    - cron: '0 3 * * 1'
+    - cron: '0 3 * * 1'   # 每周一 UTC 03:00
   workflow_dispatch:
 
 concurrency:
@@ -13,29 +14,49 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v5
-        with: {fetch-depth: 0}
+        with:
+          fetch-depth: 0
+
       - uses: actions/setup-python@v6
-        with: {python-version: '3.10'}
-      - run: |
+        with:
+          python-version: '3.10'
+
+      - name: 安装依赖
+        run: |
           pip install --upgrade pip
           pip install -r requirements.txt
-      - name: 运行雷达
+
+      - name: 运行论文雷达
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      - name: 提交报告到仓库
+      - name: 提交并推送报告
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull origin main
-          git add reports/*.md
-          git commit -m "Add weekly paper report" || true
-          git push origin main
+          git config user.name github-actions
+          git config user.email github-actions@github.com
 
-      - name: 钉钉推送
+          # 丢弃可能被误跟踪的日志文件本地修改，防止 pull 冲突
+          git checkout -- radar.log 2>/dev/null || true
+          git checkout -- logs/ 2>/dev/null || true
+
+          git pull --rebase origin main
+
+          REPORT_FILES=$(find reports/ -maxdepth 1 -name "papers_report_multi_*.md" 2>/dev/null)
+          if [ -n "$REPORT_FILES" ]; then
+              git add reports/papers_report_multi_*.md
+              git commit -m "Weekly paper report" || echo "No changes to commit"
+          else
+              echo "ℹ️ 没有匹配的报告文件，跳过提交"
+          fi
+
+          # 推送（3次重试，避免临时冲突）
+          for i in 1 2 3; do
+              git pull --rebase origin main && git push origin main && break || sleep 10
+          done
+
+      - name: 推送论文简报到钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
