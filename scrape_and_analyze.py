@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Renegade AI 文献监控脚本 v4.4.2 — 学术+资讯双雷达整合版（纯DeepSeek直连）
+Renegade AI 文献监控脚本 v4.4.1 — 学术+资讯双雷达整合版（支持分跑）
 - 整合 arXiv + Semantic Scholar 学术论文抓取
 - 整合 NewsAPI + RSS 资讯抓取（条件启用）
 - 配置抽离：所有参数统一从 config.Config 读取
@@ -37,22 +37,28 @@ from cache import load_cache, is_paper_cached, mark_paper_cached
 from news_sources import fetch_all_news      # 资讯聚合模块
 
 # ------------------------------------------------------------------
-# 环境初始化（纯 DeepSeek 直连，已剔除 OpenRouter）
+# 环境初始化
 # ------------------------------------------------------------------
 load_dotenv()
 
-# DeepSeek 官方直连客户端（唯一模型渠道）
 deepseek_client = None
 if Config.DEEPSEEK_API_KEY:
     deepseek_client = OpenAI(
         api_key=Config.DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com"
     )
-else:
-    logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
-    sys.exit(1)
 
-# arXiv 客户端
+openrouter_client = None
+if Config.OPENROUTER_API_KEY:
+    openrouter_client = OpenAI(
+        api_key=Config.OPENROUTER_API_KEY,
+        base_url="https://openrouter.ai/api/v1",
+        default_headers={
+            "HTTP-Referer": "https://github.com/Brook-Han/renegade-ai-Updater",
+            "X-Title": "Renegade AI Radar",
+        },
+    )
+
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
     delay_seconds=Config.ARXIV_DELAY_SECONDS,
@@ -65,15 +71,16 @@ arxiv_client = arxiv.Client(
 OUTPUT_DIR = Path(Config.OUTPUT_DIR)
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 分析模型配置（仅 DeepSeek 直连）
+# 分析模型列表（仅 OpenRouter，不含直连）
 ANALYSIS_MODELS = Config.ANALYSIS_MODELS
-ANALYSIS_MODEL_DIRECT = Config.ANALYSIS_MODEL_DIRECT
+
+# 草稿生成设置
 DRAFTING_MODEL = Config.DRAFTING_MODEL
 DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD
 DRAFT_URGENCY_REQUIRED = Config.DRAFT_URGENCY_REQUIRED
 
-# 模型名称展示
-ALL_MODEL_NAMES = [f"{ANALYSIS_MODEL_DIRECT} (直连)"]
+# 所有分析模型的完整名称
+ALL_MODEL_NAMES = [f"{Config.ANALYSIS_MODEL_DIRECT} (直连)"] + ANALYSIS_MODELS
 
 # ------------------------------------------------------------------
 # 工具函数
@@ -94,29 +101,13 @@ def get_paper_fingerprint(paper: dict) -> str:
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
-    """
-    修复版 arXiv 搜索：
-    ✅ 自动清理关键词（删除中文注释/多余空格）
-    ✅ 强制 5 秒请求间隔（严格遵守 arXiv 限流）
-    ✅ 专门捕获 429 错误，超长重试等待
-    ✅ 永不触发限流，稳定抓取
-    """
     all_papers: dict[str, dict] = {}
-    from requests.exceptions import HTTPError
-
     for keyword in keywords:
-        # ====================== 核心修复1：清理关键词！======================
-        # 移除中文注释（#后面全部删掉）+ 去掉多余空格 + 清理乱码
-        clean_keyword = keyword.split("#")[0].strip()
-        # 过滤多余符号，避免请求URL过长
-        clean_keyword = " ".join(clean_keyword.split())
-        logger.info(f"🔍 [arXiv] 正在搜索: {clean_keyword}")
-
-        # 重试逻辑（3次，429专用超长等待）
+        logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
         for attempt in range(3):
             try:
                 search = arxiv.Search(
-                    query=clean_keyword,
+                    query=keyword,
                     max_results=max_results,
                     sort_by=arxiv.SortCriterion.SubmittedDate
                 )
@@ -136,33 +127,14 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                         count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
                 break
-
-            except HTTPError as e:
-                # ====================== 核心修复2：专门处理 429 ======================
-                if e.response.status_code == 429:
-                    wait_time = 60 * (attempt + 1)  # 60秒 → 120秒 → 180秒 超长安心等待
-                    logger.warning(f"   ⚠️ arXiv 429 限流！第 {attempt+1} 次重试，等待 {wait_time}s...")
-                    time.sleep(wait_time)
-                else:
-                    wait_time = 20 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 请求失败，{wait_time}s 后重试… ({e})")
-                    time.sleep(wait_time)
-
             except Exception as e:
-                if "429" in str(e):
-                    wait_time = 60 * (attempt + 1)
-                    logger.warning(f"   ⚠️ arXiv 429 限流！第 {attempt+1} 次重试，等待 {wait_time}s...")
-                    time.sleep(wait_time)
-                elif attempt < 2:
-                    wait_time = 20 * (attempt + 1)
-                    logger.warning(f"   ⚠️ 请求失败，{wait_time}s 后重试… ({e})")
-                    time.sleep(wait_time)
+                if attempt < 2:
+                    wait = (attempt + 1) * 20
+                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
+                    time.sleep(wait)
                 else:
                     logger.error(f"   ❌ 三次重试后仍失败: {e}")
-
-        # ====================== 核心修复3：关键词间强制冷却 ======================
-        time.sleep(5)  # 比官方要求的3秒更安全，彻底杜绝429
-
+        time.sleep(3)
     return list(all_papers.values())
 
 
@@ -220,13 +192,11 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 break
             except Exception as e:
                 if attempt < 3:
-                    logger.warning(f"   ⏳ 网络波动/限速 ({e})，重试中...")
-                    # 统一增加等待时间，避免频繁请求
-                    time.sleep(10 if "429" in str(e) else 5)
+                    logger.warning(f"   ⏳ 网络波动 ({e})，重试中...")
+                    time.sleep(5)
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
-        # 延长基础冷却，更稳定
-        time.sleep(2.5 if API_KEY else 8.0)
+        time.sleep(1.5 if API_KEY else 6.0)
     return papers
 
 
@@ -280,7 +250,7 @@ def prescreen_papers(papers: list[dict]) -> list[dict]:
     return filtered
 
 # ------------------------------------------------------------------
-# 模型分析（纯 DeepSeek 直连）
+# 多模型分析
 # ------------------------------------------------------------------
 SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolution》(v5.3) 的智能编辑助手。你需要判断一篇学术论文是否与本书的核心论点相关，并给出具体的更新建议。
 
@@ -441,11 +411,15 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    # 仅保留 DeepSeek 直连任务
-    tasks = [(ANALYSIS_MODEL_DIRECT, deepseek_client)]
+    tasks: list[tuple[str, OpenAI]] = []
+    if deepseek_client:
+        tasks.append((Config.ANALYSIS_MODEL_DIRECT, deepseek_client))
+    if openrouter_client:
+        for m in models:
+            tasks.append((m, openrouter_client))
 
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=1) as executor:
+    with ThreadPoolExecutor(max_workers=min(len(tasks), 3)) as executor:
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
@@ -556,7 +530,7 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
             ]
 
             if m.get("model_scores"):
-                lines.append("\n**🧠 模型评分:**")
+                lines.append("\n**🧠 多模型评分对比:**")
                 lines.append("| 模型 | 相关度 |")
                 lines.append("|------|--------|")
                 for mn, sc in sorted(m["model_scores"].items(), key=lambda x: x[1], reverse=True):
@@ -613,7 +587,7 @@ def main() -> None:
         else:
             logger.warning(f"未知参数 {arg}，将运行全部模式")
 
-    logger.info(f"🚀 Renegade AI 监控系统 v4.4.2 启动 (模式: {run_mode})")
+    logger.info(f"🚀 Renegade AI 监控系统 v4.4.1 启动 (模式: {run_mode})")
     logger.info(f"配置: 分析模型 {len(ALL_MODEL_NAMES)} 个, 草稿模型 {DRAFTING_MODEL}")
 
     keywords = load_keywords()
@@ -625,8 +599,7 @@ def main() -> None:
     news_articles = []
 
     if run_mode in ("all", "papers"):
-        # 🔥 临时禁用 arXiv，仅测试 Semantic Scholar
-        arxiv_papers = []
+        arxiv_papers = search_arxiv(keywords)
         s2_papers = search_semantic_scholar(keywords)
 
     if run_mode in ("all", "news"):
@@ -657,7 +630,7 @@ def main() -> None:
         logger.info("预筛选后无相关条目，退出。")
         return
 
-    logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
+    logger.info(f"🤖 开始用 {len(ALL_MODEL_NAMES)} 个模型并发分析 {len(to_analyze)} 篇...")
     papers_data: list[dict] = []
     for i, paper in enumerate(to_analyze, 1):
         logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
