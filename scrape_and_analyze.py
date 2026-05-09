@@ -549,7 +549,7 @@ def generate_markdown_multi(papers_data: list[dict], keywords: list[str], prefix
                 lines.append("|------|--------|")
                 for mn, sc in sorted(m["model_scores"].items(), key=lambda x: x[1], reverse=True):
                     if mn == Config.ANALYSIS_MODEL_DIRECT:
-                        display_name = "DeepSeek V4 Flash (直连)"
+                        display_name = "DeepSeek V4 "
                     elif mn == Config.DRAFTING_MODEL:
                         display_name = "DeepSeek V4 Pro (草稿)"
                     else:
