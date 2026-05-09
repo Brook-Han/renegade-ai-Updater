@@ -94,13 +94,48 @@ def get_paper_fingerprint(paper: dict) -> str:
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
+    """
+    ✅ 修复：关键词自动清洗（删除中文注释、多余空格、乱码）
+    ✅ 修复：arXiv 429 限流（超长重试 + 强制间隔）
+    """
     all_papers: dict[str, dict] = {}
+    from requests.exceptions import HTTPError
+
+    # ====================== 【核心】关键词清洗函数 ======================
+    def clean_arxiv_query(raw_keyword: str) -> str:
+        """
+        全自动清洗关键词：
+        1. 删除 # 及后面所有中文注释
+        2. 删除多余空格、换行、制表符
+        3. 只保留英文/数字/空格，适配 arXiv API
+        """
+        # 1. 切掉中文注释（# 后面全部丢弃）
+        query = raw_keyword.split("#")[0]
+        # 2. 替换所有空白符（空格/制表符/换行）为单个空格
+        query = " ".join(query.split())
+        # 3. 过滤掉非英文、非空格的字符（防止乱码）
+        cleaned = []
+        for ch in query:
+            if ch.isascii() or ch == " ":
+                cleaned.append(ch)
+        return "".join(cleaned).strip()
+
+    # ==================================================================
+
     for keyword in keywords:
-        logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
+        # 清洗后的纯英文合法关键词
+        query = clean_arxiv_query(keyword)
+        if not query:  # 空关键词跳过
+            logger.info(f"⏭️ [arXiv] 跳过空关键词: {keyword}")
+            continue
+
+        logger.info(f"🔍 [arXiv] 正在搜索: {query}")
+
+        # 重试机制（专门对付 429）
         for attempt in range(3):
             try:
                 search = arxiv.Search(
-                    query=keyword,
+                    query=query,
                     max_results=max_results,
                     sort_by=arxiv.SortCriterion.SubmittedDate
                 )
@@ -120,14 +155,32 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                         count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
                 break
-            except Exception as e:
-                if attempt < 2:
-                    wait = (attempt + 1) * 20
-                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
+
+            except HTTPError as e:
+                if e.response.status_code == 429:
+                    wait = 60 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 429 限流！等待 {wait}s 重试...")
                     time.sleep(wait)
                 else:
-                    logger.error(f"   ❌ 三次重试后仍失败: {e}")
-        time.sleep(3)
+                    wait = 20 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 错误，{wait}s 重试：{e}")
+                    time.sleep(wait)
+
+            except Exception as e:
+                if "429" in str(e):
+                    wait = 60 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 429 限流！等待 {wait}s 重试...")
+                    time.sleep(wait)
+                elif attempt < 2:
+                    wait = 20 * (attempt + 1)
+                    logger.warning(f"   ⚠️ 错误，{wait}s 重试：{e}")
+                    time.sleep(wait)
+                else:
+                    logger.error(f"   ❌ 重试失败：{e}")
+
+        # 关键词之间强制等待，防 429
+        time.sleep(5)
+
     return list(all_papers.values())
 
 
