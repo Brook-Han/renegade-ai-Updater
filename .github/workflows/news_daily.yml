@@ -1,4 +1,5 @@
-name: News Radar Daily
+name: News Radar Daily 
+# 多次修改崩溃版 v 4.30
 on:
   schedule:
     - cron: '0 2 * * *'
@@ -11,60 +12,57 @@ concurrency:
 jobs:
   run-news:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v5
         with: {fetch-depth: 0}
+
       - uses: actions/setup-python@v6
         with: {python-version: '3.10'}
-      - run: |
+
+      - name: 安装依赖
+        run: |
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 运行雷达（生成 MD 报告）
+      - name: 运行雷达（抓取 + 分析 + 生成 MD + HTML）
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           OPENROUTER_API_KEY: ${{ secrets.OPENROUTER_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --news
 
-      # ✅ 新增：自动生成 HTML 版本
-      - name: 生成 HTML 报告
-        run: |
-          # 找到当天最新的 news_report_multi_*.md，生成对应 HTML
-          LATEST_MD=$(ls -t reports/news_report_multi_*.md | head -1)
-          python md_to_html.py "$LATEST_MD"
-
-      # ✅ 原有：提交报告到主分支（保留，方便在 GitHub 上直接看 MD）
       - name: 提交报告到仓库
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          git checkout -- . || true
-          rm -f radar.log *.json logs/* __pycache__/* cache/* 2>/dev/null || true
+          # 🔥 强制重置，保证工作区绝对干净
+          git reset --hard HEAD
+          git clean -fd -e reports
 
-          git pull --rebase origin main
-          
-          # 提交 MD 和 HTML 文件
-          git add reports/news_*.md reports/news_*.html 2>/dev/null
-          git commit -m "Add daily news report" || true
+          # 拉取远程
+          git pull --rebase --autostash origin main
+
+          # 仅添加报告文件
+          git add reports/news_*.md reports/news_*.html 2>/dev/null || true
+          git commit -m "📰 Add daily news report" || true
           git push origin main
 
-      # ✅ 新增：部署到 GitHub Pages（gh-pages 分支）
       - name: Deploy HTML to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports          # 只发布 reports 目录
+          publish_dir: ./reports
           publish_branch: gh-pages
-          keep_files: true               # 保留旧报告，不覆盖
+          keep_files: true
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
-      # ✅ 钉钉推送（链接自动指向 HTML）
       - name: 钉钉推送
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-          REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"   # 改成你的 Pages 地址
+          REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
         run: python notify_dingtalk.py --type news
