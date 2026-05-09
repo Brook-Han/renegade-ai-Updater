@@ -112,7 +112,7 @@ def build_brief(items: list[dict], report_type: str = "news", report_base_url: s
     title_prefix = "📚 **Renegade AI 每周论文简报**" if report_type == "papers" else "📰 **Renegade AI 每日资讯简报**"
     lines = [
         f"## {title_prefix}",
-        f"**{today}** · 总条目 {total} | 🔥 高相关 {len(high)} | 📌 其他关注 {len(medium)}",
+        f"**{today}** · 总条目 {total} | 高相关 {len(high)} | 其他关注 {len(medium)}",
         "",
     ]
 
@@ -162,12 +162,7 @@ def _format_item(it: dict, brief: bool = False) -> list[str]:
         block.append(f"- 📝 {summary[:200]}")
     if implications and implications != "N/A":
         block.append(f"- 🔗 {implications}")
-    if has_draft:
-        block.append(f"- ✍️ 已生成书稿草稿")
-    if not brief and has_draft:
-        # 展示草稿前 80 字预览
-        draft_preview = it["draft"].replace("\n", " ")[:80]
-        block.append(f"  > {draft_preview}...")
+
     block.append("")
     return block
 
