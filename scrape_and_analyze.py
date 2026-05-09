@@ -93,7 +93,7 @@ def get_paper_fingerprint(paper: dict) -> str:
 # ------------------------------------------------------------------
 # 多源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
-arxiv是不是也加上放429呢?      def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
+def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
     all_papers: dict[str, dict] = {}
     for keyword in keywords:
         logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
