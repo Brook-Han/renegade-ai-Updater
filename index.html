@@ -9,236 +9,57 @@
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    /* 浅色模式（默认） */
     :root {
-      --bg: #f8f9fc;
-      --bg2: #ffffff;
-      --surface: #f0f2f8;
-      --card: #ffffff;
-      --border: #e0e2ec;
-      --border-bright: #c0c2d0;
-      --text: #2a2a40;
-      --text-muted: #6a6a80;
-      --text-faint: #a0a0b8;
-      --accent: #e8503a;
-      --accent-dim: rgba(232,80,58,0.08);
-      --accent2: #b88c2a;
-      --accent3: #3a7fbf;
-      --accent3-dim: rgba(74,143,207,0.08);
+      --bg: #f8f9fc; --bg2: #ffffff; --surface: #f0f2f8;
+      --card: #ffffff; --border: #e0e2ec; --border-bright: #c0c2d0;
+      --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
+      --accent: #e8503a; --accent-dim: rgba(232,80,58,0.08);
+      --accent2: #b88c2a; --accent3: #3a7fbf; --accent3-dim: rgba(74,143,207,0.08);
       --white: #2a2a40;
       --mono: 'Space Mono', 'Courier New', monospace;
       --serif: 'Crimson Pro', Georgia, serif;
       --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-      --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
-
-    /* 深色模式覆盖 */
     :root.dark-theme {
-      --bg: #08080e;
-      --bg2: #0d0d18;
-      --surface: #111120;
-      --card: #13131f;
-      --border: #1e1e30;
-      --border-bright: #2e2e50;
-      --text: #cccce0;
-      --text-muted: #6868a0;
-      --text-faint: #3a3a5a;
-      --accent: #e8503a;
-      --accent-dim: rgba(232,80,58,0.12);
-      --accent2: #c9a040;
-      --accent3: #4a8fcf;
-      --accent3-dim: rgba(74,143,207,0.1);
+      --bg: #08080e; --bg2: #0d0d18; --surface: #111120;
+      --card: #13131f; --border: #1e1e30; --border-bright: #2e2e50;
+      --text: #cccce0; --text-muted: #6868a0; --text-faint: #3a3a5a;
+      --accent: #e8503a; --accent-dim: rgba(232,80,58,0.12);
+      --accent2: #c9a040; --accent3: #4a8fcf; --accent3-dim: rgba(74,143,207,0.1);
       --white: #f0f0f8;
     }
-
     * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    body {
-      font-family: var(--serif);
-      background: var(--bg);
-      color: var(--text);
-      line-height: 1.8;
-      -webkit-font-smoothing: antialiased;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
-
-    /* 固定导航栏（类似主页） */
-    nav {
-      position: fixed; top: 0; width: 100%; z-index: 200;
-      background: rgba(248,249,252,0.92);
-      backdrop-filter: blur(24px);
-      border-bottom: 1px solid var(--border);
-      height: 56px;
-      display: flex; align-items: center; justify-content: space-between;
-      padding: 0 32px;
-      font-family: var(--mono);
-      transition: background-color 0.3s ease, border-color 0.3s ease;
-    }
-    .dark-theme nav {
-      background: rgba(8,8,14,0.92);
-    }
-    .nav-brand {
-      font-size: 0.75rem; font-weight: 700;
-      color: var(--accent); letter-spacing: 3px;
-      text-transform: uppercase;
-      text-decoration: none;
-      transition: color 0.2s;
-    }
-    .nav-brand:hover {
-      color: var(--accent2);
-    }
-    .nav-right {
-      display: flex; gap: 12px; align-items: center;
-    }
-    .theme-toggle {
-      background: none;
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      width: 36px;
-      height: 36px;
-      border-radius: 0;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      transition: all 0.2s;
-    }
-    .theme-toggle:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-      background: var(--accent-dim);
-    }
-    .theme-toggle i {
-      font-size: 0.8rem;
-    }
-
-    /* 主容器，避开固定导航栏 */
-    .main {
-      max-width: 860px;
-      margin: 0 auto;
-      padding: 100px 32px 60px;
-    }
-
-    /* 返回首页链接（小字） */
-    .home-link {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      border-bottom: 1px solid var(--border);
-      display: inline-block;
-      margin-bottom: 30px;
-      transition: border-color 0.2s, color 0.2s;
-    }
-    .home-link:hover {
-      border-bottom-color: var(--accent);
-      color: var(--accent);
-    }
-
-    .page-eyebrow {
-      font-family: var(--mono); font-size: 0.62rem;
-      letter-spacing: 4px; color: var(--accent);
-      text-transform: uppercase; margin-bottom: 8px;
-      display: flex; align-items: center; gap: 10px;
-    }
-    .page-eyebrow::before {
-      content: ''; width: 28px; height: 1px; background: var(--accent);
-    }
-    h1 {
-      font-family: var(--display); font-size: 3rem;
-      letter-spacing: 2px; color: var(--white);
-      margin-bottom: 6px; line-height: 1;
-    }
-    .subtitle {
-      font-family: var(--mono); font-size: 0.65rem;
-      color: var(--text-muted); letter-spacing: 1.5px;
-      margin-bottom: 48px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .subtitle .stats {
-      font-family: var(--mono);
-      font-size: 0.65rem;
-      color: var(--accent);
-    }
-    .subtitle .stats span {
-      color: var(--text-muted);
-      margin: 0 4px;
-    }
-
+    body { font-family: var(--serif); background: var(--bg); color: var(--text); line-height: 1.8; transition: background-color 0.3s ease, color 0.3s ease; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 200; background: rgba(248,249,252,0.92); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; font-family: var(--mono); transition: background-color 0.3s ease, border-color 0.3s ease; }
+    .dark-theme nav { background: rgba(8,8,14,0.92); }
+    .nav-brand { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 3px; text-transform: uppercase; text-decoration: none; }
+    .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 36px; height: 36px; border-radius: 0; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: all 0.2s; }
+    .theme-toggle:hover { border-color: var(--accent); color: var(--accent); }
+    .main { max-width: 860px; margin: 0 auto; padding: 100px 32px 60px; }
+    .page-eyebrow { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+    .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+    h1 { font-family: var(--display); font-size: 3rem; letter-spacing: 2px; color: var(--white); margin-bottom: 6px; line-height: 1; }
+    .subtitle { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 48px; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; }
+    .subtitle .stats { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); }
+    .subtitle .stats span { color: var(--text-muted); margin: 0 4px; }
     .day-group { margin-bottom: 48px; }
-    .day-header {
-      font-family: var(--display); font-size: 1.8rem;
-      letter-spacing: 1px; color: var(--white);
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 8px; margin-bottom: 4px;
-    }
-    .day-meta {
-      font-family: var(--mono); font-size: 0.65rem;
-      color: var(--text-muted); margin-bottom: 16px;
-    }
-
-    .card {
-      background: var(--card); border: 1px solid var(--border);
-      padding: 24px; margin-bottom: 8px;
-      transition: border-color .2s, background 0.2s;
-    }
+    .day-header { font-family: var(--display); font-size: 1.8rem; letter-spacing: 1px; color: var(--white); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 4px; }
+    .day-meta { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); margin-bottom: 16px; }
+    .card { background: var(--card); border: 1px solid var(--border); padding: 24px; margin-bottom: 8px; transition: border-color .2s, background 0.2s; }
     .card:hover { border-color: var(--accent); }
-    .card-header {
-      display: flex; justify-content: space-between; align-items: flex-start;
-      margin-bottom: 10px;
-    }
-    .card-title {
-      font-family: var(--display); font-size: 1.2rem;
-      letter-spacing: 1px; color: var(--white); line-height: 1.2;
-      flex: 1; margin-right: 12px;
-    }
-    .card-score {
-      font-family: var(--display); font-size: 1.8rem;
-      color: var(--accent); line-height: 1;
-      white-space: nowrap;
-    }
-    .card-score span {
-      font-family: var(--mono); font-size: 0.5rem;
-      color: var(--text-muted); display: block;
-    }
-    .card-meta {
-      font-family: var(--mono); font-size: 0.6rem;
-      color: var(--text-muted); margin-bottom: 12px;
-      display: flex; gap: 16px; flex-wrap: wrap;
-    }
+    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
+    .card-title { font-family: var(--display); font-size: 1.2rem; letter-spacing: 1px; color: var(--white); line-height: 1.2; flex: 1; margin-right: 12px; }
+    .card-score { font-family: var(--display); font-size: 1.8rem; color: var(--accent); line-height: 1; white-space: nowrap; }
+    .card-score span { font-family: var(--mono); font-size: 0.5rem; color: var(--text-muted); display: block; }
+    .card-meta { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 12px; display: flex; gap: 16px; flex-wrap: wrap; }
     .card-meta a { color: var(--accent2); text-decoration: none; }
-    .card-body {
-      font-size: 0.92rem; color: var(--text);
-      line-height: 1.8; margin-bottom: 8px;
-    }
-    .card-link {
-      font-family: var(--mono); font-size: 0.65rem; margin-top: 10px;
-    }
-    .card-link a {
-      color: var(--accent); text-decoration: none;
-      border-bottom: 1px solid transparent;
-    }
+    .card-body { font-size: 0.92rem; color: var(--text); line-height: 1.8; margin-bottom: 8px; }
+    .card-link { font-family: var(--mono); font-size: 0.65rem; margin-top: 10px; }
+    .card-link a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
     .card-link a:hover { border-bottom-color: var(--accent); }
-
-    footer {
-      margin-top: 64px; padding-top: 24px;
-      border-top: 1px solid var(--border);
-      font-family: var(--mono); font-size: 0.6rem;
-      color: var(--text-muted); letter-spacing: 1px;
-      display: flex; justify-content: space-between;
-    }
+    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); letter-spacing: 1px; display: flex; justify-content: space-between; }
     footer a { color: var(--text-muted); text-decoration: none; }
-    footer a:hover { color: var(--accent); }
-
-    @media (max-width: 600px) {
-      .main { padding: 100px 16px 40px; }
-      h1 { font-size: 2.2rem; }
-      .card-header { flex-direction: column; }
-      .subtitle { flex-direction: column; gap: 8px; }
-    }
+    @media (max-width: 600px) { .main { padding: 100px 16px 40px; } h1 { font-size: 2.2rem; } .card-header { flex-direction: column; } .subtitle { flex-direction: column; gap: 8px; } }
   </style>
 </head>
 <body>
@@ -258,17 +79,17 @@
     <div class="subtitle">
       <span>全网抓取 · AI 分析 · GitHub Pages 部署</span>
       <span class="stats">
-        ▲ 报告总数: 23 &nbsp;◆ 最新: 2026-05-10
+        ▲ 报告总数: 24 &nbsp;◆ 最新: 2026-05-10
       </span>
     </div>
 
     <div class="day-group">
   <div class="day-header">2026-05-10</div>
-  <div class="day-meta">16:57:17 · 共 303 条分析（含新闻/论文）</div>
+  <div class="day-meta">16:57:17 · 共 305 条分析（含新闻/论文）</div>
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -276,12 +97,12 @@
       <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank">↗ 原文</a>
     </div>
     <div class="card-body">该论文提出AI生成内容会导致人群层面的创意多样性崩溃，即当许多人使用相同AI时，输出趋于同质化，而传统评估忽视这一“评价盲点”。通过比较模型生成与人类基线，作者开发了超额拥挤系数等指标，发现前沿LLM在短故事、广告语等任务中均低于多样性基线，且通过设计可降低拥挤效应。</div>
-    <div class="card-link"><a href="papers_report_multi_2026-05-10_165717.html">查看完整报告 →</a></div>
+    <div class="card-link"><a href="papers_report_multi_2026-05-10_144401.html">查看完整报告 →</a></div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">Co-Alignment: Rethinking Alignment as Bidirectional Human-AI Cognitive Adaptation  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">Co-Alignment: Rethinking Alignment as Bidirectional Human-AI Cognitive Adaptation ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -289,12 +110,12 @@
       <a href="https://www.semanticscholar.org/paper/f7d47ea116ff69201be7fb67fcd67976fdcdf5c8" target="_blank">↗ 原文</a>
     </div>
     <div class="card-body">提出双向认知对齐（BiCA）框架，让人类与AI在协作中相互适应，而非AI单方面服从人类。实验显示BiCA在导航任务中成功率提升至85.5%，协作安全性和协议涌现均显著优于单向对齐。</div>
-    <div class="card-link"><a href="papers_report_multi_2026-05-10_165717.html">查看完整报告 →</a></div>
+    <div class="card-link"><a href="papers_report_multi_2026-05-10_144401.html">查看完整报告 →</a></div>
   </div>
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">How humanAI feedback loops alter human perceptual, emotional and social judgements  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">How humanAI feedback loops alter human perceptual, emotional and social judgements ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -302,7 +123,7 @@
       <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank">↗ 原文</a>
     </div>
     <div class="card-body">通过一系列实验（n=1401），揭示人类-AI反馈循环中AI系统放大人类在感知、情感和社会判断中的偏见，且放大程度显著高于人际互动，参与者往往意识不到AI的影响，导致偏见雪球式累积。</div>
-    <div class="card-link"><a href="papers_report_multi_2026-05-10_165717.html">查看完整报告 →</a></div>
+    <div class="card-link"><a href="papers_report_multi_2026-05-10_144401.html">查看完整报告 →</a></div>
   </div>
 </div>
 <div class="day-group">
@@ -311,7 +132,7 @@
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">More RLHF, More Trust? On The Impact of Human Preference Alignment On Language Model Trustworthiness  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">More RLHF, More Trust? On The Impact of Human Preference Alignment On Language Model Trustworthiness ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -324,7 +145,7 @@
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">How humanAI feedback loops alter human perceptual, emotional and social judgements  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">How humanAI feedback loops alter human perceptual, emotional and social judgements ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -337,7 +158,7 @@
 
   <div class="card">
     <div class="card-header">
-      <div class="card-title">Evolvable AI: Threats of a new major transition in evolution  <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
+      <div class="card-title">Evolvable AI: Threats of a new major transition in evolution ✍️ <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span></div>
       <div class="card-score">—<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -361,7 +182,6 @@
       const htmlElement = document.documentElement;
       const toggleBtn = document.getElementById('themeToggle');
       const themeIcon = document.getElementById('themeIcon');
-
       const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
       const setTheme = (theme) => {
         if (theme === 'dark') {
@@ -373,15 +193,12 @@
         }
         localStorage.setItem('renegade-theme', theme);
       };
-
       const currentTheme = getStoredTheme();
       setTheme(currentTheme);
-
       toggleBtn.addEventListener('click', () => {
         const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
         setTheme(newTheme);
       });
-
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('renegade-theme')) {
           setTheme(e.matches ? 'dark' : 'light');
