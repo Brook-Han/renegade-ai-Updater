@@ -9,50 +9,40 @@ import re
 from pathlib import Path
 from string import Template
 
-def extract_cards_from_html(html_path: Path) -> list[dict]:
+def extract_cards_from_html(html_path: str) -> list[dict]:
     """从单个报告 HTML 中提取所有卡片的标题、评分、摘要、链接、草稿状况"""
+    html_path = Path(html_path)   # 转换为 Path 对象
     with open(html_path, encoding='utf-8') as f:
         content = f.read()
 
     cards = []
-
-    card_pattern = re.compile(r'<div class="card">(.*?)</div>\s*</div>', re.DOTALL)
-    for match in card_pattern.finditer(content):
-        block = match.group(1)
-
+    card_blocks = re.findall(r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</body>|$)', content, re.DOTALL)
+    for block in card_blocks:
         card = {}
-
         # 标题
         title_match = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_match:
-            card['title'] = re.sub(r'<[^>]+>', '', title_match.group(1)).strip()
-
+            card['title'] = title_match.group(1).strip()
         # 评分
-        score_match = re.search(r'class="card-score">(\d+(?:\.\d+)?)\s*<span>/10</span>', block)
+        score_match = re.search(r'<div class="card-score">([\d.]+)<span>/10</span>', block)
         if score_match:
             card['score'] = score_match.group(1)
-
         # 链接
-        link_match = re.search(r'<a\s+href="([^"]+)"[^>]*>(?:↗\s*原文[^<]*|原文链接)</a>', block)
-        if not link_match:
-            link_match = re.search(r'<a\s+href="([^"]+)"[^>]*target="_blank"[^>]*>', block)
+        link_match = re.search(r'<a href="([^"]+)" target="_blank">↗ 原文链接</a>', block)
         if link_match:
             card['link'] = link_match.group(1)
-
         # 摘要
         summary_match = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
         if summary_match:
-            card['summary'] = re.sub(r'<[^>]+>', '', summary_match.group(1)).strip()
-
+            card['summary'] = summary_match.group(1).strip()
         # 是否有草稿
-        card['has_draft'] = '<div class="card-draft">' in block
-
-        # 章节
+        draft_match = re.search(r'<div class="card-draft">', block)
+        card['has_draft'] = bool(draft_match)
+        # 章节信息
         chapter_match = re.search(r'📍\s*(.*?)(?:</span>|$)', block)
         if chapter_match:
             card['chapter'] = chapter_match.group(1).strip()
-
-        # 报告类型
+        # 报告类型标识（用于调试，非必须）
         if 'news_report' in html_path.name:
             card['type'] = 'news'
         elif 'papers_report' in html_path.name:
@@ -62,83 +52,95 @@ def extract_cards_from_html(html_path: Path) -> list[dict]:
 
         if card.get('title'):
             cards.append(card)
-
     return cards
 
 def generate_index():
-    """生成 index.html（扫描所有 news 和 papers 报告）"""
-    reports_dir = Path("reports")
-    reports_dir.mkdir(exist_ok=True)
+    """生成带每日摘要的 index.html（扫描 news 和 papers 两种报告）"""
+    Path("reports").mkdir(exist_ok=True)
 
-    files = list(reports_dir.glob("news_report_multi_*.html")) + \
-            list(reports_dir.glob("papers_report_multi_*.html"))
-    files.sort(reverse=True)
+    # 收集所有新闻和论文报告文件
+    news_files = sorted(Path('.').glob("reports/news_report_multi_*.html"), reverse=True)
+    papers_files = sorted(Path('.').glob("reports/papers_report_multi_*.html"), reverse=True)
+    report_files = news_files + papers_files
+    # 按文件名排序（通常日期在文件名中，已经有序）
+    report_files.sort(reverse=True)
 
+    # 按日期分组，每个日期下收集多个报告的信息
     date_groups = {}
-    for f in files:
-        m = re.match(r'(news|papers)_report_multi_(\d{4}-\d{2}-\d{2})_(\d{6})\.html', f.name)
-        if not m:
-            continue
-        date_str = m.group(2)
-        time_str = m.group(3)
-        report_type = 'news' if m.group(1) == 'news' else 'papers'
-        if date_str not in date_groups:
-            date_groups[date_str] = []
-        date_groups[date_str].append({'path': f, 'time': time_str, 'type': report_type})
+    for f in report_files:
+        name = f.name
+        # 匹配日期和时间戳
+        match = re.search(r'(\d{4}-\d{2}-\d{2})_(\d{6})', name)
+        if match:
+            date_str = match.group(1)
+            time_str = match.group(2)
+            if date_str not in date_groups:
+                date_groups[date_str] = []
+            date_groups[date_str].append({
+                'file': name,
+                'time': time_str,
+                'full': str(f),
+            })
 
     sorted_dates = sorted(date_groups.keys(), reverse=True)
 
     day_sections = []
     for date in sorted_dates:
+        # 收集该日期下所有报告的卡片
         all_cards = []
         for entry in date_groups[date]:
-            cards = extract_cards_from_html(entry['path'])
+            cards = extract_cards_from_html(entry['full'])
             all_cards.extend(cards)
-
+            # 记录最早/最晚的报告时间用于展示
+            entry_time = entry['time']
+        # 按评分降序排序（没有评分的放在后面）
         all_cards.sort(key=lambda x: float(x.get('score', 0)) if x.get('score', '').replace('.','',1).isdigit() else -1, reverse=True)
         top3 = all_cards[:3]
 
-        first_time = date_groups[date][0]['time']
-        display_time = f"{first_time[:2]}:{first_time[2:4]}:{first_time[4:]}"
+        # 取第一个报告的时间展示（简单起见）
+        first_entry = date_groups[date][0]
+        time_str = first_entry['time']
+        formatted_time = f"{time_str[:2]}:{time_str[2:4]}:{time_str[4:]}"
+        total_count = len(all_cards)
 
         day_html = f'<div class="day-group">\n'
         day_html += f'  <div class="day-header">{date}</div>\n'
-        day_html += f'  <div class="day-meta">{display_time} · 共 {len(all_cards)} 条分析（含新闻/论文）</div>\n'
+        day_html += f'  <div class="day-meta">{formatted_time} · 共 {total_count} 条分析（含新闻/论文）</div>\n'
 
         for card in top3:
             score = card.get('score', '—')
             title = card.get('title', 'No title')
             link = card.get('link', '#')
-            summary = card.get('summary', '')[:200]
+            summary = card.get('summary', '')
             chapter = card.get('chapter', '')
-            has_draft = ' ✍️' if card.get('has_draft') else ''
+            draft_badge = ' ' if card.get('has_draft') else ''
+            # 可选：显示类型徽章
             type_badge = ''
             if card.get('type') == 'papers':
                 type_badge = ' <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span>'
             elif card.get('type') == 'news':
                 type_badge = ' <span style="font-size:0.55rem; background:var(--accent3-dim); padding:2px 6px; border-radius:2px;">📰 新闻</span>'
 
-            first_report_file = date_groups[date][0]['path'].name
-
             day_html += f'''
   <div class="card">
     <div class="card-header">
-      <div class="card-title">{title}{has_draft}{type_badge}</div>
+      <div class="card-title">{title}{draft_badge}{type_badge}</div>
       <div class="card-score">{score}<span>/10</span></div>
     </div>
     <div class="card-meta">
       {f'<span>📍 {chapter}</span>' if chapter else ''}
       {'<a href="' + link + '" target="_blank">↗ 原文</a>' if link else ''}
     </div>
-    <div class="card-body">{summary}</div>
-    <div class="card-link"><a href="{first_report_file}">查看完整报告 →</a></div>
+    <div class="card-body">{summary[:200]}</div>
+    <div class="card-link"><a href="{first_entry['file']}">查看完整报告 →</a></div>
   </div>\n'''
         day_html += '</div>\n'
         day_sections.append(day_html)
 
-    total_reports = len(files)
+    total_reports = sum(len(v) for v in date_groups.values())
     first_date = sorted_dates[0] if sorted_dates else '—'
 
+    # 模板（使用 string.Template 避免与 CSS 花括号冲突）
     template_str = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -150,6 +152,7 @@ def generate_index():
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
+    /* 浅色模式（默认） */
     :root {
       --bg: #f8f9fc;
       --bg2: #ffffff;
@@ -169,7 +172,10 @@ def generate_index():
       --mono: 'Space Mono', 'Courier New', monospace;
       --serif: 'Crimson Pro', Georgia, serif;
       --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
     }
+
+    /* 深色模式覆盖 */
     :root.dark-theme {
       --bg: #08080e;
       --bg2: #0d0d18;
@@ -187,14 +193,19 @@ def generate_index():
       --accent3-dim: rgba(74,143,207,0.1);
       --white: #f0f0f8;
     }
+
     * { box-sizing: border-box; margin: 0; padding: 0; }
+
     body {
       font-family: var(--serif);
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
+      -webkit-font-smoothing: antialiased;
       transition: background-color 0.3s ease, color 0.3s ease;
     }
+
+    /* 固定导航栏（类似主页） */
     nav {
       position: fixed; top: 0; width: 100%; z-index: 200;
       background: rgba(248,249,252,0.92);
@@ -214,8 +225,11 @@ def generate_index():
       color: var(--accent); letter-spacing: 3px;
       text-transform: uppercase;
       text-decoration: none;
+      transition: color 0.2s;
     }
-    .nav-brand:hover { color: var(--accent2); }
+    .nav-brand:hover {
+      color: var(--accent2);
+    }
     .nav-right {
       display: flex; gap: 12px; align-items: center;
     }
@@ -223,7 +237,8 @@ def generate_index():
       background: none;
       border: 1px solid var(--border);
       color: var(--text-muted);
-      width: 36px; height: 36px;
+      width: 36px;
+      height: 36px;
       border-radius: 0;
       cursor: pointer;
       display: flex;
@@ -236,12 +251,18 @@ def generate_index():
       color: var(--accent);
       background: var(--accent-dim);
     }
-    .theme-toggle i { font-size: 0.8rem; }
+    .theme-toggle i {
+      font-size: 0.8rem;
+    }
+
+    /* 主容器，避开固定导航栏 */
     .main {
       max-width: 860px;
       margin: 0 auto;
       padding: 100px 32px 60px;
     }
+
+    /* 返回首页链接（小字） */
     .home-link {
       font-family: var(--mono);
       font-size: 0.65rem;
@@ -256,6 +277,7 @@ def generate_index():
       border-bottom-color: var(--accent);
       color: var(--accent);
     }
+
     .page-eyebrow {
       font-family: var(--mono); font-size: 0.62rem;
       letter-spacing: 4px; color: var(--accent);
@@ -274,10 +296,21 @@ def generate_index():
       font-family: var(--mono); font-size: 0.65rem;
       color: var(--text-muted); letter-spacing: 1.5px;
       margin-bottom: 48px;
-      display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
     }
-    .subtitle .stats { font-family: var(--mono); font-size: 0.65rem; color: var(--accent); }
-    .subtitle .stats span { color: var(--text-muted); margin: 0 4px; }
+    .subtitle .stats {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+    }
+    .subtitle .stats span {
+      color: var(--text-muted);
+      margin: 0 4px;
+    }
+
     .day-group { margin-bottom: 48px; }
     .day-header {
       font-family: var(--display); font-size: 1.8rem;
@@ -289,6 +322,7 @@ def generate_index():
       font-family: var(--mono); font-size: 0.65rem;
       color: var(--text-muted); margin-bottom: 16px;
     }
+
     .card {
       background: var(--card); border: 1px solid var(--border);
       padding: 24px; margin-bottom: 8px;
@@ -331,6 +365,7 @@ def generate_index():
       border-bottom: 1px solid transparent;
     }
     .card-link a:hover { border-bottom-color: var(--accent); }
+
     footer {
       margin-top: 64px; padding-top: 24px;
       border-top: 1px solid var(--border);
@@ -340,6 +375,7 @@ def generate_index():
     }
     footer a { color: var(--text-muted); text-decoration: none; }
     footer a:hover { color: var(--accent); }
+
     @media (max-width: 600px) {
       .main { padding: 100px 16px 40px; }
       h1 { font-size: 2.2rem; }
@@ -382,6 +418,7 @@ def generate_index():
       const htmlElement = document.documentElement;
       const toggleBtn = document.getElementById('themeToggle');
       const themeIcon = document.getElementById('themeIcon');
+
       const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
       const setTheme = (theme) => {
         if (theme === 'dark') {
@@ -393,12 +430,15 @@ def generate_index():
         }
         localStorage.setItem('renegade-theme', theme);
       };
+
       const currentTheme = getStoredTheme();
       setTheme(currentTheme);
+
       toggleBtn.addEventListener('click', () => {
         const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
         setTheme(newTheme);
       });
+
       window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
         if (!localStorage.getItem('renegade-theme')) {
           setTheme(e.matches ? 'dark' : 'light');
@@ -416,7 +456,7 @@ def generate_index():
         day_sections="".join(day_sections)
     )
 
-    output_path = reports_dir / "index.html"
+    output_path = Path('reports/index.html')
     output_path.write_text(final_html, encoding='utf-8')
     print(f'✅ Archive index generated with {total_reports} reports (news + papers merged)')
 
