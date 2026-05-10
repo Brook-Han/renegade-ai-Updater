@@ -90,7 +90,7 @@ def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
 def safe_str(text: str) -> str:
     return text.encode("ascii", "ignore").decode("ascii")
 
-def 30(paper: dict) -> str:
+def get_paper_cache_key(paper: dict) -> str:
     content = (paper.get("title", "") + " " + paper.get("summary", "")).encode("utf-8", errors="ignore")
     return hashlib.md5(content).hexdigest()
 
@@ -657,7 +657,7 @@ def main() -> None:
     papers_data: list[dict] = []
 
     for paper in all_papers:
-        fp = 30(paper)   # 使用 cache 模块的函数，产生指纹
+        fp = get_paper_cache_key(paper)   # 使用 cache 模块的函数，产生指纹
         if fp in cache and "analysis" in cache[fp]:
             cached_entry = cache[fp]
             logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
@@ -700,7 +700,7 @@ def main() -> None:
                 target["merged"] = merged
                 target["models_results"] = results
             # 存入缓存（根据模式选择写入不同文件）
-            fp = 30(paper)
+            fp = get_paper_cache_key(paper)
             cache[fp] = {
                 "cached_at": datetime.datetime.now().isoformat(),
                 "title": paper.get("title", "")[:80],
@@ -741,7 +741,7 @@ def main() -> None:
             d["draft"] = draft
             if draft and len(draft.strip()) > 50:
                 # 保存草稿到缓存
-                fp = 30(d["paper"])
+                fp = get_paper_cache_key(d["paper"])
                 if fp in cache:
                     cache[fp]["draft_paragraph"] = draft
                     # 根据模式写入对应文件
