@@ -28,31 +28,21 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # ========== 新增：恢复论文缓存 ==========
-      - name: 恢复论文分析缓存
-        uses: actions/cache@v4
-        with:
-          path: paper_cache.json
-          key: paper-cache-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: |
-            paper-cache-${{ runner.os }}-
-
       - name: 运行论文雷达（抓取 + 分析 + 生成 MD + HTML）
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      # 提交报告... (后续不变)
-      - name: 提交报告到仓库
+      - name: 提交报告与缓存到主分支
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git reset --hard HEAD
           git clean -fd -e reports
           git pull --rebase --autostash origin main
-          git add reports/papers_*.md reports/papers_*.html reports/paper_cache.json 2>/dev/null || true
-          git add reports/papers_*.md reports/papers_*.html 2>/dev/null || true
+          # 强制添加报告和缓存文件（防止被 .gitignore 忽略）
+          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json 2>/dev/null || true
           git commit -m "📚 Add weekly paper report and cache" || true
           git push origin main
 
