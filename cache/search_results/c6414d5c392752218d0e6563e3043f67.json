@@ -1,0 +1,167 @@
+{
+  "timestamp": 1778399337.588495,
+  "source": "arxiv",
+  "query": "demand side AI adoption behavior                  # 需求侧 AI 采纳行为",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.06665v1",
+      "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+      "summary": "Modern Mixture-of-Experts (MoE) architectures allocate expert capacity through a rigid per-layer rule: each transformer layer owns a separate expert set. This convention couples depth scaling with linear expert-parameter growth and assumes that every layer needs isolated expert capacity. However, recent analyses and our routing probe challenge this allocation rule: replacing a deeper layer's learned top-k router with uniform random routing drops downstream accuracy by only 1.0-1.6 points across multiple production MoE models. Motivated by this redundancy, we propose UniPool, an MoE architecture that treats expert capacity as a global architectural budget by replacing per-layer expert ownership with a single shared pool accessed by independent per-layer routers. To enable stable and balanced training under sharing, we introduce a pool-level auxiliary loss that balances expert utilization across the entire pool, and adopt NormRouter to provide sparse and scale-stable routing into the shared expert pool. Across five LLaMA-architecture model scales (182M, 469M, 650M, 830M, and 978M parameters) trained on 30B tokens from the Pile, UniPool consistently improves validation loss and perplexity over the matched vanilla MoE baselines. Across these scales, UniPool reduces validation loss by up to 0.0386 relative to vanilla MoE. Beyond raw loss improvement, our results identify pool size as an explicit depth-scaling hyperparameter: reduced-pool UniPool variants using only 41.6%-66.7% of the vanilla expert-parameter budget match or outperform layer-wise MoE at the tested scales. This shows that, under a shared-pool design, expert parameters need not grow linearly with depth; they can grow sublinearly while remaining more efficient and effective than vanilla MoE. Further analysis shows that UniPool's benefits compose with finer-grained expert decomposition.",
+      "published": "2026-05-07T17:59:44+00:00",
+      "url": "https://arxiv.org/pdf/2605.06665v1",
+      "authors": [
+        "Minbin Huang",
+        "Han Shi",
+        "Chuanyang Zheng",
+        "Yimeng Wu",
+        "Guoxuan Chen",
+        "Xintong Yu",
+        "Yichun Yin",
+        "Hong Cheng"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06660v1",
+      "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+      "summary": "Large Language Models (LLMs) demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems - an essential component for advancing LLM training and enabling autonomous scientific research. Existing problem generation approaches either depend on expensive human expert involvement or adopt naive self-play paradigms, which frequently yield invalid problems due to reward hacking. This work introduces VHG, a verifier-enhanced hard problem generation framework built upon three-party self-play. By integrating an independent verifier into the conventional setter-solver duality, our design constrains the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver). We instantiate two verifier variants: a Hard symbolic verifier and a Soft LLM-based verifier, with evaluations conducted on indefinite integral tasks and general mathematical reasoning tasks. Experimental results show that VHG substantially outperforms all baseline methods by a clear margin.",
+      "published": "2026-05-07T17:58:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06660v1",
+      "authors": [
+        "Yuhang Lai",
+        "Jiazhan Feng",
+        "Yee Whye Teh",
+        "Ning Miao"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06651v1",
+      "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+      "summary": "We introduce the AI co-mathematician, a workbench for mathematicians to interactively leverage AI agents to pursue open-ended research. The AI co-mathematician is optimized to provide holistic support for the exploratory and iterative reality of mathematical workflows, including ideation, literature search, computational exploration, theorem proving and theory building. By providing an asynchronous, stateful workspace that manages uncertainty, refines user intent, tracks failed hypotheses, and outputs native mathematical artifacts, the system mirrors human collaborative workflows. In early tests, the AI co-mathematician helped researchers solve open problems, identify new research directions, and uncover overlooked literature references. Besides demonstrating a highly interactive paradigm for AI-assisted mathematical discovery, the AI co-mathematician also achieves state of the art results on hard problem-solving benchmarks, including scoring 48% on FrontierMath Tier 4, a new high score among all AI systems evaluated.",
+      "published": "2026-05-07T17:56:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06651v1",
+      "authors": [
+        "Daniel Zheng",
+        "Ingrid von Glehn",
+        "Yori Zwols",
+        "Iuliya Beloshapka",
+        "Lars Buesing",
+        "Daniel M. Roy",
+        "Martin Wattenberg",
+        "Bogdan Georgiev",
+        "Tatiana Schmidt",
+        "Andrew Cowie",
+        "Fernanda Viegas",
+        "Dimitri Kanevsky",
+        "Vineet Kahlon",
+        "Hartmut Maennel",
+        "Sophia Alj",
+        "George Holland",
+        "Alex Davies",
+        "Pushmeet Kohli"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06647v1",
+      "title": "Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval",
+      "summary": "Retrieval-augmented agents are increasingly the interface to large organizational knowledge bases, yet most still treat retrieval as a black box: they issue exploratory queries, inspect returned snippets, and iteratively reformulate until useful evidence emerges. This approach resembles how a newcomer searches an unfamiliar database rather than how an expert navigates it with strong priors about terminology and likely evidence, and results in unnecessary retrieval rounds, increased latency, and poor recall.   We introduce \\textit{SuperIntelligent Retrieval Agent} (SIRA), which defines \\emph{superintelligence} in retrieval as the ability to compress multi-round exploratory search into a single corpus-discriminative retrieval action. SIRA does not merely ask what terms are relevant to the query; it asks which terms are likely to separate the desired evidence from corpus-level confusers. On the corpus side, an LLM enriches each document offline with missing search vocabulary; on the query side, it predicts evidence vocabulary omitted by the query; and document-frequency statistics as a tool call to filter proposed terms that are absent, overly common, or unlikely to create retrieval margin. The final retrieval step is a single weighted BM25 call combining the original query with the validated expansion.   Across ten BEIR benchmarks and downstream question-answering tasks, SIRA achieves the significantly superior performance outperforming dense retrievers and state-of-the-art multi-round agentic baselines, demonstrating that one well-formed lexical query, guided by LLM cognition and lightweight corpus statistics, can exceed substantially more expensive multi-round search while remaining interpretable, training-free, and efficient.",
+      "published": "2026-05-07T17:54:29+00:00",
+      "url": "https://arxiv.org/pdf/2605.06647v1",
+      "authors": [
+        "Zeyu Yang",
+        "Qi Ma",
+        "Jason Chen",
+        "Anshumali Shrivastava"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06645v1",
+      "title": "Electrically controlled Heat Assisted Magnetic Recording in Intercalated 2D Magnets",
+      "summary": "The ever-increasing demand for fast, reliable, and energy-efficient information storage continues to push magnetic memory technologies toward their fundamental limits. Conventional scaling strategies, which rely on reducing bit size, inevitably run into the \"magnetic recording trilemma,\" where signal-to-noise ratio, thermal stability, and writability cannot all be optimized simultaneously. Heat-assisted magnetic recording (HAMR) has emerged as the leading solution, enabling high-density storage by transiently heating the medium during the write cycle. However, the reliance on laser optics and plasmonic transducers restricts HAMR primarily to hard-disk drives, limiting its integration with on-chip or embedded architectures. Here, we demonstrate an electronic variant of HAMR in which Joule heating from low-current density current pulses facilitates data writing, while the anomalous Hall effect provides electronic readout. Employing intercalated 2D magnet Ni$_{1/4}$TaSe$_2$, we show direct evidence that current pulses heat the material above its Curie temperature, during which a small magnetic field of ~2mT (100 times smaller than the coercive field) enables efficient data writing. The all-electronic approach combined with the 2D magnetic medium creates timely opportunities to revisit the energy-assisted magnetization recording, enabling new recording schemes that combine fundamental novelty with technological impact.",
+      "published": "2026-05-07T17:51:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.06645v1",
+      "authors": [
+        "Josue Rodriguez",
+        "Ruishi Qi",
+        "Catherine Xu",
+        "Feng Wang",
+        "James G. Analytis",
+        "Hossein Taghinejad"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06640v1",
+      "title": "Concept-Based Abductive and Contrastive Explanations for Behaviors of Vision Models",
+      "summary": "*Concept-based explanations* offer a promising approach for explaining the predictions of deep neural networks in terms of high-level, human-understandable concepts. However, existing methods either do not establish a causal connection between the concepts and model predictions or are limited in expressivity and only able to infer causal explanations involving single concepts. At the same time, the parallel line of work on *formal abductive and contrastive explanations* computes the minimal set of input features causally relevant for model outcomes but only considers low-level features such as pixels. Merging these two threads, in this work, we propose the notion of *concept-based abductive and contrastive explanations* that capture the minimal sets of high-level concepts causally relevant for model outcomes. We then present a family of algorithms that enumerate all minimal explanations while using *concept erasure* procedures to establish causal relationships. By appropriately aggregating such explanations, we are not only able to understand model predictions on individual images but also on collections of images where the model exhibits a user-specified, common *behavior*. We evaluate our approach on multiple models, datasets, and behaviors, and demonstrate its effectiveness in computing helpful, user-friendly explanations.",
+      "published": "2026-05-07T17:51:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.06640v1",
+      "authors": [
+        "Ronaldo Canizales",
+        "Divya Gopinath",
+        "Corina Păsăreanu",
+        "Ravi Mangal"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06641v1",
+      "title": "GlazyBench: A Benchmark for Ceramic Glaze Property Prediction and Image Generation",
+      "summary": "Developing ceramic glazes is a costly, time-consuming process of trial and error due to complex chemistry, placing a significant burden on independent artists. While recent advances in multimodal AI offer a modern solution, the field lacks the large-scale datasets required to train these models. We propose GlazyBench, the first dataset for AI-assisted glaze design. Comprising 23,148 real glaze formulations, GlazyBench supports two primary tasks: predicting post-firing surface properties, such as color and transparency, from raw materials, and generating accurate visual representations of the glaze based on these properties. We establish comprehensive baselines for property prediction using traditional machine learning and large language models, alongside image generation benchmarks using deep generative and large multimodal models. Our experiments demonstrate promising yet challenging results. GlazyBench pioneers a new research direction in AI-assisted material design, providing a standardized benchmark for systematic evaluation.",
+      "published": "2026-05-07T17:51:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.06641v1",
+      "authors": [
+        "Ziyu Zhai",
+        "Siyou Li",
+        "Juexi Shao",
+        "Juntao Yu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06634v1",
+      "title": "libwignernj: a reusable C/C++/Fortran/Python library for exact Wigner symbols and related coefficients",
+      "summary": "We describe libwignernj, a freely available, BSD-licensed library that evaluates Wigner 3j, 6j, and 9j symbols, Clebsch--Gordan, Racah $W$, and Fano $X$ coefficients, and Gaunt coefficients over both complex and real spherical harmonics in standards-compliant C99. libwignernj represents factorials by the vector of their signed prime-exponent decomposition - a prime-factorization technique introduced for the angular-momentum coefficients by Dodds and Wiechers (Comput. Phys. Commun. 4, 268 (1972)) and refined in a long line of subsequent work - and combines that representation with the multiword-integer Racah sum of Johansson and Forssn (SIAM J. Sci. Comput. 38, A376 (2016)), under which every intermediate quantity is an exact rational and all rounding is confined to the final floating-point conversion. Single-, double-, and long-double-precision results are correct to the last representable bit, and IEEE 754 binary128 evaluation through libquadmath and arbitrary-precision evaluation through the GNU Multiple-Precision Floating-Point Reliable (MPFR) library are optionally exposed. libwignernj has no mandatory runtime dependencies and no caller-side initialization step, making it easy to embed across the atomic, molecular, nuclear, and electromagnetic-scattering applications in which these coefficients arise. C++, CPython, and Fortran 90 bindings ship alongside the C library. Half-integer angular momenta are encoded exactly via integer $2j$ arguments throughout the application programming interface (API). CMake-package and pkg-config files ship for drop-in integration into downstream projects, and a continuous-integration (CI) pipeline runs the full test suite on Linux (shared and static), macOS, and Windows on every push.",
+      "published": "2026-05-07T17:45:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.06634v1",
+      "authors": [
+        "Susi Lehtola"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06632v1",
+      "title": "Crafting Reversible SFT Behaviors in Large Language Models",
+      "summary": "Supervised fine-tuning (SFT) induces new behaviors in large language models, yet imposes no structural constraint on how these behaviors are distributed within the model. Existing behavior interpretation methods, such as circuit attribution approaches, identify sparse subnetworks correlated with SFT-induced behaviors post-hoc. However, such correlations do not imply *causal necessity*, limiting the ability to selectively control SFT-induced behaviors at inference time. We pursue an alternative by asking: can an SFT-induced behavior be deliberately compressed into a sparse, mechanistically necessary subnetwork, termed a *carrier*, while remaining controllable at inference time without weight modification? We propose (a) **Loss-Constrained Dual Descent (LCDD)**, which constructs such carriers by jointly optimizing routing masks and model weights under an explicit utility budget, and (b) **SFT-Eraser**, a soft prompt optimized via activation matching on extracted carrier channels, to reverse the SFT-induced behavior. Across safety, fixed-response, and style behaviors on multiple model families, LCDD yields sparse carriers that preserve target behaviors while enabling strong reversion when triggered by SFT-Eraser. Ablations further establish that the sparse structure is the key precondition for reversal: the same trigger optimization fails on standard SFT models, confirming that structure rather than trigger design is the operative factor. These results provide direct evidence that the learned carriers are causally necessary for the behaviors, pointing to a new direction for systematically localizing and selectively suppressing SFT-induced behaviors in deployed models.",
+      "published": "2026-05-07T17:44:07+00:00",
+      "url": "https://arxiv.org/pdf/2605.06632v1",
+      "authors": [
+        "Yuping Lin",
+        "Pengfei He",
+        "Yue Xing",
+        "Yingqian Cui",
+        "Jiayuan Ding",
+        "Subhabrata Mukherjee",
+        "Hui Liu",
+        "Zhen Xiang"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06630v1",
+      "title": "Quantifying Trade-Offs Between Stability and Goal-Obfuscation",
+      "summary": "Safety-critical autonomy in adversarial settings demands more than Lyapunov stability of tracking error signals. An agent executing a goal-directed trajectory is intrinsically legible to a passive observer running online Bayesian inference, because the contractive dynamics of any Lyapunov basin of attraction concentrates posterior belief over the latent intent parameters. We initiates the study of intent privacy over a continuous state space as a joint control problem on the physical state combined with the latent belief state of a putative observer. With the main challenges concentrated around the analysis of the belief-state dynamics, the agent dynamics is assumed to be simple, modeled by the differential inclusion $\\dot{x}\\in u+\\bar{d}\\mathbb{B}$. That is, the agent is fully actuated with bounded unknown disturbance to the control input. The observer's intent inference process is modeled as a discrete-time stochastic dynamical system evolving over the belief state space of a Rao Blackwellized particle filter reasoning over large random samples of possible agent goals. The agent's control input is modeled as a piecewise constant signal, with jumps matching the RBPF update times. Building on a prior intent-inference framework and its KL-based information leakage measurement, a privacy constraint is imposed, which amounts to maintaining information leakage above a prescribed threshold with high probability, using probabilistic discrete-time control barrier functions. A key technical contribution is the derivation of separate PCBF results for the Bayesian update step and the resampling step of the RBPF, enabling a PCBF result for the full update as well as integration of the privacy constraint with the agent's task-side tracking requirement. Finally, a joint feasibility analysis is carried out by examining the interplay between the privacy constraint and the tracking envelope.",
+      "published": "2026-05-07T17:43:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.06630v1",
+      "authors": [
+        "Yixuan Wang",
+        "Dan Guralnik",
+        "Warren Dixon"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

@@ -1,0 +1,181 @@
+{
+  "timestamp": 1778399409.5388942,
+  "source": "arxiv",
+  "query": "demand-side discipline AI adoption                # 需求侧规训与 AI 采纳",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.06665v1",
+      "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+      "summary": "Modern Mixture-of-Experts (MoE) architectures allocate expert capacity through a rigid per-layer rule: each transformer layer owns a separate expert set. This convention couples depth scaling with linear expert-parameter growth and assumes that every layer needs isolated expert capacity. However, recent analyses and our routing probe challenge this allocation rule: replacing a deeper layer's learned top-k router with uniform random routing drops downstream accuracy by only 1.0-1.6 points across multiple production MoE models. Motivated by this redundancy, we propose UniPool, an MoE architecture that treats expert capacity as a global architectural budget by replacing per-layer expert ownership with a single shared pool accessed by independent per-layer routers. To enable stable and balanced training under sharing, we introduce a pool-level auxiliary loss that balances expert utilization across the entire pool, and adopt NormRouter to provide sparse and scale-stable routing into the shared expert pool. Across five LLaMA-architecture model scales (182M, 469M, 650M, 830M, and 978M parameters) trained on 30B tokens from the Pile, UniPool consistently improves validation loss and perplexity over the matched vanilla MoE baselines. Across these scales, UniPool reduces validation loss by up to 0.0386 relative to vanilla MoE. Beyond raw loss improvement, our results identify pool size as an explicit depth-scaling hyperparameter: reduced-pool UniPool variants using only 41.6%-66.7% of the vanilla expert-parameter budget match or outperform layer-wise MoE at the tested scales. This shows that, under a shared-pool design, expert parameters need not grow linearly with depth; they can grow sublinearly while remaining more efficient and effective than vanilla MoE. Further analysis shows that UniPool's benefits compose with finer-grained expert decomposition.",
+      "published": "2026-05-07T17:59:44+00:00",
+      "url": "https://arxiv.org/pdf/2605.06665v1",
+      "authors": [
+        "Minbin Huang",
+        "Han Shi",
+        "Chuanyang Zheng",
+        "Yimeng Wu",
+        "Guoxuan Chen",
+        "Xintong Yu",
+        "Yichun Yin",
+        "Hong Cheng"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06660v1",
+      "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+      "summary": "Large Language Models (LLMs) demonstrate strong capabilities for solving scientific and mathematical problems, yet they struggle to produce valid, challenging, and novel problems - an essential component for advancing LLM training and enabling autonomous scientific research. Existing problem generation approaches either depend on expensive human expert involvement or adopt naive self-play paradigms, which frequently yield invalid problems due to reward hacking. This work introduces VHG, a verifier-enhanced hard problem generation framework built upon three-party self-play. By integrating an independent verifier into the conventional setter-solver duality, our design constrains the setter's reward to be jointly determined by problem validity (evaluated by the verifier) and difficulty (assessed by the solver). We instantiate two verifier variants: a Hard symbolic verifier and a Soft LLM-based verifier, with evaluations conducted on indefinite integral tasks and general mathematical reasoning tasks. Experimental results show that VHG substantially outperforms all baseline methods by a clear margin.",
+      "published": "2026-05-07T17:58:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06660v1",
+      "authors": [
+        "Yuhang Lai",
+        "Jiazhan Feng",
+        "Yee Whye Teh",
+        "Ning Miao"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06651v1",
+      "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+      "summary": "We introduce the AI co-mathematician, a workbench for mathematicians to interactively leverage AI agents to pursue open-ended research. The AI co-mathematician is optimized to provide holistic support for the exploratory and iterative reality of mathematical workflows, including ideation, literature search, computational exploration, theorem proving and theory building. By providing an asynchronous, stateful workspace that manages uncertainty, refines user intent, tracks failed hypotheses, and outputs native mathematical artifacts, the system mirrors human collaborative workflows. In early tests, the AI co-mathematician helped researchers solve open problems, identify new research directions, and uncover overlooked literature references. Besides demonstrating a highly interactive paradigm for AI-assisted mathematical discovery, the AI co-mathematician also achieves state of the art results on hard problem-solving benchmarks, including scoring 48% on FrontierMath Tier 4, a new high score among all AI systems evaluated.",
+      "published": "2026-05-07T17:56:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06651v1",
+      "authors": [
+        "Daniel Zheng",
+        "Ingrid von Glehn",
+        "Yori Zwols",
+        "Iuliya Beloshapka",
+        "Lars Buesing",
+        "Daniel M. Roy",
+        "Martin Wattenberg",
+        "Bogdan Georgiev",
+        "Tatiana Schmidt",
+        "Andrew Cowie",
+        "Fernanda Viegas",
+        "Dimitri Kanevsky",
+        "Vineet Kahlon",
+        "Hartmut Maennel",
+        "Sophia Alj",
+        "George Holland",
+        "Alex Davies",
+        "Pushmeet Kohli"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06641v1",
+      "title": "GlazyBench: A Benchmark for Ceramic Glaze Property Prediction and Image Generation",
+      "summary": "Developing ceramic glazes is a costly, time-consuming process of trial and error due to complex chemistry, placing a significant burden on independent artists. While recent advances in multimodal AI offer a modern solution, the field lacks the large-scale datasets required to train these models. We propose GlazyBench, the first dataset for AI-assisted glaze design. Comprising 23,148 real glaze formulations, GlazyBench supports two primary tasks: predicting post-firing surface properties, such as color and transparency, from raw materials, and generating accurate visual representations of the glaze based on these properties. We establish comprehensive baselines for property prediction using traditional machine learning and large language models, alongside image generation benchmarks using deep generative and large multimodal models. Our experiments demonstrate promising yet challenging results. GlazyBench pioneers a new research direction in AI-assisted material design, providing a standardized benchmark for systematic evaluation.",
+      "published": "2026-05-07T17:51:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.06641v1",
+      "authors": [
+        "Ziyu Zhai",
+        "Siyou Li",
+        "Juexi Shao",
+        "Juntao Yu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06630v1",
+      "title": "Quantifying Trade-Offs Between Stability and Goal-Obfuscation",
+      "summary": "Safety-critical autonomy in adversarial settings demands more than Lyapunov stability of tracking error signals. An agent executing a goal-directed trajectory is intrinsically legible to a passive observer running online Bayesian inference, because the contractive dynamics of any Lyapunov basin of attraction concentrates posterior belief over the latent intent parameters. We initiates the study of intent privacy over a continuous state space as a joint control problem on the physical state combined with the latent belief state of a putative observer. With the main challenges concentrated around the analysis of the belief-state dynamics, the agent dynamics is assumed to be simple, modeled by the differential inclusion $\\dot{x}\\in u+\\bar{d}\\mathbb{B}$. That is, the agent is fully actuated with bounded unknown disturbance to the control input. The observer's intent inference process is modeled as a discrete-time stochastic dynamical system evolving over the belief state space of a Rao Blackwellized particle filter reasoning over large random samples of possible agent goals. The agent's control input is modeled as a piecewise constant signal, with jumps matching the RBPF update times. Building on a prior intent-inference framework and its KL-based information leakage measurement, a privacy constraint is imposed, which amounts to maintaining information leakage above a prescribed threshold with high probability, using probabilistic discrete-time control barrier functions. A key technical contribution is the derivation of separate PCBF results for the Bayesian update step and the resampling step of the RBPF, enabling a PCBF result for the full update as well as integration of the privacy constraint with the agent's task-side tracking requirement. Finally, a joint feasibility analysis is carried out by examining the interplay between the privacy constraint and the tracking envelope.",
+      "published": "2026-05-07T17:43:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.06630v1",
+      "authors": [
+        "Yixuan Wang",
+        "Dan Guralnik",
+        "Warren Dixon"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06607v1",
+      "title": "AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents",
+      "summary": "Recent LLM-based agents have closed substantial portions of the scientific discovery loop in software-only machine-learning research, in chemistry, and in biology. Extending the same loop to high-fidelity physical simulators is harder, because solver completion does not imply physical validity and many failure modes appear only in field-level imagery rather than in solver logs. We present AI CFD Scientist, an open-source AI scientist for computational fluid dynamics (CFD) that, to our knowledge, is the first to span literature-grounded ideation, validated execution, vision-based physics verification, source-code modification, and figure-grounded writing within a single inspectable workflow. Three coupled pathways cover parameter sweeps within a fixed solver, case-local C++ library compilation for new physical models, and open-ended hypothesis search against a reference comparator, all running on OpenFOAM through Foam-Agent. At the center of the framework is a vision-language physics-verification gate that inspects rendered flow fields before any result is accepted, rerun, or written into a manuscript. On five tasks under a shared GPT-5.5 backbone, AI CFD Scientist autonomously discovers a Spalart-Allmaras runtime correction that reduces lower-wall Cf RMSE against DNS by 7.89% on the periodic hill at Reh=5600; under matched LLM cost, two strong general AI-scientist baselines (ARIS, DeepScientist) execute partial CFD workflows but lack the domain-specific validity gates needed to convert runs into defensible scientific claims; and a controlled planted-failure ablation shows that the vision-language gate detects 14 of 16 silent failures missed by solver-level checks. Code, prompts, and run artifacts are released at https://github.com/csml-rpi/cfd-scientist.",
+      "published": "2026-05-07T17:27:23+00:00",
+      "url": "https://arxiv.org/pdf/2605.06607v1",
+      "authors": [
+        "Nithin Somasekharan",
+        "Rabi Pathak",
+        "Manushri Dhanakoti",
+        "Tingwen Zhang",
+        "Ling Yue",
+        "Andy Zhu",
+        "Shaowu Pan"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06606v1",
+      "title": "TMDs in the Lens of Generative AI: A Pixel-Based Approach to Partonic Imaging",
+      "summary": "This work introduces a novel, nonparametric pixel-based framework for the Bayesian inference and imaging of transverse momentum dependent (TMD) parton distributions. The methodology is built upon a fully differentiable framework that integrates TMD evolution with the Collins-Soper-Sterman formalism, enabling the simultaneous extraction of partonic distributions and the nonperturbative evolution kernel. To achieve efficient and exact sampling of the high-dimensional posterior, we leverage generative AI through a hybrid normalizing flow-driven Metropolis-Hastings approach. The framework is validated through multi-scale closure tests of increasing complexity, ranging from basic functional models to convoluted structure functions. Using singular value decomposition (SVD), we rigorously characterize the uncertainty of the reconstructed distributions and reveal the existence of null TMDs, which are functional components in the null space of the kernel that remain unconstrained by observables. The new framework provides the first integration of pixel-based discretization, generative AI, and SVD within a Bayesian context to solve the TMD inverse problem. This synergy between machine learning and multi-scale data removes inherent degeneracies and enables unbiased 3D partonic imaging.",
+      "published": "2026-05-07T17:25:41+00:00",
+      "url": "https://arxiv.org/pdf/2605.06606v1",
+      "authors": [
+        "Marco Zaccheddu",
+        "Leonard Gamberg",
+        "Wally Melnitchouk",
+        "Daniel Pitonyak",
+        "Alexei Prokudin",
+        "Jian-Wei Qiu",
+        "Nobuo Sato"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06594v1",
+      "title": "Automated Clinical Report Generation for Remote Cognitive Remediation: Comparing Knowledge-Engineered Templates and LLMs in Low-Resource Settings",
+      "summary": "The growing demand for cognitive remediation therapy, combined with limited speech therapist availability, has accelerated the adoption of remote rehabilitation tools. These systems generate large volumes of interaction data that are difficult for clinicians to review efficiently. This paper investigates automated clinical report generation for avatar-guided, home-based cognitive remediation sessions in a low-resource setting with no reference reports. We present and compare two approaches: (1) a rule-based template system encoding speech therapy domain knowledge as explicit decision rules and validated templates, ensuring clinical reliability and traceability; and (2) a zero-shot LLM-based approach (GPT-4) aimed at more fluent and concise output. Both systems use identical pre-extracted, expert-validated structured variables, enabling a controlled factual comparison. Outputs were evaluated by eight speech therapists and final-year students using a nine-criterion questionnaire. Results reveal a clear trade-off between clinical reliability and linguistic quality. The template-based system scored higher on fluidity, coherence, and results presentation, while GPT-4 produced more concise output. Directional differences are consistent across evaluation dimensions, though no comparison reached statistical significance after correction, reflecting the scale constraints of expert clinical evaluation. Based on evaluator feedback, we derive eight design recommendations for clinical reporting systems in remote rehabilitation settings. More broadly, this work contributes a replicable methodology combining expert elicitation, taxonomy-driven generation, and multi-dimensional human evaluation for clinical NLG in low-resource settings, and illustrates how controlled comparisons can inform the responsible adoption of generative AI in healthcare.",
+      "published": "2026-05-07T17:20:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.06594v1",
+      "authors": [
+        "Yongxin Zhou",
+        "Fabien Ringeval",
+        "François Portet"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06587v1",
+      "title": "Constraining Galaxy Cluster Triaxiality via Weak Lensing -- I. Preparation for the Rubin Data Beyond Leading Order",
+      "summary": "The 3D mass distributions of galaxy clusters are generally triaxial, a geometry that is difficult to constrain from projected observations. In this work, we measure the projected halo shapes of clusters from their weak lensing signatures using the triaxiality functionality in the Cluster Lensing Mass Modeling software, a tool developed by the Dark Energy Science Collaboration to analyze data from NSF-DOE Rubin Observatory's Legacy Survey of Space and Time (LSST). We measure ensemble halo ellipticity on the plane of the sky via axis-aligned stacking and multipole expansion of the weak lensing data. We study a precursor dataset -- the redMaPPer cluster catalog, the metacalibration shape catalog, and the Directional Neighborhood Fitting photometric redshift catalog from the Dark Energy Survey Year 3 public data release. We select clusters that have a high centering probability (>90%) of the identified central galaxy, and use the satellite galaxy distribution to determine the major-axis orientation for stacking. We extend the analysis to the second order of ellipticity in the monopole and quadrupole measurement. The projected ellipticity of the cluster sample is found to be $0.310^{+0.017}_{-0.016}$ (axis ratio $0.527^{+0.018}_{-0.019}$). The projected cluster ellipticity shows no statistically significant dependence on mass and redshift. We further verify the accuracy of the cluster shape measurement using mock catalogs. This analysis is applicable to datasets from upcoming wide-area cosmic surveys such as LSST, Euclid, and the Roman Space Telescope, where larger sample sizes will lead to tighter constraints on the cluster ellipticities.",
+      "published": "2026-05-07T17:14:34+00:00",
+      "url": "https://arxiv.org/pdf/2605.06587v1",
+      "authors": [
+        "Shenming Fu",
+        "Radhakrishnan Srinivasan",
+        "Tae-hyeon Shin",
+        "Rance Solomon",
+        "Deric Jones",
+        "Camille Avestruz",
+        "Yuanyuan Zhang",
+        "Michel Aguena",
+        "Céline Combet",
+        "Anthony Englert",
+        "Benjamin Levine",
+        "Alex I. Malz",
+        "Constantin Payerne",
+        "Marina Ricci",
+        "Anja von der Linden",
+        "the LSST Dark Energy Science Collaboration"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06564v1",
+      "title": "Dynamic Treatment on Networks",
+      "summary": "In networks, effective dynamic treatment allocation requires deciding both whom to treat and also when, so as to amplify policy impact through spillovers. An early intervention at a well-connected node can trigger cascades that change which nodes are worth targeting in the next period. Existing treatment strategies under network interference are largely static while dynamic treatment frameworks typically ignore network structure altogether. We integrate these perspectives and propose Q-Ising, a three-stage pipeline that (i) estimates network adoption dynamics via a Bayesian dynamic Ising model from a single observed panel, (ii) augments treatment adoption histories with continuous posterior latent states, and (iii) learns a dynamic policy via offline reinforcement learning. The Bayesian mechanism enables uncertainty quantification over dynamic decisions, yielding posterior ensemble policies with interpretable spillover estimates. We provide a finite-sample regret upper bound that decomposes into standard offline-RL uncertainty, network abstraction error, and first stage error in Ising state estimation. We apply our method to data from Indian village microfinance networks and synthetic stochastic block models under simulated heterogeneous susceptible-infected-susceptible (SIS) dynamics and demonstrate that adaptive targeting outperforms static centrality benchmarks.",
+      "published": "2026-05-07T16:58:38+00:00",
+      "url": "https://arxiv.org/pdf/2605.06564v1",
+      "authors": [
+        "Bengusu Nar",
+        "Jiguang Li",
+        "Veronika Ročková",
+        "Panos Toulis"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

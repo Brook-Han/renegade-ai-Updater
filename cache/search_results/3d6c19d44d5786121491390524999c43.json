@@ -1,0 +1,164 @@
+{
+  "timestamp": 1778399431.397131,
+  "source": "arxiv",
+  "query": "Ultimate Turing Test AI                           # 终极图灵测试",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.06665v1",
+      "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+      "summary": "Modern Mixture-of-Experts (MoE) architectures allocate expert capacity through a rigid per-layer rule: each transformer layer owns a separate expert set. This convention couples depth scaling with linear expert-parameter growth and assumes that every layer needs isolated expert capacity. However, recent analyses and our routing probe challenge this allocation rule: replacing a deeper layer's learned top-k router with uniform random routing drops downstream accuracy by only 1.0-1.6 points across multiple production MoE models. Motivated by this redundancy, we propose UniPool, an MoE architecture that treats expert capacity as a global architectural budget by replacing per-layer expert ownership with a single shared pool accessed by independent per-layer routers. To enable stable and balanced training under sharing, we introduce a pool-level auxiliary loss that balances expert utilization across the entire pool, and adopt NormRouter to provide sparse and scale-stable routing into the shared expert pool. Across five LLaMA-architecture model scales (182M, 469M, 650M, 830M, and 978M parameters) trained on 30B tokens from the Pile, UniPool consistently improves validation loss and perplexity over the matched vanilla MoE baselines. Across these scales, UniPool reduces validation loss by up to 0.0386 relative to vanilla MoE. Beyond raw loss improvement, our results identify pool size as an explicit depth-scaling hyperparameter: reduced-pool UniPool variants using only 41.6%-66.7% of the vanilla expert-parameter budget match or outperform layer-wise MoE at the tested scales. This shows that, under a shared-pool design, expert parameters need not grow linearly with depth; they can grow sublinearly while remaining more efficient and effective than vanilla MoE. Further analysis shows that UniPool's benefits compose with finer-grained expert decomposition.",
+      "published": "2026-05-07T17:59:44+00:00",
+      "url": "https://arxiv.org/pdf/2605.06665v1",
+      "authors": [
+        "Minbin Huang",
+        "Han Shi",
+        "Chuanyang Zheng",
+        "Yimeng Wu",
+        "Guoxuan Chen",
+        "Xintong Yu",
+        "Yichun Yin",
+        "Hong Cheng"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06659v1",
+      "title": "The Pulsar Radial Acceleration Relation",
+      "summary": "The radial acceleration relation (RAR) links observed and baryonic accelerations, and is best established in rotation curves of late-type galaxies. Pulsar timing, which measures line-of-sight (LOS) differential accelerations between the Sun and pulsars, provides a novel probe of this relation, including along directions outside the Galactic disc. By combining these pulsar differential accelerations with the acceleration at the Sun, we test whether current pulsar timing data carry information on a vector generalisation of the RAR, ${g}_{\\rm obs}=(|{g}_{\\rm bar}|){g}_{\\rm bar}$. Comparing the measured SPARC RAR (generalised to 3D) to 26 binary-system pulsars with literature accelerations, we find a reduced $^2$ of 3.58, compared with 10.86 for Newtonian baryonic gravity alone. However, setting all accelerations to that of the Sun gives a reduced $^2$ of 3.75, showing that this vector RAR test is dominated by the Solar acceleration with current data.",
+      "published": "2026-05-07T17:58:27+00:00",
+      "url": "https://arxiv.org/pdf/2605.06659v1",
+      "authors": [
+        "Tariq Yasin",
+        "Harry Desmond"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06651v1",
+      "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+      "summary": "We introduce the AI co-mathematician, a workbench for mathematicians to interactively leverage AI agents to pursue open-ended research. The AI co-mathematician is optimized to provide holistic support for the exploratory and iterative reality of mathematical workflows, including ideation, literature search, computational exploration, theorem proving and theory building. By providing an asynchronous, stateful workspace that manages uncertainty, refines user intent, tracks failed hypotheses, and outputs native mathematical artifacts, the system mirrors human collaborative workflows. In early tests, the AI co-mathematician helped researchers solve open problems, identify new research directions, and uncover overlooked literature references. Besides demonstrating a highly interactive paradigm for AI-assisted mathematical discovery, the AI co-mathematician also achieves state of the art results on hard problem-solving benchmarks, including scoring 48% on FrontierMath Tier 4, a new high score among all AI systems evaluated.",
+      "published": "2026-05-07T17:56:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06651v1",
+      "authors": [
+        "Daniel Zheng",
+        "Ingrid von Glehn",
+        "Yori Zwols",
+        "Iuliya Beloshapka",
+        "Lars Buesing",
+        "Daniel M. Roy",
+        "Martin Wattenberg",
+        "Bogdan Georgiev",
+        "Tatiana Schmidt",
+        "Andrew Cowie",
+        "Fernanda Viegas",
+        "Dimitri Kanevsky",
+        "Vineet Kahlon",
+        "Hartmut Maennel",
+        "Sophia Alj",
+        "George Holland",
+        "Alex Davies",
+        "Pushmeet Kohli"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06641v1",
+      "title": "GlazyBench: A Benchmark for Ceramic Glaze Property Prediction and Image Generation",
+      "summary": "Developing ceramic glazes is a costly, time-consuming process of trial and error due to complex chemistry, placing a significant burden on independent artists. While recent advances in multimodal AI offer a modern solution, the field lacks the large-scale datasets required to train these models. We propose GlazyBench, the first dataset for AI-assisted glaze design. Comprising 23,148 real glaze formulations, GlazyBench supports two primary tasks: predicting post-firing surface properties, such as color and transparency, from raw materials, and generating accurate visual representations of the glaze based on these properties. We establish comprehensive baselines for property prediction using traditional machine learning and large language models, alongside image generation benchmarks using deep generative and large multimodal models. Our experiments demonstrate promising yet challenging results. GlazyBench pioneers a new research direction in AI-assisted material design, providing a standardized benchmark for systematic evaluation.",
+      "published": "2026-05-07T17:51:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.06641v1",
+      "authors": [
+        "Ziyu Zhai",
+        "Siyou Li",
+        "Juexi Shao",
+        "Juntao Yu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06634v1",
+      "title": "libwignernj: a reusable C/C++/Fortran/Python library for exact Wigner symbols and related coefficients",
+      "summary": "We describe libwignernj, a freely available, BSD-licensed library that evaluates Wigner 3j, 6j, and 9j symbols, Clebsch--Gordan, Racah $W$, and Fano $X$ coefficients, and Gaunt coefficients over both complex and real spherical harmonics in standards-compliant C99. libwignernj represents factorials by the vector of their signed prime-exponent decomposition - a prime-factorization technique introduced for the angular-momentum coefficients by Dodds and Wiechers (Comput. Phys. Commun. 4, 268 (1972)) and refined in a long line of subsequent work - and combines that representation with the multiword-integer Racah sum of Johansson and Forssn (SIAM J. Sci. Comput. 38, A376 (2016)), under which every intermediate quantity is an exact rational and all rounding is confined to the final floating-point conversion. Single-, double-, and long-double-precision results are correct to the last representable bit, and IEEE 754 binary128 evaluation through libquadmath and arbitrary-precision evaluation through the GNU Multiple-Precision Floating-Point Reliable (MPFR) library are optionally exposed. libwignernj has no mandatory runtime dependencies and no caller-side initialization step, making it easy to embed across the atomic, molecular, nuclear, and electromagnetic-scattering applications in which these coefficients arise. C++, CPython, and Fortran 90 bindings ship alongside the C library. Half-integer angular momenta are encoded exactly via integer $2j$ arguments throughout the application programming interface (API). CMake-package and pkg-config files ship for drop-in integration into downstream projects, and a continuous-integration (CI) pipeline runs the full test suite on Linux (shared and static), macOS, and Windows on every push.",
+      "published": "2026-05-07T17:45:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.06634v1",
+      "authors": [
+        "Susi Lehtola"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06629v1",
+      "title": "Hybrid Quantum-Classical GANs for the Generation of Adversarial Network Flows",
+      "summary": "Classical generative adversarial networks (GANs) have been applied to generate adversarial network traffic capable of attacking intrusion detection systems, but they suffer from shortcomings such as the need for large amounts of high-dimensional datasets, mode collapse, and high computational overhead. In this work, we propose a hybrid quantum-classical GAN (QC-GAN) framework where a variational quantum generator is used to generate synthetic network traffic flows mimicking malicious traffic using latent representations. Instead of sampling classical noise vectors, we encode the latent vector (the hidden features) as a quantum state, which is the basis for claiming more expressive latent representations and reducing computational overhead. A classical discriminator will be trained on real-world datasets (UNSW-NB15) and the proposed QC-GAN-generated fake network flows. In this configuration, the generator aims to minimize the discriminator's ability to distinguish real from fake traffic, while the discriminator aims to maximize its classification accuracy, in an iterative manner. In our attack model, we assume that the attacker is a state actor with access to limited quantum computing power, whereas the discriminator is chosen to be classical, as will likely be the case for most end users and organizations. We test the generated flows using classical intrusion detection system (IDS) models, such as a random forest classifier and a convolutional neural network-based classifier, for their ability to bypass the detection process. This work aims to highlight the possibilities of quantum machine learning as a means of generating advanced attack flows and stress testing classical IDS. Lastly, we further evaluate how hardware-based noise affects these attacks to offer a new perspective on IDS, highlighting the need for a quantum resilient defense system.",
+      "published": "2026-05-07T17:43:25+00:00",
+      "url": "https://arxiv.org/pdf/2605.06629v1",
+      "authors": [
+        "Prateek Paudel",
+        "Nitin Jha",
+        "Abhishek Parakh",
+        "Mahadevan Subramaniam"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06619v1",
+      "title": "Algospeak, Hiding in the Open: The Trade-off Between Legible Meaning and Detection Avoidance",
+      "summary": "As large language models (LLMs) increasingly mediate both content generation and moderation, linguistic evasion strategies known as Algospeak have intensified the coevolution between evaders and detectors. This research formalizes the underlying dynamics grounded in a joint action model: when Algospeak increases, detectability and understandability decrease. Further, the concept of Majority Understandable Modulation (MUM) is introduced and defined as the modulation level at which additional evasive alteration increases detector evasion but loses comprehension for the majority of recipients. To empirically probe this trade-off, we introduce a reproducible framework that can be used to create meaning-preserving, Algospeak-style variants, based on an existing taxonomy and with tunable modulation levels. Using COVID-19 disinformation as a first proof-by-example setting, we construct a reference dataset of 700 modulated items, drawn from twenty base sentences across five modulation levels and seven strategies. We then run two linked evaluations with seven different language models: one testing for interpretation through meaning recovery and one for disinformation detection through classification. Curve fitting over modulation levels yields an estimate of the Majority Understandable Modulation threshold and enables sensitivity analyses across strategies and models, see Figure 1. Results reveal the characteristic relationships between understandability and modulation. This study lays the groundwork for understanding the dynamics behind Algospeak and provides the framework, dataset, and experimental setups described.",
+      "published": "2026-05-07T17:34:01+00:00",
+      "url": "https://arxiv.org/pdf/2605.06619v1",
+      "authors": [
+        "Jan Fillies",
+        "Ronald E. Robertson",
+        "Jeffrey Hancock"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06618v1",
+      "title": "MTRBO: Multiple trust-region based Bayesian optimization",
+      "summary": "Bayesian Optimization (BO) is a popular framework for optimizing black-box functions. Despite its effectiveness, BO is often inefficient for high-dimensional problems due to the exponential growth of the search space, heterogeneity of the objective function, and low sampling budget. To overcome these issues, this work proposes a multiple trust region-based Bayesian optimization technique(MTRBO). A trust region is a localized region within which an optimization model is trusted to approximate the objective function accurately. Assuming a Gaussian process (GP) as a prior belief about the objective function and based on the posterior mean and variance functions, the method adaptively exploits near the promising current solution inside a trust region. Also explores the most uncertain region in the search space inside another trust region. The theoretical global convergence property of the proposed method is established. Then the work is benchmarked against other state-of-the-art trust-region-based Bayesian optimization algorithms, demonstrating superior performance on a variety of non-convex and high-dimensional test functions. The proposed method outperforms others in terms of solution quality within the sampling budget (the number of function evaluations). The proposed method is applied to the portfolio optimization problem to verify its applicability in real-world scenarios.",
+      "published": "2026-05-07T17:33:40+00:00",
+      "url": "https://arxiv.org/pdf/2605.06618v1",
+      "authors": [
+        "Sourav Das",
+        "Debjani Chakraborty",
+        "Pabitra Mitra"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06607v1",
+      "title": "AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents",
+      "summary": "Recent LLM-based agents have closed substantial portions of the scientific discovery loop in software-only machine-learning research, in chemistry, and in biology. Extending the same loop to high-fidelity physical simulators is harder, because solver completion does not imply physical validity and many failure modes appear only in field-level imagery rather than in solver logs. We present AI CFD Scientist, an open-source AI scientist for computational fluid dynamics (CFD) that, to our knowledge, is the first to span literature-grounded ideation, validated execution, vision-based physics verification, source-code modification, and figure-grounded writing within a single inspectable workflow. Three coupled pathways cover parameter sweeps within a fixed solver, case-local C++ library compilation for new physical models, and open-ended hypothesis search against a reference comparator, all running on OpenFOAM through Foam-Agent. At the center of the framework is a vision-language physics-verification gate that inspects rendered flow fields before any result is accepted, rerun, or written into a manuscript. On five tasks under a shared GPT-5.5 backbone, AI CFD Scientist autonomously discovers a Spalart-Allmaras runtime correction that reduces lower-wall Cf RMSE against DNS by 7.89% on the periodic hill at Reh=5600; under matched LLM cost, two strong general AI-scientist baselines (ARIS, DeepScientist) execute partial CFD workflows but lack the domain-specific validity gates needed to convert runs into defensible scientific claims; and a controlled planted-failure ablation shows that the vision-language gate detects 14 of 16 silent failures missed by solver-level checks. Code, prompts, and run artifacts are released at https://github.com/csml-rpi/cfd-scientist.",
+      "published": "2026-05-07T17:27:23+00:00",
+      "url": "https://arxiv.org/pdf/2605.06607v1",
+      "authors": [
+        "Nithin Somasekharan",
+        "Rabi Pathak",
+        "Manushri Dhanakoti",
+        "Tingwen Zhang",
+        "Ling Yue",
+        "Andy Zhu",
+        "Shaowu Pan"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06606v1",
+      "title": "TMDs in the Lens of Generative AI: A Pixel-Based Approach to Partonic Imaging",
+      "summary": "This work introduces a novel, nonparametric pixel-based framework for the Bayesian inference and imaging of transverse momentum dependent (TMD) parton distributions. The methodology is built upon a fully differentiable framework that integrates TMD evolution with the Collins-Soper-Sterman formalism, enabling the simultaneous extraction of partonic distributions and the nonperturbative evolution kernel. To achieve efficient and exact sampling of the high-dimensional posterior, we leverage generative AI through a hybrid normalizing flow-driven Metropolis-Hastings approach. The framework is validated through multi-scale closure tests of increasing complexity, ranging from basic functional models to convoluted structure functions. Using singular value decomposition (SVD), we rigorously characterize the uncertainty of the reconstructed distributions and reveal the existence of null TMDs, which are functional components in the null space of the kernel that remain unconstrained by observables. The new framework provides the first integration of pixel-based discretization, generative AI, and SVD within a Bayesian context to solve the TMD inverse problem. This synergy between machine learning and multi-scale data removes inherent degeneracies and enables unbiased 3D partonic imaging.",
+      "published": "2026-05-07T17:25:41+00:00",
+      "url": "https://arxiv.org/pdf/2605.06606v1",
+      "authors": [
+        "Marco Zaccheddu",
+        "Leonard Gamberg",
+        "Wally Melnitchouk",
+        "Daniel Pitonyak",
+        "Alexei Prokudin",
+        "Jian-Wei Qiu",
+        "Nobuo Sato"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

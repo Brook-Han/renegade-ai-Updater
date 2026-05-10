@@ -1,0 +1,173 @@
+{
+  "timestamp": 1778399376.4166772,
+  "source": "arxiv",
+  "query": "cognitive friction AI                             # AI 认知摩擦",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.06651v1",
+      "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+      "summary": "We introduce the AI co-mathematician, a workbench for mathematicians to interactively leverage AI agents to pursue open-ended research. The AI co-mathematician is optimized to provide holistic support for the exploratory and iterative reality of mathematical workflows, including ideation, literature search, computational exploration, theorem proving and theory building. By providing an asynchronous, stateful workspace that manages uncertainty, refines user intent, tracks failed hypotheses, and outputs native mathematical artifacts, the system mirrors human collaborative workflows. In early tests, the AI co-mathematician helped researchers solve open problems, identify new research directions, and uncover overlooked literature references. Besides demonstrating a highly interactive paradigm for AI-assisted mathematical discovery, the AI co-mathematician also achieves state of the art results on hard problem-solving benchmarks, including scoring 48% on FrontierMath Tier 4, a new high score among all AI systems evaluated.",
+      "published": "2026-05-07T17:56:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.06651v1",
+      "authors": [
+        "Daniel Zheng",
+        "Ingrid von Glehn",
+        "Yori Zwols",
+        "Iuliya Beloshapka",
+        "Lars Buesing",
+        "Daniel M. Roy",
+        "Martin Wattenberg",
+        "Bogdan Georgiev",
+        "Tatiana Schmidt",
+        "Andrew Cowie",
+        "Fernanda Viegas",
+        "Dimitri Kanevsky",
+        "Vineet Kahlon",
+        "Hartmut Maennel",
+        "Sophia Alj",
+        "George Holland",
+        "Alex Davies",
+        "Pushmeet Kohli"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06647v1",
+      "title": "Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval",
+      "summary": "Retrieval-augmented agents are increasingly the interface to large organizational knowledge bases, yet most still treat retrieval as a black box: they issue exploratory queries, inspect returned snippets, and iteratively reformulate until useful evidence emerges. This approach resembles how a newcomer searches an unfamiliar database rather than how an expert navigates it with strong priors about terminology and likely evidence, and results in unnecessary retrieval rounds, increased latency, and poor recall.   We introduce \\textit{SuperIntelligent Retrieval Agent} (SIRA), which defines \\emph{superintelligence} in retrieval as the ability to compress multi-round exploratory search into a single corpus-discriminative retrieval action. SIRA does not merely ask what terms are relevant to the query; it asks which terms are likely to separate the desired evidence from corpus-level confusers. On the corpus side, an LLM enriches each document offline with missing search vocabulary; on the query side, it predicts evidence vocabulary omitted by the query; and document-frequency statistics as a tool call to filter proposed terms that are absent, overly common, or unlikely to create retrieval margin. The final retrieval step is a single weighted BM25 call combining the original query with the validated expansion.   Across ten BEIR benchmarks and downstream question-answering tasks, SIRA achieves the significantly superior performance outperforming dense retrievers and state-of-the-art multi-round agentic baselines, demonstrating that one well-formed lexical query, guided by LLM cognition and lightweight corpus statistics, can exceed substantially more expensive multi-round search while remaining interpretable, training-free, and efficient.",
+      "published": "2026-05-07T17:54:29+00:00",
+      "url": "https://arxiv.org/pdf/2605.06647v1",
+      "authors": [
+        "Zeyu Yang",
+        "Qi Ma",
+        "Jason Chen",
+        "Anshumali Shrivastava"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06641v1",
+      "title": "GlazyBench: A Benchmark for Ceramic Glaze Property Prediction and Image Generation",
+      "summary": "Developing ceramic glazes is a costly, time-consuming process of trial and error due to complex chemistry, placing a significant burden on independent artists. While recent advances in multimodal AI offer a modern solution, the field lacks the large-scale datasets required to train these models. We propose GlazyBench, the first dataset for AI-assisted glaze design. Comprising 23,148 real glaze formulations, GlazyBench supports two primary tasks: predicting post-firing surface properties, such as color and transparency, from raw materials, and generating accurate visual representations of the glaze based on these properties. We establish comprehensive baselines for property prediction using traditional machine learning and large language models, alongside image generation benchmarks using deep generative and large multimodal models. Our experiments demonstrate promising yet challenging results. GlazyBench pioneers a new research direction in AI-assisted material design, providing a standardized benchmark for systematic evaluation.",
+      "published": "2026-05-07T17:51:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.06641v1",
+      "authors": [
+        "Ziyu Zhai",
+        "Siyou Li",
+        "Juexi Shao",
+        "Juntao Yu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06607v1",
+      "title": "AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with Physics-Aware AI Agents",
+      "summary": "Recent LLM-based agents have closed substantial portions of the scientific discovery loop in software-only machine-learning research, in chemistry, and in biology. Extending the same loop to high-fidelity physical simulators is harder, because solver completion does not imply physical validity and many failure modes appear only in field-level imagery rather than in solver logs. We present AI CFD Scientist, an open-source AI scientist for computational fluid dynamics (CFD) that, to our knowledge, is the first to span literature-grounded ideation, validated execution, vision-based physics verification, source-code modification, and figure-grounded writing within a single inspectable workflow. Three coupled pathways cover parameter sweeps within a fixed solver, case-local C++ library compilation for new physical models, and open-ended hypothesis search against a reference comparator, all running on OpenFOAM through Foam-Agent. At the center of the framework is a vision-language physics-verification gate that inspects rendered flow fields before any result is accepted, rerun, or written into a manuscript. On five tasks under a shared GPT-5.5 backbone, AI CFD Scientist autonomously discovers a Spalart-Allmaras runtime correction that reduces lower-wall Cf RMSE against DNS by 7.89% on the periodic hill at Reh=5600; under matched LLM cost, two strong general AI-scientist baselines (ARIS, DeepScientist) execute partial CFD workflows but lack the domain-specific validity gates needed to convert runs into defensible scientific claims; and a controlled planted-failure ablation shows that the vision-language gate detects 14 of 16 silent failures missed by solver-level checks. Code, prompts, and run artifacts are released at https://github.com/csml-rpi/cfd-scientist.",
+      "published": "2026-05-07T17:27:23+00:00",
+      "url": "https://arxiv.org/pdf/2605.06607v1",
+      "authors": [
+        "Nithin Somasekharan",
+        "Rabi Pathak",
+        "Manushri Dhanakoti",
+        "Tingwen Zhang",
+        "Ling Yue",
+        "Andy Zhu",
+        "Shaowu Pan"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06606v1",
+      "title": "TMDs in the Lens of Generative AI: A Pixel-Based Approach to Partonic Imaging",
+      "summary": "This work introduces a novel, nonparametric pixel-based framework for the Bayesian inference and imaging of transverse momentum dependent (TMD) parton distributions. The methodology is built upon a fully differentiable framework that integrates TMD evolution with the Collins-Soper-Sterman formalism, enabling the simultaneous extraction of partonic distributions and the nonperturbative evolution kernel. To achieve efficient and exact sampling of the high-dimensional posterior, we leverage generative AI through a hybrid normalizing flow-driven Metropolis-Hastings approach. The framework is validated through multi-scale closure tests of increasing complexity, ranging from basic functional models to convoluted structure functions. Using singular value decomposition (SVD), we rigorously characterize the uncertainty of the reconstructed distributions and reveal the existence of null TMDs, which are functional components in the null space of the kernel that remain unconstrained by observables. The new framework provides the first integration of pixel-based discretization, generative AI, and SVD within a Bayesian context to solve the TMD inverse problem. This synergy between machine learning and multi-scale data removes inherent degeneracies and enables unbiased 3D partonic imaging.",
+      "published": "2026-05-07T17:25:41+00:00",
+      "url": "https://arxiv.org/pdf/2605.06606v1",
+      "authors": [
+        "Marco Zaccheddu",
+        "Leonard Gamberg",
+        "Wally Melnitchouk",
+        "Daniel Pitonyak",
+        "Alexei Prokudin",
+        "Jian-Wei Qiu",
+        "Nobuo Sato"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06594v1",
+      "title": "Automated Clinical Report Generation for Remote Cognitive Remediation: Comparing Knowledge-Engineered Templates and LLMs in Low-Resource Settings",
+      "summary": "The growing demand for cognitive remediation therapy, combined with limited speech therapist availability, has accelerated the adoption of remote rehabilitation tools. These systems generate large volumes of interaction data that are difficult for clinicians to review efficiently. This paper investigates automated clinical report generation for avatar-guided, home-based cognitive remediation sessions in a low-resource setting with no reference reports. We present and compare two approaches: (1) a rule-based template system encoding speech therapy domain knowledge as explicit decision rules and validated templates, ensuring clinical reliability and traceability; and (2) a zero-shot LLM-based approach (GPT-4) aimed at more fluent and concise output. Both systems use identical pre-extracted, expert-validated structured variables, enabling a controlled factual comparison. Outputs were evaluated by eight speech therapists and final-year students using a nine-criterion questionnaire. Results reveal a clear trade-off between clinical reliability and linguistic quality. The template-based system scored higher on fluidity, coherence, and results presentation, while GPT-4 produced more concise output. Directional differences are consistent across evaluation dimensions, though no comparison reached statistical significance after correction, reflecting the scale constraints of expert clinical evaluation. Based on evaluator feedback, we derive eight design recommendations for clinical reporting systems in remote rehabilitation settings. More broadly, this work contributes a replicable methodology combining expert elicitation, taxonomy-driven generation, and multi-dimensional human evaluation for clinical NLG in low-resource settings, and illustrates how controlled comparisons can inform the responsible adoption of generative AI in healthcare.",
+      "published": "2026-05-07T17:20:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.06594v1",
+      "authors": [
+        "Yongxin Zhou",
+        "Fabien Ringeval",
+        "François Portet"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06587v1",
+      "title": "Constraining Galaxy Cluster Triaxiality via Weak Lensing -- I. Preparation for the Rubin Data Beyond Leading Order",
+      "summary": "The 3D mass distributions of galaxy clusters are generally triaxial, a geometry that is difficult to constrain from projected observations. In this work, we measure the projected halo shapes of clusters from their weak lensing signatures using the triaxiality functionality in the Cluster Lensing Mass Modeling software, a tool developed by the Dark Energy Science Collaboration to analyze data from NSF-DOE Rubin Observatory's Legacy Survey of Space and Time (LSST). We measure ensemble halo ellipticity on the plane of the sky via axis-aligned stacking and multipole expansion of the weak lensing data. We study a precursor dataset -- the redMaPPer cluster catalog, the metacalibration shape catalog, and the Directional Neighborhood Fitting photometric redshift catalog from the Dark Energy Survey Year 3 public data release. We select clusters that have a high centering probability (>90%) of the identified central galaxy, and use the satellite galaxy distribution to determine the major-axis orientation for stacking. We extend the analysis to the second order of ellipticity in the monopole and quadrupole measurement. The projected ellipticity of the cluster sample is found to be $0.310^{+0.017}_{-0.016}$ (axis ratio $0.527^{+0.018}_{-0.019}$). The projected cluster ellipticity shows no statistically significant dependence on mass and redshift. We further verify the accuracy of the cluster shape measurement using mock catalogs. This analysis is applicable to datasets from upcoming wide-area cosmic surveys such as LSST, Euclid, and the Roman Space Telescope, where larger sample sizes will lead to tighter constraints on the cluster ellipticities.",
+      "published": "2026-05-07T17:14:34+00:00",
+      "url": "https://arxiv.org/pdf/2605.06587v1",
+      "authors": [
+        "Shenming Fu",
+        "Radhakrishnan Srinivasan",
+        "Tae-hyeon Shin",
+        "Rance Solomon",
+        "Deric Jones",
+        "Camille Avestruz",
+        "Yuanyuan Zhang",
+        "Michel Aguena",
+        "Céline Combet",
+        "Anthony Englert",
+        "Benjamin Levine",
+        "Alex I. Malz",
+        "Constantin Payerne",
+        "Marina Ricci",
+        "Anja von der Linden",
+        "the LSST Dark Energy Science Collaboration"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06540v1",
+      "title": "Ex Ante Evaluation of AI-Induced Idea Diversity Collapse",
+      "summary": "Creative AI systems are typically evaluated at the level of individual utility, yet creative outputs are consumed in populations: an idea loses value when many others produce similar ones. This creates an evaluation blind spot, as AI can improve individual outputs while increasing population-level crowding. We introduce a human-relative framework for benchmarking AI-induced human diversity collapse without requiring human-AI interaction data, providing an ex ante protocol to estimate crowding risk from model-only generations and matched unaided human baselines. By modeling ideas as congestible resources, we show that source-level crowding is identifiable from within-distribution comparisons, yielding an excess-crowding coefficient $$ and a human-relative diversity ratio $$. We show that $\\ge1$ is the no-excess-crowding parity condition and connect $$ to an adoption game with exposure-dependent redundancy costs. Across short stories, marketing slogans, and alternative-uses tasks, three frontier LLMs fall below parity across crowding kernels. Estimates stabilize with feasible model-only sample sizes. Importantly, generation-protocol variants show that crowding can be reduced through targeted design, making diversity collapse an actionable, development-time evaluation target for population-aware creative AI.",
+      "published": "2026-05-07T16:38:17+00:00",
+      "url": "https://arxiv.org/pdf/2605.06540v1",
+      "authors": [
+        "Nafis Saami Azad",
+        "Raiyan Abdul Baten"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06531v1",
+      "title": "Non-Local Particle Flows Become Local When Considering Dissipative Stress",
+      "summary": "Dense granular and suspension flows under inhomogeneous shear exhibit persistent particle motion in regions where the local yield criterion is subcritical, an apparent breakdown of locality that has motivated the development of a generation of nonlocal rheological models. Using particle-resolved simulations of frictionless dense suspensions in two-dimensional Kolmogorov flow, we show that two independent considerations together account for this signature. First, replacing the conventional shear stress by a shear-rate-weighted dissipative stress $_W=\\langle \\dot \\rangle/\\langle \\dot \\rangle$, which isolates the component of stress that performs irreversible work, restores the homogeneous $(J)$ law throughout the bulk of the flow, with the inferred friction remaining strictly above yield. Second, a simple geometric mixing-length construction, applied with conventional stresses and requiring no fluctuation input, accounts for the residual sub-yielding within a sub-diameter layer at flow reversals. Each approach is based on a different philosophy and mechanism, and together they suggest that much of the apparent non-locality in this geometry and frictionless case is an artefact of how stress is measured and averaged rather than an intrinsic breakdown of local rheology.",
+      "published": "2026-05-07T16:32:15+00:00",
+      "url": "https://arxiv.org/pdf/2605.06531v1",
+      "authors": [
+        "Martin Trulsson"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06525v1",
+      "title": "Sustaining Cooperation in Populations Guided by AI: A Folk Theorem for LLMs",
+      "summary": "Large language models (LLMs) are increasingly used to provide instructions to many agents who interact with one another. Such shared reliance couples agents who appear to act independently: they may in fact be guided by a common model. This coupling can change the prospects for cooperation among agents with misaligned incentives. We study settings in which multiple LLMs each advise a population of clients who participate in instances of an underlying game, creating strategic interaction at the level of the LLMs themselves. This induces a meta-game among the LLMs, mediated through clients. We first analyze the one-shot setting, where shared instructions can change equilibrium behavior only when an LLM may influence more than one role in the same interaction; in such cases, cooperation may emerge, and the effect of client share can be beneficial, harmful, or non-monotone, depending on the base game. Our main result concerns the repeated setting. We prove a folk theorem for LLMs: despite indirect observation and the clients' inability to identify which LLM advised their opponents, all feasible and individually rational outcomes can be sustained as $\\varepsilon$-equilibria. The result does not follow from the standard folk theorem and requires new proof techniques. Together, these results show that shared LLM guidance can sustain cooperation among populations of agents even when the underlying incentives are misaligned.",
+      "published": "2026-05-07T16:31:12+00:00",
+      "url": "https://arxiv.org/pdf/2605.06525v1",
+      "authors": [
+        "Jonathan Shaki",
+        "Eden Hartman",
+        "Sarit Kraus",
+        "Yonatan Aumann"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

@@ -1,0 +1,95 @@
+{
+  "timestamp": 1778399526.5907059,
+  "source": "semantic_scholar",
+  "query": "Densing Law LLM                                   # LLM能力密度定律",
+  "results": [
+    {
+      "id": "593eb9e34076a78ee1914bd8253b8b02de50e0eb",
+      "title": "Densing law of LLMs",
+      "summary": "Large language models (LLMs) have emerged as a milestone in artificial intelligence. The scaling law indicates that the performance of LLMs can continually improve as the model size increases, which poses challenges for training and deployment. Despite numerous efforts to improve LLM efficiency, there is no general consensus on development trends and evaluation metrics for efficiency of LLMs with different scales. To address this tension between model performance and efficiency, we introduce the concept of capability density as a metric to evaluate the quality of the LLMs and describe the trend of LLMs in terms of both effectiveness and efficiency. Intuitively, capability density can be understood as the capability contained within each unit of model parameters. Capability density provides a unified framework for assessing both model performance and efficiency. Here we show an empirical observation, called the densing law, that the capability density of LLMs grows exponentially over time. More specifically, using widely used benchmarks for evaluation, the maximum capability density of open-source LLMs doubles approximately every 3.5 months. This reveals that both parameter requirements and inference costs of LLMs for achieving equivalent performance decrease exponentially, offering insights for efficient LLM development strategies. Xiao et al. introduce capability density, defined as capability per parameter, as a metric for evaluating large language models. They report an empirical trend, the densing law, which states that capability density doubles approximately every 3.5 months, indicating that equivalent model performance can be achieved with exponentially fewer parameters over time.",
+      "published": "2024",
+      "url": "https://www.semanticscholar.org/paper/593eb9e34076a78ee1914bd8253b8b02de50e0eb",
+      "authors": [
+        "Chaojun Xiao",
+        "Jie Cai",
+        "Weilin Zhao",
+        "Guoyang Zeng",
+        "Biyuan Lin",
+        "Jie Zhou",
+        "Zhi Zheng",
+        "Xu Han",
+        "Zhiyuan Liu",
+        "Maosong Sun"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "2acd4d26a0b469c20ef95f7c7173348ef576e452",
+      "title": "Category-Aware Semantic Caching for Heterogeneous LLM Workloads",
+      "summary": "LLM serving systems process heterogeneous query workloads where different categories exhibit different characteristics. Code queries cluster densely in embedding space while conversational queries distribute sparsely. Content staleness varies from minutes (stock data) to months (code patterns). Query repetition patterns range from power-law (code) to uniform (conversation), producing long tail cache hit rate distributions: high-repetition categories achieve 40-60% hit rates while low-repetition or volatile categories achieve 5-15% hit rates. Vector databases must exclude the long tail because remote search costs (30ms) require 15--20% hit rates to break even, leaving 20-30% of production traffic uncached. Uniform cache policies compound this problem: fixed thresholds cause false positives in dense spaces and miss valid paraphrases in sparse spaces; fixed TTLs waste memory or serve stale data. This paper presents category-aware semantic caching where similarity thresholds, TTLs, and quotas vary by query category. We present a hybrid architecture separating in-memory HNSW search from external document storage, reducing miss cost from 30ms to 2ms. This reduction makes low-hit-rate categories economically viable (break-even at 3-5% versus 15-20%), enabling cache coverage across the entire workload distribution. Adaptive load-based policies extend this framework to respond to downstream model load, dynamically adjusting thresholds and TTLs to reduce traffic to overloaded models by 9-17% in theoretical projections.",
+      "published": "2025",
+      "url": "https://www.semanticscholar.org/paper/2acd4d26a0b469c20ef95f7c7173348ef576e452",
+      "authors": [
+        "Chen Wang",
+        "Xunzhuo Liu",
+        "Yue Zhu",
+        "Alaa Youssef",
+        "P. Nagpurkar",
+        "Huamin Chen"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "aea9c18a594104b6a77f9cd55a2a28586ac7dbba",
+      "title": "LLM-Enhanced Judgement Basis Retrieval for Audit Findings in Government Audit Report",
+      "summary": "In the domain of government auditing, accurately identifying the corresponding legal provisions for audit findings is a critical yet challenging task, often hindered by semantic discrepancies between the phrasing of audit issues and the language of legal statutes. Traditional classification-based approaches rely on predefined label sets, making them insufficiently adaptable to diverse or ambiguously stated audit findings and limiting their generalizability. To address these challenges, this paper proposes an LLM-enhanced Audit Judgement Basis Retrieval framework (LAJBR). The framework leverages large language models (LLMs) to generate prompt-driven semantic interpretations and multi-perspective reformulations of audit questions. It incorporates three complementary retrieval paths: a sparse retrieval path based on keyword extraction and synonym expansion; a semantic vector retrieval path grounded in the generation of hypothetical legal clauses; and a dense retrieval path based on legal-style reformulations of the audit issues. The results from the three retrieval paths are integrated using a weighted Reciprocal Rank Fusion (RRF) strategy, which improves both recall coverage and ranking precision. Experimental results on a real-world audit issue-law article dataset demonstrate that LAJBR outperforms existing baseline methods across key metrics such as Recall@k, Hit@k, and MRR, showing robust performance and offering strong support for intelligent legal provision recommendation in audit scenarios.",
+      "published": "2025",
+      "url": "https://www.semanticscholar.org/paper/aea9c18a594104b6a77f9cd55a2a28586ac7dbba",
+      "authors": [
+        "Min Liu",
+        "Changhao Song",
+        "Lu Zhang",
+        "Haiting Zhu",
+        "Gaofeng He"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "bb869a9f5829d73a6909643440495abacc7f2cde",
+      "title": "Scaling Behaviors of LLM Reinforcement Learning Post-Training: An Empirical Study in Mathematical Reasoning",
+      "summary": "While scaling laws for large language models (LLMs) during pre-training have been extensively studied, their behavior under reinforcement learning (RL) post-training remains largely unexplored. This paper presents a systematic empirical investigation of scaling behaviors in RL-based post-training, with a particular focus on mathematical reasoning. Based on a set of experiments across the full Qwen2.5 dense model series (0.5B to 72B), we characterize how model scale, data volume, and computational budget interact to shape performance. Our analysis leads to four key findings: 1. Larger models consistently exhibit superior learning efficiency on both compute and data metrics. 2. The relationship between test loss, compute, and data can be modeled by a predictive power-law which is robust across both base and instruction-tuned models. 3. Although larger models exhibit higher learning efficiency, the analytical learning efficiency term k(N) in the power-law reveals a latent saturation trend in learning efficiency as model size continues to increase. 4. In data-constrained regimes, repeated reuse of high-quality data proves highly effective, as final performance is primarily governed by the total number of optimization steps rather than the uniqueness of samples. Collectively, these results provide a principled foundation and practical guidelines for efficiently scaling the reasoning capabilities of LLMs through RL post-training.",
+      "published": "2025",
+      "url": "https://www.semanticscholar.org/paper/bb869a9f5829d73a6909643440495abacc7f2cde",
+      "authors": [
+        "Zelin Tan",
+        "Hejia Geng",
+        "Mulei Zhang",
+        "Xiaohan Yu",
+        "Guancheng Wan",
+        "Yifan Zhou",
+        "Qiang He",
+        "Xiangyuan Xue",
+        "Heng Zhou",
+        "Yutao Fan",
+        "Zhong-Zhi Li",
+        "Zaibin Zhang",
+        "Guibin Zhang",
+        "Chen Zhang",
+        "Zhenfei Yin",
+        "Lei Bai"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "f36818c03122da195b90702464ea6a1597fcd52a",
+      "title": "Comparative Analysis of LLM-based Graph Represenation Construction for Domain-specific Documents",
+      "summary": "Recent advances in large language models have substantially improved natural language understanding and enabled their application across a wide range of domains. However, highly specialized fields such as law and medicine remain challenging because their documents often contain complex structures, domain-specific terminology, and dense logical dependencies. In such settings, large language models may produce errors when important structural information is not explicitly preserved in the document representation. To address this limitation, we propose a novel approach for document decomposition into graph-based representations that better capture the structural and semantic relationships within complex texts. We develop a method for processing raw legal documents from the Ukrainian domain using an LLM-based decomposition pipeline, transforming them into structured graph representations that can reinforce contextual retrieval and support retrieval-augmented generation. The proposed method improves document understanding by preserving key contextual dependencies and enhancing the representation of legal knowledge in downstream tasks.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/f36818c03122da195b90702464ea6a1597fcd52a",
+      "authors": [
+        "Illia Savenko"
+      ],
+      "source": "semantic_scholar"
+    }
+  ]
+}

@@ -1,0 +1,168 @@
+{
+  "timestamp": 1778399326.4547288,
+  "source": "arxiv",
+  "query": "digital evolution selfish replication             # 数字进化与自私复制",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.06650v1",
+      "title": "Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negative Gradients",
+      "summary": "Reinforcement learning with verifiable rewards (RLVR), due to the deterministic verification, becomes a dominant paradigm for enhancing the reasoning ability of large language models (LLMs). The community witnesses the rapid change from the Proximal Policy Optimization (PPO) to Group Relative Policy Optimization (GRPO), in which GRPO reduces the complicated advantage estimation with simple estimation over grouped positive and negative rollouts. However, we note that negative rollouts may admit no gradation of failure severity, and the combinatorial vastness makes penalizing a few sampled negatives unlikely to cover a meaningful reward signal under sparse binary rewards. In this work, we propose Positive-Only Policy Optimization (POPO), a novel RLVR framework in which learning can occur exclusively via online positive rollouts. Specifically, POPO utilizes bounded importance sampling over the positive rollout set. Thus, no disjoint negative rollouts are used for the gradient guidance. We show that implicit negative gradients can emerge naturally through reinforcing the positive probability via rollouts redistribution. Next, POPO stabilizes the policy optimization through two mechanisms. First, it applies a siamese policy network with a momentum-based adaptation law for stabilized policy evolution. Second, we replace the KL-divergence with a bounded similarity penalty term in the siamese representation space. We conduct extensive experiments using publicly available, well-established text-LLM models, e.g., the Qwen family, across all-level mathematical benchmarks. Our experiment demonstrates that POPO achieves performance comparable to, or even superior to GRPO. Notably, we show that POPO can achieve 36.67% in AIME 2025 with Qwen-Math-7B, outperforming GRPO 30.00%. Our ablation and sweep studies further illustrate the necessity and robustness of POPO components.",
+      "published": "2026-05-07T17:55:21+00:00",
+      "url": "https://arxiv.org/pdf/2605.06650v1",
+      "authors": [
+        "Mingwei Xu",
+        "Hao Fang"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06614v1",
+      "title": "SkillOS: Learning Skill Curation for Self-Evolving Agents",
+      "summary": "LLM-based agents are increasingly deployed to handle streaming tasks, yet they often remain one-off problem solvers that fail to learn from past interactions. Reusable skills distilled from experience provide a natural substrate for self-evolution, where high-quality skill curation serves as the key bottleneck. Existing approaches either rely on manual skill curation, prescribe heuristic skill operations, or train for short-horizon skill operations. However, they still struggle to learn complex long-term curation policies from indirect and delayed feedback. To tackle this challenge, we propose SkillOS, an experience-driven RL training recipe for learning skill curation in self-evolving agents. SkillOS pairs a frozen agent executor that retrieves and applies skills with a trainable skill curator that updates an external SkillRepo from accumulated experience. To provide learning signals for curation, we design composite rewards and train on grouped task streams based on skill-relevant task dependencies, where earlier trajectories update the SkillRepo, and later related tasks evaluate these updates. Across multi-turn agentic tasks and single-turn reasoning tasks, SkillOS consistently outperforms memory-free and strong memory-based baselines in both effectiveness and efficiency, with the learned skill curator generalizing across different executor backbones and task domains. Further analyses show that the learned curator produces more targeted skill use, while the skills in SkillRepo evolve into more richly structured Markdown files that encode higher-level meta-skills over time.",
+      "published": "2026-05-07T17:31:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.06614v1",
+      "authors": [
+        "Siru Ouyang",
+        "Jun Yan",
+        "Yanfei Chen",
+        "Rujun Han",
+        "Zifeng Wang",
+        "Bhavana Dalvi Mishra",
+        "Rui Meng",
+        "Chun-Liang Li",
+        "Yizhu Jiao",
+        "Kaiwen Zha",
+        "Maohao Shen",
+        "Vishy Tirumalashetty",
+        "George Lee",
+        "Jiawei Han",
+        "Tomas Pfister",
+        "Chen-Yu Lee"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06612v1",
+      "title": "Online Bayesian Calibration under Gradual and Abrupt System Changes",
+      "summary": "Bayesian model calibration is central to digital twins and computer experiments, as it aligns model outputs with field observations by estimating calibration parameters and correcting systematic model bias. Classical Bayesian calibration introduces latent parameters and a discrepancy function to model bias, but suffers from parameter--discrepancy confounding and is typically formulated as an offline procedure under a stationary data-generating assumption. These limitations are restrictive in modern digital twin applications, where systems evolve over time and may exhibit gradual drift and abrupt regime shifts. While data assimilation methods enable sequential updates, they generally do not explicitly model systematic bias and are less effective under abrupt changes. We propose Bayesian Recursive Projected Calibration (BRPC), an online Bayesian calibration framework for streaming data under simulator mismatch and nonstationarity. BRPC extends projected calibration to the online setting by separating a discrepancy-free particle update for calibration parameters from a conditional Gaussian process update for discrepancy, preserving identifiability while enabling bias-aware adaptation under gradual system evolution. To handle abrupt changes, BRPC is integrated with restart mechanisms that detect regime shifts and reset the calibration process. We establish theoretical guarantees for both components, including tracking performance under gradual evolution and false-alarm and detection behavior for restart mechanisms. Empirical studies on synthetic and plant-simulation benchmarks show that BRPC improves calibration accuracy under gradual changes, while restart-augmented BRPC further improves robustness and predictive performance under abrupt regime shifts compared to sliding-window Bayesian calibration and data assimilation baselines.",
+      "published": "2026-05-07T17:29:18+00:00",
+      "url": "https://arxiv.org/pdf/2605.06612v1",
+      "authors": [
+        "Yang Xu",
+        "Chiwoo Park"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06611v1",
+      "title": "The Structural Origin of Attention Sink: Variance Discrepancy, Super Neurons, and Dimension Disparity",
+      "summary": "Despite the prevalence of the attention sink phenomenon in Large Language Models (LLMs), where initial tokens disproportionately monopolize attention scores, its structural origins remain elusive. This work provides a \\textit{mechanistic explanation} for this phenomenon. First, we trace its root to the value aggregation process inherent in self-attention, which induces a systematic variance discrepancy. We further demonstrate that this discrepancy is drastically amplified by the activation of super neurons within Feed-Forward Network (FFN) layers. Specifically, the channel-sparse down-projections trigger a dimension disparity of the first-token representation, necessitating the formation of attention sinks as a structural anchor. Then, we validate this causal chain through two controlled interventions: (i) isolating the aggregation effect via attention mask modifications and (ii) amplifying the variance of targeted token representations. Both interventions can replicate attention sinks at arbitrary positions. Our mechanistic understanding offers a foundation for the systematic control of sink formation. Finally, as a proof of concept, we propose \\textit{head-wise RMSNorm}, an architectural modification that stabilizes value aggregation outputs during pre-training. Our experiments demonstrate that restoring statistical parity across positions significantly accelerates convergence.",
+      "published": "2026-05-07T17:28:55+00:00",
+      "url": "https://arxiv.org/pdf/2605.06611v1",
+      "authors": [
+        "Siquan Li",
+        "Kaiqi Jiang",
+        "Jiacheng Sun",
+        "Tianyang Hu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06606v1",
+      "title": "TMDs in the Lens of Generative AI: A Pixel-Based Approach to Partonic Imaging",
+      "summary": "This work introduces a novel, nonparametric pixel-based framework for the Bayesian inference and imaging of transverse momentum dependent (TMD) parton distributions. The methodology is built upon a fully differentiable framework that integrates TMD evolution with the Collins-Soper-Sterman formalism, enabling the simultaneous extraction of partonic distributions and the nonperturbative evolution kernel. To achieve efficient and exact sampling of the high-dimensional posterior, we leverage generative AI through a hybrid normalizing flow-driven Metropolis-Hastings approach. The framework is validated through multi-scale closure tests of increasing complexity, ranging from basic functional models to convoluted structure functions. Using singular value decomposition (SVD), we rigorously characterize the uncertainty of the reconstructed distributions and reveal the existence of null TMDs, which are functional components in the null space of the kernel that remain unconstrained by observables. The new framework provides the first integration of pixel-based discretization, generative AI, and SVD within a Bayesian context to solve the TMD inverse problem. This synergy between machine learning and multi-scale data removes inherent degeneracies and enables unbiased 3D partonic imaging.",
+      "published": "2026-05-07T17:25:41+00:00",
+      "url": "https://arxiv.org/pdf/2605.06606v1",
+      "authors": [
+        "Marco Zaccheddu",
+        "Leonard Gamberg",
+        "Wally Melnitchouk",
+        "Daniel Pitonyak",
+        "Alexei Prokudin",
+        "Jian-Wei Qiu",
+        "Nobuo Sato"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06594v1",
+      "title": "Automated Clinical Report Generation for Remote Cognitive Remediation: Comparing Knowledge-Engineered Templates and LLMs in Low-Resource Settings",
+      "summary": "The growing demand for cognitive remediation therapy, combined with limited speech therapist availability, has accelerated the adoption of remote rehabilitation tools. These systems generate large volumes of interaction data that are difficult for clinicians to review efficiently. This paper investigates automated clinical report generation for avatar-guided, home-based cognitive remediation sessions in a low-resource setting with no reference reports. We present and compare two approaches: (1) a rule-based template system encoding speech therapy domain knowledge as explicit decision rules and validated templates, ensuring clinical reliability and traceability; and (2) a zero-shot LLM-based approach (GPT-4) aimed at more fluent and concise output. Both systems use identical pre-extracted, expert-validated structured variables, enabling a controlled factual comparison. Outputs were evaluated by eight speech therapists and final-year students using a nine-criterion questionnaire. Results reveal a clear trade-off between clinical reliability and linguistic quality. The template-based system scored higher on fluidity, coherence, and results presentation, while GPT-4 produced more concise output. Directional differences are consistent across evaluation dimensions, though no comparison reached statistical significance after correction, reflecting the scale constraints of expert clinical evaluation. Based on evaluator feedback, we derive eight design recommendations for clinical reporting systems in remote rehabilitation settings. More broadly, this work contributes a replicable methodology combining expert elicitation, taxonomy-driven generation, and multi-dimensional human evaluation for clinical NLG in low-resource settings, and illustrates how controlled comparisons can inform the responsible adoption of generative AI in healthcare.",
+      "published": "2026-05-07T17:20:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.06594v1",
+      "authors": [
+        "Yongxin Zhou",
+        "Fabien Ringeval",
+        "François Portet"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06577v1",
+      "title": "Entanglement generation in a two-body Schrdinger--Newton model",
+      "summary": "The Schrdinger--Newton (SN) equation provides a semiclassical framework for the evolution of self-gravitating of massive quantum systems. We propose a two-body Schrdinger--Newton model that separates local nonlinear self-localization from the nonseparable Newtonian pair potential. Analytically, we show that the nonlinear self-field preserves the Schmidt spectrum, whereas direct entanglement generation arises from the nonseparable pair potential. Using numerical simulations in a regularized one-dimensional geometry, we find that entanglement generation depends sensitively on the initial spatial configuration and on the mass ratio. Highly localized, self-bound wavepackets experience minimal entanglement growth during scattering. Spatial delocalization and kinetic dispersion broaden the interaction region, amplifying the entangling power of the pair potential and exciting higher-order spatial modes. For dispersive Gaussian initial states, mass asymmetry shatters the lighter particle, producing Wigner negativity and rapid entanglement growth, whereas stationary SN profiles strongly suppress this effect. Stationary SN profiles isolate the bare pair-potential contribution; dispersive Gaussian initial states inflate it.",
+      "published": "2026-05-07T17:07:15+00:00",
+      "url": "https://arxiv.org/pdf/2605.06577v1",
+      "authors": [
+        "Marcin Płodzień",
+        "Julia Osęka-Lenart",
+        "Maciej Lewenstein",
+        "Michał Eckstein"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06497v1",
+      "title": "The Hagedorn Temperature as a Nonequilibrium Dynamical Bottleneck in String Thermodynamics",
+      "summary": "The Hagedorn regime of string theory is usually understood as an equilibrium limiting phenomenon: the exponential growth of the density of states makes the canonical partition function singular at the Hagedorn temperature, while in the microcanonical description additional energy is absorbed predominantly by highly excited long-string configurations. In this work we revisit this regime from a nonequilibrium perspective using Steepest-Entropy-Ascent Quantum Thermodynamics (SEAQT), where thermodynamic evolution is formulated directly on the state manifold and does not require a globally well-defined canonical ensemble. The inverse temperature is treated as an instantaneous, state-dependent quantity, and we derive its exact scalar evolution equation. In the commuting limit, this dynamics is controlled by higher-order fluctuation moments, showing that the Hagedorn regime may act as a dynamical bottleneck for the response of the effective intensive variable. We then extend the construction to an open-system setting through a system--reservoir splitting of the SEAQT metric and show that reservoir coupling can drive the subsystem toward effective Hagedorn slowing-down. A diagonal Hagedorn evaluation further shows that the strength of this bottleneck depends not only on the exponential density of states, but also on its algebraic prefactor. These results provide a nonequilibrium interpretation of Hagedorn behavior and suggest a connection between long-string dominance, thermodynamic slowing-down, and the breakdown of effective descriptions in quantum gravity.",
+      "published": "2026-05-07T16:16:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.06497v1",
+      "authors": [
+        "Cesar Damian",
+        "Oscar Loaiza-Brito"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06492v1",
+      "title": "Fifteen new millisecond pulsars in 47 Tucanae",
+      "summary": "47 Tucanae is one of the largest, brightest, and closest globular clusters to Earth. It hosts an exotic stellar population with stellar dynamics that indicate a complex evolution history. The cluster contains a large number of X-ray binaries and millisecond pulsars. However, given its large distance relative to the known pulsar population, previous surveys have found only the very brightest sources. Therefore, surveys with increased sensitivity should find many additional pulsars. Increasing the number of pulsars is crucial to investigate the dynamics of this globular cluster and could also lead to the discovery of unusual types of system. With a significantly increased sensitivity compared to earlier telescopes, MeerKAT is the natural choice to perform new surveys. We carried out two campaigns with different observational cadences to account for the high scintillation along the line of sight to this cluster. Here we report the discovery of fifteen new pulsars in 47 Tucanae with MeerKAT. These discoveries bring the total number of known pulsars in this globular cluster to 42, and the MeerKAT discoveries in this cluster to 17. We discuss some of their characteristics, which include preliminary localisations and estimates of orbits for most systems. Highlights include the discovery of 47 Tuc af, a 'black widow' pulsar with a short orbital period that was identified optically in 2002 as a candidate binary pulsar, and 47 Tuc ai, an eccentric binary pulsar with a massive companion, a unique system in 47 Tuc to date. Apart from the new systems, we also re-detect and localise 47 Tuc P and V, two elusive, seldom-detected systems that had no precise localisation from a phase-connected timing solution. The localisation of 47 Tuc V places it in a position consistent with a continuum source detected earlier in MeerKAT imaging data.",
+      "published": "2026-05-07T16:14:48+00:00",
+      "url": "https://arxiv.org/pdf/2605.06492v1",
+      "authors": [
+        "W. Chen",
+        "D. Risbud",
+        "P. C. C. Freire",
+        "A. Ridolfi",
+        "E. Barr",
+        "M. Kramer",
+        "B. Stappers",
+        "F. Camilo",
+        "F. Abbate",
+        "A. Possenti",
+        "Y. P. Men",
+        "P. V. Padmanabh",
+        "S. M. Ransom",
+        "L. Vleeschower",
+        "V. Venkatraman Krishnan",
+        "D. J. Champion",
+        "Rene Breton",
+        "V. Balakrishnan",
+        "S. Buchner"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.06487v1",
+      "title": "3D MRI Image Pretraining via Controllable 2D Slice Navigation Task",
+      "summary": "Self-supervised pretraining has become the mainstream approach for learning MRI representations from unlabeled scans. However, most existing objectives still treat each scan primarily as static aggregations of slices, patches or volumes. We ask whether there exists an intrinsic form of self-supervision signal that is different from reconstructing the masked patches, through transforming the 3D volumes into controllable 2D rendered sequences: by rendering slices at continuous positions, orientations, and scales, a 3D volume can be converted into dense video-action sequences whose controls are the action trajectories. We study this formulation with an action-conditioned pretraining objective, where a tokenizer encodes slice observations and a latent dynamics model predicts the evolution of latent features. Across representative anatomical and spatial downstream tasks, the proposed pretraining is evaluated against standard static-volume baselines, tokenizer-only pretraining, and dynamics variants without aligned actions. These results suggest that controllable MRI slice navigation provides a useful complementary pretraining interface for learning anatomical and spatial representations from large unlabeled MRI collections.",
+      "published": "2026-05-07T16:08:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.06487v1",
+      "authors": [
+        "Yu Wang",
+        "Qingchao Chen"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}
