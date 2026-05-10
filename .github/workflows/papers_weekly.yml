@@ -1,14 +1,11 @@
 name: Paper Radar Weekly
-
 on:
   schedule:
-    - cron: '0 3 * * 1'    # 每周一 UTC 03:00
+    - cron: '0 3 * * 1'
   workflow_dispatch:
-
 concurrency:
   group: repo-push-${{ github.repository }}
   cancel-in-progress: false
-
 jobs:
   run-papers:
     runs-on: ubuntu-latest
@@ -28,27 +25,32 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: 运行论文雷达（抓取 + 分析 + 生成 MD + HTML）
+      # --- 先拉取远程最新，避免冲突 ---
+      - name: 同步远程仓库
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase --autostash origin main
+
+      # --- 运行核心任务 ---
+      - name: 运行论文雷达
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      - name: 生成存档索引页（更新 index.html）      # ✅ 新步骤
+      - name: 生成存档索引页
         run: python generate_archive.py
 
-      - name: 提交报告、缓存与索引页到主分支
+      # --- 提交新生成的文件（不再 reset）---
+      - name: 提交报告、缓存与索引
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git reset --hard HEAD
-          git clean -fd -e reports
-          git pull --rebase --autostash origin main
-          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json reports/index.html 2>/dev/null || true
+          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json reports/index.html
           git commit -m "📚 Add weekly paper report, cache, and index" || true
           git push origin main
 
-      - name: 部署到 GitHub Pages (live 分支)
+      # --- 部署到 GitHub Pages ---
+      - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
@@ -59,7 +61,7 @@ jobs:
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
 
-      - name: 推送论文简报到钉钉
+      - name: 推送钉钉
         env:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
