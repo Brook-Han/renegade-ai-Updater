@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
 将 news_report_multi_*.md 转换为 Renegade AI 网站风格的 HTML 页面。
+默认浅色模式，支持深色切换，与主页风格对齐。
 用法：python md_to_html.py reports/news_report_multi_2026-05-09_162454.md
 """
 
@@ -71,34 +72,119 @@ def parse_report(md_path: str) -> dict:
     }
 
 
-# ── 生成 HTML ─────────────────────────────────────────────
+# ── 生成 HTML（双主题，带固定导航栏）─────────────────────────────
 
-CSS = """    <style>
+CSS_TEMPLATE = """    <style>
+      /* 浅色模式（默认） */
       :root {
-        --bg: #08080e;
-        --surface: #111120;
-        --card: #13131f;
-        --border: #1e1e30;
-        --text: #cccce0;
-        --text-muted: #6868a0;
+        --bg: #f8f9fc;
+        --bg2: #ffffff;
+        --surface: #f0f2f8;
+        --card: #ffffff;
+        --border: #e0e2ec;
+        --border-bright: #c0c2d0;
+        --text: #2a2a40;
+        --text-muted: #6a6a80;
+        --text-faint: #a0a0b8;
         --accent: #e8503a;
-        --accent2: #c9a040;
-        --white: #f0f0f8;
+        --accent-dim: rgba(232,80,58,0.08);
+        --accent2: #b88c2a;
+        --accent3: #3a7fbf;
+        --accent3-dim: rgba(74,143,207,0.08);
+        --white: #2a2a40;
         --mono: 'Space Mono', 'Courier New', monospace;
         --serif: 'Crimson Pro', Georgia, serif;
         --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
       }
+
+      /* 深色模式覆盖 */
+      :root.dark-theme {
+        --bg: #08080e;
+        --bg2: #0d0d18;
+        --surface: #111120;
+        --card: #13131f;
+        --border: #1e1e30;
+        --border-bright: #2e2e50;
+        --text: #cccce0;
+        --text-muted: #6868a0;
+        --text-faint: #3a3a5a;
+        --accent: #e8503a;
+        --accent-dim: rgba(232,80,58,0.12);
+        --accent2: #c9a040;
+        --accent3: #4a8fcf;
+        --accent3-dim: rgba(74,143,207,0.1);
+        --white: #f0f0f8;
+      }
+
       * { box-sizing: border-box; margin: 0; padding: 0; }
+
       body {
         font-family: var(--serif);
         background: var(--bg);
         color: var(--text);
         line-height: 1.8;
         -webkit-font-smoothing: antialiased;
-        padding: 60px 32px;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* 固定导航栏（与主页一致） */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        background: rgba(248,249,252,0.92);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+      .dark-theme nav {
+        background: rgba(8,8,14,0.92);
+      }
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-brand:hover {
+        color: var(--accent2);
+      }
+      .nav-right {
+        display: flex; gap: 12px; align-items: center;
+      }
+      .theme-toggle {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        width: 36px;
+        height: 36px;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-dim);
+      }
+      .theme-toggle i {
+        font-size: 0.8rem;
+      }
+
+      /* 主容器，避开固定导航栏 */
+      .main {
         max-width: 860px;
         margin: 0 auto;
+        padding: 100px 32px 60px;
       }
+
       .back-link {
         font-family: var(--mono);
         font-size: 0.65rem;
@@ -113,6 +199,7 @@ CSS = """    <style>
         transition: all .2s;
       }
       .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
       .page-eyebrow {
         font-family: var(--mono);
         font-size: 0.62rem;
@@ -151,7 +238,7 @@ CSS = """    <style>
         border: 1px solid var(--border);
         padding: 32px;
         margin-bottom: 16px;
-        transition: border-color .2s;
+        transition: border-color .2s, background 0.2s;
       }
       .card:hover { border-color: var(--accent); }
       .card-header {
@@ -200,6 +287,7 @@ CSS = """    <style>
         color: var(--text-muted);
         line-height: 1.8;
         margin-bottom: 12px;
+        transition: color 0.3s ease;
       }
       .card-verdict {
         font-family: var(--mono);
@@ -220,6 +308,7 @@ CSS = """    <style>
         color: var(--text);
         line-height: 1.85;
         font-style: italic;
+        transition: background 0.3s ease, color 0.3s ease;
       }
       .card-draft::before {
         content: '✍️ 自动生成书稿草稿';
@@ -244,7 +333,7 @@ CSS = """    <style>
       footer a { color: var(--text-muted); text-decoration: none; }
       footer a:hover { color: var(--accent); }
       @media (max-width: 600px) {
-        body { padding: 32px 16px; }
+        .main { padding: 100px 16px 40px; }
         .page-title { font-size: 2.2rem; }
         .card-header { flex-direction: column; }
         .card-score { margin-top: 8px; }
@@ -300,23 +389,68 @@ def generate_html(data: dict, output_path: str):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
-{CSS}
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{CSS_TEMPLATE}
 </head>
 <body>
-  <a href="/" class="back-link">← Renegade AI v5.3</a>
-  <div class="page-eyebrow">§ 资讯监控</div>
-  <h1 class="page-title">DAILY RADAR</h1>
-  <p class="page-sub">{data['date']} · 模型: {data['models']} · 共分析 {data['total']} 条 · 高相关 {data['high_n']} 条 · 中相关 {data['med_n']} 条</p>
-  <div class="stats-row">
-    <span>▲</span> 高相关 ≥6.5: <span>{data['high_n']}</span> 条
-    <span>◆</span> 中相关 3-6.4: <span>{data['med_n']}</span> 条
-    <span>▼</span> 总计分析: <span>{data['total']}</span> 条
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <i class="fa fa-sun-o" id="themeIcon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-eyebrow">§ 资讯监控</div>
+    <h1 class="page-title">DAILY RADAR</h1>
+    <p class="page-sub">{data['date']} · 模型: {data['models']} · 共分析 {data['total']} 条 · 高相关 {data['high_n']} 条 · 中相关 {data['med_n']} 条</p>
+    <div class="stats-row">
+      <span>▲</span> 高相关 ≥6.5: <span>{data['high_n']}</span> 条
+      <span>◆</span> 中相关 3-6.4: <span>{data['med_n']}</span> 条
+      <span>▼</span> 总计分析: <span>{data['total']}</span> 条
+    </div>
+    {items_html}
+    <footer>
+      <span>Renegade AI v5.3 · Brooks Han</span>
+      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+    </footer>
   </div>
-{items_html}
-  <footer>
-    <span>Renegade AI v5.3 · Brooks Han</span>
-    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
-  </footer>
+
+  <script>
+    (function() {{
+      const htmlElement = document.documentElement;
+      const toggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
+      const setTheme = (theme) => {{
+        if (theme === 'dark') {{
+          htmlElement.classList.add('dark-theme');
+          themeIcon.className = 'fa fa-moon-o';
+        }} else {{
+          htmlElement.classList.remove('dark-theme');
+          themeIcon.className = 'fa fa-sun-o';
+        }}
+        localStorage.setItem('renegade-theme', theme);
+      }};
+
+      const currentTheme = getStoredTheme();
+      setTheme(currentTheme);
+
+      toggleBtn.addEventListener('click', () => {{
+        const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
+        setTheme(newTheme);
+      }});
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {{
+        if (!localStorage.getItem('renegade-theme')) {{
+          setTheme(e.matches ? 'dark' : 'light');
+        }}
+      }});
+    }})();
+  </script>
 </body>
 </html>'''
 
