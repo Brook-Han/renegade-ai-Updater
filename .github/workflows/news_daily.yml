@@ -1,4 +1,3 @@
-# 多次修改崩溃版 news_daily.yml v 4.30
 name: News Radar Daily
 on:
   schedule:
@@ -33,21 +32,19 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --news
 
+      # 🔥 关键新增：生成存档索引页
+      - name: 生成存档索引页
+        run: python generate_archive.py
+
       - name: 提交报告到仓库
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 🔥 强制重置：丢弃所有本地修改、删除未跟踪文件
           git reset --hard HEAD
           git clean -fd -e reports
-
-          # 拉取远程
           git pull --rebase --autostash origin main
-
-          # 仅提交报告文件
-          git add reports/news_*.md reports/news_*.html 2>/dev/null || true
-          git commit -m "📰 Add daily news report" || true
+          git add reports/news_*.md reports/news_*.html reports/index.html 2>/dev/null || true
+          git commit -m "📰 Add daily news report and index" || true
           git push origin main
 
       - name: Deploy HTML to GitHub Pages
@@ -56,7 +53,7 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
-          keep_files: true
+          keep_files: false   # 🚀 完全覆盖，避免旧文件残留
           enable_jekyll: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
