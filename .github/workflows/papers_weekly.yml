@@ -2,7 +2,7 @@ name: Paper Radar Weekly
 
 on:
   schedule:
-    - cron: '0 3 * * 1'   # 每周一 UTC 03:00
+    - cron: '0 3 * * 1'    # 每周一 UTC 03:00
   workflow_dispatch:
 
 concurrency:
@@ -34,16 +34,18 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
-      - name: 提交报告与缓存到主分支
+      - name: 生成存档索引页（更新 index.html）      # ✅ 新步骤
+        run: python generate_archive.py
+
+      - name: 提交报告、缓存与索引页到主分支
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git reset --hard HEAD
           git clean -fd -e reports
           git pull --rebase --autostash origin main
-          # 强制添加报告和缓存文件（防止被 .gitignore 忽略）
-          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json 2>/dev/null || true
-          git commit -m "📚 Add weekly paper report and cache" || true
+          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json reports/index.html 2>/dev/null || true
+          git commit -m "📚 Add weekly paper report, cache, and index" || true
           git push origin main
 
       - name: 部署到 GitHub Pages (live 分支)
