@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 """
 扫描 reports/*.html，生成带每日摘要卡片的 index.html 存档页。
+默认浅色模式，顶部导航栏参考主页风格。
 """
 
 import os
 import re
 from pathlib import Path
-from datetime import datetime
-import json
+from string import Template
 
 def extract_cards_from_html(html_path: str) -> list[dict]:
     """从单个报告 HTML 中提取所有卡片的标题、评分、摘要、链接、草稿状况"""
@@ -15,48 +15,39 @@ def extract_cards_from_html(html_path: str) -> list[dict]:
         content = f.read()
 
     cards = []
-    # 简单正则匹配每一个 .card 区块
     card_blocks = re.findall(r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</body>|$)', content, re.DOTALL)
     for block in card_blocks:
         card = {}
-        # 标题
         title_match = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_match:
             card['title'] = title_match.group(1).strip()
-        # 评分
         score_match = re.search(r'<div class="card-score">([\d.]+)<span>/10</span>', block)
         if score_match:
             card['score'] = score_match.group(1)
-        # 链接（摘自 card-meta 中的第一个 a）
         link_match = re.search(r'<a href="([^"]+)" target="_blank">↗ 原文链接</a>', block)
         if link_match:
             card['link'] = link_match.group(1)
-        # 摘要（card-body）
         summary_match = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
         if summary_match:
             card['summary'] = summary_match.group(1).strip()
-        # 是否有草稿 (card-draft)
         draft_match = re.search(r'<div class="card-draft">', block)
         card['has_draft'] = bool(draft_match)
-        # 章节信息
         chapter_match = re.search(r'📍\s*(.*?)(?:</span>|$)', block)
         if chapter_match:
             card['chapter'] = chapter_match.group(1).strip()
-
         if card.get('title'):
             cards.append(card)
     return cards
 
 def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
-    """生成带每日摘要的 index.html"""
+    Path("reports").mkdir(exist_ok=True)
+
     report_files = sorted(Path('.').glob(reports_pattern), reverse=True)
     if not report_files:
         report_files = sorted(Path('.').glob("reports/papers_report_multi_*.html"), reverse=True)
 
-    # 按日期分组，每个日期取第一个（最新）报告，也可以保留多个时间点
     date_groups = {}
     for f in report_files:
-        # 文件名样例 news_report_multi_2026-05-09_162454.html
         name = f.name
         match = re.search(r'(\d{4}-\d{2}-\d{2})_(\d{6})', name)
         if match:
@@ -70,20 +61,15 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
                 'full': str(f),
             })
 
-    # 按日期倒序
     sorted_dates = sorted(date_groups.keys(), reverse=True)
 
-    # 构建 HTML 主体内容
     day_sections = []
-
     for date in sorted_dates:
-        # 取该日期最近的一份报告（列表已按文件名排序，直接取第一个）
-        entry = date_groups[date][0]  # 可根据需要调整
+        entry = date_groups[date][0]
         html_path = entry['full']
         cards = extract_cards_from_html(html_path)
-        top3 = cards[:3]  # 每天前三条
+        top3 = cards[:3]
 
-        # 生成该日的 HTML 块
         day_html = f'<div class="day-group">\n'
         day_html += f'  <div class="day-header">{date}</div>\n'
         day_html += f'  <div class="day-meta">{entry["time"][:2]}:{entry["time"][2:4]}:{entry["time"][4:]} · {len(cards)} 条分析</div>\n'
@@ -109,15 +95,14 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
     <div class="card-body">{summary[:200]}</div>
     <div class="card-link"><a href="{entry['file']}">查看完整报告 →</a></div>
   </div>\n'''
-
         day_html += '</div>\n'
         day_sections.append(day_html)
 
-    # 总报告数
     total_reports = sum(len(v) for v in date_groups.values())
+    first_date = sorted_dates[0] if sorted_dates else '—'
 
-    # 读取模板（直接在脚本内定义，或从外部文件读取）
-    index_template = f'''<!DOCTYPE html>
+    # 使用 string.Template，占位符为 $total_reports, $first_date, $day_sections
+    template_str = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -126,160 +111,316 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    :root {{
-      --bg: #08080e;
-      --surface: #111120;
-      --card: #13131f;
-      --border: #1e1e30;
-      --text: #cccce0;
-      --text-muted: #6868a0;
+    /* 浅色模式（默认） */
+    :root {
+      --bg: #f8f9fc;
+      --bg2: #ffffff;
+      --surface: #f0f2f8;
+      --card: #ffffff;
+      --border: #e0e2ec;
+      --border-bright: #c0c2d0;
+      --text: #2a2a40;
+      --text-muted: #6a6a80;
+      --text-faint: #a0a0b8;
       --accent: #e8503a;
-      --accent2: #c9a040;
-      --white: #f0f0f8;
+      --accent-dim: rgba(232,80,58,0.08);
+      --accent2: #b88c2a;
+      --accent3: #3a7fbf;
+      --accent3-dim: rgba(74,143,207,0.08);
+      --white: #2a2a40;
       --mono: 'Space Mono', 'Courier New', monospace;
       --serif: 'Crimson Pro', Georgia, serif;
       --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-    }}
-    * {{ box-sizing: border-box; margin: 0; padding: 0; }}
-    body {{
+      --ease: cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    /* 深色模式覆盖 */
+    :root.dark-theme {
+      --bg: #08080e;
+      --bg2: #0d0d18;
+      --surface: #111120;
+      --card: #13131f;
+      --border: #1e1e30;
+      --border-bright: #2e2e50;
+      --text: #cccce0;
+      --text-muted: #6868a0;
+      --text-faint: #3a3a5a;
+      --accent: #e8503a;
+      --accent-dim: rgba(232,80,58,0.12);
+      --accent2: #c9a040;
+      --accent3: #4a8fcf;
+      --accent3-dim: rgba(74,143,207,0.1);
+      --white: #f0f0f8;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
       font-family: var(--serif);
       background: var(--bg);
       color: var(--text);
       line-height: 1.8;
       -webkit-font-smoothing: antialiased;
-      padding: 60px 32px;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+
+    /* 固定导航栏（类似主页） */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 200;
+      background: rgba(248,249,252,0.92);
+      backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      height: 56px;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 32px;
+      font-family: var(--mono);
+      transition: background-color 0.3s ease, border-color 0.3s ease;
+    }
+    .dark-theme nav {
+      background: rgba(8,8,14,0.92);
+    }
+    .nav-brand {
+      font-size: 0.75rem; font-weight: 700;
+      color: var(--accent); letter-spacing: 3px;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-brand:hover {
+      color: var(--accent2);
+    }
+    .nav-right {
+      display: flex; gap: 12px; align-items: center;
+    }
+    .theme-toggle {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text-muted);
+      width: 36px;
+      height: 36px;
+      border-radius: 0;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .theme-toggle:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-dim);
+    }
+    .theme-toggle i {
+      font-size: 0.8rem;
+    }
+
+    /* 主容器，避开固定导航栏 */
+    .main {
       max-width: 860px;
       margin: 0 auto;
-    }}
-    .back-link {{
+      padding: 100px 32px 60px;
+    }
+
+    /* 返回首页链接（小字） */
+    .home-link {
       font-family: var(--mono);
-      font-size: 0.65rem; letter-spacing: 2px;
-      color: var(--text-muted); text-decoration: none;
-      text-transform: uppercase;
-      border: 1px solid var(--border); padding: 6px 14px;
-      display: inline-block; margin-bottom: 40px;
-      transition: all .2s;
-    }}
-    .back-link:hover {{ border-color: var(--accent); color: var(--accent); }}
-    .page-eyebrow {{
+      font-size: 0.65rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border);
+      display: inline-block;
+      margin-bottom: 30px;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .home-link:hover {
+      border-bottom-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .page-eyebrow {
       font-family: var(--mono); font-size: 0.62rem;
       letter-spacing: 4px; color: var(--accent);
       text-transform: uppercase; margin-bottom: 8px;
       display: flex; align-items: center; gap: 10px;
-    }}
-    .page-eyebrow::before {{
+    }
+    .page-eyebrow::before {
       content: ''; width: 28px; height: 1px; background: var(--accent);
-    }}
-    h1 {{
+    }
+    h1 {
       font-family: var(--display); font-size: 3rem;
       letter-spacing: 2px; color: var(--white);
       margin-bottom: 6px; line-height: 1;
-    }}
-    .subtitle {{
+    }
+    .subtitle {
       font-family: var(--mono); font-size: 0.65rem;
       color: var(--text-muted); letter-spacing: 1.5px;
       margin-bottom: 48px;
-    }}
-    .stats-row {{
-      display: flex; gap: 24px; margin-bottom: 40px;
-      font-family: var(--mono); font-size: 0.65rem;
-      color: var(--text-muted); letter-spacing: 1px;
-    }}
-    .stats-row span {{ color: var(--accent); font-weight: 700; }}
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .subtitle .stats {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--accent);
+    }
+    .subtitle .stats span {
+      color: var(--text-muted);
+      margin: 0 4px;
+    }
 
-    .day-group {{ margin-bottom: 48px; }}
-    .day-header {{
+    .day-group { margin-bottom: 48px; }
+    .day-header {
       font-family: var(--display); font-size: 1.8rem;
       letter-spacing: 1px; color: var(--white);
       border-bottom: 1px solid var(--border);
       padding-bottom: 8px; margin-bottom: 4px;
-    }}
-    .day-meta {{
+    }
+    .day-meta {
       font-family: var(--mono); font-size: 0.65rem;
       color: var(--text-muted); margin-bottom: 16px;
-    }}
+    }
 
-    .card {{
+    .card {
       background: var(--card); border: 1px solid var(--border);
       padding: 24px; margin-bottom: 8px;
-      transition: border-color .2s;
-    }}
-    .card:hover {{ border-color: var(--accent); }}
-    .card-header {{
+      transition: border-color .2s, background 0.2s;
+    }
+    .card:hover { border-color: var(--accent); }
+    .card-header {
       display: flex; justify-content: space-between; align-items: flex-start;
       margin-bottom: 10px;
-    }}
-    .card-title {{
+    }
+    .card-title {
       font-family: var(--display); font-size: 1.2rem;
       letter-spacing: 1px; color: var(--white); line-height: 1.2;
       flex: 1; margin-right: 12px;
-    }}
-    .card-score {{
+    }
+    .card-score {
       font-family: var(--display); font-size: 1.8rem;
       color: var(--accent); line-height: 1;
       white-space: nowrap;
-    }}
-    .card-score span {{
+    }
+    .card-score span {
       font-family: var(--mono); font-size: 0.5rem;
       color: var(--text-muted); display: block;
-    }}
-    .card-meta {{
+    }
+    .card-meta {
       font-family: var(--mono); font-size: 0.6rem;
       color: var(--text-muted); margin-bottom: 12px;
       display: flex; gap: 16px; flex-wrap: wrap;
-    }}
-    .card-meta a {{ color: var(--accent2); text-decoration: none; }}
-    .card-body {{
+    }
+    .card-meta a { color: var(--accent2); text-decoration: none; }
+    .card-body {
       font-size: 0.92rem; color: var(--text);
       line-height: 1.8; margin-bottom: 8px;
-    }}
-    .card-link {{
+    }
+    .card-link {
       font-family: var(--mono); font-size: 0.65rem; margin-top: 10px;
-    }}
-    .card-link a {{
+    }
+    .card-link a {
       color: var(--accent); text-decoration: none;
       border-bottom: 1px solid transparent;
-    }}
-    .card-link a:hover {{ border-bottom-color: var(--accent); }}
+    }
+    .card-link a:hover { border-bottom-color: var(--accent); }
 
-    footer {{
+    footer {
       margin-top: 64px; padding-top: 24px;
       border-top: 1px solid var(--border);
       font-family: var(--mono); font-size: 0.6rem;
       color: var(--text-muted); letter-spacing: 1px;
       display: flex; justify-content: space-between;
-    }}
-    footer a {{ color: var(--text-muted); text-decoration: none; }}
-    footer a:hover {{ color: var(--accent); }}
+    }
+    footer a { color: var(--text-muted); text-decoration: none; }
+    footer a:hover { color: var(--accent); }
 
-    @media (max-width: 600px) {{
-      body {{ padding: 40px 16px; }}
-      h1 {{ font-size: 2.2rem; }}
-      .card-header {{ flex-direction: column; }}
-    }}
+    @media (max-width: 600px) {
+      .main { padding: 100px 16px 40px; }
+      h1 { font-size: 2.2rem; }
+      .card-header { flex-direction: column; }
+      .subtitle { flex-direction: column; gap: 8px; }
+    }
   </style>
 </head>
 <body>
-  <a href="https://brook-han.github.io/Renegade-AI/" class="back-link">← Renegade AI v5.3</a>
-  <div class="page-eyebrow">§ 每日雷达 · Daily Radar</div>
-  <h1>REPORT ARCHIVE</h1>
-  <p class="subtitle">自动抓取 · AI 分析 · 书稿草稿生成 · GitHub Pages 部署</p>
-  <div class="stats-row">
-    <span>▲</span> 报告总数: <span>{total_reports}</span>
-    <span>◆</span> 最新: <span>{sorted_dates[0] if sorted_dates else '—'}</span>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <i class="fa fa-sun-o" id="themeIcon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <a href="https://brook-han.github.io/Renegade-AI/" class="home-link">← 回到主页</a>
+    <div class="page-eyebrow">§ 每日雷达 · Daily Radar</div>
+    <h1>REPORT ARCHIVE</h1>
+
+    <div class="subtitle">
+      <span>自动抓取 · AI 分析 · 书稿草稿生成 · GitHub Pages 部署</span>
+      <span class="stats">
+        ▲ 报告总数: $total_reports &nbsp;◆ 最新: $first_date
+      </span>
+    </div>
+
+    $day_sections
+
+    <footer>
+      <span>Renegade AI v5.3 · Brooks Han</span>
+      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+    </footer>
   </div>
-  {"".join(day_sections)}
-  <footer>
-    <span>Renegade AI v5.3 · Brooks Han</span>
-    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
-  </footer>
+
+  <script>
+    (function() {
+      const htmlElement = document.documentElement;
+      const toggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
+      const setTheme = (theme) => {
+        if (theme === 'dark') {
+          htmlElement.classList.add('dark-theme');
+          themeIcon.className = 'fa fa-moon-o';
+        } else {
+          htmlElement.classList.remove('dark-theme');
+          themeIcon.className = 'fa fa-sun-o';
+        }
+        localStorage.setItem('renegade-theme', theme);
+      };
+
+      const currentTheme = getStoredTheme();
+      setTheme(currentTheme);
+
+      toggleBtn.addEventListener('click', () => {
+        const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('renegade-theme')) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
+  </script>
 </body>
 </html>'''
 
-    with open('reports/index.html', 'w', encoding='utf-8') as f:
-        f.write(index_template)
-    print(f'✅ Archive index generated with {total_reports} reports')
+    template = Template(template_str)
+    final_html = template.substitute(
+        total_reports=total_reports,
+        first_date=first_date,
+        day_sections="".join(day_sections)
+    )
+
+    output_path = Path('reports/index.html')
+    output_path.write_text(final_html, encoding='utf-8')
+    print(f'✅ Archive index generated with {total_reports} reports (navigation bar style, light mode default)')
 
 if __name__ == '__main__':
     generate_index()
