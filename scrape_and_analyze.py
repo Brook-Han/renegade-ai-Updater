@@ -610,7 +610,26 @@ def main() -> None:
     keywords = load_keywords()
     logger.info(f"📋 加载了 {len(keywords)} 个关键词")
 
-    # ---------- 多源抓取（集成搜索缓存）----------
+    # ========== 根据模式选择不同的缓存文件 ==========
+    # 论文模式使用独立的 paper_cache.json（位于项目根目录）
+    # 新闻模式使用原有的 Config.CACHE_FILE（通常是 reports/analysis_cache.json）
+    # 这样论文和新闻的缓存互不干扰，且论文可以保留独立的历史记录
+    if run_mode == "papers":
+        # 论文缓存文件路径（你可以根据需要改为绝对路径或 reports/paper_cache.json）
+        paper_cache_path = Path("paper_cache.json")
+        if paper_cache_path.exists():
+            with open(paper_cache_path, "r", encoding="utf-8") as f:
+                cache = json.load(f)
+            logger.info(f"📂 加载论文缓存: {paper_cache_path} (共 {len(cache)} 条)")
+        else:
+            cache = {}
+            logger.info(f"📂 未找到论文缓存文件，将新建: {paper_cache_path}")
+    else:
+        # 新闻模式使用原有的 load_cache() 函数（内部读取 Config.CACHE_FILE）
+        cache = load_cache()
+        logger.info(f"📂 加载新闻缓存，共 {len(cache)} 条")
+
+    # ---------- 多源抓取 ----------
     arxiv_papers = []
     s2_papers = []
     news_articles = []
@@ -622,7 +641,6 @@ def main() -> None:
     if run_mode in ("all", "news"):
         if getattr(Config, "ENABLE_NEWS_API", False) or getattr(Config, "ENABLE_RSS_FEEDS", False):
             logger.info("📰 开始抓取资讯源...")
-            # 资讯抓取也集成搜索缓存（在 fetch_all_news 内部已处理，如有）
             news_articles = fetch_all_news(keywords)
             logger.info(f"📰 资讯源共抓取 {len(news_articles)} 条")
         else:
@@ -636,13 +654,11 @@ def main() -> None:
         return
 
     # ---------- 分析缓存：先查出真正需要 LLM 分析的条目 ----------
-    cache = load_cache()
     papers_data: list[dict] = []
 
     for paper in all_papers:
-        fp = get_paper_fingerprint(paper)   # 统一使用 cache 模块的函数
+        fp = get_paper_fingerprint(paper)   # 使用 cache 模块的函数，产生指纹
         if fp in cache and "analysis" in cache[fp]:
-            # 新格式缓存（包含完整分析结果）
             cached_entry = cache[fp]
             logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
             papers_data.append({
@@ -652,7 +668,6 @@ def main() -> None:
                 "draft": cached_entry.get("draft_paragraph"),
             })
         else:
-            # 旧缓存或无缓存，需要 LLM 分析
             papers_data.append({
                 "paper": paper,
                 "merged": None,
@@ -660,47 +675,56 @@ def main() -> None:
                 "draft": None,
             })
 
-    # 提取出没有分析结果的条目（需要 LLM 分析）
     need_analysis = [d for d in papers_data if d["merged"] is None]
     logger.info(f"🆕 需要 LLM 分析: {len(need_analysis)} 篇（已缓存 {len(papers_data) - len(need_analysis)} 篇）")
 
     if not need_analysis:
         logger.info("所有条目均已缓存，直接生成报告。")
     else:
-        # 预筛选（仅对需要分析的条目）
         to_analyze = prescreen_papers([d["paper"] for d in need_analysis])
         if not to_analyze:
             logger.info("预筛选后无相关条目，退出。")
             return
 
-        # 建立 paper id 到待分析数据的映射
         need_map = {d["paper"]["id"]: d for d in need_analysis}
 
         logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
         for i, paper in enumerate(to_analyze, 1):
             logger.info(f"[{i}/{len(to_analyze)}] 分析: {paper['title'][:60]}...")
             results, merged = analyze_paper_multi_model(paper, ANALYSIS_MODELS)
-            # 将这个分析结果回填到对应的数据容器
             target = need_map.get(paper["id"])
             if target:
                 target["merged"] = merged
                 target["models_results"] = results
-            # 存入缓存
-            mark_paper_cached(paper, merged, cache)
+            # 存入缓存（根据模式选择写入不同文件）
+            fp = get_paper_fingerprint(paper)
+            cache[fp] = {
+                "cached_at": datetime.datetime.now().isoformat(),
+                "title": paper.get("title", "")[:80],
+                "analysis": merged,
+                "relevance": merged.get("relevance", 0),
+                "urgency": merged.get("urgency", "background"),
+                "model_scores": merged.get("model_scores", {}),
+            }
+            # 实时保存缓存（防止中途崩溃丢失）
+            if run_mode == "papers":
+                with open(paper_cache_path, "w", encoding="utf-8") as f:
+                    json.dump(cache, f, ensure_ascii=False, indent=2)
+            else:
+                with open(Config.CACHE_FILE, "w", encoding="utf-8") as f:
+                    json.dump(cache, f, ensure_ascii=False, indent=2)
             time.sleep(2)
 
-        # 现在所有 papers_data 中的 merged 都已填充（来自缓存或新分析）
-        # 过滤掉所有未获得有效分析结果的条目（如被预筛选掉的）
+    # 过滤掉未获得有效分析结果的条目
     papers_data = [d for d in papers_data if d["merged"] is not None]
     logger.info(f"📊 最终有效分析条目: {len(papers_data)}")
-    
-        # 筛选出符合条件的草稿生成项（未生成草稿的）
+
+    # ---------- 草稿生成 ----------
     draft_candidates = []
     for d in papers_data:
         m = d["merged"]
         if (m.get("urgency") == DRAFT_URGENCY_REQUIRED and
             m.get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD):
-            # 如果已有草稿（来自缓存），则跳过生成
             if d.get("draft") and len(d["draft"].strip()) > 50:
                 logger.info(f"♻️ 复用草稿缓存: {d['paper']['title'][:50]}...")
                 continue
@@ -713,24 +737,33 @@ def main() -> None:
             draft = draft_patch(d["paper"], d["merged"])
             d["draft"] = draft
             if draft and len(draft.strip()) > 50:
-                save_draft(d["paper"], draft, cache)   # 保存草稿到缓存
+                # 保存草稿到缓存
+                fp = get_paper_fingerprint(d["paper"])
+                if fp in cache:
+                    cache[fp]["draft_paragraph"] = draft
+                    # 根据模式写入对应文件
+                    if run_mode == "papers":
+                        with open(paper_cache_path, "w", encoding="utf-8") as f:
+                            json.dump(cache, f, ensure_ascii=False, indent=2)
+                    else:
+                        with open(Config.CACHE_FILE, "w", encoding="utf-8") as f:
+                            json.dump(cache, f, ensure_ascii=False, indent=2)
                 logger.info(f"   ✅ 草稿生成成功，长度: {len(draft)} 字符")
             else:
                 logger.warning(f"   ⚠️ 草稿生成失败或过短")
             time.sleep(3)
 
-    # 根据模式生成前缀
+    # ---------- 生成报告 ----------
     prefix = ""
     if run_mode == "news":
         prefix = "news_"
     elif run_mode == "papers":
         prefix = "papers_"
 
-    # 只调用一次，同时获得报告路径
     report_path = generate_markdown_multi(papers_data, keywords, prefix)
     logger.info(f"✅ 报告已生成: {report_path}")
 
-    # 自动生成 HTML 版（使用同一个路径）
+    # 自动生成 HTML 版
     import subprocess
     subprocess.run(['python', 'md_to_html.py', report_path])
 
