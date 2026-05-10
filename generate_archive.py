@@ -112,7 +112,7 @@ def generate_index():
             link = card.get('link', '#')
             summary = card.get('summary', '')
             chapter = card.get('chapter', '')
-            draft_badge = ' ✍️' if card.get('has_draft') else ''
+            draft_badge = ' ' if card.get('has_draft') else ''
             # 可选：显示类型徽章
             type_badge = ''
             if card.get('type') == 'papers':
@@ -394,7 +394,6 @@ def generate_index():
   </nav>
 
   <div class="main">
-    <a href="https://brook-han.github.io/Renegade-AI/" class="home-link">← 回到主页</a>
     <div class="page-eyebrow">§ 每日雷达 · Daily Radar</div>
     <h1>REPORT ARCHIVE</h1>
 
