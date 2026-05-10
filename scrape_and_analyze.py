@@ -615,8 +615,8 @@ def main() -> None:
     # 新闻模式使用原有的 Config.CACHE_FILE（通常是 reports/analysis_cache.json）
     # 这样论文和新闻的缓存互不干扰，且论文可以保留独立的历史记录
     if run_mode == "papers":
-        # 论文缓存文件路径（你可以根据需要改为绝对路径或 reports/paper_cache.json）
-        paper_cache_path = Path("paper_cache.json")
+        # 将论文缓存统一存放在 reports/ 下，与新闻缓存同等地持久化）
+        paper_cache_path = Path("reports") / "paper_cache.json"
         if paper_cache_path.exists():
             with open(paper_cache_path, "r", encoding="utf-8") as f:
                 cache = json.load(f)
