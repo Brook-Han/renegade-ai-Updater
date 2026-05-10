@@ -43,13 +43,13 @@ jobs:
           git commit -m "📰 Add daily news report and index" || true
           git push origin main
 
-      - name: 部署到 GitHub Pages
+      - name: 部署到 GitHub Pages (全新分支 live)
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports      # 只部署 reports 目录
-          publish_branch: gh-pages
-          keep_files: false
+          publish_dir: ./reports
+          publish_branch: live           # 🔥 改为 live 分支
+          keep_files: false              # 每次完全覆盖
           enable_jekyll: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
