@@ -28,25 +28,29 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
+      # ========== 新增：恢复论文缓存 ==========
+      - name: 恢复论文分析缓存
+        uses: actions/cache@v4
+        with:
+          path: paper_cache.json
+          key: paper-cache-${{ runner.os }}-${{ github.run_id }}
+          restore-keys: |
+            paper-cache-${{ runner.os }}-
+
       - name: 运行论文雷达（抓取 + 分析 + 生成 MD + HTML）
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --papers
 
+      # 提交报告... (后续不变)
       - name: 提交报告到仓库
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 强制重置工作区
           git reset --hard HEAD
           git clean -fd -e reports
-
-          # 拉取远程
           git pull --rebase --autostash origin main
-
-          # 仅提交论文报告文件（MD + HTML）
           git add reports/papers_*.md reports/papers_*.html 2>/dev/null || true
           git commit -m "📚 Add weekly paper report" || true
           git push origin main
@@ -56,8 +60,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
-          publish_branch: live          # 🔥 改为 live 分支
-          keep_files: false             # 🔥 改为 false，避免旧文件残留
+          publish_branch: live
+          keep_files: false
           enable_jekyll: false
           user_name: 'github-actions[bot]'
           user_email: 'github-actions[bot]@users.noreply.github.com'
