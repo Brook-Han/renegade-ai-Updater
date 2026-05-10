@@ -219,6 +219,8 @@ if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="推送 Renegade AI 报告到钉钉")
     parser.add_argument("--type", choices=["news", "papers"], default="news",
                         help="报告类型：news 或 papers")
+    parser.add_argument("--file", default=None,
+                        help="直接指定要推送的 .md 报告文件路径（可选）")
     args = parser.parse_args()
 
     # 读取环境变量
@@ -231,15 +233,23 @@ if __name__ == "__main__":
     if not base_url:
         sys.exit("❌ 缺少 REPORT_BASE_URL 环境变量")
 
-    # 查找最新生成的报告 .md 文件
-    pattern = f"reports/{args.type}_report_multi_*.md"
-    report_files = sorted(Path().glob(pattern))
-    if not report_files:
-        print(f"⚠️ 未找到任何 {args.type} 报告文件")
-        sys.exit(0)
-
-    latest_md = report_files[-1]                     # 最新的报告
-    print(f"📄 解析: {latest_md}")
+    # 根据是否传入 --file 来决定使用哪个报告文件
+    if args.file:
+        # 直接使用工作流传入的文件路径
+        latest_md = Path(args.file)
+        if not latest_md.exists():
+            print(f"❌ 指定的文件不存在: {latest_md}")
+            sys.exit(1)
+        print(f"📄 解析: {latest_md}")
+    else:
+        # 原来的自动查找逻辑
+        pattern = f"reports/{args.type}_report_multi_*.md"
+        report_files = sorted(Path().glob(pattern))
+        if not report_files:
+            print(f"⚠️ 未找到任何 {args.type} 报告文件")
+            sys.exit(0)
+        latest_md = report_files[-1]
+        print(f"📄 解析: {latest_md}")
 
     # 解析所有满足最低评分的条目
     items = parse_items(str(latest_md), min_score=4.0)
@@ -247,17 +257,17 @@ if __name__ == "__main__":
         print("⚠️ 没有符合评分标准的条目（低于 4.0 分）")
         sys.exit(0)
 
-    # 按评分降序排序，只取前 5 条
+    # 按评分降序排序，只取前5条
     items.sort(key=lambda x: x["score_num"], reverse=True)
-    top5 = items[:5]                                 # 🔥 只推送前5条
+    top5 = items[:5]
 
-    # 构造完整报告的 HTML 链接（与 .md 文件同名，扩展名 .html）
+    # 构造完整报告的 HTML 链接
     html_file = latest_md.with_suffix(".html").name
     report_url = f"{base_url}/{html_file}"
     if not report_url.startswith("http"):
-        report_url = f"https://{report_url}"         # 安全保护
+        report_url = f"https://{report_url}"
 
-    # 从文件名中提取日期（例如 2026-05-10）
+    # 从文件名中提取日期
     date_match = re.search(r'(\d{4}-\d{2}-\d{2})', latest_md.name)
     if date_match:
         date_str = date_match.group(1)
