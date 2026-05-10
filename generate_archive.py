@@ -11,6 +11,7 @@ from string import Template
 
 def extract_cards_from_html(html_path: str) -> list[dict]:
     """从单个报告 HTML 中提取所有卡片的标题、评分、摘要、链接、草稿状况"""
+    html_path = Path(html_path)   # 转换为 Path 对象
     with open(html_path, encoding='utf-8') as f:
         content = f.read()
 
