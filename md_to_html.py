@@ -406,11 +406,7 @@ def generate_html(data: dict, output_path: str):
     <div class="page-eyebrow">§ 资讯监控</div>
     <h1 class="page-title">DAILY RADAR</h1>
     <p class="page-sub">{data['date']} · 共分析 {data['total']} 条 · 高相关 {data['high_n']} 条 · 中相关 {data['med_n']} 条</p>
-    <div class="stats-row">
-      <span>▲</span> 高相关: <span>{data['high_n']}</span> 条
-      <span>◆</span> 中相关: <span>{data['med_n']}</span> 条
-      <span>▼</span> 总分析: <span>{data['total']}</span> 条
-    </div>
+
     {items_html}
     <footer>
       <span>Renegade AI v5.3 · Brooks Han</span>
