@@ -32,29 +32,22 @@ jobs:
           SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
         run: python scrape_and_analyze.py --news
 
-      # --- 新增：生成索引页 ---
       - name: 生成存档索引页
         run: python generate_archive.py
 
-      # --- 新增：确保 index.html 在根目录，便于部署 ---
-      - name: Copy index.html to root for deployment
-        run: cp reports/index.html ./index.html
-
-      # --- 修改：提交报告文件到 main 分支（根据你的需求保留或删除）---
-      - name: Commit files to main branch
+      - name: 提交报告文件到 main 分支
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add reports/*.md reports/*.html index.html || true
-          git commit -m "📰 Add daily report and index" || true
+          git add reports/*.md reports/*.html
+          git commit -m "📰 Add daily news report and index" || true
           git push origin main
 
-      # --- 修改：部署整个根目录（包含 index.html 和 reports/ 文件夹）---
-      - name: Deploy all static files to GitHub Pages
+      - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./  
+          publish_dir: ./reports      # 只部署 reports 目录
           publish_branch: gh-pages
           keep_files: false
           enable_jekyll: false
