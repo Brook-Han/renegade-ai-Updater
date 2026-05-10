@@ -399,7 +399,7 @@ def generate_index():
     <h1>REPORT ARCHIVE</h1>
 
     <div class="subtitle">
-      <span>自动抓取 · AI 分析 · 书稿草稿生成 · GitHub Pages 部署</span>
+      <span>全网抓取 · AI 分析 · GitHub Pages 部署</span>
       <span class="stats">
         ▲ 报告总数: $total_reports &nbsp;◆ 最新: $first_date
       </span>
