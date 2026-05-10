@@ -65,4 +65,4 @@ jobs:
           REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
         run: |
           LATEST_PAPER_MD=$(ls -t reports/papers_report_multi_$(date +%Y-%m-%d)_*.md | head -1)
-          python notify_dingtalk.py --file "$LATEST_PAPER_MD"
+          python notify_dingtalk.py --type papers --file "$LATEST_PAPER_MD"
