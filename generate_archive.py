@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """
 扫描 reports/*.html，生成带每日摘要卡片的 index.html 存档页。
-默认浅色模式，顶部导航栏参考主页风格。
+支持新闻报告 (news_report_multi_*) 和论文报告 (papers_report_multi_*)。
+同一天的多个报告会合并所有卡片，按评分降序取前3条展示。
 """
 
-import os
 import re
 from pathlib import Path
 from string import Template
@@ -18,37 +18,57 @@ def extract_cards_from_html(html_path: str) -> list[dict]:
     card_blocks = re.findall(r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</body>|$)', content, re.DOTALL)
     for block in card_blocks:
         card = {}
+        # 标题
         title_match = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_match:
             card['title'] = title_match.group(1).strip()
+        # 评分
         score_match = re.search(r'<div class="card-score">([\d.]+)<span>/10</span>', block)
         if score_match:
             card['score'] = score_match.group(1)
+        # 链接
         link_match = re.search(r'<a href="([^"]+)" target="_blank">↗ 原文链接</a>', block)
         if link_match:
             card['link'] = link_match.group(1)
+        # 摘要
         summary_match = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
         if summary_match:
             card['summary'] = summary_match.group(1).strip()
+        # 是否有草稿
         draft_match = re.search(r'<div class="card-draft">', block)
         card['has_draft'] = bool(draft_match)
+        # 章节信息
         chapter_match = re.search(r'📍\s*(.*?)(?:</span>|$)', block)
         if chapter_match:
             card['chapter'] = chapter_match.group(1).strip()
+        # 报告类型标识（用于调试，非必须）
+        if 'news_report' in html_path.name:
+            card['type'] = 'news'
+        elif 'papers_report' in html_path.name:
+            card['type'] = 'papers'
+        else:
+            card['type'] = 'unknown'
+
         if card.get('title'):
             cards.append(card)
     return cards
 
-def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
+def generate_index():
+    """生成带每日摘要的 index.html（扫描 news 和 papers 两种报告）"""
     Path("reports").mkdir(exist_ok=True)
 
-    report_files = sorted(Path('.').glob(reports_pattern), reverse=True)
-    if not report_files:
-        report_files = sorted(Path('.').glob("reports/papers_report_multi_*.html"), reverse=True)
+    # 收集所有新闻和论文报告文件
+    news_files = sorted(Path('.').glob("reports/news_report_multi_*.html"), reverse=True)
+    papers_files = sorted(Path('.').glob("reports/papers_report_multi_*.html"), reverse=True)
+    report_files = news_files + papers_files
+    # 按文件名排序（通常日期在文件名中，已经有序）
+    report_files.sort(reverse=True)
 
+    # 按日期分组，每个日期下收集多个报告的信息
     date_groups = {}
     for f in report_files:
         name = f.name
+        # 匹配日期和时间戳
         match = re.search(r'(\d{4}-\d{2}-\d{2})_(\d{6})', name)
         if match:
             date_str = match.group(1)
@@ -65,14 +85,26 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
 
     day_sections = []
     for date in sorted_dates:
-        entry = date_groups[date][0]
-        html_path = entry['full']
-        cards = extract_cards_from_html(html_path)
-        top3 = cards[:3]
+        # 收集该日期下所有报告的卡片
+        all_cards = []
+        for entry in date_groups[date]:
+            cards = extract_cards_from_html(entry['full'])
+            all_cards.extend(cards)
+            # 记录最早/最晚的报告时间用于展示
+            entry_time = entry['time']
+        # 按评分降序排序（没有评分的放在后面）
+        all_cards.sort(key=lambda x: float(x.get('score', 0)) if x.get('score', '').replace('.','',1).isdigit() else -1, reverse=True)
+        top3 = all_cards[:3]
+
+        # 取第一个报告的时间展示（简单起见）
+        first_entry = date_groups[date][0]
+        time_str = first_entry['time']
+        formatted_time = f"{time_str[:2]}:{time_str[2:4]}:{time_str[4:]}"
+        total_count = len(all_cards)
 
         day_html = f'<div class="day-group">\n'
         day_html += f'  <div class="day-header">{date}</div>\n'
-        day_html += f'  <div class="day-meta">{entry["time"][:2]}:{entry["time"][2:4]}:{entry["time"][4:]} · {len(cards)} 条分析</div>\n'
+        day_html += f'  <div class="day-meta">{formatted_time} · 共 {total_count} 条分析（含新闻/论文）</div>\n'
 
         for card in top3:
             score = card.get('score', '—')
@@ -81,11 +113,17 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
             summary = card.get('summary', '')
             chapter = card.get('chapter', '')
             draft_badge = ' ✍️' if card.get('has_draft') else ''
+            # 可选：显示类型徽章
+            type_badge = ''
+            if card.get('type') == 'papers':
+                type_badge = ' <span style="font-size:0.55rem; background:var(--accent-dim); padding:2px 6px; border-radius:2px;">📄 论文</span>'
+            elif card.get('type') == 'news':
+                type_badge = ' <span style="font-size:0.55rem; background:var(--accent3-dim); padding:2px 6px; border-radius:2px;">📰 新闻</span>'
 
             day_html += f'''
   <div class="card">
     <div class="card-header">
-      <div class="card-title">{title}{draft_badge}</div>
+      <div class="card-title">{title}{draft_badge}{type_badge}</div>
       <div class="card-score">{score}<span>/10</span></div>
     </div>
     <div class="card-meta">
@@ -93,7 +131,7 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
       {'<a href="' + link + '" target="_blank">↗ 原文</a>' if link else ''}
     </div>
     <div class="card-body">{summary[:200]}</div>
-    <div class="card-link"><a href="{entry['file']}">查看完整报告 →</a></div>
+    <div class="card-link"><a href="{first_entry['file']}">查看完整报告 →</a></div>
   </div>\n'''
         day_html += '</div>\n'
         day_sections.append(day_html)
@@ -101,7 +139,7 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
     total_reports = sum(len(v) for v in date_groups.values())
     first_date = sorted_dates[0] if sorted_dates else '—'
 
-    # 使用 string.Template，占位符为 $total_reports, $first_date, $day_sections
+    # 模板（使用 string.Template 避免与 CSS 花括号冲突）
     template_str = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -420,7 +458,7 @@ def generate_index(reports_pattern: str = "reports/news_report_multi_*.html"):
 
     output_path = Path('reports/index.html')
     output_path.write_text(final_html, encoding='utf-8')
-    print(f'✅ Archive index generated with {total_reports} reports (navigation bar style, light mode default)')
+    print(f'✅ Archive index generated with {total_reports} reports (news + papers merged)')
 
 if __name__ == '__main__':
     generate_index()
