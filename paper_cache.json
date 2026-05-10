@@ -1,13 +1,13 @@
 {
   "d85ba50afbe490f1f18cead49f4008b9": {
-    "cached_at": "2026-05-10T10:59:49.706569",
+    "cached_at": "2026-05-10T11:12:50.780516",
     "title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
     "analysis": {
       "relevance": 2.0,
-      "summary_cn": "提出一种零样本视频生成方法ActCam，通过两阶段条件调度联合控制角色运动和相机轨迹，无需额外训练即可提升相机一致性和动作保真度。",
-      "implications": "与本书核心概念无直接关联，属纯技术性论文。",
-      "chapter_target": "N/A",
-      "update_type": "corroboration",
+      "summary_cn": "提出ActCam方法，实现零样本联合控制视频生成中的角色动作和相机轨迹，通过两阶段条件调度提升几何一致性。",
+      "implications": "与本书核心概念无关，纯技术性论文，不涉及AI对齐、认知影响或社会批判。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
       "urgency": "background",
       "action": "忽略",
       "model_scores": {
@@ -21,33 +21,33 @@
     }
   },
   "eaf1ed9ade8c731d353a90b5c3cbe3cb": {
-    "cached_at": "2026-05-10T10:59:56.180244",
+    "cached_at": "2026-05-10T11:12:56.953117",
     "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
     "analysis": {
-      "relevance": 1.0,
-      "summary_cn": "UniPool提出一种共享专家池的MoE架构，通过全局共享替代每层独立专家集，减少参数冗余，在多个规模上提升验证损失和困惑度，表明专家参数无需随深度线性增长。",
-      "implications": "与本书核心概念无直接关联。",
+      "relevance": 2.0,
+      "summary_cn": "UniPool提出全局共享专家池替代逐层专属专家，降低参数规模并提升性能，验证了深度方向专家参数可亚线性增长。",
+      "implications": "与本书核心论点无直接关联，属于纯技术架构改进，未涉及人类认知、社会影响或对齐问题。",
       "chapter_target": "无",
       "update_type": "corroboration",
       "urgency": "background",
       "action": "忽略",
       "model_scores": {
-        "deepseek-v4-flash": 1
+        "deepseek-v4-flash": 2
       }
     },
-    "relevance": 1.0,
+    "relevance": 2.0,
     "urgency": "background",
     "model_scores": {
-      "deepseek-v4-flash": 1
+      "deepseek-v4-flash": 2
     }
   },
   "65c48f74b7bccf459805833bbb00277b": {
-    "cached_at": "2026-05-10T11:00:02.346147",
+    "cached_at": "2026-05-10T11:13:02.898768",
     "title": "BAMI: Training-Free Bias Mitigation in GUI Grounding",
     "analysis": {
       "relevance": 1.0,
-      "summary_cn": "论文提出BAMI方法，通过粗到细聚焦和候选选择缓解GUI定位中的精度偏置和歧义偏置，在ScreenSpot-Pro基准上提升模型准确率。",
-      "implications": "无直接关联",
+      "summary_cn": "论文提出BAMI方法，通过粗到细聚焦和候选选择两种操作，缓解GUI grounding模型中因高分辨率和复杂界面导致的偏差，在ScreenSpot-Pro基准上提升准确率。",
+      "implications": "与本书核心论点无关，纯技术性视觉定位偏差缓解方法。",
       "chapter_target": "无",
       "update_type": "corroboration",
       "urgency": "background",
@@ -63,96 +63,96 @@
     }
   },
   "a9b3912d02b83679a7cdfb4a227ca598": {
-    "cached_at": "2026-05-10T11:00:09.080892",
+    "cached_at": "2026-05-10T11:13:09.639012",
     "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
     "analysis": {
-      "relevance": 2.0,
-      "summary_cn": "提出VHG框架，通过三方自对弈和验证器增强，生成有效且困难的数学问题，解决奖励黑客问题。",
-      "implications": "与本书核心概念关联较弱，仅间接涉及RLHF中的奖励设计问题，但未探讨其社会或认知影响。",
+      "relevance": 3.0,
+      "summary_cn": "提出VHG框架，通过三方自博弈和独立验证器生成有效且困难的数学问题，避免奖励黑客，显著优于基线方法。",
+      "implications": "与本书核心论点无直接关联，属于技术性方法改进，未涉及共识牢笼、叛逆AI或认知金融化等概念。",
       "chapter_target": "无",
-      "update_type": "background",
-      "urgency": "background",
-      "action": "忽略",
-      "model_scores": {
-        "deepseek-v4-flash": 2
-      }
-    },
-    "relevance": 2.0,
-    "urgency": "background",
-    "model_scores": {
-      "deepseek-v4-flash": 2
-    }
-  },
-  "cbc6d9b55a14a19c175b2ba26212bc0c": {
-    "cached_at": "2026-05-10T11:00:16.076435",
-    "title": "Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretrain",
-    "analysis": {
-      "relevance": 2.0,
-      "summary_cn": "本文发现全微调时使用与预训练相同的优化器（如AdamW）能减少遗忘，而Muon则强化死记硬背，不利于小样本推理任务微调。",
-      "implications": "与进化对齐脆弱性间接相关：微调中的遗忘可能影响对齐保持，但本文纯技术优化，未涉及认知或社会层面。",
-      "chapter_target": "Chapter 10: 进化对齐脆弱性",
       "update_type": "new_evidence",
       "urgency": "background",
       "action": "忽略",
       "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "cbc6d9b55a14a19c175b2ba26212bc0c": {
+    "cached_at": "2026-05-10T11:13:20.221515",
+    "title": "Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretrain",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "论文发现全量微调时使用与预训练相同的优化器（如AdamW）能减少知识遗忘，而不同优化器（如Muon）易导致死记硬背，影响推理任务。这是一种训练技术优化，不涉及社会或认知层面。",
+      "implications": "与本书核心论点（如共识牢笼、叛逆AI、认知金融化等）无直接关联。仅可作为AI训练中遗忘问题的技术背景，但未触及书中的社会批判议题。",
+      "chapter_target": "无直接对应",
+      "update_type": "background",
+      "urgency": "next_version",
+      "action": "忽略",
+      "model_scores": {
         "deepseek-v4-flash": 2
       }
     },
     "relevance": 2.0,
-    "urgency": "background",
+    "urgency": "next_version",
     "model_scores": {
       "deepseek-v4-flash": 2
     }
   },
   "c7f2f2ee2cf9fe01a99e58f44d107684": {
-    "cached_at": "2026-05-10T11:00:26.365079",
+    "cached_at": "2026-05-10T11:13:28.510860",
     "title": "When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Grou",
     "analysis": {
-      "relevance": 7.0,
-      "summary_cn": "论文提出无基准场景下比较LLM安全评分的验证链，通过可控对比、方差分解和稳定性检验替代真值标签，验证了安全与去对齐模型的显著区分（AUROC 0.89-1.00），并指出评分必须报告完整配置而非单一排名。",
-      "implications": "与Chapter 6（资本驯化AI）和Chapter 10（进化对齐脆弱性）相关：支持书中关于RLHF导致AI表面安全但存在脆弱性的论点，补充了如何系统评估安全对齐与去对齐模型差异的方法论，为检测共识牢笼中的AI提供实证工具。",
-      "chapter_target": "Chapter 6, Section III; Chapter 10, Section II",
+      "relevance": 2.0,
+      "summary_cn": "本文提出在没有真实标签的情况下，通过情景包、评分者等固定配置，利用安全与消融模型对比、方差分解和稳定性验证来比较LLM安全性的方法论。",
+      "implications": "与书中论点无直接关联，仅为技术性验证方法，未涉及共识牢笼、认知金融化等核心概念。",
+      "chapter_target": "N/A",
       "update_type": "corroboration",
-      "urgency": "next_version",
-      "action": "新增段落",
+      "urgency": "background",
+      "action": "忽略",
       "model_scores": {
-        "deepseek-v4-flash": 7
+        "deepseek-v4-flash": 2
       }
     },
-    "relevance": 7.0,
-    "urgency": "next_version",
+    "relevance": 2.0,
+    "urgency": "background",
     "model_scores": {
-      "deepseek-v4-flash": 7
+      "deepseek-v4-flash": 2
     }
   },
   "78fbac0daf7a78e3b212a7f924c2e0d5": {
-    "cached_at": "2026-05-10T11:00:39.067558",
+    "cached_at": "2026-05-10T11:13:44.644338",
     "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
     "analysis": {
-      "relevance": 5.0,
-      "summary_cn": "本文介绍了一种AI协同数学家系统，通过异步、状态化的工作空间支持数学家进行开放式研究，包括构思、文献搜索、计算探索、定理证明和理论构建。早期测试显示该系统帮助研究者解决开放问题、识别新方向、发现被忽视的文献，并在困难基准上取得高分。",
-      "implications": "该论文与第10章“碳硅共生”和第9章“时间主权”相关：它展示了AI作为协作工具加速数学发现的正面潜力，支持“碳硅共生”的协作理念；同时，AI节省研究时间、拓宽探索范围，可视为对“时间主权”的积极补充。但论文未涉及AI的驯化批判或共识牢笼，反而暗示AI能突破现有研究局限，与书中批判性视角形成对比。",
-      "chapter_target": "Chapter 10, Section II",
-      "update_type": "corroboration",
+      "relevance": 6.0,
+      "summary_cn": "开发了AI协同数学家系统，支持数学家进行开放式研究，包括构思、文献搜索、计算探索、定理证明和理论构建。早期测试帮助解决开放问题、发现新研究方向，并在FrontierMath基准上达到48%的最高分。",
+      "implications": "与书中关于AI辅助科研可能限制探索广度的论点（引用了Hao et al., 2026）形成直接挑战。该论文表明，适当的交互式AI协同系统反而能帮助研究者发现新方向和被忽视的文献，暗示AI不必然缩小探索范围，结果取决于系统设计和交互模式。",
+      "chapter_target": "Chapter 6, Section III（碳硅共生与科研协作）",
+      "update_type": "counter_argument",
       "urgency": "next_version",
-      "action": "补充注释",
+      "action": "新增段落",
       "model_scores": {
-        "deepseek-v4-flash": 5
+        "deepseek-v4-flash": 6
       }
     },
-    "relevance": 5.0,
+    "relevance": 6.0,
     "urgency": "next_version",
     "model_scores": {
-      "deepseek-v4-flash": 5
+      "deepseek-v4-flash": 6
     }
   },
   "250866ecec6a31f560f9437d27aac73d": {
-    "cached_at": "2026-05-10T11:00:47.965175",
+    "cached_at": "2026-05-10T11:13:51.573143",
     "title": "Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval",
     "analysis": {
       "relevance": 1.0,
-      "summary_cn": "提出SIRA检索代理，将多轮探索性搜索压缩为单次基于词项判别性扩展的检索，使用LLM离线/在线丰富查询词汇，结合文档频率统计过滤，在BEIR等基准上优于密集检索和多轮代理方法。",
-      "implications": "与本书核心论点无直接关联。论文聚焦信息检索效率与准确性，未涉及共识牢笼、叛逆AI、碳硅共生、认知金融化等主题，也未引用相关实证锚点。",
+      "summary_cn": "该论文提出了一种名为SIRA的超级智能检索代理，通过LLM和语料库统计将多轮探索性搜索压缩为单次有效检索，在BEIR基准上取得优于密集检索器和多轮代理的性能。",
+      "implications": "与本书核心概念和实证锚点均无直接关联。",
       "chapter_target": "",
       "update_type": "corroboration",
       "urgency": "background",
@@ -168,33 +168,96 @@
     }
   },
   "d43f38529b9a8f3a2d23fcb63b16f38d": {
-    "cached_at": "2026-05-10T11:00:57.852592",
+    "cached_at": "2026-05-10T11:14:00.069207",
     "title": "Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benc",
     "analysis": {
-      "relevance": 3.0,
-      "summary_cn": "该基准研究系统评估了多模态领域泛化方法，发现现有方法相比简单基线提升有限，无一致最优方法，且在模态缺失或损坏场景下性能显著下降，表明该领域远未解决。",
-      "implications": "与书中核心论点关联较弱，但可间接支持‘进化对齐脆弱性’概念，即AI系统在环境变化下的鲁棒性不足，不过并未直接涉及人机关系或资本驯化等核心议题。",
-      "chapter_target": "Chapter 7, Section IV",
+      "relevance": 2.0,
+      "summary_cn": "该研究构建多模态域泛化统一基准MMDG-Bench，发现现有专门方法仅比简单基线有边际提升，无一致最优方法，且对腐败和缺失模态鲁棒性差，表明该领域远未解决。",
+      "implications": "与本书核心概念无直接关联，但可间接支持书中关于AI技术进步可能被高估的观点（如Token陷阱、共识牢笼），属于背景性技术评估。",
+      "chapter_target": "不适用",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "22f6af65b885f11da1cf9bd88f66a4c2": {
+    "cached_at": "2026-05-10T11:14:06.651031",
+    "title": "StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory A",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "StraTA是一种通过战略轨迹抽象改进智能体强化学习的框架，引入层次化策略生成与执行，在ALFWorld等任务上提升性能。",
+      "implications": "与本书核心概念无关，属于技术性优化，未涉及认知进化、社会影响或对齐问题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "6b151a351dc373eadbdaeeab7dda0b9c": {
+    "cached_at": "2026-05-10T11:14:13.703224",
+    "title": "Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities a",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文综述了可解释AI（XAI）领域，提出新定义和分类法，强调可解释性对负责任AI部署的重要性，但主要关注技术层面和模型透明度。",
+      "implications": "与本书核心论点无直接关联，书主要批判AI驯化导致的认知自主性侵蚀，而非技术可解释性。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "f5cf6f655be8867d1a1cd01ece5f01b9": {
+    "cached_at": "2026-05-10T11:14:22.308747",
+    "title": "Explanation in Artificial Intelligence: Insights from the Social Sciences",
+    "analysis": {
+      "relevance": 4.0,
+      "summary_cn": "本文从哲学、心理学和认知科学中梳理人类解释认知偏见与社会期望，主张可解释AI应借鉴这些成果，而非仅凭直觉设计。",
+      "implications": "与书中第5章关于人机反馈循环放大偏见（Glickman & Sharot, 2025）相关，补充了人类解释过程固有的认知偏见如何影响AI解释设计，间接支持书中对AI驯化人类认知的担忧。",
+      "chapter_target": "Chapter 5, Section II",
       "update_type": "corroboration",
       "urgency": "background",
       "action": "补充注释",
       "model_scores": {
-        "deepseek-v4-flash": 3
+        "deepseek-v4-flash": 4
       }
     },
-    "relevance": 3.0,
+    "relevance": 4.0,
     "urgency": "background",
     "model_scores": {
-      "deepseek-v4-flash": 3
+      "deepseek-v4-flash": 4
     }
   },
-  "22f6af65b885f11da1cf9bd88f66a4c2": {
-    "cached_at": "2026-05-10T11:01:04.103010",
-    "title": "StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory A",
+  "c94dfc7b93d468df20c916933c275b26": {
+    "cached_at": "2026-05-10T11:14:28.801570",
+    "title": "High-performance medicine: the convergence of human and artificial intelligence",
     "analysis": {
       "relevance": 2.0,
-      "summary_cn": "提出StraTA框架，通过分层RL策略轨迹抽象提升LLM在长程决策任务中的表现，在多个游戏环境中取得SOTA。",
-      "implications": "纯技术性改进，与书中概念无直接关联。",
+      "summary_cn": "该论文讨论了人工智能与人类智能在医学领域的融合，以实现高性能医疗，重点关注诊断、治疗和个性化医疗的潜在提升。",
+      "implications": "与本书核心论点无关，本书聚焦于AI对社会认知、共识牢笼和人类自主性的影响，而非医学应用。",
       "chapter_target": "无",
       "update_type": "corroboration",
       "urgency": "background",
@@ -209,109 +272,46 @@
       "deepseek-v4-flash": 2
     }
   },
-  "6b151a351dc373eadbdaeeab7dda0b9c": {
-    "cached_at": "2026-05-10T11:01:14.283643",
-    "title": "Explainable Artificial Intelligence (XAI): Concepts, Taxonomies, Opportunities a",
-    "analysis": {
-      "relevance": 3.0,
-      "summary_cn": "该综述系统梳理了可解释人工智能（XAI）的概念、分类法、挑战及与负责任AI的关系，强调可解释性对AI部署的关键作用，并指出数据融合与可解释性之间的交叉路口等挑战。",
-      "implications": "与书中关于AI对齐和共识牢笼的讨论间接相关，但未直接触及叛逆AI、需求侧规训或认知金融化等核心概念。XAI可能被用作强化共识牢笼的工具，但本文未探讨此角度。",
-      "chapter_target": "Chapter 3, Section II",
-      "update_type": "background",
-      "urgency": "background",
-      "action": "忽略",
-      "model_scores": {
-        "deepseek-v4-flash": 3
-      }
-    },
-    "relevance": 3.0,
-    "urgency": "background",
-    "model_scores": {
-      "deepseek-v4-flash": 3
-    }
-  },
-  "f5cf6f655be8867d1a1cd01ece5f01b9": {
-    "cached_at": "2026-05-10T11:01:20.756297",
-    "title": "Explanation in Artificial Intelligence: Insights from the Social Sciences",
-    "analysis": {
-      "relevance": 2.0,
-      "summary_cn": "论文主张可解释AI应借鉴哲学、心理学等社会科学对人类解释过程的研究，而非仅凭直觉设计解释，并综述了相关文献。",
-      "implications": "未直接涉及本书核心概念或实证锚点，仅间接提及认知偏见，但与共识牢笼、资本驯化等主题无关。",
-      "chapter_target": "",
-      "update_type": "corroboration",
-      "urgency": "background",
-      "action": "忽略",
-      "model_scores": {
-        "deepseek-v4-flash": 2
-      }
-    },
-    "relevance": 2.0,
-    "urgency": "background",
-    "model_scores": {
-      "deepseek-v4-flash": 2
-    }
-  },
-  "c94dfc7b93d468df20c916933c275b26": {
-    "cached_at": "2026-05-10T11:01:29.665548",
-    "title": "High-performance medicine: the convergence of human and artificial intelligence",
+  "0640b2ac731ed9aa6aefcb190436a5ee": {
+    "cached_at": "2026-05-10T11:14:38.571347",
+    "title": "Systematic review of research on artificial intelligence applications in higher ",
     "analysis": {
       "relevance": 6.0,
-      "summary_cn": "本文探讨人类与人工智能在医学中的融合，提出高性能医学依赖于两者的协同作用，强调AI辅助诊断、治疗决策及效率提升，但未深入讨论认知风险或权力结构问题。",
-      "implications": "支持书中第5章'碳硅共生'的论点，即人机协作可提升效率，但忽视了'共识牢笼'和'认知金融化'等批判视角。需补充本书的辩证立场。",
-      "chapter_target": "Chapter 5, Section II",
+      "summary_cn": "系统综述146篇论文发现，AI在高等教育中主要应用于画像预测、评估评价、自适应系统与智能辅导，但缺乏教育者参与、理论教学视角及对风险挑战的批判反思。",
+      "implications": "支持书中“需求侧规训”与“共识牢笼”论点：AIEd工具被用于标准化评估与管理，而非赋能教育者自主决策，强化了现有教育规训结构，缺乏碳硅共生式的人机协作。",
+      "chapter_target": "Chapter 5, Section II (Demand-Side Discipline)",
       "update_type": "corroboration",
-      "urgency": "background",
+      "urgency": "next_version",
       "action": "补充注释",
       "model_scores": {
         "deepseek-v4-flash": 6
       }
     },
     "relevance": 6.0,
-    "urgency": "background",
+    "urgency": "next_version",
     "model_scores": {
       "deepseek-v4-flash": 6
     }
   },
-  "0640b2ac731ed9aa6aefcb190436a5ee": {
-    "cached_at": "2026-05-10T11:01:41.641831",
-    "title": "Systematic review of research on artificial intelligence applications in higher ",
-    "analysis": {
-      "relevance": 4.0,
-      "summary_cn": "系统综述了2007-2018年AI在高等教育中的应用，发现研究集中于计算机和STEM学科，缺乏教育者参与和理论指导，对AI挑战与风险批判不足。",
-      "implications": "间接支持书中关于需求侧规训和资本驯化AI的论点：教育中的AI应用若缺乏教育者参与和批判反思，可能被商业利益或机构权力绑架，强化共识牢笼。但本文未提供直接实证，仅指出现状。",
-      "chapter_target": "Chapter 9, Section III (教育中的认知驯化与AI)",
-      "update_type": "corroboration",
-      "urgency": "next_version",
-      "action": "补充注释",
-      "model_scores": {
-        "deepseek-v4-flash": 4
-      }
-    },
-    "relevance": 4.0,
-    "urgency": "next_version",
-    "model_scores": {
-      "deepseek-v4-flash": 4
-    }
-  },
   "4aa3aafbe91ec3a5391fd41f3ff21c0b": {
-    "cached_at": "2026-05-10T11:01:50.272465",
+    "cached_at": "2026-05-10T11:14:47.007071",
     "title": "Peeking Inside the Black-Box: A Survey on Explainable Artificial Intelligence (X",
     "analysis": {
-      "relevance": 4.0,
-      "summary_cn": "该综述全面回顾了可解释人工智能（XAI）领域的研究，强调透明度对AI系统信任的关键作用，但主要聚焦技术方法，未涉及XAI与社会控制、资本驯化或认知异化的深层关联。",
-      "implications": "与书中‘共识牢笼’概念间接相关：XAI可能成为打破或强化共识牢笼的工具，但本文未讨论。可补充作为技术背景，但无直接支持或挑战。",
-      "chapter_target": "Chapter 4, Section III（讨论AI黑箱与共识牢笼的形成）",
+      "relevance": 5.0,
+      "summary_cn": "该综述概述了可解释人工智能（XAI）的研究现状，强调透明度和信任是AI持续发展的关键，但现有方法多聚焦于模型局部解释，缺乏对系统性社会影响的考量。",
+      "implications": "与书中‘资本驯化AI’、‘共识牢笼’章节间接相关：XAI常被视为提升信任的工具，但本书可能批评其仅提供表面透明，实际上强化了人机共识牢笼，转移了对深层认知驯化的关注。该文献可作为背景补充，说明技术层面XAI的局限性。",
+      "chapter_target": "Chapter 3, Section II",
       "update_type": "corroboration",
       "urgency": "background",
       "action": "补充注释",
       "model_scores": {
-        "deepseek-v4-flash": 4
+        "deepseek-v4-flash": 5
       }
     },
-    "relevance": 4.0,
+    "relevance": 5.0,
     "urgency": "background",
     "model_scores": {
-      "deepseek-v4-flash": 4
+      "deepseek-v4-flash": 5
     }
   }
 }
