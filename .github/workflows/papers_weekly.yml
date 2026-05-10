@@ -25,14 +25,12 @@ jobs:
           pip install --upgrade pip
           pip install -r requirements.txt
 
-      # --- 先拉取远程最新，避免冲突 ---
       - name: 同步远程仓库
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git pull --rebase --autostash origin main
 
-      # --- 运行核心任务 ---
       - name: 运行论文雷达
         env:
           DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
@@ -40,19 +38,14 @@ jobs:
         run: python scrape_and_analyze.py --papers
 
       - name: 生成存档索引页
-        run: |
-          # 找到刚刚生成的论文报告文件名（按时间戳，仅限今天）
-          LATEST_PAPER=$(ls -t reports/papers_report_multi_$(date +%Y-%m-%d)_*.html 2>/dev/null | head -1)
-          python generate_archive.py --latest "$LATEST_PAPER"
+        run: python generate_archive.py
 
-      # --- 提交新生成的文件（不再 reset）---
       - name: 提交报告、缓存与索引
         run: |
           git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json reports/index.html
           git commit -m "📚 Add weekly paper report, cache, and index" || true
           git push origin main
 
-      # --- 部署到 GitHub Pages ---
       - name: 部署到 GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
@@ -69,4 +62,6 @@ jobs:
           DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
           DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
           REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
-        run: python notify_dingtalk.py --type papers
+        run: |
+          LATEST_PAPER_MD=$(ls -t reports/papers_report_multi_$(date +%Y-%m-%d)_*.md | head -1)
+          python notify_dingtalk.py --file "$LATEST_PAPER_MD"
