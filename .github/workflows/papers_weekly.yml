@@ -40,7 +40,10 @@ jobs:
         run: python scrape_and_analyze.py --papers
 
       - name: 生成存档索引页
-        run: python generate_archive.py
+        run: |
+          # 找到刚刚生成的论文报告文件名（按时间戳，仅限今天）
+          LATEST_PAPER=$(ls -t reports/papers_report_multi_$(date +%Y-%m-%d)_*.html 2>/dev/null | head -1)
+          python generate_archive.py --latest "$LATEST_PAPER"
 
       # --- 提交新生成的文件（不再 reset）---
       - name: 提交报告、缓存与索引
