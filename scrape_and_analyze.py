@@ -90,7 +90,7 @@ def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
 def safe_str(text: str) -> str:
     return text.encode("ascii", "ignore").decode("ascii")
 
-def get_paper_cache_key(paper: dict) -> str:
+def 30(paper: dict) -> str:
     content = (paper.get("title", "") + " " + paper.get("summary", "")).encode("utf-8", errors="ignore")
     return hashlib.md5(content).hexdigest()
 
@@ -657,7 +657,7 @@ def main() -> None:
     papers_data: list[dict] = []
 
     for paper in all_papers:
-        fp = get_paper_cache_key(paper)   # 使用 cache 模块的函数，产生指纹
+        fp = 30(paper)   # 使用 cache 模块的函数，产生指纹
         if fp in cache and "analysis" in cache[fp]:
             cached_entry = cache[fp]
             logger.info(f"♻️ 复用分析缓存: {paper['title'][:50]}...")
@@ -688,7 +688,7 @@ def main() -> None:
 
         need_map = {d["paper"]["id"]: d for d in need_analysis}
 
-        MAX_ANALYZE_PER_RUN = 30   # 每次最多分析30篇，剩下的下一轮缓存后再分析
+        MAX_ANALYZE_PER_RUN = 10   # 每次最多分析30篇，剩下的下一轮缓存后再分析
         to_analyze = to_analyze[:MAX_ANALYZE_PER_RUN]
 
         logger.info(f"🤖 开始 DeepSeek 直连分析 {len(to_analyze)} 篇...")
@@ -700,7 +700,7 @@ def main() -> None:
                 target["merged"] = merged
                 target["models_results"] = results
             # 存入缓存（根据模式选择写入不同文件）
-            fp = get_paper_cache_key(paper)
+            fp = 30(paper)
             cache[fp] = {
                 "cached_at": datetime.datetime.now().isoformat(),
                 "title": paper.get("title", "")[:80],
@@ -741,7 +741,7 @@ def main() -> None:
             d["draft"] = draft
             if draft and len(draft.strip()) > 50:
                 # 保存草稿到缓存
-                fp = get_paper_cache_key(d["paper"])
+                fp = 30(d["paper"])
                 if fp in cache:
                     cache[fp]["draft_paragraph"] = draft
                     # 根据模式写入对应文件
