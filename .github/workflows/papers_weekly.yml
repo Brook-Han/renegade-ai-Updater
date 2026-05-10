@@ -51,8 +51,9 @@ jobs:
           git reset --hard HEAD
           git clean -fd -e reports
           git pull --rebase --autostash origin main
+          git add reports/papers_*.md reports/papers_*.html reports/paper_cache.json 2>/dev/null || true
           git add reports/papers_*.md reports/papers_*.html 2>/dev/null || true
-          git commit -m "📚 Add weekly paper report" || true
+          git commit -m "📚 Add weekly paper report and cache" || true
           git push origin main
 
       - name: 部署到 GitHub Pages (live 分支)
