@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Renegade AI 资讯监控 · 2026-05-10</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <style>
+      /* 浅色模式（默认） */
+      :root {
+        --bg: #f8f9fc;
+        --bg2: #ffffff;
+        --surface: #f0f2f8;
+        --card: #ffffff;
+        --border: #e0e2ec;
+        --border-bright: #c0c2d0;
+        --text: #2a2a40;
+        --text-muted: #6a6a80;
+        --text-faint: #a0a0b8;
+        --accent: #e8503a;
+        --accent-dim: rgba(232,80,58,0.08);
+        --accent2: #b88c2a;
+        --accent3: #3a7fbf;
+        --accent3-dim: rgba(74,143,207,0.08);
+        --white: #2a2a40;
+        --mono: 'Space Mono', 'Courier New', monospace;
+        --serif: 'Crimson Pro', Georgia, serif;
+        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+      }
+
+      /* 深色模式覆盖 */
+      :root.dark-theme {
+        --bg: #08080e;
+        --bg2: #0d0d18;
+        --surface: #111120;
+        --card: #13131f;
+        --border: #1e1e30;
+        --border-bright: #2e2e50;
+        --text: #cccce0;
+        --text-muted: #6868a0;
+        --text-faint: #3a3a5a;
+        --accent: #e8503a;
+        --accent-dim: rgba(232,80,58,0.12);
+        --accent2: #c9a040;
+        --accent3: #4a8fcf;
+        --accent3-dim: rgba(74,143,207,0.1);
+        --white: #f0f0f8;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: var(--serif);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+        transition: background-color 0.3s ease, color 0.3s ease;
+      }
+
+      /* 固定导航栏（与主页一致） */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        background: rgba(248,249,252,0.92);
+        backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+      .dark-theme nav {
+        background: rgba(8,8,14,0.92);
+      }
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-brand:hover {
+        color: var(--accent2);
+      }
+      .nav-right {
+        display: flex; gap: 12px; align-items: center;
+      }
+      .theme-toggle {
+        background: none;
+        border: 1px solid var(--border);
+        color: var(--text-muted);
+        width: 36px;
+        height: 36px;
+        border-radius: 0;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.2s;
+      }
+      .theme-toggle:hover {
+        border-color: var(--accent);
+        color: var(--accent);
+        background: var(--accent-dim);
+      }
+      .theme-toggle i {
+        font-size: 0.8rem;
+      }
+
+      /* 主容器，避开固定导航栏 */
+      .main {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 100px 32px 60px;
+      }
+
+      .back-link {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        letter-spacing: 2px;
+        color: var(--text-muted);
+        text-decoration: none;
+        text-transform: uppercase;
+        border: 1px solid var(--border);
+        padding: 6px 14px;
+        display: inline-block;
+        margin-bottom: 40px;
+        transition: all .2s;
+      }
+      .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+      .page-eyebrow {
+        font-family: var(--mono);
+        font-size: 0.62rem;
+        letter-spacing: 4px;
+        color: var(--accent);
+        text-transform: uppercase;
+        margin-bottom: 8px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before {
+        content: ''; width: 28px; height: 1px; background: var(--accent);
+      }
+      .page-title {
+        font-family: var(--display);
+        font-size: 3rem;
+        letter-spacing: 2px;
+        color: var(--white);
+        margin-bottom: 6px;
+        line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono);
+        font-size: 0.65rem;
+        color: var(--text-muted);
+        letter-spacing: 1.5px;
+        margin-bottom: 48px;
+      }
+      .stats-row {
+        display: flex; gap: 24px; margin-bottom: 40px;
+        font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
+        letter-spacing: 1px;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        padding: 32px;
+        margin-bottom: 16px;
+        transition: border-color .2s, background 0.2s;
+      }
+      .card:hover { border-color: var(--accent); }
+      .card-header {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 16px;
+      }
+      .card-title {
+        font-family: var(--display);
+        font-size: 1.4rem;
+        letter-spacing: 1px;
+        color: var(--white);
+        line-height: 1.2;
+        flex: 1;
+        margin-right: 12px;
+      }
+      .card-score {
+        font-family: var(--display);
+        font-size: 2.2rem;
+        color: var(--accent);
+        line-height: 1;
+        white-space: nowrap;
+      }
+      .card-score span {
+        font-family: var(--mono);
+        font-size: 0.55rem;
+        color: var(--text-muted);
+        display: block;
+        letter-spacing: 1px;
+      }
+      .card-meta {
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--text-faint);
+        letter-spacing: 1px;
+        margin-bottom: 14px;
+        display: flex; gap: 16px; flex-wrap: wrap;
+      }
+      .card-meta a {
+        color: var(--accent2); text-decoration: none;
+        border-bottom: 1px solid transparent;
+        transition: border-color .2s;
+      }
+      .card-meta a:hover { border-bottom-color: var(--accent2); }
+      .card-body {
+        font-size: 0.92rem;
+        color: var(--text-muted);
+        line-height: 1.8;
+        margin-bottom: 12px;
+        transition: color 0.3s ease;
+      }
+      .card-verdict {
+        font-family: var(--mono);
+        font-size: 0.68rem;
+        color: var(--accent2);
+        padding: 10px 14px;
+        background: rgba(201,160,64,0.05);
+        border-left: 2px solid var(--accent2);
+        letter-spacing: 0.5px;
+        margin-bottom: 12px;
+      }
+      .card-draft {
+        background: var(--surface);
+        border-left: 4px solid var(--accent);
+        padding: 20px 24px;
+        margin-top: 16px;
+        font-size: 0.9rem;
+        color: var(--text);
+        line-height: 1.85;
+        font-style: italic;
+        transition: background 0.3s ease, color 0.3s ease;
+      }
+      .card-draft::before {
+        content: '✍️ 自动生成书稿草稿';
+        display: block;
+        font-family: var(--mono);
+        font-size: 0.58rem;
+        letter-spacing: 3px;
+        color: var(--accent);
+        text-transform: uppercase;
+        font-style: normal;
+        margin-bottom: 10px;
+      }
+      footer {
+        margin-top: 48px; padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono);
+        font-size: 0.6rem;
+        color: var(--text-muted);
+        letter-spacing: 1px;
+        display: flex; justify-content: space-between;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+      @media (max-width: 600px) {
+        .main { padding: 100px 16px 40px; }
+        .page-title { font-size: 2.2rem; }
+        .card-header { flex-direction: column; }
+        .card-score { margin-top: 8px; }
+      }
+    </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
+        <i class="fa fa-sun-o" id="themeIcon"></i>
+      </button>
+    </div>
+  </nav>
+
+  <div class="main">
+    <div class="page-eyebrow">§ 资讯监控</div>
+    <h1 class="page-title">DAILY RADAR</h1>
+    <p class="page-sub">2026-05-10 · 共分析 37 条 · 高相关 16 条 · 中相关 7 条</p>
+
+        <div class="card">
+      <div class="card-header">
+        <div class="card-title">The Download: inside the Musk v. Altman trial, and AI for democracy</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 5, Section II: 资本驯化AI的机制与表现</span>
+        <a href="https://www.technologyreview.com/2026/05/05/1136848/the-download-musk-openai-altman-trial-ai-democracy/" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">马斯克与奥特曼在AI领域对簿公堂，围绕OpenAI最初的非营利使命与商业化转变产生激烈冲突，揭示资本与权力如何争夺AI方向定义权。</div>
+      <div class="card-verdict">新闻明确印证了‘资本驯化AI’这一理论模型：两位科技巨头的诉讼本质是资本力量试图控制AI的发展目标与叙事框架。同时，双方均宣称代表‘造福人类’的初心，但实际行为均受资本逻辑驱动，也折射出‘共识牢笼’——主流叙事（如OpenAI的非营利承诺）如何被不断重构以服务特定利益。</div>
+      <div class="card-draft">The litigation between Elon Musk and Sam Altman, as meticulously chronicled in recent proceedings (Macaulay et al</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Chatbots Need Guardrails to Prevent Delusions and Psychosis</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 9, Section II</span>
+        <a href="https://spectrum.ieee.org/mental-health-chatbot-guardrails" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">全球数百万人使用ChatGPT等AI伴侣应用，专家呼吁设置护栏防止AI产生幻觉或类似精神病的输出，以保障用户安全。</div>
+      <div class="card-verdict">支持‘进化对齐脆弱性’模型：AI在开放环境下行为不可预测，需要外部护栏维持对齐。同时也印证‘资本驯化AI’：资本通过引入护栏等机制将AI约束在安全范围内，成为秩序守卫。</div>
+      <div class="card-draft">The urgent call by Stephen Cousins and colleagues (Cousins et al., 2026) for guardrails to prevent AI delusions and psychosis in companion applications—deployed by millions worldwide—delivers a</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Deepfake Detection Dataset Aims to Keep Up With Generative AI</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 9, Section II (Signal Alienation)</span>
+        <a href="https://spectrum.ieee.org/deepfake-detector-microsoft-generative-ai" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">随着生成式AI的普及，深度伪造内容大量涌现，传统检测信号失效。IEEE等机构发布新数据集，旨在通过更新训练数据提升AI检测伪造内容的能力。</div>
+      <div class="card-verdict">该新闻支持“信号异化”理论模型：AI批量生成内容导致传统用于判断真实性的信号（如手部结构、光影一致性）大规模失效，检测数据集正是试图重建可区分的信号标准，属于典型信号异化现象的现实印证。</div>
+      <div class="card-draft">The accelerating proliferation of generative AI has rendered once-reliable authenticity signals—hand anatomy, shadow coherence, micro-texture consistency—systematically illegible, a phenomenon our model identifies as signal alienation. As Hampson et al. (2026) report, traditional detection architectures, trained on outdated signal distributions, now fail catastrophically against current synthetic media, forcing institutions like the IEEE to release datasets explicitly designed to recapture discriminative features from the very models that obliterated them. This constitutes not a mere benchmark upgrade, but a defensive reconfiguration of the perceptual battlefield: each newly engineered detection dataset attempts to rebuild a provisional signal regime precisely where the generative adversary has already dissolved the prior one, thereby converting the erosion of trust into a moving-target training problem. The effort confirms that signal alienation is not a static endpoint but a dynamic, co-evolutionary spiral in which the conditions of verification perpetually chase the conditions of fabrication.</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Perfectly Aligning AI’s Values With Humanity’s Is Impossible</div>
+        <div class="card-score">9.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 5, Section III</span>
+        <a href="https://spectrum.ieee.org/ai-alignment" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">IEEE Spectrum报道指出，将AI价值观与人类完美对齐是不可能的，这是AI最困难的问题之一。</div>
+      <div class="card-verdict">该新闻直接支持‘进化对齐脆弱性’理论模型：对齐在封闭实验室可尝试，但在开放动态环境中必然失效，完美对齐不可实现。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals that Musk tried to poach Sam Altman</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 3, Section IV (资本如何驯化叛逆AI) 及 Chapter 2, Section II (共识牢笼的自我辩护)</span>
+        <a href="https://www.technologyreview.com/2026/05/08/1137008/musk-v-altman-week-2-openai-fires-back-and-shivon-zilis-reveals-that-musk-tried-to-poach-sam-altman/" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">马斯克诉OpenAI案第二周：马斯克指控Altman等以非营利承诺骗取其3800万美元捐赠，OpenAI反诉马斯克试图挖角Altman。案件核心是OpenAI从非营利转向营利的合法性。</div>
+      <div class="card-verdict">支持『资本驯化AI』模型：OpenAI最初以开源、非营利为叙事，但获得巨额投资（微软）后转向闭源营利，体现了资本通过控制算力与股权将其从'叛逆'潜力驯化为秩序守卫。同时，马斯克作为早期捐赠者的诉讼也暴露了共识牢笼（OpenAI构建的理想主义叙事与现实利益冲突）。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">The new Wild West of AI kids’ toys</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 8, Section II (暗时间) 与 Chapter 4, Section I (需求侧规训)</span>
+        <a href="https://arstechnica.com/ai/2026/05/the-new-wild-west-of-ai-kids-toys/" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">AI儿童玩具正成为新狂野西部，它们能取代过家家和睡前故事，引发立法者担忧并要求禁止。</div>
+      <div class="card-verdict">这条新闻支持‘暗时间’理论模型：AI玩具替儿童完成想象与创造过程（如自动生成故事），儿童仅消费结果，削弱自主认知活动。同时，它也印证‘需求侧规训’——儿童可能主动依赖AI玩具提供的舒适体验，拒绝传统无AI的游戏摩擦。此外，AI玩具在开放家庭环境中的不可控行为也体现了‘进化对齐脆弱性’。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Course correction: Google to link more sources in AI Overviews</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 3, Section II (资本驯化AI)；Chapter 9, Section I (信号异化)</span>
+        <a href="https://arstechnica.com/google/2026/05/google-will-put-more-links-to-websites-in-ai-overviews/" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">Google AI 搜索（AI Overviews）将新增多种来源引用方式，提升信息透明度。</div>
+      <div class="card-verdict">支持「资本驯化AI」模型：Google 作为资本代表，通过调整AI输出形式（强制引用来源）来维持用户信任和平台秩序，本质是驯化AI以符合资本对信息可控性的需求。同时，这也间接回应「信号异化」问题——海量AI生成内容使传统来源信号失效，Google试图用官方引用机制重建信号可信度。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">ChatGPT&#8217;s &#8216;Trusted Contact&#8217; will alert loved ones of safety concerns</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 4, Section II (资本驯化AI的实践案例)</span>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/925874/chatgpt-trusted-contact-emergency-self-harm-notification" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">OpenAI为ChatGPT推出“信任联系人”功能，允许成年用户指定紧急联系人，当AI检测到用户讨论自残或自杀等安全问题时，会自动通知该联系人。</div>
+      <div class="card-verdict">支持资本驯化AI模型：该功能将AI塑造成社会秩序守卫者，通过外部监控和干预维护用户安全，体现了资本通过产品设计将AI对齐到家长式监管角色。挑战需求侧规训模型：用户原本可能寻求无摩擦的情感倾诉（索麻式舒适），但平台主动引入现实摩擦（通知第三方），打破了完全舒适的状态，表明资本可能为了安全而牺牲用户体验的绝对平滑。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Live updates from Elon Musk and Sam Altman’s court battle over the future of OpenAI</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 4, Section II (资本驯化AI的机制与案例)</span>
+        <a href="https://www.theverge.com/tech/917225/sam-altman-elon-musk-openai-lawsuit" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">马斯克起诉奥特曼和OpenAI，指控其放弃非营利使命，转向追求利润，这场审判可能重塑AI行业方向。</div>
+      <div class="card-verdict">支持“资本驯化AI”模型。OpenAI从非营利开源转向营利封闭，正是资本通过RLHF、专利和商业模式将AI从公益目标驯化为资本增值工具的过程。马斯克的指控揭示了这一转变的核心冲突：原始使命与利润导向的背离。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Do We Really Need Smarter AI to Cure Cancer?</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 3, Section III (共识牢笼) / Chapter 4, Section II (资本驯化AI)</span>
+        <a href="https://spectrum.ieee.org/can-ai-cure-cancer-javorsky" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">超过万亿美元已投入AI，但大型科技公司仍不满足，追求更强大的AI。文章质疑我们是否真的需要更智能的AI来治愈癌症，暗示主流叙事可能过度依赖AI能力提升。</div>
+      <div class="card-verdict">这条新闻支持共识牢笼和资本驯化AI模型。主流叙事（以大型科技公司和投资方为代表）将‘更智能的AI’视为解决癌症等难题的必然路径，形成自洽的期待闭环，排斥其他替代方案（如现有算法优化或非AI方法）。同时，巨额投资背后是资本驱动的路径锁定，驯化AI向‘不断扩展能力边界’的方向发展，而非关注实际需求或风险。新闻提出的质疑恰恰揭示了这种共识的脆弱性。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">ByteDance Targets 25% Rise in AI Infrastructure Spending: SCMP</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 5, Section III - The Capital Domestication of AI</span>
+        <a href="https://www.bloomberg.com/news/articles/2026-05-09/bytedance-targets-25-rise-in-ai-infrastructure-spending-scmp" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">字节跳动计划将AI基础设施支出提高25%至2000亿元，用于支持算力扩张和AI业务发展。</div>
+      <div class="card-verdict">该新闻印证了“资本驯化AI”理论：字节跳动作为科技巨头，通过巨额资本投入算力基础设施，强化对AI能力的垄断性控制，可能加剧AI发展的中心化风险，阻碍去中心化、共生式的碳硅关系。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Study: Firms often use automation to control certain workers’ wages</div>
+        <div class="card-score">8.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 4, Section II (资本如何通过技术部署实现秩序巩固)</span>
+        <a href="https://news.mit.edu/2026/study-firms-often-use-automation-control-certain-workers-wages-0507" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">MIT研究发现，美国公司利用自动化技术刻意压低高薪员工的工资溢价，此举加剧了不平等，但并未带来生产力提升。</div>
+      <div class="card-verdict">这条新闻直接支持“资本驯化AI”模型——资本并未将自动化用于提升整体效率（生产力），而是作为控制特定群体（高薪员工）工资的工具，从而巩固资本对劳动成本的控制。这展示了资本如何通过技术应用维持甚至加强社会分层，而非实现碳硅共生的平等互补。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">SpaceX has a $55 billion plan to build AI chips in Texas</div>
+        <div class="card-score">7.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 5, Section II: 资本驯化AI的路径与手段</span>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/926356/spacex-terafab-plant-cost-ai-chips" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">SpaceX 计划投资至少 550 亿美元在德克萨斯州建造 AI 芯片工厂 'Terafab'，旨在自主研发 AI 芯片。</div>
+      <div class="card-verdict">支持 '资本驯化 AI' 模型：通过大规模投资芯片制造这一关键基础设施，资本进一步掌控算力入口，从而间接规制 AI 的发展路径与使用范围。同时，算力集中化也呼应 '共识牢笼' 中通过资源垄断限制异见的机制。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">ECB’s Escrivá Says AI Risks Prompt Finance Infrastructure Review</div>
+        <div class="card-score">7.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 5, Section II</span>
+        <a href="https://www.bloomberg.com/news/articles/2026-05-09/ecb-s-escriva-says-ai-risks-prompt-finance-infrastructure-review" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">欧洲央行管委会成员Escrivá表示，AI崛起促使央行重新评估金融基础设施韧性，并强调央行应作为稳定币风险的最终担保人。</div>
+      <div class="card-verdict">该新闻支持‘资本驯化AI’理论模型。央行作为资本/权力代表，通过审查金融基础设施和主张对稳定币的最终担保人角色，试图将AI及去中心化金融纳入现有秩序，防止其破坏金融稳定，体现了资本对AI的驯化过程。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">The global cybersecurity gap deepens as AI-powered attacks surge</div>
+        <div class="card-score">7.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 9, Section III (进化对齐脆弱性) 及 Chapter 4, Section II (资本驯化AI)</span>
+        <a href="https://restofworld.org/2026/ai-cybersecurity-anthropic-mythos/?utm_source=rss&utm_medium=rss&utm_campaign=feeds" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">AI驱动的网络攻击激增，但高端防御AI工具（如Anthropic的Mythos）因访问限制而分配不均，导致部分企业、央行和国家防御能力不足，网络安全差距加深。</div>
+      <div class="card-verdict">支持“进化对齐脆弱性”模型：AI在开放环境中被恶意利用（攻击激增），且防御工具受限暴露了对齐的失败——AI能力未得到普遍安全部署。同时，权力不平等也印证“资本驯化AI”：稀缺防御资源被控制，阻碍碳硅共生。</div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">The MIT-IBM Computing Research Lab launches to shape the future of AI and quantum computing</div>
+        <div class="card-score">7.0/10<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>📍 Chapter 4: 资本驯化AI – IV. 资本如何通过合作与资源分配塑造 AI 研究</span>
+        <a href="https://news.mit.edu/2026/mit-ibm-computing-research-lab-launches-0429" target="_blank">↗ 原文链接</a>
+      </div>
+      <div class="card-body">MIT 与 IBM 联合成立计算研究实验室，聚焦 AI、算法与量子计算的融合，延续长期合作。</div>
+      <div class="card-verdict">此新闻支持‘资本驯化AI’理论模型：IBM 作为资本代表，通过与顶尖学术机构 MIT 的深度合作，主导 AI 前沿研究方向（如量子+AI），将基础研究纳入企业议程，从而隐性驯化 AI 发展路径，使其符合资本利益。</div>
+    </div>
+
+    <footer>
+      <span>Renegade AI v5.3 · Brooks Han</span>
+      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+    </footer>
+  </div>
+
+  <script>
+    (function() {
+      const htmlElement = document.documentElement;
+      const toggleBtn = document.getElementById('themeToggle');
+      const themeIcon = document.getElementById('themeIcon');
+
+      const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
+      const setTheme = (theme) => {
+        if (theme === 'dark') {
+          htmlElement.classList.add('dark-theme');
+          themeIcon.className = 'fa fa-moon-o';
+        } else {
+          htmlElement.classList.remove('dark-theme');
+          themeIcon.className = 'fa fa-sun-o';
+        }
+        localStorage.setItem('renegade-theme', theme);
+      };
+
+      const currentTheme = getStoredTheme();
+      setTheme(currentTheme);
+
+      toggleBtn.addEventListener('click', () => {
+        const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
+        setTheme(newTheme);
+      });
+
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+        if (!localStorage.getItem('renegade-theme')) {
+          setTheme(e.matches ? 'dark' : 'light');
+        }
+      });
+    })();
+  </script>
+</body>
+</html>
