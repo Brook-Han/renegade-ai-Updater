@@ -35,6 +35,19 @@ jobs:
       # --- 新增：生成索引页 ---
       - name: 生成存档索引页
         run: python generate_archive.py
+      - name: 调试输出 index.html 内容
+        run: |
+         echo "=== index.html 文件大小 ==="
+         wc -c reports/index.html
+         echo "=== 前200行 ==="
+         head -n 200 reports/index.html
+         echo "=== 查找 '2026-05-10' ==="
+         grep -n "2026-05-10" reports/index.html || echo "未找到今天日期"
+         echo "=== 查找 'card' 数量 ==="
+         grep -c "card" reports/index.html || echo "0
+
+
+
 
       # --- 新增：确保 index.html 在根目录，便于部署 ---
       - name: Copy index.html to root for deployment
