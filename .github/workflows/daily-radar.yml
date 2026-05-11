@@ -210,3 +210,10 @@ jobs:
           echo "  - [🏠 聚合主页](https://brook-han.github.io/renegade-ai-Updater/reports/index.html)"
           echo "  - [📰 新闻目录](https://brook-han.github.io/renegade-ai-Updater/reports/news/)"
           echo "  - [🎓 学术目录](https://brook-han.github.io/renegade-ai-Updater/reports/academic/)"
+
+      - name: 钉钉推送
+        env:
+          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
+          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
+          REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
+        run: python dingtalk.py --type news
