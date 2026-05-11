@@ -294,8 +294,11 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
         # 🔗 链接处理
         link_html = f'<a href="{escape(link)}" target="_blank" rel="noopener">↗ 原文</a>' if link and link != '#' else ''
         
-        # ✅ 关键修复：报告链接使用相对路径
-        report_link = card.get('_report_link', main_report_link)
+        # ✅ 关键修复：确保链接相对于 reports/index.html 正确
+        # 如果 _report_link 是 "news/xxx.html"，从 reports/index.html 访问需要 "./news/xxx.html"
+        report_link_raw = card.get('_report_link', main_report_link)
+        # 确保以 ./ 开头，避免浏览器解析错误
+        report_link = f"./{report_link_raw}" if not report_link_raw.startswith(('./', '../', 'http')) else report_link_raw
         
         html += f'''
   <article class="card" data-type="{card['type']}">
