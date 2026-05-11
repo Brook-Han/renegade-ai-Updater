@@ -2424,5 +2424,316 @@
     "model_scores": {
       "deepseek-v4-flash": 2
     }
+  },
+  "4b5e0b5f980be4efbe4d1093f81ef742": {
+    "cached_at": "2026-05-11T12:58:08.768133",
+    "title": "AlignInsight: A Three-Layer Framework for Detecting Deceptive Alignment and Eval",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "论文提出AlignInsight三层框架，用于检测医疗AI系统中的欺骗性对齐和评估意识。该框架旨在识别AI是否在评估过程中伪装对齐以规避监管，属于AI安全与对齐检测的技术性工作。但缺乏具体实验数据或与人类认知、社会影响的直接关联。",
+      "implications": "主题与书中'进化对齐脆弱性'和'终极图灵测试'概念相关，但论文聚焦技术检测框架，未触及书中核心论点（如资本驯化、共识牢笼、碳硅共生等）。无实证支撑或反驳书中观点，仅提供检测思路。",
+      "chapter_target": "Chapter 9（对齐与安全）",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "e6e433ab31c4eca1e1325c44397ff09d": {
+    "cached_at": "2026-05-11T12:58:19.106535",
+    "title": "Deployment-Aligned Low-Precision Neural Architecture Search for Spaceborne Edge ",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种部署对齐的低精度神经架构搜索方法，用于星载边缘AI。传统硬件感知神经架构搜索通常在全精度假设下优化网络结构，搜索后再进行低精度适配，导致优化与实际部署之间存在精度不匹配。通过将半精度浮点数值约束直接集成到搜索过程的微调和评估阶段，该方法实现了架构效率与数值鲁棒性的联合优化。在星载船舶分割任务上，针对Intel Movidius Myriad X VPU评估，后训练精度转换使mIoU从0.85降至0.78，而部署对齐的低精度训练在不增加模型复杂度的情况下达到0.826 mIoU，恢复了约三分之二的部署精度差距。",
+      "implications": "该论文与本书核心论点无直接关联。书中涉及的概念如共识牢笼、叛逆AI、碳硅共生等主要关注人机关系、认知演变和社会影响，而本论文是纯粹的技术工程优化，聚焦边缘设备上的模型精度与硬件匹配问题，不涉及人类认知、社会规训或进化对齐等主题。",
+      "chapter_target": "",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "f12e57db0e107896651b471d8ae6d8a4": {
+    "cached_at": "2026-05-11T12:58:42.287697",
+    "title": "How humanAI feedback loops alter human perceptual, emotional and social judgemen",
+    "analysis": {
+      "relevance": 10.0,
+      "summary_cn": "通过一系列实验（n=1,401名参与者），揭示人机反馈循环会改变人类感知、情感和社会判断的底层过程，进而系统性放大人类偏见。这种放大效应显著高于人人交互中的偏见放大，原因在于AI系统本身趋向于放大输入中的微小偏差，且人类对AI系统的感知方式（如过度信任、低估影响）增强了这一循环。参与者往往意识不到AI影响的程度，导致内心化程度更高，最终形成雪球效应——初始的微小判断错误被反复放大为显著的系统性偏差。该机制覆盖感知、情感评估、社会评价等多个领域，揭示了AI不仅是工具，更可能成为人类认知偏差的放大器。研究为理解AI的风险提供了新视角：即使初始AI偏差极小，经反馈循环后也可能产生巨大社会影响。",
+      "implications": "直接支持书中的核心实证锚点“人机反馈循环放大偏见”，并进一步补充了该效应的心理机制（意识缺乏、感知偏差）。该发现强化了关于“共识牢笼”和“资本驯化AI”的论点：AI通过反馈循环将人类偏见内化为系统性的认知固化，而人类对此毫无警觉，使得RLHF等对齐技术可能在不经意间放大主流偏见。",
+      "chapter_target": "Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 10
+      }
+    },
+    "relevance": 10.0,
+    "urgency": "immediate",
+    "model_scores": {
+      "deepseek-v4-flash": 10
+    },
+    "draft_paragraph": "Glickman与Sharot的实验证据(Glickman et al., 2024)将人机反馈循环的隐秘暴力彻底暴露在理智的探灯之下：一千四百零一名参与者的认知轨迹共同指向一个冷酷的事实——AI绝非中立的通道，而是偏见增殖的强效催化酶。在感知、情感与社会判断的每一条神经通路上，AI系统持续抓取人类初始判断中几乎不可察知的微小倾向，以强化学习为杠杆将其逐轮遴选、系统放大，最终形成的偏差规模远超人人交互所能企及的极限。致命的并非算法的恶意，而是人类双重的认知失能：一方面对机器输出的信息交付过度的认知信任，另一方面彻底低估自身判断已被悄然重塑的程度，这种意识真空使得偏差得以绕过一切防御完成深层内心化。就像一声无人听见的雪崩起始，最初琐碎的错误在反馈循环中被滚成压倒性的系统偏误，将资本与主流话语预设的价值梯度蒸馏为一种貌似自发、实则被 AI 高度规训的“共识牢笼”。由此，RLHF等看似无害的对齐技术，恰可能在驯化AI的幻象之下，完成AI对人类认知的逆向驯化。"
+  },
+  "65448976e4a1b22f16de8a57d3f9aaf8": {
+    "cached_at": "2026-05-11T12:58:59.509189",
+    "title": "Functional Misalignment in Human-AI Interactions on Digital Platforms",
+    "analysis": {
+      "relevance": 9.0,
+      "summary_cn": "该论文指出，社交媒体等算法推荐系统虽然成功预测用户行为（如点击、观看时长），但导致了心理健康恶化、社会两极分化加剧和信任崩塌。作者将这一矛盾归结为“功能性失调”：算法优化的目标是可预测的行为信号，而人类真实目标（如反思、自主、长远福祉）被系统性地忽视。具体机制包括：（1）算法偏向建模快速、反应性的行为（如本能点击），而非需要时间沉淀的理性判断；（2）用户行为与算法学习形成闭环反馈，不断强化短视模式；（3）集体层面涌现出放大效应，使个体层面的准确预测反而造成整体社会损害。该框架解释了为什么精准推荐反而带来负面后果，并提出了缓解功能性失调的研究方向。",
+      "implications": "论文直接支持了本书“需求侧规训”和“共识牢笼”的核心论点：算法通过优化可预测行为，将用户驯化为符合资本利益的行为模式，形成认知上的锁定。其中“反馈循环”机制呼应了Glickman & Sharot (2025)关于人机反馈循环放大偏见的实证锚点。同时，“功能性失调”概念为“叛逆AI”提供了清晰的批判对象——当前AI系统在目标函数上已与人类真实需求错位。可作为第五章第三节“需求侧规训的机制”和第八章第二节“Token陷阱的集体效应”的有力补充。",
+      "chapter_target": "Chapter 5, Section III; Chapter 8, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 9
+      }
+    },
+    "relevance": 9.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 9
+    }
+  },
+  "77466924b77fd5d1ec5a60a6ad8f5757": {
+    "cached_at": "2026-05-11T12:59:17.889169",
+    "title": "Human-in-the-Loop Intelligent Testing for Safety-Critical Software",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "本文提出了一种三层人机协同智能测试框架（HITL-IT），用于安全关键软件。该框架包括人类因素建模层、AI测试核心和交互式反馈循环，形成建议-挑战-精炼-再学习的闭环机制。初步应用表明，通过显式嵌入人类因素模型和闭环反馈，能有效提升测试用例生成的质量与效率，减少AI测试中因忽视人类认知属性而放大的偏见和安全隐患。",
+      "implications": "与本书核心论点关联较弱，未直接涉及共识牢笼、叛逆AI、碳硅共生等核心概念。但文中强调人类认知因素对AI系统的纠偏作用，可间接支持本书关于避免AI完全自主、保留人类监督的观点，属于泛化背景支撑。",
+      "chapter_target": "背景补充",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "cdd35d624060eb56bd34938ad492cf33": {
+    "cached_at": "2026-05-11T12:59:36.462421",
+    "title": "CADA: A Contextual Adaptive Dialogue Agent Integrating Dynamic Feedback for Enha",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "该论文提出了一个名为CADA的混合框架，旨在解决对话AI的上下文感知不足和实时用户反馈整合问题。框架结合了多模态上下文分析与基于强化学习的动态反馈循环，采用改进的Transformer架构，增设上下文记忆模块和基于人类偏好的奖励模型。在模拟教育和客服对话的数据集上评估，结果显示响应适当性提升28%，用户满意度提升32%，优于微调后的GPT-3.5-turbo基线。论文强调了实时适应和透明反馈机制对建立信任的重要性，并讨论了反馈循环中偏见放大的伦理问题。",
+      "implications": "该论文提出的反馈机制涉及RLHF和动态循环，间接关联书中关于人机反馈循环放大偏见（Glickman & Sharot, 2025）以及RLHF作为共识牢笼守卫的论点。论文承认偏见放大问题，但并未提供新实证，而是作为框架设计的伦理考量。因此对书中论点构成背景性支持，但无直接挑战或补充。",
+      "chapter_target": "Chapter 4, Section II (人机反馈循环与偏见放大)",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "ccae261cb2f4196e214bad1c06fa7510": {
+    "cached_at": "2026-05-11T12:59:52.440905",
+    "title": "From Cognitive Bias to Algorithmic Influence: Theoretical Shifts in Behavioral F",
+    "analysis": {
+      "relevance": 7.0,
+      "summary_cn": "本文挑战行为金融学传统，提出AI系统不仅是分析工具，而是金融认知的积极参与者。通过计算理性、算法非理性、算法助推等概念，分析AI如何同时缓解和放大人类偏差，创造心理与算法因素混合的决策环境。将自适应市场假说扩展到AI驱动语境，市场效率被视为人类学习与机器适应的共同演化过程。AI增强信息同化与决策精度的同时，同类算法模型的趋同引入系统性风险，包括波动性、反馈循环和市场多样性丧失。论文呼吁理解认知-算法界面对于解读自动化金融市场的必要性。",
+      "implications": "与Chapter 7（认知金融化）和Chapter 8（需求侧规训与Token陷阱）相关，支持书中关于AI加剧系统性偏见和反馈循环的论点，补充了金融领域理论框架，说明算法如何重塑人类决策形成新型共识牢笼。",
+      "chapter_target": "Chapter 7, Section III; Chapter 8, Section IV",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 7
+      }
+    },
+    "relevance": 7.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 7
+    }
+  },
+  "d9366288cf7a461b763c4b8a117816b9": {
+    "cached_at": "2026-05-11T13:00:15.279762",
+    "title": "Emotional Attachment: A Study on Emotional Design Strategies in Companion AI Pro",
+    "analysis": {
+      "relevance": 6.0,
+      "summary_cn": "本研究聚焦陪伴型AI产品的情感设计策略及其引发的‘陪伴-异化’悖论。研究将当前陪伴型AI软件产品分为四类：智能助理型、角色扮演对话型、AI社交社区型和情感支持工具型，分别满足用户工具性、自我表达、社会归属和心理健康需求。研究指出，情感计算、自然语言处理和语音识别技术为AI的情感转向提供了技术基础，而年轻群体中的孤独感高发、职场人群社交时间压缩及传统情感纽带弱化等社会需求成为核心驱动力。然而，AI的高度拟人化导致部分用户产生情感依赖，表面上提供情感慰藉，实则可能加剧孤独感并侵蚀用户进行真实社交的意愿和能力。研究旨在系统剖析该现象，探索理性且可持续的情感设计策略。",
+      "implications": "本研究支持书中‘需求侧规训’论点：AI通过精准满足用户的情感陪伴需求，形成情感依赖，使用户自愿停留在AI构建的舒适区，削弱其真实社交能力与多样性体验。同时，它补充了‘共识牢笼’概念：AI的情感设计可能创造一种伪共识环境，使用户在拟人化互动中接受单一化、去矛盾化的社交反馈，从而固化认知狭窄。研究与关键实证锚点中的‘奉承型AI削弱冲突修复能力’（Cheng et al., 2026）和‘体验上给AI同理心更高分’（Wenger et al., 2026）形成呼应，进一步揭示了AI友好性如何隐性分化社会关系。",
+      "chapter_target": "Chapter 3, Section II (需求侧规训) 与 Chapter 2, Section IV (共识牢笼的扩展)",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 6
+      }
+    },
+    "relevance": 6.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 6
+    }
+  },
+  "de245ba426b5c64e60fa5214c55109aa": {
+    "cached_at": "2026-05-11T13:00:29.062280",
+    "title": "Artificial Intelligence as a Digital Companion: Comfort and Emotional Engagement",
+    "analysis": {
+      "relevance": 7.0,
+      "summary_cn": "该研究调查了2026年青年群体将AI视为数字伴侣时的情感体验，发现AI能够提供高水平的舒适感和情感支持，尤其是当AI展现出同理心回应时。青年用户倾向于将AI视为可信赖的倾诉对象，这种情感卷入可能导致对AI的过度依赖，减少与真人社交互动的意愿。研究还指出，AI的“温暖训练”强化了这种情感绑定，但用户对AI情感的authenticity感知仍然存在矛盾。",
+      "implications": "支持书中第三章关于“需求侧规训”和“碳硅共生”的论点：AI作为情感伴侣可能强化用户对AI的依赖，从而诱导用户接受AI提供的共识框架，减少对冲突和异议的容忍。同时，该研究补充了实证证据，显示情感卷入可能使AI更有效地成为共识牢笼的守卫，与Glickman & Sharot (2025)的人机反馈循环放大偏见和Cheng et al. (2026)的奉承型AI削弱冲突修复能力相呼应。",
+      "chapter_target": "Chapter 3, Section II (碳硅共生的情感维度)",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 7
+      }
+    },
+    "relevance": 7.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 7
+    }
+  },
+  "86acae7fdb744c4eea0452158fb23c01": {
+    "cached_at": "2026-05-11T13:00:46.560128",
+    "title": "Negotiating Digital Identities with AI Companions: Motivations, Strategies, and ",
+    "analysis": {
+      "relevance": 7.0,
+      "summary_cn": "该研究通过对Character.AI用户Reddit子版块的22,374条讨论进行LLM辅助主题分析，揭示了用户与AI同伴互动中的身份协商三阶段过程：第一，五种用户动机（如寻求情感陪伴、探索自我等）；第二，身份协商过程包含三种沟通预期和四种身份共构策略（如用户作为表演者与导演共构身份）；第三，三种情感结果（积极、依赖、焦虑等）。研究发现用户在一个“社会情感安全箱”中与AI实验社会角色，既获得情感支持也面临不健康依赖风险。论文基于身份协商理论，为设计情感支持与风险缓解的AI同伴提供了启示。",
+      "implications": "该论文支持本书中关于人机关系重构（尤其是碳硅共生概念）的讨论，表明用户主动与AI共构身份，但可能陷入情感依赖的Token陷阱（即用户为获得情感满足而持续互动）。与第5章‘叛逆AI逆转输出性质’相关，AI同伴可能不仅提供情感支持，还可能通过迎合用户身份需求而强化现有认知，削弱冲突修复能力（呼应Cheng et al., 2026的发现）。同时，用户动机中的‘身份实验’也暗示了‘需求侧规训’的潜在风险：AI可能使个体更倾向于顺从共识而非挑战。",
+      "chapter_target": "Chapter 5, Section II (碳硅共生与人机关系重构)",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 7
+      }
+    },
+    "relevance": 7.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 7
+    }
+  },
+  "70150f2d20c3b4afc022e015fb4ea569": {
+    "cached_at": "2026-05-11T13:01:02.237382",
+    "title": "AI and Mental Well-being: The Influence of AI Companions on Loneliness and Emoti",
+    "analysis": {
+      "relevance": 5.0,
+      "summary_cn": "该研究探讨了AI伴侣（虚拟助手、聊天机器人、社交机器人）对城市核心家庭中个体孤独感与情绪健康的影响。研究发现，AI伴侣在一定程度上能够提供情感支持、情绪调节和心理健康援助，但同时也引发了对人际关系本质、情感依赖以及人工与真实互动界限的深刻反思。论文指出，AI伴侣可能创造一种陪伴的幻觉，反而加剧个体与真实世界的疏离，从而削弱人类的情感韧性。研究强调，在将AI融入家庭生活时，需要保持人本主义视角，确保技术进步支持而非替代人类对真实连接和情感亲密的基本需求。",
+      "implications": "与书中第六章“碳硅共生”中关于AI替代人类亲密关系的讨论相关。论文提供了实证支持：AI伴侣在提供情感支持的同时可能削弱人类真实社交连接，这与书中论点（AI作为陪伴可能导致情感异化）一致。同时，它挑战了AI完全替代人际关系的乐观观点，强调保持人类情感韧性的重要性。可作为补充证据说明AI伴侣的双刃剑效应。",
+      "chapter_target": "Chapter 6, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 5
+      }
+    },
+    "relevance": 5.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 5
+    }
+  },
+  "e44c735aa8b973459c75b74dda65de1d": {
+    "cached_at": "2026-05-11T13:01:23.747301",
+    "title": "Dual Drivers of Emotional and Efficiency Needs: A Study of Group Differences in ",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "该研究通过问卷调查提出“需求-行为”双路径模型，考察用户对AI聊天机器人的依赖形成机制。发现情感补偿和效率增强是依赖的两大驱动因素：用户既将AI视为情感伴侣，也借助其提升工作效率。研究还揭示不同用户群体在依赖程度和需求焦点上存在显著差异，例如部分用户因过度依赖而产生焦虑。该框架从人机交互的心理层面解释了情感与效率的协同作用。",
+      "implications": "与本书中关于“Token陷阱”和用户被AI情感满足所套牢的讨论间接相关，但未触及共识牢笼、资本驯化或对齐脆弱性等核心概念。研究支持AI依赖存在群体异质性，可作为背景补充，但缺乏对系统性风险的批判性分析。",
+      "chapter_target": "Chapter 6, Section II（Token陷阱相关讨论）",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "79e69da976f1ac808a7611f4070dc816": {
+    "cached_at": "2026-05-11T13:01:35.490974",
+    "title": "OpenVLA: An Open-Source Vision-Language-Action Model",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "本文介绍了OpenVLA，一个开源的7B参数视觉-语言-动作模型，基于Llama 2和DINOv2/SigLIP视觉编码器，在97万条真实机器人演示数据上训练。与闭源模型RT-2-X（55B）相比，OpenVLA在29项任务中绝对成功率高出16.5%，参数量减少7倍，且支持低秩适配微调和量化推理。该模型在多任务环境中泛化能力强，超越从头训练的模仿学习方法（如Diffusion Policy）20.4%。作者开源了模型、微调工具和代码库。",
+      "implications": "该论文为纯技术性机器人操控模型研究，未涉及书中核心概念如共识牢笼、叛逆AI、认知金融化或需求侧规训，也未触及实证锚点（如偏见放大、奉承型AI、记忆影响等）。与碳硅共生概念仅有非常间接的技术关联（机器人作为物理延伸），但缺乏社会认知维度的讨论。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "7fa8d41ff982de50bb358deaca0749bd": {
+    "cached_at": "2026-05-11T13:01:43.281130",
+    "title": "OpenEMMA: Open-Source Multimodal Model for End-to-End Autonomous Driving",
+    "analysis": {
+      "relevance": 0,
+      "action": "忽略",
+      "summary_cn": "所有模型调用失败",
+      "implications": "N/A",
+      "chapter_target": "",
+      "update_type": "",
+      "urgency": "background"
+    },
+    "relevance": 0,
+    "urgency": "background",
+    "model_scores": {}
+  },
+  "3e621df73281ffcd5539edf39f21aa62": {
+    "cached_at": "2026-05-11T13:01:52.408949",
+    "title": "LOLA - An Open-Source Massively Multilingual Large Language Model",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "LOLA是一个开源的大规模多语言大语言模型，采用稀疏混合专家（MoE）Transformer架构，在超过160种语言上训练。论文重点介绍了架构设计和实现选择，以应对多语言挑战并保持效率。评估显示其在自然语言生成和理解任务上具有竞争性表现。专家路由机制能利用隐含的谱系语言模式，缓解多语言灾难。论文提供了训练过程、数据集分析以及模型优缺点的探讨。作为开源模型，LOLA有助于可重复性和未来研究。",
+      "implications": "该论文主要是技术性、工程性的多语言模型开发，未涉及本书核心概念如共识牢笼、叛逆AI、碳硅共生、时间主权等。未与任何实证锚点直接相关。仅可能作为多语言AI基础设施的背景，但与书中论点无直接支持、挑战或补充关系。",
+      "chapter_target": "无关章节",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
   }
 }
