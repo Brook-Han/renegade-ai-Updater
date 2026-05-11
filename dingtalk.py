@@ -233,7 +233,7 @@ def build_brief(top_items: List[Dict], report_type: str, report_url: str, total:
         summary = it.get("summary", "")
         implications = it.get("implications", "")
         
-        lines.append(f"### {idx}. {title}")
+        lines.append(f"### {title}")
         lines.append(f"- ⭐ 评分：{score} [↗ 原文]({url})")
         
         if chapter and chapter not in ("N/A", ""):
