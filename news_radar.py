@@ -298,8 +298,8 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
             lines += [
                 f"### {i}. {n['title']}",
                 f"- **来源**: {n.get('source_name', 'Unknown')} · {n.get('published', '')[:10]}",
-                f"- **相关度**: {a['relevance']}/10 | **案例价值**: {a.get('case_value', 'N/A').upper()}",
-                f"- **紧迫度**: {a.get('urgency', 'N/A')} | **更新类型**: {a.get('update_type', 'N/A')}",
+                f"- **相关度**: {a['relevance']}/10 | 案例价值: {a.get('case_value', 'N/A').upper()}",
+                f"- **紧迫度**: {a.get('urgency', 'N/A')} | 更新类型: {a.get('update_type', 'N/A')}",
                 f"- **目标章节**: {a.get('chapter_target', '待定')}",
                 f"- **链接**: [{n.get('url', '#')}]({n.get('url', '#')})",
                 f"- **事件摘要**: {a.get('summary_cn', 'N/A')}",
