@@ -1,0 +1,161 @@
+# .github/workflows/daily-radar.yml
+name: 🤖 Daily Radar Auto-Run
+
+# 🕐 触发条件：每天北京时间 6:00 (UTC 22:00)
+on:
+  schedule:
+    - cron: '0 22 * * *'  # UTC 22:00 = 北京 06:00 (+8h)
+  workflow_dispatch:      # 支持手动触发（测试用）
+
+# 🔒 权限：允许推送代码
+permissions:
+  contents: write
+
+jobs:
+  radar-run:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    
+    steps:
+      # 1️⃣  checkout 代码
+      - name: 📦 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # 获取完整历史，便于推送
+
+      # 2️⃣ 设置 Python 环境
+      - name: 🐍 Set up Python 3.10
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
+          cache: 'pip'
+
+      # 3️⃣ 安装依赖
+      - name: 📦 Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt 2>/dev/null || \
+          pip install arxiv requests openai python-dotenv feedparser
+
+      # 4️⃣ 配置环境变量（从 Secrets 读取）
+      - name: ⚙️ Setup environment
+        run: |
+          echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> $GITHUB_ENV
+          echo "NEWS_API_KEY=${{ secrets.NEWS_API_KEY }}" >> $GITHUB_ENV
+          echo "SEMANTIC_SCHOLAR_API_KEY=${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}" >> $GITHUB_ENV
+          echo "ENABLE_NEWS_API=true" >> $GITHUB_ENV
+          echo "ENABLE_RSS_FEEDS=true" >> $GITHUB_ENV
+
+      # 5️⃣ 配置 Git 用户（用于自动提交）
+      - name: 🔧 Configure Git
+        run: |
+          git config --global user.name "${{ secrets.GIT_USER_NAME }}"
+          git config --global user.email "${{ secrets.GIT_USER_EMAIL }}"
+
+      # 6️⃣ 运行学术雷达
+      - name: 🎓 Run Academic Radar
+        run: |
+          echo "🚀 Starting academic_radar.py..."
+          python academic_radar.py --limit 15
+        continue-on-error: true  # 即使失败也继续执行新闻部分
+
+      # 7️⃣ 转换学术报告为 HTML
+      - name: 🌐 Convert Academic Report to HTML
+        run: |
+          echo "🔄 Converting academic reports..."
+          python academic_md_to_html.py || echo "⚠️ No academic report to convert"
+
+      # 8️⃣ 运行新闻雷达
+      - name: 📰 Run News Radar
+        run: |
+          echo "🚀 Starting news_radar.py..."
+          python news_radar.py --limit 20
+        continue-on-error: true
+
+      # 9️⃣ 转换新闻报告为 HTML
+      - name: 🌐 Convert News Report to HTML
+        run: |
+          echo "🔄 Converting news reports..."
+          python news_md_to_html.py || echo "⚠️ No news report to convert"
+
+      # 🔟 生成聚合主页
+      - name: 🏠 Generate Radar Index
+        run: |
+          echo "🏗️ Building index.html..."
+          python radar_index_generator.py
+
+      # 1️⃣1️⃣ 提交并推送更改
+      - name: 📤 Commit & Push updates
+        run: |
+          echo "💾 Saving changes to GitHub..."
+          git add -A
+          if git diff --staged --quiet; then
+            echo "✨ No changes to commit"
+          else
+            git commit -m "🤖 Auto-update: $(date '+%Y-%m-%d %H:%M UTC') [skip ci]"
+            git push origin main
+            echo "✅ Pushed to main branch"
+          fi
+
+      # 1️⃣2️⃣ 准备钉钉通知内容
+      - name: 📝 Prepare DingTalk message
+        id: prepare_msg
+        run: |
+          # 获取今日报告文件
+          TODAY=$(date -u -d '+8 hours' '+%Y-%m-%d')
+          
+          # 查找最新报告
+          ACADEMIC_LATEST=$(find reports/academic -name "academic_report_${TODAY}_*.html" -type f | sort | tail -1 || echo "")
+          NEWS_LATEST=$(find reports/news -name "news_report_${TODAY}_*.html" -type f | sort | tail -1 || echo "")
+          
+          # 统计卡片数量（简单解析）
+          ACADEMIC_CARDS=0
+          NEWS_CARDS=0
+          [ -n "$ACADEMIC_LATEST" ] && ACADEMIC_CARDS=$(grep -c '<div class="card">' "$ACADEMIC_LATEST" 2>/dev/null || echo 0)
+          [ -n "$NEWS_LATEST" ] && NEWS_CARDS=$(grep -c '<div class="card">' "$NEWS_LATEST" 2>/dev/null || echo 0)
+          
+          # 生成 markdown 消息
+          cat > /tmp/dingtalk_msg.json << EOF
+          {
+            "msgtype": "markdown",
+            "markdown": {
+              "title": "📊 Renegade AI 雷达日报 · ${TODAY}",
+              "text": "## 📊 Renegade AI 雷达日报 · ${TODAY}\n\n> 🤖 自动运行完成 · 北京时间 06:00\n\n### 📈 本次成果\n- 🎓 学术报告：\`${ACADEMIC_CARDS}\` 篇高相关论文\n- 📰 资讯报告：\`${NEWS_CARDS}\` 条高价值资讯\n- 🏠 聚合主页：✅ 已更新\n\n### 🔗 快速查看\n- [📊 雷达主页](https://brook-han.github.io/renegade-ai-Updater/reports/index.html)\n- [🎓 学术详情](${ACADEMIC_LATEST#reports/} | 无)\n- [📰 资讯详情](${NEWS_LATEST#reports/} | 无)\n\n### ⚙️ 运行状态\n\`\`\`\n✅ academic_radar.py: $([ $? -eq 0 ] && echo 'Success' || echo 'Skipped')\n✅ news_radar.py: $([ $? -eq 0 ] && echo 'Success' || echo 'Skipped')\n✅ HTML 转换: Completed\n✅ GitHub 推送: Completed\n\`\`\`\n\n> 🔄 下次运行：明天 06:00 (北京时间)\n> 🔧 手动触发：https://github.com/Brook-Han/renegade-ai-Updater/actions/workflows/daily-radar.yml"
+            }
+          }
+          EOF
+          echo "msg_file=/tmp/dingtalk_msg.json" >> $GITHUB_OUTPUT
+
+      # 1️⃣3️⃣ 推送钉钉通知
+      - name: 🔔 Send DingTalk notification
+        if: always()  # 无论前面步骤成功失败都发送通知
+        run: |
+          WEBHOOK="${{ secrets.DINGTALK_WEBHOOK }}"
+          if [ -z "$WEBHOOK" ] || [ "$WEBHOOK" = "https://oapi.dingtalk.com/robot/send?access_token=xxx" ]; then
+            echo "⚠️ DINGTALK_WEBHOOK not configured, skipping notification"
+            exit 0
+          fi
+          
+          echo "📤 Sending notification to DingTalk..."
+          curl -s -X POST "$WEBHOOK" \
+            -H 'Content-Type: application/json' \
+            -d @/tmp/dingtalk_msg.json \
+            -o /tmp/dingtalk_response.json
+          
+          # 检查响应
+          if grep -q '"errcode":0' /tmp/dingtalk_response.json; then
+            echo "✅ DingTalk notification sent successfully"
+          else
+            echo "⚠️ DingTalk response: $(cat /tmp/dingtalk_response.json)"
+          fi
+
+      # 1️⃣4️⃣ 输出运行摘要（便于调试）
+      - name: 📋 Run summary
+        if: always()
+        run: |
+          echo "### 📋 运行摘要" >> $GITHUB_STEP_SUMMARY
+          echo "- 🕐 触发时间: $(date -u -d '+8 hours' '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 学术报告: $(find reports/academic -name '*.html' -newermt '24 hours ago' 2>/dev/null | wc -l) 个" >> $GITHUB_STEP_SUMMARY
+          echo "- 📰 新闻报告: $(find reports/news -name '*.html' -newermt '24 hours ago' 2>/dev/null | wc -l) 个" >> $GITHUB_STEP_SUMMARY
+          echo "- 🏠 主页: $( [ -f reports/index.html ] && echo '✅ 已生成' || echo '❌ 未找到' )" >> $GITHUB_STEP_SUMMARY
+          echo "- 🔗 预览: [reports/index.html](https://brook-han.github.io/renegade-ai-Updater/reports/index.html)" >> $GITHUB_STEP_SUMMARY
