@@ -28,6 +28,10 @@ class Config:
     使用方式：
         from config import Config
         key = Config.DEEPSEEK_API_KEY
+
+    重要：启动不同模块时按需验证：
+        - 新闻雷达（news_radar.py）：Config.validate()          # 只检查 DeepSeek
+        - 学术雷达（academic_radar.py）：Config.validate(require_s2=True)  # 需要 Semantic Scholar
     """
 
     # =========================================================================
@@ -262,23 +266,26 @@ class Config:
     S2_RATE_LIMIT: float = float(os.getenv("S2_RATE_LIMIT", "1.0"))
 
     # =========================================================================
-    #  初始化 & 验证
+    #  初始化 & 验证（按需检查密钥）
     # =========================================================================
     @classmethod
-    def validate(cls) -> None:
-        """启动时调用，检查必要的环境变量和目录，有问题时抛出 RuntimeError"""
-        # 1. 关键 API 密钥检查
+    def validate(cls, require_s2: bool = False) -> None:
+        """
+        启动时调用，检查必要的环境变量和目录。
+        - require_s2=False：只检查 DEEPSEEK_API_KEY（适用于 news_radar）
+        - require_s2=True ：额外检查 SEMANTIC_SCHOLAR_API_KEY（适用于 academic_radar）
+        """
         missing_keys = []
         if not cls.DEEPSEEK_API_KEY:
             missing_keys.append("DEEPSEEK_API_KEY")
-        if not cls.SEMANTIC_SCHOLAR_API_KEY:
+        if require_s2 and not cls.SEMANTIC_SCHOLAR_API_KEY:
             missing_keys.append("SEMANTIC_SCHOLAR_API_KEY")
         if missing_keys:
             raise RuntimeError(
                 f"缺少必要的环境变量，请在 .env 文件中设置：{', '.join(missing_keys)}"
             )
 
-        # 2. 确保输出和日志目录存在
+        # 确保输出和日志目录存在
         cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         cls.LOG_DIR.mkdir(parents=True, exist_ok=True)
 
@@ -300,7 +307,9 @@ class Config:
 # =============================================================================
 # if __name__ == "__main__":
 #     print("🧪 配置类自检 ...")
-#     Config.validate()
+#     # 模拟只运行新闻雷达时不检查 S2
+#     Config.validate()                      # 只检查 DeepSeek
+#     # Config.validate(require_s2=True)     # 如果要跑学术搜索，用这个
 #     print(f"📌 分析模型：{Config.ANALYSIS_MODEL_DIRECT}")
 #     print(f"📌 草稿模型：{Config.DRAFTING_MODEL}")
 #     print(f"📌 推理深度：{Config.REASONING_EFFORT}")

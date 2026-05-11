@@ -202,7 +202,7 @@ jobs:
           
           # ✅ 修复：添加 --force 参数强制刷新缓存，避免内容重复
           # --limit 15 表示：单次最多分析 15 篇新论文（避免 API 调用超限 + 节省 Token）
-          python academic_radar.py --limit 15 --force
+          python academic_radar.py --limit 15
         
         # 🛡️ 容错机制：即使这一步失败，也继续执行后续步骤
         # 作用：新闻雷达不受学术雷达失败影响，保证部分功能可用
