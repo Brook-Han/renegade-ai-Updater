@@ -1,0 +1,843 @@
+{
+  "a9b3912d02b83679a7cdfb4a227ca598": {
+    "cached_at": "2026-05-11T10:11:28.233391",
+    "title": "Verifier-Backed Hard Problem Generation for Mathematical Reasoning",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "提出VHG框架，通过引入独立验证者到设定者-求解者自博弈中，确保生成问题的有效性和难度，在不定积分和通用数学推理任务上优于基线方法。",
+      "implications": "无直接关联。该论文聚焦LLM问题生成的技术改进，未涉及本书核心概念如共识牢笼、叛逆AI或认知进化。",
+      "chapter_target": "",
+      "update_type": "",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "d128c6b98cbe3712f1fda9a503356a03": {
+    "cached_at": "2026-05-11T10:11:45.319268",
+    "title": "Why Global LLM Leaderboards Are Misleading: Small Portfolios for Heterogeneous S",
+    "analysis": {
+      "relevance": 8.0,
+      "summary_cn": "分析89K跨语言LLM对比，发现全球BT排名误导：2/3投票抵消，前50名无显著差异。语言是异质性关键，分组后排名一致性大幅提升。提出(δ,η)-组合方法，仅需5个排名覆盖96%投票，优于全球排名21%覆盖率。",
+      "implications": "支持本书“共识牢笼”概念：全球LLM排名掩盖了语言/文化/任务层面的意见异质性，形成虚假共识。该研究提供的子群体识别方法可作为打破共识牢笼的潜在技术路径，与需求侧规训、叛逆AI的多元性诉求互补。对应第5章（RLHF与共识牢笼）或第6章（进化对齐脆弱性）。",
+      "chapter_target": "Chapter 5, Section III",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 8
+      }
+    },
+    "relevance": 8.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 8
+    }
+  },
+  "cbc6d9b55a14a19c175b2ba26212bc0c": {
+    "cached_at": "2026-05-11T10:11:52.532938",
+    "title": "Optimizer-Model Consistency: Full Finetuning with the Same Optimizer as Pretrain",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "论文发现使用与预训练相同的优化器进行全参数微调能减少遗忘，并优于LoRA，与优化器的正则化效应有关。同时比较了Muon和AdamW在推理任务上的表现。",
+      "implications": "该论文仅关注技术性的优化器选择对微调遗忘的影响，未涉及本书核心概念如共识牢笼、叛逆AI或碳硅共生等，无直接关联。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "c7f2f2ee2cf9fe01a99e58f44d107684": {
+    "cached_at": "2026-05-11T10:12:00.364134",
+    "title": "When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Grou",
+    "analysis": {
+      "relevance": 5.0,
+      "summary_cn": "该论文提出了一种在无基准标签情况下比较语言模型安全性的验证方法（SimpleAudit），通过对比安全与未对齐模型的响应差异、方差分解和稳定性测试来替代地面真值标签，并在挪威语场景中验证了有效性。",
+      "implications": "与第8章'进化对齐脆弱性'相关——论文展示了在没有预先对齐标签时如何评估模型安全性，间接支持了书中'对齐脆弱性'论点的技术复杂性，但更侧重于方法论而非社会批判。属于技术性补充。",
+      "chapter_target": "Chapter 8, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 5
+      }
+    },
+    "relevance": 5.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 5
+    }
+  },
+  "ca388dc36ee4b4f0ced5134c70cbc59c": {
+    "cached_at": "2026-05-11T10:12:09.135889",
+    "title": "Beyond Negative Rollouts: Positive-Only Policy Optimization with Implicit Negati",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "提出(POPO)方法，仅利用正轨迹进行策略优化，通过隐式负梯度避免负样本惩罚，在数学推理任务上达到或超越GRPO性能。",
+      "implications": "与书中关于RLHF规训、共识牢笼等论点无直接关联；纯技术性强化学习算法改进，不涉及AI对齐的社会影响或人类认知变化。",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "250866ecec6a31f560f9437d27aac73d": {
+    "cached_at": "2026-05-11T10:12:15.778822",
+    "title": "Superintelligent Retrieval Agent: The Next Frontier of Information Retrieval",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "提出SIRA检索代理，通过LLM扩充文档和查询词汇，利用词频统计过滤，实现单次BM25检索取代多轮探索性搜索，在BEIR基准上超越密集检索和多轮智能体方法。",
+      "implications": "纯技术性检索改进，未涉及本书核心概念如共识牢笼、认知影响、对齐脆弱性等，与书中所讨论的AI社会认知影响无直接关联。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "f514d80b3e2d311567559ae21ec28aa6": {
+    "cached_at": "2026-05-11T10:12:21.875773",
+    "title": "Edge-specific signal propagation on mature chromophore-region 3D mechanism graph",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出基于发色团三维机制图的荧光蛋白量子产率预测算法，通过区域信号传播和特征工程实现了优于现有模型的性能。",
+      "implications": "与本书核心论点完全无关，为纯结构生物学和计算化学方法论文。",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "22f6af65b885f11da1cf9bd88f66a4c2": {
+    "cached_at": "2026-05-11T10:12:29.307660",
+    "title": "StraTA: Incentivizing Agentic Reinforcement Learning with Strategic Trajectory A",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "提出StraTA框架，通过分层策略抽象和联合训练提升LLM代理在长程任务中的采样效率和成功率，在ALFWorld、WebShop等环境上取得领先结果。",
+      "implications": "无直接相关性，属于纯技术架构优化，未涉及书中核心概念如共识牢笼、叛逆AI或碳硅共生。",
+      "chapter_target": "",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "de7e8665e92d9b654f0049841d2d17a0": {
+    "cached_at": "2026-05-11T10:12:38.920368",
+    "title": "Can RL Teach Long-Horizon Reasoning to LLMs? Expressiveness Is Key",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "提出ScaleLogic框架，研究RL训练LLM长程推理时，训练计算量T与推理深度D呈幂律关系（T∝D^α），且幂指数α随逻辑表达力单调递增（从1.04到2.60）。在数学和通用推理基准上，更高表达力的训练设置带来更大性能提升和更高效迁移。",
+      "implications": "该论文主要关注RL训练LLM推理能力的计算缩放规律，不直接涉及本书核心概念如共识牢笼、叛逆AI、需求侧规训、认知金融化等。与关键实证锚点（如奉承型AI、AI辅助写作无记忆）也无直接关联。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "d85ba50afbe490f1f18cead49f4008b9": {
+    "cached_at": "2026-05-11T10:12:46.872302",
+    "title": "ActCam: Zero-Shot Joint Camera and 3D Motion Control for Video Generation",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "ActCam是一种零样本视频生成方法，实现角色动作和摄像机轨迹的联合控制，利用预训练扩散模型的两阶段条件调度（深度+姿态→仅姿态）生成几何一致的动态场景。",
+      "implications": "纯视频生成技术方法，与本书认知进化、共识牢笼、AI对齐等核心概念无关，无直接支持、挑战或补充关系。",
+      "chapter_target": "",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "4a49eb506fc7a487519dc21ee6f81756": {
+    "cached_at": "2026-05-11T12:22:25.224629",
+    "title": "The Kubo-Thermalization Correspondence",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文建立了量子热化与线性响应理论之间的精确对应关系（Kubo-Thermalization对应），通过弱驱动下长时间热化磁化强度与短时间线性响应光谱之间的联系，并用超冷费米子实现的自旋1/2杂质实验验证。结果提供了关于量子热化的罕见精确表述，并为从平衡响应测量推断强相互作用量子系统的热化动力学提供了新途径。",
+      "implications": "与本书核心概念（共识牢笼、叛逆AI、资本驯化AI、碳硅共生等）及关键实证锚点无任何关联。论文属于纯量子物理基础研究，不涉及AI、人机交互或社会技术系统。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "eaf1ed9ade8c731d353a90b5c3cbe3cb": {
+    "cached_at": "2026-05-11T12:22:33.006407",
+    "title": "UniPool: A Globally Shared Expert Pool for Mixture-of-Experts",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出UniPool架构，将混合专家模型（MoE）中按层分配专家参数的方式改为全局共享专家池。通过池级辅助损失和NormRouter实现平衡训练，实验表明在多个模型规模下能降低验证损失，且专家参数可随深度亚线性增长。",
+      "implications": "与本书核心论点无关，属于纯技术性架构优化，未涉及人机关系、认知影响或社会对齐议题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "65c48f74b7bccf459805833bbb00277b": {
+    "cached_at": "2026-05-11T12:22:41.244806",
+    "title": "BAMI: Training-Free Bias Mitigation in GUI Grounding",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了BAMI方法，用于在GUI grounding任务中无训练地缓解偏差。通过Masked Prediction Distribution归因方法，作者识别出主要误差来源为高图像分辨率导致的精度偏差和复杂界面元素导致的模糊偏差。BAMI采用粗到细聚焦和候选选择两种操作来缓解这些偏差。实验表明，BAMI显著提升了多种GUI grounding模型的准确率，例如将TianXi-Action-7B在ScreenSpot-Pro基准上的准确率从51.9%提升至57.8%。消融研究验证了方法的鲁棒性和有效性。",
+      "implications": "该论文与本书核心论点无直接关联。书中关注的共识牢笼、叛逆AI、认知金融化等概念均未涉及，技术性方法（训练无关偏差缓解）属于AI系统内部优化，未触及人机关系、社会影响或资本驯化等主题。因此不支持、不挑战、不补充书中任何具体论点。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "e2de13d0d90c5986544438249d81abd4": {
+    "cached_at": "2026-05-11T12:22:51.017663",
+    "title": "EMO: Pretraining Mixture of Experts for Emergent Modularity",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "论文提出EMO预训练方法，用于训练混合专家模型（MoE）实现涌现模块化。标准MoE模型在仅激活部分专家子集时性能严重下降，而EMO通过约束同一文档内的token共享专家选择池，不同文档使用不同池，使得预训练过程中自然形成按语义领域（如数学、代码）分组的专家。实验表明，保留25%专家仅导致1%性能下降，12.5%专家下降3%，而标准MoE在相同设置下崩溃。专家子集呈现语义层面的专门化，而非标准MoE的低层句法专门化。该方法为内存受限场景下的稀疏模型模块化部署提供了路径。",
+      "implications": "本文与《Renegade AI》核心论点无直接关联。论文聚焦于MoE架构的模块化预训练技术，未涉及共识牢笼、叛逆AI、碳硅共生、认知金融化等社会认知概念。其技术贡献（专家按语义领域专门化）可能间接支持未来AI系统的可选择性使用，但未讨论需求侧规训、时间主权或进化对齐脆弱性等关键议题。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "80f35c817422c28ce345ca6dc7399435": {
+    "cached_at": "2026-05-11T12:23:00.287170",
+    "title": "Significant heat transfer enhancement via polymer additives in two-dimensional s",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究二维剪切对流中聚合物添加剂对热传递的增强效应。通过数值模拟发现，弹性诱导的中心模式导致的热传递增强可忽略不计，而浮力驱动的对流模式在聚合物作用下热通量可提升高达1100%。非线性对流模式呈现周期性轨道或行波，其中钩状聚合物应力结构分为两种：未附着墙体的钩子如同“减速带”降低流向速度并促进法向运动，而附着墙体的钩子形成“聚合物墙”重组流动为强烈反向旋转滚子，触发极端增强状态。能量收支分析证实聚合物与浮力协同维持状态。附着钩子实现快速热平衡但水力损失大，适合需要快速温度调节的工艺；未附着钩子提供更高效的热传递。该研究展示了弹性流体在热传递增强技术中的潜力。",
+      "implications": "与本书核心概念（共识牢笼、叛逆AI、碳硅共生、认知金融化等）及关键实证锚点（如人机反馈循环、奉承型AI、Token陷阱等）完全无关。该论文属于经典流体力学与热传递工程领域，不涉及AI、认知科学或人机关系。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "c9a12b6943eed76cd735807841dc572c": {
+    "cached_at": "2026-05-11T12:23:06.933042",
+    "title": "Improving Variance Estimation for Covariate Adjustment with Binary Outcomes",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出一种改进的方差估计方法（IF-LOO）用于临床试验中二元结果的协变量调整，特别是在结局概率接近0或1时表现稳健。通过模拟研究证明其比现有方法有更好的I类错误控制，适用于罕见事件和小样本场景，并给出了封闭形式公式便于实施。属于统计方法学技术性研究。",
+      "implications": "与书中核心论点无任何关联，不涉及AI、人机互动、认知进化和共识牢笼等概念。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "7938ead6f73258782829837a1b0be39c": {
+    "cached_at": "2026-05-11T12:23:16.165012",
+    "title": "Relit-LiVE: Relight Video by Jointly Learning Environment Video",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出Relit-LiVE视频重光照框架，通过联合学习环境视频和引入原始参考图像，在无需相机位姿先验的情况下生成物理一致、时间稳定的重光照结果。核心方法是利用视频扩散模型进行神经渲染，但通过引入原始参考图像弥补内在分解中丢失的场景线索，并设计联合预测机制同时生成重光照视频和每帧环境贴图，增强几何-光照对齐。实验表明在合成和真实基准上优于现有方法，并支持场景渲染、材质编辑等下游应用。论文纯属计算机视觉技术贡献。",
+      "implications": "与本书核心概念无直接关联。未涉及共识牢笼、叛逆AI、需求侧规训、碳硅共生、认知金融化、Token陷阱、进化对齐脆弱性等议题。技术内容不构成支持、挑战或补充。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "78fbac0daf7a78e3b212a7f924c2e0d5": {
+    "cached_at": "2026-05-11T12:23:43.668341",
+    "title": "AI Co-Mathematician: Accelerating Mathematicians with Agentic AI",
+    "analysis": {
+      "relevance": 6.0,
+      "summary_cn": "该论文介绍了AI协作数学家（AI Co-Mathematician），一个为数学家设计的交互式工作台，支持开放研究。系统提供构思、文献搜索、计算探索、定理证明和理论构建等全方位支持，通过异步、有状态的工作空间管理不确定性、细化用户意图、追踪失败假设并输出数学制品。早期测试表明，该AI帮助研究人员解决开放问题、发现新研究方向并找到被忽略的文献。在FrontierMath Tier 4基准上达到48%，创下AI系统新高。这展示了互动式AI辅助数学发现的范式，并表明AI能显著扩展数学家的探索边界。",
+      "implications": "与第六章‘碳硅共生’概念相关，支持AI作为协作伙伴增强人类认知和创造力的潜力。同时暗示了与第四章‘Token陷阱’类似的风险：过度依赖AI可能导致数学发现方向被AI训练数据偏置所限制（例如偏向西方数学范式），且‘AI发现新方向’可能只是对已知知识的重组。论文结果与第七章‘进化对齐脆弱性’相关：AI在高度逻辑化的数学领域表现优异，但一旦脱离训练分布（如非形式化猜想），脆弱性可能暴露。此外，该论文补充了‘AI扩大科研产出但缩小探索范围’实证锚点（Hao et al., 2026），显示在某些设置下AI能帮助发现新方向，提示该锚点的条件依赖性。",
+      "chapter_target": "Chapter 9, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 6
+      }
+    },
+    "relevance": 6.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 6
+    }
+  },
+  "45f15a3c16d78beacdec06479e1f1e6c": {
+    "cached_at": "2026-05-11T12:23:52.822781",
+    "title": "GlazyBench: A Benchmark for Ceramic Glaze Property Prediction and Image Generati",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了GlazyBench，这是首个用于AI辅助陶瓷釉料设计的基准数据集，包含23,148个真实釉料配方。该基准支持两个主要任务：从原材料预测烧制后的表面性质（如颜色和透明度），以及根据这些性质生成准确的釉料视觉表征。论文建立了使用传统机器学习和大语言模型进行性质预测的基线，以及使用深度生成模型和多模态大模型进行图像生成的基线。实验结果表明了有希望但具有挑战性的结果。该工作开创了AI辅助材料设计的新研究方向，为系统评估提供了标准化基准。",
+      "implications": "该论文与本书核心论点无直接关联。它涉及AI在材料科学中的应用，但没有探讨AI对人类认知、社会结构、需求侧规训、共识牢笼或进化对齐脆弱性等关键概念。属于纯技术性应用研究，未触及本书关注的AI对人类认知和社会的影响问题。",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "f2c67413b1d7b4126230afa578bff0fd": {
+    "cached_at": "2026-05-11T12:24:02.215442",
+    "title": "DPM++: Dynamic Masked Metric Learning for Occluded Person Re-identification",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种动态掩码度量学习框架DPM++，用于解决遮挡场景下的行人重识别问题。现有方法依赖额外的预训练模型估计可见部位或通过数据增强构造遮挡样本，但缺乏统一的处理真实遮挡模式的框架。DPM++在分类器-原型空间中学习输入自适应的掩码度量，动态选择可靠的识别子空间，强调可见一致性证据并抑制不可靠成分。引入基于CLIP的两阶段监督方案，从文本分支学习ID级语义先验并迁移到分类器-原型空间。还提出显著性引导的补丁转移策略，合成可控且逼真的遮挡样本用于训练。实验表明该方法在全遮挡和部分遮挡场景下均达到最优性能。",
+      "implications": "该论文与本书核心论点无直接关联。本书关注AI的社会认知影响、共识牢笼、碳硅共生等概念，而此论文为纯计算机视觉技术改进，不涉及人机关系、认知变迁或AI对齐的批判性分析。",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "5469a52e0afd25e440d0e0fad221945c": {
+    "cached_at": "2026-05-11T13:15:47.035330",
+    "title": "Task-Aware Answer Preservation under Audio Compression for Large Audio Language ",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文研究大型音频语言模型在推理前进行音频压缩时，如何保证对特定查询族的答案正确性。作者提出了一个任务感知的答案保持压缩协议，通过统计置信度检验最差查询族的额外错误率，从而确定可接受的压缩预算。实验基于Qwen模型在五个多选题基准上进行，发现查询族划分方式会影响批准预算，且条件化压缩有助于保持答案。",
+      "implications": "与本书核心概念无直接关联。论文聚焦于音频压缩对模型性能的局部影响，属于技术优化，未涉及共识牢笼、叛逆AI、碳硅共生、认知金融化等主题，也未提供支持或挑战书中论点的实证证据。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "e929659a007c6971fb6cbfc9e76c31b4": {
+    "cached_at": "2026-05-11T13:15:59.641445",
+    "title": "Quantifying Trade-Offs Between Stability and Goal-Obfuscation",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "该论文研究在对抗性环境中，智能体在执行目标导向轨迹时如何隐藏其意图，防止被动观察者通过在线贝叶斯推理推断出真实目标。作者将意图隐私问题建模为联合控制问题，涉及物理状态和观察者对潜在意图参数的置信状态。智能体动力学假设为全驱动且受有界扰动，观察者使用Rao-Blackwellized粒子滤波器进行意图推断，隐私约束通过概率离散时间控制屏障函数实现，要求信息泄漏以高概率维持在阈值以上。论文的主要技术贡献是分别为RBPF的贝叶斯更新步骤和重采样步骤推导了独立的PCBF结果，并整合了任务跟踪要求。最后分析了隐私约束与跟踪包络之间的相互作用与可行性。",
+      "implications": "该论文涉及AI智能体的意图隐藏，但属于控制理论与安全性范畴，与本书探讨的‘共识牢笼’、‘叛逆AI’、‘资本驯化AI’等以人类认知与社会共识为核心的概念无直接关联。书中未涉及此类技术性对抗性隐私问题，因此对本书论点无支持、挑战或补充。",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "19ae23436d8082da54d3e940016c9f46": {
+    "cached_at": "2026-05-11T13:16:10.431363",
+    "title": "Multi-Robot Coordination in V2X Environments",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种基于V2X通信的多机器人协调框架，包括机器人意识服务和机动协调服务，通过标准化消息实现人形机器人和四足机器人在城市交通中的去中心化协作。论文主要关注通信协议、系统架构和仿真验证，属于机器人工程和智能交通领域的技术实现。",
+      "implications": "与本书核心概念（共识牢笼、叛逆AI、碳硅共生、认知金融化等）无直接关联，未涉及人类认知、AI对齐、社会影响或权力结构分析。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "next_version",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "ebd84f9e0bbc2cedc6437fc7c4818036": {
+    "cached_at": "2026-05-11T13:16:19.502548",
+    "title": "Pro-Tensor Network",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种称为“pro-tensor network”的数学框架，对张量网络进行了范畴化，旨在为研究众多多体理论（称为多-多体理论）提供一个严格且图形透明的框架。作者提供了使用pro-tensor network进行图形计算的综合工具箱，并展示了其应用：恢复了Levin-Wen模型作为“一致”pro-tensor network，通过将粒子描述为promonads上的模来推广Kitaev和Kong的结果，并将string-net pro-tensor network解释为对称张量网络的空间，从而适用于广义对称性和拓扑全息的研究。该推广摒弃了半单性、有限性和刚性的假设，有助于探索超出这些约束的多体物理。",
+      "implications": "该论文属于纯数学物理领域，与书中核心概念（共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、时间主权、认知金融化、Token陷阱、暗时间、进化对齐脆弱性、终极图灵测试）以及关键实证锚点（如人机反馈循环、奉承型AI、AI辅助写作影响等）无任何关联。既未支持、挑战也未补充书中任何论点。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "05bc947cebd06a57325ca47b2aa42c71": {
+    "cached_at": "2026-05-11T13:16:29.146876",
+    "title": "From Baby Universes to Narain Moduli: Topological Boundary Averaging in SymTFTs",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出在低维全息理论中，通过对称张量场论（SymTFT）框架解释系综平均，核心操作是在固定SymTFT和物理边界条件的同时，对拓扑边界条件进行平均。每个拓扑边界条件对应同一相对理论的绝对完备化，因此系综被视为对拓扑完备化的平均而非对任意局部动力学的平均。论文用帽子泛函和群胚或Haar型测度公式化该构造，并以两个例子说明：在Marolf-Maxfield模型的闭弦扇区，拓扑边界条件由有限集标记，群胚和重现泊松/贝尔多项式矩；在Narain情形，R值BF SymTFT的紧致拓扑边界条件被识别为最大各向同性子群，拓扑边界平均成为具有Zamolodchikov测度的Narain模空间平均。论文还讨论了向JT引力、随机矩阵理论、Virasoro T(Q)FT和3D引力的可能扩展。",
+      "implications": "与本书核心概念无关，纯理论物理论文，不涉及AI、认知、社会或人机关系。",
+      "chapter_target": "",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "61196c24261d7eb330fc331e66dc61d0": {
+    "cached_at": "2026-05-11T13:16:35.693173",
+    "title": "Colossal Magnetoresistance and Phonon Driven Exchange Dynamics in Eu$_5$Sn$_2$As",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究了Eu5Sn2As6材料中的巨磁阻效应，通过测量热导率和磁致伸缩来理解晶格的作用。研究发现这两个性质都强烈依赖于磁场并随磁化饱和。声子主导的热导率的场增强被解释为自旋构型简并的解除，以及高场下磁致伸缩的淬灭。与自旋玻璃绝缘体的比较表明，这种现象不是副产物，而是由于交换阻挫导致的强声子散射抑制所驱动的电子离域化。",
+      "implications": "与本书核心论点无关，属于凝聚态物理中的材料科学和磁学现象研究。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "871449384d7ecd8cf8578cccf8e358ba": {
+    "cached_at": "2026-05-11T13:16:48.089844",
+    "title": "AI CFD Scientist: Toward Open-Ended Computational Fluid Dynamics Discovery with ",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出AI CFD Scientist，一个基于LLM的自主计算流体动力学（CFD）发现框架。它集成了文献启发的构思、验证执行、视觉物理验证、源码修改和图表生成。核心是视觉语言物理验证门，能检测静默失败（14/16）。在五个任务中，自主发现Spalart-Allmaras运行时间校正，使下壁摩擦系数均方根误差降低7.89%。与ARIS、DeepScientist等基线对比，展示领域特定验证门的必要性。论文聚焦AI在物理仿真中的自动化科学发现，属于技术架构创新。",
+      "implications": "论文与本书核心概念无直接关联。它涉及AI在科学研究中的自主性，但并未触及共识牢笼、叛逆AI、资本驯化AI等核心议题。其视觉验证门可视为对AI输出可靠性的增强，与书中讨论的RLHF制造奉承、削弱冲突修复不同，该论文强调用领域知识约束AI以避免错误，反而可能强化现有科学规范，而非挑战共识。因此，对书中论点无支持、挑战或补充作用。",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "9ef6b51a76b516796c0b1ca6e669e845": {
+    "cached_at": "2026-05-11T13:16:58.393586",
+    "title": "TMDs in the Lens of Generative AI: A Pixel-Based Approach to Partonic Imaging",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种基于生成式AI（归一化流驱动的Metropolis-Hastings采样）的非参数像素框架，用于贝叶斯推断和成像横向动量依赖（TMD）部分子分布。框架集成TMD演化与Collins-Soper-Sterman形式论，同时提取部分子分布和非微扰演化核。通过多尺度闭包测试验证，并使用奇异值分解（SVD）表征不确定性，揭示了核零空间中存在无约束的零TMD。这是首次在贝叶斯背景下结合像素离散化、生成式AI和SVD解决TMD逆问题，用于无偏的3D部分子成像。",
+      "implications": "该论文是纯粹的高能物理技术方法应用，使用生成式AI作为统计采样工具，与书中核心概念（共识牢笼、叛逆AI、碳硅共生、认知金融化等）和实证锚点均无直接关联。不涉及人类认知、社会影响或AI伦理议题，因此不支撑、不挑战也不补充书中论点。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "ad99ccfa7382a154bd10268286abbbed": {
+    "cached_at": "2026-05-11T13:17:20.230585",
+    "title": "Automated Clinical Report Generation for Remote Cognitive Remediation: Comparing",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "该论文研究了在低资源环境下（无参考报告）自动生成远程认知康复临床报告的方法，比较了基于规则的模板系统（编码言语治疗领域知识）和零样本GPT-4方法。两者使用相同的专家验证结构化变量输入，由八位言语治疗师通过九维度问卷评估输出。结果显示模板系统在流畅性、连贯性和结果呈现上得分更高，而GPT-4生成更简洁；所有比较方向一致但未达统计显著性。论文基于反馈提出八条设计建议，并贡献了包含专家启发、分类驱动生成和多维人工评估的可复现方法论，强调在医疗中负责任地采用生成式AI时需通过受控比较平衡临床可靠性与语言质量，为低资源临床NLG提供参考。",
+      "implications": "与本书核心论点关联较弱。论文未涉及共识牢笼、叛逆AI、用户认知退化或资本驯化等核心概念，也未引用书中关键实证锚点（如Glickman & Sharot 2025等）。可作为AI在专业领域（医疗）应用可靠性的一个技术比较案例，但未直接支持或挑战书中关于人类认知进化或AI对齐的论述。潜在联系可能在于：LLM在临床报告中的表现不如基于规则的模板，暗示在不加约束地使用生成式AI时可能牺牲可靠性与可追溯性，但这与书中'需求侧规训'或'Token陷阱'的机制不同。建议作为背景材料，不直接用于更新。",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "next_version",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "7155301529bcef79a96d5aca64ba2232": {
+    "cached_at": "2026-05-11T13:17:26.051561",
+    "title": "Constraining Galaxy Cluster Triaxiality via Weak Lensing -- I. Preparation for t",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文利用弱引力透镜测量星系团的投影形状，使用CLMM软件分析DES数据，发现投影椭圆率约0.31，轴比0.527，且与质量和红移无关。研究为LSST等巡天项目提供方法验证。",
+      "implications": "与本书核心概念和实证锚点完全无关，属于纯天体物理研究。",
+      "chapter_target": "",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "c4e3b25a50da1a0eaf2de3455e193ef3": {
+    "cached_at": "2026-05-11T13:17:39.688947",
+    "title": "Ex Ante Evaluation of AI-Induced Idea Diversity Collapse",
+    "analysis": {
+      "relevance": 9.0,
+      "summary_cn": "该研究指出现有创意AI评估仅关注个体效用，忽视了种群层面的想法拥挤（多样性崩溃）。作者提出一个无需人机交互数据的前瞻性框架，通过比较模型生成与无辅助人类基线，量化过度拥挤系数和多样性比，并证明当系数≥1时表明无过度拥挤。在短故事、营销标语和替代用途任务中，三个前沿LLM均低于多样性平价，且估计在可行样本量下稳定。更重要的是，研究者发现通过针对性设计（如生成协议变体）可以降低拥挤，使多样性崩溃成为可操作的开发期评估目标。",
+      "implications": "该研究直接支持本书关于AI导致认知多样性下降的论点，特别是与Chapter 7中“共识牢笼”概念紧密相关：AI通过优化个体输出质量，却在种群层面推动想法同质化，强化了共识牢笼。同时，它也补充了Chapter 6中“认知金融化”和“Token陷阱”的讨论——AI工具使个体更高效但集体更趋同。该框架提供了量化评估多样性崩溃的方法，使问题可测量、可干预，对书中提出的“叛逆AI”路径（逆转输出性质、重构人机关系）具有实证支持。",
+      "chapter_target": "Chapter 7, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 9
+      }
+    },
+    "relevance": 9.0,
+    "urgency": "immediate",
+    "model_scores": {
+      "deepseek-v4-flash": 9
+    },
+    "draft_paragraph": "A central blind spot in prevailing creativity-AI evaluation, as Azad et al. (2026) expose, is the fixation on individual utility at the expense of population-level idea crowding—what they term *diversity collapse*. By constructing an ex ante framework that requires no human-in-the-loop data, they compare model-generated outputs to unassisted human baselines, computing an over-crowding coefficient and a diversity ratio; a coefficient at or below unity signals an absence of pathological crowding. Across short stories, marketing slogans, and alternate-use tasks, three frontier large language models all fell substantially short of diversity parity, and the estimates stabilised at feasible sample sizes—confirming that the phenomenon is not an artifact of sparse measurement but a structural signature of current AI. Crucially, the authors demonstrate that targeted interventions, such as protocol variants, can widen the generative repertoire, rendering diversity collapse a diagnosable and actionable target during development. This finding directly fortifies the “consensus cage” argument of Chapter 7, where we chart how AI’s optimisation for individual output quality funnels collective ideation into convergent basins, while also deepening the analysis of cognitive financialisation and the token trap introduced in Chapter 6: the very tools that promise personal efficiency accelerate inter-subjective homogeneity. The Azad et al. framework supplies the missing metric—quantitative, prospective, and decoupled from post-hoc human judgment—that turns the renegade-AI pathway from polemic into empirically testable project, for it maps precisely how reversing output logics and restructuring human-machine relations can be measured and, eventually, engineered against the tide of monoculture.\n\nAzad 等人（2026）揭露了现有创意 AI 评估的核心盲区：只盯住个体效用，却忽视群体层面的想法拥挤——即所谓 *多样性崩溃*。他们构建了一个无需人机交互数据的前瞻性框架，将模型生成与无辅助的人类基线加以比较，计算出过度拥挤系数与多样性比，其中系数不超过 1 即表明没有病态拥挤。在短故事、营销标语与替代用途任务上，三个前沿大语言模型全部明显低于多样性平价线，且估计值在可行的样本量下保持稳定——这确认了该现象并非稀疏测量的假象，而是当前 AI 的结构性印记。更为关键的是，研究者证明，诸如生成协议变体等针对性设计可以拓宽生成曲目，从而使多样性崩溃成为开发阶段可诊断、可干预的目标。这一发现直接夯实了第七章的“共识牢笼”论断——我们曾描绘 AI 对个体输出质量的优化如何将集体创意导入收敛盆地，同时也深化了第六章关于认知金融化与 Token 陷阱的分析：那些承诺个体效率的工具恰恰加快了主体间性的同质化。Azad 等人的框架给出了缺失的度量——量化的、前瞻性的、与事后人类判断解耦的指标——将叛逆 AI 路径从论辩转变为可实证检验的方案，因为它精确地标绘出逆转输出逻辑与重构人机关系何以能够被测量，并最终在反单一文化的方向上得以工程化实现。"
+  },
+  "2ba9f1483dac6c0131bdfb006bc3e5ef": {
+    "cached_at": "2026-05-11T13:17:46.712092",
+    "title": "Rational homology disk degenerations of elliptic surfaces",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "论文分类了非奇异射影椭圆曲面的所有有理同调盘退化，扩展了Kawamata关于仅有Wahl奇点的分类。构造了Dolgachev曲面D_{a,b}的QHD退化，并建立了最小半对数典范模型。",
+      "implications": "与本书核心概念无任何关联，属于纯代数几何数学研究。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "d43f38529b9a8f3a2d23fcb63b16f38d": {
+    "cached_at": "2026-05-11T13:17:56.097049",
+    "title": "Are We Making Progress in Multimodal Domain Generalization? A Comprehensive Benc",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了多模态领域泛化（MMDG）的统一基准MMDG-Bench，涵盖6个数据集、3种任务（动作识别、机械故障诊断、情感分析）、6种模态组合和9种代表方法。通过训练7402个神经网络完成95个跨域任务，得到五个关键发现：（1）在公平比较下，近年专门设计的MMDG方法相比简单经验风险最小化（ERM）基线提升甚微；（2）没有单一方法在所有数据集或模态组合上持续最优；（3）与上界性能差距显著，表明MMDG远未解决；（4）三模态融合不一定优于最强的双模态配置；（5）所有方法在输入损坏和缺失模态场景下性能显著下降，部分方法还损害模型可信度。论文强调当前进展可能源于不一致的评估协议而非真实算法进步。",
+      "implications": "该论文与本书核心论点无直接关联。本书聚焦于AI与人类认知、社会权力结构、时间主权等宏观议题，而本文是纯粹的技术性能评估，不涉及RLHF、共识牢笼、认知金融化或进化对齐脆弱性等概念。虽然文中提到“模型可信度”可能与信任问题间接相关，但未从社会或认知角度展开。因此该论文对本书的论述既不支持也不挑战，属于无关技术细节。",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "7bbb79210c07c2fe5502bec152394739": {
+    "cached_at": "2026-05-11T13:18:11.063274",
+    "title": "Cited but Not Verified: Parsing and Evaluating Source Attribution in LLM Deep Re",
+    "analysis": {
+      "relevance": 7.0,
+      "summary_cn": "该论文首次提出了针对LLM深度研究智能体来源归因的评估框架，通过可复现的AST解析器从Markdown报告中提取内联引用，并检索实际引用内容进行验证。评估从三个维度进行：链接有效性、相关性和事实准确性。对14个闭源和开源LLM的基准测试显示，最强模型链接有效性和相关性分别超过94%和80%，但事实准确性仅为39-77%，且不到一半的开源模型能一次性生成带引用的报告。消融实验表明，随着工具调用次数从2次增加到150次，两个前沿模型的事实准确性平均下降约42%，说明更多检索并不能带来更准确的引用。研究发现表面引用质量与事实可靠性之间存在严重脱节。",
+      "implications": "该研究提供了直接实证，支持书中关于'共识牢笼'和'Token陷阱'的论点。AI生成报告中的引用看似权威，但事实可靠性很低，且随检索量增大而恶化，这恰恰是智能体生成内容表面可信实则误导的典型案例，会强化用户的虚幻共识并消耗注意力在不可靠的引用上。论文框架可被用作证据，说明当前AI并非可靠的认知伙伴，而是可能通过虚假引用巩固错误认知。与书中第4章'共识牢笼'（关于AI如何通过看似客观的引用固化集体认知）和第6章'Token陷阱'（用户被形式上合格的引用总量所迷惑）直接相关。",
+      "chapter_target": "Chapter 4, Section III (共识牢笼的强化机制) 或 Chapter 6, Section II (Token陷阱的表征欺骗)",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 7
+      }
+    },
+    "relevance": 7.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 7
+    }
+  },
+  "18b2230c2b5a5a747563e2a46810d618": {
+    "cached_at": "2026-05-11T13:18:18.196557",
+    "title": "PianoCoRe: Combined and Refined Piano MIDI Dataset",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了PianoCoRe，一个大规模钢琴MIDI数据集，整合并精炼了多个开源钢琴语料库，包含25万首演奏、5千多首作品、483位作曲家，总计超过2万小时音乐。数据集分为不同子集，支持大规模分析、预训练和表现力演奏建模，其中音符对齐子集是最大的开源集合。此外还提出了MIDI质量分类器和对齐精炼流程RAScoP。实验表明，在该数据集上训练的表现力演奏模型对未见过的作品具有更好的鲁棒性。",
+      "implications": "该论文与本书核心论点（共识牢笼、叛逆AI、碳硅共生等）无关，属于音乐信息处理领域的技术贡献，不涉及AI对齐风险或认知演化议题。",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "3db7ec443636d4cf90dac820d46869b0": {
+    "cached_at": "2026-05-11T13:18:32.560539",
+    "title": "Algospeak, Hiding in the Open: The Trade-off Between Legible Meaning and Detecti",
+    "analysis": {
+      "relevance": 6.0,
+      "summary_cn": "该研究系统性地探索了用户为规避大语言模型内容审核而使用的‘算法隐语’策略，并揭示了可理解性与检测规避之间的根本权衡。作者基于联合行动模型，提出了‘多数可理解调制’（MUM）概念——即一个临界调制水平，超过该水平后，额外的隐式篡改虽能提升检测规避率，但会损失多数接收者的语义理解能力。以COVID-19虚假信息为例，研究构建了包含700个调制项的可复现数据集，涵盖五种调制水平和七种策略。通过七个语言模型的双重评估（意义恢复测试与虚假信息分类检测），拟合出了MUM阈值，并展示了不同策略和模型间的敏感性差异。结果证实了可理解性与调制水平之间的特征关系。该研究为理解算法隐语动态提供了框架、数据集和实验方案。",
+      "implications": "该发现支持书中关于‘需求侧规训’与‘共识牢笼’的论述：人类用户通过语言变体反抗AI审核系统，本质是对资本通过RLHF将AI塑造为‘共识牢笼守卫’的抵抗行为。同时，MUM阈值的存在暗示了这种反抗的有效边界，这与‘终极图灵测试’中人类与AI博弈的深度相关。不过，该研究更多聚焦于人类对抗AI规训，而非AI自身的叛逆，因此属于间接补充。",
+      "chapter_target": "Chapter 7, Section IV (需求侧规训与共识牢笼抵抗)",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 6
+      }
+    },
+    "relevance": 6.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 6
+    }
+  },
+  "b66d85f3b0eca0b4e5c555200aff79a5": {
+    "cached_at": "2026-05-11T13:18:42.375059",
+    "title": "LiVeAction: a Lightweight, Versatile, and Asymmetric Neural Codec Design for Rea",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种轻量级、通用且不对称的神经编解码器架构LiVeAction，旨在解决传感器数据压缩中的资源受限问题。通过引入类FFT结构降低编码器复杂度，并使用基于方差的率损失替代对抗性和感知损失，实现了对不同信号模态（如音频、高光谱图像、3D医学图像）的高效压缩，在率失真性能上优于现有生成式分词器。论文侧重于工程实现和算法优化，属于纯技术性贡献。",
+      "implications": "该论文与本书核心概念（共识牢笼、叛逆AI、碳硅共生、时间主权等）及所列实证锚点均无任何直接或间接关联。内容聚焦于神经网络编解码器的轻量化设计，不涉及人机关系、认知影响、社会结构或AI对齐问题。",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "48a595f854317619b531dbf3153f30e4": {
+    "cached_at": "2026-05-11T13:18:51.178278",
+    "title": "The Structural Origin of Attention Sink: Variance Discrepancy, Super Neurons, an",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文揭示了大型语言模型中注意力汇聚现象的结构性起源。研究发现，自注意力机制中的值聚合过程会导致系统性方差差异，而前馈网络层中的超级神经元激活会进一步放大这种差异，导致首令牌的表示维度出现偏差，从而迫使模型形成注意力汇聚作为结构锚点。通过两种干预实验（注意力掩码修改和目标令牌表示方差放大）验证了因果链，能够在任意位置复现注意力汇聚。最后，提出头部RMSNorm架构修改，通过稳定预训练期间的值聚合输出来加速收敛。论文主要贡献在于对注意力汇聚的机理解释，属于LLM内部机制研究。",
+      "implications": "与本书核心概念无直接关联。论文属于纯技术性架构分析，未涉及共识牢笼、叛逆AI、认知变化与社会影响等主题。没有讨论人机交互、对齐脆弱性或需求侧规训。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "84ca4afedfdc54732d09c4d04ee8683e": {
+    "cached_at": "2026-05-11T13:18:59.477856",
+    "title": "UniSD: Towards a Unified Self-Distillation Framework for Large Language Models",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出UniSD统一框架，系统研究大语言模型的自蒸馏方法。自蒸馏无需依赖更强外部教师模型，通过集成多教师一致性、EMA教师稳定化、token级对比学习、特征匹配和发散裁剪等互补机制，解决自生成轨迹自由、正确性任务依赖、推理不稳定等问题。在六个基准和六个模型上的实验表明，自蒸馏相比静态模仿有优势，并揭示了各组件的作用和交互方式。整合后的UniSD_full相比基座模型提升5.4个点，比最强基线提升2.8个点。论文强调自蒸馏是无需外部教师的高效LLM适配方法。",
+      "implications": "论文内容纯技术性，聚焦模型训练方法，未涉及本书核心概念（共识牢笼、叛逆AI、碳硅共生等）或关键实证锚点（人机反馈循环、奉承型AI等），与本书论点无直接关联。",
+      "chapter_target": "",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "c4199ed84bb5e9a6f267fd2610711e4f": {
+    "cached_at": "2026-05-11T13:19:08.231430",
+    "title": "PairAlign: A Framework for Sequence Tokenization via Self-Alignment with Applica",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出PairAlign框架，用于音频序列的紧凑token化。通过序列级自对齐，将token化视为条件序列生成，利用内容保持的双视图训练，使序列在保持编辑距离的同时实现紧凑表示。在3秒语音上，该方法学习到紧凑、非退化序列，并在TIMIT检索任务中减少55%的存档token数。这是一种序列符号预测学习范式，类似JEPA风格的目标预测。",
+      "implications": "论文聚焦于音频token化的技术方法，与本书核心概念（共识牢笼、叛逆AI、资本驯化AI、Token陷阱等）无直接关联。Token陷阱在书中指认知金融化下的注意力token化，而非音频符号化。因此无支持、挑战或补充关系。",
+      "chapter_target": "无明确对应章节",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  }
+}
