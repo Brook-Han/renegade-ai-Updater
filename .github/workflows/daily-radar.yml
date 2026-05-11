@@ -168,7 +168,7 @@ jobs:
           
           # 🌐 公开访问基础 URL（用于日志提示 + 钉钉链接，非必需）
           # || 后面的值是默认值，如果 Secret 为空则使用这个
-          echo "REPORT_BASE_URL=${{ secrets.REPORT_BASE_URL || 'https://brook-han.github.io/renegade-ai-Updater' }}" >> $GITHUB_ENV
+
           
           # 📰 功能开关：启用新闻抓取（根据实际配置调整）
           echo "ENABLE_NEWS_API=true" >> $GITHUB_ENV
