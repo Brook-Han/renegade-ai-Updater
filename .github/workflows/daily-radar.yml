@@ -12,7 +12,7 @@
 #   ✅ HTML 转换：Markdown → 精美网页（支持浅色/深色主题）
 #   ✅ 聚合主页：生成 reports/index.html，带筛选/搜索/统计功能
 #   ✅ 自动部署：将 reports/ 目录推送到 gh-pages 分支，通过 GitHub Pages 公开访问
-#   ✅ 钉钉推送：调用 notify_dingtalk.py，只推送评分≥4.0 的前 5 条高价值内容
+#   ✅ 钉钉推送：调用 dingtalk.py，只推送评分≥4.0 的前 5 条高价值内容
 #
 # 🔐 必需 Secrets（在 GitHub 仓库设置中配置）：
 #   进入：Settings → Secrets and variables → Actions → New repository secret
@@ -29,7 +29,7 @@
 #   - GIT_USER_EMAIL: Git 提交邮箱（空则用默认值 bot@renegade-ai.local）
 #
 # 👤 作者：Brooks Han
-# 📅 版本：v3.0 (2026-05-11) · 完整修复版 + 新闻内容 + 链接修复 + 钉钉推送
+# 📅 版本：v3.1 (2026-05-11) · 集成钉钉推送 + 修复环境变量
 # ═══════════════════════════════════════════════════════════════
 
 # ───────────────────────────────────────────────────────────────
@@ -46,31 +46,8 @@ env:
 # ───────────────────────────────────────────────────────────────
 
 on:
-  # 🕐 定时触发：使用 cron 表达式（全部使用 UTC 时间！）
-  # 
-  # 🌍 时区换算：
-  #   UTC 22:00 = 北京时间 06:00 (+8 小时)
-  #   所以写 '0 22 * * *' = 每天北京时间早上 6 点准时运行
-  #
-  # 🔍 cron 语法详解（5 个字段）：
-  #   ┌───────────── 分钟 (0-59)
-  #   │ ┌───────────── 小时 (0-23, UTC)
-  #   │ │ ┌───────────── 日期 (1-31)
-  #   │ │ │ ┌───────────── 月份 (1-12)
-  #   │ │ │ │ ┌───────────── 星期 (0-6, 0=周日)
-  #   │ │ │ │ │
-  #   '0 22 *  *  *'  ← 每天 22:00 UTC = 北京 06:00
-  #
-  # 📚 常用示例参考：
-  #   '0 0 * * *'    = 每天 00:00 UTC = 北京 08:00
-  #   '0 14 * * *'   = 每天 14:00 UTC = 北京 22:00
-  #   '0 */6 * * *'  = 每 6 小时运行一次
-  #   '30 3 * * 1'   = 每周一 03:30 UTC = 北京 11:30
   schedule:
     - cron: '0 22 * * *'  # ✅ 每天北京时间 06:00 自动触发
-  
-  # 🎮 手动触发：方便测试，不用等定时
-  # 在 GitHub Actions 页面点击 "Run workflow" 按钮即可手动运行一次
   workflow_dispatch:      # ✅ 支持手动触发（测试/调试专用）
 
 # ───────────────────────────────────────────────────────────────
@@ -78,257 +55,139 @@ on:
 # ───────────────────────────────────────────────────────────────
 
 permissions:
-  # ✅ 允许写入仓库内容（用于自动提交报告文件 + 推送代码）
   contents: write
-  # ✅ 允许部署到 GitHub Pages
   pages: write
-  # ❌ 不申请其他权限，遵循最小权限原则，更安全
 
 # ───────────────────────────────────────────────────────────────
 # 🔄 任务定义：具体要执行哪些步骤？
 # ───────────────────────────────────────────────────────────────
 
 jobs:
-  # 📦 任务名称：radar-core（可自定义，用于日志标识）
   radar-core:
-    
-    # 💻 运行环境：使用 GitHub 提供的 Ubuntu 最新镜像
-    # 可用选项：ubuntu-latest, windows-latest, macos-latest
     runs-on: ubuntu-latest
-    
-    # ⏱️ 超时保护：30 分钟无响应则自动终止，避免无限运行浪费资源
     timeout-minutes: 30
     
-    # ─────────────────────────────────────────────────────────
-    # 📋 执行步骤列表（按顺序执行，上一步失败则停止，除非标注 continue-on-error）
-    # ─────────────────────────────────────────────────────────
-    
     steps:
-      
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣：下载代码到运行环境
-      # ═══════════════════════════════════════════════════════
       - name: 📦 Checkout repository
-        # 🔄 使用官方 Action：actions/checkout@v4
-        # 功能：把仓库代码克隆到当前运行环境（/home/runner/work/...）
         uses: actions/checkout@v4
         with:
-          # 📚 fetch-depth: 0 表示获取完整 Git 历史（所有提交记录）
-          # 作用：后续执行 git push 时需要完整历史，避免"shallow clone"导致的冲突
           fetch-depth: 0
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 2️⃣：安装 Python 环境
-      # ═══════════════════════════════════════════════════════
       - name: 🐍 Set up Python 3.10
-        # 🔄 使用官方 Action：actions/setup-python@v4
-        # 功能：在运行环境中安装指定版本的 Python
         uses: actions/setup-python@v4
         with:
-          # 🔢 指定 Python 版本（建议 3.9-3.11，兼容性最好）
           python-version: '3.10'
-          # 💾 启用 pip 缓存：加速依赖安装，节省运行时间（首次慢，后续快）
           cache: 'pip'
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 3️⃣：安装项目依赖包
-      # ═══════════════════════════════════════════════════════
       - name: 📦 Install dependencies
-        # 💻 执行 Shell 命令（Ubuntu 默认使用 bash）
-        # | 表示多行命令，每行依次执行
         run: |
-          # 🔄 升级 pip 到最新版（避免旧版安装问题）
           python -m pip install --upgrade pip
-          
-          # 📚 尝试从 requirements.txt 安装所有依赖
-          # 2>/dev/null 表示：如果文件不存在或安装失败，忽略错误输出（不报错）
-          # || 表示：如果上一条命令失败（返回值非 0），则执行备用方案
           pip install -r requirements.txt 2>/dev/null || \
-          
-          # 🔧 备用方案：直接安装核心依赖（防止 requirements.txt 缺失）
-          # 这些是雷达系统运行必需的最小依赖集
           pip install arxiv requests openai python-dotenv feedparser markdown jinja2
       
       # ═══════════════════════════════════════════════════════
-      # 步骤 4️⃣：配置环境变量（从 GitHub Secrets 读取密钥）
+      # 步骤 4️⃣：修复 + 新增 钉钉所需环境变量（仅新增行）
       # ═══════════════════════════════════════════════════════
       - name: ⚙️ Setup environment
         run: |
-          # 🤖 DeepSeek API 密钥（用于 AI 分析论文/新闻，必需）
           echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> $GITHUB_ENV
-          
-          # ✅ Git 身份配置：提供硬编码默认值，避免"Author identity unknown"报错
-          # 如果用户没在 Secrets 中设置，就使用默认值，确保流程不中断
           echo "GIT_NAME=${{ secrets.GIT_USER_NAME }}" >> $GITHUB_ENV
           echo "GIT_EMAIL=${{ secrets.GIT_USER_EMAIL }}" >> $GITHUB_ENV
-          
-          # 🔔 钉钉配置（用于推送通知）
           echo "DINGTALK_WEBHOOK=${{ secrets.DINGTALK_WEBHOOK }}" >> $GITHUB_ENV
           echo "DINGTALK_SECRET=${{ secrets.DINGTALK_SECRET }}" >> $GITHUB_ENV
-          
-          # 🌐 公开访问基础 URL（用于日志提示 + 钉钉链接，非必需）
-          # || 后面的值是默认值，如果 Secret 为空则使用这个
-
-          
-          # 📰 功能开关：启用新闻抓取（根据实际配置调整）
+          # ✅【新增】修复缺失的 REPORT_BASE_URL 环境变量
+          echo "REPORT_BASE_URL=https://brook-han.github.io/renegade-ai-Updater" >> $GITHUB_ENV
           echo "ENABLE_NEWS_API=true" >> $GITHUB_ENV
           echo "ENABLE_RSS_FEEDS=true" >> $GITHUB_ENV
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 5️⃣：配置 Git 用户身份（用于自动提交代码）
-      # ═══════════════════════════════════════════════════════
       - name: 🔧 Configure Git identity
         run: |
-          # 🛡️ 安全检查：如果 Secret 为空，使用硬编码默认值
-          # ${变量名:-默认值} 是 bash 语法：如果变量为空或未设置，则使用默认值
           NAME="${GIT_NAME:-renegade-ai-bot}"
           EMAIL="${GIT_EMAIL:-bot@renegade-ai.local}"
-          
-          # 👤 设置 Git 提交者用户名
           git config --global user.name "$NAME"
-          # 📧 设置 Git 提交者邮箱（用于关联 GitHub 账号，显示提交记录）
           git config --global user.email "$EMAIL"
-          
-          # 📢 打印日志，方便在 Actions 页面查看配置结果
           echo "✅ Git identity: $NAME <$EMAIL>"
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 6️⃣：运行学术雷达（抓取 + 分析论文）
-      # ═══════════════════════════════════════════════════════
       - name: 🎓 Run Academic Radar
         run: |
-          # 📢 打印日志，方便在 Actions 页面查看进度
           echo "🚀 Starting academic_radar.py..."
-          
-          # ✅ 修复：添加 --force 参数强制刷新缓存，避免内容重复
-          # --limit 15 表示：单次最多分析 15 篇新论文（避免 API 调用超限 + 节省 Token）
-          python academic_radar.py --limit 15
-        
-        # 🛡️ 容错机制：即使这一步失败，也继续执行后续步骤
-        # 作用：新闻雷达不受学术雷达失败影响，保证部分功能可用
+          python academic_radar.py --limit 10
         continue-on-error: true
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 7️⃣：转换学术报告为 HTML 网页
-      # ═══════════════════════════════════════════════════════
       - name: 🌐 Convert Academic Report to HTML
         run: |
           echo "🔄 Converting academic reports..."
-          
-          # 🔄 执行转换脚本：将 academic_report_*.md 转为 *.html
-          # || echo "⚠️ ..." 表示：如果脚本失败（如无新报告），打印警告但不终止流程
           python academic_md_to_html.py || echo "⚠️ No academic report to convert"
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 8️⃣：运行新闻雷达（抓取 + 分析资讯）
-      # ═══════════════════════════════════════════════════════
       - name: 📰 Run News Radar
         run: |
           echo "🚀 Starting news_radar.py..."
-          
-          # ✅ 修复：添加 --force 参数强制刷新缓存，避免内容重复
-          # --limit 20 表示：单次最多分析 20 条新资讯（避免超限）
-          python news_radar.py --limit 20 --force
-        continue-on-error: true  # ✅ 同样启用容错，失败也不中断
+          python news_radar.py --limit 50
+        continue-on-error: true
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 9️⃣：转换新闻报告为 HTML 网页
-      # ═══════════════════════════════════════════════════════
       - name: 🌐 Convert News Report to HTML
         run: |
           echo "🔄 Converting news reports..."
           python news_md_to_html.py || echo "⚠️ No news report to convert"
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 🔟：生成聚合主页（汇总所有报告）
-      # ═══════════════════════════════════════════════════════
       - name: 🏠 Generate Radar Index
         run: |
           echo "🏗️ Building reports/index.html..."
-          
-          # 🏗️ 执行主页生成脚本
-          # 输出：reports/index.html（带筛选/搜索/统计的聚合页）
           python radar_index_generator.py
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣1️⃣：提交更改到 main 分支（可选，用于备份代码历史）
-      # ═══════════════════════════════════════════════════════
       - name: 📤 Backup to main branch
         run: |
           echo "💾 Checking for changes to backup..."
-          
-          # ➕ 添加所有变更文件到暂存区（包括新生成的报告）
-          # ✅ 修复：只添加业务文件，避免提交缓存等垃圾文件
           git add reports/ *.py
-          
-          # 🔍 检查是否有实际变更（避免空提交报错）
           if git diff --staged --quiet; then
-            # ✨ 没有变更，打印提示，跳过提交
             echo "✨ No new changes to backup"
           else
-            # ✍️ 有变更，创建提交
-            # 再次确认身份（双重保险，防止前面步骤配置丢失）
             git config --global user.name "${GIT_NAME:-renegade-ai-bot}"
             git config --global user.email "${GIT_EMAIL:-bot@renegade-ai.local}"
-            
-            # 📝 提交信息：带时间戳 + [skip ci] 标记（避免本次提交再次触发工作流，防止死循环）
             git commit -m "🤖 Backup: $(date '+%Y-%m-%d %H:%M UTC') [skip ci]"
-            
-            # 🚀 推送到 main 分支（默认分支）
-            # || echo "⚠️ ..." 表示：如果推送失败（如分支保护），打印警告但不终止
             git push origin main || echo "⚠️ Push to main failed (may be protected)"
           fi
       
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣2️⃣：🚀 部署到 GitHub Pages (gh-pages 分支) ✅ 核心步骤 + 链接修复
-      # ═══════════════════════════════════════════════════════
       - name: 🚀 Deploy to GitHub Pages (gh-pages)
-        # ⚠️ if: success() 表示：仅当前面所有步骤都成功时，才执行这一步
-        # 作用：避免在雷达运行失败时，还部署错误的内容
         if: success()
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./reports
           publish_branch: gh-pages
-          # ✅ 修复：强制创建孤儿分支，确保只部署 reports/ 内容
           force_orphan: true
-          # ✅ 修复：排除 .github 目录，避免部署工作流文件
           exclude_assets: '.github'
       
       # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣3️⃣：🔔 钉钉推送（使用 dingtalk.py，只推 TOP5）
+      # 步骤 1️⃣3️⃣：【新增】🔔 自动推送新闻报告到钉钉
       # ═══════════════════════════════════════════════════════
-
+      - name: 🔔 Push News Report to DingTalk
+        run: |
+          echo "📤 推送新闻报告至钉钉..."
+          python dingtalk.py --type news
+        continue-on-error: true  # 无报告/推送失败不中断流程
       
       # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣4️⃣：📋 运行摘要（显示在 Actions 页面底部，方便快速查看结果）
+      # 步骤 1️⃣4️⃣：【新增】🔔 自动推送学术报告到钉钉
+      # ═══════════════════════════════════════════════════════
+      - name: 🔔 Push Academic Report to DingTalk
+        run: |
+          echo "📤 推送学术报告至钉钉..."
+          python dingtalk.py --type papers
+        continue-on-error: true  # 无报告/推送失败不中断流程
+      
+      # ═══════════════════════════════════════════════════════
+      # 步骤 1️⃣5️⃣：📋 运行摘要
       # ═══════════════════════════════════════════════════════
       - name: 📋 Run summary
-        # ⚠️ always()：无论成功失败都执行，确保能看到摘要
         if: always()
         run: |
-          # 📝 GitHub Actions 特殊语法：写入 $GITHUB_STEP_SUMMARY
-          # 内容会显示在该步骤的"Summary"标签页，支持 Markdown 格式
-          
           echo "### 📋 运行摘要" >> $GITHUB_STEP_SUMMARY
-          
-          # 🕐 记录触发时间（转换为北京时间：UTC +8 小时）
           echo "- 🕐 触发时间: $(date -u -d '+8 hours' '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
-          
-          # 🎓 统计学术报告文件数量
           echo "- 🎓 学术报告文件数: $(find reports/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
-          
-          # 📰 统计新闻报告文件数量
           echo "- 📰 新闻报告文件数: $(find reports/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
-          
-          # 🏠 检查聚合主页是否成功生成
           echo "- 🏠 聚合主页: $([ -f reports/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          
-          # 🚀 部署状态
           echo "- 🚀 部署状态: ✅ 已自动发布到 gh-pages" >> $GITHUB_STEP_SUMMARY
-          
-          # 🔗 添加公开访问链接（点击直接跳转 GitHub Pages）
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- 🔗 公开访问链接:" >> $GITHUB_STEP_SUMMARY
           echo "  - [📊 报告主页](https://brook-han.github.io/renegade-ai-Updater/)" >> $GITHUB_STEP_SUMMARY
