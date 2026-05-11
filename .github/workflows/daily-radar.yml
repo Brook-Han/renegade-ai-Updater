@@ -175,8 +175,8 @@ jobs:
           
           # ✅ 可选：复制 index.html 到根目录，让主页直接可访问
           # 如果希望访问 https://xxx.github.io/repo/ 就直接看到雷达主页，取消下面注释：
-          # cp reports/index.html ./index.html 2>/dev/null || true
-          # git add index.html
+          cp reports/index.html ./index.html 2>/dev/null || true
+          git add index.html
           
           # 📤 提交并推送
           git add reports/
@@ -187,6 +187,7 @@ jobs:
           echo ""
           echo "✅ Deployment complete!"
           echo "🌐 Public URLs:"
+          echo "   🏠 Root:      https://brook-han.github.io/renegade-ai-Updater/"
           echo "   🏠 Index:     https://brook-han.github.io/renegade-ai-Updater/reports/index.html"
           echo "   📰 News:      https://brook-han.github.io/renegade-ai-Updater/reports/news/"
           echo "   🎓 Academic:  https://brook-han.github.io/renegade-ai-Updater/reports/academic/"
