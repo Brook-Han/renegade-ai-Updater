@@ -233,10 +233,10 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
     
     all_cards.sort(key=score_key, reverse=True)
     
-    # 📊 调试：打印 Top 3 的类型
-    top3 = all_cards[:3]
-    top3_types = [c['type'] for c in top3]
-    print(f"   🏆 Top 3 类型: {top3_types}")
+    # 📊 调试：打印 Top 5 的类型
+    top5 = all_cards[:5]
+    top5_types = [c['type'] for c in top5]
+    print(f"   🏆 Top 5 类型: {top5_types}")
     
     # 🎯 确定该日期的主报告
     latest_entry = entries[0]
@@ -253,8 +253,8 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
     type_info = f' · 📰{news_cnt} 📄{acad_cnt}' if news_cnt or acad_cnt else ''
     html += f'  <div class="day-meta">⏰ {formatted_time} · 📊 共 {len(all_cards)} 条{type_info}</div>\n'
     
-    # 🃏 渲染 Top 3 卡片
-    for card in top3:
+    # 🃏 渲染 Top 5 卡片
+    for card in top5:
         title = escape(card['title'])
         score = card.get('score', '5.0')
         summary = escape(card.get('summary', '')[:200])

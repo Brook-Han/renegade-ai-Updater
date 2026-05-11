@@ -2,21 +2,51 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
+# 加载 .env 文件中的环境变量（项目根目录下）
 load_dotenv()
 
+
+# ═══════════════════════════════════════════════════════
+#  模块级工具函数（放在类外，避免类属性调用报错）
+# ═══════════════════════════════════════════════════════
+def _parse_bool_env(key: str, default: bool = False) -> bool:
+    """
+    从环境变量读取布尔值
+    支持 'true', '1', 'yes'（不区分大小写）
+    用法示例：ENABLE_RSS = _parse_bool_env('ENABLE_RSS', True)
+    """
+    val = os.getenv(key, str(default))
+    return val.lower() in ("true", "1", "yes")
+
+
 class Config:
+    """
+    Renegade Radar 项目总配置类
+    ---------------------------
+    所有配置项集中管理，可通过 .env 文件覆盖默认值。
+
+    使用方式：
+        from config import Config
+        key = Config.DEEPSEEK_API_KEY
+    """
+
+    # =========================================================================
+    #  基础路径（必须在最前面，供后续路径拼接使用）
+    # =========================================================================
+    BASE_DIR = Path(__file__).parent  # 项目根目录（本文件所在文件夹）
+
     # =========================================================================
     #  API 密钥
     # =========================================================================
-    DEEPSEEK_API_KEY = os.getenv("DEEPSEEK_API_KEY", "")
-    SEMANTIC_SCHOLAR_API_KEY = os.getenv("SEMANTIC_SCHOLAR_API_KEY", "")
+    DEEPSEEK_API_KEY: str = os.getenv("DEEPSEEK_API_KEY", "")
+    SEMANTIC_SCHOLAR_API_KEY: str = os.getenv("SEMANTIC_SCHOLAR_API_KEY", "")
 
     # =========================================================================
     #  抓取设置
     # =========================================================================
-    MAX_RESULTS_PER_KEYWORD = int(os.getenv("MAX_RESULTS_PER_KEYWORD", "10"))
-    ARXIV_PAGE_SIZE = int(os.getenv("ARXIV_PAGE_SIZE", "100"))
-    ARXIV_DELAY_SECONDS = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
+    MAX_RESULTS_PER_KEYWORD: int = int(os.getenv("MAX_RESULTS_PER_KEYWORD", "10"))
+    ARXIV_PAGE_SIZE: int = int(os.getenv("ARXIV_PAGE_SIZE", "100"))
+    ARXIV_DELAY_SECONDS: float = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
 
     # =========================================================================
     #  模型配置 (2026-05-09 完美版)
@@ -24,75 +54,95 @@ class Config:
     #   - DeepSeek V4 Flash (deepseek-v4-flash) → 大量论文/资讯分析（快速便宜）
     #   - DeepSeek V4 Pro  (deepseek-v4-pro)  → 书稿草稿生成（强推理，少量调用）
     # =========================================================================
-    ANALYSIS_MODEL_DIRECT = "deepseek-v4-flash"          # 分析专用
-    DRAFTING_MODEL        = "deepseek-v4-pro"            # 草稿专用
+    ANALYSIS_MODEL_DIRECT: str = "deepseek-v4-flash"  # 分析专用模型
+    DRAFTING_MODEL: str = "deepseek-v4-pro"           # 草稿生成专用模型
 
     # 分析模型列表（目前只有直连，保留结构方便未来扩展）
-    ANALYSIS_MODELS = [ANALYSIS_MODEL_DIRECT]
+    ANALYSIS_MODELS: list[str] = [ANALYSIS_MODEL_DIRECT]
 
     # 草稿自动生成阈值
-    DRAFT_RELEVANCE_THRESHOLD = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
-    DRAFT_URGENCY_REQUIRED    = os.getenv("DRAFT_URGENCY_REQUIRED", "immediate")
+    DRAFT_RELEVANCE_THRESHOLD: int = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
+    DRAFT_URGENCY_REQUIRED: str = os.getenv(
+        "DRAFT_URGENCY_REQUIRED", "immediate"
+    )  # 可选 immediate / high / low
 
     # -------------------------------------------------------------------------
-    #  预留：DeepSeek V4 推理深度控制（当前主流程未使用，可后续接入）
+    #  DeepSeek V4 推理深度控制（正式启用，用于草稿生成）
+    #  - REASONING_EFFORT：推理预算，low / medium / high
+    #  - ENABLE_COT_PROMPT：是否在 Prompt 中显式引导分步推理
     # -------------------------------------------------------------------------
-    REASONING_EFFORT = os.getenv("REASONING_EFFORT", "high")     # low / medium / high
-    ENABLE_COT_PROMPT = os.getenv("ENABLE_COT_PROMPT", "true").lower() in ("true", "1", "yes")
+    REASONING_EFFORT: str = os.getenv("REASONING_EFFORT", "high")
+    ENABLE_COT_PROMPT: bool = _parse_bool_env("ENABLE_COT_PROMPT", True)
 
     # -------------------------------------------------------------------------
     #  预留：万级文献缓存升级（当前使用 JSON，数据量激增后可启用 SQLite）
+    #  注意：USE_SQLITE_CACHE 当前未生效，仅为后续扩展预留。
     # -------------------------------------------------------------------------
-    USE_SQLITE_CACHE = False
-    DATABASE_URL = os.getenv("DATABASE_URL", "renegade_radar.db")
+    USE_SQLITE_CACHE: bool = False
+    DATABASE_URL: str = os.getenv("DATABASE_URL", "renegade_radar.db")
 
     # =========================================================================
     #  资讯聚合 (News + RSS)
     # =========================================================================
-    NEWS_API_KEY = os.getenv("NEWS_API_KEY", "")
-    ENABLE_NEWS_API = os.getenv("ENABLE_NEWS_API", "false").lower() in ("true", "1", "yes")
-    ENABLE_RSS_FEEDS = os.getenv("ENABLE_RSS_FEEDS", "true").lower() in ("true", "1", "yes")
-    NEWS_DAYS_BACK = int(os.getenv("NEWS_DAYS_BACK", "7"))
+    NEWS_API_KEY: str = os.getenv("NEWS_API_KEY", "")
+    ENABLE_NEWS_API: bool = _parse_bool_env("ENABLE_NEWS_API", False)
+    ENABLE_RSS_FEEDS: bool = _parse_bool_env("ENABLE_RSS_FEEDS", True)
+    NEWS_DAYS_BACK: int = int(os.getenv("NEWS_DAYS_BACK", "7"))
 
     # -------------------------------------------------------------------------
-    #  预留：RSS 源异常保护（后续接入 news_sources.py，当前仅占位）
+    #  新闻分析筛选阈值（与 news_radar.py 联动）
     # -------------------------------------------------------------------------
-    RSS_TIMEOUT = int(os.getenv("RSS_TIMEOUT", "10"))          # 单源超时秒数
-    RSS_MAX_FAILURES = int(os.getenv("RSS_MAX_FAILURES", "3")) # 连续失败次数后自动暂停
-    SUSPENDED_FEEDS = []                                       # 自动暂停的源列表
+    NEWS_RELEVANCE_THRESHOLD: int = int(os.getenv("NEWS_RELEVANCE_THRESHOLD", "5"))
+    NEWS_CASE_VALUE_FILTER: list[str] = os.getenv(
+        "NEWS_CASE_VALUE_FILTER", "high"
+    ).split(",")
 
-    # 预设的 RSS 订阅源（完整版，共 16 个源）
-    RSS_FEEDS = {
-        # === 已有稳定源（保留）===
-        "MIT Tech Review": "https://www.technologyreview.com/feed/",
-        "Hacker News (AI)": "https://hnrss.org/frontpage?q=AI+OR+artificial-intelligence",
-        "Ars Technica": "https://feeds.arstechnica.com/arstechnica/index",
-        "The Verge - AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
+    # -------------------------------------------------------------------------
+    #  RSS 源异常保护（预留占位，后续由 news_sources.py 实际使用）
+    # -------------------------------------------------------------------------
+    RSS_TIMEOUT: int = int(os.getenv("RSS_TIMEOUT", "10"))          # 单源超时（秒）
+    RSS_MAX_FAILURES: int = int(os.getenv("RSS_MAX_FAILURES", "3")) # 连续失败自动暂停
+    SUSPENDED_FEEDS: list[str] = []   # 运行时由监控模块动态填充，请勿手动修改
 
-        # === 新增：权威科技与商业叙事 ===
-        "WIRED - AI": "https://www.wired.com/feed/category/ai/latest/rss",
-        "IEEE Spectrum - AI": "https://spectrum.ieee.org/feeds/topic/artificial-intelligence.rss",
-        "Bloomberg - Technology": "https://feeds.bloomberg.com/technology/news.rss",
+    # 预设的 RSS 订阅源（完整版，整合全量权威源）
+    RSS_FEEDS: dict[str, str] = {
+        # ===================== 1. 公司官方博客 =====================
+        "OpenAI Blog": "https://openai.com/blog/rss.xml",
+        "Anthropic Blog": "https://www.anthropic.com/blog/feed",
+        "Google AI Blog": "https://ai.googleblog.com/feeds/posts/default",
+        "DeepMind Blog": "https://deepmind.com/blog/feed/basic",
+        "Meta Engineering Blog": "https://engineering.fb.com/feed/",
+        "NVIDIA Blog": "https://blogs.nvidia.com/feed/",
 
-        # === 新增：深度分析与跨学科批判 ===
-        "The Conversation - Tech": "https://theconversation.com/technology/articles.atom",
-        "AIAAIC (AI争议库)": "https://www.aiaaic.org/feed",
-        "Aeon - Technology": "https://aeon.co/feeds/technology",
-        "Tech Policy Press": "https://techpolicy.press/feed",
+        # ===================== 2. 顶级科技媒体 =====================
+        "MIT Technology Review AI": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
+        "The Verge AI": "https://www.theverge.com/ai/rss/index.xml",
+        "TechCrunch AI": "https://techcrunch.com/category/artificial-intelligence/feed/",
+        "Ars Technica AI": "https://arstechnica.com/category/ai/feed/",
+        "Wired AI": "https://www.wired.com/feed/category/ai/latest/rss",
+        "404 Media": "https://www.404media.co/feed",
 
-        # === 新增：非西方视角 ===
-        "Rest of World": "https://restofworld.org/feed/",
-        "MIT News - AI": "https://news.mit.edu/rss/topic/artificial-intelligence2",
+        # ===================== 3. 社区与论文源 =====================
+        "Hacker News AI": "https://hnrss.org/ai",
+        "HuggingFace Daily Papers": "https://huggingface.co/papers/rss",
 
-        # === 新增：开发者与社区视角 ===
-        "TLDR AI": "https://tldr.tech/ai/rss",
-        "Hugging Face Daily Papers": "https://huggingface.co/papers/feed.rss",
+        # ===================== 4. 行业顶级 Newsletter =====================
+        "Import AI (Jack Clark)": "https://importai.substack.com/feed",
+        "Ben's Bites": "https://bensbites.beehiiv.com/feed",
+        "Latent Space": "https://www.latent.space/feed",
+        "Interconnects (Nathan Lambert)": "https://interconnects.substack.com/feed",
+        "AI Snake Oil (Arvind Narayanan)": "https://aisnakeoil.substack.com/feed",
+        "One Useful Thing (Ethan Mollick)": "https://www.oneusefulthing.org/feed",
+
+        # ===================== 5. 独立博客 =====================
+        "Simon Willison's Weblog": "https://simonwillison.net/feed/",
     }
 
     # =========================================================================
-    #  新闻预筛选关键词（完整词库，带中文注释）
+    #  新闻预筛选关键词（完整词库，键为英文匹配词，值为中文注释）
+    #  使用方法：遍历键名，检查新闻标题/摘要是否包含关键词（大小写不敏感）
     # =========================================================================
-    NEWS_CONCEPT_TERMS = {
+    NEWS_CONCEPT_TERMS: dict[str, str] = {
         # 公司/人物/事件
         "openai": "OpenAI公司",
         "anthropic": "Anthropic公司",
@@ -198,18 +248,63 @@ class Config:
     }
 
     # =========================================================================
-    #  路径配置
+    #  路径配置（都已转为绝对路径，无论从哪里运行脚本都不会出错）
     # =========================================================================
-    BASE_DIR = Path(__file__).parent                         # 项目根目录
-    KEYWORDS_FILE = os.getenv("KEYWORDS_FILE", "keywords.txt")
-    OUTPUT_DIR = os.getenv("OUTPUT_DIR", "reports")
-    LOG_DIR = BASE_DIR / "logs"                             # 日志目录（自动创建）
-    SEEN_IDS_FILE = os.getenv("SEEN_IDS_FILE", "seen_ids.json")
-    CACHE_FILE = os.getenv("CACHE_FILE", "paper_cache.json")
+    KEYWORDS_FILE: Path = BASE_DIR / os.getenv("KEYWORDS_FILE", "keywords.txt")
+    OUTPUT_DIR: Path = BASE_DIR / os.getenv("OUTPUT_DIR", "reports")
+    LOG_DIR: Path = BASE_DIR / "logs"  # 日志目录（会自动创建）
+    SEEN_IDS_FILE: Path = BASE_DIR / os.getenv("SEEN_IDS_FILE", "seen_ids.json")
+    CACHE_FILE: Path = BASE_DIR / os.getenv("CACHE_FILE", "paper_cache.json")
 
     # =========================================================================
     #  速率限制
     # =========================================================================
-    S2_RATE_LIMIT = float(os.getenv("S2_RATE_LIMIT", "1.0"))
+    S2_RATE_LIMIT: float = float(os.getenv("S2_RATE_LIMIT", "1.0"))
 
-    # OpenRouter 相关配置已全部删除（2026-05-08）
+    # =========================================================================
+    #  初始化 & 验证
+    # =========================================================================
+    @classmethod
+    def validate(cls) -> None:
+        """启动时调用，检查必要的环境变量和目录，有问题时抛出 RuntimeError"""
+        # 1. 关键 API 密钥检查
+        missing_keys = []
+        if not cls.DEEPSEEK_API_KEY:
+            missing_keys.append("DEEPSEEK_API_KEY")
+        if not cls.SEMANTIC_SCHOLAR_API_KEY:
+            missing_keys.append("SEMANTIC_SCHOLAR_API_KEY")
+        if missing_keys:
+            raise RuntimeError(
+                f"缺少必要的环境变量，请在 .env 文件中设置：{', '.join(missing_keys)}"
+            )
+
+        # 2. 确保输出和日志目录存在
+        cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+        cls.LOG_DIR.mkdir(parents=True, exist_ok=True)
+
+        print("✅ 配置验证通过，所有必要目录已就绪。")
+
+    # =========================================================================
+    #  安全：防止意外打印密钥（调试时更安全）
+    # =========================================================================
+    def __repr__(self) -> str:
+        """避免在日志或错误输出中暴露真实 API 密钥"""
+        return (
+            f"<Config(DEEPSEEK_API_KEY={'***' if self.DEEPSEEK_API_KEY else 'MISSING'}, "
+            f"SEMANTIC_SCHOLAR_API_KEY={'***' if self.SEMANTIC_SCHOLAR_API_KEY else 'MISSING'})>"
+        )
+
+
+# =============================================================================
+#  使用示例（小白友好，取消注释即可测试）
+# =============================================================================
+# if __name__ == "__main__":
+#     print("🧪 配置类自检 ...")
+#     Config.validate()
+#     print(f"📌 分析模型：{Config.ANALYSIS_MODEL_DIRECT}")
+#     print(f"📌 草稿模型：{Config.DRAFTING_MODEL}")
+#     print(f"📌 推理深度：{Config.REASONING_EFFORT}")
+#     print(f"📌 CoT引导：{'开启' if Config.ENABLE_COT_PROMPT else '关闭'}")
+#     print(f"📌 输出目录：{Config.OUTPUT_DIR}")
+#     print(f"📌 日志目录：{Config.LOG_DIR}")
+#     print(Config())
