@@ -87,7 +87,26 @@
     </div>
     <div class="day-group" data-date="2026-05-11">
   <h2 class="day-header">2026-05-11</h2>
-  <div class="day-meta">⏰ 13:19:55 · 📊 共 28 条 · 📰14 📄14</div>
+  <div class="day-meta">⏰ 13:19:55 · 📊 共 48 条 · 📰17 📄31</div>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
+        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section II; Chapter 9, Section III</span>
+      <span>·</span>
+      <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">该论文提出了一个统一视角，将人类与大型语言模型视为通过使用、生成和再训练的反馈循环耦合的动态系统。作者构建了包含人类认知、数据质量和模型能力三个变量的最小模型，识别出三种动态机制：共进化增强（双方协同提升）、脆弱平衡（稳定但易崩塌）和退化收敛（多样性丧失、陷入次优均衡）。模拟表明，增加对AI的依赖会触发系统向低多样性、次优均衡的相变，该过程在信息论上对应于人类-AI环路中的信息瓶颈——闭环反馈下的...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_091326.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
 
   <article class="card" data-type="academic">
     <div class="card-header">
@@ -126,25 +145,6 @@
       <a href="./academic/academic_report_2026-05-11_131955.html">查看 2026-05-11 完整报告 →</a>
     </div>
   </article>
-
-  <article class="card" data-type="news">
-    <div class="card-header">
-      <div class="card-title">
-        <a href="https://spectrum.ieee.org/ai-alignment" target="_blank" rel="noopener">Perfectly Aligning AIs Values With Humanitys Is Impossible</a>
-        <span class="type-badge news">📰 新闻</span>
-      </div>
-      <div class="card-score">9.0<span>/10</span></div>
-    </div>
-    <div class="card-meta">
-      <span>📍 Chapter 5, Section II</span>
-      <span>·</span>
-      <a href="https://spectrum.ieee.org/ai-alignment" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="card-body">IEEE Spectrum文章指出，完美对齐AI价值与人类价值是不可能的，这是AI领域最困难的问题之一。</div>
-    <div class="card-link">
-      <a href="./news/news_report_2026-05-11_120528.html">查看 2026-05-11 完整报告 →</a>
-    </div>
-  </article>
 </div>
 
     <div class="empty" id="emptyState" style="display:none">
@@ -162,7 +162,7 @@
     // Filter + Search
     (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
     // Stats
-    (function(){const t=10,n=5,a=5,d=1,l='2026-05-11';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
+    (function(){const t=12,n=6,a=6,d=1,l='2026-05-11';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
   </script>
 </body>
 </html>
