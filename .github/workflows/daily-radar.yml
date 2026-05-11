@@ -10,7 +10,7 @@
 #   ✅ 聚合主页：生成 reports/index.html，带筛选/搜索/统计功能
 #   ✅ 链接修复：确保从根域名访问时，"查看完整报告"链接正确跳转
 #   ✅ 自动部署：将 reports/ 目录推送到 gh-pages 分支，通过 GitHub Pages 公开访问
-#   ✅ 钉钉推送：调用 notify_dingtalk.py，只推送评分≥4.0 的前 5 条高价值内容
+#   ✅ 钉钉推送：调用 dingtalk.py，只推送评分≥4.0 的前 5 条高价值内容
 #
 # 🔐 必需 Secrets（在 GitHub 仓库设置中配置）：
 #   进入：Settings → Secrets and variables → Actions → New repository secret
@@ -195,7 +195,7 @@ jobs:
           echo "📤 推送报告至钉钉: $LATEST_MD"
           TYPE=$(echo "$LATEST_MD" | grep -q 'news' && echo 'news' || echo 'papers')
           
-          python notify_dingtalk.py \
+          python dingtalk.py \
             --file "$LATEST_MD" \
             --min-score 4.0 \
             --top-n 5 \
