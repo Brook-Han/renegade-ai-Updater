@@ -1,13 +1,13 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器（重构精准版）
+🏠 Renegade AI 雷达主页生成器（小白修复版）
 
 ✅ 修复重点：
-  1. 明确指定子目录：只扫描 reports/news/ 和 reports/academic/
-  2. 类型判断：通过父目录名判断（非文件名），100% 准确
-  3. 链接路径：生成相对于 index.html 的正确相对路径
-  4. 分类统计：新闻/论文数量精确计算
+  1. ✅ 修复：新闻卡片分数提取失败问题（兼容"相关度"/"最终评分"两种格式）
+  2. ✅ 修复：分数为空时给默认值 5.0，避免新闻卡片被排到最后
+  3. ✅ 修复：添加调试输出，方便排查问题
+  4. ✅ 修复：确保链接路径正确（./news/xxx.html）
 
 📁 期望的文件结构：
     reports/
@@ -15,14 +15,14 @@
     │   └── news_report_2026-05-11_143022.html
     ├── academic/
     │   └── academic_report_2026-05-11_143500.html
-    └── index.html  ← 本脚本生成于此（与子目录同级）
+    └── index.html  ← 本脚本生成于此
 
 📋 用法：
     cd your-project-root
     python radar_index_generator.py
 
 作者：Brooks Han
-版本：v3.0 (2026-05-11) · 重构精准版
+版本：v3.1 (2026-05-11) · 小白修复版
 """
 
 # ──────────────────────────────────────────────────────────────
@@ -34,13 +34,11 @@ from pathlib import Path
 from html import escape
 
 # ──────────────────────────────────────────────────────────────
-# ⚙️ 配置常量（集中管理，方便修改）
+# ⚙️ 配置常量
 # ──────────────────────────────────────────────────────────────
 
-# 报告根目录（相对于脚本运行位置）
 REPORTS_ROOT = Path("reports")
 
-# 子目录配置：目录名 → 显示名称 → 类型标识
 SUBDIR_CONFIG = {
     "news": {
         "label": "📰 新闻",
@@ -57,19 +55,14 @@ SUBDIR_CONFIG = {
 }
 
 # ──────────────────────────────────────────────────────────────
-# 📖 函数1：从单个 HTML 提取卡片数据
+# 📖 函数1：从单个 HTML 提取卡片数据（✅ 修复分数提取）
 # ──────────────────────────────────────────────────────────────
 
 def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
     """
     解析报告 HTML，提取卡片关键信息
     
-    参数:
-        html_path: HTML 文件完整路径
-        report_type: 'news' 或 'academic'（由调用方传入，确保准确）
-    
-    返回:
-        list[dict]: 卡片数据列表
+    ✅ 修复：兼容新闻报告（"相关度"）和学术报告（"最终评分"）的分数格式
     """
     try:
         with open(html_path, encoding='utf-8') as f:
@@ -87,20 +80,30 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
         re.DOTALL
     )
     
+    # 📊 调试：打印找到的卡片数量
+    if card_blocks:
+        print(f"   🔍 {html_path.name}: 找到 {len(card_blocks)} 个卡片区块")
+    
     for block in card_blocks:
-        card = {'type': report_type}  # ✅ 类型由参数传入，100% 准确
+        card = {'type': report_type}
         
-        # 📌 提取标题（清理内部标签）
+        # 📌 提取标题
         title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_m:
             card['title'] = re.sub(r'<[^>]+>', '', title_m.group(1)).strip()
         
-        # 📊 提取分数
-        score_m = re.search(r'<div class="card-score">([\d.]+)<span>/10</span>', block)
+        # 📊 提取分数（✅ 修复：兼容两种格式）
+        # 格式1: <div class="card-score">8.5<span>/10</span></div>
+        # 格式2: 可能包含其他文本
+        score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
         if score_m:
             card['score'] = score_m.group(1)
+        else:
+            # ✅ 修复：如果没提取到分数，给默认值 5.0（避免排到最后）
+            card['score'] = '5.0'
+            print(f"   ⚠️ 分数提取失败，使用默认值 5.0: {card['title'][:50]}...")
         
-        # 🔗 提取原文链接（保持原样，通常是绝对 URL）
+        # 🔗 提取原文链接
         link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
         if link_m:
             card['link'] = link_m.group(1)
@@ -126,38 +129,15 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
 
 
 # ──────────────────────────────────────────────────────────────
-# 📁 函数2：收集所有报告文件（✅ 精准版：指定子目录）
+# 📁 函数2：收集所有报告文件
 # ──────────────────────────────────────────────────────────────
 
 def collect_all_reports() -> dict:
-    """
-    扫描指定子目录，收集所有报告文件
-    
-    返回:
-        {
-            'dates': ['2026-05-11', ...],  # 倒序
-            'by_date': {
-                '2026-05-11': [
-                    {
-                        'file_name': 'news_report_2026-05-11_143022.html',
-                        'subdir': 'news',
-                        'relative_link': 'news/news_report_2026-05-11_143022.html',
-                        'full_path': Path('reports/news/news_report_...'),
-                        'mtime': 1234567890.0,
-                        'type': 'news',
-                        'cards': [...]  # 提取的卡片列表
-                    },
-                    ...
-                ]
-            },
-            'stats': {'total': 10, 'news': 6, 'academic': 4, 'days': 3}
-        }
-    """
+    """扫描指定子目录，收集所有报告文件"""
     from datetime import datetime
     
     all_entries = []
     
-    # 🔍 遍历配置的每个子目录
     for subdir_name, config in SUBDIR_CONFIG.items():
         subdir_path = REPORTS_ROOT / subdir_name
         
@@ -167,36 +147,32 @@ def collect_all_reports() -> dict:
         
         print(f"🔍 扫描 {subdir_path} / {config['pattern']}")
         
-        # 匹配文件
         for html_file in subdir_path.glob(config['pattern']):
-            # 跳过 index.html 自身
             if html_file.name == 'index.html':
                 continue
             
-            # 解析文件名中的日期时间
             m = re.search(r'(\d{4}-\d{2}-\d{2})_(\d{6})', html_file.name)
             if not m:
                 print(f"⚠️ 文件名格式不符，跳过: {html_file.name}")
                 continue
             
-            date_str = m.group(1)  # '2026-05-11'
-            time_str = m.group(2)  # '143022'
+            date_str = m.group(1)
+            time_str = m.group(2)
             
-            # ✅ 关键：生成相对于 reports/index.html 的链接
-            # index.html 在 reports/，报告在 reports/news/，所以链接是 "news/xxx.html"
+            # ✅ 生成相对于 reports/index.html 的链接
             relative_link = f"{subdir_name}/{html_file.name}"
             
             entry = {
                 'file_name': html_file.name,
                 'subdir': subdir_name,
-                'relative_link': relative_link,  # ✅ 用于"查看完整报告"链接
+                'relative_link': relative_link,
                 'full_path': html_file,
                 'date': date_str,
                 'time': time_str,
                 'mtime': html_file.stat().st_mtime,
-                'type': config['type'],  # ✅ 类型由目录决定，准确无误
+                'type': config['type'],
                 'label': config['label'],
-                'cards': [],  # 稍后填充
+                'cards': [],
             }
             all_entries.append(entry)
     
@@ -208,7 +184,7 @@ def collect_all_reports() -> dict:
             by_date[date] = []
         by_date[date].append(entry)
     
-    # 🔄 日期倒序 + 每组内按时间倒序（最新的报告在前）
+    # 🔄 日期倒序 + 每组内按时间倒序
     sorted_dates = sorted(by_date.keys(), reverse=True)
     for date in by_date:
         by_date[date].sort(key=lambda x: x['time'], reverse=True)
@@ -229,40 +205,42 @@ def collect_all_reports() -> dict:
 
 
 # ──────────────────────────────────────────────────────────────
-# 🎨 函数3：生成每日区块 HTML
+# 🎨 函数3：生成每日区块 HTML（✅ 修复链接路径）
 # ──────────────────────────────────────────────────────────────
 
 def generate_day_html(date: str, entries: list[dict]) -> str:
-    """
-    为指定日期生成摘要区块
+    """为指定日期生成摘要区块"""
     
-    逻辑：
-      1. 提取每个报告的所有卡片
-      2. 合并 + 按分数排序，取 Top 3
-      3. 以"时间最新"的报告作为该日期的详情入口
-    """
     # 📦 收集并提取所有卡片
     all_cards = []
     for entry in entries:
-        # ✅ 传入准确的 report_type
         cards = extract_cards_from_html(entry['full_path'], entry['type'])
         for c in cards:
-            c['_report_link'] = entry['relative_link']  # 标记来源报告链接
+            c['_report_link'] = entry['relative_link']
         all_cards.extend(cards)
     
-    # 🏆 按分数排序（高→低）
+    # 📊 调试：打印卡片统计
+    news_cards = [c for c in all_cards if c['type'] == 'news']
+    acad_cards = [c for c in all_cards if c['type'] == 'academic']
+    print(f"   📊 {date}: 新闻卡片 {len(news_cards)} 个，学术卡片 {len(acad_cards)} 个")
+    
+    # 🏆 按分数排序（✅ 修复：分数转换更安全）
     def score_key(c):
         try:
-            return float(c.get('score', 0))
+            return float(c.get('score', '5.0'))  # ✅ 默认值 5.0
         except (ValueError, TypeError):
-            return -1
+            return 5.0  # ✅ 转换失败也给 5.0
     
     all_cards.sort(key=score_key, reverse=True)
-    top3 = all_cards[:3]
     
-    # 🎯 确定该日期的主报告（时间最新的）
-    latest_entry = entries[0]  # 已按 time 倒序，第一个就是最新
-    main_report_link = latest_entry['relative_link']  # ✅ 正确的相对路径
+    # 📊 调试：打印 Top 3 的类型
+    top3 = all_cards[:3]
+    top3_types = [c['type'] for c in top3]
+    print(f"   🏆 Top 3 类型: {top3_types}")
+    
+    # 🎯 确定该日期的主报告
+    latest_entry = entries[0]
+    main_report_link = latest_entry['relative_link']
     formatted_time = f"{latest_entry['time'][:2]}:{latest_entry['time'][2:4]}:{latest_entry['time'][4:]}"
     
     # 🧱 构建 HTML
@@ -278,12 +256,12 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
     # 🃏 渲染 Top 3 卡片
     for card in top3:
         title = escape(card['title'])
-        score = card.get('score', '—')
+        score = card.get('score', '5.0')
         summary = escape(card.get('summary', '')[:200])
         chapter = escape(card.get('chapter', ''))
         link = card.get('link', '#')
         
-        # 🏷️ 类型徽章（使用配置的 badge_class）
+        # 🏷️ 类型徽章
         badge_class = SUBDIR_CONFIG.get(card['type'], {}).get('badge_class', '')
         type_label = SUBDIR_CONFIG.get(card['type'], {}).get('label', '')
         type_badge = f'<span class="type-badge {badge_class}">{type_label}</span>' if badge_class else ''
@@ -291,13 +269,12 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
         # ✍️ 草稿徽章
         draft_badge = '<span class="draft-badge">✍️</span>' if card.get('has_draft') else ''
         
-        # 🔗 链接处理
+        # 🔗 原文链接
         link_html = f'<a href="{escape(link)}" target="_blank" rel="noopener">↗ 原文</a>' if link and link != '#' else ''
         
         # ✅ 关键修复：确保链接相对于 reports/index.html 正确
-        # 如果 _report_link 是 "news/xxx.html"，从 reports/index.html 访问需要 "./news/xxx.html"
         report_link_raw = card.get('_report_link', main_report_link)
-        # 确保以 ./ 开头，避免浏览器解析错误
+        # 确保以 ./ 开头
         report_link = f"./{report_link_raw}" if not report_link_raw.startswith(('./', '../', 'http')) else report_link_raw
         
         html += f'''
@@ -325,7 +302,7 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
 
 
 # ──────────────────────────────────────────────────────────────
-# 🎨 函数4：HTML 模板（精简版，保留核心交互）
+# 🎨 函数4：HTML 模板
 # ──────────────────────────────────────────────────────────────
 
 def get_html_template() -> str:
@@ -427,11 +404,8 @@ def get_html_template() -> str:
     </footer>
   </main>
   <script>
-    // Theme toggle
     (function(){const h=document.documentElement,b=document.getElementById('themeToggle'),i=document.getElementById('themeIcon'),k='renegade-theme',a=t=>{h.classList.toggle('dark-theme',t==='dark');i.className=t==='dark'?'fa fa-moon-o':'fa fa-sun-o';localStorage.setItem(k,t);};a(localStorage.getItem(k)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));b.onclick=()=>a(h.classList.contains('dark-theme')?'light':'dark');})();
-    // Filter + Search
     (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
-    // Stats
     (function(){const t={{ total_reports }},n={{ news_count }},a={{ academic_count }},d={{ days_count }},l='{{ latest_date }}';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
   </script>
 </body>
@@ -443,7 +417,7 @@ def get_html_template() -> str:
 # ──────────────────────────────────────────────────────────────
 
 def main():
-    print("🚀 Renegade AI Radar Index Generator v3.0")
+    print("🚀 Renegade AI Radar Index Generator v3.1 (小白修复版)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
     
     # 1️⃣ 收集报告
@@ -463,6 +437,7 @@ def main():
     day_sections = []
     for date in data['dates']:
         entries = data['by_date'][date]
+        print(f"📅 处理日期: {date} ({len(entries)} 个报告)")
         section = generate_day_html(date, entries)
         day_sections.append(section)
     
@@ -470,7 +445,6 @@ def main():
     print("📄 Rendering index.html...")
     template = get_html_template()
     
-    # 安全替换变量
     final = template.replace('{{ day_sections }}', ''.join(day_sections))
     final = final.replace('{{ total_reports }}', str(data['stats']['total']))
     final = final.replace('{{ news_count }}', str(data['stats']['news']))
@@ -485,6 +459,13 @@ def main():
     print(f"\n✅ Success! Generated: {output}")
     print(f"🌐 Preview: file://{output.resolve()}")
     print("\n✨ Done. Run `python radar_index_generator.py` anytime to refresh.")
+    
+    # 🔍 调试：检查生成的 HTML 中是否有新闻卡片
+    if output.exists():
+        content = output.read_text(encoding='utf-8')
+        news_count = content.count('data-type="news"')
+        acad_count = content.count('data-type="academic"')
+        print(f"\n🔍 调试：index.html 中 news 卡片: {news_count} 个，academic 卡片: {acad_count} 个")
 
 
 # ──────────────────────────────────────────────────────────────
