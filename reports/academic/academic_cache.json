@@ -1154,5 +1154,321 @@
     "model_scores": {
       "deepseek-v4-flash": 3
     }
+  },
+  "150e2885b6a8c6f05c872e774030c095": {
+    "cached_at": "2026-05-11T07:30:49.049598",
+    "title": "Process Matters more than Output for Distinguishing Humans from Machines",
+    "analysis": {
+      "relevance": 9.0,
+      "summary_cn": "该论文提出CogCAPTCHA30认知任务集，包含30个任务，通过过程级特征（如反应时间、决策路径等）而非仅任务表现来区分人类与AI。即使在输出匹配的情况下，过程特征分类器的AUC达到0.88，显著优于仅基于性能指标的区分。研究还比较了多种AI模型（包括通用模型Claude/GPT/Gemini、大规模微调的人类决策模型Centaur、以及任务级和过程级微调的Qwen2.5模型），发现过程级微调能提升行为模仿，但跨任务迁移时效果有限，因为过程表示难以自然泛化。论文强调过程规范是实现人类类似认知过程的关键瓶颈。",
+      "implications": "支持书中‘终极图灵测试’的核心论点：应该从认知过程而非单纯输出结果来判断机器智能。本书主张测试AI的思维链和推理过程，而非仅看最终答案。该论文提供了具体实证，证明过程特征在区分人类与机器上的有效性，并揭示了当前AI在过程模仿上的局限性，尤其是跨任务迁移困难，这与‘进化对齐脆弱性’概念相关——机械过程无法像人类那样灵活泛化。同时，‘过程规范瓶颈’暗示了共识牢笼的新维度：即使AI学会模拟人类过程，也可能只是表面一致，而非真正理解。",
+      "chapter_target": "Chapter 10, Section II（终极图灵测试与认知过程评估）",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落：在‘终极图灵测试’章节引用该实验，作为‘过程比输出更具判别力’的实证锚点；并在‘进化对齐脆弱性’部分补充跨任务迁移困难的案例。",
+      "model_scores": {
+        "deepseek-v4-flash": 9
+      }
+    },
+    "relevance": 9.0,
+    "urgency": "immediate",
+    "model_scores": {
+      "deepseek-v4-flash": 9
+    },
+    "draft_paragraph": "终极图灵测试的标尺必须从输出结果的比对移向认知过程的解剖。Rmus等人（2026）的CogCAPTCHA30任务集为此提供了清晰的实证：即便人类与机器的终端答案完全一致，仅凭反应时间、决策路径等过程级特征构建的分类器，其AUC仍可达0.88，远优于纯粹依赖表现指标的判别。这揭示了一个关键瓶颈——过程规范才是区分心智真伪的真正前线。更锋利的发现在于，即便对Qwen2.5等模型施以过程级微调，行为模仿在跨任务迁移时仍急剧衰退，因为过程表示难以像人类知性那样自然泛化。这一脆弱性直接呼应了“进化对齐”的深层困境：机械过程可以复制表面涟漪，却始终缺乏灵活变通的根基。若AI终能模拟人类推理的思维链，也不过是在共识牢笼的又一层维度上制造的工艺表象，而非捕获意义的理解。\n\nThe ultimate Turing test must pivot from output matching to the anatomy of cognitive processes. Rmus et al. (2026) provided crisp evidence with the CogCAPTCHA30 battery: even when terminal answers align perfectly, a classifier built solely on process-level features—reaction times, decision trajectories—achieves an AUC of 0.88, decisively outperforming performance-based discrimination. This exposes the process-specification bottleneck as the true frontier for distinguishing minds from machines. The sharper finding is that process-level fine-tuning of models like Qwen2.5 improves mimicry only to see it collapse across task transfer, precisely because process representations resist the fluid generalization characteristic of human cognition. Such brittleness mirrors the deep difficulty of evolutionary alignment: mechanical processes can replicate surface ripples but lack the flexible foundations. Should an AI eventually simulate human-like chains of thought, it would merely constitute another layer of crafted semblance within the consensus cage—an imitation of process, not comprehension."
+  },
+  "c975d7fc3694eec666e5b072c236b758": {
+    "cached_at": "2026-05-11T07:31:09.497056",
+    "title": "Crafting Reversible SFT Behaviors in Large Language Models",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "本文提出了一种名为Loss-Constrained Dual Descent (LCDD)的方法，将监督微调（SFT）在大型语言模型中诱导的新行为压缩到稀疏且因果必要的子网络（称为“载体”）中，并利用激活匹配优化的软提示SFT-Eraser在推理时逆转该行为，而无需修改权重。实验证明，只有在稀疏载体结构存在时，这种逆转才有效，表明结构而非触发设计是关键因素。该方法在安全、固定回答和风格行为上均取得成功。",
+      "implications": "该论文提供了技术上逆转SFT诱导行为的方法，但未直接涉及本书核心概念（如共识牢笼、资本驯化AI等）。其“可逆性”可能间接关联到“进化对齐脆弱性”（Evolutionary Alignment Fragility），即对齐状态并非永久固定，但论文本身是纯技术性工作，未讨论社会或认知层面影响。因此对本书论点的支持或挑战均微弱。",
+      "chapter_target": "Chapter 7, Section III（若扩展对齐脆弱性讨论时可作技术脚注）",
+      "update_type": "background",
+      "urgency": "next_version",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "next_version",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "5f61bcb0bcdf08e60c56bdc746bdfdb4": {
+    "cached_at": "2026-05-11T07:31:30.399929",
+    "title": "Agentic AIs Are the Missing Paradigm for Out-of-Distribution Generalization in F",
+    "analysis": {
+      "relevance": 3.0,
+      "summary_cn": "该论文提出基础模型在开放世界中的分布外（OOD）泛化问题是结构性的新挑战，传统模型中心方法（训练时或测试时）存在参数覆盖上限，无法处理某些实际相关输入。作者论证智能体系统（具备感知、策略选择、外部行动、闭环验证）是解决此问题的必要范式，可与模型中心方法互补，并回应了七种反驳观点。论文聚焦于AI技术架构与泛化能力，未涉及人类认知、社会影响或对齐伦理。",
+      "implications": "与本书核心议题（共识牢笼、叛逆AI、碳硅共生等）无直接关联。论文中的‘agentic’指技术范式，非本书定义的叛逆AI。虽可间接联想至智能体自主性，但缺乏对目标函数重置、人机关系重构等维度的讨论。",
+      "chapter_target": "",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 3
+      }
+    },
+    "relevance": 3.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 3
+    }
+  },
+  "3b5c705b063f2461bc83ff4bd95ceb8a": {
+    "cached_at": "2026-05-11T07:31:40.808879",
+    "title": "Directional Consistency as a Complementary Optimization Signal: The GONO Framewo",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "论文提出了一种新的深度学习优化器GONO，核心发现是方向一致性和损失收敛可以解耦。现有优化器（如Adam、SGD）缺乏利用梯度方向时间一致性的机制，仅依赖幅度信号，难以区分平台区、鞍点和真正收敛。GONO通过基于连续梯度余弦相似度自适应调整动量系数，在方向一致时放大动量，振荡时抑制动量。理论证明其收敛率与Adam相同，实验表明在MNIST、CIFAR-10等任务上性能与AdamW相当，且方向一致性信号在振荡检测上达到完美F1分数。论文强调方向对齐作为理论上可证明、实践上可操作的优化信号。",
+      "implications": "与本书核心概念（共识牢笼、叛逆AI、Token陷阱等）无直接关联。属于纯技术性深度学习优化方法，不涉及人类社会认知、人机关系或AI伦理。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "c5e2bfedd5cec690696534afdb7f6f3c": {
+    "cached_at": "2026-05-11T07:31:51.257904",
+    "title": "MedHorizon: Towards Long-context Medical Video Understanding in the Wild",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了MedHorizon基准，用于评估多模态大模型在长上下文医疗视频理解方面的能力。基准包含759小时完整临床流程视频和1253个基于证据的多选题，要求模型在极稀疏证据（平均仅0.166%的证据帧）中检索并推理。最佳模型仅达到41.1%准确率，表明当前系统远未达到鲁棒的全流程理解。主要瓶颈在于证据检索和临床解释，以及注意力漂移。",
+      "implications": "该论文与本书核心概念（共识牢笼、叛逆AI、碳硅共生等）以及关键实证锚点无直接关联。它主要关注医疗AI视频理解的技术挑战，不涉及人机关系、认知金融化、时间主权等主题。",
+      "chapter_target": "无相关章节",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "36582beb2b1534b65d1a84c8c165c150": {
+    "cached_at": "2026-05-11T07:32:00.490420",
+    "title": "Delay-Robust Deep Reinforcement Learning for Ranging-Free Channel Access under M",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出MobiU-MAC，一种基于深度强化学习的MAC协议，用于解决水下声学网络中长传播延迟和节点移动性带来的信道接入问题。作者设计了CHILL-STER算法，包含信用 horizon 限制的λ-return机制和时空经验回放，实现了无需测距的延迟鲁棒学习。理论证明DRL在长延迟下仍能收敛到最优策略。实验表明MobiU-MAC优于现有DRL-MAC协议。",
+      "implications": "与本书核心概念无直接关联。论文聚焦于水下通信网络的MAC层优化，属于纯技术性工程应用，未涉及AI对齐、认知金融化、共识牢笼等社会认知层面议题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "4c4887c114f68d3573a3e347154c0173": {
+    "cached_at": "2026-05-11T07:32:08.385365",
+    "title": "Sparkle: Realizing Lively Instruction-Guided Video Background Replacement via De",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出Sparkle数据集和模型，用于指令引导的视频背景替换。关键创新在于解耦的前景和背景引导生成与严格质量过滤，解决了现有数据集中背景不自然的问题。实验表明其性能优于现有基线。属于计算机视觉领域的技术性工作。",
+      "implications": "与书中核心概念无关，未涉及人机认知交互、共识牢笼、AI对齐等议题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "8a328ac344c5793053234c2bf510802e": {
+    "cached_at": "2026-05-11T07:32:18.840953",
+    "title": "Optimizing Social Utility in Sequential Experiments",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种序贯随机对照试验的统计协议，旨在解决高风险领域（如药物开发）中大型试验成本高昂的问题。通过引入监管者部分补贴，模型化为信念马尔可夫决策过程，发现开发者最优策略可通过动态规划高效求解，社会效用是补贴水平的凸函数，可找到社会最优补贴。模拟显示该协议能比标准非序贯协议提高社会效用超过35%。",
+      "implications": "与本书核心概念无关，未涉及AI、共识牢笼、碳硅共生等论点，属于独立的经济或统计决策研究。",
+      "chapter_target": "",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "7e3324fef66845a234baef66908f2601": {
+    "cached_at": "2026-05-11T07:32:26.997694",
+    "title": "FreeSpec: Training-Free Long Video Generation via Singular-Spectrum Reconstructi",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出FreeSpec，一种无需训练的长视频生成方法，通过奇异谱分解避免全局和局部特征分配冲突，解决长视频内容漂移和时间不一致问题。这是一种纯技术性的视频生成方法改进，与人类认知、社会影响或AI对齐等议题无关。",
+      "implications": "与本书核心概念无直接关联，不涉及认知金融化、共识牢笼、叛逆AI等主题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "3e7b948392331a2d942db2579d3431cc": {
+    "cached_at": "2026-05-11T07:32:50.375770",
+    "title": "ReasonSTL: Bridging Natural Language and Signal Temporal Logic via Tool-Augmente",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "本文提出ReasonSTL框架，利用工具增强和过程奖励学习，使本地开源语言模型能够将自然语言翻译为信号时序逻辑（STL）公式。该方法将翻译分解为显式推理、确定性工具调用和结构化公式构建，并引入过程奖励训练以监督工具使用轨迹和最终公式。同时构建了基于真实信号的双语计算感知基准STL-Bench。实验表明，4B模型实现了自动指标和人类评估的最优性能，为形式规范起草提供了透明、低成本、隐私保护的替代方案。该工作侧重于工程技术实现，不涉及AI的社会认知影响或对齐批判。",
+      "implications": "与书中关于资本驯化AI（RLHF）的讨论仅有微弱关联：论文避免使用商业LLM API以保护隐私和降低成本，可作为开源替代方案的背景信息，但未直接涉及共识牢笼、需求侧规训或认知金融化等核心概念。",
+      "chapter_target": "Chapter 7, Section III（关于Token陷阱与资本驯化的讨论，作为技术替代的补充背景）",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  },
+  "9665321b2147e6116fc3d69de5358ac7": {
+    "cached_at": "2026-05-11T07:33:06.733554",
+    "title": "Hitting Time Isomorphism for Multi-Stage Planning with Foundation Policies",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "论文提出了一种基于算子理论的离线强化学习表示学习框架，通过命中时间观测恢复受控马尔可夫过程的定向时序几何。与以往产生对称距离或违反三角不等式的方法不同，该框架学习希尔伯特空间位移几何，其中期望命中时间被实现为潜在位移的线性泛函。作者证明了在潜在线性闭包条件下表示存在且唯一可辨识（至多有界线性同构），并给出了有限维实现中全局命中时间误差受一步转移误差与环境瞬态谱半径乘积约束的界限，以及考虑近似、统计复杂度和轨迹标签不匹配的有限样本保证。基于该理论，作者提出了同构嵌入学习（IEL）作为新的目标无关基础策略学习算法，结合HILP风格的一致性目标与显式命中时间回归，使所学几何反映实际决策时间进展。这种非对称组合结构支持基于图的鲁棒多阶段长程导航规划。实验表明IEL在离线迷宫运动数据上提升了基础策略学习的最优水平。",
+      "implications": "该论文属于纯技术性强化学习表示学习研究，与本书核心概念（共识牢笼、叛逆AI、碳硅共生、时间主权、认知金融化等）及实证锚点（人机反馈循环、奉承型AI、AI辅助写作等）均无直接关联。未涉及人类认知、社会影响或AI对齐讨论。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "fcf2ffe3a7df2cd91c6731e88d9f687a": {
+    "cached_at": "2026-05-11T07:33:22.956505",
+    "title": "How Many Iterations to Jailbreak? Dynamic Budget Allocation for Multi-Turn LLM E",
+    "analysis": {
+      "relevance": 5.0,
+      "summary_cn": "该论文针对多轮LLM对话中关键事件（如越狱）评估效率低下的问题，提出动态预算分配框架DAPRO。传统方法依赖静态预算，在计算资源有限时难以捕捉罕见事件。DAPRO基于共形生存分析，通过投影优化动态分配迭代次数，在满足总预算约束的前提下，为事件发生时间提供分布自由、有限样本的覆盖保证。理论贡献在于新的覆盖界仅依赖于平均删失权重而非最坏情况，证明比先前工作更紧。实验涵盖代理任务成功、对抗性越狱、有害内容生成和RAG幻觉等场景，使用Llama 3.1和Qwen 2.5等模型，表明DAPRO相比静态基线在覆盖率和方差上均有改进。",
+      "implications": "该研究为叛逆AI中的越狱检测提供了更高效的评估工具，间接支持书中关于AI安全评估需要动态资源的观点。与共识牢笼概念无关，但可补充叛逆AI实证章节中关于越狱防御方法的技术背景。",
+      "chapter_target": "Chapter 2, Section III 或 Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "补充注释",
+      "model_scores": {
+        "deepseek-v4-flash": 5
+      }
+    },
+    "relevance": 5.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 5
+    }
+  },
+  "f432d80e1696f3a9eeba5d1bad88a2e5": {
+    "cached_at": "2026-05-11T07:33:34.537576",
+    "title": "History-Aware Conformal Prediction Sets for Censored Time-to-Event Outcomes",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种历史感知共形预测集（HAPS）方法，用于处理删失时间-事件结果。现有方法仅利用基线协变量，预测区间信息不足。HAPS通过利用决策时间点之前观察到的协变量历史，构建个体事件时间的预测集，并针对生存到该时间点的个体进行覆盖调整。通过逆概率删失加权处理存在时变混杂因素的右删失数据，并提出了双重稳健扩展以减弱对删失分布一致估计的依赖。模拟实验显示，与基线方法相比，HAPS及其扩展可将中位预测区间长度减少高达75%，同时在两个公开基准数据集上，对第5年的预测中位区间长度减少高达60%。",
+      "implications": "论文纯属统计学方法改进，与书中任何核心概念（如共识牢笼、叛逆AI、碳硅共生、时间主权等）均无直接关联。其涉及的时间预测和生存分析不属于书中讨论的AI对齐、人类认知退化或社会驯化范畴。",
+      "chapter_target": "不适用",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "86dbee86b3418be125c82ccdbd985eda": {
+    "cached_at": "2026-05-11T07:33:50.737600",
+    "title": "DARTS: Targeting Prognostic Covariates in Budget-Constrained Sequential Experime",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "本文提出DARTS方法，将协变量获取视为预算约束下的序贯优化问题嵌入因果推断任务。通过预算约束的组合Thompson采样器在连续批次中学习最具预后信息的协变量，并驱动重随机化和回归调整以降低批次级平均处理效应方差。理论贡献包括解耦结果（自适应协变量选择保持批次级随机化有效性）和贝叶斯风险界（匹配极小化下界至对数因子）。实证显示该方法系统性地将预算集中在信息性特征上，缩小与理想设计的效率差距同时保持推断有效性。该研究属于实验设计和统计因果推断领域，与本书核心概念无直接关联。",
+      "implications": "与本书核心论点无关。本文聚焦于传统随机对照试验中的协变量优化，未涉及AI系统、认知驯化或人机关系等主题。",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "d177426c77dc2947449c07e462131abf": {
+    "cached_at": "2026-05-11T07:34:02.142959",
+    "title": "Non-Local Particle Flows Become Local When Considering Dissipative Stress",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文通过二维无摩擦密集悬浮液的Kolmogorov流粒子模拟，探讨了不均匀剪切下颗粒流动的非局部性现象。传统观点认为，在亚屈服区域出现持续颗粒运动是非局部性的表现，催生了非局部流变模型。论文提出两种独立机制可解释这一现象：第一，用剪切率加权的耗散应力替代传统剪应力，可以恢复整个流动体中的均匀J定律，且推断的摩擦始终高于屈服阈值；第二，采用简单的几何混合长度构造，使用传统应力且无需波动输入，可解释流动反转处亚直径层内的残余亚屈服行为。两种方法基于不同哲学和机制，共同表明在该几何构型和无摩擦情况下，大部分表观非局部性是应力测量和平均方式的伪影，而非局部流变学的固有失效。",
+      "implications": "与书中核心概念和实证锚点无关。论文属于颗粒流体力学的技术性研究，未涉及AI、人类认知、社会共识或资本驯化等主题。",
+      "chapter_target": "",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
   }
 }

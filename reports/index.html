@@ -87,7 +87,7 @@
     </div>
     <div class="day-group" data-date="2026-05-11">
   <h2 class="day-header">2026-05-11</h2>
-  <div class="day-meta">⏰ 13:19:55 · 📊 共 12 条 · 📰8 📄4</div>
+  <div class="day-meta">⏰ 13:19:55 · 📊 共 18 条 · 📰11 📄7</div>
 
   <article class="card" data-type="academic">
     <div class="card-header">
@@ -162,7 +162,7 @@
     // Filter + Search
     (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
     // Stats
-    (function(){const t=6,n=3,a=3,d=1,l='2026-05-11';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
+    (function(){const t=8,n=4,a=4,d=1,l='2026-05-11';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
   </script>
 </body>
 </html>
