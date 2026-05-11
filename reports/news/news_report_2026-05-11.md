@@ -1,15 +1,15 @@
 # 📰 News Radar — 资讯监控报告
 **生成日期**: 2026-05-11
 **分析模型**: deepseek-v4-flash
-**分析条目**: 52
+**分析条目**: 53
 **关键词**: LLM quality signal contamination                  # 大模型质量信号污染, RLHF cognitive effects human                      # RLHF 对人类认知的影响, AI persuasion belief change experiment            # AI 说服力与信念转变实验, automation bias high stakes decision              # 高风险决策中的自动化偏见, cognitive offloading AI writing                   # AI 写作中的认知卸载, AI assisted research homogenization               # AI 辅助研究的同质化, token economics cognitive labor                   # Token 经济学与认知劳动, evolutionary alignment AI open deployment         # 进化对齐与开放部署...
 ---
 
 ## 📊 快速概览
 
 - 🔴 高价值 (≥7分 + high案例): **21**
-- 🟡 中相关 (4-6.9分): **11**
-- ⚪ 低相关/忽略: **13**
+- 🟡 中相关 (4-6.9分): **10**
+- ⚪ 低相关/忽略: **14**
 
 ## 🚨 紧急关注清单（建议24h内处理）
 
@@ -280,7 +280,7 @@
 - **理论关联**: 这条新闻支持了‘信号异化’理论模型：当AI能够大规模生成表面上高质量、逻辑自洽的文本时，传统衡量输出质量的信号（如复杂度、一致性）已失效，因此需要创造新的评估信号（如面试式互动、压力测试）来甄别真实价值。它同时挑战了‘需求侧规训’中用户被动追求舒适的倾向，强调人类必须主动投入摩擦成本去评估AI。
 - **建议操作**: 补充注释：在信号异化小节中添加此案例，说明传统评估范式失灵后人类应对策略的演进。
 
-<details><summary>🔶 中相关资讯 (11条，点击展开)</summary>
+<details><summary>🔶 中相关资讯 (10条，点击展开)</summary>
 
 - **[How enterprises are scaling AI...](https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai)** [OpenAI News] · 6/10
   - 2026年5月11日，OpenAI官方新闻发布文章《企业如何规模化AI》，总结了大型组织从初期AI实验过渡到大规模部署的关键路径。文章指出，企业需在信任（如可解释性与透明度）、治理（如合规与权限管理）、工作流设计（如人机协作界面）以及大规模...
@@ -300,8 +300,6 @@
   - 随着AI芯片需求激增，全球最大芯片代工商台积电（TSMC）面临前所未有的能源压力。台湾地区本就脆弱的电网在AI算力爆发式增长下更显吃紧，台积电因此加速转向可再生能源，特别是风电。该公司已签署多项长期购电协议，承诺到2030年实现全公司25%...
 - **[Google DeepMind partners with EVE Online for AI model testin...](https://arstechnica.com/gaming/2026/05/google-deepmind-partners-with-eve-online-for-ai-model-testing/)** [AI - Ars Technica] · 6/10
   - Google DeepMind 与《EVE Online》开发商 CCP Games（现更名为 Fenris Creations）达成合作，旨在利用《EVE Online》这一以复杂经济、外交和长期博弈著称的虚拟世界作为测试环境，对 AI ...
-- **[UK iPhone and iPad Users Can Watch Porn Again...](https://www.404media.co/uk-iphone-ipad-ios-users-porn-age-verification/)** [404 Media] · 6/10
-  - 英国于2024年实施《在线安全法》，要求成人网站对用户进行严格的年龄验证，导致Pornhub等平台直接屏蔽英国IP访问。2026年5月，苹果在iOS更新中为英国移动设备（iPhone/iPad）内置了系统级年龄验证机制，通过设备内存储或iC...
 - **[[AINews] Anthropic growing 10x/year while everyone else is l...](https://www.latent.space/p/ainews-anthropic-growing-10xyear)** [Latent.Space] · 5/10
   - 2026年5月9日，Latent.Space报道称，人工智能公司Anthropic以每年10倍的速度增长，而与此同时，其他行业普遍裁员超过10%。这一鲜明对比反映了当前经济中严重的行业分化：AI领域通过资本、人才和市场需求的高速集中实现了爆...
 
