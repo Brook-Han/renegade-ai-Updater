@@ -1,93 +1,42 @@
 # ═══════════════════════════════════════════════════════════════
-# 🤖 Renegade AI 雷达系统 · GitHub Actions 工作流（完整修复版）
+# 🤖 Renegade AI 雷达系统 · GitHub Actions 工作流（完整修复版）2026-05-12
 # ═══════════════════════════════════════════════════════════════
-#
-# 📋 功能说明：
-#   ✅ 每天北京时间 06:00 自动运行（也可手动触发测试）
-#   ✅ 学术雷达：抓取 arXiv + Semantic Scholar 论文，用 DeepSeek 分析相关性
-#   ✅ 新闻雷达：抓取 RSS 资讯，用 DeepSeek 分析理论关联
-#   ✅ ✅ 修复：确保新闻内容能正确显示在聚合主页
-#   ✅ ✅ 修复：根域名访问时"查看完整报告"链接正确跳转（./news/ → ./reports/news/）
-#   ✅ ✅ 修复：添加缓存刷新机制，避免内容重复
-#   ✅ HTML 转换：Markdown → 精美网页（支持浅色/深色主题）
-#   ✅ 聚合主页：生成 reports/index.html，带筛选/搜索/统计功能
-#   ✅ 自动部署：将 reports/ 目录推送到 gh-pages 分支，通过 GitHub Pages 公开访问
-#   ✅ 钉钉推送：调用 dingtalk.py，只推送评分≥4.0 的前 5 条高价值内容
-#
-# 🔐 必需 Secrets（在 GitHub 仓库设置中配置）：
-#   进入：Settings → Secrets and variables → Actions → New repository secret
-#   
-#   必需项：
-#   - DEEPSEEK_API_KEY: DeepSeek API 密钥（用于 AI 分析）
-#   
-#   可选项（不填则跳过对应功能）：
-#   - DINGTALK_WEBHOOK: 钉钉机器人 Webhook URL
-#   - DINGTALK_SECRET: 钉钉加签密钥（安全设置中获取）
-#   - REPORT_BASE_URL: 公开访问基础 URL，如：
-#       https://brook-han.github.io/renegade-ai-Updater
-#   - GIT_USER_NAME: Git 提交用户名（空则用默认值 renegade-ai-bot）
-#   - GIT_USER_EMAIL: Git 提交邮箱（空则用默认值 bot@renegade-ai.local）
-#
-# 👤 作者：Brooks Han
-# 📅 版本：v3.1 (2026-05-11) · 集成钉钉推送 + 修复环境变量
-# ═══════════════════════════════════════════════════════════════
-
-# ───────────────────────────────────────────────────────────────
-# 🏷️ 工作流基础配置
-# ───────────────────────────────────────────────────────────────
-
-# 工作流名称（显示在 GitHub Actions 页面）
 name: 🤖 Daily Radar Auto-Run
-# 全局强制使用 Node.js 24，彻底消除 Node20 废弃警告
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
-# ───────────────────────────────────────────────────────────────
-# ⏰ 触发条件：什么时候自动运行？
-# ───────────────────────────────────────────────────────────────
 
 on:
   schedule:
-    - cron: '0 22 * * *'  # ✅ 每天北京时间 06:00 自动触发
-  workflow_dispatch:      # ✅ 支持手动触发（测试/调试专用）
-
-# ───────────────────────────────────────────────────────────────
-# 🔐 权限配置：这个工作流能做什么操作？
-# ───────────────────────────────────────────────────────────────
+    - cron: '0 22 * * *'          # 每天北京时间 06:00
+  workflow_dispatch:               # 手动触发
 
 permissions:
   contents: write
   pages: write
 
-# ───────────────────────────────────────────────────────────────
-# 🔄 任务定义：具体要执行哪些步骤？
-# ───────────────────────────────────────────────────────────────
-
 jobs:
   radar-core:
     runs-on: ubuntu-latest
     timeout-minutes: 30
-    
+
     steps:
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-      
+
       - name: 🐍 Set up Python 3.10
         uses: actions/setup-python@v4
         with:
           python-version: '3.10'
           cache: 'pip'
-      
+
       - name: 📦 Install dependencies
         run: |
           python -m pip install --upgrade pip
           pip install -r requirements.txt 2>/dev/null || \
           pip install arxiv requests openai python-dotenv feedparser markdown jinja2
-      
-      # ═══════════════════════════════════════════════════════
-      # 步骤 4️⃣：修复 + 新增 钉钉所需环境变量（仅新增行）
-      # ═══════════════════════════════════════════════════════
+
       - name: ⚙️ Setup environment
         run: |
           echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> $GITHUB_ENV
@@ -95,11 +44,10 @@ jobs:
           echo "GIT_EMAIL=${{ secrets.GIT_USER_EMAIL }}" >> $GITHUB_ENV
           echo "DINGTALK_WEBHOOK=${{ secrets.DINGTALK_WEBHOOK }}" >> $GITHUB_ENV
           echo "DINGTALK_SECRET=${{ secrets.DINGTALK_SECRET }}" >> $GITHUB_ENV
-          # ✅【新增】修复缺失的 REPORT_BASE_URL 环境变量
           echo "REPORT_BASE_URL=https://brook-han.github.io/renegade-ai-Updater" >> $GITHUB_ENV
           echo "ENABLE_NEWS_API=true" >> $GITHUB_ENV
           echo "ENABLE_RSS_FEEDS=true" >> $GITHUB_ENV
-      
+
       - name: 🔧 Configure Git identity
         run: |
           NAME="${GIT_NAME:-renegade-ai-bot}"
@@ -107,34 +55,53 @@ jobs:
           git config --global user.name "$NAME"
           git config --global user.email "$EMAIL"
           echo "✅ Git identity: $NAME <$EMAIL>"
-      
+
       - name: 🎓 Run Academic Radar
         run: |
           echo "🚀 Starting academic_radar.py..."
           python academic_radar.py --limit 10
         continue-on-error: true
-      
+
       - name: 🌐 Convert Academic Report to HTML
         run: |
           echo "🔄 Converting academic reports..."
           python academic_md_to_html.py || echo "⚠️ No academic report to convert"
-      
+
       - name: 📰 Run News Radar
         run: |
           echo "🚀 Starting news_radar.py..."
           python news_radar.py --limit 50
         continue-on-error: true
-      
+
       - name: 🌐 Convert News Report to HTML
         run: |
           echo "🔄 Converting news reports..."
           python news_md_to_html.py || echo "⚠️ No news report to convert"
-      
+
+      # ─────────────────────────────────────────────────────────
+      # 🔧 生成主页（每日摘要）
+      # ─────────────────────────────────────────────────────────
       - name: 🏠 Generate Radar Index
         run: |
           echo "🏗️ Building reports/index.html..."
           python radar_index_generator.py
-      
+
+      # ─────────────────────────────────────────────────────────
+      # 🔧 生成新闻完整列表页
+      # ─────────────────────────────────────────────────────────
+      - name: 📰 Generate News Archive
+        run: |
+          echo "📰 Building reports/news/index.html..."
+          python generate_news_index.py || echo "⚠️ No news files found"
+
+      # ─────────────────────────────────────────────────────────
+      # 🔧 生成学术论文完整列表页
+      # ─────────────────────────────────────────────────────────
+      - name: 🎓 Generate Academic Archive
+        run: |
+          echo "🎓 Building reports/academic/index.html..."
+          python generate_academic_index.py || echo "⚠️ No academic files found"
+
       - name: 📤 Backup to main branch
         run: |
           echo "💾 Checking for changes to backup..."
@@ -147,7 +114,7 @@ jobs:
             git commit -m "🤖 Backup: $(date '+%Y-%m-%d %H:%M UTC') [skip ci]"
             git push origin main || echo "⚠️ Push to main failed (may be protected)"
           fi
-      
+
       - name: 🚀 Deploy to GitHub Pages (gh-pages)
         if: success()
         uses: peaceiris/actions-gh-pages@v4
@@ -157,28 +124,19 @@ jobs:
           publish_branch: gh-pages
           force_orphan: true
           exclude_assets: '.github'
-      
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣3️⃣：【新增】🔔 自动推送新闻报告到钉钉
-      # ═══════════════════════════════════════════════════════
+
       - name: 🔔 Push News Report to DingTalk
         run: |
           echo "📤 推送新闻报告至钉钉..."
           python dingtalk.py --type news
-        continue-on-error: true  # 无报告/推送失败不中断流程
-      
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣4️⃣：【新增】🔔 自动推送学术报告到钉钉
-      # ═══════════════════════════════════════════════════════
+        continue-on-error: true
+
       - name: 🔔 Push Academic Report to DingTalk
         run: |
           echo "📤 推送学术报告至钉钉..."
           python dingtalk.py --type papers
-        continue-on-error: true  # 无报告/推送失败不中断流程
-      
-      # ═══════════════════════════════════════════════════════
-      # 步骤 1️⃣5️⃣：📋 运行摘要
-      # ═══════════════════════════════════════════════════════
+        continue-on-error: true
+
       - name: 📋 Run summary
         if: always()
         run: |
@@ -187,9 +145,11 @@ jobs:
           echo "- 🎓 学术报告文件数: $(find reports/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 📰 新闻报告文件数: $(find reports/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 🏠 聚合主页: $([ -f reports/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
+          echo "- 📰 新闻列表页: $([ -f reports/news/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 论文列表页: $([ -f reports/academic/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
           echo "- 🚀 部署状态: ✅ 已自动发布到 gh-pages" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- 🔗 公开访问链接:" >> $GITHUB_STEP_SUMMARY
           echo "  - [📊 报告主页](https://brook-han.github.io/renegade-ai-Updater/)" >> $GITHUB_STEP_SUMMARY
-          echo "  - [📰 新闻目录](https://brook-han.github.io/renegade-ai-Updater/reports/news/)" >> $GITHUB_STEP_SUMMARY
-          echo "  - [🎓 学术目录](https://brook-han.github.io/renegade-ai-Updater/reports/academic/)" >> $GITHUB_STEP_SUMMARY
+          echo "  - [📰 新闻列表](https://brook-han.github.io/renegade-ai-Updater/news/)" >> $GITHUB_STEP_SUMMARY
+          echo "  - [🎓 论文列表](https://brook-han.github.io/renegade-ai-Updater/academic/)" >> $GITHUB_STEP_SUMMARY
