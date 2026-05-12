@@ -400,7 +400,7 @@ CSS_TEMPLATE = """
       .card-meta a:hover { text-decoration: underline; }
       
       .card-body {
-        font-size: 0.92rem; color: var(--text-muted);
+        font-size: 0.70rem; color: var(--text-muted);
         line-height: 1.8; margin-bottom: 12px;
       }
       
