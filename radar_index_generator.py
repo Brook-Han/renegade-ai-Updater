@@ -392,9 +392,12 @@ def get_html_template() -> str:
     </div>
     <div class="stats-grid">
       <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">Reports</div></div>
-      <div class="stat"><div class="stat-val" id="statNews">—</div><div class="stat-lbl">📰 News</div></div>
-      <div class="stat"><div class="stat-val" id="statAcademic">—</div><div class="stat-lbl">📄 Papers</div></div>
-      <div class="stat"><div class="stat-val" id="statDays">—</div><div class="stat-lbl">Days</div></div>
+      <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
+        <div class="stat-val" id="statNews">—</div>
+        <div class="stat-lbl">📰 News</div></a>
+      <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
+        <div class="stat-val" id="statAcademic">—</div>
+        <div class="stat-lbl">📄 Papers</div></a>
     </div>
     <div class="controls">
       <button class="filter-btn active" data-filter="all">All</button>
