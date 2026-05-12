@@ -249,10 +249,10 @@ CSS_TEMPLATE = """
       }
       .page-sub {
         font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
-        letter-spacing: 1.5px; margin-bottom: 32px;
+        letter-spacing: 1.5px; margin-bottom: 16px;
       }
       .stats-row {
-        display: flex; gap: 24px; margin-bottom: 40px;
+        display: flex; gap: 24px; margin-bottom: 10px;
         font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
         letter-spacing: 1px; flex-wrap: wrap;
       }
@@ -266,7 +266,7 @@ CSS_TEMPLATE = """
         color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
       }
       .urgent-item {
-        font-size: 0.9rem; margin-bottom: 8px; padding-left: 16px;
+        font-size: 0.55rem; margin-bottom: 8px; padding-left: 16px;
         border-left: 2px solid var(--border);
       }
       .urgent-item strong { color: var(--white); }
