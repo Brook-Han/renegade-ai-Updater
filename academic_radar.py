@@ -541,8 +541,7 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> st
         lines.append("")
 
     # 保存报告
-    now = datetime.datetime.now()
-    report_path = OUTPUT_DIR / f"academic_report_{now.date().isoformat()}_{now.strftime('%H%M%S')}.md"
+    report_path = OUTPUT_DIR / f"academic_report_{today}.md"
     report_path.write_text("\n".join(lines), encoding="utf-8")
     logger.info(f"✅ 学术报告已保存: {report_path}")
     return str(report_path)
