@@ -234,7 +234,7 @@ def get_html_template() -> str:
     .card{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:8px}
     .card:hover{border-color:var(--accent)}
     .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;flex-wrap:wrap}
-    .card-title{font-family:var(--display);font-size:1.0rem;color:var(--white);flex:1;line-height:1.3}
+    .card-title{font-family:var(--display);font-size:1.1rem;color:var(--white);flex:1;line-height:1.3}
     .card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
     .card-title a:hover{border-bottom-color:var(--accent2)}
     .card-score{font-family:var(--display);font-size:1.8rem;color:var(--accent);white-space:nowrap;text-align:right}
