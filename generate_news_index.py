@@ -217,14 +217,14 @@ def get_html_template() -> str:
     .card{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:8px}
     .card:hover{border-color:var(--accent)}
     .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;flex-wrap:wrap}
-    .card-title{font-family:var(--display);font-size:1.2rem;color:var(--white);flex:1;line-height:1.3}
+    .card-title{font-family:var(--display);font-size:1.0rem;color:var(--white);flex:1;line-height:1.3}
     .card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
     .card-title a:hover{border-bottom-color:var(--accent2)}
     .card-score{font-family:var(--display);font-size:1.8rem;color:var(--accent);white-space:nowrap;text-align:right}
     .card-score span{font-family:var(--mono);font-size:.5rem;color:var(--text-muted);display:block}
     .card-meta{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
     .card-meta a{color:var(--accent2);text-decoration:none}
-    .card-body{font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:8px}
+    .card-body{font-size:.70rem;color:var(--text);line-height:1.8;margin-bottom:8px}
     .card-link{font-family:var(--mono);font-size:.65rem;margin-top:10px}
     .card-link a{color:var(--accent);text-decoration:none}
     .type-badge{display:inline-block;font-family:var(--mono);font-size:.55rem;padding:2px 6px;border-radius:2px;margin-left:6px}
