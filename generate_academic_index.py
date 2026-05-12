@@ -6,7 +6,7 @@
 用法：
     python generate_academic_index.py
 输出：
-    reports/academic/index.html
+    docs/academic/index.html
 特性：
     - 最新日期显示 Top 3 新闻，历史日期显示 Top 1
     - 保留“查看完整报告”链接，可浏览当日全部条目
@@ -19,7 +19,7 @@ from html import escape
 # ───────────────────────────────
 # 配置
 # ───────────────────────────────
-ACADEMIC_DIR = Path("reports/academic")
+ACADEMIC_DIR = Path("docs/academic")
 OUTPUT_FILE = ACADEMIC_DIR / "index.html"
 
 # ───────────────────────────────
@@ -73,7 +73,7 @@ def extract_cards_from_html(html_path: Path, report_type: str = "academic") -> l
 # ───────────────────────────────
 def collect_academic_reports() -> dict:
     if not ACADEMIC_DIR.exists():
-        print("❌ reports/academic 目录不存在")
+        print("❌ docs/academic 目录不存在")
         return {"by_date": {}, "stats": {"total": 0, "days": 0}}
 
     entries = []

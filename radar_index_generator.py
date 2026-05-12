@@ -23,7 +23,7 @@ from html import escape
 # ═══════════════════════════════════════════════════════════════
 # 配置
 # ═══════════════════════════════════════════════════════════════
-REPORTS_ROOT = Path("reports")
+REPORTS_ROOT = Path("docs")
 
 SUBDIR_CONFIG = {
     "news": {
@@ -99,10 +99,10 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 收集所有报告文件（扫描 reports/ 目录）
+# 收集所有报告文件（扫描 docs/ 目录）
 # ═══════════════════════════════════════════════════════════════
 def collect_all_reports() -> dict:
-    """扫描 reports/news 和 reports/academic，按日期分组并统计"""
+    """扫描 docs/news 和 docs/academic，按日期分组并统计"""
     all_entries = []
 
     for subdir_name, config in SUBDIR_CONFIG.items():

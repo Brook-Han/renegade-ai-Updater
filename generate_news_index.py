@@ -6,7 +6,7 @@
 用法：
     python generate_news_index.py
 输出：
-    reports/news/index.html
+    docs/news/index.html
 特性：
     - 最新日期显示 Top 3 新闻，历史日期显示 Top 1
     - 保留“查看完整报告”链接，可浏览当日全部条目
@@ -19,7 +19,7 @@ from html import escape
 # ───────────────────────────────
 # 配置
 # ───────────────────────────────
-NEWS_DIR = Path("reports/news")
+NEWS_DIR = Path("docs/news")
 OUTPUT_FILE = NEWS_DIR / "index.html"
 
 # ───────────────────────────────
@@ -71,7 +71,7 @@ def extract_cards_from_html(html_path: Path, report_type: str = "news") -> list[
 # ───────────────────────────────
 def collect_news_reports() -> dict:
     if not NEWS_DIR.exists():
-        print("❌ reports/news 目录不存在")
+        print("❌ docs/news 目录不存在")
         return {"by_date": {}, "stats": {"total": 0, "days": 0}}
 
     entries = []

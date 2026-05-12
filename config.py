@@ -255,7 +255,7 @@ class Config:
     #  路径配置（都已转为绝对路径，无论从哪里运行脚本都不会出错）
     # =========================================================================
     KEYWORDS_FILE: Path = BASE_DIR / os.getenv("KEYWORDS_FILE", "keywords.txt")
-    OUTPUT_DIR: Path = BASE_DIR / os.getenv("OUTPUT_DIR", "reports")
+    OUTPUT_DIR: Path = BASE_DIR / os.getenv("OUTPUT_DIR", "docs")
     LOG_DIR: Path = BASE_DIR / "logs"  # 日志目录（会自动创建）
     SEEN_IDS_FILE: Path = BASE_DIR / os.getenv("SEEN_IDS_FILE", "seen_ids.json")
     CACHE_FILE: Path = BASE_DIR / os.getenv("CACHE_FILE", "paper_cache.json")
