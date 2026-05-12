@@ -301,7 +301,7 @@ CSS_TEMPLATE = """
       .card-authors { color: var(--text-muted); font-style: italic; }
       .card-pub { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
       .card-body {
-        font-size: 0.92rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+        font-size: 0.70rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
       }
       .card-implications {
         font-family: var(--mono); font-size: 0.68rem; color: var(--accent2);
