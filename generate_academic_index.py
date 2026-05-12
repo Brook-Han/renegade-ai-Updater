@@ -7,6 +7,9 @@
     python generate_academic_index.py
 输出：
     reports/academic/index.html
+特性：
+    - 最新日期显示 Top 3 新闻，历史日期显示 Top 1
+    - 保留“查看完整报告”链接，可浏览当日全部条目
 """
 
 import re
@@ -113,10 +116,14 @@ def collect_academic_reports() -> dict:
 
 
 # ───────────────────────────────
-# 生成一个日期的 HTML 区块（所有卡片）
+# 生成一个日期的 HTML 区块（支持限制显示条数）
 # ───────────────────────────────
-def generate_day_block(date: str, entries: list[dict]) -> str:
-    # 提取当天所有卡片
+def generate_day_block(date: str, entries: list[dict], top_n: int = None) -> str:
+    """
+    date: 日期字符串
+    entries: 该日期的报告文件列表
+    top_n: 显示前 N 条卡片，None 表示全部显示
+    """
     all_cards = []
     for e in entries:
         cards = extract_cards_from_html(e["path"])
@@ -139,16 +146,28 @@ def generate_day_block(date: str, entries: list[dict]) -> str:
 
     if not all_cards:
         return ""
+    
+    # 选择要展示的卡片数量
+    total_cards = len(all_cards)
+    display_cards = all_cards[:top_n] if top_n is not None else all_cards
 
     # 格式化时间
     latest_time = entries[0]["time"]
     formatted_time = f"{latest_time[:2]}:{latest_time[2:4]}:{latest_time[4:]}"
 
+    # 构建元信息行（显示展示数量 / 总数）
+    if top_n is not None and total_cards > top_n:
+        meta_text = f"⏰ {formatted_time} · 📊 展示前 {len(display_cards)} 条 / 共 {total_cards} 条新闻"
+    else:
+        meta_text = f"⏰ {formatted_time} · 📊 共 {total_cards} 条新闻"
     html = f'<div class="day-group" data-date="{date}">\n'
     html += f'  <h2 class="day-header">{date}</h2>\n'
-    html += f'  <div class="day-meta">⏰ {formatted_time} · 📊 共 {len(all_cards)} 篇论文</div>\n'
+    html += f'  <div class="day-meta">{meta_text}</div>\n'
 
-    for card in all_cards:
+    for card in display_cards:
+        title = escape(card.get("title", ""))
+        score = card.get("score", "5.0")
+        summary = escape(card.get("summary", "")[:200])
         title = escape(card.get("title", ""))
         score = card.get("score", "5.0")
         summary = escape(card.get("summary", "")[:200])
@@ -289,11 +308,15 @@ def main():
         print("❌ 没有找到学术报告文件")
         return
 
-    # 生成所有日期的区块
+    # 最新日期索引
+    latest_date = data["dates"][0] if data["dates"] else None
+
     day_sections = []
     for date in data["dates"]:
         entries = data["by_date"][date]
-        block = generate_day_block(date, entries)
+        # 当天显示 Top 3，历史日期显示 Top 1
+        top_n = 3 if date == latest_date else 1
+        block = generate_day_block(date, entries, top_n=top_n)
         if block:
             day_sections.append(block)
 
@@ -310,4 +333,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-    
