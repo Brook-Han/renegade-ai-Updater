@@ -66,7 +66,7 @@ CACHE_FILE = OUTPUT_DIR / "news_cache.json"
 # 从 Config 读取新闻专用阈值（已补充到 config.py）
 RELEVANCE_THRESHOLD = getattr(Config, "NEWS_RELEVANCE_THRESHOLD", 5)
 # 案例价值过滤器，默认只保留 "high"（与报告标题“高案例价值”一致）
-CASE_VALUE_FILTER = getattr(Config, "NEWS_CASE_VALUE_FILTER", ["high"])
+CASE_VALUE_FILTER = getattr(Config, "NEWS_CASE_VALUE_FILTER", ["high", "medium"])
 
 # ------------------------------------------------------------------
 # 工具函数
@@ -150,9 +150,14 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
 
     # 领域词（通用 AI/产业词汇），保证过滤掉纯娱乐新闻
     domain_terms = {
-        "ai", "artificial intelligence", "llm", "language model",
-        "machine learning", "algorithm", "automation", "regulation",
-        "labor", "employment", "economy", "market", "policy",
+    "ai", "artificial intelligence", "llm", "language model", "gpt",
+    "model", "agent", "robot", "neural", "deep learning",
+    "machine learning", "algorithm", "automation", "regulation",
+    "policy", "labor", "employment", "economy", "market",
+    "technology", "research", "science", "paper", "benchmark",
+    "safety", "ethics", "bias", "privacy", "surveillance",
+    "open source", "api", "product", "release", "update",
+    "startup", "funding", "acquisition",
     }
     domain_lower = {t.lower() for t in domain_terms}
 
