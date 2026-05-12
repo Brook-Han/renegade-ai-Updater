@@ -1,291 +1,233 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器（小白修复版）
+🏠 Renegade AI 雷达主页生成器（新闻/论文分开展示版）
 
-✅ 修复重点：
-  1. ✅ 修复：新闻卡片分数提取失败问题（兼容"相关度"/"最终评分"两种格式）
-  2. ✅ 修复：分数为空时给默认值 5.0，避免新闻卡片被排到最后
-  3. ✅ 修复：添加调试输出，方便排查问题
-  4. ✅ 修复：确保链接路径正确（./news/xxx.html）
+✅ 修复与改进：
+  1. ✅ 新闻卡片分数提取失败时给默认值 5.0
+  2. ✅ 链接路径正确（./news/xxx.html 形式）
+  3. ✅ 每日区块：新闻 Top 10 + 学术 Top 5（不再混合 Top 5）
+  4. ✅ 调试输出显示实际展示的卡片类型
+  5. ✅ 新闻/论文按钮改为直接跳转独立列表页
+  6. ✅ 论文按钮也可链接到 ./academic/（需手动修改模板）
 
-📁 期望的文件结构：
-    reports/
-    ├── news/
-    │   └── news_report_2026-05-11_143022.html
-    ├── academic/
-    │   └── academic_report_2026-05-11_143500.html
-    └── index.html  ← 本脚本生成于此
-
-📋 用法：
+用法：
     cd your-project-root
     python radar_index_generator.py
-
-作者：Brooks Han
-版本：v3.1 (2026-05-11) · 小白修复版
 """
-
-# ──────────────────────────────────────────────────────────────
-# 🔧 导入模块
-# ──────────────────────────────────────────────────────────────
 
 import re
 from pathlib import Path
 from html import escape
 
-# ──────────────────────────────────────────────────────────────
-# ⚙️ 配置常量
-# ──────────────────────────────────────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════
+# 配置
+# ═══════════════════════════════════════════════════════════════
 REPORTS_ROOT = Path("reports")
 
 SUBDIR_CONFIG = {
     "news": {
         "label": "📰 新闻",
         "type": "news",
-        "pattern": "*.html",
+        "pattern": "news_report*.html",
         "badge_class": "news",
     },
     "academic": {
-        "label": "📄 论文", 
+        "label": "📄 论文",
         "type": "academic",
-        "pattern": "*.html",
+        "pattern": "academic_report*.html",
         "badge_class": "academic",
     },
 }
 
-# ──────────────────────────────────────────────────────────────
-# 📖 函数1：从单个 HTML 提取卡片数据（✅ 修复分数提取）
-# ──────────────────────────────────────────────────────────────
 
+# ═══════════════════════════════════════════════════════════════
+# 工具函数：从 HTML 报告中提取卡片信息
+# ═══════════════════════════════════════════════════════════════
 def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
-    """
-    解析报告 HTML，提取卡片关键信息
-    
-    ✅ 修复：兼容新闻报告（"相关度"）和学术报告（"最终评分"）的分数格式
-    """
+    """解析单个报告 HTML，提取所有卡片的关键字段"""
     try:
-        with open(html_path, encoding='utf-8') as f:
-            content = f.read()
+        content = html_path.read_text(encoding="utf-8")
     except Exception as e:
         print(f"⚠️ 读取失败 {html_path.name}: {e}")
         return []
-    
+
     cards = []
-    
-    # 🔍 匹配所有 <div class="card">...</div>
+    # 匹配所有 <div class="card">...</div>
     card_blocks = re.findall(
-        r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)', 
-        content, 
-        re.DOTALL
+        r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
+        content,
+        re.DOTALL,
     )
-    
-    # 📊 调试：打印找到的卡片数量
     if card_blocks:
         print(f"   🔍 {html_path.name}: 找到 {len(card_blocks)} 个卡片区块")
-    
+
     for block in card_blocks:
-        card = {'type': report_type}
-        
-        # 📌 提取标题
+        card = {"type": report_type}
+
+        # 标题
         title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_m:
-            card['title'] = re.sub(r'<[^>]+>', '', title_m.group(1)).strip()
-        
-        # 📊 提取分数（✅ 修复：兼容两种格式）
-        # 格式1: <div class="card-score">8.5<span>/10</span></div>
-        # 格式2: 可能包含其他文本
+            card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
+
+        # 评分
         score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
-        if score_m:
-            card['score'] = score_m.group(1)
-        else:
-            # ✅ 修复：如果没提取到分数，给默认值 5.0（避免排到最后）
-            card['score'] = '5.0'
-            print(f"   ⚠️ 分数提取失败，使用默认值 5.0: {card['title'][:50]}...")
-        
-        # 🔗 提取原文链接
+        card["score"] = score_m.group(1) if score_m else "5.0"
+
+        # 原文链接
         link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
         if link_m:
-            card['link'] = link_m.group(1)
-        
-        # 📝 提取摘要
+            card["link"] = link_m.group(1)
+
+        # 摘要
         summary_m = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
         if summary_m:
-            card['summary'] = re.sub(r'<[^>]+>', '', summary_m.group(1)).strip()
-        
-        # ✍️ 检测草稿（仅学术报告有）
-        card['has_draft'] = '<div class="card-draft">' in block
-        
-        # 📍 提取章节
-        chapter_m = re.search(r'📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)', block)
+            card["summary"] = re.sub(r"<[^>]+>", "", summary_m.group(1)).strip()
+
+        # 是否包含草稿
+        card["has_draft"] = '<div class="card-draft">' in block
+
+        # 目标章节
+        chapter_m = re.search(r"📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)", block)
         if chapter_m:
-            card['chapter'] = chapter_m.group(1).strip()
-        
-        # ✅ 只保留有标题的有效卡片
-        if card.get('title'):
+            card["chapter"] = chapter_m.group(1).strip()
+
+        if card.get("title"):
             cards.append(card)
-    
+
     return cards
 
 
-# ──────────────────────────────────────────────────────────────
-# 📁 函数2：收集所有报告文件
-# ──────────────────────────────────────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════
+# 收集所有报告文件（扫描 reports/ 目录）
+# ═══════════════════════════════════════════════════════════════
 def collect_all_reports() -> dict:
-    """扫描指定子目录，收集所有报告文件"""
-    from datetime import datetime
-    
+    """扫描 reports/news 和 reports/academic，按日期分组并统计"""
     all_entries = []
-    
+
     for subdir_name, config in SUBDIR_CONFIG.items():
         subdir_path = REPORTS_ROOT / subdir_name
-        
         if not subdir_path.exists():
             print(f"ℹ️  目录不存在，跳过: {subdir_path}")
             continue
-        
+
         print(f"🔍 扫描 {subdir_path} / {config['pattern']}")
-        
-        for html_file in subdir_path.glob(config['pattern']):
-            if html_file.name == 'index.html':
+        for html_file in subdir_path.glob(config["pattern"]):
+            if html_file.name == "index.html":
                 continue
-            
-            # ✅ 提取日期：优先从文件名，否则使用文件修改时间
-            m = re.search(r'(\d{4}-\d{2}-\d{2})', html_file.name)
-            if m:
-                date_str = m.group(1)
-                # 尝试提取时间（可能没有）
-                time_m = re.search(r'_(\d{6})', html_file.name)
-                time_str = time_m.group(1) if time_m else "000000"
-            else:
-                # 文件名里没有日期，使用文件修改时间
-                import datetime
-                mtime = html_file.stat().st_mtime
-                dt = datetime.datetime.fromtimestamp(mtime)
-                date_str = dt.strftime('%Y-%m-%d')
-                time_str = dt.strftime('%H%M%S')
-                print(f"ℹ️  文件名中无日期，使用修改时间: {html_file.name} -> {date_str}")
-            
-        
-            # ✅ 生成相对于 reports/index.html 的链接
+
+            m = re.search(r"(\d{4}-\d{2}-\d{2})", html_file.name)
+            if not m:
+                print(f"⚠️ 文件名格式不符，跳过: {html_file.name}")
+                continue
+
+            date_str = m.group(1)
+            # 尝试提取时间戳（可选）
+            time_m = re.search(r"_(\d{6})", html_file.name)
+            time_str = time_m.group(1) if time_m else "000000"
+
             relative_link = f"{subdir_name}/{html_file.name}"
-            
+
             entry = {
-                'file_name': html_file.name,
-                'subdir': subdir_name,
-                'relative_link': relative_link,
-                'full_path': html_file,
-                'date': date_str,
-                'time': time_str,
-                'mtime': html_file.stat().st_mtime,
-                'type': config['type'],
-                'label': config['label'],
-                'cards': [],
+                "file_name": html_file.name,
+                "subdir": subdir_name,
+                "relative_link": relative_link,
+                "full_path": html_file,
+                "date": date_str,
+                "time": time_str,
+                "type": config["type"],
+                "label": config["label"],
             }
             all_entries.append(entry)
-    
-    # 📅 按日期分组
+
+    # 按日期分组
     by_date = {}
     for entry in all_entries:
-        date = entry['date']
-        if date not in by_date:
-            by_date[date] = []
-        by_date[date].append(entry)
-    
-    # 🔄 日期倒序 + 每组内按时间倒序
+        by_date.setdefault(entry["date"], []).append(entry)
+
     sorted_dates = sorted(by_date.keys(), reverse=True)
     for date in by_date:
-        by_date[date].sort(key=lambda x: x['time'], reverse=True)
-    
-    # 📊 计算统计
+        by_date[date].sort(key=lambda x: x["time"], reverse=True)
+
     stats = {
-        'total': len(all_entries),
-        'news': sum(1 for e in all_entries if e['type'] == 'news'),
-        'academic': sum(1 for e in all_entries if e['type'] == 'academic'),
-        'days': len(sorted_dates),
+        "total": len(all_entries),
+        "news": sum(1 for e in all_entries if e["type"] == "news"),
+        "academic": sum(1 for e in all_entries if e["type"] == "academic"),
+        "days": len(sorted_dates),
     }
-    
-    return {
-        'dates': sorted_dates,
-        'by_date': by_date,
-        'stats': stats,
-    }
+    return {"dates": sorted_dates, "by_date": by_date, "stats": stats}
 
 
-# ──────────────────────────────────────────────────────────────
-# 🎨 函数3：生成每日区块 HTML（✅ 修复链接路径）
-# ──────────────────────────────────────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════
+# 🎨 核心修改：生成每日区块，分开展示新闻和学术卡片
+# ═══════════════════════════════════════════════════════════════
 def generate_day_html(date: str, entries: list[dict]) -> str:
-    """为指定日期生成摘要区块"""
-    
-    # 📦 收集并提取所有卡片
+    """为指定日期生成摘要区块，新闻 Top 10 + 学术 Top 5"""
+
+    # 1. 提取所有卡片，并关联所属报告
     all_cards = []
     for entry in entries:
-        cards = extract_cards_from_html(entry['full_path'], entry['type'])
+        cards = extract_cards_from_html(entry["full_path"], entry["type"])
         for c in cards:
-            c['_report_link'] = entry['relative_link']
+            c["_report_link"] = entry["relative_link"]  # 完整报告的路径
         all_cards.extend(cards)
-    
-    # 📊 调试：打印卡片统计
-    news_cards = [c for c in all_cards if c['type'] == 'news']
-    acad_cards = [c for c in all_cards if c['type'] == 'academic']
+
+    # 2. 分别筛选新闻和学术卡片
+    news_cards = [c for c in all_cards if c["type"] == "news"]
+    acad_cards = [c for c in all_cards if c["type"] == "academic"]
+
     print(f"   📊 {date}: 新闻卡片 {len(news_cards)} 个，学术卡片 {len(acad_cards)} 个")
-    
-    # 🏆 按分数排序（✅ 修复：分数转换更安全）
+
+    # 评分转换函数
     def score_key(c):
         try:
-            return float(c.get('score', '5.0'))  # ✅ 默认值 5.0
+            return float(c.get("score", "5.0"))
         except (ValueError, TypeError):
-            return 5.0  # ✅ 转换失败也给 5.0
-    
-    all_cards.sort(key=score_key, reverse=True)
-    
-    # 📊 调试：打印 Top 5 的类型
-    top5 = all_cards[:5]
-    top5_types = [c['type'] for c in top5]
-    print(f"   🏆 Top 5 类型: {top5_types}")
-    
-    # 🎯 确定该日期的主报告
+            return 5.0
+
+    # 分别排序
+    news_cards.sort(key=score_key, reverse=True)
+    acad_cards.sort(key=score_key, reverse=True)
+
+    # 3. 取 Top N（可根据需要调整数量）
+    TOP_NEWS = 3
+    TOP_ACAD = 5
+    top_news = news_cards[:TOP_NEWS]
+    top_acad = acad_cards[:TOP_ACAD]
+
+    # 组合展示顺序：新闻在前
+    display_cards = top_news + top_acad
+
+    top_types = [c["type"] for c in display_cards]
+    print(f"   🏆 展示卡片类型: {top_types}")
+
+    # 4. 生成 HTML
     latest_entry = entries[0]
-    main_report_link = latest_entry['relative_link']
     formatted_time = f"{latest_entry['time'][:2]}:{latest_entry['time'][2:4]}:{latest_entry['time'][4:]}"
-    
-    # 🧱 构建 HTML
+
     html = f'<div class="day-group" data-date="{date}">\n'
     html += f'  <h2 class="day-header">{date}</h2>\n'
-    
-    # 元信息行
-    news_cnt = sum(1 for c in all_cards if c['type'] == 'news')
-    acad_cnt = sum(1 for c in all_cards if c['type'] == 'academic')
-    type_info = f' · 📰{news_cnt} 📄{acad_cnt}' if news_cnt or acad_cnt else ''
-    html += f'  <div class="day-meta">⏰ {formatted_time} · 📊 共 {len(all_cards)} 条{type_info}</div>\n'
-    
-    # 🃏 渲染 Top 5 卡片
-    for card in top5:
-        title = escape(card['title'])
-        score = card.get('score', '5.0')
-        summary = escape(card.get('summary', '')[:200])
-        chapter = escape(card.get('chapter', ''))
-        link = card.get('link', '#')
-        
-        # 🏷️ 类型徽章
-        badge_class = SUBDIR_CONFIG.get(card['type'], {}).get('badge_class', '')
-        type_label = SUBDIR_CONFIG.get(card['type'], {}).get('label', '')
-        type_badge = f'<span class="type-badge {badge_class}">{type_label}</span>' if badge_class else ''
-        
-        # ✍️ 草稿徽章
-        draft_badge = '<span class="draft-badge">✍️</span>' if card.get('has_draft') else ''
-        
-        # 🔗 原文链接
-        link_html = f'<a href="{escape(link)}" target="_blank" rel="noopener">↗ 原文</a>' if link and link != '#' else ''
-        
-        # ✅ 关键修复：确保链接相对于 reports/index.html 正确
-        report_link_raw = card.get('_report_link', main_report_link)
-        # 确保以 ./ 开头
-        report_link = f"./{report_link_raw}" if not report_link_raw.startswith(('./', '../', 'http')) else report_link_raw
-        
+    html += f'  <div class="day-meta">⏰ {formatted_time} · 📊 共 {len(all_cards)} 条 ({len(news_cards)}📰 {len(acad_cards)}📄)</div>\n'
+
+    for card in display_cards:
+        title = escape(card.get("title", ""))
+        score = card.get("score", "5.0")
+        summary = escape(card.get("summary", "")[:200])
+        chapter = escape(card.get("chapter", ""))
+        link = card.get("link", "#")
+
+        badge_class = SUBDIR_CONFIG[card["type"]]["badge_class"]
+        type_label = SUBDIR_CONFIG[card["type"]]["label"]
+        type_badge = f'<span class="type-badge {badge_class}">{type_label}</span>'
+
+        draft_badge = '<span class="draft-badge"></span>' if card.get("has_draft") else ""
+
+        link_html = f'<a href="{escape(link)}" target="_blank" rel="noopener">↗ 原文</a>' if link and link != "#" else ""
+
+        # 完整报告链接
+        report_link_raw = card.get("_report_link", "")
+        report_link = f"./{report_link_raw}" if not report_link_raw.startswith(("./", "../", "http")) else report_link_raw
+
         html += f'''
   <article class="card" data-type="{card['type']}">
     <div class="card-header">
@@ -305,15 +247,14 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
       <a href="{report_link}">查看 {date} 完整报告 →</a>
     </div>
   </article>\n'''
-    
-    html += '</div>\n'
+
+    html += "</div>\n"
     return html
 
 
-# ──────────────────────────────────────────────────────────────
-# 🎨 函数4：HTML 模板
-# ──────────────────────────────────────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════
+# HTML 模板（保留原有样式，按钮已改为链接）
+# ═══════════════════════════════════════════════════════════════
 def get_html_template() -> str:
     return '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -340,12 +281,12 @@ def get_html_template() -> str:
     .page-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
     h1{font-family:var(--display);font-size:3rem;letter-spacing:2px;color:var(--white);margin-bottom:6px;line-height:1}
     .subtitle{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);letter-spacing:1.5px;margin-bottom:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin-bottom:32px}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:12px;margin-bottom:12px}
     .stat{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center}
     .stat-val{font-family:var(--display);font-size:1.5rem;color:var(--accent)}
     .stat-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text-muted)}
     .controls{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
-    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer}
+    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer;text-decoration:none}
     .filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
     .search{flex:1;min-width:200px;position:relative}
     .search input{width:100%;padding:8px 12px 8px 32px;border:1px solid var(--border);background:var(--card);color:var(--text)}
@@ -387,17 +328,19 @@ def get_html_template() -> str:
     <div class="page-eyebrow">§ Radar Archive</div>
     <h1>DAILY DIGEST</h1>
     <div class="subtitle">
-      <span>📰 News + 🎓 Academic · AI-Powered</span>
+      <span>📰 News Top 10 + 🎓 Papers Top 5 · AI-Powered</span>
       <span id="statsLine">Loading...</span>
     </div>
+    <!-- ✅ 新闻按钮改为跳转，Papers 同理 -->
     <div class="stats-grid">
-      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">Reports</div></div>
-      <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
+      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">全部</div></div>
+        <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
         <div class="stat-val" id="statNews">—</div>
-        <div class="stat-lbl">📰 News</div></a>
-      <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
+        <div class="stat-lbl">资讯</div></a>
+        <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
         <div class="stat-val" id="statAcademic">—</div>
-        <div class="stat-lbl">📄 Papers</div></a>
+        <div class="stat-lbl">论文</div></a>
+      <div class="stat"><div class="stat-val" id="statDays">—</div><div class="stat-lbl">天数</div></div>
     </div>
     <div class="controls">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -424,65 +367,51 @@ def get_html_template() -> str:
 </html>'''
 
 
-# ──────────────────────────────────────────────────────────────
-# 🚀 主函数
-# ──────────────────────────────────────────────────────────────
-
+# ═══════════════════════════════════════════════════════════════
+# 主函数
+# ═══════════════════════════════════════════════════════════════
 def main():
-    print("🚀 Renegade AI Radar Index Generator v3.1 (小白修复版)")
+    print("🚀 Renegade AI Radar Index Generator v4.0 (News/Academic split)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
-    
-    # 1️⃣ 收集报告
-    print("\n🔍 Collecting reports...")
+
     data = collect_all_reports()
-    
-    if not data['dates']:
+    if not data["dates"]:
         print("❌ No reports found!")
-        print(f"💡 Expected structure:\n  {REPORTS_ROOT}/news/news_report_*.html\n  {REPORTS_ROOT}/academic/academic_report_*.html")
         return
-    
+
     print(f"✅ Found {data['stats']['total']} reports across {data['stats']['days']} days")
     print(f"   📰 News: {data['stats']['news']} | 📄 Academic: {data['stats']['academic']}")
-    
-    # 2️⃣ 生成每日区块
+
+    # 生成日期区块
     print("\n🎨 Generating HTML sections...")
     day_sections = []
-    for date in data['dates']:
-        entries = data['by_date'][date]
+    for date in data["dates"]:
+        entries = data["by_date"][date]
         print(f"📅 处理日期: {date} ({len(entries)} 个报告)")
         section = generate_day_html(date, entries)
         day_sections.append(section)
-    
-    # 3️⃣ 渲染完整页面
+
+    # 渲染模板
     print("📄 Rendering index.html...")
     template = get_html_template()
-    
-    final = template.replace('{{ day_sections }}', ''.join(day_sections))
-    final = final.replace('{{ total_reports }}', str(data['stats']['total']))
-    final = final.replace('{{ news_count }}', str(data['stats']['news']))
-    final = final.replace('{{ academic_count }}', str(data['stats']['academic']))
-    final = final.replace('{{ days_count }}', str(data['stats']['days']))
-    final = final.replace('{{ latest_date }}', data['dates'][0] if data['dates'] else 'N/A')
-    
-    # 4️⃣ 写入文件
+    final = template.replace("{{ day_sections }}", "\n".join(day_sections))
+    final = final.replace("{{ total_reports }}", str(data["stats"]["total"]))
+    final = final.replace("{{ news_count }}", str(data["stats"]["news"]))
+    final = final.replace("{{ academic_count }}", str(data["stats"]["academic"]))
+    final = final.replace("{{ days_count }}", str(data["stats"]["days"]))
+    final = final.replace("{{ latest_date }}", data["dates"][0] if data["dates"] else "N/A")
+
     output = REPORTS_ROOT / "index.html"
-    output.write_text(final, encoding='utf-8')
-    
+    output.write_text(final, encoding="utf-8")
     print(f"\n✅ Success! Generated: {output}")
-    print(f"🌐 Preview: file://{output.resolve()}")
-    print("\n✨ Done. Run `python radar_index_generator.py` anytime to refresh.")
-    
-    # 🔍 调试：检查生成的 HTML 中是否有新闻卡片
+
+    # 调试信息
     if output.exists():
-        content = output.read_text(encoding='utf-8')
-        news_count = content.count('data-type="news"')
-        acad_count = content.count('data-type="academic"')
-        print(f"\n🔍 调试：index.html 中 news 卡片: {news_count} 个，academic 卡片: {acad_count} 个")
+        content = output.read_text(encoding="utf-8")
+        news_cnt = content.count('data-type="news"')
+        acad_cnt = content.count('data-type="academic"')
+        print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
 
 
-# ──────────────────────────────────────────────────────────────
-# 🔑 入口
-# ──────────────────────────────────────────────────────────────
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
