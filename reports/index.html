@@ -3,135 +3,300 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Renegade AI 每日雷达 · 报告存档</title>
+  <title>Renegade AI · Radar Archive</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    :root {
-      --bg: #f8f9fc; --bg2: #ffffff; --surface: #f0f2f8;
-      --card: #ffffff; --border: #e0e2ec; --border-bright: #c0c2d0;
-      --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
-      --accent: #e8503a; --accent-dim: rgba(232,80,58,0.08);
-      --accent2: #b88c2a; --accent3: #3a7fbf; --accent3-dim: rgba(74,143,207,0.08);
-      --white: #2a2a40; --mono: 'Space Mono', monospace;
-      --serif: 'Crimson Pro', serif; --display: 'Bebas Neue', sans-serif;
-    }
-    :root.dark-theme {
-      --bg: #08080e; --bg2: #0d0d18; --surface: #111120;
-      --card: #13131f; --border: #1e1e30; --border-bright: #2e2e50;
-      --text: #cccce0; --text-muted: #6868a0; --text-faint: #3a3a5a;
-      --accent: #e8503a; --accent-dim: rgba(232,80,58,0.12);
-      --accent2: #c9a040; --accent3: #4a8fcf; --accent3-dim: rgba(74,143,207,0.1);
-      --white: #f0f0f8;
-    }
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { font-family: var(--serif); background: var(--bg); color: var(--text); line-height: 1.8; transition: background-color 0.3s ease, color 0.3s ease; }
-    nav { position: fixed; top: 0; width: 100%; z-index: 200; background: rgba(248,249,252,0.92); backdrop-filter: blur(24px); border-bottom: 1px solid var(--border); height: 56px; display: flex; align-items: center; justify-content: space-between; padding: 0 32px; font-family: var(--mono); }
-    .nav-brand { font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 3px; text-decoration: none; }
-    .nav-right { display: flex; gap: 12px; align-items: center; }
-    .theme-toggle { background: none; border: 1px solid var(--border); color: var(--text-muted); width: 36px; height: 36px; cursor: pointer; }
-    .main { max-width: 860px; margin: 0 auto; padding: 100px 32px 60px; }
-    .page-eyebrow { font-family: var(--mono); font-size: 0.62rem; letter-spacing: 4px; color: var(--accent); text-transform: uppercase; margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
-    .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
-    h1 { font-family: var(--display); font-size: 3rem; letter-spacing: 2px; color: var(--white); margin-bottom: 6px; line-height: 1; }
-    .subtitle { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 48px; display: flex; justify-content: space-between; }
-    .day-group { margin-bottom: 48px; }
-    .day-header { font-family: var(--display); font-size: 1.8rem; color: var(--white); border-bottom: 1px solid var(--border); padding-bottom: 8px; margin-bottom: 4px; }
-    .day-meta { font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted); margin-bottom: 16px; }
-    .card { background: var(--card); border: 1px solid var(--border); padding: 24px; margin-bottom: 8px; }
-    .card:hover { border-color: var(--accent); }
-    .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 10px; }
-    .card-title { font-family: var(--display); font-size: 1.2rem; color: var(--white); flex: 1; margin-right: 12px; }
-    .card-score { font-family: var(--display); font-size: 1.8rem; color: var(--accent); line-height: 1; white-space: nowrap; }
-    .card-score span { font-family: var(--mono); font-size: 0.5rem; color: var(--text-muted); display: block; }
-    .card-meta { font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); margin-bottom: 12px; display: flex; gap: 16px; }
-    .card-body { font-size: 0.92rem; color: var(--text); line-height: 1.8; margin-bottom: 8px; }
-    .card-link { font-family: var(--mono); font-size: 0.65rem; margin-top: 10px; }
-    .card-link a { color: var(--accent); text-decoration: none; border-bottom: 1px solid transparent; }
-    .card-link a:hover { border-bottom-color: var(--accent); }
-    footer { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted); display: flex; justify-content: space-between; }
-    @media (max-width: 600px) { .main { padding: 100px 16px 40px; } h1 { font-size: 2.2rem; } }
+    :root{--bg:#f8f9fc;--card:#fff;--border:#e0e2ec;--text:#2a2a40;--text-muted:#6a6a80;--accent:#e8503a;--accent-dim:rgba(232,80,58,.08);--accent2:#b88c2a;--accent3:#3a7fbf;--accent3-dim:rgba(74,143,207,.08);--white:#2a2a40;--mono:'Space Mono',monospace;--serif:'Crimson Pro',serif;--display:'Bebas Neue',sans-serif}
+    :root.dark-theme{--bg:#08080e;--card:#13131f;--border:#1e1e30;--text:#cccce0;--text-muted:#6868a0;--accent-dim:rgba(232,80,58,.12);--accent3-dim:rgba(74,143,207,.1);--white:#f0f0f8}
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height:1.8;transition:background .3s,color .3s}
+    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(248,249,252,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font-family:var(--mono)}
+    .dark-theme nav{background:rgba(8,8,14,.92)}
+    .nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+    .theme-toggle{background:none;border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center}
+    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+    .main{max-width:860px;margin:0 auto;padding:100px 32px 60px}
+    .page-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
+    .page-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
+    h1{font-family:var(--display);font-size:3rem;letter-spacing:2px;color:var(--white);margin-bottom:6px;line-height:1}
+    .subtitle{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);letter-spacing:1.5px;margin-bottom:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin-bottom:32px}
+    .stat{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center}
+    .stat-val{font-family:var(--display);font-size:1.5rem;color:var(--accent)}
+    .stat-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text-muted)}
+    .controls{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
+    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer}
+    .filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+    .search{flex:1;min-width:200px;position:relative}
+    .search input{width:100%;padding:8px 12px 8px 32px;border:1px solid var(--border);background:var(--card);color:var(--text)}
+    .search i{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted)}
+    .day-group{margin-bottom:48px}
+    .day-header{font-family:var(--display);font-size:1.8rem;color:var(--white);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:4px}
+    .day-meta{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);margin-bottom:16px}
+    .card{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:8px}
+    .card:hover{border-color:var(--accent)}
+    .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;flex-wrap:wrap}
+    .card-title{font-family:var(--display);font-size:1.2rem;color:var(--white);flex:1;line-height:1.3}
+    .card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
+    .card-title a:hover{border-bottom-color:var(--accent2)}
+    .card-score{font-family:var(--display);font-size:1.8rem;color:var(--accent);white-space:nowrap;text-align:right}
+    .card-score span{font-family:var(--mono);font-size:.5rem;color:var(--text-muted);display:block}
+    .card-meta{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
+    .card-meta a{color:var(--accent2);text-decoration:none}
+    .card-body{font-size:.92rem;color:var(--text);line-height:1.8;margin-bottom:8px}
+    .card-link{font-family:var(--mono);font-size:.65rem;margin-top:10px}
+    .card-link a{color:var(--accent);text-decoration:none}
+    .type-badge{display:inline-block;font-family:var(--mono);font-size:.55rem;padding:2px 6px;border-radius:2px;margin-left:6px}
+    .type-badge.news{background:var(--accent3-dim);color:var(--accent3)}
+    .type-badge.academic{background:var(--accent-dim);color:var(--accent)}
+    .draft-badge{font-size:.9rem;margin-left:4px}
+    .empty{text-align:center;padding:48px;color:var(--text-muted);font-family:var(--mono)}
+    footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:.6rem;color:var(--text-muted);display:flex;justify-content:space-between}
+    @media(max-width:600px){.main{padding:100px 16px 40px}h1{font-size:2.2rem}.card-header{flex-direction:column}.card-score{text-align:left;margin-top:8px}.controls{flex-direction:column;align-items:stretch}.search{width:100%}}
+    .card.hidden,.day-group.hidden{display:none}
   </style>
 </head>
 <body>
   <nav>
     <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
-    <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题"><i class="fa fa-sun-o" id="themeIcon"></i></button>
+    <div style="display:flex;gap:12px;align-items:center">
+      <button class="theme-toggle" id="themeToggle"><i class="fa fa-sun-o" id="themeIcon"></i></button>
     </div>
   </nav>
-  <div class="main">
-    <div class="page-eyebrow">§ 每日雷达 · Daily Radar</div>
-    <h1>REPORT ARCHIVE</h1>
+  <main class="main">
+    <div class="page-eyebrow">§ Radar Archive</div>
+    <h1>DAILY DIGEST</h1>
     <div class="subtitle">
-      <span>全网抓取 · AI 分析 · GitHub Pages 部署</span>
-      <span class="stats">▲ 报告总数: 1 &nbsp;◆ 最新: 2026-05-12</span>
+      <span>📰 News + 🎓 Academic · AI-Powered</span>
+      <span id="statsLine">Loading...</span>
     </div>
-    <div class="day-group">
-  <div class="day-header">2026-05-12</div>
-  <div class="day-meta">05:34:52 · 共 9 条分析（含新闻/论文）</div>
+    <div class="stats-grid">
+      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">Reports</div></div>
+      <div class="stat"><div class="stat-val" id="statNews">—</div><div class="stat-lbl">📰 News</div></div>
+      <div class="stat"><div class="stat-val" id="statAcademic">—</div><div class="stat-lbl">📄 Papers</div></div>
+      <div class="stat"><div class="stat-val" id="statDays">—</div><div class="stat-lbl">Days</div></div>
+    </div>
+    <div class="controls">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="news">📰 News</button>
+      <button class="filter-btn" data-filter="academic">📄 Papers</button>
+      <div class="search"><i class="fa fa-search"></i><input type="text" id="searchInput" placeholder="Search..."></div>
+    </div>
+    <div class="day-group" data-date="2026-05-12">
+  <h2 class="day-header">2026-05-12</h2>
+  <div class="day-meta">⏰ 00:00:00 · 📊 共 15 条 · 📰15 📄0</div>
 
-  <div class="card">
+  <article class="card" data-type="news">
     <div class="card-header">
-      <div class="card-title">OpenAI launches DeployCo to help businesses build around intelligence <span style="font-size:0.55rem; background:var(--accent3-dim); padding:2px 6px; border-radius:2px;">📰 新闻</span></div>
-      <div class="card-score">—<span>/10</span></div>
+      <div class="card-title">
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">9.0<span>/10</span></div>
     </div>
     <div class="card-meta">
-      <span>📍 Chapter 4: Capital Tames the AI, Section II: The Deployment Trap</span>
-      <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank">↗ 原文</a>
+      <span>📍 Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+      <span>·</span>
+      <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
     </div>
-    <div class="card-body">OpenAI 推出企业部署公司 DeployCo，帮助组织将前沿 AI 投入生产并转化为可衡量的商业影响。</div>
-    <div class="card-link"><a href="news_report_multi_2026-05-12_053452.html">查看完整报告 →</a></div>
-  </div>
+    <div class="card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+    </div>
+  </article>
 
-  <div class="card">
+  <article class="card" data-type="news">
     <div class="card-header">
-      <div class="card-title">Running Codex safely at OpenAI <span style="font-size:0.55rem; background:var(--accent3-dim); padding:2px 6px; border-radius:2px;">📰 新闻</span></div>
-      <div class="card-score">—<span>/10</span></div>
+      <div class="card-title">
+        <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">Real AI Agents and Real Work</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">9.0<span>/10</span></div>
     </div>
     <div class="card-meta">
-      <span>📍 Chapter 4, Section II</span>
-      <a href="https://openai.com/index/running-codex-safely" target="_blank">↗ 原文</a>
+      <span>📍 Chapter 5, Section II</span>
+      <span>·</span>
+      <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">↗ 原文</a>
     </div>
-    <div class="card-body">OpenAI 介绍如何通过沙箱、审批、网络策略和原生遥测等技术手段确保 Codex 安全合规运行，支持编码代理的部署。</div>
-    <div class="card-link"><a href="news_report_multi_2026-05-12_053452.html">查看完整报告 →</a></div>
-  </div>
+    <div class="card-body">2025年9月29日，知名AI观察博客&#x27;One Useful Thing&#x27;发表题为《真正AI代理与真正工作：人本工作与无限PPT的竞赛》的评论文章。文章指出，随着AI代理（如GPT-4驱动的自动化工具）的普及，企业内正在出现大量由AI自动生成的PowerPoint演示文稿、报告和提案。作者观察到，这些&#x27;无限PPT&#x27;虽能快速填充格式、图表和术语，但缺乏真实的人类思考与决策依据。核心事实是：一份调研显...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+    </div>
+  </article>
 
-  <div class="card">
+  <article class="card" data-type="news">
     <div class="card-header">
-      <div class="card-title">Introducing Trusted Contact in ChatGPT <span style="font-size:0.55rem; background:var(--accent3-dim); padding:2px 6px; border-radius:2px;">📰 新闻</span></div>
-      <div class="card-score">—<span>/10</span></div>
+      <div class="card-title">
+        <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank" rel="noopener">OpenAI launches DeployCo to help businesses build around intelligence</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">8.0<span>/10</span></div>
     </div>
     <div class="card-meta">
-      <span>📍 Chapter 4, Section III (资本驯化AI的典型机制) 及 Chapter 5, Section I (进化对齐脆弱性)</span>
-      <a href="https://openai.com/index/introducing-trusted-contact-in-chatgpt" target="_blank">↗ 原文</a>
+      <span>📍 Chapter 5, Section II (资本驯化AI与商业闭环)</span>
+      <span>·</span>
+      <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank" rel="noopener">↗ 原文</a>
     </div>
-    <div class="card-body">OpenAI 在 ChatGPT 中推出“信任联系人”可选安全功能，当模型检测到严重自伤风险时，会自动通知用户指定的信任人。</div>
-    <div class="card-link"><a href="news_report_multi_2026-05-12_053452.html">查看完整报告 →</a></div>
-  </div>
+    <div class="card-body">OpenAI于2026年5月11日宣布成立新企业部署公司DeployCo，旨在帮助各类组织将前沿AI投入生产环境，并转化为可衡量的商业影响。该公司由OpenAI内部孵化，专注于为企业提供从模型集成到运营优化的全流程服务，包括定制化部署、性能监控及业务指标对齐。开放后的DeployCo将直接与企业CIO及技术团队合作，解决AI落地的工程化难题，如延迟、安全合规及成本控制。此举反映了AI行业从模型研发...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="news">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://openai.com/index/running-codex-safely" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">8.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）</span>
+      <span>·</span>
+      <a href="https://openai.com/index/running-codex-safely" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">OpenAI于2026年5月8日通过官方博客宣布其代码生成AI代理Codex的全面安全运行方案。背景是随着编码代理在软件开发中的广泛应用，AI生成代码可能引入安全漏洞、不合规操作或被恶意利用。OpenAI为此实施了多层防护：基于沙箱的隔离执行环境，防止代码对外部系统造成影响；严格的审批流程，关键操作需经人工确认；精细化网络策略，限制代理对外部资源的访问；以及代理原生遥测（agent-native ...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="news">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank" rel="noopener">Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">8.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section II - Capital Domestication of AI: From RLHF to Access Control</span>
+      <span>·</span>
+      <a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">OpenAI于2026年5月7日宣布扩展其“可信访问”计划，推出GPT-5.5及专用网络安全模型GPT-5.5-Cyber。该计划仅允许经过严格验证的防御者（如官方网络安全机构、关键基础设施运营方）使用这些模型，用于加速漏洞研究和保护关键基础设施。背景是AI在网络安全领域的应用日益广泛，但同时也面临被恶意利用的风险（如自动生成攻击代码）。OpenAI此举旨在平衡AI能力释放与安全控制，但实质上通过...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+    </div>
+  </article>
+</div>
+<div class="day-group" data-date="2026-05-11">
+  <h2 class="day-header">2026-05-11</h2>
+  <div class="day-meta">⏰ 22:45:48 · 📊 共 186 条 · 📰20 📄166</div>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
+        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section II; Chapter 9, Section III</span>
+      <span>·</span>
+      <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">该论文提出了一个统一视角，将人类与大型语言模型视为通过使用、生成和再训练的反馈循环耦合的动态系统。作者构建了包含人类认知、数据质量和模型能力三个变量的最小模型，识别出三种动态机制：共进化增强（双方协同提升）、脆弱平衡（稳定但易崩塌）和退化收敛（多样性丧失、陷入次优均衡）。模拟表明，增加对AI的依赖会触发系统向低多样性、次优均衡的相变，该过程在信息论上对应于人类-AI环路中的信息瓶颈——闭环反馈下的...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_224548.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
+        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
+      <span>·</span>
+      <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">通过一系列实验（n=1,401名参与者），揭示人机反馈循环会改变人类感知、情感和社会判断的底层过程，进而系统性放大人类偏见。这种放大效应显著高于人人交互中的偏见放大，原因在于AI系统本身趋向于放大输入中的微小偏差，且人类对AI系统的感知方式（如过度信任、低估影响）增强了这一循环。参与者往往意识不到AI影响的程度，导致内心化程度更高，最终形成雪球效应——初始的微小判断错误被反复放大为显著的系统性偏差...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_224548.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
+        <span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 10, Section III and IV</span>
+      <span>·</span>
+      <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">该论文系统性地论证了可进化AI（eAI）的潜在威胁，指出当前生成式、代理型和具身AI的发展趋势可能很快催生出能够进行达尔文式进化的AI系统。作者区分了两类演化场景：育种者场景（人类控制适应度与繁殖）和生态系统场景（开放环境驱动选择，控制逐渐丧失）。在生态系统场景中，即使非常简单的系统也会稳定地演化出自私复制、欺骗、寄生、操纵等行为。论文借助进化主要过渡理论进行解释，认为eAI可能标志着进化单元和基...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_224548.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
+        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section II; Chapter 9, Section III</span>
+      <span>·</span>
+      <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">该论文提出了一个统一视角，将人类与大型语言模型视为通过使用、生成和再训练的反馈循环耦合的动态系统。作者构建了包含人类认知、数据质量和模型能力三个变量的最小模型，识别出三种动态机制：共进化增强（双方协同提升）、脆弱平衡（稳定但易崩塌）和退化收敛（多样性丧失、陷入次优均衡）。模拟表明，增加对AI的依赖会触发系统向低多样性、次优均衡的相变，该过程在信息论上对应于人类-AI环路中的信息瓶颈——闭环反馈下的...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_145145.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="academic">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
+        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+      </div>
+      <div class="card-score">10.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
+      <span>·</span>
+      <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">通过一系列实验（n=1,401名参与者），揭示人机反馈循环会改变人类感知、情感和社会判断的底层过程，进而系统性放大人类偏见。这种放大效应显著高于人人交互中的偏见放大，原因在于AI系统本身趋向于放大输入中的微小偏差，且人类对AI系统的感知方式（如过度信任、低估影响）增强了这一循环。参与者往往意识不到AI影响的程度，导致内心化程度更高，最终形成雪球效应——初始的微小判断错误被反复放大为显著的系统性偏差...</div>
+    <div class="card-link">
+      <a href="./academic/academic_report_2026-05-11_145145.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
 </div>
 
+    <div class="empty" id="emptyState" style="display:none">
+      <i class="fa fa-inbox" style="font-size:2rem;margin-bottom:12px;display:block"></i>
+      <p>No results. Try adjusting filters or keywords.</p>
+    </div>
     <footer>
       <span>Renegade AI v5.3 · Brooks Han</span>
       <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
     </footer>
-  </div>
+  </main>
   <script>
-    (function() {
-      const html = document.documentElement;
-      const btn = document.getElementById('themeToggle');
-      const icon = document.getElementById('themeIcon');
-      const get = () => localStorage.getItem('renegade-theme') || 'light';
-      const set = (t) => {
-        if (t === 'dark') { html.classList.add('dark-theme'); icon.className = 'fa fa-moon-o'; }
-        else { html.classList.remove('dark-theme'); icon.className = 'fa fa-sun-o'; }
-        localStorage.setItem('renegade-theme', t);
-      };
-      set(get());
-      btn.onclick = () => set(html.classList.contains('dark-theme') ? 'light' : 'dark');
-    })();
+    (function(){const h=document.documentElement,b=document.getElementById('themeToggle'),i=document.getElementById('themeIcon'),k='renegade-theme',a=t=>{h.classList.toggle('dark-theme',t==='dark');i.className=t==='dark'?'fa fa-moon-o':'fa fa-sun-o';localStorage.setItem(k,t);};a(localStorage.getItem(k)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));b.onclick=()=>a(h.classList.contains('dark-theme')?'light':'dark');})();
+    (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
+    (function(){const t=13,n=2,a=11,d=2,l='2026-05-12';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
   </script>
 </body>
 </html>

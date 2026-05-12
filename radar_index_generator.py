@@ -43,13 +43,13 @@ SUBDIR_CONFIG = {
     "news": {
         "label": "📰 新闻",
         "type": "news",
-        "pattern": "news_report*.html",
+        "pattern": "*.html",
         "badge_class": "news",
     },
     "academic": {
         "label": "📄 论文", 
         "type": "academic",
-        "pattern": "academic_report*.html",
+        "pattern": "*.html",
         "badge_class": "academic",
     },
 }
@@ -151,14 +151,23 @@ def collect_all_reports() -> dict:
             if html_file.name == 'index.html':
                 continue
             
-            m = re.search(r'(\d{4}-\d{2}-\d{2})_(\d{6})', html_file.name)
-            if not m:
-                print(f"⚠️ 文件名格式不符，跳过: {html_file.name}")
-                continue
+            # ✅ 提取日期：优先从文件名，否则使用文件修改时间
+            m = re.search(r'(\d{4}-\d{2}-\d{2})', html_file.name)
+            if m:
+                date_str = m.group(1)
+                # 尝试提取时间（可能没有）
+                time_m = re.search(r'_(\d{6})', html_file.name)
+                time_str = time_m.group(1) if time_m else "000000"
+            else:
+                # 文件名里没有日期，使用文件修改时间
+                import datetime
+                mtime = html_file.stat().st_mtime
+                dt = datetime.datetime.fromtimestamp(mtime)
+                date_str = dt.strftime('%Y-%m-%d')
+                time_str = dt.strftime('%H%M%S')
+                print(f"ℹ️  文件名中无日期，使用修改时间: {html_file.name} -> {date_str}")
             
-            date_str = m.group(1)
-            time_str = m.group(2)
-            
+        
             # ✅ 生成相对于 reports/index.html 的链接
             relative_link = f"{subdir_name}/{html_file.name}"
             
