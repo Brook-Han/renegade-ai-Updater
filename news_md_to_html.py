@@ -8,7 +8,7 @@
 
 📋 用法：
     # 方式1：转换指定文件
-    python news_md_to_html.py reports/news/news_report_2026-05-11_113827.md
+    python news_md_to_html.py docs/news/news_report_2026-05-11_113827.md
     
     # 方式2：自动找最新报告（推荐）
     python news_md_to_html.py
@@ -37,7 +37,7 @@ def parse_news_report(md_path: str) -> dict:
     解析 news_radar.py 生成的 Markdown 文件，提取关键数据
     
     参数:
-        md_path: Markdown 文件路径，如 "reports/news/news_report_2026-05-11.md"
+        md_path: Markdown 文件路径，如 "docs/news/news_report_2026-05-11.md"
     
     返回:
         dict: 包含报告元数据和高价值案例的字典
@@ -670,8 +670,8 @@ if __name__ == '__main__':
         md_file = sys.argv[1]
         print(f'📄 使用指定文件: {md_file}')
     else:
-        # 自动查找：优先 reports/，备选 output/news/
-        reports_dir = Path('reports')
+        # 自动查找：优先 docs/，备选 output/news/
+        reports_dir = Path('docs')
         if not reports_dir.exists():
             reports_dir = Path('output/news')
         
