@@ -23,12 +23,12 @@
     .page-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
     h1{font-family:var(--display);font-size:3rem;letter-spacing:2px;color:var(--white);margin-bottom:6px;line-height:1}
     .subtitle{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);letter-spacing:1.5px;margin-bottom:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(100px,1fr));gap:12px;margin-bottom:32px}
+    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:12px;margin-bottom:12px}
     .stat{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center}
     .stat-val{font-family:var(--display);font-size:1.5rem;color:var(--accent)}
     .stat-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text-muted)}
     .controls{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
-    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer}
+    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer;text-decoration:none}
     .filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
     .search{flex:1;min-width:200px;position:relative}
     .search input{width:100%;padding:8px 12px 8px 32px;border:1px solid var(--border);background:var(--card);color:var(--text)}
@@ -70,17 +70,19 @@
     <div class="page-eyebrow">§ Radar Archive</div>
     <h1>DAILY DIGEST</h1>
     <div class="subtitle">
-      <span>📰 News + 🎓 Academic · AI-Powered</span>
+      <span>📰 News Top 10 + 🎓 Papers Top 5 · AI-Powered</span>
       <span id="statsLine">Loading...</span>
     </div>
+    <!-- ✅ 新闻按钮改为跳转，Papers 同理 -->
     <div class="stats-grid">
-      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">Reports</div></div>
-      <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
+      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">全部</div></div>
+        <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
         <div class="stat-val" id="statNews">—</div>
-        <div class="stat-lbl">📰 News</div></a>
-      <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
+        <div class="stat-lbl">资讯</div></a>
+        <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
         <div class="stat-val" id="statAcademic">—</div>
-        <div class="stat-lbl">📄 Papers</div></a>
+        <div class="stat-lbl">论文</div></a>
+      <div class="stat"><div class="stat-val" id="statDays">—</div><div class="stat-lbl">天数</div></div>
     </div>
     <div class="controls">
       <button class="filter-btn active" data-filter="all">All</button>
@@ -90,7 +92,7 @@
     </div>
     <div class="day-group" data-date="2026-05-12">
   <h2 class="day-header">2026-05-12</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 共 15 条 · 📰15 📄0</div>
+  <div class="day-meta">⏰ 00:00:00 · 📊 共 15 条 (15📰 0📄)</div>
 
   <article class="card" data-type="news">
     <div class="card-header">
@@ -148,54 +150,74 @@
       <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
     </div>
   </article>
-
-  <article class="card" data-type="news">
-    <div class="card-header">
-      <div class="card-title">
-        <a href="https://openai.com/index/running-codex-safely" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
-        <span class="type-badge news">📰 新闻</span>
-      </div>
-      <div class="card-score">8.0<span>/10</span></div>
-    </div>
-    <div class="card-meta">
-      <span>📍 Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）</span>
-      <span>·</span>
-      <a href="https://openai.com/index/running-codex-safely" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="card-body">OpenAI于2026年5月8日通过官方博客宣布其代码生成AI代理Codex的全面安全运行方案。背景是随着编码代理在软件开发中的广泛应用，AI生成代码可能引入安全漏洞、不合规操作或被恶意利用。OpenAI为此实施了多层防护：基于沙箱的隔离执行环境，防止代码对外部系统造成影响；严格的审批流程，关键操作需经人工确认；精细化网络策略，限制代理对外部资源的访问；以及代理原生遥测（agent-native ...</div>
-    <div class="card-link">
-      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
-    </div>
-  </article>
-
-  <article class="card" data-type="news">
-    <div class="card-header">
-      <div class="card-title">
-        <a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank" rel="noopener">Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber</a>
-        <span class="type-badge news">📰 新闻</span>
-      </div>
-      <div class="card-score">8.0<span>/10</span></div>
-    </div>
-    <div class="card-meta">
-      <span>📍 Chapter 5, Section II - Capital Domestication of AI: From RLHF to Access Control</span>
-      <span>·</span>
-      <a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="card-body">OpenAI于2026年5月7日宣布扩展其“可信访问”计划，推出GPT-5.5及专用网络安全模型GPT-5.5-Cyber。该计划仅允许经过严格验证的防御者（如官方网络安全机构、关键基础设施运营方）使用这些模型，用于加速漏洞研究和保护关键基础设施。背景是AI在网络安全领域的应用日益广泛，但同时也面临被恶意利用的风险（如自动生成攻击代码）。OpenAI此举旨在平衡AI能力释放与安全控制，但实质上通过...</div>
-    <div class="card-link">
-      <a href="./news/news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
-    </div>
-  </article>
 </div>
+
 <div class="day-group" data-date="2026-05-11">
   <h2 class="day-header">2026-05-11</h2>
-  <div class="day-meta">⏰ 22:45:48 · 📊 共 186 条 · 📰20 📄166</div>
+  <div class="day-meta">⏰ 22:45:48 · 📊 共 186 条 (20📰 166📄)</div>
+
+  <article class="card" data-type="news">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">9.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+      <span>·</span>
+      <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-11.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="news">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://techcrunch.com/2026/05/08/cloudflare-says-ai-made-1100-jobs-obsolete-even-as-revenue-hit-a-record-high/" target="_blank" rel="noopener">Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">9.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 5, Section III</span>
+      <span>·</span>
+      <a href="https://techcrunch.com/2026/05/08/cloudflare-says-ai-made-1100-jobs-obsolete-even-as-revenue-hit-a-record-high/" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">Cloudflare 于 2026 年 5 月 8 日宣布首次大规模裁员，裁减约 1100 个工作岗位，主要集中在支持岗位。CEO Matthew Prince 明确表示，裁员原因是通过 AI 效率提升，公司不再需要同样数量的支持人员。尽管裁员，Cloudflare 的营收创下历史新高，显示出 AI 技术已直接替代人类劳动，且企业优先考虑利润而非就业。这一事件发生在 AI 技术加速渗透企业运营的背...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-11.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
+
+  <article class="card" data-type="news">
+    <div class="card-header">
+      <div class="card-title">
+        <a href="https://techcrunch.com/podcast/the-peoples-airline-and-the-enterprise-ai-gold-rush/" target="_blank" rel="noopener">The “people’s airline” and the enterprise AI gold rush</a>
+        <span class="type-badge news">📰 新闻</span>
+      </div>
+      <div class="card-score">9.0<span>/10</span></div>
+    </div>
+    <div class="card-meta">
+      <span>📍 Chapter 4, Section II</span>
+      <span>·</span>
+      <a href="https://techcrunch.com/podcast/the-peoples-airline-and-the-enterprise-ai-gold-rush/" target="_blank" rel="noopener">↗ 原文</a>
+    </div>
+    <div class="card-body">事件背景与起因：随着企业级AI应用需求激增，科技巨头和传统软件公司纷纷加速布局，以抢占市场份额。核心事实与关键数据：本周，Anthropic与OpenAI分别宣布新的合资企业，专注于企业AI部署；德国软件巨头SAP斥资10亿美元收购德国AI初创公司Prior Labs。这些动向表明，构建企业工具的小型AI初创公司正成为大型企业的收购目标。直接后果与行业影响：资本正在快速整合企业AI市场，通过投资和...</div>
+    <div class="card-link">
+      <a href="./news/news_report_2026-05-11.html">查看 2026-05-11 完整报告 →</a>
+    </div>
+  </article>
 
   <article class="card" data-type="academic">
     <div class="card-header">
       <div class="card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
-        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+        <span class="draft-badge"></span><span class="type-badge academic">📄 论文</span>
       </div>
       <div class="card-score">10.0<span>/10</span></div>
     </div>
@@ -214,7 +236,7 @@
     <div class="card-header">
       <div class="card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
-        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+        <span class="draft-badge"></span><span class="type-badge academic">📄 论文</span>
       </div>
       <div class="card-score">10.0<span>/10</span></div>
     </div>
@@ -252,7 +274,7 @@
     <div class="card-header">
       <div class="card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
-        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+        <span class="draft-badge"></span><span class="type-badge academic">📄 论文</span>
       </div>
       <div class="card-score">10.0<span>/10</span></div>
     </div>
@@ -271,7 +293,7 @@
     <div class="card-header">
       <div class="card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
-        <span class="draft-badge">✍️</span><span class="type-badge academic">📄 论文</span>
+        <span class="draft-badge"></span><span class="type-badge academic">📄 论文</span>
       </div>
       <div class="card-score">10.0<span>/10</span></div>
     </div>
