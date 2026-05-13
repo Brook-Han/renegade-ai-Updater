@@ -8,7 +8,7 @@
 
 📋 用法：
     # 方式1：转换指定文件
-    python news_md_to_html.py docs/news/news_report_2026-05-11_113827.md
+    python news_md_to_html.py docs/news/news_report_2026-05-11.md
     
     # 方式2：自动找最新报告（推荐）
     python news_md_to_html.py
@@ -585,7 +585,7 @@ def generate_news_html(data: dict, output_path: str):
 <body>
   <!-- 顶部导航栏 -->
   <nav>
-    <a href="https://github.com/Brook-Han/renegade-ai-Updater" class="nav-brand">RENEGADE RADAR</a>
+    <a href="https://brook-han.github.io/renegade-ai-Updater/" class="nav-brand">RENEGADE RADAR</a>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
         <i class="fa fa-sun-o" id="themeIcon"></i>

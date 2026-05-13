@@ -452,7 +452,7 @@ def generate_academic_html(data: dict, output_path: str):
 </head>
 <body>
   <nav>
-    <a href="https://github.com/Brook-Han/renegade-ai-Updater" class="nav-brand">RENEGADE RADAR</a>
+    <a href="https://brook-han.github.io/renegade-ai-Updater/" class="nav-brand">RENEGADE RADAR</a>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
         <i class="fa fa-sun-o" id="themeIcon"></i>
