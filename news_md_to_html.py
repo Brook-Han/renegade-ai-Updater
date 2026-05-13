@@ -284,7 +284,7 @@ CSS_TEMPLATE = """
       /* ========== 主内容区 ========== */
       .main {
         max-width: 860px; margin: 0 auto;
-        padding: 100px 32px 60px;  /* 顶部留白避开固定导航栏 */
+        padding: 70px 32px 60px;  /* 顶部留白避开固定导航栏 */
       }
 
       /* 返回链接 */
@@ -293,7 +293,7 @@ CSS_TEMPLATE = """
         letter-spacing: 2px; color: var(--text-muted);
         text-decoration: none; text-transform: uppercase;
         border: 1px solid var(--border); padding: 6px 14px;
-        display: inline-block; margin-bottom: 40px;
+        display: inline-block; margin-bottom: 10px;
         transition: all .2s;
       }
       .back-link:hover { border-color: var(--accent); color: var(--accent); }
@@ -585,7 +585,7 @@ def generate_news_html(data: dict, output_path: str):
 <body>
   <!-- 顶部导航栏 -->
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://github.com/Brook-Han/renegade-ai-Updater" class="nav-brand">RENEGADE RADAR</a>
     <div class="nav-right">
       <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
         <i class="fa fa-sun-o" id="themeIcon"></i>
@@ -615,7 +615,7 @@ def generate_news_html(data: dict, output_path: str):
     <!-- 页脚 -->
     <footer>
       <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
     </footer>
   </main>
 
