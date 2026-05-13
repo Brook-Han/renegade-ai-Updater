@@ -249,7 +249,7 @@ def prescreen_academic_papers(papers: list[dict]) -> list[dict]:
         "delegation", "decision", "advice", "trust",
         "open source", "decentraliz", "compute",
         "Darwinian", "evolution", "digital evolution",
-        "token", "financialization",
+        "token", "financialization","deepseek", "dataset", "evaluation",
     ]
     relevant_terms_lower = [t.lower() for t in relevant_terms]
 
@@ -330,7 +330,7 @@ def analyze_single_model(paper: dict, model_name: str, client: OpenAI) -> dict:
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.2,
-            max_tokens=1800,
+            max_tokens=1900,
         )
         content = resp.choices[0].message.content
         # 清理Markdown标记
@@ -449,7 +449,7 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
                 {"role": "user", "content": user_prompt},
             ],
             temperature=0.3,
-            max_tokens=1800,
+            max_tokens=2000,
         )
         draft = resp.choices[0].message.content.strip()
         if len(draft) < 50:
@@ -552,7 +552,7 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> st
 # ------------------------------------------------------------------
 def main() -> None:
     parser = argparse.ArgumentParser(description="Academic Radar — 学术论文监控")
-    parser.add_argument("--limit", type=int, default=20, help="每次运行最大分析论文数")
+    parser.add_argument("--limit", type=int, default=30, help="每次运行最大分析论文数")
     parser.add_argument("--keywords", type=str, help="临时关键词文件路径")
     args = parser.parse_args()
 
@@ -656,19 +656,19 @@ def main() -> None:
     # 自动生成 HTML 版
     import subprocess
     subprocess.run(['python', 'academic_md_to_html.py', report_path])
-def main():
-    # ... 原本的收集报告、生成主页 HTML 等代码 ...
+    def main():
+        # ... 原本的收集报告、生成主页 HTML 等代码 ...
 
-    # ✅ 自动生成新闻和学术列表页
-    print("\n📋 正在自动生成新闻列表页...")
-    from generate_news_index import main as gen_news_main
-    gen_news_main()
+        # ✅ 自动生成新闻和学术列表页
+        print("\n📋 正在自动生成新闻列表页...")
+        from generate_news_index import main as gen_news_main
+        gen_news_main()
 
-    print("\n📋 正在自动生成学术列表页...")
-    from generate_academic_index import main as gen_acad_main
-    gen_acad_main()
+        print("\n📋 正在自动生成学术列表页...")
+        from generate_academic_index import main as gen_acad_main
+        gen_acad_main()
 
-    print("\n✨ 全部生成完毕！")
+        print("\n✨ 全部生成完毕！")
 
 if __name__ == "__main__":
     main()
