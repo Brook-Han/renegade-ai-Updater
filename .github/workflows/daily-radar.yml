@@ -83,7 +83,7 @@ jobs:
       # ─────────────────────────────────────────────────────────
       - name: 🏠 Generate Radar Index
         run: |
-          echo "🏗️ Building reports/index.html..."
+          echo "🏗️ Building docs/index.html..."
           python radar_index_generator.py
 
       # ─────────────────────────────────────────────────────────
@@ -91,7 +91,7 @@ jobs:
       # ─────────────────────────────────────────────────────────
       - name: 📰 Generate News Archive
         run: |
-          echo "📰 Building reports/news/index.html..."
+          echo "📰 Building docs/news/index.html..."
           python generate_news_index.py || echo "⚠️ No news files found"
 
       # ─────────────────────────────────────────────────────────
@@ -99,13 +99,13 @@ jobs:
       # ─────────────────────────────────────────────────────────
       - name: 🎓 Generate Academic Archive
         run: |
-          echo "🎓 Building reports/academic/index.html..."
+          echo "🎓 Building docs/academic/index.html..."
           python generate_academic_index.py || echo "⚠️ No academic files found"
 
       - name: 📤 Backup to main branch
         run: |
           echo "💾 Checking for changes to backup..."
-          git add reports/ *.py
+          git add docs/ *.py
           if git diff --staged --quiet; then
             echo "✨ No new changes to backup"
           else
@@ -120,8 +120,8 @@ jobs:
         uses: peaceiris/actions-gh-pages@v4
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
-          publish_branch: gh-pages
+          publish_dir: ./docs
+          publish_branch: main
           force_orphan: true
           exclude_assets: '.github'
 
@@ -142,11 +142,11 @@ jobs:
         run: |
           echo "### 📋 运行摘要" >> $GITHUB_STEP_SUMMARY
           echo "- 🕐 触发时间: $(date -u -d '+8 hours' '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎓 学术报告文件数: $(find reports/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
-          echo "- 📰 新闻报告文件数: $(find reports/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
-          echo "- 🏠 聚合主页: $([ -f reports/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          echo "- 📰 新闻列表页: $([ -f reports/news/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎓 论文列表页: $([ -f reports/academic/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 学术报告文件数: $(find docs/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- 📰 新闻报告文件数: $(find docs/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
+          echo "- 🏠 聚合主页: $([ -f docs/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
+          echo "- 📰 新闻列表页: $([ -f docs/news/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 论文列表页: $([ -f docs/academic/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
           echo "- 🚀 部署状态: ✅ 已自动发布到 gh-pages" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- 🔗 公开访问链接:" >> $GITHUB_STEP_SUMMARY
