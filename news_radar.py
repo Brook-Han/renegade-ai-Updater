@@ -66,11 +66,14 @@ CACHE_FILE = OUTPUT_DIR / "news_cache.json"
 # 从 Config 读取新闻专用阈值（已补充到 config.py）
 RELEVANCE_THRESHOLD = getattr(Config, "NEWS_RELEVANCE_THRESHOLD", 5)
 # 案例价值过滤器，默认只保留 "high"（与报告标题“高案例价值”一致）
-CASE_VALUE_FILTER = getattr(Config, "NEWS_CASE_VALUE_FILTER", ["high", "medium"])
+CASE_VALUE_FILTER = getattr(
+    Config, "NEWS_CASE_VALUE_FILTER", ["high", "medium"])
 
 # ------------------------------------------------------------------
 # 工具函数
 # ------------------------------------------------------------------
+
+
 def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
     """加载关键词列表"""
     with open(filepath, "r", encoding="utf-8") as f:
@@ -79,7 +82,8 @@ def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
 
 def get_news_cache_key(news: dict) -> str:
     """生成新闻内容指纹（MD5）"""
-    content = (news.get("title", "") + " " + news.get("summary", "")).encode("utf-8", errors="ignore")
+    content = (news.get("title", "") + " " + news.get("summary", "")
+               ).encode("utf-8", errors="ignore")
     return hashlib.md5(content).hexdigest()
 
 
@@ -150,14 +154,14 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
 
     # 领域词（通用 AI/产业词汇），保证过滤掉纯娱乐新闻
     domain_terms = {
-    "ai", "artificial intelligence", "llm", "language model", "gpt",
-    "model", "agent", "robot", "neural", "deep learning",
-    "machine learning", "algorithm", "automation", "regulation",
-    "policy", "labor", "employment", "economy", "market",
-    "technology", "research", "science", "paper", "benchmark",
-    "safety", "ethics", "bias", "privacy", "surveillance",
-    "open source", "api", "product", "release", "update",
-    "startup", "funding", "acquisition",
+        "ai", "artificial intelligence", "llm", "language model", "gpt",
+        "model", "agent", "robot", "neural", "deep learning",
+        "machine learning", "algorithm", "automation", "regulation",
+        "policy", "labor", "employment", "economy", "market",
+        "technology", "research", "science", "paper", "benchmark",
+        "safety", "ethics", "bias", "privacy", "surveillance",
+        "open source", "api", "product", "release", "update",
+        "startup", "funding", "acquisition",
     }
     domain_lower = {t.lower() for t in domain_terms}
 
@@ -265,7 +269,8 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
     # 分类统计
     high = [d for d in news_data if d["analysis"].get("relevance", 0) >= 7
             and d["analysis"].get("case_value") in CASE_VALUE_FILTER]
-    medium = [d for d in news_data if 4 <= d["analysis"].get("relevance", 0) < 7]
+    medium = [d for d in news_data if 4 <=
+              d["analysis"].get("relevance", 0) < 7]
     low = [d for d in news_data if d["analysis"].get("relevance", 0) < 4
            or d["analysis"].get("action") == "忽略"]
 
@@ -289,9 +294,11 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
         lines.append("## 🚨 紧急关注清单（建议24h内处理）\n")
         for d in urgent:
             n, a = d["news"], d["analysis"]
-            lines.append(f"- [ ] **{a.get('chapter_target', '待定')}** | {a.get('update_type', '')}")
+            lines.append(
+                f"- [ ] **{a.get('chapter_target', '待定')}** | {a.get('update_type', '')}")
             lines.append(f"  - 📌 {n['title'][:70]}...")
-            lines.append(f"  - 🔗 [{n.get('source_name', '')}]({n.get('url', '#')}) · 相关度: {a['relevance']}/10")
+            lines.append(
+                f"  - 🔗 [{n.get('source_name', '')}]({n.get('url', '#')}) · 相关度: {a['relevance']}/10")
             lines.append(f"  - 💡 {a.get('implications', 'N/A')[:100]}...\n")
 
     # ⭐ 高价值案例
@@ -315,12 +322,15 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
 
     # 🔶 中相关资讯（折叠显示）
     if medium:
-        lines.append(f"<details><summary>🔶 中相关资讯 ({len(medium)}条，点击展开)</summary>\n")
+        lines.append(
+            f"<details><summary>🔶 中相关资讯 ({len(medium)}条，点击展开)</summary>\n")
         for d in medium:
             n, a = d["news"], d["analysis"]
             src = n.get('source_name', n.get('source', 'Unknown'))
-            lines.append(f"- **[{n['title'][:60]}...]({n.get('url', '#')})** [{src}] · {a['relevance']}/10")
-            lines.append(f"  - {a.get('summary_cn', a.get('implications', 'N/A'))[:120]}...")
+            lines.append(
+                f"- **[{n['title'][:60]}...]({n.get('url', '#')})** [{src}] · {a['relevance']}/10")
+            lines.append(
+                f"  - {a.get('summary_cn', a.get('implications', 'N/A'))[:120]}...")
         lines.append("\n</details>\n")
 
     # 📋 数据导出提示
@@ -368,10 +378,12 @@ def main() -> None:
 
     # 检查资讯源配置
     if not (getattr(Config, "ENABLE_NEWS_API", False) or getattr(Config, "ENABLE_RSS_FEEDS", False)):
-        logger.warning("⚠️ 未启用任何资讯源（检查 config.py: ENABLE_NEWS_API / ENABLE_RSS_FEEDS）")
+        logger.warning(
+            "⚠️ 未启用任何资讯源（检查 config.py: ENABLE_NEWS_API / ENABLE_RSS_FEEDS）")
         return
 
-    keywords = load_keywords(args.keywords if args.keywords else Config.KEYWORDS_FILE)
+    keywords = load_keywords(
+        args.keywords if args.keywords else Config.KEYWORDS_FILE)
     logger.info(f"📋 加载 {len(keywords)} 个关键词")
 
     # 加载缓存
@@ -417,9 +429,11 @@ def main() -> None:
         logger.info(f"🤖 分析 {len(to_analyze)} 条资讯（模型: {ANALYSIS_MODEL}）...")
         for i, d in enumerate(to_analyze, 1):
             news_item = d["news"]
-            logger.info(f"[{i}/{len(to_analyze)}] {news_item['title'][:50]}...")
+            logger.info(
+                f"[{i}/{len(to_analyze)}] {news_item['title'][:50]}...")
 
-            result = analyze_news_item(news_item, ANALYSIS_MODEL, deepseek_client)
+            result = analyze_news_item(
+                news_item, ANALYSIS_MODEL, deepseek_client)
             d["analysis"] = result
 
             # 更新缓存
@@ -446,7 +460,8 @@ def main() -> None:
         logger.info("🔄 没有生成新报告（内容无变化）。")
     else:
         # 导出 JSON 原始数据
-        export_path = OUTPUT_DIR / f"news_data_{datetime.date.today().isoformat()}.json"
+        export_path = OUTPUT_DIR / \
+            f"news_data_{datetime.date.today().isoformat()}.json"
         export_data = [
             {
                 "title": d["news"]["title"],
@@ -463,25 +478,28 @@ def main() -> None:
 
         # 可选：自动转 HTML（安全调用）
         try:
-            subprocess.run(["python", "news_md_to_html.py", str(report_path)], check=True)
+            subprocess.run(["python", "news_md_to_html.py",
+                           str(report_path)], check=True)
         except Exception as e:
             logger.warning(f"HTML 转换失败（可手工执行）: {e}")
 
     logger.info("✅ News Radar 完成。")
 
-def main():
+
+    def main():
     # ... 原本的收集报告、生成主页 HTML 等代码 ...
 
     # ✅ 自动生成新闻和学术列表页
-    print("\n📋 正在自动生成新闻列表页...")
-    from generate_news_index import main as gen_news_main
-    gen_news_main()
+        print("\n📋 正在自动生成新闻列表页...")
+        from generate_news_index import main as gen_news_main
+        gen_news_main()
 
-    print("\n📋 正在自动生成学术列表页...")
-    from generate_academic_index import main as gen_acad_main
-    gen_acad_main()
+        print("\n📋 正在自动生成学术列表页...")
+        from generate_academic_index import main as gen_acad_main
+        gen_acad_main()
 
-    print("\n✨ 全部生成完毕！")
+        print("\n✨ 全部生成完毕！")
+
 
 if __name__ == "__main__":
     main()
