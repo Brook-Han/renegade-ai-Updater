@@ -1,16 +1,20 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🎓 Academic Radar MD → HTML 转换器（v2.0 单卡片沉浸式布局）
+🎓 Academic Radar MD → HTML 转换器（头部页脚完全对齐 Renegade AI 主页）
+======================================================================
+📌 功能：把学术雷达生成的 Markdown 报告变成漂亮的网页
+✨ 特色：和主页一模一样的导航栏、页脚、颜色、字体和主题切换
+🎯 目标用户：小白也能看懂（每一行关键代码都有中文注释）
 
-功能：将 academic_radar.py 生成的 Markdown 报告转换为沉浸式单卡片网页
-风格：与 Renegade AI v5.3 完全一致，每篇论文占据完整单卡片版面
+用法（二选一）：
+  1. 自动转换最新报告：
+     python academic_md_to_html.py
 
-📋 用法：
-    python academic_md_to_html.py docs/academic/academic_report_2026-05-11.md
-    python academic_md_to_html.py   # 自动选最新
+  2. 手动指定文件：
+     python academic_md_to_html.py docs/academic/academic_report_2026-05-11_143022.md
 
-作者：Brooks Han · v2.0
+输出：同目录下生成 .html 文件，双击就能在浏览器里看
 """
 
 import re
@@ -20,685 +24,562 @@ from datetime import datetime
 
 
 # ═══════════════════════════════════════════════════════════════
-# 解析 Markdown
+# 🔍 第一部分：解析 Markdown 报告
 # ═══════════════════════════════════════════════════════════════
-
 def parse_academic_report(md_path: str) -> dict:
-    with open(md_path, encoding="utf-8") as f:
+    """
+    从 academic_radar.py 生成的 Markdown 里提取所有论文信息。
+    返回一个大字典，包含：
+      - date: 报告日期
+      - model / draft_model: 使用的AI模型
+      - total / high_n / med_n: 总条目数 / 高相关数 / 中相关数
+      - papers: 论文列表，每篇又是一个字典（标题、评分、链接等）
+      - urgent: 立即更新清单
+    """
+    with open(md_path, encoding='utf-8') as f:
         text = f.read()
 
-    date_m  = re.search(r'\*\*生成日期\*\*:\s*(\d{4}-\d{2}-\d{2})', text)
-    model_m = re.search(r'\*\*分析模型\*\*:\s*(.+?)(?:\n|$)', text)
-    draft_m = re.search(r'\*\*草稿模型\*\*:\s*(.+?)(?:\n|$)', text)
-    total_m = re.search(r'\*\*分析条目数\*\*:\s*(\d+)', text)
-    high_m  = re.search(r'高相关.*?\*\*(\d+)\*\*', text)
-    med_m   = re.search(r'中相关.*?\*\*(\d+)\*\*', text)
+    # ── 1. 提取报告元信息 ──
+    date_match = re.search(r'\*\*生成日期\*\*:\s*(\d{4}-\d{2}-\d{2})', text)
+    date = date_match.group(1) if date_match else datetime.today().strftime('%Y-%m-%d')
 
+    model_match = re.search(r'\*\*分析模型\*\*:\s*(.+?)(?:\n|$)', text)
+    model = model_match.group(1).strip() if model_match else 'DeepSeek'
+
+    draft_model_match = re.search(r'\*\*草稿模型\*\*:\s*(.+?)(?:\n|$)', text)
+    draft_model = draft_model_match.group(1).strip() if draft_model_match else 'DeepSeek'
+
+    total_match = re.search(r'\*\*分析条目数\*\*:\s*(\d+)', text)
+    total_count = total_match.group(1) if total_match else '0'
+
+    high_match = re.search(r'高相关.*?\*\*(\d+)\*\*', text)
+    med_match = re.search(r'中相关.*?\*\*(\d+)\*\*', text)
+    high_n = high_match.group(1) if high_match else '0'
+    med_n = med_match.group(1) if med_match else '0'
+
+    # ── 2. 提取“高相关论文”区块 ──
     papers = []
-    high_sec = re.search(
-        r'## ⭐ 高相关论文.*?\n(.*?)(?=\n## |\Z)', text, re.DOTALL
+    high_section = re.search(
+        r'## ⭐ 高相关论文.*?\n(.*?)(?=\n## |\Z)',
+        text,
+        re.DOTALL
     )
-    if high_sec:
-        blocks = re.split(r'\n###\s+\d+\.\s*', '\n' + high_sec.group(1).strip())
-        for block in blocks[1:]:
+    if high_section:
+        content = high_section.group(1).strip()
+        # 用 "### 数字. " 分割每篇论文
+        blocks = re.split(r'\n###\s+\d+\.\s*', '\n' + content)
+        for block in blocks[1:]:          # 第一个是空的，跳过
             block = block.strip()
             if not block:
                 continue
-            lines  = block.split('\n')
-            title  = lines[0].strip() if lines else 'Untitled'
+            lines = block.split('\n')
+            title = lines[0].strip() if lines else 'Untitled'
+
+            # 解析所有 "- **字段名**: 值" 格式的行
             fields = {}
             for line in lines[1:]:
                 m = re.match(r'-\s*\*\*(.*?)\*\*:\s*(.*)', line)
                 if m:
-                    fields[m.group(1).strip()] = m.group(2).strip()
+                    key = m.group(1).strip()
+                    val = m.group(2).strip()
+                    fields[key] = val
 
+            # 处理链接（可能是 Markdown 格式 [text](url)）
             link_raw = fields.get('链接', '')
             link_url = link_raw
-            if '[' in link_raw and '](' in link_raw:
-                u = re.search(r'\]\(([^)]+)\)', link_raw)
-                if u:
-                    link_url = u.group(1)
+            if link_raw.startswith('[') and '](' in link_raw:
+                url_match = re.search(r'\]\(([^)]+)\)', link_raw)
+                if url_match:
+                    link_url = url_match.group(1)
 
+            # 提取书稿草稿（以 > 开头的引用块）
             draft_text = ''
-            dm = re.search(r'✍️.*?草稿.*?\n>\s*(.+?)(?=\n\n|\n###|\Z)', block, re.DOTALL)
-            if dm:
-                draft_text = dm.group(1).strip()
+            draft_match = re.search(r'✍️.*?草稿.*?\n>\s*(.+?)(?=\n\n|\n###|\Z)', block, re.DOTALL)
+            if draft_match:
+                draft_text = draft_match.group(1).strip()
 
-            model_scores = []
+            # 提取模型评分表格（如果有）
+            model_scores_html = ''
             if '🧠 模型评分:' in block:
-                for name, score in re.findall(r'\|\s*(.*?)\s*\|\s*(.*?)\s*\|', block):
-                    if '模型' not in name and name.strip():
-                        model_scores.append((name.strip(), score.strip()))
+                score_lines = re.findall(r'\|\s*(.*?)\s*\|\s*(.*?)\s*\|', block)
+                if score_lines:
+                    scores_html = ''.join(
+                        f'<span class="model-tag">{name.strip()}: {score.strip()}/10</span>'
+                        for name, score in score_lines if '模型' not in name
+                    )
+                    model_scores_html = f'<div class="card-model-scores">🧠 {scores_html}</div>'
 
             papers.append({
-                'title':       title,
-                'source':      fields.get('来源', ''),
-                'authors':     fields.get('作者', ''),
-                'published':   fields.get('发表', ''),
-                'score':       fields.get('最终评分', '—').replace('/10', '').strip(),
-                'urgency':     fields.get('紧迫度', ''),
+                'title': title,
+                'source': fields.get('来源', ''),
+                'authors': fields.get('作者', ''),
+                'published': fields.get('发表', ''),
+                'score': fields.get('最终评分', '—').replace('/10', ''),
+                'urgency': fields.get('紧迫度', ''),
                 'update_type': fields.get('更新类型', ''),
-                'chapter':     fields.get('目标章节', ''),
-                'link':        link_url,
-                'summary':     fields.get('核心发现', ''),
-                'implications':fields.get('与本书关联', ''),
-                'action':      fields.get('建议更新', ''),
-                'draft':       draft_text,
-                'model_scores':model_scores,
+                'chapter': fields.get('目标章节', ''),
+                'link': link_url,
+                'summary': fields.get('核心发现', ''),
+                'implications': fields.get('与本书关联', ''),
+                'action': fields.get('建议更新', ''),
+                'draft': draft_text,
+                'model_scores': model_scores_html,
             })
 
-    urgent = []
-    urg_sec = re.search(r'## 🚨 立即更新清单.*?\n(.*?)(?=\n## |\Z)', text, re.DOTALL)
-    if urg_sec:
-        for line in urg_sec.group(1).strip().split('\n'):
+    # ── 3. 提取“立即更新清单” ──
+    urgent_items = []
+    urgent_section = re.search(
+        r'## 🚨 立即更新清单.*?\n(.*?)(?=\n## |\Z)',
+        text,
+        re.DOTALL
+    )
+    if urgent_section:
+        for line in urgent_section.group(1).strip().split('\n'):
             if line.strip().startswith('- [ ]'):
-                cm = re.search(r'\*\*([^*]+)\*\*', line)
-                tm = re.search(r'—\s*(.+?)\.\.\.\s*\(', line)
-                urgent.append({
-                    'chapter': cm.group(1) if cm else '待定',
-                    'title':   tm.group(1) if tm else line.strip()[:60],
+                chap_match = re.search(r'\*\*([^*]+)\*\*', line)
+                title_match = re.search(r'—\s*(.+?)\.\.\.\s*\(', line)
+                urgent_items.append({
+                    'chapter': chap_match.group(1) if chap_match else '待定',
+                    'title': title_match.group(1) if title_match else line.strip()[:60]
                 })
 
     return {
-        'date':       (date_m.group(1)  if date_m  else datetime.today().strftime('%Y-%m-%d')),
-        'model':      (model_m.group(1).strip() if model_m else 'DeepSeek'),
-        'draft_model':(draft_m.group(1).strip() if draft_m else 'DeepSeek'),
-        'total':      (total_m.group(1) if total_m else '0'),
-        'high_n':     (high_m.group(1)  if high_m  else '0'),
-        'med_n':      (med_m.group(1)   if med_m   else '0'),
-        'papers':     papers,
-        'urgent':     urgent,
+        'date': date,
+        'model': model,
+        'draft_model': draft_model,
+        'total': total_count,
+        'high_n': high_n,
+        'med_n': med_n,
+        'papers': papers,
+        'urgent': urgent_items,
     }
 
 
 # ═══════════════════════════════════════════════════════════════
-# 生成 HTML
+# 🎨 第二部分：CSS 样式（和主页一模一样的视觉）
 # ═══════════════════════════════════════════════════════════════
+CSS_TEMPLATE = """
+    <style>
+      /* ══════════════ 全局颜色变量（Design Tokens） ══════════════
+         这些变量控制整个页面的颜色，和主页共用同一套。
+         暗色主题是默认，当 <html> 加上 class="light" 时切换到亮色。
+      */
+      :root {
+        --bg:           #08080e;      /* 页面背景 */
+        --bg2:          #0d0d18;      /* 次级背景 */
+        --surface:      #111120;      /* 卡片悬浮时的背景 */
+        --card:         #13131f;      /* 卡片默认背景 */
+        --border:       #1e1e30;      /* 边框线 */
+        --border-bright:#2e2e50;      /* 亮一点的边框（悬浮时用） */
+        --text:         #cccce0;      /* 正文文字 */
+        --text-muted:   #6868a0;      /* 次要文字 */
+        --text-faint:   #3a3a5a;      /* 更淡的文字 */
+        --accent:       #e8503a;      /* 强调色（橙红） */
+        --accent-dim:   rgba(232,80,58,0.12);
+        --accent2:      #c9a040;      /* 第二种强调色（金） */
+        --accent3:      #4a8fcf;      /* 第三种强调色（蓝） */
+        --accent3-dim:  rgba(74,143,207,0.10);
+        --white:        #f0f0f8;      /* 最亮的文字（标题） */
+        --mono:         'Space Mono', 'Courier New', monospace;
+        --serif:        'Crimson Pro', Georgia, serif;
+        --display:      'Bebas Neue', 'Arial Narrow', sans-serif;
+        --ease:         cubic-bezier(0.4,0,0.2,1);  /* 平滑动画曲线 */
+      }
+      :root.light {
+        --bg:           #f8f9fc;
+        --bg2:          #ffffff;
+        --surface:      #f0f2f8;
+        --card:         #ffffff;
+        --border:       #e0e2ec;
+        --border-bright:#c0c2d0;
+        --text:         #2a2a40;
+        --text-muted:   #6a6a80;
+        --text-faint:   #a0a0b8;
+        --accent-dim:   rgba(232,80,58,0.08);
+        --accent3-dim:  rgba(74,143,207,0.08);
+        --white:        #2a2a40;
+      }
 
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--serif);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;  /* 让字体更清晰 */
+        transition: background-color 0.3s, color 0.3s;
+      }
+      /* 选中文字的颜色 */
+      ::selection { background: var(--accent); color: #000; }
+
+      /* ══════════════ 固定导航栏（和主页一模一样） ══════════════ */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        /* 毛玻璃效果：背景半透明 + 模糊 */
+        background: rgba(8,8,14,0.92); backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background 0.3s, border-color 0.3s;
+      }
+      .light nav { background: rgba(248,249,252,0.92); }
+      /* 左侧品牌文字 */
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase; text-decoration: none;
+      }
+      .nav-brand:hover { color: var(--accent2); }
+      /* 右侧按钮组 */
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+      /* 返回 Radar 主页的按钮（也用在主页的导航中，这里样式完全一致） */
+      .nav-pill {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); font-family: var(--mono);
+        font-size: 0.62rem; letter-spacing: 2px; padding: 5px 14px;
+        cursor: pointer; text-decoration: none; text-transform: uppercase;
+        transition: all 0.2s;
+      }
+      .nav-pill:hover {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim);
+      }
+      /* 主题切换按钮 ◐ */
+      .theme-btn {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); width: 36px; height: 36px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 0.9rem; transition: all 0.2s;
+      }
+      .theme-btn:hover {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim);
+      }
+
+      /* ══════════════ 页面主体 ══════════════ */
+      .main {
+        max-width: 860px; margin: 0 auto;
+        padding: 80px 32px 80px;  /* 上面留出导航栏的空间 */
+      }
+
+      /* 顶部装饰线 */
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 4px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before {
+        content: ''; width: 28px; height: 1px; background: var(--accent);
+      }
+      .page-title {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        letter-spacing: 2px; color: var(--white); margin-bottom: 8px;
+        line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
+        letter-spacing: 1.5px; margin-bottom: 28px;
+      }
+      .stats-row {
+        display: flex; gap: 20px; margin-bottom: 24px;
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        flex-wrap: wrap;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+
+      /* ══════════════ 紧急清单区块 ══════════════ */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 2px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+      }
+      .urgent-item {
+        font-size: 0.75rem; margin-bottom: 6px; padding-left: 16px;
+        border-left: 2px solid var(--border-bright); color: var(--text);
+      }
+      .urgent-item strong { color: var(--white); }
+
+      /* ══════════════ 论文卡片（和主页的 radar-card 风格统一） ══════════════ */
+      .card {
+        background: var(--card); border: 1px solid var(--border);
+        padding: 28px 24px; margin-bottom: 16px;
+        transition: background 0.2s, border-color 0.2s;
+        opacity: 0; transform: translateY(12px);
+        animation: fadeUp 0.45s var(--ease) forwards;  /* 淡入上移动画 */
+      }
+      .card:hover { background: var(--surface); border-color: var(--border-bright); }
+      .card-header {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 12px; gap: 16px; flex-wrap: wrap;
+      }
+      .card-title {
+        font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.5px;
+        color: var(--white); line-height: 1.25; flex: 1;
+      }
+      .card-score {
+        font-family: var(--display); font-size: 2rem; color: var(--accent);
+        line-height: 1; white-space: nowrap; text-align: right;
+        flex-shrink: 0;
+      }
+      .card-score span {
+        font-family: var(--mono); font-size: 0.5rem; color: var(--text-faint);
+        display: block; letter-spacing: 1px; margin-top: 4px;
+      }
+      .card-meta {
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint);
+        letter-spacing: 0.5px; margin-bottom: 14px;
+        display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+      }
+      .card-meta a { color: var(--accent2); text-decoration: none; }
+      .card-meta a:hover { text-decoration: underline; }
+      .card-authors { color: var(--text-muted); font-style: italic; }
+      .card-pub { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      .card-body {
+        font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+      }
+      .card-implications {
+        font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
+        background: rgba(201,160,64,0.05); border-left: 2px solid var(--accent2);
+        padding: 10px 14px; margin-bottom: 12px;
+      }
+      .card-model-scores {
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+      }
+      .model-tag { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      /* 自动生成的草稿样式 */
+      .card-draft {
+        background: var(--surface); border-left: 4px solid var(--accent);
+        padding: 18px 22px; margin-top: 12px; font-size: 0.9rem;
+        color: var(--text); line-height: 1.8; font-style: italic;
+      }
+      .card-draft::before {
+        content: '✍️ 自动生成书稿草稿';
+        display: block; font-family: var(--mono); font-size: 0.55rem;
+        letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
+        font-style: normal; margin-bottom: 8px;
+      }
+      .card-footer {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 12px;
+      }
+      .card-footer .tag {
+        padding: 2px 6px; background: var(--surface); border-radius: 2px;
+      }
+
+      /* ══════════════ 页脚（和主页底部的状态栏风格一致） ══════════════ */
+      footer {
+        margin-top: 48px; padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        letter-spacing: 1px;
+        display: flex; justify-content: space-between;
+        flex-wrap: wrap; gap: 8px;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+
+      /* ══════════════ 动画 ══════════════ */
+      @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+      /* ══════════════ 手机适配 ══════════════ */
+      @media (max-width: 600px) {
+        .main { padding: 80px 16px 60px; }
+        .page-title { font-size: 2.2rem; }
+        .card-header { flex-direction: column; }
+        .card-score { text-align: left; }
+        .stats-row { overflow-x: auto; padding-bottom: 4px; }
+      }
+    </style>
+"""
+
+
+# ═══════════════════════════════════════════════════════════════
+# 🏗️ 第三部分：生成完整 HTML 页面
+# ═══════════════════════════════════════════════════════════════
 def generate_academic_html(data: dict, output_path: str):
-
-    # ── 紧急清单 ──
+    """
+    根据解析出的数据，拼接出和主页风格完全统一的 HTML。
+    """
+    # ── 1. 生成紧急清单的 HTML ──
     urgent_html = ''
     if data['urgent']:
-        items = ''.join(
-            f'<div class="urgent-item">'
-            f'<span class="urgent-ch">{u["chapter"]}</span>'
-            f'<span class="urgent-t">{u["title"]}</span>'
-            f'</div>'
+        urgent_list = ''.join(
+            f'<div class="urgent-item">• <strong>{u["chapter"]}</strong> — {u["title"]}</div>'
             for u in data['urgent']
         )
         urgent_html = f'''
-<div class="urgent-strip">
-  <div class="urgent-label">🚨 IMMEDIATE UPDATE QUEUE</div>
-  <div class="urgent-list">{items}</div>
-</div>'''
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 立即更新清单</div>
+      {urgent_list}
+    </div>'''
 
-    # ── 论文单卡片 ──
+    # ── 2. 生成论文卡片 ──
     papers_html = ''
-    for idx, p in enumerate(data['papers'], 1):
+    for p in data['papers']:
+        # 确保分数可以显示
         try:
-            score_num     = float(p['score'])
+            score_num = float(p['score'])
             score_display = f'{score_num:.1f}'
-            # 颜色映射
-            if score_num >= 8.5:
-                score_cls = 'score-high'
-            elif score_num >= 7.0:
-                score_cls = 'score-mid'
-            else:
-                score_cls = 'score-low'
         except (ValueError, TypeError):
-            score_display = p['score'] or '—'
-            score_cls     = ''
+            score_display = p['score'] if p['score'] else '—'
 
+        # 原文链接
         link_html = ''
         if p['link'] and p['link'] not in ('N/A', '#', ''):
-            link_html = (f'<a class="source-btn" href="{p["link"]}" '
-                         f'target="_blank" rel="noopener">↗ PDF / SOURCE</a>')
+            link_html = f'<a href="{p["link"]}" target="_blank" rel="noopener">↗ PDF/原文</a>'
 
-        authors_html = ''
+        # 作者和发表日期
+        meta_tags = []
         if p['authors'] and p['authors'] != 'N/A':
-            authors_html = f'<span class="meta-authors">👤 {p["authors"]}</span>'
-
-        pub_html = ''
+            meta_tags.append(f'<span class="card-authors">👤 {p["authors"]}</span>')
         if p['published'] and p['published'] != 'N/A':
-            pub_html = f'<span class="meta-pub">📅 {p["published"][:10]}</span>'
+            meta_tags.append(f'<span class="card-pub">📅 {p["published"][:10]}</span>')
 
-        chapter_html = ''
-        if p['chapter'] and p['chapter'] != 'N/A':
-            chapter_html = f'<span class="meta-chapter">§ {p["chapter"]}</span>'
+        # 底部标签（紧迫度、更新类型等）
+        tags = []
+        for key, icon in [('urgency', '⏱'), ('update_type', '🔄'), ('action', '✅')]:
+            val = p.get(key, '')
+            if val and val not in ('N/A', '—', ''):
+                tags.append(f'<span class="tag">{icon} {val}</span>')
+        tags_html = ''.join(tags) if tags else ''
 
-        # 核心发现
-        summary_html = ''
-        if p['summary']:
-            summary_html = f'''
-      <div class="paper-block">
-        <div class="block-label">CORE FINDING</div>
-        <p class="block-body">{p["summary"]}</p>
-      </div>'''
+        # 草稿内容
+        draft_html = ''
+        if p['draft'] and len(p['draft']) > 30:
+            draft_html = f'\n      <div class="card-draft">{p["draft"]}</div>'
+
+        # 模型评分
+        model_html = p.get('model_scores', '')
 
         # 理论关联
         imp_html = ''
         if p['implications'] and p['implications'] != 'N/A':
-            imp_html = f'''
-      <div class="paper-block implication-block">
-        <div class="block-label">RELEVANCE TO RENEGADE AI</div>
-        <p class="block-body imp-text">{p["implications"]}</p>
-      </div>'''
+            imp_html = f'\n      <div class="card-implications">{p["implications"]}</div>'
 
-        # 建议行动
-        action_html = ''
-        if p['action'] and p['action'] not in ('N/A', '—', ''):
-            action_html = f'''
-      <div class="paper-block action-block">
-        <div class="block-label">RECOMMENDED UPDATE</div>
-        <p class="block-body">{p["action"]}</p>
-      </div>'''
-
-        # 模型评分
-        scores_html = ''
-        if p['model_scores']:
-            pills = ''.join(
-                f'<span class="score-pill">{n} <strong>{s}</strong></span>'
-                for n, s in p['model_scores']
-            )
-            scores_html = f'''
-      <div class="paper-block scores-block">
-        <div class="block-label">MODEL SCORES</div>
-        <div class="score-pills">{pills}</div>
-      </div>'''
-
-        # 草稿
-        draft_html = ''
-        if p['draft'] and len(p['draft']) > 30:
-            draft_html = f'''
-      <div class="paper-block draft-block">
-        <div class="block-label">✍ AUTO-GENERATED DRAFT</div>
-        <div class="draft-body">{p["draft"]}</div>
-      </div>'''
-
-        # 底部标签行
-        footer_tags = ''
-        for val, icon in [(p.get('urgency'), '⏱'), (p.get('update_type'), '🔄')]:
-            if val and val not in ('N/A', '—', ''):
-                footer_tags += f'<span class="foot-tag">{icon} {val}</span>'
-
+        # 拼接一张卡片
         papers_html += f'''
-<section class="paper-card" id="paper-{idx}">
-  <!-- LEFT SPINE -->
-  <div class="paper-spine">
-    <div class="spine-index">{idx:02d}</div>
-    <div class="spine-score {score_cls}">
-      <span class="score-n">{score_display}</span>
-      <span class="score-d">/10</span>
-    </div>
-    <div class="spine-line"></div>
-  </div>
-
-  <!-- RIGHT CONTENT -->
-  <div class="paper-body">
-    <div class="paper-top">
-      <div class="paper-title-wrap">
-        <h2 class="paper-title">{p["title"]}</h2>
-        <div class="paper-meta">
-          {authors_html}{pub_html}{chapter_html}
-        </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">{p["title"]}</div>
+        <div class="card-score">{score_display}<span>/10</span></div>
       </div>
-      {link_html}
-    </div>
+      <div class="card-meta">
+        {' '.join(meta_tags)}
+        {f'<span>·</span>' if meta_tags and link_html else ''}
+        {link_html}
+        {f'<span>·</span>' if p.get("chapter") and p["chapter"] != "N/A" else ''}
+        {f'📍 {p["chapter"]}' if p.get("chapter") and p["chapter"] != "N/A" else ''}
+      </div>
+      <div class="card-body">{p["summary"]}</div>
+      {imp_html}
+      {model_html}
+      {draft_html}
+      {f'<div class="card-footer">{tags_html}</div>' if tags_html else ''}
+    </div>'''
 
-    {summary_html}
-    {imp_html}
-    {action_html}
-    {scores_html}
-    {draft_html}
-
-    {f'<div class="paper-footer">{footer_tags}</div>' if footer_tags else ''}
-  </div>
-</section>
-'''
-
-    # ── TOC (논문 목록) ──
-    toc_html = ''
-    if data['papers']:
-        toc_items = ''.join(
-            f'<a class="toc-item" href="#paper-{i}">'
-            f'<span class="toc-n">{i:02d}</span>'
-            f'<span class="toc-t">{p["title"][:72]}{"…" if len(p["title"]) > 72 else ""}</span>'
-            f'<span class="toc-s">{p["score"]}</span>'
-            f'</a>'
-            for i, p in enumerate(data['papers'], 1)
-        )
-        toc_html = f'''
-<nav class="toc">
-  <div class="toc-label">INDEX · {len(data["papers"])} HIGH-RELEVANCE PAPERS</div>
-  {toc_items}
-</nav>'''
-
+    # ── 3. 拼装完整 HTML 结构 ──
     html = f'''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Radar · {data["date"]} | Renegade AI</title>
-  <meta name="description" content="学术论文监控报告 {data["date"]} · {data["high_n"]} 高相关论文">
+  <title>Academic Radar · {data['date']} | Renegade AI</title>
+  <meta name="description" content="学术论文监控报告 · {data['high_n']} 高相关论文">
+  <!-- 加载 Google 字体（和主页完全一样） -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
-  <style>
-/* ── DESIGN TOKENS ── */
-:root {{
-  --bg:           #08080e;
-  --bg2:          #0d0d18;
-  --surface:      #111120;
-  --card:         #13131f;
-  --border:       #1e1e30;
-  --border-bright:#2e2e50;
-  --text:         #cccce0;
-  --text-muted:   #6868a0;
-  --text-faint:   #3a3a5a;
-  --accent:       #e8503a;
-  --accent-dim:   rgba(232,80,58,0.12);
-  --accent2:      #c9a040;
-  --accent3:      #4a8fcf;
-  --accent3-dim:  rgba(74,143,207,0.10);
-  --white:        #f0f0f8;
-  --mono:  'Space Mono', monospace;
-  --serif: 'Crimson Pro', Georgia, serif;
-  --display: 'Bebas Neue', sans-serif;
-  --ease: cubic-bezier(0.4,0,0.2,1);
-}}
-:root.light {{
-  --bg:#f8f9fc; --bg2:#fff; --surface:#f0f2f8; --card:#fff;
-  --border:#e0e2ec; --border-bright:#c0c2d0;
-  --text:#2a2a40; --text-muted:#6a6a80; --text-faint:#a0a0b8;
-  --accent-dim:rgba(232,80,58,0.08); --accent3-dim:rgba(74,143,207,0.08);
-  --white:#2a2a40;
-}}
-
-/* ── RESET ── */
-*,*::before,*::after{{box-sizing:border-box;margin:0;padding:0}}
-html{{scroll-behavior:smooth}}
-body{{font-family:var(--serif);background:var(--bg);color:var(--text);
-     line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;
-     transition:background .3s,color .3s}}
-::selection{{background:var(--accent);color:#000}}
-::-webkit-scrollbar{{width:4px}}
-::-webkit-scrollbar-track{{background:var(--bg)}}
-::-webkit-scrollbar-thumb{{background:var(--accent)}}
-
-/* ── NOISE ── */
-.noise{{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
-  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}}
-.light .noise{{opacity:.05}}
-
-/* ── NAV ── */
-nav{{
-  position:fixed;top:0;width:100%;z-index:200;
-  background:rgba(8,8,14,.92);backdrop-filter:blur(24px);
-  border-bottom:1px solid var(--border);height:56px;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 32px;font-family:var(--mono);
-  transition:background .3s,border-color .3s;
-}}
-.light nav{{background:rgba(248,249,252,.92)}}
-.nav-brand{{font-size:.75rem;font-weight:700;color:var(--accent);
-           letter-spacing:3px;text-transform:uppercase;text-decoration:none}}
-.nav-right{{display:flex;gap:8px;align-items:center}}
-.nav-pill{{
-  background:none;border:1px solid var(--border);color:var(--text-muted);
-  font-family:var(--mono);font-size:.62rem;letter-spacing:2px;
-  padding:5px 14px;text-decoration:none;display:inline-flex;align-items:center;
-  transition:all .2s;
-}}
-.nav-pill:hover{{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}}
-.theme-btn{{
-  background:none;border:1px solid var(--border);color:var(--text-muted);
-  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;
-  justify-content:center;font-size:.9rem;transition:all .2s;
-}}
-.theme-btn:hover{{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}}
-
-/* ── HERO ── */
-.hero{{
-  padding-top:56px;border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto;
-}}
-.hero-left{{padding:56px 72px 48px;border-right:1px solid var(--border)}}
-.hero-eyebrow{{
-  font-family:var(--mono);font-size:.62rem;letter-spacing:4px;
-  color:var(--accent);text-transform:uppercase;
-  margin-bottom:20px;display:flex;align-items:center;gap:12px;
-}}
-.hero-eyebrow::before{{content:'';width:36px;height:1px;background:var(--accent)}}
-.hero-title{{
-  font-family:var(--display);font-size:clamp(3rem,5vw,5.5rem);
-  line-height:.92;letter-spacing:3px;color:var(--white);margin-bottom:18px;
-}}
-.hero-title span{{color:var(--accent)}}
-.hero-desc{{
-  font-size:1rem;color:var(--text-muted);font-style:italic;
-  border-left:3px solid var(--accent);padding-left:16px;
-  max-width:500px;line-height:1.9;margin-bottom:28px;transition:color .3s;
-}}
-.hero-tags{{display:flex;gap:6px;flex-wrap:wrap}}
-.hero-tag{{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:1.5px;
-  color:var(--text-muted);background:var(--surface);
-  border:1px solid var(--border);padding:4px 12px;text-transform:uppercase;
-}}
-.hero-right{{
-  display:flex;flex-direction:column;align-items:center;
-  justify-content:center;padding:40px 52px;gap:20px;min-width:200px;
-}}
-.stat-block{{text-align:center}}
-.stat-block .n{{font-family:var(--display);font-size:4rem;color:var(--accent);line-height:1;display:block}}
-.stat-block .l{{font-family:var(--mono);font-size:.58rem;letter-spacing:2.5px;
-               color:var(--text-muted);text-transform:uppercase;display:block;margin-top:4px}}
-.stat-divider{{width:1px;height:32px;background:var(--border)}}
-
-/* ── URGENT STRIP ── */
-.urgent-strip{{
-  border-bottom:1px solid var(--border);
-  border-left:4px solid var(--accent);
-  background:var(--accent-dim);
-  padding:20px 72px;
-}}
-.urgent-label{{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:3px;
-  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
-}}
-.urgent-list{{display:flex;flex-direction:column;gap:6px}}
-.urgent-item{{
-  display:flex;align-items:baseline;gap:12px;
-  font-family:var(--mono);font-size:.65rem;
-}}
-.urgent-ch{{
-  color:var(--accent);letter-spacing:1px;white-space:nowrap;
-  border:1px solid rgba(232,80,58,.3);padding:1px 6px;
-}}
-.urgent-t{{color:var(--text-muted)}}
-
-/* ── TOC ── */
-.toc{{border-bottom:1px solid var(--border);padding:0 72px}}
-.toc-label{{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:3px;
-  color:var(--text-faint);text-transform:uppercase;
-  padding:14px 0 10px;border-bottom:1px solid var(--border);
-}}
-.toc-item{{
-  display:grid;grid-template-columns:36px 1fr 36px;
-  gap:16px;align-items:baseline;
-  padding:10px 0;border-bottom:1px solid var(--border);
-  text-decoration:none;transition:background .15s;
-}}
-.toc-item:last-child{{border-bottom:none}}
-.toc-item:hover{{background:var(--surface);margin:0 -72px;padding:10px 72px}}
-.toc-n{{font-family:var(--display);font-size:1rem;color:var(--text-faint)}}
-.toc-t{{font-family:var(--serif);font-size:.92rem;color:var(--text-muted);transition:color .2s}}
-.toc-item:hover .toc-t{{color:var(--white)}}
-.toc-s{{
-  font-family:var(--display);font-size:1rem;color:var(--accent);
-  text-align:right;
-}}
-
-/* ── PAPER CARD (single-card layout) ── */
-.paper-card{{
-  display:grid;grid-template-columns:80px 1fr;
-  gap:0;border-bottom:1px solid var(--border);
-  opacity:0;transform:translateY(20px);
-  animation:fadeUp .6s var(--ease) forwards;
-  transition:background .2s;
-}}
-.paper-card:hover{{background:var(--surface)}}
-
-/* LEFT SPINE */
-.paper-spine{{
-  border-right:1px solid var(--border);
-  display:flex;flex-direction:column;
-  align-items:center;padding:36px 0;gap:16px;
-  position:sticky;top:56px;align-self:start;
-  height:auto;
-}}
-.spine-index{{
-  font-family:var(--display);font-size:2.2rem;
-  color:var(--text-faint);line-height:1;
-}}
-.spine-score{{text-align:center}}
-.score-n{{
-  font-family:var(--display);font-size:2.4rem;line-height:1;display:block;
-}}
-.score-d{{
-  font-family:var(--mono);font-size:.5rem;color:var(--text-faint);
-  letter-spacing:1px;display:block;margin-top:2px;
-}}
-.score-high .score-n{{color:var(--accent)}}
-.score-mid  .score-n{{color:var(--accent2)}}
-.score-low  .score-n{{color:var(--accent3)}}
-.spine-line{{flex:1;width:1px;background:var(--border);min-height:20px}}
-
-/* RIGHT BODY */
-.paper-body{{padding:40px 64px 40px 48px;display:flex;flex-direction:column;gap:0}}
-.paper-top{{
-  display:flex;justify-content:space-between;align-items:flex-start;
-  gap:24px;margin-bottom:32px;flex-wrap:wrap;
-}}
-.paper-title-wrap{{flex:1}}
-.paper-title{{
-  font-family:var(--display);
-  font-size:clamp(1.6rem,3vw,2.4rem);
-  letter-spacing:1.5px;color:var(--white);
-  line-height:1.1;margin-bottom:12px;
-}}
-.paper-meta{{
-  display:flex;gap:10px;flex-wrap:wrap;align-items:center;
-  font-family:var(--mono);font-size:.6rem;letter-spacing:1px;
-}}
-.meta-authors{{color:var(--text-muted);font-style:italic}}
-.meta-pub{{
-  background:var(--surface);padding:2px 8px;
-  color:var(--text-faint);border:1px solid var(--border);
-}}
-.meta-chapter{{
-  color:var(--accent2);letter-spacing:1.5px;
-  border:1px solid rgba(201,160,64,.3);padding:2px 8px;
-}}
-
-.source-btn{{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:2px;
-  text-transform:uppercase;text-decoration:none;
-  border:1px solid var(--border-bright);color:var(--text-muted);
-  padding:8px 16px;white-space:nowrap;align-self:flex-start;
-  transition:all .2s;flex-shrink:0;
-}}
-.source-btn:hover{{border-color:var(--accent2);color:var(--accent2);background:rgba(201,160,64,.06)}}
-
-/* CONTENT BLOCKS */
-.paper-block{{
-  padding:24px 0;border-top:1px solid var(--border);
-}}
-.block-label{{
-  font-family:var(--mono);font-size:.55rem;letter-spacing:3px;
-  color:var(--text-faint);text-transform:uppercase;margin-bottom:10px;
-}}
-.block-body{{font-size:.95rem;color:var(--text-muted);line-height:1.85;transition:color .3s}}
-.imp-text{{
-  color:var(--accent2);
-  border-left:3px solid var(--accent2);
-  padding-left:16px;font-style:italic;
-}}
-.action-block .block-body{{
-  color:var(--text);
-  border-left:3px solid var(--accent3);
-  padding-left:16px;
-}}
-.score-pills{{display:flex;gap:8px;flex-wrap:wrap}}
-.score-pill{{
-  font-family:var(--mono);font-size:.62rem;
-  background:var(--surface);border:1px solid var(--border);
-  padding:4px 10px;color:var(--text-muted);
-}}
-.score-pill strong{{color:var(--accent);font-weight:700}}
-.draft-block{{background:var(--surface);margin:0 -48px 0 0;padding:24px 48px 24px 0}}
-.draft-block .block-label{{color:var(--accent)}}
-.draft-body{{
-  font-size:.95rem;color:var(--text);
-  line-height:1.9;font-style:italic;
-  border-left:3px solid var(--accent);padding-left:16px;
-}}
-
-/* PAPER FOOTER */
-.paper-footer{{
-  padding:16px 0 0;border-top:1px solid var(--border);
-  margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;
-}}
-.foot-tag{{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:1px;
-  color:var(--text-faint);background:var(--surface);
-  border:1px solid var(--border);padding:3px 10px;
-}}
-
-/* ── GLOBAL FOOTER ── */
-.page-footer{{
-  border-top:1px solid var(--border);
-  padding:40px 72px;display:flex;justify-content:space-between;
-  font-family:var(--mono);font-size:.62rem;color:var(--text-faint);
-  flex-wrap:wrap;gap:12px;
-}}
-.page-footer a{{color:var(--text-faint);text-decoration:none;transition:color .2s}}
-.page-footer a:hover{{color:var(--accent)}}
-
-/* ── STATUS BAR ── */
-.status-bar{{
-  position:fixed;bottom:0;width:100%;z-index:200;
-  background:var(--bg);border-top:1px solid var(--border);
-  padding:10px 32px;font-family:var(--mono);font-size:.6rem;
-  color:var(--text-faint);letter-spacing:2px;
-  display:flex;justify-content:space-between;align-items:center;
-  transition:background .3s,border-color .3s;
-}}
-.status-dot{{
-  display:inline-block;width:6px;height:6px;
-  background:var(--accent);border-radius:50%;margin-right:8px;
-  animation:pulse 2s infinite;
-}}
-@keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
-@keyframes fadeUp{{to{{opacity:1;transform:translateY(0)}}}}
-
-/* ── RESPONSIVE ── */
-@media(max-width:900px){{
-  .hero{{grid-template-columns:1fr}}
-  .hero-left{{padding:48px 24px 36px;border-right:none;border-bottom:1px solid var(--border)}}
-  .hero-right{{flex-direction:row;padding:24px;border-bottom:1px solid var(--border)}}
-  .stat-divider{{width:40px;height:1px}}
-  .urgent-strip,.toc{{padding-left:24px;padding-right:24px}}
-  .toc-item:hover{{margin:0 -24px;padding:10px 24px}}
-  .paper-card{{grid-template-columns:56px 1fr}}
-  .paper-body{{padding:28px 24px 28px 20px}}
-  .draft-block{{margin:0 -24px 0 0;padding:24px 24px 24px 0}}
-  .page-footer{{padding:32px 24px}}
-}}
-  </style>
+{CSS_TEMPLATE}
 </head>
 <body>
-<div class="noise"></div>
-
-<!-- NAV -->
-<nav>
-  <a href="https://brook-han.github.io/renegade-ai-Updater/" class="nav-brand">RENEGADE RADAR</a>
-  <div class="nav-right">
-    <a href="index.html" class="nav-pill">← ARCHIVE</a>
-    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-  </div>
-</nav>
-
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-left">
-    <div class="hero-eyebrow">§ Academic Radar · {data["date"]}</div>
-    <h1 class="hero-title">LITERATURE<br><span>SCAN</span></h1>
-    <p class="hero-desc">
-      High-relevance papers mapped to the arguments that matter —
-      ranked, annotated, and connected to the text of Renegade AI.
-    </p>
-    <div class="hero-tags">
-      <span class="hero-tag">ANALYSIS · {data["model"]}</span>
-      <span class="hero-tag">DRAFT · {data["draft_model"]}</span>
-      <span class="hero-tag">TOTAL · {data["total"]} PAPERS</span>
-      <span class="hero-tag">HIGH · {data["high_n"]} · MED · {data["med_n"]}</span>
+  <!-- ══════════════ 头部导航栏（和主页一模一样） ══════════════ -->
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <!-- 返回 Radar 主页的按钮（注意路径：因为报告在 docs/academic/ 下，所以用 ../index.html） -->
+      <a href="../index.html" class="nav-pill">← RADAR</a>
+      <button class="theme-btn" id="themeBtn" aria-label="切换主题">◐</button>
     </div>
-  </div>
-  <div class="hero-right">
-    <div class="stat-block">
-      <span class="n">{data["high_n"]}</span>
-      <span class="l">High</span>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ Academic Radar</div>
+    <h1 class="page-title">LITERATURE SCAN</h1>
+    <p class="page-sub">{data['date']} · 分析: {data['model']} · 草稿: {data['draft_model']}</p>
+
+    <div class="stats-row">
+      <div>📊 总条目: <span>{data['total']}</span></div>
+      <div>⭐ 高相关: <span>{data['high_n']}</span></div>
+      <div>🔶 中相关: <span>{data['med_n']}</span></div>
     </div>
-    <div class="stat-divider"></div>
-    <div class="stat-block">
-      <span class="n">{data["med_n"]}</span>
-      <span class="l">Medium</span>
-    </div>
-  </div>
-</div>
 
-{urgent_html}
-{toc_html}
+    {urgent_html}
+    {papers_html}
 
-<!-- PAPERS -->
-<div id="papers">
-{papers_html}
-</div>
+    <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
+    <footer>
+      <span>Renegade AI v5.3 · Academic Radar</span>
+      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
+    </footer>
+  </main>
 
-<footer class="page-footer">
-  <span>Renegade AI v5.3 · Brooks Han · {data["date"]}</span>
-  <div style="display:flex;gap:20px">
-    <a href="index.html">← Academic Archive</a>
-    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
-  </div>
-</footer>
+  <script>
+    /* ══════════════ 主题切换（使用和主页同一个 localStorage 键） ══════════════ */
+    (function() {{
+      const html = document.documentElement;
+      const btn = document.getElementById('themeBtn');
+      const KEY = 'renegade-theme';   // 和主页保持一致，切换一次全局生效
 
-<!-- STATUS BAR -->
-<div class="status-bar">
-  <span><span class="status-dot"></span><span id="statusText">STATUS: [ LITERATURE SCAN · {data["date"]} · {data["high_n"]} HIGH-RELEVANCE ]</span></span>
-  <span id="statusTime"></span>
-</div>
+      // 应用主题：light 或 dark
+      function apply(theme) {{
+        html.classList.toggle('light', theme === 'light');
+        localStorage.setItem(KEY, theme);
+      }}
 
-<script>
-/* ── THEME ── */
-(function(){{
-  const h=document.documentElement,b=document.getElementById('themeBtn');
-  const apply=t=>{{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)}};
-  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
-  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
-}})();
+      // 优先读取本地存储，否则跟随系统偏好
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem(KEY) || (systemDark ? 'dark' : 'light');
+      apply(saved);
 
-/* ── STATUS TIME ── */
-(function(){{
-  const tm=document.getElementById('statusTime');
-  function tick(){{tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC'}}
-  tick();setInterval(tick,1000);
-}})();
+      // 点击按钮切换
+      btn.onclick = function() {{
+        const current = html.classList.contains('light') ? 'dark' : 'light';
+        apply(current);
+      }};
+    }})();
 
-/* ── STAGGER ── */
-document.querySelectorAll('.paper-card').forEach((c,i)=>{{
-  c.style.animationDelay=(i*0.08)+'s';
-}});
-</script>
+    /* ══════════════ 卡片逐个淡入 ══════════════ */
+    document.querySelectorAll('.card').forEach(function(card, index) {{
+      card.style.animationDelay = (index * 0.05) + 's';
+    }});
+  </script>
 </body>
 </html>'''
 
+    # 写入文件
     Path(output_path).write_text(html, encoding='utf-8')
     print(f'✅ HTML 已生成: {output_path}')
 
 
 # ═══════════════════════════════════════════════════════════════
-# 主入口
+# 🚀 第四部分：程序入口
 # ═══════════════════════════════════════════════════════════════
-
 if __name__ == '__main__':
+    # 1. 确定要转换哪个 Markdown 文件
     if len(sys.argv) > 1:
         md_file = sys.argv[1]
         print(f'📄 使用指定文件: {md_file}')
     else:
+        # 自动寻找最新的学术报告（在几个常见目录里找）
         for search_dir in [Path('docs/academic'), Path('output/academic'), Path('reports')]:
             if search_dir.exists():
                 reports = sorted(search_dir.glob('academic_report_*.md'))
@@ -706,18 +587,21 @@ if __name__ == '__main__':
                     md_file = str(reports[-1])
                     break
         else:
-            print('❌ 未找到 academic_report_*.md 文件')
-            print('💡 用法: python academic_md_to_html.py path/to/report.md')
+            print('❌ 没找到 academic_report_*.md 文件')
+            print('💡 用法: python academic_md_to_html.py 报告文件路径')
             sys.exit(1)
         print(f'🔍 自动选择最新报告: {md_file}')
 
+    # 2. 解析 Markdown
     print('📖 解析中...')
     data = parse_academic_report(md_file)
 
     if not data['papers']:
-        print(f'⚠️ 未解析到高相关论文 (总计 {data["total"]} 篇 | 高相关 {data["high_n"]} 篇)')
-        print('💡 请确认 MD 文件包含 "## ⭐ 高相关论文" 区块')
+        print('⚠️ 警告: 没解析到论文，请检查 Markdown 格式')
 
+    # 3. 输出 HTML（放在和 md 相同的目录下）
     out_file = str(Path(md_file).with_suffix('.html'))
     generate_academic_html(data, out_file)
-    print(f'🎉 完成！预览路径：file://{Path(out_file).resolve()}')
+
+    print('🎉 完成！可以在浏览器里打开：')
+    print(f'   file://{Path(out_file).resolve()}')
