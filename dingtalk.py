@@ -17,15 +17,15 @@
     python dingtalk.py --type papers
     
     # 指定具体文件推送
-    python dingtalk.py --file reports/news/news_report_2026-05-11_143022.md
+    python dingtalk.py --file docs/news/news_report_2026-05-11_143022.md
 
 🔐 所需环境变量：
     - DINGTALK_WEBHOOK: 机器人 Webhook URL
     - DINGTALK_SECRET: 加签密钥（钉钉机器人安全设置中获取）
-    - REPORT_BASE_URL: 报告页面基础 URL（如: https://brook-han.github.io/renegade-ai-Updater/reports）
+    - REPORT_BASE_URL: 报告页面基础 URL（如: https://brook-han.github.io/renegade-ai-Updater/docs）
 
 作者：Brooks Han
-版本：v1.1 (2026-05-11)
+版本：v1.2 (2026-05-11)
 """
 
 import os
@@ -292,7 +292,7 @@ def main():
     
     if not base_url:
         print("❌ 缺少环境变量: REPORT_BASE_URL")
-        print("💡 示例: https://brook-han.github.io/renegade-ai-Updater/reports")
+        print("💡 示例: https://brook-han.github.io/renegade-ai-Updater/docs")
         sys.exit(1)
     
     # 📁 确定报告文件
@@ -302,7 +302,7 @@ def main():
     else:
         # 自动查找最新报告
         report_type = "academic" if args.type == "papers" else args.type
-        pattern = f"reports/{report_type}/*_report_*.md"
+        pattern = f"docs/{report_type}/*_report_*.md"
         report_files = sorted(Path().glob(pattern), key=lambda p: p.stat().st_mtime, reverse=True)
         
         if not report_files:
@@ -324,8 +324,8 @@ def main():
     
     # 🔗 构造报告 URL
     html_file = latest_md.with_suffix(".html").name
-    # 处理子目录情况：reports/news/xxx.html → news/xxx.html
-    relative_path = latest_md.relative_to(Path("reports")).with_suffix(".html")
+    # 处理子目录情况：docs/news/xxx.html → news/xxx.html
+    relative_path = latest_md.relative_to(Path("docs")).with_suffix(".html")
     report_url = f"{base_url}/{relative_path}"
     
     # 📅 提取日期
