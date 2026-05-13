@@ -412,6 +412,60 @@ def main():
         acad_cnt = content.count('data-type="academic"')
         print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
 
+def main():
+    print("🚀 Renegade AI Radar Index Generator v4.0 (News/Academic split)")
+    print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
+
+    data = collect_all_reports()
+    if not data["dates"]:
+        print("❌ No reports found!")
+        return
+
+    print(f"✅ Found {data['stats']['total']} reports across {data['stats']['days']} days")
+    print(f"   📰 News: {data['stats']['news']} | 📄 Academic: {data['stats']['academic']}")
+
+    # 生成日期区块
+    print("\n🎨 Generating HTML sections...")
+    day_sections = []
+    for date in data["dates"]:
+        entries = data["by_date"][date]
+        print(f"📅 处理日期: {date} ({len(entries)} 个报告)")
+        section = generate_day_html(date, entries)
+        day_sections.append(section)
+
+    # 渲染模板
+    print("📄 Rendering index.html...")
+    template = get_html_template()
+    final = template.replace("{{ day_sections }}", "\n".join(day_sections))
+    final = final.replace("{{ total_reports }}", str(data["stats"]["total"]))
+    final = final.replace("{{ news_count }}", str(data["stats"]["news"]))
+    final = final.replace("{{ academic_count }}", str(data["stats"]["academic"]))
+    final = final.replace("{{ days_count }}", str(data["stats"]["days"]))
+    final = final.replace("{{ latest_date }}", data["dates"][0] if data["dates"] else "N/A")
+
+    output = REPORTS_ROOT / "index.html"
+    output.write_text(final, encoding="utf-8")
+    print(f"\n✅ Success! Generated: {output}")
+
+    # 调试信息
+    if output.exists():
+        content = output.read_text(encoding="utf-8")
+        news_cnt = content.count('data-type="news"')
+        acad_cnt = content.count('data-type="academic"')
+        print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
+
+    # ────────────────────────────────────────────────
+    # ✅ 新增：自动生成新闻和学术列表页
+    # ────────────────────────────────────────────────
+    print("\n📋 正在自动生成新闻列表页...")
+    from generate_news_index import main as gen_news_main
+    gen_news_main()
+
+    print("\n📋 正在自动生成学术列表页...")
+    from generate_academic_index import main as gen_acad_main
+    gen_acad_main()
+
+    print("\n✨ 全部生成完毕！")
 
 if __name__ == "__main__":
     main()

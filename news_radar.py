@@ -485,21 +485,5 @@ def main() -> None:
 
     logger.info("✅ News Radar 完成。")
 
-
-    def main():
-    # ... 原本的收集报告、生成主页 HTML 等代码 ...
-
-    # ✅ 自动生成新闻和学术列表页
-        print("\n📋 正在自动生成新闻列表页...")
-        from generate_news_index import main as gen_news_main
-        gen_news_main()
-
-        print("\n📋 正在自动生成学术列表页...")
-        from generate_academic_index import main as gen_acad_main
-        gen_acad_main()
-
-        print("\n✨ 全部生成完毕！")
-
-
 if __name__ == "__main__":
     main()
