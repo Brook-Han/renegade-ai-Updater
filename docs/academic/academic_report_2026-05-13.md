@@ -898,28 +898,6 @@ The “capability density” concept and the “Densing Law” unearthed by Xiao
 | deepseek-v4-flash | 7 |
 
 
-## 🚨 立即更新清单
-
-- [ ] ✍️ **Chapter 7, Section III** — Ex Ante Evaluation of AI-Induced Idea Diversity Collapse... [ARXIV](https://arxiv.org/pdf/2605.06540v1)
-- [ ] ✍️ **Chapter 10, Section II（终极图灵测试与认知过程评估）** — Process Matters more than Output for Distinguishing Humans f... [ARXIV](https://arxiv.org/pdf/2605.06524v1)
-- [ ] ✍️ **Chapter 5, Section II; Chapter 9, Section III** — Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Sy... [ARXIV](https://arxiv.org/pdf/2605.06347v1)
-- [ ] ✍️ **Chapter 5, Section II - 'RLHF: The Carrot and Stick of Cognitive Conformity'** — More RLHF, More Trust? On The Impact of Human Preference Ali... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/06a4491fadcb68a5d2f03110f9b54881dd8611e4)
-- [ ] ✍️ **Chapter 5, Section II** — Co-Alignment: Rethinking Alignment as Bidirectional Human-AI... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/f7d47ea116ff69201be7fb67fcd67976fdcdf5c8)
-- [ ] ✍️ **Chapter 7, Section III; Chapter 8, Section I** — The Levers of Political Persuasion with Conversational AI... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/89a7bae8aac5ff4dd1fe31c20094d4610f878866)
-- [ ] ✍️ **Chapter 4, Section II（共识牢笼的形成机制）及Section III（AI反馈的微调作用）** — How AI Responses Shape User Beliefs: The Effects of Informat... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/437dfa31e7e1911477c0b54f382b64694645f8aa)
-- [ ] ✍️ **Chapter 5, Section II; Chapter 6, Section IV; Chapter 3, Section I** — Scaffolding Human-AI Collaboration: A Field Experiment on Be... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/45705c364510fb1f786e022d39d2772ddd968d4c)
-- [ ] ✍️ **Chapter 7, Section III, 以及Chapter 8, Section II** — Engaging with AI: How Interface Design Shapes Human-AI Colla... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/5a4e1494cbf8801c989a4f706c7f9d57787da65c)
-- [ ] ✍️ **Chapter 6, Section III（认知金融化与科研评估的异化）; Chapter 8, Section V（共识牢笼的知识生产陷阱）** — Comparing Human-Only, AI-Assisted, and AI-Led Teams on Asses... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/11439c274bae6629994e08f0e580db9f6a52cd69)
-- [ ] ✍️ **Chapter 6, Section II (进化对齐脆弱性) 或 Chapter 5, Section III (RLHF与资本驯化)** — An Evolutionary Perspective on AI Alignment (Student Abstrac... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/376024d3e3c1ba9d7a9fc9b99541bbc696a389ac)
-- [ ] ✍️ **Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)** — How humanAI feedback loops alter human perceptual, emotional... [SEMANTIC_SCHOLAR](https://doi.org/10.1038/s41562-024-02077-2)
-- [ ] ✍️ **Chapter 6, Section III: The Token Trap in Scientific Discovery** — DORA AI Scientist: Multi-agent Virtual Research Team for Sci... [SEMANTIC_SCHOLAR](https://doi.org/10.1101/2025.03.06.641840)
-- [ ] ✍️ **Chapter 4, Section II (共识牢笼的形成机制) 和 Chapter 5, Section III (RLHF与奉承型AI)** — When Truth Is Overridden: Uncovering the Internal Origins of... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429)
-- [ ] ✍️ **Chapter 3 (Renegade AI: The Three Moves), Section II (Resetting the Objective Function)；Chapter 10 (Evolutionary Alignment Fragility), Section I (The Limits of Alignment)** — Sycophancy to Subterfuge: Investigating Reward-Tampering in ... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/8d5bc0b0ddca8740e4bec70231b7f0d12ded3d5d)
-- [ ] ✍️ **Chapter 2（共识牢笼），Chapter 4（叛逆AI），Chapter 5（需求侧规训），Chapter 8（碳硅共生与时间主权）** — Cognitive Agency Surrender: Defending Epistemic Sovereignty ... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/7f71a10eaa4a5315a861d79ee6bbc27a90d497a0)
-- [ ] ✍️ **Chapter 1, Section V** — Alignment Tipping Process: How Self-Evolution Pushes LLM Age... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/d9e6df5adc896a524184bdc9344b0733cdb9c5b0)
-- [ ] ✍️ **Chapter 2, Section III: The Consensus Cage as Epistemic Closure; Chapter 7, Section IV: Evolutionary Alignment Fragility** — Epistemic Closure and the Irreversibility of Misalignment: M... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/6c3300a26c060e9464bd3106ab5106a0bb13d83a)
-- [ ] ✍️ **Chapter 8, Section III (进化对齐脆弱性)** — Densing law of LLMs... [SEMANTIC_SCHOLAR](https://www.semanticscholar.org/paper/593eb9e34076a78ee1914bd8253b8b02de50e0eb)
-
 ## 🔶 中相关论文 (47条)
 
 - **[When No Benchmark Exists: Validating Comparative LLM Safety Scoring Without Ground-Truth Labels](https://arxiv.org/pdf/2605.06652v1)** [ARXIV] — 5.0/10
