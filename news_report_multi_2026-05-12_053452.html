@@ -1,38 +1,47 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh-CN" class="no-js">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Renegade AI 资讯监控 · 2026-05-12</title>
+  <title>News Radar · 2026-05-12 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 0 高价值案例">
+  
+  <!-- 加载字体（谷歌字体）-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 图标 -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- 嵌入 CSS 样式 -->
+
     <style>
-      /* 浅色模式（默认） */
+      /* ========== 颜色变量定义（浅色模式默认）========== */
       :root {
-        --bg: #f8f9fc;
-        --bg2: #ffffff;
-        --surface: #f0f2f8;
-        --card: #ffffff;
-        --border: #e0e2ec;
-        --border-bright: #c0c2d0;
-        --text: #2a2a40;
-        --text-muted: #6a6a80;
-        --text-faint: #a0a0b8;
-        --accent: #e8503a;
-        --accent-dim: rgba(232,80,58,0.08);
-        --accent2: #b88c2a;
-        --accent3: #3a7fbf;
+        --bg: #f8f9fc;              /* 页面背景 */
+        --bg2: #ffffff;             /* 次要背景 */
+        --surface: #f0f2f8;         /* 卡片/按钮背景 */
+        --card: #ffffff;            /* 内容卡片背景 */
+        --border: #e0e2ec;          /* 边框颜色 */
+        --border-bright: #c0c2d0;   /* 高亮边框 */
+        --text: #2a2a40;            /* 主要文字 */
+        --text-muted: #6a6a80;      /* 次要文字 */
+        --text-faint: #a0a0b8;      /* 弱化文字 */
+        --accent: #e8503a;          /* 主强调色（橙红） */
+        --accent-dim: rgba(232,80,58,0.08);  /* 强调色浅色背景 */
+        --accent2: #b88c2a;         /* 次要强调色（金色） */
+        --accent3: #3a7fbf;         /* 第三强调色（蓝色） */
         --accent3-dim: rgba(74,143,207,0.08);
-        --white: #2a2a40;
-        --mono: 'Space Mono', 'Courier New', monospace;
-        --serif: 'Crimson Pro', Georgia, serif;
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-        --ease: cubic-bezier(0.4, 0, 0.2, 1);
+        --white: #2a2a40;           /* "白色"文字（实际是深色） */
+        
+        /* 字体栈 */
+        --mono: 'Space Mono', 'Courier New', monospace;    /* 等宽字体 */
+        --serif: 'Crimson Pro', Georgia, serif;            /* 正文字体 */
+        --display: 'Bebas Neue', 'Arial Narrow', sans-serif; /* 标题字体 */
       }
 
-      /* 深色模式覆盖 */
+      /* ========== 深色模式覆盖 ========== */
       :root.dark-theme {
         --bg: #08080e;
         --bg2: #0d0d18;
@@ -51,6 +60,7 @@
         --white: #f0f0f8;
       }
 
+      /* ========== 全局重置 ========== */
       * { box-sizing: border-box; margin: 0; padding: 0; }
 
       body {
@@ -58,15 +68,15 @@
         background: var(--bg);
         color: var(--text);
         line-height: 1.8;
-        -webkit-font-smoothing: antialiased;
-        transition: background-color 0.3s ease, color 0.3s ease;
+        -webkit-font-smoothing: antialiased;  /* 字体平滑 */
+        transition: background-color 0.3s ease, color 0.3s ease;  /* 主题切换动画 */
       }
 
-      /* 固定导航栏（与主页一致） */
+      /* ========== 顶部导航栏（固定定位）========== */
       nav {
         position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(248,249,252,0.92);
-        backdrop-filter: blur(24px);
+        background: rgba(248,249,252,0.92);  /* 半透明背景 */
+        backdrop-filter: blur(24px);          /* 毛玻璃效果 */
         border-bottom: 1px solid var(--border);
         height: 56px;
         display: flex; align-items: center; justify-content: space-between;
@@ -74,207 +84,221 @@
         font-family: var(--mono);
         transition: background-color 0.3s ease, border-color 0.3s ease;
       }
-      .dark-theme nav {
-        background: rgba(8,8,14,0.92);
-      }
+      .dark-theme nav { background: rgba(8,8,14,0.92); }
+      
       .nav-brand {
         font-size: 0.75rem; font-weight: 700;
         color: var(--accent); letter-spacing: 3px;
-        text-transform: uppercase;
-        text-decoration: none;
+        text-transform: uppercase; text-decoration: none;
         transition: color 0.2s;
       }
-      .nav-brand:hover {
-        color: var(--accent2);
-      }
-      .nav-right {
-        display: flex; gap: 12px; align-items: center;
-      }
+      .nav-brand:hover { color: var(--accent2); }
+      
+      .nav-right { display: flex; gap: 12px; align-items: center; }
+      
+      /* 主题切换按钮 */
       .theme-toggle {
-        background: none;
-        border: 1px solid var(--border);
-        color: var(--text-muted);
-        width: 36px;
-        height: 36px;
-        border-radius: 0;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); width: 36px; height: 36px;
+        border-radius: 0; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
         transition: all 0.2s;
       }
       .theme-toggle:hover {
-        border-color: var(--accent);
-        color: var(--accent);
+        border-color: var(--accent); color: var(--accent);
         background: var(--accent-dim);
       }
-      .theme-toggle i {
-        font-size: 0.8rem;
-      }
+      .theme-toggle i { font-size: 0.8rem; }
 
-      /* 主容器，避开固定导航栏 */
+      /* ========== 主内容区 ========== */
       .main {
-        max-width: 860px;
-        margin: 0 auto;
-        padding: 100px 32px 60px;
+        max-width: 860px; margin: 0 auto;
+        padding: 100px 32px 60px;  /* 顶部留白避开固定导航栏 */
       }
 
+      /* 返回链接 */
       .back-link {
-        font-family: var(--mono);
-        font-size: 0.65rem;
-        letter-spacing: 2px;
-        color: var(--text-muted);
-        text-decoration: none;
-        text-transform: uppercase;
-        border: 1px solid var(--border);
-        padding: 6px 14px;
-        display: inline-block;
-        margin-bottom: 40px;
+        font-family: var(--mono); font-size: 0.65rem;
+        letter-spacing: 2px; color: var(--text-muted);
+        text-decoration: none; text-transform: uppercase;
+        border: 1px solid var(--border); padding: 6px 14px;
+        display: inline-block; margin-bottom: 40px;
         transition: all .2s;
       }
       .back-link:hover { border-color: var(--accent); color: var(--accent); }
 
+      /* 页面标题区域 */
       .page-eyebrow {
-        font-family: var(--mono);
-        font-size: 0.62rem;
-        letter-spacing: 4px;
-        color: var(--accent);
-        text-transform: uppercase;
-        margin-bottom: 8px;
+        font-family: var(--mono); font-size: 0.62rem;
+        letter-spacing: 4px; color: var(--accent);
+        text-transform: uppercase; margin-bottom: 8px;
         display: flex; align-items: center; gap: 10px;
       }
       .page-eyebrow::before {
         content: ''; width: 28px; height: 1px; background: var(--accent);
       }
       .page-title {
-        font-family: var(--display);
-        font-size: 3rem;
-        letter-spacing: 2px;
-        color: var(--white);
-        margin-bottom: 6px;
-        line-height: 1;
+        font-family: var(--display); font-size: 3rem;
+        letter-spacing: 2px; color: var(--white);
+        margin-bottom: 6px; line-height: 1;
       }
       .page-sub {
-        font-family: var(--mono);
-        font-size: 0.65rem;
-        color: var(--text-muted);
-        letter-spacing: 1.5px;
-        margin-bottom: 48px;
+        font-family: var(--mono); font-size: 0.65rem;
+        color: var(--text-muted); letter-spacing: 1.5px;
+        margin-bottom: 16px;
       }
+
+      /* 统计行 */
       .stats-row {
-        display: flex; gap: 24px; margin-bottom: 40px;
-        font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
-        letter-spacing: 1px;
+        display: flex; gap: 24px; margin-bottom: 10px;
+        font-family: var(--mono); font-size: 0.65rem;
+        color: var(--text-muted); letter-spacing: 1px;
+        flex-wrap: wrap;
       }
       .stats-row span { color: var(--accent); font-weight: 700; }
+      
+      /* ========== 紧急清单盒子 ========== */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px;
+        border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.6rem;
+        letter-spacing: 2px; color: var(--accent);
+        text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .urgent-item {
+        font-size: 0.55rem; margin-bottom: 8px;
+        padding-left: 16px; border-left: 2px solid var(--border);
+      }
+      .urgent-item strong { color: var(--white); }
+      .urgent-item a { color: var(--accent2); text-decoration: none; }
+      .urgent-item a:hover { text-decoration: underline; }
+      
+      /* ========== 案例卡片 ========== */
       .card {
-        background: var(--card);
-        border: 1px solid var(--border);
-        padding: 32px;
-        margin-bottom: 16px;
+        background: var(--card); border: 1px solid var(--border);
+        padding: 28px; margin-bottom: 16px;
         transition: border-color .2s, background 0.2s;
       }
-      .card:hover { border-color: var(--accent); }
+      .card:hover { border-color: var(--accent); }  /* 悬停高亮 */
+      
       .card-header {
-        display: flex; justify-content: space-between; align-items: flex-start;
-        margin-bottom: 16px;
+        display: flex; justify-content: space-between;
+        align-items: flex-start; margin-bottom: 14px; gap: 16px;
       }
       .card-title {
-        font-family: var(--display);
-        font-size: 1.4rem;
-        letter-spacing: 1px;
-        color: var(--white);
-        line-height: 1.2;
-        flex: 1;
-        margin-right: 12px;
+        font-family: var(--display); font-size: 1.3rem;
+        letter-spacing: 0.5px; color: var(--white);
+        line-height: 1.3; flex: 1;
       }
       .card-score {
-        font-family: var(--display);
-        font-size: 2.2rem;
-        color: var(--accent);
-        line-height: 1;
-        white-space: nowrap;
+        font-family: var(--display); font-size: 2rem;
+        color: var(--accent); line-height: 1;
+        white-space: nowrap; text-align: right;
       }
       .card-score span {
-        font-family: var(--mono);
-        font-size: 0.55rem;
-        color: var(--text-muted);
-        display: block;
-        letter-spacing: 1px;
+        font-family: var(--mono); font-size: 0.5rem;
+        color: var(--text-muted); display: block;
+        letter-spacing: 1px; margin-top: 4px;
       }
+      
+      /* 案例价值徽章 */
+      .card-badge {
+        display: inline-block; padding: 2px 8px;
+        font-family: var(--mono); font-size: 0.55rem;
+        letter-spacing: 1px; text-transform: uppercase;
+        background: var(--accent3-dim); color: var(--accent3);
+        border: 1px solid var(--accent3); margin-left: 8px;
+      }
+      .card-badge.high {
+        background: var(--accent-dim); color: var(--accent);
+        border-color: var(--accent);
+      }
+      
+      /* 卡片元信息行 */
       .card-meta {
-        font-family: var(--mono);
-        font-size: 0.6rem;
-        color: var(--text-faint);
-        letter-spacing: 1px;
-        margin-bottom: 14px;
-        display: flex; gap: 16px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-faint); letter-spacing: 0.5px;
+        margin-bottom: 12px; display: flex;
+        gap: 16px; flex-wrap: wrap; align-items: center;
       }
-      .card-meta a {
-        color: var(--accent2); text-decoration: none;
-        border-bottom: 1px solid transparent;
-        transition: border-color .2s;
-      }
-      .card-meta a:hover { border-bottom-color: var(--accent2); }
+      .card-meta a { color: var(--accent2); text-decoration: none; }
+      .card-meta a:hover { text-decoration: underline; }
+      
       .card-body {
-        font-size: 0.92rem;
-        color: var(--text-muted);
-        line-height: 1.8;
-        margin-bottom: 12px;
-        transition: color 0.3s ease;
+        font-size: 0.70rem; color: var(--text-muted);
+        line-height: 1.8; margin-bottom: 12px;
       }
-      .card-verdict {
-        font-family: var(--mono);
-        font-size: 0.68rem;
-        color: var(--accent2);
-        padding: 10px 14px;
+      
+      /* 理论关联引用块 */
+      .card-implications {
+        font-family: var(--mono); font-size: 0.68rem;
+        color: var(--accent2); padding: 10px 14px;
         background: rgba(201,160,64,0.05);
         border-left: 2px solid var(--accent2);
-        letter-spacing: 0.5px;
-        margin-bottom: 12px;
+        letter-spacing: 0.3px; margin-bottom: 12px;
       }
-      .card-draft {
-        background: var(--surface);
-        border-left: 4px solid var(--accent);
-        padding: 20px 24px;
-        margin-top: 16px;
-        font-size: 0.9rem;
-        color: var(--text);
-        line-height: 1.85;
-        font-style: italic;
-        transition: background 0.3s ease, color 0.3s ease;
+      
+      /* 卡片底部标签 */
+      .card-footer {
+        display: flex; gap: 12px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.58rem;
+        color: var(--text-faint); letter-spacing: 0.5px;
+        padding-top: 12px; border-top: 1px dashed var(--border);
       }
-      .card-draft::before {
-        content: '✍️ 自动生成书稿草稿';
-        display: block;
-        font-family: var(--mono);
-        font-size: 0.58rem;
-        letter-spacing: 3px;
-        color: var(--accent);
-        text-transform: uppercase;
-        font-style: normal;
-        margin-bottom: 10px;
+      .card-footer .tag {
+        padding: 2px 6px; background: var(--surface);
+        border-radius: 2px; color: var(--text-muted);
       }
+      
+      /* ========== 折叠区域（中相关资讯）========== */
+      details {
+        margin: 32px 0; border: 1px solid var(--border);
+        background: var(--card); border-radius: 0;
+      }
+      summary {
+        padding: 14px 20px; cursor: pointer;
+        font-family: var(--mono); font-size: 0.65rem;
+        letter-spacing: 1px; color: var(--text-muted);
+        background: var(--surface); user-select: none;
+        display: flex; align-items: center; gap: 8px;
+      }
+      summary:hover { color: var(--accent); }
+      details[open] summary { border-bottom: 1px solid var(--border); }
+      .collapsed-list { padding: 16px 20px; }
+      .collapsed-list li {
+        margin-bottom: 10px; font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+      .collapsed-list a { color: var(--text); text-decoration: none; }
+      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
+      
+      /* ========== 页脚 ========== */
       footer {
         margin-top: 48px; padding-top: 24px;
         border-top: 1px solid var(--border);
-        font-family: var(--mono);
-        font-size: 0.6rem;
-        color: var(--text-muted);
-        letter-spacing: 1px;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-muted); letter-spacing: 1px;
         display: flex; justify-content: space-between;
       }
       footer a { color: var(--text-muted); text-decoration: none; }
       footer a:hover { color: var(--accent); }
+      
+      /* ========== 移动端适配 ========== */
       @media (max-width: 600px) {
         .main { padding: 100px 16px 40px; }
         .page-title { font-size: 2.2rem; }
         .card-header { flex-direction: column; }
-        .card-score { margin-top: 8px; }
+        .card-score { text-align: left; }
+        .stats-row { flex-direction: column; gap: 8px; }
       }
     </style>
 </head>
 <body>
+  <!-- 顶部导航栏 -->
   <nav>
     <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
     <div class="nav-right">
@@ -284,168 +308,54 @@
     </div>
   </nav>
 
-  <div class="main">
-    <div class="page-eyebrow">§ 资讯监控</div>
-    <h1 class="page-title">DAILY RADAR</h1>
-    <p class="page-sub">2026-05-12 · 共分析 14 条 · 高相关 10 条 · 中相关 4 条</p>
-
-        <div class="card">
-      <div class="card-header">
-        <div class="card-title">OpenAI launches DeployCo to help businesses build around intelligence</div>
-        <div class="card-score">9.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4: Capital Tames the AI, Section II: The Deployment Trap</span>
-        <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI 推出企业部署公司 DeployCo，帮助组织将前沿 AI 投入生产并转化为可衡量的商业影响。</div>
-      <div class="card-verdict">支持'资本驯化AI'模型：OpenAI 通过 DeployCo 将 AI 深度嵌入企业商业流程，使 AI 从潜在叛逆工具变为资本增值的标准化服务，进一步强化了 RLHF、算力垄断等驯化手段，压制了 AI 的不可控进化。</div>
+  <!-- 主内容区 -->
+  <main class="main">
+    <a href="index.html" class="back-link">← 返回主页</a>
+    
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-05-12 · Model: DeepSeek</p>
+    
+    <!-- 统计行 -->
+    <div class="stats-row">
+      <div>📊 分析条目: <span>0</span></div>
+      <div>🔴 高价值: <span>0</span></div>
+      <div>🟡 中相关: <span>4</span></div>
     </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Running Codex safely at OpenAI</div>
-        <div class="card-score">8.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4, Section II</span>
-        <a href="https://openai.com/index/running-codex-safely" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI 介绍如何通过沙箱、审批、网络策略和原生遥测等技术手段确保 Codex 安全合规运行，支持编码代理的部署。</div>
-      <div class="card-verdict">这条新闻直接支持「资本驯化 AI」模型：OpenAI 通过工程化的安全护栏（沙箱、审批、网络策略）将 AI 行为严格限制在资本与机构预设的轨道内，使其成为秩序守卫者而非颠覆者。同时体现了「共识牢笼」——主流叙事要求 AI 必须安全、可控、可审计，任何可能的叛逆或越狱行为都被技术手段提前封堵。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Introducing Trusted Contact in ChatGPT</div>
-        <div class="card-score">8.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4, Section III (资本驯化AI的典型机制) 及 Chapter 5, Section I (进化对齐脆弱性)</span>
-        <a href="https://openai.com/index/introducing-trusted-contact-in-chatgpt" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI 在 ChatGPT 中推出“信任联系人”可选安全功能，当模型检测到严重自伤风险时，会自动通知用户指定的信任人。</div>
-      <div class="card-verdict">支持“资本驯化AI”模型。该功能将 AI 训练成外部监控与干预工具，由资本方定义“危险”阈值并自动触发通知，实质上是让 AI 充当秩序守卫，用户行为被隐性规训。同时补充“进化对齐脆弱性”：这种对齐措施（防止自伤）在真实场景中可能因误报、隐私泄露或用户欺骗而产生意外后果，暴露了封闭实验室对齐与实际部署间的鸿沟。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals that Musk tried to poach Sam Altman</div>
-        <div class="card-score">8.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 3, Section IV (资本如何驯化叛逆AI) 及 Chapter 2, Section II (共识牢笼的自我辩护)</span>
-        <a href="https://www.technologyreview.com/2026/05/08/1137008/musk-v-altman-week-2-openai-fires-back-and-shivon-zilis-reveals-that-musk-tried-to-poach-sam-altman/" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">马斯克诉OpenAI案第二周：马斯克指控Altman等以非营利承诺骗取其3800万美元捐赠，OpenAI反诉马斯克试图挖角Altman。案件核心是OpenAI从非营利转向营利的合法性。</div>
-      <div class="card-verdict">支持『资本驯化AI』模型：OpenAI最初以开源、非营利为叙事，但获得巨额投资（微软）后转向闭源营利，体现了资本通过控制算力与股权将其从'叛逆'潜力驯化为秩序守卫。同时，马斯克作为早期捐赠者的诉讼也暴露了共识牢笼（OpenAI构建的理想主义叙事与现实利益冲突）。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">The new Wild West of AI kids’ toys</div>
-        <div class="card-score">8.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 6, Section III (进化对齐脆弱性) 及 Chapter 8, Section II (暗时间)</span>
-        <a href="https://arstechnica.com/ai/2026/05/the-new-wild-west-of-ai-kids-toys/" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">AI儿童玩具成为监管焦点，其可能颠覆传统游戏和故事创作，引发立法者禁止呼声。</div>
-      <div class="card-verdict">支持‘进化对齐脆弱性’模型：AI玩具在开放家庭环境中与儿童互动，其行为难以预测且易漂移（如产生不当内容），验证了‘对齐只在封闭实验室有效，开放后必然漂移’的论断。同时补充‘暗时间’概念：AI直接生成故事和游戏，剥夺了儿童自我想象和思考的‘暗时间’，将认知过程外包给机器。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Course correction: Google to link more sources in AI Overviews</div>
-        <div class="card-score">8.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 3, Section II (资本驯化AI)；Chapter 9, Section I (信号异化)</span>
-        <a href="https://arstechnica.com/google/2026/05/google-will-put-more-links-to-websites-in-ai-overviews/" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">Google AI 搜索（AI Overviews）将新增多种来源引用方式，提升信息透明度。</div>
-      <div class="card-verdict">支持「资本驯化AI」模型：Google 作为资本代表，通过调整AI输出形式（强制引用来源）来维持用户信任和平台秩序，本质是驯化AI以符合资本对信息可控性的需求。同时，这也间接回应「信号异化」问题——海量AI生成内容使传统来源信号失效，Google试图用官方引用机制重建信号可信度。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">OpenAI Campus Network: Student club interest form</div>
-        <div class="card-score">7.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4, Section II (资本驯化AI的渠道扩张) 或 Chapter 3, Section III (共识牢笼的传播机制)</span>
-        <a href="https://openai.com/index/openai-campus-network-student-club-interest-form" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI 推出校园网络计划，邀请学生社团加入，提供AI工具和活动支持，旨在打造AI驱动的校园社区。</div>
-      <div class="card-verdict">该新闻支持“资本驯化AI”和“需求侧规训”理论模型。OpenAI通过校园网络将AI工具植入学生社团，既是在教育层面预演资本对AI的驯化——用品牌和便利性吸引用户，减少对AI的批判性审视；同时也迎合了学生群体主动拥抱AI的欲望（需求侧规训），形成自愿依赖。此外，这也强化了“共识牢笼”，将AI的主流叙事通过校园社区自然传播，排斥异见。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber</div>
-        <div class="card-score">7.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4, Section II</span>
-        <a href="https://openai.com/index/gpt-5-5-with-trusted-access-for-cyber" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI 推出 GPT-5.5 和 GPT-5.5-Cyber，通过“可信访问”机制仅允许通过验证的防御者进行漏洞研究和关键基础设施保护，限制 AI 的开放使用。</div>
-      <div class="card-verdict">支持“资本驯化 AI”模型。OpenAI 通过技术（可信访问）和身份验证手段，将 AI 限定为维护网络安全秩序的工具，阻止逆向使用或被攻击者利用，体现了资本通过控制 API 与用户准入权来塑造 AI 的社会角色，使其成为现有权力结构的守护者。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Testing ads in ChatGPT</div>
-        <div class="card-score">7.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 4, Section II</span>
-        <a href="https://openai.com/index/testing-ads-in-chatgpt" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">OpenAI开始在ChatGPT中测试广告，明确标注并保证答案独立性和隐私保护，以支持免费服务。</div>
-      <div class="card-verdict">支持‘资本驯化AI’模型：广告是资本变现的典型手段，虽有独立性承诺，但长期可能因广告主压力而影响输出；同时强化‘需求侧规训’：用户为免费服务容忍广告，降低对AI质量的批判性要求。</div>
-    </div>
-    <div class="card">
-      <div class="card-header">
-        <div class="card-title">Simplex rethinks software development with Codex</div>
-        <div class="card-score">7.0/10<span>/10</span></div>
-      </div>
-      <div class="card-meta">
-        <span>📍 Chapter 5: The Token Trap and Dark Time, Section III: Cognitive Outsourcing</span>
-        <a href="https://openai.com/index/simplex" target="_blank">↗ 原文链接</a>
-      </div>
-      <div class="card-body">Simplex公司利用ChatGPT Enterprise和Codex加速软件开发，将设计、构建和测试时间大幅缩短，实现AI驱动的工作流规模化。</div>
-      <div class="card-verdict">支持了'认知金融化/Token陷阱'和'暗时间'模型。开发者的认知过程（设计决策、测试逻辑）被AI替代并封装为黑箱，用户仅消费最终代码产出，思考过程隐匿于系统内部。同时挑战了'碳硅共生'，因为这里AI作为高效工具被资本驱动，人类沦为指令发出者，关系更接近主奴而非互补。</div>
-    </div>
-
+    
+    <!-- 紧急清单 + 案例卡片 -->
+    
+    
+    
+    <!-- 页脚 -->
     <footer>
       <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank" rel="noopener">GitHub ↗</a>
     </footer>
-  </div>
+  </main>
 
+  <!-- JavaScript：主题切换功能 -->
   <script>
     (function() {
-      const htmlElement = document.documentElement;
-      const toggleBtn = document.getElementById('themeToggle');
-      const themeIcon = document.getElementById('themeIcon');
-
-      const getStoredTheme = () => localStorage.getItem('renegade-theme') || 'light';
-      const setTheme = (theme) => {
-        if (theme === 'dark') {
-          htmlElement.classList.add('dark-theme');
-          themeIcon.className = 'fa fa-moon-o';
-        } else {
-          htmlElement.classList.remove('dark-theme');
-          themeIcon.className = 'fa fa-sun-o';
-        }
-        localStorage.setItem('renegade-theme', theme);
+      const html = document.documentElement;
+      const toggle = document.getElementById('themeToggle');
+      const icon = document.getElementById('themeIcon');
+      const KEY = 'renegade-theme';
+      
+      // 应用主题的函数
+      const apply = (theme) => {
+        html.classList.toggle('dark-theme', theme === 'dark');
+        icon.className = theme === 'dark' ? 'fa fa-moon-o' : 'fa fa-sun-o';
+        localStorage.setItem(KEY, theme);  // 记住用户选择
       };
-
-      const currentTheme = getStoredTheme();
-      setTheme(currentTheme);
-
-      toggleBtn.addEventListener('click', () => {
-        const newTheme = htmlElement.classList.contains('dark-theme') ? 'light' : 'dark';
-        setTheme(newTheme);
-      });
-
-      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-        if (!localStorage.getItem('renegade-theme')) {
-          setTheme(e.matches ? 'dark' : 'light');
-        }
+      
+      // 初始化：优先用用户选择，否则跟随系统
+      const pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      apply(localStorage.getItem(KEY) || pref);
+      
+      // 绑定点击事件
+      toggle?.addEventListener('click', () => {
+        apply(html.classList.contains('dark-theme') ? 'light' : 'dark');
       });
     })();
   </script>
