@@ -679,7 +679,7 @@ if __name__ == '__main__':
         print(f'📄 使用指定文件: {md_file}')
     else:
         # 自动查找：优先 docs/，备选 output/news/
-        reports_dir = Path('docs')
+        reports_dir = Path('docs/news')
         if not reports_dir.exists():
             reports_dir = Path('output/news')
         

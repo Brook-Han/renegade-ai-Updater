@@ -8,7 +8,7 @@
 
 📋 用法：
     # 方式1：转换指定文件
-    python academic_md_to_html.py reports/academic/academic_report_2026-05-11_143022.md
+    python academic_md_to_html.py docs/academic/academic_report_2026-05-11_143022.md
     
     # 方式2：自动找最新报告（推荐✨）
     python academic_md_to_html.py
@@ -37,7 +37,7 @@ def parse_academic_report(md_path: str) -> dict:
     解析 academic_radar.py 生成的 Markdown 文件，提取关键数据
     
     参数:
-        md_path: Markdown 文件路径，如 "reports/academic/academic_report_2026-05-11.md"
+        md_path: Markdown 文件路径，如 "docs/academic/academic_report_2026-05-11.md"
     
     返回:
         dict: 包含报告元数据、统计信息和论文列表的字典
@@ -525,7 +525,7 @@ if __name__ == '__main__':
         print(f'📄 使用指定文件: {md_file}')
     else:
         # 自动查找最新学术报告
-        for search_dir in [Path('reports/academic'), Path('output/academic'), Path('reports')]:
+        for search_dir in [Path('docs/academic'), Path('output/academic'), Path('reports')]:
             if search_dir.exists():
                 reports = sorted(search_dir.glob('academic_report_*.md'))
                 if reports:
