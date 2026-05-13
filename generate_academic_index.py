@@ -380,7 +380,7 @@ nav{
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(720px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
 
