@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器（新闻/论文分开展示版）
+🏠 Renegade AI 雷达主页生成器 v2.0（新闻/论文分开展示版）
+视觉风格与 Renegade AI v5.3 网页对齐
 
 ✅ 修复与改进：
   1. ✅ 新闻卡片分数提取失败时给默认值 5.0
@@ -9,7 +10,7 @@
   3. ✅ 每日区块：新闻 Top 10 + 学术 Top 5（不再混合 Top 5）
   4. ✅ 调试输出显示实际展示的卡片类型
   5. ✅ 新闻/论文按钮改为直接跳转独立列表页
-  6. ✅ 论文按钮也可链接到 ./academic/（需手动修改模板）
+  6. ✅ 视觉风格与 v5.3 主页完全对齐
 
 用法：
     cd your-project-root
@@ -27,13 +28,13 @@ REPORTS_ROOT = Path("docs")
 
 SUBDIR_CONFIG = {
     "news": {
-        "label": "📰 新闻",
+        "label": "NEWS",
         "type": "news",
         "pattern": "news_report*.html",
         "badge_class": "news",
     },
     "academic": {
-        "label": "📄 论文",
+        "label": "PAPER",
         "type": "academic",
         "pattern": "academic_report*.html",
         "badge_class": "academic",
@@ -45,7 +46,6 @@ SUBDIR_CONFIG = {
 # 工具函数：从 HTML 报告中提取卡片信息
 # ═══════════════════════════════════════════════════════════════
 def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
-    """解析单个报告 HTML，提取所有卡片的关键字段"""
     try:
         content = html_path.read_text(encoding="utf-8")
     except Exception as e:
@@ -53,7 +53,6 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
         return []
 
     cards = []
-    # 匹配所有 <div class="card">...</div>
     card_blocks = re.findall(
         r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
         content,
@@ -65,29 +64,23 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
     for block in card_blocks:
         card = {"type": report_type}
 
-        # 标题
         title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
         if title_m:
             card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
 
-        # 评分
         score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
         card["score"] = score_m.group(1) if score_m else "5.0"
 
-        # 原文链接
         link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
         if link_m:
             card["link"] = link_m.group(1)
 
-        # 摘要
         summary_m = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
         if summary_m:
             card["summary"] = re.sub(r"<[^>]+>", "", summary_m.group(1)).strip()
 
-        # 是否包含草稿
         card["has_draft"] = '<div class="card-draft">' in block
 
-        # 目标章节
         chapter_m = re.search(r"📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)", block)
         if chapter_m:
             card["chapter"] = chapter_m.group(1).strip()
@@ -99,10 +92,9 @@ def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 收集所有报告文件（扫描 docs/ 目录）
+# 收集所有报告文件
 # ═══════════════════════════════════════════════════════════════
 def collect_all_reports() -> dict:
-    """扫描 docs/news 和 docs/academic，按日期分组并统计"""
     all_entries = []
 
     for subdir_name, config in SUBDIR_CONFIG.items():
@@ -122,10 +114,8 @@ def collect_all_reports() -> dict:
                 continue
 
             date_str = m.group(1)
-            # 尝试提取时间戳（可选）
             time_m = re.search(r"_(\d{6})", html_file.name)
             time_str = time_m.group(1) if time_m else "000000"
-
             relative_link = f"{subdir_name}/{html_file.name}"
 
             entry = {
@@ -140,7 +130,6 @@ def collect_all_reports() -> dict:
             }
             all_entries.append(entry)
 
-    # 按日期分组
     by_date = {}
     for entry in all_entries:
         by_date.setdefault(entry["date"], []).append(entry)
@@ -159,101 +148,98 @@ def collect_all_reports() -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 🎨 核心修改：生成每日区块，分开展示新闻和学术卡片
+# 生成每日区块（v5.3 风格）
 # ═══════════════════════════════════════════════════════════════
 def generate_day_html(date: str, entries: list[dict]) -> str:
-    """为指定日期生成摘要区块，新闻 Top 10 + 学术 Top 5"""
-
-    # 1. 提取所有卡片，并关联所属报告
     all_cards = []
     for entry in entries:
         cards = extract_cards_from_html(entry["full_path"], entry["type"])
         for c in cards:
-            c["_report_link"] = entry["relative_link"]  # 完整报告的路径
+            c["_report_link"] = entry["relative_link"]
         all_cards.extend(cards)
 
-    # 2. 分别筛选新闻和学术卡片
     news_cards = [c for c in all_cards if c["type"] == "news"]
     acad_cards = [c for c in all_cards if c["type"] == "academic"]
 
     print(f"   📊 {date}: 新闻卡片 {len(news_cards)} 个，学术卡片 {len(acad_cards)} 个")
 
-    # 评分转换函数
     def score_key(c):
         try:
             return float(c.get("score", "5.0"))
         except (ValueError, TypeError):
             return 5.0
 
-    # 分别排序
     news_cards.sort(key=score_key, reverse=True)
     acad_cards.sort(key=score_key, reverse=True)
 
-    # 3. 取 Top N（可根据需要调整数量）
     TOP_NEWS = 3
     TOP_ACAD = 5
     top_news = news_cards[:TOP_NEWS]
     top_acad = acad_cards[:TOP_ACAD]
-
-    # 组合展示顺序：新闻在前
     display_cards = top_news + top_acad
 
     top_types = [c["type"] for c in display_cards]
     print(f"   🏆 展示卡片类型: {top_types}")
 
-    # 4. 生成 HTML
     latest_entry = entries[0]
     formatted_time = f"{latest_entry['time'][:2]}:{latest_entry['time'][2:4]}:{latest_entry['time'][4:]}"
+    total_label = f"{len(news_cards)} NEWS · {len(acad_cards)} PAPERS"
 
-    html = f'<div class="day-group" data-date="{date}">\n'
-    html += f'  <h2 class="day-header">{date}</h2>\n'
-    html += f'  <div class="day-meta">⏰ {formatted_time} · 📊 共 {len(all_cards)} 条 ({len(news_cards)}📰 {len(acad_cards)}📄)</div>\n'
+    html = f'''
+<div class="day-group" data-date="{date}">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">DIGEST · {formatted_time}</div>
+      <h2 class="day-date">{date}</h2>
+    </div>
+    <div class="day-header-right">{total_label}</div>
+  </div>
+  <div class="card-grid">
+'''
 
     for card in display_cards:
         title = escape(card.get("title", ""))
         score = card.get("score", "5.0")
-        summary = escape(card.get("summary", "")[:200])
+        summary = escape(card.get("summary", "")[:220])
         chapter = escape(card.get("chapter", ""))
         link = card.get("link", "#")
+        card_type = card["type"]
+        type_label = SUBDIR_CONFIG[card_type]["label"]
 
-        badge_class = SUBDIR_CONFIG[card["type"]]["badge_class"]
-        type_label = SUBDIR_CONFIG[card["type"]]["label"]
-        type_badge = f'<span class="type-badge {badge_class}">{type_label}</span>'
-
-        draft_badge = '<span class="draft-badge"></span>' if card.get("has_draft") else ""
-
-        link_html = f'<a href="{escape(link)}" target="_blank" rel="noopener">↗ 原文</a>' if link and link != "#" else ""
-
-        # 完整报告链接
         report_link_raw = card.get("_report_link", "")
         report_link = f"./{report_link_raw}" if not report_link_raw.startswith(("./", "../", "http")) else report_link_raw
 
-        html += f'''
-  <article class="card" data-type="{card['type']}">
-    <div class="card-header">
-      <div class="card-title">
-        <a href="{escape(link)}" target="_blank" rel="noopener">{title}</a>
-        {draft_badge}{type_badge}
-      </div>
-      <div class="card-score">{score}<span>/10</span></div>
-    </div>
-    <div class="card-meta">
-      {f'<span>📍 {chapter}</span>' if chapter else ''}
-      {f'<span>·</span>' if chapter and link_html else ''}
-      {link_html}
-    </div>
-    <div class="card-body">{summary}{'...' if len(card.get('summary','')) > 200 else ''}</div>
-    <div class="card-link">
-      <a href="{report_link}">查看 {date} 完整报告 →</a>
-    </div>
-  </article>\n'''
+        chapter_html = f'<span class="card-chapter">§ {chapter}</span>' if chapter else ''
+        link_html = f'<a class="card-source-link" href="{escape(link)}" target="_blank" rel="noopener">↗ SOURCE</a>' if link and link != "#" else ""
+        draft_dot = '<span class="draft-dot" title="Has Draft">●</span>' if card.get("has_draft") else ""
+        truncated = "…" if len(card.get("summary", "")) > 220 else ""
 
-    html += "</div>\n"
+        html += f'''    <article class="radar-card" data-type="{card_type}">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag {card_type}">{type_label}</span>
+          {chapter_html}
+          {draft_dot}
+        </div>
+        <div class="radar-score">{score}<span>/10</span></div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="{escape(link)}" target="_blank" rel="noopener">{title}</a>
+      </h3>
+      <p class="radar-card-body">{summary}{truncated}</p>
+      <div class="radar-card-footer">
+        {link_html}
+        <a class="full-report-link" href="{report_link}">FULL REPORT →</a>
+      </div>
+    </article>
+'''
+
+    html += "  </div>\n</div>\n"
     return html
 
 
 # ═══════════════════════════════════════════════════════════════
-# HTML 模板（保留原有样式，按钮已改为链接）
+# HTML 模板 — 与 Renegade AI v5.3 视觉风格对齐
 # ═══════════════════════════════════════════════════════════════
 def get_html_template() -> str:
     return '''<!DOCTYPE html>
@@ -262,107 +248,442 @@ def get_html_template() -> str:
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Renegade AI · Radar Archive</title>
+  <meta name="description" content="Daily digest of AI news and academic papers, curated through the lens of Renegade AI.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
-    :root{--bg:#f8f9fc;--card:#fff;--border:#e0e2ec;--text:#2a2a40;--text-muted:#6a6a80;--accent:#e8503a;--accent-dim:rgba(232,80,58,.08);--accent2:#b88c2a;--accent3:#3a7fbf;--accent3-dim:rgba(74,143,207,.08);--white:#2a2a40;--mono:'Space Mono',monospace;--serif:'Crimson Pro',serif;--display:'Bebas Neue',sans-serif}
-    :root.dark-theme{--bg:#08080e;--card:#13131f;--border:#1e1e30;--text:#cccce0;--text-muted:#6868a0;--accent-dim:rgba(232,80,58,.12);--accent3-dim:rgba(74,143,207,.1);--white:#f0f0f8}
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height:1.8;transition:background .3s,color .3s}
-    nav{position:fixed;top:0;width:100%;z-index:200;background:rgba(248,249,252,.92);backdrop-filter:blur(24px);border-bottom:1px solid var(--border);height:56px;display:flex;align-items:center;justify-content:space-between;padding:0 32px;font-family:var(--mono)}
-    .dark-theme nav{background:rgba(8,8,14,.92)}
-    .nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
-    .theme-toggle{background:none;border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center}
-    .theme-toggle:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
-    .main{max-width:860px;margin:0 auto;padding:100px 32px 60px}
-    .page-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
-    .page-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
-    h1{font-family:var(--display);font-size:3rem;letter-spacing:2px;color:var(--white);margin-bottom:6px;line-height:1}
-    .subtitle{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);letter-spacing:1.5px;margin-bottom:32px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
-    .stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(80px,1fr));gap:12px;margin-bottom:12px}
-    .stat{background:var(--card);border:1px solid var(--border);padding:16px;text-align:center}
-    .stat-val{font-family:var(--display);font-size:1.5rem;color:var(--accent)}
-    .stat-lbl{font-family:var(--mono);font-size:.6rem;color:var(--text-muted)}
-    .controls{display:flex;gap:12px;margin-bottom:24px;flex-wrap:wrap;align-items:center}
-    .filter-btn{font-family:var(--mono);font-size:.65rem;padding:6px 14px;border:1px solid var(--border);background:var(--bg);color:var(--text-muted);cursor:pointer;text-decoration:none}
-    .filter-btn.active,.filter-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
-    .search{flex:1;min-width:200px;position:relative}
-    .search input{width:100%;padding:8px 12px 8px 32px;border:1px solid var(--border);background:var(--card);color:var(--text)}
-    .search i{position:absolute;left:10px;top:50%;transform:translateY(-50%);color:var(--text-muted)}
-    .day-group{margin-bottom:48px}
-    .day-header{font-family:var(--display);font-size:1.8rem;color:var(--white);border-bottom:1px solid var(--border);padding-bottom:8px;margin-bottom:4px}
-    .day-meta{font-family:var(--mono);font-size:.65rem;color:var(--text-muted);margin-bottom:16px}
-    .card{background:var(--card);border:1px solid var(--border);padding:24px;margin-bottom:8px}
-    .card:hover{border-color:var(--accent)}
-    .card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:10px;gap:12px;flex-wrap:wrap}
-    .card-title{font-family:var(--display);font-size:1.2rem;color:var(--white);flex:1;line-height:1.3}
-    .card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent}
-    .card-title a:hover{border-bottom-color:var(--accent2)}
-    .card-score{font-family:var(--display);font-size:1.8rem;color:var(--accent);white-space:nowrap;text-align:right}
-    .card-score span{font-family:var(--mono);font-size:.5rem;color:var(--text-muted);display:block}
-    .card-meta{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
-    .card-meta a{color:var(--accent2);text-decoration:none}
-    .card-body{font-size:.72rem;color:var(--text);line-height:1.8;margin-bottom:8px}
-    .card-link{font-family:var(--mono);font-size:.65rem;margin-top:10px}
-    .card-link a{color:var(--accent);text-decoration:none}
-    .type-badge{display:inline-block;font-family:var(--mono);font-size:.55rem;padding:2px 6px;border-radius:2px;margin-left:6px}
-    .type-badge.news{background:var(--accent3-dim);color:var(--accent3)}
-    .type-badge.academic{background:var(--accent-dim);color:var(--accent)}
-    .draft-badge{font-size:.9rem;margin-left:4px}
-    .empty{text-align:center;padding:48px;color:var(--text-muted);font-family:var(--mono)}
-    footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:.6rem;color:var(--text-muted);display:flex;justify-content:space-between}
-    @media(max-width:600px){.main{padding:100px 16px 40px}h1{font-size:2.2rem}.card-header{flex-direction:column}.card-score{text-align:left;margin-top:8px}.controls{flex-direction:column;align-items:stretch}.search{width:100%}}
-    .card.hidden,.day-group.hidden{display:none}
+/* ── DESIGN TOKENS (mirrors v5.3) ── */
+:root {
+  --bg:           #08080e;
+  --bg2:          #0d0d18;
+  --surface:      #111120;
+  --card:         #13131f;
+  --border:       #1e1e30;
+  --border-bright:#2e2e50;
+  --text:         #cccce0;
+  --text-muted:   #6868a0;
+  --text-faint:   #3a3a5a;
+  --accent:       #e8503a;
+  --accent-dim:   rgba(232,80,58,0.12);
+  --accent2:      #c9a040;
+  --accent3:      #4a8fcf;
+  --accent3-dim:  rgba(74,143,207,0.10);
+  --white:        #f0f0f8;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f8f9fc; --bg2:#fff; --surface:#f0f2f8; --card:#fff;
+  --border:#e0e2ec; --border-bright:#c0c2d0;
+  --text:#2a2a40; --text-muted:#6a6a80; --text-faint:#a0a0b8;
+  --accent-dim:rgba(232,80,58,0.08); --accent3-dim:rgba(74,143,207,0.08);
+  --white:#2a2a40;
+}
+
+/* ── RESET ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s}
+::selection{background:var(--accent);color:#000}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--accent)}
+
+/* ── NOISE OVERLAY ── */
+.noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}
+.light .noise{opacity:.05}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(8,8,14,.92);backdrop-filter:blur(24px);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(248,249,252,.92)}
+.nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.62rem;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .2s;
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .2s;
+}
+.theme-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+
+/* ── HERO STRIP ── */
+.hero-strip{
+  padding-top:56px;
+  border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:1fr auto;
+  gap:0;
+}
+.hero-left{padding:60px 72px 52px;border-right:1px solid var(--border)}
+.hero-eyebrow{
+  font-family:var(--mono);font-size:.62rem;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;
+  margin-bottom:20px;display:flex;align-items:center;gap:12px;
+}
+.hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--accent)}
+.hero-title{
+  font-family:var(--display);
+  font-size:clamp(3.5rem,7vw,7rem);
+  line-height:.92;letter-spacing:3px;
+  color:var(--white);margin-bottom:18px;
+}
+.hero-title span{color:var(--accent)}
+.hero-desc{
+  font-size:1.05rem;color:var(--text-muted);font-style:italic;
+  border-left:3px solid var(--accent);padding-left:16px;
+  max-width:480px;line-height:1.9;margin-bottom:32px;
+  transition:color .3s;
+}
+.hero-tags{display:flex;gap:6px;flex-wrap:wrap}
+.hero-tag{
+  font-family:var(--mono);font-size:.6rem;letter-spacing:1.5px;
+  color:var(--text-muted);background:var(--surface);
+  border:1px solid var(--border);padding:4px 12px;text-transform:uppercase;
+}
+.hero-right{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:40px 48px;gap:24px;min-width:220px;
+}
+.stat-block{text-align:center}
+.stat-block .n{
+  font-family:var(--display);font-size:4rem;color:var(--accent);
+  line-height:1;display:block;
+}
+.stat-block .l{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:2.5px;
+  color:var(--text-muted);text-transform:uppercase;display:block;margin-top:4px;
+}
+.stat-divider{width:1px;height:40px;background:var(--border)}
+
+/* ── CONTROLS BAR ── */
+.controls-bar{
+  display:flex;align-items:center;gap:0;
+  border-bottom:1px solid var(--border);
+  padding:0 72px;height:52px;
+  font-family:var(--mono);font-size:.62rem;
+  overflow-x:auto;
+}
+.filter-btn{
+  height:100%;padding:0 20px;
+  background:none;border:none;border-right:1px solid var(--border);
+  color:var(--text-muted);cursor:pointer;letter-spacing:2px;
+  text-transform:uppercase;font-family:var(--mono);font-size:.62rem;
+  transition:all .2s;white-space:nowrap;
+}
+.filter-btn:first-child{border-left:1px solid var(--border)}
+.filter-btn.active,.filter-btn:hover{color:var(--accent);background:var(--accent-dim)}
+.search-wrap{
+  flex:1;display:flex;align-items:center;gap:10px;
+  padding:0 20px;border-right:1px solid var(--border);
+  min-width:180px;
+}
+.search-wrap::before{content:'§';color:var(--text-faint);font-size:.8rem}
+.search-wrap input{
+  background:none;border:none;color:var(--text);
+  font-family:var(--mono);font-size:.65rem;letter-spacing:1px;
+  width:100%;outline:none;
+}
+.search-wrap input::placeholder{color:var(--text-faint)}
+.controls-bar .list-link{
+  height:100%;padding:0 20px;display:flex;align-items:center;
+  color:var(--text-muted);text-decoration:none;letter-spacing:2px;
+  text-transform:uppercase;white-space:nowrap;
+  border-right:1px solid var(--border);transition:all .2s;
+}
+.controls-bar .list-link:hover{color:var(--accent);background:var(--accent-dim)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:100%;padding:64px 72px 80px}
+
+/* ── DAY GROUP ── */
+.day-group{margin-bottom:56px}
+.day-group.hidden{display:none}
+.day-header-row{
+  display:flex;align-items:flex-end;justify-content:space-between;
+  border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:24px;
+}
+.day-eyebrow{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:4px;
+}
+.day-date{
+  font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);
+  letter-spacing:2px;color:var(--white);line-height:1;
+}
+.day-header-right{
+  font-family:var(--mono);font-size:.58rem;letter-spacing:2px;
+  color:var(--text-faint);text-transform:uppercase;
+  padding-bottom:4px;
+}
+
+/* ── CARD GRID ── */
+.card-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(340px,1fr));
+  gap:1px;background:var(--border);
+  border:1px solid var(--border);
+}
+
+/* ── RADAR CARD ── */
+.radar-card{
+  background:var(--card);padding:28px 24px;
+  display:flex;flex-direction:column;gap:12px;
+  transition:background .2s;position:relative;
+  opacity:0;transform:translateY(16px);
+  animation:fadeUp .55s var(--ease) forwards;
+}
+.radar-card:hover{background:var(--surface)}
+.radar-card.hidden{display:none}
+
+.radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+
+.type-tag{
+  font-family:var(--mono);font-size:.55rem;letter-spacing:2px;
+  padding:3px 8px;text-transform:uppercase;
+}
+.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(74,143,207,.25)}
+.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(232,80,58,.25)}
+
+.card-chapter{
+  font-family:var(--mono);font-size:.55rem;letter-spacing:1px;
+  color:var(--text-faint);text-transform:uppercase;
+}
+.draft-dot{color:var(--accent2);font-size:.65rem;line-height:1}
+
+.radar-score{
+  font-family:var(--display);font-size:2rem;color:var(--accent);
+  line-height:1;text-align:right;white-space:nowrap;flex-shrink:0;
+}
+.radar-score span{
+  display:block;font-family:var(--mono);font-size:.48rem;
+  color:var(--text-faint);letter-spacing:1px;text-align:right;margin-top:2px;
+}
+
+.radar-card-title{
+  font-family:var(--display);font-size:1.25rem;letter-spacing:1px;
+  color:var(--white);line-height:1.2;
+}
+.radar-card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+.radar-card-title a:hover{border-bottom-color:var(--accent2)}
+
+.radar-card-body{font-size:.88rem;color:var(--text-muted);line-height:1.8;flex:1;transition:color .3s}
+
+.radar-card-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:10px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:.58rem;letter-spacing:1.5px;
+  transition:border-color .3s;
+}
+.card-source-link{color:var(--accent2);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.card-source-link:hover{color:var(--white)}
+.full-report-link{color:var(--text-faint);text-decoration:none;text-transform:uppercase;transition:color .2s}
+.full-report-link:hover{color:var(--accent)}
+
+/* ── EMPTY STATE ── */
+.empty-state{
+  display:none;text-align:center;padding:80px 32px;
+  font-family:var(--mono);color:var(--text-faint);letter-spacing:2px;
+  font-size:.7rem;text-transform:uppercase;
+}
+.empty-state .glyph{font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.3;display:block;margin-bottom:16px}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .3s,border-color .3s;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;
+  animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .main{padding:48px 24px 80px}
+  .controls-bar{padding:0 24px}
+  .hero-strip{grid-template-columns:1fr}
+  .hero-left{padding:48px 24px 36px;border-right:none;border-bottom:1px solid var(--border)}
+  .hero-right{flex-direction:row;padding:24px;border-bottom:1px solid var(--border)}
+  .stat-divider{width:40px;height:1px}
+  .card-grid{grid-template-columns:1fr}
+  .nav-center{display:none}
+}
   </style>
 </head>
 <body>
-  <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
-    <div style="display:flex;gap:12px;align-items:center">
-      <button class="theme-toggle" id="themeToggle"><i class="fa fa-sun-o" id="themeIcon"></i></button>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+  <div class="nav-right">
+    <a href="./news/" class="nav-pill">NEWS</a>
+    <a href="./academic/" class="nav-pill">PAPERS</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero-strip">
+  <div class="hero-left">
+    <div class="hero-eyebrow">Radar Archive · Daily Digest</div>
+    <h1 class="hero-title">DAILY<br><span>DIGEST</span></h1>
+    <p class="hero-desc">AI-curated signal from the noise — news ranked by relevance to cognitive evolution, papers mapped to the arguments that matter.</p>
+    <div class="hero-tags">
+      <span class="hero-tag" id="tagTotal">— REPORTS</span>
+      <span class="hero-tag" id="tagDays">— DAYS</span>
+      <span class="hero-tag" id="tagLatest">LATEST: —</span>
+      <span class="hero-tag">NEWS TOP 3 + PAPERS TOP 5</span>
     </div>
-  </nav>
-  <main class="main">
-    <div class="page-eyebrow">§ Radar Archive</div>
-    <h1>DAILY DIGEST</h1>
-    <div class="subtitle">
-      <span>📰 News Top 10 + 🎓 Papers Top 5 · AI-Powered</span>
-      <span id="statsLine">Loading...</span>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <span class="n" id="statNews">—</span>
+      <span class="l">News</span>
     </div>
-    <!-- ✅ 新闻按钮改为跳转，Papers 同理 -->
-    <div class="stats-grid">
-      <div class="stat"><div class="stat-val" id="statTotal">—</div><div class="stat-lbl">全部</div></div>
-        <a href="./news/" class="stat" style="text-decoration:none; color:inherit;">
-        <div class="stat-val" id="statNews">—</div>
-        <div class="stat-lbl">资讯</div></a>
-        <a href="./academic/" class="stat" style="text-decoration:none; color:inherit;">
-        <div class="stat-val" id="statAcademic">—</div>
-        <div class="stat-lbl">论文</div></a>
-      <div class="stat"><div class="stat-val" id="statDays">—</div><div class="stat-lbl">天数</div></div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="n" id="statAcad">—</span>
+      <span class="l">Papers</span>
     </div>
-    <div class="controls">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="news">📰 News</button>
-      <button class="filter-btn" data-filter="academic">📄 Papers</button>
-      <div class="search"><i class="fa fa-search"></i><input type="text" id="searchInput" placeholder="Search..."></div>
-    </div>
-    {{ day_sections }}
-    <div class="empty" id="emptyState" style="display:none">
-      <i class="fa fa-inbox" style="font-size:2rem;margin-bottom:12px;display:block"></i>
-      <p>No results. Try adjusting filters or keywords.</p>
-    </div>
-    <footer>
-      <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
-    </footer>
-  </main>
-  <script>
-    (function(){const h=document.documentElement,b=document.getElementById('themeToggle'),i=document.getElementById('themeIcon'),k='renegade-theme',a=t=>{h.classList.toggle('dark-theme',t==='dark');i.className=t==='dark'?'fa fa-moon-o':'fa fa-sun-o';localStorage.setItem(k,t);};a(localStorage.getItem(k)||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));b.onclick=()=>a(h.classList.contains('dark-theme')?'light':'dark');})();
-    (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
-    (function(){const t={{ total_reports }},n={{ news_count }},a={{ academic_count }},d={{ days_count }},l='{{ latest_date }}';document.getElementById('statTotal').textContent=t;document.getElementById('statNews').textContent=n;document.getElementById('statAcademic').textContent=a;document.getElementById('statDays').textContent=d;document.getElementById('statsLine').textContent='📅 Latest: '+l;})();
-  </script>
+  </div>
+</div>
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <button class="filter-btn active" data-filter="all">ALL</button>
+  <button class="filter-btn" data-filter="news">📰 NEWS</button>
+  <button class="filter-btn" data-filter="academic">📄 PAPERS</button>
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="SEARCH TITLES &amp; SUMMARIES">
+  </div>
+  <a href="./news/" class="list-link">→ NEWS INDEX</a>
+  <a href="./academic/" class="list-link">→ PAPERS INDEX</a>
+</div>
+
+<!-- MAIN -->
+<main class="main">
+  {{ day_sections }}
+  <div class="empty-state" id="emptyState">
+    <span class="glyph">∅</span>
+    NO RESULTS · ADJUST FILTERS OR SEARCH TERMS
+  </div>
+</main>
+
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span><span class="status-dot"></span><span id="statusText">STATUS: [ INITIALIZING ]</span></span>
+  <span id="statusTime"></span>
+</div>
+
+<script>
+/* ── THEME ── */
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+
+/* ── STATS ── */
+(function(){
+  const t={{ total_reports }},n={{ news_count }},a={{ academic_count }},d={{ days_count }},l='{{ latest_date }}';
+  document.getElementById('statNews').textContent=n;
+  document.getElementById('statAcad').textContent=a;
+  document.getElementById('tagTotal').textContent=t+' REPORTS';
+  document.getElementById('tagDays').textContent=d+' DAYS';
+  document.getElementById('tagLatest').textContent='LATEST: '+l;
+})();
+
+/* ── FILTER + SEARCH ── */
+(function(){
+  const btns=document.querySelectorAll('.filter-btn');
+  const inp=document.getElementById('searchInput');
+  const cards=document.querySelectorAll('.radar-card');
+  const groups=document.querySelectorAll('.day-group');
+  const empty=document.getElementById('emptyState');
+  let filter='all',query='';
+
+  function update(){
+    let visible=0;
+    cards.forEach(c=>{
+      const typeMatch=filter==='all'||c.dataset.type===filter;
+      const titleText=(c.querySelector('.radar-card-title')?.textContent||'').toLowerCase();
+      const bodyText=(c.querySelector('.radar-card-body')?.textContent||'').toLowerCase();
+      const searchMatch=!query||titleText.includes(query)||bodyText.includes(query);
+      const show=typeMatch&&searchMatch;
+      c.classList.toggle('hidden',!show);
+      if(show)visible++;
+    });
+    groups.forEach(g=>{
+      const hasVisible=g.querySelectorAll('.radar-card:not(.hidden)').length>0;
+      g.classList.toggle('hidden',!hasVisible);
+    });
+    empty.style.display=visible===0?'block':'none';
+  }
+
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    filter=b.dataset.filter;
+    update();
+  }));
+
+  let debounce;
+  inp.addEventListener('input',ev=>{
+    clearTimeout(debounce);
+    debounce=setTimeout(()=>{query=ev.target.value.toLowerCase().trim();update();},200);
+  });
+})();
+
+/* ── STATUS BAR ── */
+(function(){
+  const messages=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=messages[i%messages.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+
+/* ── STAGGERED CARD ANIMATION ── */
+document.querySelectorAll('.radar-card').forEach((c,i)=>{
+  c.style.animationDelay=(i*0.06)+'s';
+});
+</script>
 </body>
 </html>'''
 
@@ -371,7 +692,7 @@ def get_html_template() -> str:
 # 主函数
 # ═══════════════════════════════════════════════════════════════
 def main():
-    print("🚀 Renegade AI Radar Index Generator v4.0 (News/Academic split)")
+    print("🚀 Renegade AI Radar Index Generator v5.0 (v5.3 Visual Edition)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
 
     data = collect_all_reports()
@@ -382,7 +703,6 @@ def main():
     print(f"✅ Found {data['stats']['total']} reports across {data['stats']['days']} days")
     print(f"   📰 News: {data['stats']['news']} | 📄 Academic: {data['stats']['academic']}")
 
-    # 生成日期区块
     print("\n🎨 Generating HTML sections...")
     day_sections = []
     for date in data["dates"]:
@@ -391,7 +711,6 @@ def main():
         section = generate_day_html(date, entries)
         day_sections.append(section)
 
-    # 渲染模板
     print("📄 Rendering index.html...")
     template = get_html_template()
     final = template.replace("{{ day_sections }}", "\n".join(day_sections))
@@ -405,58 +724,12 @@ def main():
     output.write_text(final, encoding="utf-8")
     print(f"\n✅ Success! Generated: {output}")
 
-    # 调试信息
     if output.exists():
         content = output.read_text(encoding="utf-8")
         news_cnt = content.count('data-type="news"')
         acad_cnt = content.count('data-type="academic"')
         print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
 
-def main():
-    print("🚀 Renegade AI Radar Index Generator v4.0 (News/Academic split)")
-    print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
-
-    data = collect_all_reports()
-    if not data["dates"]:
-        print("❌ No reports found!")
-        return
-
-    print(f"✅ Found {data['stats']['total']} reports across {data['stats']['days']} days")
-    print(f"   📰 News: {data['stats']['news']} | 📄 Academic: {data['stats']['academic']}")
-
-    # 生成日期区块
-    print("\n🎨 Generating HTML sections...")
-    day_sections = []
-    for date in data["dates"]:
-        entries = data["by_date"][date]
-        print(f"📅 处理日期: {date} ({len(entries)} 个报告)")
-        section = generate_day_html(date, entries)
-        day_sections.append(section)
-
-    # 渲染模板
-    print("📄 Rendering index.html...")
-    template = get_html_template()
-    final = template.replace("{{ day_sections }}", "\n".join(day_sections))
-    final = final.replace("{{ total_reports }}", str(data["stats"]["total"]))
-    final = final.replace("{{ news_count }}", str(data["stats"]["news"]))
-    final = final.replace("{{ academic_count }}", str(data["stats"]["academic"]))
-    final = final.replace("{{ days_count }}", str(data["stats"]["days"]))
-    final = final.replace("{{ latest_date }}", data["dates"][0] if data["dates"] else "N/A")
-
-    output = REPORTS_ROOT / "index.html"
-    output.write_text(final, encoding="utf-8")
-    print(f"\n✅ Success! Generated: {output}")
-
-    # 调试信息
-    if output.exists():
-        content = output.read_text(encoding="utf-8")
-        news_cnt = content.count('data-type="news"')
-        acad_cnt = content.count('data-type="academic"')
-        print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
-
-    # ────────────────────────────────────────────────
-    # ✅ 新增：自动生成新闻和学术列表页
-    # ────────────────────────────────────────────────
     print("\n📋 正在自动生成新闻列表页...")
     from generate_news_index import main as gen_news_main
     gen_news_main()
@@ -466,6 +739,7 @@ def main():
     gen_acad_main()
 
     print("\n✨ 全部生成完毕！")
+
 
 if __name__ == "__main__":
     main()
