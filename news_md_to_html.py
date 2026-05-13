@@ -322,8 +322,8 @@ CSS_TEMPLATE = """
       /* 统计行 */
       .stats-row {
         display: flex; gap: 24px; margin-bottom: 10px;
-        font-family: var(--mono); font-size: 0.65rem;
-        color: var(--text-muted); letter-spacing: 1px;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-muted); letter-spacing: 0px;
         flex-wrap: wrap;
       }
       .stats-row span { color: var(--accent); font-weight: 700; }
@@ -460,11 +460,19 @@ CSS_TEMPLATE = """
       
       /* ========== 移动端适配 ========== */
       @media (max-width: 600px) {
-        .main { padding: 100px 16px 40px; }
+        .main { padding: 70px 16px 40px; } /* 修正顶部内边距过大问题 */
         .page-title { font-size: 2.2rem; }
         .card-header { flex-direction: column; }
         .card-score { text-align: left; }
-        .stats-row { flex-direction: column; gap: 8px; }
+        
+        /* 移除stats-row的垂直排列，改为水平滚动 */
+        .stats-row { 
+          flex-direction: row; 
+          gap: 16px; 
+          overflow-x: auto; /* 允许水平滚动 */
+          padding-bottom: 4px;
+          -webkit-overflow-scrolling: touch; /* 平滑滚动 */
+          scrollbar-width: none; /* 隐藏滚动条 */
       }
     </style>"""
 
@@ -603,7 +611,7 @@ def generate_news_html(data: dict, output_path: str):
     
     <!-- 统计行 -->
     <div class="stats-row">
-      <div>📊 分析条目: <span>{data['total']}</span></div>
+      <div>📊 总条目: <span>{data['total']}</span></div>
       <div>🔴 高价值: <span>{data['high_n']}</span></div>
       <div>🟡 中相关: <span>{data['med_n']}</span></div>
     </div>
