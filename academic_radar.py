@@ -522,13 +522,15 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> st
             lines.append("")
 
     # 立即更新清单
-    immediate_items = [d for d in papers_data if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED and d["merged"].get("relevance", 0) >= DRAFT_RELEVANCE_THRESHOLD]
-    if immediate_items:
-        lines.append("\n## 🚨 立即更新清单\n")
-        for d in immediate_items:
-            p, m = d["paper"], d["merged"]
-            has_draft = "✍️" if (d.get("draft") and len(d["draft"].strip())>50) else "⬜"
-            lines.append(f"- [ ] {has_draft} **{m.get('chapter_target', '待定')}** — {p['title'][:60]}... [{p.get('source','').upper()}]({p.get('url', '#')})")
+    # 从所有已分析的论文中，筛选出需要立即关注的条目（即尚未生成草稿的高紧迫、高相关论文）
+    immediate_items = [
+        d for d in papers_data                           # 遍历每一篇论文的数据字典 d
+        if d["merged"].get("urgency") == DRAFT_URGENCY_REQUIRED          # 条件1：紧迫度 == 需要立即更新的值（如 "immediate"）
+        and d["merged"].get("relevance", 8) >= DRAFT_RELEVANCE_THRESHOLD # 条件2：相关度分数 >= 设定的阈值（如 6.5）
+        and not (                                           # 条件3：排除已经生成了有效草稿的论文
+            d.get("draft") and len(d["draft"].strip()) > 50  # 如果 draft 字段存在且去除空白后长度 > 50 字，表示草稿已生成
+        )
+    ]
 
     # 中相关论文（简略）
     if medium:
