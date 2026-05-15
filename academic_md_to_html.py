@@ -398,6 +398,22 @@ CSS_TEMPLATE = """
         .card-score { text-align: left; }
         .stats-row { overflow-x: auto; padding-bottom: 4px; }
       }
+
+      /* ── STATUS BAR ── */
+      .status-bar{{
+        position:fixed;bottom:0;width:100%;z-index:200;
+        background:var(--bg);border-top:1px solid var(--border);
+        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+        color:var(--text-faint);letter-spacing:2px;
+        display:flex;justify-content:space-between;align-items:center;
+        transition:background .3s,border-color .3s;
+      }}
+      .status-dot{{
+        display:inline-block;width:6px;height:6px;
+        background:var(--accent);border-radius:50%;margin-right:8px;
+        animation:pulse 2s infinite;
+      }}
+      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
     </style>
 """
 
@@ -505,9 +521,10 @@ def generate_academic_html(data: dict, output_path: str):
   <nav>
     <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
     <div class="nav-right">
-      <!-- 返回 Radar 主页的按钮（注意路径：因为报告在 docs/academic/ 下，所以用 ../index.html） -->
-      <a href="../index.html" class="nav-pill">← RADAR</a>
-      <button class="theme-btn" id="themeBtn" aria-label="切换主题">◐</button>
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="../news/index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
@@ -531,6 +548,11 @@ def generate_academic_html(data: dict, output_path: str):
       <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
     </footer>
   </main>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ ACADEMIC_PIPELINE · NOMINAL ]</span></span>
+    <span id="statusTime"></span>
+  </div>
 
   <script>
     /* ══════════════ 主题切换（使用和主页同一个 localStorage 键） ══════════════ */
@@ -561,6 +583,26 @@ def generate_academic_html(data: dict, output_path: str):
     document.querySelectorAll('.card').forEach(function(card, index) {{
       card.style.animationDelay = (index * 0.05) + 's';
     }});
+
+    /* ══════════════ 状态栏轮播 ══════════════ */
+    (function(){{
+      const msgs=[
+        'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+        'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+        'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+        'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+        'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+        'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+        'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+      ];
+      let i=0;
+      const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+      function tick(){{
+        st.textContent=msgs[i%msgs.length];i++;
+        tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+      }}
+      tick();setInterval(tick,5000);
+    }})();
   </script>
 </body>
 </html>'''

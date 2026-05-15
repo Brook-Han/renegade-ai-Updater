@@ -254,6 +254,9 @@ def get_html_template() -> str:
     footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:.6rem;color:var(--text-muted);display:flex;justify-content:space-between}
     @media(max-width:600px){.main{padding:100px 16px 40px}h1{font-size:2.2rem}.card-header{flex-direction:column}.card-score{text-align:left;margin-top:8px}.controls{flex-direction:column;align-items:stretch}.search{width:100%}}
     .card.hidden,.day-group.hidden{display:none}
+    .status-bar{position:fixed;bottom:0;width:100%;z-index:200;background:var(--bg);border-top:1px solid var(--border);padding:10px 32px;font-family:var(--mono);font-size:.6rem;color:var(--text-faint);letter-spacing:2px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,border-color .3s}
+    .status-dot{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
   </style>
 </head>
 <body>
@@ -287,9 +290,16 @@ def get_html_template() -> str:
       <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
     </footer>
   </main>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ NEWS_ARCHIVE · ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
   <script>
     (function(){const h=document.documentElement,b=document.getElementById('themeBtn');const a=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};a(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));b.onclick=()=>a(h.classList.contains('light')?'dark':'light');})();
     (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
+    (function(){const msgs=['STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]','STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]','STATUS: [ NEWS_ARCHIVE: NOMINAL ]','STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]','STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]','STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]','STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]'];let i=0;const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');function tick(){st.textContent=msgs[i%msgs.length];i++;tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';}tick();setInterval(tick,5000);})();
   </script>
 </body>
 </html>'''

@@ -472,6 +472,22 @@ CSS_TEMPLATE = """
           -webkit-overflow-scrolling: touch; /* 平滑滚动 */
           scrollbar-width: none; /* 隐藏滚动条 */
       }
+
+      /* ── STATUS BAR ── */
+      .status-bar{{
+        position:fixed;bottom:0;width:100%;z-index:200;
+        background:var(--bg);border-top:1px solid var(--border);
+        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+        color:var(--text-faint);letter-spacing:2px;
+        display:flex;justify-content:space-between;align-items:center;
+        transition:background .3s,border-color .3s;
+      }}
+      .status-dot{{
+        display:inline-block;width:6px;height:6px;
+        background:var(--accent);border-radius:50%;margin-right:8px;
+        animation:pulse 2s infinite;
+      }}
+      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
     </style>"""
 
 
@@ -609,8 +625,6 @@ def generate_news_html(data: dict, output_path: str):
 
   <!-- 主内容区 -->
   <main class="main">
-    <a href="index.html" class="back-link">← 返回主页</a>
-    
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">{data['date']} · Model: {data['model']}</p>
@@ -633,12 +647,35 @@ def generate_news_html(data: dict, output_path: str):
     </footer>
   </main>
 
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
   <script>
 (function(){{
   const h=document.documentElement,b=document.getElementById('themeBtn');
   const apply=t=>{{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)}};
   apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
   b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+}})();
+(function(){{
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){{
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }}
+  tick();setInterval(tick,5000);
 }})();
   </script>
 </body>

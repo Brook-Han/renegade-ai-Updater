@@ -551,7 +551,7 @@ footer a{color:var(--text-muted);text-decoration:none}footer a:hover{color:var(-
 
 <!-- STATUS BAR -->
 <div class="status-bar">
-  <span><span class="status-dot"></span><span id="statusText">STATUS: [ ACADEMIC PIPELINE · NOMINAL ]</span></span>
+  <span><span class="status-dot"></span><span id="statusText">STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]</span></span>
   <span id="statusTime"></span>
 </div>
 
@@ -618,13 +618,13 @@ footer a{color:var(--text-muted);text-decoration:none}footer a:hover{color:var(-
 /* ── STATUS BAR ── */
 (function(){
   const messages=[
-    'STATUS: [ ACADEMIC PIPELINE · NOMINAL ]',
-    'STATUS: [ BIAS AMPLIFICATION · DOCUMENTED ]',
-    'STATUS: [ DENSING LAW · ACTIVE · 3.5mo CYCLE ]',
-    'STATUS: [ CENTAUR MODEL · COGNITIVE MAP LOADED ]',
-    'STATUS: [ SYCOPHANCY DETECTION · RUNNING ]',
-    'STATUS: [ COGNITIVE DEBT · MEASURED ]',
-    'STATUS: [ RENEGADE SEED · PEER-REVIEWED ]',
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
   ];
   let i=0;
   const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
