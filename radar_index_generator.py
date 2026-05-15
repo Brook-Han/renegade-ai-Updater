@@ -712,7 +712,7 @@ nav{
 (function(){
   const h=document.documentElement,b=document.getElementById('themeBtn');
   const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
-  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
   b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
 })();
 
