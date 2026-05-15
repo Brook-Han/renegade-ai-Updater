@@ -450,6 +450,10 @@ nav{
   opacity:.3;display:block;margin-bottom:16px;
 }
 
+/* ── FOOTER ── */
+footer{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-family:var(--mono);font-size:.6rem;color:var(--text-muted);display:flex;justify-content:space-between}
+footer a{color:var(--text-muted);text-decoration:none}footer a:hover{color:var(--accent)}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -484,10 +488,11 @@ nav{
 
 <!-- NAV -->
 <nav>
-  <a href="../index.html" class="nav-brand">RENEGADE AI v5.3</a>
+  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
   <div class="nav-right">
-    <a href="../index.html" class="nav-pill">← HOME</a>
+    <a href="../index.html" class="nav-pill">HOME</a>
     <a href="../news/" class="nav-pill">NEWS</a>
+    <a href="index.html" class="nav-pill active">PAPERS</a>
     <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
   </div>
 </nav>
@@ -538,6 +543,10 @@ nav{
     <span class="glyph">∅</span>
     NO RESULTS · ADJUST SEARCH TERMS
   </div>
+  <footer>
+    <span>Renegade AI v5.3 · Brooks Han</span>
+    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+  </footer>
 </main>
 
 <!-- STATUS BAR -->

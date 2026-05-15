@@ -898,10 +898,23 @@ def auto_git_commit(data: dict) -> None:
 
     try:
         subprocess.run(
-            ["git", "push"],
+            ["git", "pull", "--rebase", "--quiet"],
             cwd=repo_root, check=True, capture_output=True,
         )
-        print("✅ Git push 成功")
+    except subprocess.CalledProcessError:
+        pass  # pull 失败不阻塞 push（比如还没设置 upstream）
+
+    try:
+        result = subprocess.run(
+            ["git", "push", "origin", "HEAD"],
+            cwd=repo_root, capture_output=True,
+        )
+        if result.returncode == 0:
+            print("✅ Git push 成功")
+        elif b"Everything up-to-date" in result.stderr or b"up to date" in result.stderr:
+            print("✅ Already up-to-date")
+        else:
+            print(f"⚠️ git push 失败: {result.stderr.decode()}")
     except subprocess.CalledProcessError as e:
         print(f"⚠️ git push 失败: {e.stderr.decode()}")
 

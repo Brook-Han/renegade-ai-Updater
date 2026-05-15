@@ -19,30 +19,6 @@
     <style>
       /* ========== 颜色变量定义（浅色模式默认）========== */
       :root {
-        --bg: #f8f9fc;              /* 页面背景 */
-        --bg2: #ffffff;             /* 次要背景 */
-        --surface: #f0f2f8;         /* 卡片/按钮背景 */
-        --card: #ffffff;            /* 内容卡片背景 */
-        --border: #e0e2ec;          /* 边框颜色 */
-        --border-bright: #c0c2d0;   /* 高亮边框 */
-        --text: #2a2a40;            /* 主要文字 */
-        --text-muted: #6a6a80;      /* 次要文字 */
-        --text-faint: #a0a0b8;      /* 弱化文字 */
-        --accent: #e8503a;          /* 主强调色（橙红） */
-        --accent-dim: rgba(232,80,58,0.08);  /* 强调色浅色背景 */
-        --accent2: #b88c2a;         /* 次要强调色（金色） */
-        --accent3: #3a7fbf;         /* 第三强调色（蓝色） */
-        --accent3-dim: rgba(74,143,207,0.08);
-        --white: #2a2a40;           /* "白色"文字（实际是深色） */
-        
-        /* 字体栈 */
-        --mono: 'Space Mono', 'Courier New', monospace;    /* 等宽字体 */
-        --serif: 'Crimson Pro', Georgia, serif;            /* 正文字体 */
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif; /* 标题字体 */
-      }
-
-      /* ========== 深色模式覆盖 ========== */
-      :root.dark-theme {
         --bg: #08080e;
         --bg2: #0d0d18;
         --surface: #111120;
@@ -56,8 +32,18 @@
         --accent-dim: rgba(232,80,58,0.12);
         --accent2: #c9a040;
         --accent3: #4a8fcf;
-        --accent3-dim: rgba(74,143,207,0.1);
+        --accent3-dim: rgba(74,143,207,0.10);
         --white: #f0f0f8;
+        --mono: 'Space Mono', 'Courier New', monospace;
+        --serif: 'Crimson Pro', Georgia, serif;
+        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+      }
+      :root.light {
+        --bg: #f8f9fc; --bg2: #fff; --surface: #f0f2f8; --card: #fff;
+        --border: #e0e2ec; --border-bright: #c0c2d0;
+        --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
+        --accent-dim: rgba(232,80,58,0.08); --accent3-dim: rgba(74,143,207,0.08);
+        --white: #2a2a40;
       }
 
       /* ========== 全局重置 ========== */
@@ -75,8 +61,7 @@
       /* ========== 顶部导航栏（固定定位）========== */
       nav {
         position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(248,249,252,0.92);  /* 半透明背景 */
-        backdrop-filter: blur(24px);          /* 毛玻璃效果 */
+        background: rgba(8,8,14,.92); backdrop-filter: blur(24px);
         border-bottom: 1px solid var(--border);
         height: 56px;
         display: flex; align-items: center; justify-content: space-between;
@@ -84,7 +69,7 @@
         font-family: var(--mono);
         transition: background-color 0.3s ease, border-color 0.3s ease;
       }
-      .dark-theme nav { background: rgba(8,8,14,0.92); }
+      .light nav { background: rgba(248,249,252,.92); }
       
       .nav-brand {
         font-size: 0.75rem; font-weight: 700;
@@ -94,26 +79,27 @@
       }
       .nav-brand:hover { color: var(--accent2); }
       
-      .nav-right { display: flex; gap: 12px; align-items: center; }
-      
-      /* 主题切换按钮 */
-      .theme-toggle {
-        background: none; border: 1px solid var(--border);
-        color: var(--text-muted); width: 36px; height: 36px;
-        border-radius: 0; cursor: pointer;
-        display: flex; align-items: center; justify-content: center;
-        transition: all 0.2s;
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+
+      .nav-pill {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        font-family: var(--mono); font-size: .62rem; letter-spacing: 2px;
+        padding: 5px 14px; cursor: pointer; text-decoration: none;
+        display: inline-flex; align-items: center; transition: all .2s;
       }
-      .theme-toggle:hover {
-        border-color: var(--accent); color: var(--accent);
-        background: var(--accent-dim);
+      .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+      .theme-btn {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: .9rem; transition: all .2s;
       }
-      .theme-toggle i { font-size: 0.8rem; }
+      .theme-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
       /* ========== 主内容区 ========== */
       .main {
         max-width: 860px; margin: 0 auto;
-        padding: 100px 32px 60px;  /* 顶部留白避开固定导航栏 */
+        padding: 70px 32px 60px;  /* 顶部留白避开固定导航栏 */
       }
 
       /* 返回链接 */
@@ -122,7 +108,7 @@
         letter-spacing: 2px; color: var(--text-muted);
         text-decoration: none; text-transform: uppercase;
         border: 1px solid var(--border); padding: 6px 14px;
-        display: inline-block; margin-bottom: 40px;
+        display: inline-block; margin-bottom: 10px;
         transition: all .2s;
       }
       .back-link:hover { border-color: var(--accent); color: var(--accent); }
@@ -151,8 +137,8 @@
       /* 统计行 */
       .stats-row {
         display: flex; gap: 24px; margin-bottom: 10px;
-        font-family: var(--mono); font-size: 0.65rem;
-        color: var(--text-muted); letter-spacing: 1px;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-muted); letter-spacing: 0px;
         flex-wrap: wrap;
       }
       .stats-row span { color: var(--accent); font-weight: 700; }
@@ -176,6 +162,11 @@
       .urgent-item strong { color: var(--white); }
       .urgent-item a { color: var(--accent2); text-decoration: none; }
       .urgent-item a:hover { text-decoration: underline; }
+      .urgent-type-tag {
+        font-family: var(--mono); font-size: 0.5rem; letter-spacing: 1px;
+        color: var(--accent); background: var(--accent-dim);
+        padding: 1px 5px; margin-left: 6px; text-transform: uppercase;
+      }
       
       /* ========== 案例卡片 ========== */
       .card {
@@ -289,11 +280,19 @@
       
       /* ========== 移动端适配 ========== */
       @media (max-width: 600px) {
-        .main { padding: 100px 16px 40px; }
+        .main { padding: 70px 16px 40px; } /* 修正顶部内边距过大问题 */
         .page-title { font-size: 2.2rem; }
         .card-header { flex-direction: column; }
         .card-score { text-align: left; }
-        .stats-row { flex-direction: column; gap: 8px; }
+        
+        /* 移除stats-row的垂直排列，改为水平滚动 */
+        .stats-row { 
+          flex-direction: row; 
+          gap: 16px; 
+          overflow-x: auto; /* 允许水平滚动 */
+          padding-bottom: 4px;
+          -webkit-overflow-scrolling: touch; /* 平滑滚动 */
+          scrollbar-width: none; /* 隐藏滚动条 */
       }
     </style>
 </head>
@@ -302,9 +301,10 @@
   <nav>
     <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
     <div class="nav-right">
-      <button class="theme-toggle" id="themeToggle" aria-label="切换主题">
-        <i class="fa fa-sun-o" id="themeIcon"></i>
-      </button>
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
@@ -318,7 +318,7 @@
     
     <!-- 统计行 -->
     <div class="stats-row">
-      <div>📊 分析条目: <span>63</span></div>
+      <div>📊 总条目: <span>63</span></div>
       <div>🔴 高价值: <span>23</span></div>
       <div>🟡 中相关: <span>12</span></div>
     </div>
@@ -327,7 +327,7 @@
     
     <div class="urgent-box">
       <div class="urgent-title">🚨 紧急关注</div>
-      <div class="urgent-item">• <strong>Chapter 5, Section II (资本驯化AI与商业闭环)</strong> — - [ ] **Chapter 5, Section II (资本驯化AI与商业闭环)** | new_evidence</div><div class="urgent-item">• <strong>Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）</strong> — - [ ] **Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）** | case_study</div><div class="urgent-item">• <strong>Chapter 5, Section II - Capital Domestication of AI: From RLHF to Access Control</strong> — - [ ] **Chapter 5, Section II - Capital Domestication of AI: From RLHF to Access Control** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II (Capital Taming of AI: Governance as Control)</strong> — - [ ] **Chapter 4, Section II (Capital Taming of AI: Governance as Control)** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — - [ ] **Chapter 4, Section II** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</strong> — - [ ] **Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II: Capital Taming AI</strong> — - [ ] **Chapter 4, Section II: Capital Taming AI** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — - [ ] **Chapter 4, Section II** | case_study</div><div class="urgent-item">• <strong>Chapter 9: Evolutionary Alignment Vulnerability – Section II (开放环境漂移)</strong> — - [ ] **Chapter 9: Evolutionary Alignment Vulnerability – Section II (开放环境漂移)** | corroboration</div><div class="urgent-item">• <strong>Chapter 4, Section III (关于认知早期塑造与共识植入的案例延伸)</strong> — - [ ] **Chapter 4, Section III (关于认知早期塑造与共识植入的案例延伸)** | case_study</div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — - [ ] **Chapter 4, Section II** | corroboration</div><div class="urgent-item">• <strong>Chapter 3, Section II</strong> — - [ ] **Chapter 3, Section II** | new_evidence</div><div class="urgent-item">• <strong>Chapter 3, Section IV (进化对齐脆弱性) 或 Chapter 4, Section II (叛逆AI)</strong> — - [ ] **Chapter 3, Section IV (进化对齐脆弱性) 或 Chapter 4, Section II (叛逆AI)** | corroboration</div>
+      <div class="urgent-item">• <strong>Chapter 5, Section II (资本驯化AI与商业闭环)</strong> — OpenAI launches DeployCo to help businesses build around intelligence <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）</strong> — Running Codex safely at OpenAI <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 5, Section II - Capital Domestication of AI: From RLHF to Access Control</strong> — Scaling Trusted Access for Cyber with GPT-5.5 and GPT-5.5-Cyber <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II (Capital Taming of AI: Governance as Control)</strong> — NVIDIA and SAP Bring Trust to Specialized Agents <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Nemotron Labs: What OpenClaw Agents Mean for Every Organization <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</strong> — OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDI <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II: Capital Taming AI</strong> — Week one of the Musk v. Altman trial: What it was like in the room <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — GM just laid off hundreds of IT workers to hire those with stronger AI <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 9: Evolutionary Alignment Vulnerability – Section II (开放环境漂移)</strong> — Anthropic says ‘evil’ portrayals of AI were responsible for Claude’s b <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 4, Section III (关于认知早期塑造与共识植入的案例延伸)</strong> — The new Wild West of AI kids’ toys <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — ICE Agents Have List of 20 Million People on Their iPhones Thanks to P <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 3, Section II</strong> — 🔬Doing Vibe Physics — Alex Lupsasca, OpenAI <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 3, Section IV (进化对齐脆弱性) 或 Chapter 4, Section II (叛逆AI)</strong> — [AINews] Agents for Everything Else: Codex for Knowledge Work, Claude <span class="urgent-type-tag">corroboration</span></div>
     </div>
     
     <div class="card">
@@ -702,34 +702,17 @@
     <!-- 页脚 -->
     <footer>
       <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank" rel="noopener">GitHub ↗</a>
+      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
     </footer>
   </main>
 
-  <!-- JavaScript：主题切换功能 -->
   <script>
-    (function() {
-      const html = document.documentElement;
-      const toggle = document.getElementById('themeToggle');
-      const icon = document.getElementById('themeIcon');
-      const KEY = 'renegade-theme';
-      
-      // 应用主题的函数
-      const apply = (theme) => {
-        html.classList.toggle('dark-theme', theme === 'dark');
-        icon.className = theme === 'dark' ? 'fa fa-moon-o' : 'fa fa-sun-o';
-        localStorage.setItem(KEY, theme);  // 记住用户选择
-      };
-      
-      // 初始化：优先用用户选择，否则跟随系统
-      const pref = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-      apply(localStorage.getItem(KEY) || pref);
-      
-      // 绑定点击事件
-      toggle?.addEventListener('click', () => {
-        apply(html.classList.contains('dark-theme') ? 'light' : 'dark');
-      });
-    })();
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
   </script>
 </body>
 </html>
