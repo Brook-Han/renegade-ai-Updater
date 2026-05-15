@@ -51,13 +51,11 @@ def _get_base_url() -> str:
 def _find_latest_report(report_type: str) -> Path:
     """
     自动查找最新的报告文件。
-    搜索路径：docs/{type}/ 和 reports/ 目录。
+    搜索路径：docs/{type}/ 目录。
     """
     search_patterns = [
         f"docs/{report_type}/*_report_*.md",
         f"docs/{report_type}/*.md",
-        f"reports/{report_type}_report_*.md",
-        f"reports/{report_type}_*.md",
     ]
 
     all_files = []
