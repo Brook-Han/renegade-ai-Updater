@@ -1,68 +1,18 @@
-name: Paper Radar Weekly
+# ═══════════════════════════════════════════════════════════════
+# ⚠️ 已废弃 — 请使用 daily-radar.yml
+# ═══════════════════════════════════════════════════════════════
+# 此工作流已由 daily-radar.yml 统一整合。
+# 保留文件仅作历史参考，可安全删除。
+# 最后使用日期: 2026-05-11
+# ═══════════════════════════════════════════════════════════════
+name: "[DEPRECATED] Paper Radar Weekly"
 on:
-  schedule:
-    - cron: '0 3 * * 1'
-  workflow_dispatch:
-concurrency:
-  group: repo-push-${{ github.repository }}
-  cancel-in-progress: false
+  workflow_dispatch:  # 仅保留手动触发（用于紧急回滚）
+
 jobs:
-  run-papers:
+  deprecated-warning:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v5
-        with:
-          fetch-depth: 0
-
-      - uses: actions/setup-python@v6
-        with:
-          python-version: '3.10'
-
-      - name: 安装依赖
-        run: |
-          pip install --upgrade pip
-          pip install -r requirements.txt
-
-      - name: 同步远程仓库
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git pull --rebase --autostash origin main
-
-      - name: 运行论文雷达
-        env:
-          DEEPSEEK_API_KEY: ${{ secrets.DEEPSEEK_API_KEY }}
-          SEMANTIC_SCHOLAR_API_KEY: ${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}
-        run: python scrape_and_analyze.py --papers
-
-      - name: 生成存档索引页
-        run: python generate_archive.py
-
-      - name: 提交报告、缓存与索引
-        run: |
-          git add -f reports/papers_*.md reports/papers_*.html reports/paper_cache.json reports/index.html
-          git commit -m "📚 Add weekly paper report, cache, and index" || true
-          git pull --rebase --autostash origin main
-          git push origin main
-
-      - name: 部署到 GitHub Pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./reports
-          publish_branch: live
-          keep_files: false
-          enable_jekyll: false
-          user_name: 'github-actions[bot]'
-          user_email: 'github-actions[bot]@users.noreply.github.com'
-
-      - name: 推送钉钉
-        env:
-          DINGTALK_WEBHOOK: ${{ secrets.DINGTALK_WEBHOOK }}
-          DINGTALK_SECRET: ${{ secrets.DINGTALK_SECRET }}
-          REPORT_BASE_URL: "https://Brook-Han.github.io/renegade-ai-Updater"
-        run: |
-          LATEST_PAPER_MD=$(ls -t reports/papers_report_multi_$(date +%Y-%m-%d)_*.md | head -1)
-          python notify_dingtalk.py --type papers --file "$LATEST_PAPER_MD"
+      - run: |
+          echo "⚠️ 此工作流已废弃，请使用 daily-radar.yml"
+          echo "   手动触发: Actions → Renegade AI Radar → Run workflow"

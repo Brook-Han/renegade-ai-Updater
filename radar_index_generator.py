@@ -23,6 +23,7 @@
 """
 
 import re
+import subprocess
 from pathlib import Path
 from html import escape
 
@@ -851,7 +852,58 @@ def main():
     except ImportError:
         print("⚠️ generate_academic_index 模块未找到，跳过学术列表页生成")
 
+    # --- 自动 Git 提交 ---
+    auto_git_commit(data)
+
     print("\n✨ 全部生成完毕！")
+
+
+# ═══════════════════════════════════════════════════════════════
+# 自动 Git 提交
+# ═══════════════════════════════════════════════════════════════
+def auto_git_commit(data: dict) -> None:
+    """将生成的 index 文件自动 git add / commit / push。"""
+    repo_root = REPORTS_ROOT.parent
+    latest = data["dates"][0] if data["dates"] else "unknown"
+
+    files_to_add = [
+        "docs/index.html",
+        "docs/news/index.html",
+        "docs/academic/index.html",
+    ]
+
+    try:
+        subprocess.run(
+            ["git", "add"] + files_to_add,
+            cwd=repo_root, check=True, capture_output=True,
+        )
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ git add 失败: {e.stderr.decode()}")
+        return
+
+    commit_msg = f"chore: auto-update radar index [{latest}]"
+    result = subprocess.run(
+        ["git", "commit", "-m", commit_msg],
+        cwd=repo_root, capture_output=True,
+    )
+
+    if result.returncode == 0:
+        print(f"✅ Git commit: {commit_msg}")
+    elif b"nothing to commit" in result.stderr:
+        print("ℹ️  No changes to commit — skipping push")
+        return
+    else:
+        print(f"⚠️ git commit 失败: {result.stderr.decode()}")
+        return
+
+    try:
+        subprocess.run(
+            ["git", "push"],
+            cwd=repo_root, check=True, capture_output=True,
+        )
+        print("✅ Git push 成功")
+    except subprocess.CalledProcessError as e:
+        print(f"⚠️ git push 失败: {e.stderr.decode()}")
 
 
 if __name__ == "__main__":

@@ -1,25 +1,43 @@
 # ═══════════════════════════════════════════════════════════════
-# 🤖 Renegade AI 雷达系统 · GitHub Actions 工作流（完整修复版）2026-05-12
+# 🤖 Renegade AI 雷达系统 · GitHub Actions 工作流 v6.0
 # ═══════════════════════════════════════════════════════════════
-name: 🤖 Daily Radar Auto-Run
+# 整合：每日新闻雷达 + 每周学术雷达 + 统一通知推送
+# 通知模块：notify/ v2.0（支持钉钉 ActionCard + Telegram 双通道）
+# ═══════════════════════════════════════════════════════════════
+name: 🤖 Renegade AI Radar
+
 env:
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
   schedule:
-    - cron: '0 22 * * *'          # 每天北京时间 06:00
+    - cron: '0 22 * * *'          # 每日 北京时间 06:00（新闻雷达）
+    - cron: '0 3 * * 1'           # 每周一 北京时间 11:00（学术雷达同步）
   workflow_dispatch:               # 手动触发
+    inputs:
+      skip_notify:
+        description: '跳过通知推送'
+        type: boolean
+        default: false
+      dry_run_notify:
+        description: '通知演习模式（预览不发送）'
+        type: boolean
+        default: false
 
 permissions:
   contents: write
-  pages: write
+
+concurrency:
+  group: radar-${{ github.repository }}
+  cancel-in-progress: false
 
 jobs:
   radar-core:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 40
 
     steps:
+      # ── 环境准备 ──────────────────────────────────────────
       - name: 📦 Checkout repository
         uses: actions/checkout@v4
         with:
@@ -37,6 +55,7 @@ jobs:
           pip install -r requirements.txt 2>/dev/null || \
           pip install arxiv requests openai python-dotenv feedparser markdown jinja2
 
+      # ── 密钥注入 ──────────────────────────────────────────
       - name: ⚙️ Setup environment
         run: |
           echo "DEEPSEEK_API_KEY=${{ secrets.DEEPSEEK_API_KEY }}" >> $GITHUB_ENV
@@ -47,6 +66,9 @@ jobs:
           echo "REPORT_BASE_URL=https://brook-han.github.io/renegade-ai-Updater" >> $GITHUB_ENV
           echo "ENABLE_NEWS_API=true" >> $GITHUB_ENV
           echo "ENABLE_RSS_FEEDS=true" >> $GITHUB_ENV
+          # Telegram（可选通道）
+          echo "NOTIFY_TELEGRAM_BOT_TOKEN=${{ secrets.NOTIFY_TELEGRAM_BOT_TOKEN }}" >> $GITHUB_ENV
+          echo "NOTIFY_TELEGRAM_CHAT_ID=${{ secrets.NOTIFY_TELEGRAM_CHAT_ID }}" >> $GITHUB_ENV
 
       - name: 🔧 Configure Git identity
         run: |
@@ -56,17 +78,7 @@ jobs:
           git config --global user.email "$EMAIL"
           echo "✅ Git identity: $NAME <$EMAIL>"
 
-      - name: 🎓 Run Academic Radar
-        run: |
-          echo "🚀 Starting academic_radar.py..."
-          python academic_radar.py --limit 10
-        continue-on-error: true
-
-      - name: 🌐 Convert Academic Report to HTML
-        run: |
-          echo "🔄 Converting academic reports..."
-          python academic_md_to_html.py || echo "⚠️ No academic report to convert"
-
+      # ── 新闻雷达 ──────────────────────────────────────────
       - name: 📰 Run News Radar
         run: |
           echo "🚀 Starting news_radar.py..."
@@ -78,34 +90,39 @@ jobs:
           echo "🔄 Converting news reports..."
           python news_md_to_html.py || echo "⚠️ No news report to convert"
 
-      # ─────────────────────────────────────────────────────────
-      # 🔧 生成主页（每日摘要）
-      # ─────────────────────────────────────────────────────────
+      # ── 学术雷达 ──────────────────────────────────────────
+      - name: 🎓 Run Academic Radar
+        run: |
+          echo "🚀 Starting academic_radar.py..."
+          python academic_radar.py --limit 10
+        continue-on-error: true
+
+      - name: 🌐 Convert Academic Report to HTML
+        run: |
+          echo "🔄 Converting academic reports..."
+          python academic_md_to_html.py || echo "⚠️ No academic report to convert"
+
+      # ── 索引页生成 ────────────────────────────────────────
       - name: 🏠 Generate Radar Index
         run: |
           echo "🏗️ Building docs/index.html..."
           python radar_index_generator.py
 
-      # ─────────────────────────────────────────────────────────
-      # 🔧 生成新闻完整列表页
-      # ─────────────────────────────────────────────────────────
       - name: 📰 Generate News Archive
         run: |
           echo "📰 Building docs/news/index.html..."
           python generate_news_index.py || echo "⚠️ No news files found"
 
-      # ─────────────────────────────────────────────────────────
-      # 🔧 生成学术论文完整列表页
-      # ─────────────────────────────────────────────────────────
       - name: 🎓 Generate Academic Archive
         run: |
           echo "🎓 Building docs/academic/index.html..."
           python generate_academic_index.py || echo "⚠️ No academic files found"
 
+      # ── Git 备份 ──────────────────────────────────────────
       - name: 📤 Backup to main branch
         run: |
           echo "💾 Checking for changes to backup..."
-          git add docs/ *.py
+          git add docs/ *.py notify/
           if git diff --staged --quiet; then
             echo "✨ No new changes to backup"
           else
@@ -115,28 +132,32 @@ jobs:
             git push origin main || echo "⚠️ Push to main failed (may be protected)"
           fi
 
-      - name: 🚀 Deploy to GitHub Pages (gh-pages)
-        if: success()
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./docs
-          publish_branch: main
-          force_orphan: true
-          exclude_assets: '.github'
-
-      - name: 🔔 Push News Report to DingTalk
+      # ── 通知推送（统一 notify 模块） ──────────────────────
+      - name: 🔔 Push News to Notify
+        if: ${{ !inputs.skip_notify }}
         run: |
-          echo "📤 推送新闻报告至钉钉..."
-          python dingtalk.py --type news
+          if [ "${{ inputs.dry_run_notify }}" = "true" ]; then
+            echo "🔍 DRY-RUN 模式"
+            python -m notify --type news --dry-run
+          else
+            echo "📤 推送新闻报告..."
+            python -m notify --type news
+          fi
         continue-on-error: true
 
-      - name: 🔔 Push Academic Report to DingTalk
+      - name: 🔔 Push Academic to Notify
+        if: ${{ !inputs.skip_notify }}
         run: |
-          echo "📤 推送学术报告至钉钉..."
-          python dingtalk.py --type papers
+          if [ "${{ inputs.dry_run_notify }}" = "true" ]; then
+            echo "🔍 DRY-RUN 模式"
+            python -m notify --type papers --dry-run
+          else
+            echo "📤 推送学术报告..."
+            python -m notify --type papers
+          fi
         continue-on-error: true
 
+      # ── 运行摘要 ──────────────────────────────────────────
       - name: 📋 Run summary
         if: always()
         run: |
@@ -145,9 +166,6 @@ jobs:
           echo "- 🎓 学术报告文件数: $(find docs/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 📰 新闻报告文件数: $(find docs/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 🏠 聚合主页: $([ -f docs/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          echo "- 📰 新闻列表页: $([ -f docs/news/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          echo "- 🎓 论文列表页: $([ -f docs/academic/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
-          echo "- 🚀 部署状态: ✅ 已自动发布到 gh-pages" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- 🔗 公开访问链接:" >> $GITHUB_STEP_SUMMARY
           echo "  - [📊 报告主页](https://brook-han.github.io/renegade-ai-Updater/)" >> $GITHUB_STEP_SUMMARY
