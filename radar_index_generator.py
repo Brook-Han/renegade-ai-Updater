@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器 v2.0（新闻/论文分开展示版）
+🏠 Renegade AI 雷达主页生成器 v2.1（新闻/论文分开展示版 · 优化版）
 视觉风格与 Renegade AI v5.3 网页对齐
 
 ✅ 修复与改进：
@@ -11,6 +11,11 @@
   4. ✅ 调试输出显示实际展示的卡片类型
   5. ✅ 新闻/论文按钮改为直接跳转独立列表页
   6. ✅ 视觉风格与 v5.3 主页完全对齐
+  7. ✅ [v2.1] 用 lxml 替代正则解析 HTML，更稳健
+  8. ✅ [v2.1] HTML 模板提取为模块级常量，避免重复创建
+  9. ✅ [v2.1] 动态 import 增加异常处理
+ 10. ✅ [v2.1] 摘要截断尊重词边界
+ 11. ✅ [v2.1] 文件名正则合并为单次匹配
 
 用法：
     cd your-project-root
@@ -20,6 +25,8 @@
 import re
 from pathlib import Path
 from html import escape
+
+from lxml import html as lxml_html
 
 # ═══════════════════════════════════════════════════════════════
 # 配置
@@ -41,52 +48,104 @@ SUBDIR_CONFIG = {
     },
 }
 
+TOP_NEWS = 10
+TOP_ACAD = 5
+SUMMARY_MAX_CHARS = 220
+
 
 # ═══════════════════════════════════════════════════════════════
-# 工具函数：从 HTML 报告中提取卡片信息
+# 工具函数
+# ═══════════════════════════════════════════════════════════════
+def _safe_float(value, default=5.0):
+    """安全地将字符串转为浮点数，失败时返回默认值。"""
+    try:
+        return float(value)
+    except (ValueError, TypeError):
+        return default
+
+
+def _truncate_summary(text, max_chars=SUMMARY_MAX_CHARS):
+    """截断文本至 max_chars，尽量在词边界处断开。"""
+    if len(text) <= max_chars:
+        return text, ""
+    truncated = text[:max_chars]
+    # 在空格或中文标点处断开
+    for sep in (" ", "，", "。", "、", "；", ".", ",", "!", "?"):
+        idx = truncated.rfind(sep)
+        if idx > max_chars * 0.7:
+            return text[:idx], "…"
+    return truncated, "…"
+
+
+# ═══════════════════════════════════════════════════════════════
+# 从 HTML 报告中提取卡片信息（lxml 版）
 # ═══════════════════════════════════════════════════════════════
 def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
+    """用 lxml + XPath 解析 HTML 报告，提取卡片信息。"""
     try:
         content = html_path.read_text(encoding="utf-8")
     except Exception as e:
-        print(f"⚠️ 读取失败 {html_path.name}: {e}")
+        print(f"   ⚠️ 读取失败 {html_path.name}: {e}")
         return []
 
-    cards = []
-    card_blocks = re.findall(
-        r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
-        content,
-        re.DOTALL,
-    )
-    if card_blocks:
-        print(f"   🔍 {html_path.name}: 找到 {len(card_blocks)} 个卡片区块")
+    try:
+        tree = lxml_html.fromstring(content)
+    except Exception as e:
+        print(f"   ⚠️ 解析失败 {html_path.name}: {e}")
+        return []
 
-    for block in card_blocks:
+    card_elements = tree.xpath("//div[@class='card']")
+    if card_elements:
+        print(f"   🔍 {html_path.name}: 找到 {len(card_elements)} 个卡片区块")
+
+    cards = []
+    for card_el in card_elements:
         card = {"type": report_type}
 
-        title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
-        if title_m:
-            card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
+        # --- 标题 ---
+        title_els = card_el.xpath(".//div[@class='card-title']")
+        if not title_els:
+            continue
+        card["title"] = title_els[0].text_content().strip()
 
-        score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
-        card["score"] = score_m.group(1) if score_m else "5.0"
+        # --- 评分 ---
+        score_els = card_el.xpath(".//div[@class='card-score']")
+        if score_els:
+            score_text = score_els[0].text_content().strip()
+            score_m = re.search(r"([\d.]+)", score_text)
+            card["score"] = score_m.group(1) if score_m else "5.0"
+        else:
+            card["score"] = "5.0"
 
-        link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
-        if link_m:
-            card["link"] = link_m.group(1)
+        # --- 原文链接（匹配包含"原文"或"PDF"的 target="_blank" 链接）---
+        card["link"] = ""
+        for a in card_el.xpath(".//a[@target='_blank']"):
+            link_text = a.text_content().strip() if a.text_content() else ""
+            if "原文" in link_text or "PDF" in link_text:
+                href = a.get("href", "")
+                if href:
+                    card["link"] = href
+                break
 
-        summary_m = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
-        if summary_m:
-            card["summary"] = re.sub(r"<[^>]+>", "", summary_m.group(1)).strip()
+        # --- 摘要 ---
+        body_els = card_el.xpath(".//div[@class='card-body']")
+        if body_els:
+            card["summary"] = body_els[0].text_content().strip()
+        else:
+            card["summary"] = ""
 
-        card["has_draft"] = '<div class="card-draft">' in block
+        # --- 是否有草稿 ---
+        card["has_draft"] = bool(card_el.xpath(".//div[@class='card-draft']"))
 
-        chapter_m = re.search(r"📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)", block)
-        if chapter_m:
-            card["chapter"] = chapter_m.group(1).strip()
+        # --- 章节标记（从 card-meta 中查找 📍）---
+        meta_els = card_el.xpath(".//div[@class='card-meta']")
+        if meta_els:
+            meta_text = meta_els[0].text_content()
+            chapter_m = re.search(r"📍\s*(.+?)(?:\n|$)", meta_text)
+            if chapter_m:
+                card["chapter"] = chapter_m.group(1).strip()
 
-        if card.get("title"):
-            cards.append(card)
+        cards.append(card)
 
     return cards
 
@@ -108,14 +167,14 @@ def collect_all_reports() -> dict:
             if html_file.name == "index.html":
                 continue
 
-            m = re.search(r"(\d{4}-\d{2}-\d{2})", html_file.name)
+            # 合并日期 + 时间匹配为一次正则（时间部分可选）
+            m = re.search(r"(\d{4}-\d{2}-\d{2})(?:_(\d{6}))?", html_file.name)
             if not m:
                 print(f"⚠️ 文件名格式不符，跳过: {html_file.name}")
                 continue
 
             date_str = m.group(1)
-            time_m = re.search(r"_(\d{6})", html_file.name)
-            time_str = time_m.group(1) if time_m else "000000"
+            time_str = m.group(2) or "000000"
             relative_link = f"{subdir_name}/{html_file.name}"
 
             entry = {
@@ -163,17 +222,9 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
 
     print(f"   📊 {date}: 新闻卡片 {len(news_cards)} 个，学术卡片 {len(acad_cards)} 个")
 
-    def score_key(c):
-        try:
-            return float(c.get("score", "5.0"))
-        except (ValueError, TypeError):
-            return 5.0
+    news_cards.sort(key=lambda c: _safe_float(c.get("score", "5.0")), reverse=True)
+    acad_cards.sort(key=lambda c: _safe_float(c.get("score", "5.0")), reverse=True)
 
-    news_cards.sort(key=score_key, reverse=True)
-    acad_cards.sort(key=score_key, reverse=True)
-
-    TOP_NEWS = 3
-    TOP_ACAD = 5
     top_news = news_cards[:TOP_NEWS]
     top_acad = acad_cards[:TOP_ACAD]
     display_cards = top_news + top_acad
@@ -200,7 +251,9 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
     for card in display_cards:
         title = escape(card.get("title", ""))
         score = card.get("score", "5.0")
-        summary = escape(card.get("summary", "")[:220])
+        raw_summary = card.get("summary", "")
+        summary, truncated = _truncate_summary(raw_summary)
+        summary = escape(summary)
         chapter = escape(card.get("chapter", ""))
         link = card.get("link", "#")
         card_type = card["type"]
@@ -212,7 +265,6 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
         chapter_html = f'<span class="card-chapter">§ {chapter}</span>' if chapter else ''
         link_html = f'<a class="card-source-link" href="{escape(link)}" target="_blank" rel="noopener">↗ SOURCE</a>' if link and link != "#" else ""
         draft_dot = '<span class="draft-dot" title="Has Draft">●</span>' if card.get("has_draft") else ""
-        truncated = "…" if len(card.get("summary", "")) > 220 else ""
 
         html += f'''    <article class="radar-card" data-type="{card_type}">
       <div class="radar-card-top">
@@ -239,10 +291,9 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
 
 
 # ═══════════════════════════════════════════════════════════════
-# HTML 模板 — 与 Renegade AI v5.3 视觉风格对齐
+# HTML 模板 — 与 Renegade AI v5.3 视觉风格对齐（模块级常量）
 # ═══════════════════════════════════════════════════════════════
-def get_html_template() -> str:
-    return '''<!DOCTYPE html>
+_HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
@@ -556,7 +607,7 @@ nav{
       <span class="hero-tag" id="tagTotal">— REPORTS</span>
       <span class="hero-tag" id="tagDays">— DAYS</span>
       <span class="hero-tag" id="tagLatest">LATEST: —</span>
-      <span class="hero-tag">NEWS TOP 3 + PAPERS TOP 5</span>
+      <span class="hero-tag">NEWS TOP 10 + PAPERS TOP 5</span>
     </div>
   </div>
   <div class="hero-right">
@@ -692,7 +743,7 @@ document.querySelectorAll('.radar-card').forEach((c,i)=>{
 # 主函数
 # ═══════════════════════════════════════════════════════════════
 def main():
-    print("🚀 Renegade AI Radar Index Generator v5.0 (v5.3 Visual Edition)")
+    print("🚀 Renegade AI Radar Index Generator v2.1 (Optimized Edition)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
 
     data = collect_all_reports()
@@ -712,8 +763,7 @@ def main():
         day_sections.append(section)
 
     print("📄 Rendering index.html...")
-    template = get_html_template()
-    final = template.replace("{{ day_sections }}", "\n".join(day_sections))
+    final = _HTML_TEMPLATE.replace("{{ day_sections }}", "\n".join(day_sections))
     final = final.replace("{{ total_reports }}", str(data["stats"]["total"]))
     final = final.replace("{{ news_count }}", str(data["stats"]["news"]))
     final = final.replace("{{ academic_count }}", str(data["stats"]["academic"]))
@@ -730,13 +780,20 @@ def main():
         acad_cnt = content.count('data-type="academic"')
         print(f"\n🔍 调试：index.html 中 news 卡片: {news_cnt} 个，academic 卡片: {acad_cnt} 个")
 
+    # --- 自动生成子列表页（带异常保护）---
     print("\n📋 正在自动生成新闻列表页...")
-    from generate_news_index import main as gen_news_main
-    gen_news_main()
+    try:
+        from generate_news_index import main as gen_news_main
+        gen_news_main()
+    except ImportError:
+        print("⚠️ generate_news_index 模块未找到，跳过新闻列表页生成")
 
     print("\n📋 正在自动生成学术列表页...")
-    from generate_academic_index import main as gen_acad_main
-    gen_acad_main()
+    try:
+        from generate_academic_index import main as gen_acad_main
+        gen_acad_main()
+    except ImportError:
+        print("⚠️ generate_academic_index 模块未找到，跳过学术列表页生成")
 
     print("\n✨ 全部生成完毕！")
 
