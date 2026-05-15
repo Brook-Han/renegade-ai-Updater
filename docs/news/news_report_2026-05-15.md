@@ -1,15 +1,15 @@
 # 📰 News Radar — 资讯监控报告
 **生成日期**: 2026-05-15
 **分析模型**: deepseek-v4-flash
-**分析条目**: 64
+**分析条目**: 58
 **关键词**: LLM quality signal contamination                  # 大模型质量信号污染, RLHF cognitive effects human                      # RLHF 对人类认知的影响, AI persuasion belief change experiment            # AI 说服力与信念转变实验, automation bias high stakes decision              # 高风险决策中的自动化偏见, cognitive offloading AI writing                   # AI 写作中的认知卸载, AI assisted research homogenization               # AI 辅助研究的同质化, token economics cognitive labor                   # Token 经济学与认知劳动, evolutionary alignment AI open deployment         # 进化对齐与开放部署...
 ---
 
 ## 📊 快速概览
 
 - 🔴 高价值 (≥7分 + high案例): **19**
-- 🟡 中相关 (4-6.9分): **17**
-- ⚪ 低相关/忽略: **20**
+- 🟡 中相关 (4-6.9分): **15**
+- ⚪ 低相关/忽略: **17**
 
 ## 🚨 紧急关注清单（建议24h内处理）
 
@@ -245,16 +245,16 @@
 - **理论关联**: 这条新闻支持了‘信号异化’理论模型：当AI能够大规模生成表面上高质量、逻辑自洽的文本时，传统衡量输出质量的信号（如复杂度、一致性）已失效，因此需要创造新的评估信号（如面试式互动、压力测试）来甄别真实价值。它同时挑战了‘需求侧规训’中用户被动追求舒适的倾向，强调人类必须主动投入摩擦成本去评估AI。
 - **建议操作**: 补充注释：在信号异化小节中添加此案例，说明传统评估范式失灵后人类应对策略的演进。
 
-<details><summary>🔶 中相关资讯 (17条，点击展开)</summary>
+<details><summary>🔶 中相关资讯 (15条，点击展开)</summary>
 
 - **[Building a safe, effective sandbox to enable Codex on Window...](https://openai.com/index/building-codex-windows-sandbox)** [OpenAI News] · 6/10
   - OpenAI于2026年5月13日发布技术文章，介绍其为AI编程代理Codex在Windows系统上构建安全沙箱的方案。背景是Codex作为能够自主编写和执行代码的AI工具，在Windows环境下面临更高的安全风险——恶意代码可能直接操作文...
 - **[What Parameter Golf taught us about AI-assisted research...](https://openai.com/index/what-parameter-golf-taught-us)** [OpenAI News] · 4/10
   - 2026年5月12日，OpenAI新闻发布了一篇关于“Parameter Golf”活动的报道。该活动汇聚了超过1000名参与者和2000多份提交，旨在严格约束条件下探索AI辅助的机器学习研究、编码代理、量化技术及新型模型设计。活动本质是一...
-- **[How NVIDIA engineers and researchers build with Codex...](https://openai.com/index/nvidia)** [OpenAI News] · 5/10
-  - 2026年5月，OpenAI宣布NVIDIA的工程师和研究人员正在使用Codex（基于GPT-5.5的AI编程助手）来加速内部开发流程。具体而言，团队利用Codex将研究想法直接转化为可运行的实验代码，并用于构建生产级系统。这一实践展示了A...
 - **[AutoScout24 scales engineering with AI-powered workflows...](https://openai.com/index/autoscout24)** [OpenAI News] · 5/10
   - AutoScout24 Group（欧洲知名汽车在线市场平台）宣布采用OpenAI的Codex和ChatGPT工具来优化其工程开发流程。该公司的工程团队在日常编码、代码审查、自动化测试及文档生成等环节集成AI助手，旨在加速开发周期、提升代码...
+- **[How NVIDIA engineers and researchers build with Codex...](https://openai.com/index/nvidia)** [OpenAI News] · 5/10
+  - 2026年5月，OpenAI宣布NVIDIA的工程师和研究人员正在使用Codex（基于GPT-5.5的AI编程助手）来加速内部开发流程。具体而言，团队利用Codex将研究想法直接转化为可运行的实验代码，并用于构建生产级系统。这一实践展示了A...
 - **[How enterprises are scaling AI...](https://openai.com/business/guides-and-resources/how-enterprises-are-scaling-ai)** [OpenAI News] · 6/10
   - 2026年5月11日，OpenAI官方新闻发布文章《企业如何规模化AI》，总结了大型组织从初期AI实验过渡到大规模部署的关键路径。文章指出，企业需在信任（如可解释性与透明度）、治理（如合规与权限管理）、工作流设计（如人机协作界面）以及大规模...
 - **[OpenAI Campus Network: Student club interest form...](https://openai.com/index/openai-campus-network-student-club-interest-form)** [OpenAI News] · 5/10
@@ -275,10 +275,6 @@
   - 2026年5月，AI芯片公司Cerebras Systems成功完成55亿美元融资并登陆纳斯达克，IPO首日股价暴涨108%，成为2026年首个大型科技IPO。此前一年，市场曾普遍怀疑该公司能否上市。Cerebras的核心产品是晶圆级芯片W...
 - **[Altman forced to confront claims at OpenAI trial that he's a...](https://arstechnica.com/tech-policy/2026/05/altman-forced-to-confront-claims-at-openai-trial-that-hes-a-prolific-liar/)** [AI - Ars Technica] · 6/10
   - 在OpenAI的一场审判中，首席执行官Sam Altman被指控为习惯性说谎者，他本人则痛苦地回忆自己如何经历了类似马斯克式的失控反应——即当失去对公司的控制权时表现出的激烈情绪。该审判涉及OpenAI早期治理与创始人之间的权力争端，包括与...
-- **[Import AI 456: RSI and economic growth; radical optionality ...](https://importai.substack.com/p/import-ai-456-rsi-and-economic-growth)** [Import AI] · 4/10
-  - 新闻摘要非常简短，仅提及了关于超级智能监管的讨论，涉及RSI（递归自我改进）与经济增长的关系，以及人工智能监管的激进可选性。核心问题是超级智能需要何种法律框架。来源为Import AI，发布于2026年5月11日，但未提供具体事件背景、关键...
-- **[Import AI 445: Timing superintelligence; AIs solve frontier ...](https://importai.substack.com/p/import-ai-445-timing-superintelligence)** [Import AI] · 4/10
-  - 该新闻来自Import AI，发布于2026年2月16日，核心议题是超级智能时间线。文章回顾了2026年可能被历史视为决定奇点走向的关键年份，并提及AI在前沿数学证明方面取得突破（如解决复杂定理的自动推理），同时介绍了机器学习研究的新基准（...
 - **[[AINews] Anthropic growing 10x/year while everyone else is l...](https://www.latent.space/p/ainews-anthropic-growing-10xyear)** [Latent.Space] · 5/10
   - 2026年5月9日，Latent.Space报道称，人工智能公司Anthropic以每年10倍的速度增长，而与此同时，其他行业普遍裁员超过10%。这一鲜明对比反映了当前经济中严重的行业分化：AI领域通过资本、人才和市场需求的高速集中实现了爆...
 
