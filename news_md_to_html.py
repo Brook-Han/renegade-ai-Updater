@@ -25,6 +25,7 @@
 
 import re          # 正则表达式，用于解析 Markdown 文本
 import sys         # 系统模块，处理命令行参数
+from html import escape  # HTML 转义
 from pathlib import Path  # 路径处理，比 os.path 更现代
 from datetime import datetime  # 日期时间处理
 
@@ -150,25 +151,31 @@ def parse_news_report(md_path: str) -> dict:
             })
     
     # ── 3️⃣ 提取"紧急关注清单"（可选）─
-    
+    # 格式：每组以 `- [ ]` 开头，紧跟 `📌` 标题行
     urgent_items = []
     urgent_section = re.search(
-        r'## 🚨 紧急关注清单.*?\n(.*?)(?=\n## |\Z)', 
-        text, 
+        r'## 🚨 紧急关注清单.*?\n(.*?)(?=\n## |\Z)',
+        text,
         re.DOTALL
     )
     if urgent_section:
         urgent_lines = urgent_section.group(1).strip().split('\n')
+        current = None
         for line in urgent_lines:
-            if line.strip().startswith('- [ ]'):  # Markdown 复选框格式
-                # 提取章节：匹配 **章节名**
-                chapter_match = re.search(r'\*\*([^*]+)\*\*', line)
-                # 提取标题：匹配 📌 后面的文字
-                title_match = re.search(r'📌\s*(.+?)\.\.\.', line)
-                urgent_items.append({
-                    'chapter': chapter_match.group(1) if chapter_match else '',
-                    'title': title_match.group(1) if title_match else line.strip()
-                })
+            stripped = line.strip()
+            if stripped.startswith('- [ ]'):
+                # 保存上一个，开始新的紧急条目
+                chapter_m = re.search(r'\*\*([^*]+)\*\*', stripped)
+                update_m = re.search(r'\|\s*(\S+)', stripped)
+                current = {
+                    'chapter': chapter_m.group(1) if chapter_m else '',
+                    'title': '',
+                    'update_type': update_m.group(1) if update_m else '',
+                }
+                urgent_items.append(current)
+            elif stripped.startswith('- 📌') and current:
+                title_m = re.search(r'📌\s*(.+?)(?:\.{3}|$)', stripped)
+                current['title'] = title_m.group(1).strip() if title_m else ''
     
     # ── 4️⃣ 返回解析结果 ──
     return {
@@ -347,6 +354,11 @@ CSS_TEMPLATE = """
       .urgent-item strong { color: var(--white); }
       .urgent-item a { color: var(--accent2); text-decoration: none; }
       .urgent-item a:hover { text-decoration: underline; }
+      .urgent-type-tag {
+        font-family: var(--mono); font-size: 0.5rem; letter-spacing: 1px;
+        color: var(--accent); background: var(--accent-dim);
+        padding: 1px 5px; margin-left: 6px; text-transform: uppercase;
+      }
       
       /* ========== 案例卡片 ========== */
       .card {
@@ -493,10 +505,17 @@ def generate_news_html(data: dict, output_path: str):
     # ── 1️⃣ 生成紧急清单 HTML ──
     urgent_html = ''
     if data['urgent']:  # 如果有紧急项
-        urgent_items = ''.join(
-            f'<div class="urgent-item">• <strong>{u["chapter"]}</strong> — {u["title"]}</div>'
-            for u in data['urgent']
-        )
+        parts = []
+        for u in data['urgent']:
+            chapter = escape(u.get('chapter', ''))
+            title = escape(u.get('title', ''))
+            update_type = escape(u.get('update_type', ''))
+            type_tag = f' <span class="urgent-type-tag">{update_type}</span>' if update_type else ''
+            title_part = f' — {title}' if title else ''
+            parts.append(
+                f'<div class="urgent-item">• <strong>{chapter}</strong>{title_part}{type_tag}</div>'
+            )
+        urgent_items = ''.join(parts)
         urgent_html = f'''
     <div class="urgent-box">
       <div class="urgent-title">🚨 紧急关注</div>
