@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <!-- 任务标识符 -->
+    <key>Label</key>
+    <string>com.renegadeai.radar-update</string>
+
+    <!-- 程序路径和参数 -->
+    <key>ProgramArguments</key>
+    <array>
+        <string>/bin/bash</string>
+        <string>/Users/Ethan/Documents/GitHub/renegade-ai-Updater/scripts/daily_update.sh</string>
+    </array>
+
+    <!-- 每天 07:00 执行（北京时间 = 本地时区） -->
+    <key>StartCalendarInterval</key>
+    <array>
+        <dict>
+            <key>Hour</key>
+            <integer>7</integer>
+            <key>Minute</key>
+            <integer>0</integer>
+        </dict>
+    </array>
+
+    <!-- 标准输出/错误日志 -->
+    <key>StandardOutPath</key>
+    <string>/Users/Ethan/Documents/GitHub/renegade-ai-Updater/logs/launchd_stdout.log</string>
+    <key>StandardErrorPath</key>
+    <string>/Users/Ethan/Documents/GitHub/renegade-ai-Updater/logs/launchd_stderr.log</string>
+
+    <!-- 环境变量 -->
+    <key>EnvironmentVariables</key>
+    <dict>
+        <key>PATH</key>
+        <string>/usr/local/bin:/usr/bin:/bin:/opt/homebrew/bin</string>
+        <key>HOME</key>
+        <string>/Users/Ethan</string>
+    </dict>
+
+    <!-- 重启策略 -->
+    <key>KeepAlive</key>
+    <false/>
+    <key>RunAtLoad</key>
+    <false/>
+
+    <!-- 如果执行超时（秒），launchd 会杀掉任务 -->
+    <key>TimeOut</key>
+    <integer>600</integer>
+</dict>
+</plist>
