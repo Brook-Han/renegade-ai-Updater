@@ -7,6 +7,7 @@
 name: 🤖 Renegade AI Radar
 
 env:
+  TZ: Asia/Shanghai
   FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 on:
@@ -128,7 +129,7 @@ jobs:
           else
             git config --global user.name "${GIT_NAME:-renegade-ai-bot}"
             git config --global user.email "${GIT_EMAIL:-bot@renegade-ai.local}"
-            git commit -m "🤖 Backup: $(date '+%Y-%m-%d %H:%M UTC') [skip ci]"
+            git commit -m "🤖 Backup: $(date '+%Y-%m-%d %H:%M CST') [skip ci]"
             git push origin main || echo "⚠️ Push to main failed (may be protected)"
           fi
 
@@ -162,7 +163,7 @@ jobs:
         if: always()
         run: |
           echo "### 📋 运行摘要" >> $GITHUB_STEP_SUMMARY
-          echo "- 🕐 触发时间: $(date -u -d '+8 hours' '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🕐 触发时间: $(date '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
           echo "- 🎓 学术报告文件数: $(find docs/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 📰 新闻报告文件数: $(find docs/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 🏠 聚合主页: $([ -f docs/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
