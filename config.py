@@ -52,6 +52,24 @@ class Config:
     ARXIV_PAGE_SIZE: int = int(os.getenv("ARXIV_PAGE_SIZE", "100"))
     ARXIV_DELAY_SECONDS: float = float(os.getenv("ARXIV_DELAY_SECONDS", "5.0"))
 
+    # -------------------------------------------------------------------------
+    #  arXiv API 限流设置（解决 429 Too Many Requests）
+    # -------------------------------------------------------------------------
+    ARXIV_INTER_KEYWORD_DELAY: float = float(os.getenv("ARXIV_INTER_KEYWORD_DELAY", "4.0"))
+    # 每次关键词搜索之间额外等待秒数。
+    # arxiv.Client 内置 delay_seconds=5s + 这里 4s = 约9秒间隔，远高于官方的"每3秒1次"
+
+    ARXIV_RETRY_BASE_DELAY: float = float(os.getenv("ARXIV_RETRY_BASE_DELAY", "30.0"))
+    # 遇到 429 限速后，指数退避的基础等待秒数
+    # 依次等待: 30s → 60s → 120s → 240s → 480s（最长 600s=10分钟）
+
+    ARXIV_MAX_RETRIES: int = int(os.getenv("ARXIV_MAX_RETRIES", "5"))
+    # 429 限速时的最大重试次数（每次用指数退避）
+
+    ARXIV_CLIENT_NUM_RETRIES: int = int(os.getenv("ARXIV_CLIENT_NUM_RETRIES", "2"))
+    # arxiv 库内部的重试次数。设小一点：库内重试没有指数退避，
+    # 遇到 429 时快速失败，交给上层脚本的指数退避+抖动来处理
+
     # =========================================================================
     #  模型配置 (2026-05-09 完美版)
     #  策略：全程 DeepSeek 官网直连，彻底弃用 OpenRouter

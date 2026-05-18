@@ -15,6 +15,7 @@ import os
 import sys
 import json
 import time
+import random
 import datetime
 import hashlib
 import argparse
@@ -57,7 +58,7 @@ else:
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
     delay_seconds=Config.ARXIV_DELAY_SECONDS,
-    num_retries=5
+    num_retries=Config.ARXIV_CLIENT_NUM_RETRIES  # 减小库内重试次数，避免快速重刷 429
 )
 
 # ------------------------------------------------------------------
@@ -101,6 +102,35 @@ def save_academic_cache(cache: dict):
         json.dump(cache, f, ensure_ascii=False, indent=2)
 
 # ------------------------------------------------------------------
+# 限流工具函数
+# ------------------------------------------------------------------
+def exponential_backoff(attempt: int, base_delay: float = 30.0, max_delay: float = 600.0) -> float:
+    """
+    指数退避 + 随机抖动（jitter），用于优雅处理 API 限速（429 Too Many Requests）
+
+    参数:
+        attempt:    当前是第几次重试（从 0 开始）
+        base_delay: 基础等待时间（秒），默认 30 秒
+        max_delay:  最大等待时间上限（秒），默认 600 秒（10 分钟）
+
+    返回:
+        本次应等待的浮点数秒数（带 ±25% 随机抖动）
+
+    等待序列示例（base_delay=30）:
+        第1次重试: 30s × 1   = 30s   + jitter
+        第2次重试: 30s × 2   = 60s   + jitter
+        第3次重试: 30s × 4   = 120s  + jitter
+        第4次重试: 30s × 8   = 240s  + jitter
+        第5次重试: 30s × 16  = 480s  + jitter
+        第6次重试: 30s × 32  = 960s  → 上限 600s + jitter
+    """
+    delay = min(base_delay * (2 ** attempt), max_delay)
+    # ±25% 随机抖动（jitter）：防止多个客户端同时重试造成"惊群效应"
+    jitter = delay * random.uniform(-0.25, 0.25)
+    return delay + jitter
+
+
+# ------------------------------------------------------------------
 # 学术源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
@@ -118,7 +148,9 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
 
         logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
         papers_from_kw = []
-        for attempt in range(3):
+        # 初试 + N 次重试（使用指数退避 + 随机抖动）
+        max_retries = Config.ARXIV_MAX_RETRIES
+        for attempt in range(max_retries + 1):
             try:
                 search = arxiv.Search(
                     query=keyword,
@@ -143,15 +175,57 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                     count += 1
                 logger.info(f"   ✅ 找到 {count} 篇")
                 set_search_cache("arxiv", keyword, papers_from_kw, "papers")
-                break
+                break  # 成功了就跳出重试循环
+            except arxiv.HTTPError as e:
+                if e.status == 429:
+                    # ====== 429 限速：用指数退避 + 抖动 ======
+                    if attempt < max_retries:
+                        wait = exponential_backoff(attempt, Config.ARXIV_RETRY_BASE_DELAY)
+                        logger.warning(
+                            f"   ⚠️ arXiv 429 限速 (第{attempt+1}/{max_retries}次重试)，"
+                            f"等待 {wait:.0f}s 后重试..."
+                        )
+                        time.sleep(wait)
+                    else:
+                        logger.error(
+                            f"   ❌ arXiv 429 限速，重试 {max_retries} 次后仍失败，"
+                            f"跳过关键词: {keyword}"
+                        )
+                else:
+                    # ====== 其他 HTTP 错误（如 500）：用较短指数退避 ======
+                    if attempt < max_retries:
+                        wait = exponential_backoff(attempt, Config.ARXIV_RETRY_BASE_DELAY * 0.5)
+                        logger.warning(
+                            f"   ⚠️ arXiv HTTP {e.status} (第{attempt+1}/{max_retries}次重试)，"
+                            f"等待 {wait:.0f}s 后重试..."
+                        )
+                        time.sleep(wait)
+                    else:
+                        logger.error(
+                            f"   ❌ arXiv HTTP {e.status}，重试 {max_retries} 次后仍失败，"
+                            f"跳过关键词: {keyword}"
+                        )
             except Exception as e:
-                if attempt < 2:
-                    wait = (attempt + 1) * 20
-                    logger.warning(f"   ⚠️ 请求失败，{wait}s 后重试… ({e})")
+                # ====== 网络波动等通用异常 ======
+                if attempt < max_retries:
+                    wait = exponential_backoff(attempt, Config.ARXIV_RETRY_BASE_DELAY * 0.5)
+                    logger.warning(
+                        f"   ⚠️ arXiv 请求异常 (第{attempt+1}/{max_retries}次重试): {e}，"
+                        f"等待 {wait:.0f}s 后重试..."
+                    )
                     time.sleep(wait)
                 else:
-                    logger.error(f"   ❌ 三次重试后仍失败: {e}")
-        time.sleep(3)
+                    logger.error(
+                        f"   ❌ arXiv 请求失败 (重试 {max_retries} 次后): {e}，"
+                        f"跳过关键词: {keyword}"
+                    )
+
+        # 每个关键词搜索后，强制等待一段时间再搜索下一个
+        # 这比仅靠 arxiv.Client 内置 delay_seconds 更可靠
+        inter_delay = Config.ARXIV_INTER_KEYWORD_DELAY
+        if inter_delay > 0:
+            logger.info(f"   ⏳ 等待 {inter_delay}s 后搜索下一个关键词...")
+            time.sleep(inter_delay)
     return list(all_papers.values())
 
 
@@ -186,9 +260,13 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 }
                 r = requests.get(api_url, params=params, headers=headers, timeout=30)
                 if r.status_code == 429:
-                    wait = (attempt + 1) * (30 if not API_KEY else 5)
-                    logger.warning(f"   ⚠️ 限速！等待 {wait}s...")
-                    time.sleep(wait)
+                    # 429 限速：使用指数退避 + 抖动
+                    if attempt < 3:
+                        wait = exponential_backoff(attempt, 10.0 if API_KEY else 60.0, 300.0)
+                        logger.warning(f"   ⚠️ [S2] 429 限速！等待 {wait:.0f}s 后重试 (第{attempt+1}次)...")
+                        time.sleep(wait)
+                    else:
+                        logger.error(f"   ❌ [S2] 429 限速后放弃，跳过关键词: {keyword}")
                     continue
                 r.raise_for_status()
                 data = r.json().get("data", [])
@@ -217,8 +295,9 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 break
             except Exception as e:
                 if attempt < 3:
-                    logger.warning(f"   ⏳ 网络波动，重试中...")
-                    time.sleep(5)
+                    wait = exponential_backoff(attempt, 5.0, 120.0)
+                    logger.warning(f"   ⏳ [S2] 网络波动，等待 {wait:.0f}s 后重试 (第{attempt+1}次)...")
+                    time.sleep(wait)
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
         time.sleep(1.5 if API_KEY else 6.0)
