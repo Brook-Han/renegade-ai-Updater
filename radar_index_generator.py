@@ -864,6 +864,19 @@ def main():
 def auto_git_commit(data: dict) -> None:
     """将生成的 index 文件自动 git add / commit / push。"""
     repo_root = REPORTS_ROOT.parent
+
+    # ── 清理上次残留的 index.lock ────────────────────────────
+    # 如果 git 进程异常中断（Ctrl+C、崩溃等），.git/index.lock
+    # 会留在那里堵死后续所有 git 操作。删掉即可——锁只存在于
+    # git 操作期间，残留的锁一定是死锁。
+    lock_file = repo_root / ".git" / "index.lock"
+    if lock_file.exists():
+        try:
+            lock_file.unlink()
+            print(f"🧹 清理残留锁文件: .git/index.lock")
+        except Exception as e:
+            print(f"⚠️ 无法删除 index.lock: {e}")
+
     latest = data["dates"][0] if data["dates"] else "unknown"
 
     files_to_add = [
