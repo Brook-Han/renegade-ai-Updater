@@ -79,10 +79,12 @@ CACHE_FILE = OUTPUT_DIR / "academic_cache.json"
 # 工具函数
 # ------------------------------------------------------------------
 def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
-    with open(filepath, "r", encoding="utf-8") as f:
-        # 用 split('#') 去掉行内中文注释，再 strip() 去掉首尾空格
-        return [line.split('#')[0].strip() for line in f
-                if line.split('#')[0].strip()]
+    keywords = []
+    for line in open(filepath, "r", encoding="utf-8").readlines():
+        clean_line = line.split('#')[0].strip()  # 去掉中文注释和首尾空格
+        if clean_line:                            # 跳过空行
+            keywords.append(clean_line)
+    return keywords
 
 def safe_str(text: str) -> str:
     return text.encode("ascii", "ignore").decode("ascii")

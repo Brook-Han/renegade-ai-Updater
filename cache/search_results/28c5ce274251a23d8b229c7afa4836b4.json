@@ -1,0 +1,154 @@
+{
+  "timestamp": 1779070188.7699468,
+  "source": "arxiv",
+  "query": "LLM quality signal contamination",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.16251v1",
+      "title": "Real-time Speech Restoration using Data Prediction Mean Flows",
+      "summary": "Generative models are capable to address difficult problems with non-unique solutions like bandwidth extension and gap filling, removing highly non-linear artifacts from codecs, clipping and distortion, as opposed to removing linear additive components like noise and reverb. While large offline processing models have shown impressive results, these tasks have not been solved with real-time capable models with low latency and compute. We propose a few-step flow matching model using Data Prediction Mean Flows in combination with suitable novel low-latency architecture to make flow matching models an attractive choice under theses constraints. Compared to state-of-the-art, our proposed mean flow model uses 120x less compute and introduces no algorithmic latency other than the STFT, while achieving similar audio quality.",
+      "published": "2026-05-15T17:56:04+00:00",
+      "url": "https://arxiv.org/pdf/2605.16251v1",
+      "authors": [
+        "Sebastian Braun"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16245v1",
+      "title": "AI-Mediated Communication Can Steer Collective Opinion",
+      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
+      "published": "2026-05-15T17:49:24+00:00",
+      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "authors": [
+        "Stratis Tsirtsis",
+        "Kai Rawal",
+        "Chris Russell",
+        "Brent Mittelstadt",
+        "Sandra Wachter"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16241v1",
+      "title": "Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation",
+      "summary": "Billion-parameter Vision-Language-Action (VLA) policies have recently shown impressive performance in robotic manipulation, yet their size and inference cost remain major obstacles for real-time closed-loop control. We introduce \\textbf{VLA-AD}, a distillation framework that uses a Vision-Language Model as an offline semantic supervisor to transfer large VLA teachers into lightweight student policies. Instead of relying only on low-level action imitation, VLA-AD augments teacher-provided 7-DoF action targets with high-level semantic guidance, including task phase anchors and multi-frame operating-direction descriptions. These auxiliary signals are used only during training: at test time, the student policy runs independently, with neither the VLA teacher nor the VLM required. We evaluate VLA-AD on three LIBERO benchmark suites. Using OpenVLA-7B as the teacher, our method produces a 158M-parameter student, yielding a $44\\times$ reduction in model size while matching the teacher with only a $0.27\\%$ average relative gap. The resulting policy runs at 12.5 Hz on an RTX 4090, achieving a $3.28\\times$ inference speedup over OpenVLA-7B. We further show that the same semantic distillation pipeline generalizes to a different $_{0.5}$-4B teacher, where the student outperforms the teacher on two suites and remains within $0.53\\%$ on \\texttt{libero\\_goal}. Additional analysis indicates that phase-level supervision and multi-frame directional cues make the student less sensitive to noisy teacher actions, such as erroneous high-frequency gripper changes. Overall, VLA-AD demonstrates that offline semantic guidance from VLMs can substantially improve the efficiency, robustness, and deployability of VLA policy distillation.",
+      "published": "2026-05-15T17:48:25+00:00",
+      "url": "https://arxiv.org/pdf/2605.16241v1",
+      "authors": [
+        "Jin Shi",
+        "Brady Zhang",
+        "Yishun Lu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16239v1",
+      "title": "Dynamics-Level Watermarking of Flow Matching Models with Random Codes",
+      "summary": "We introduce a dynamics-level approach to watermarking generative models. Rather than embedding signals into model weights or outputs, we embed the watermark directly into the learned continuous dynamics -- the velocity field of a flow matching model. We formulate this as random coding over a continuous channel: a key-dependent perturbation is added during training, and the message is recovered at detection time from black-box queries. The perturbation is designed to leave the generated distribution unchanged. Experiments on MNIST and CIFAR-10 across different architectures confirm reliable message recovery, preserved generation quality, and chance-level decoding accuracy without the secret key.",
+      "published": "2026-05-15T17:48:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.16239v1",
+      "authors": [
+        "Shuchan Wang"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16238v1",
+      "title": "Prospective multi-pathogen disease forecasting using autonomous LLM-guided tree search",
+      "summary": "Probabilistic forecasting of infectious diseases is crucial for public health but relies on labor-intensive manual model curation by expert modeling teams. This bespoke development bottlenecks scalability to granular geographic resolutions or emerging pathogens. Here, we present an autonomous system using Large Language Model (LLM)-guided tree search to iteratively generate, evaluate, and optimize executable forecasting software. In a fully prospective, real-time evaluation during the 2025-2026 US respiratory season, the system autonomously discovered methodologically diverse models for influenza, COVID-19, and respiratory syncytial virus (RSV). Aggregating these machine-generated models yielded an ensemble that consistently matched or outperformed the gold-standard, human-curated Centers for Disease Control and Prevention (CDC) hub ensembles out-of-sample. The system successfully navigated data-scarce \"cold start\" scenarios for RSV. Moreover, controlled retrospective ablations revealed that optimizing log-scale distance metrics prevents reward hacking, while an automated judge-in-the-loop ensures structural fidelity to complex scientific theories. By autonomously translating epidemiological theory into accurate, transparent code, this framework overcomes the modeling labor bottleneck, enabling rapid deployment of expert-level disease forecasting at unprecedented scales.",
+      "published": "2026-05-15T17:45:17+00:00",
+      "url": "https://arxiv.org/pdf/2605.16238v1",
+      "authors": [
+        "Sarah Martinson",
+        "Michael P. Brenner",
+        "Martyna Plomecka",
+        "Brian P. Williams",
+        "Nicholas G. Reich",
+        "Zahra Shamsi"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16233v1",
+      "title": "FORGE: Self-Evolving Agent Memory With No Weight Updates via Population Broadcast",
+      "summary": "Can LLM agents improve decision-making through self-generated memory without gradient updates? We propose FORGE (Failure-Optimized Reflective Graduation and Evolution), a staged, population-based protocol that evolves prompt-injected natural-language memory for hierarchical ReAct agents. FORGE wraps a Reflexion-style inner loop, where a dedicated reflection agent (using the same underlying LLM, no distillation from a stronger model) converts failed trajectories into reusable knowledge artifacts: textual heuristics (Rules), few-shot demonstrations (Examples), or both (Mixed), with an outer loop that propagates the best-performing instance's memory to the population between stages and freezes converged instances via a graduation criterion. We evaluate on CybORG CAGE-2, a stochastic network-defense POMDP at a 30-step horizon against the B-line attacker, where all four tested LLM families (Gemini-2.5-Flash-Lite, Grok-4-Fast, Llama-4-Maverick, Qwen3-235B) exhibit strongly negative, heavy-tailed zero-shot rewards. Compared against both a zero-shot baseline and a Reflexion baseline (isolated single-stream learning), FORGE improves average evaluation return by 1.7-7.7$\\times$ over zero-shot and by 29-72% over Reflexion in all 12 model-representation conditions, reducing major-failure rates (below $-100$) to as low as $\\sim$1%. We find that (1) population broadcast is critical mechanism, with a no-graduation ablation confirming that broadcast carries the performance gains while graduation primarily saves compute; (2) Examples achieves the strongest returns for three of four models, Rules offers the best cost-reliability profile with $\\sim$40% fewer tokens; and (3) weaker baseline models benefit disproportionately, suggesting FORGE may mitigate capability gaps rather than amplify strong models. All evidence is confined to CAGE-2 B-line; cross-family findings are directional evidence.",
+      "published": "2026-05-15T17:42:49+00:00",
+      "url": "https://arxiv.org/pdf/2605.16233v1",
+      "authors": [
+        "Igor Bogdanov",
+        "Chung-Horng Lung",
+        "Thomas Kunz",
+        "Jie Gao",
+        "Adrian Taylor",
+        "Marzia Zaman"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16223v1",
+      "title": "Evaluating Design Video Generation: Metrics for Compositional Fidelity",
+      "summary": "Generative video models are increasingly used in design animation tasks, yet no standardized evaluation framework exists for this domain. Unlike natural video generation, design animation imposes structured constraints: specific components shall animate with prescribed motion types, directions, speed and timing, while non-animated regions must remain stable and layout structure must be preserved. This paper provides a fully automated evaluation framework organized across four dimensions: layout fidelity, motion correctness, temporal quality, and content fidelity. This eliminates the reliance on subjective human evaluation and establishes a common basis for benchmarking progress in the field.",
+      "published": "2026-05-15T17:34:05+00:00",
+      "url": "https://arxiv.org/pdf/2605.16223v1",
+      "authors": [
+        "Adrienne Deganutti",
+        "Dingning Cao",
+        "Jaejung Seol",
+        "Elad Hirsch",
+        "Purvanshi Mehta"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16215v1",
+      "title": "Fully Open Meditron: An Auditable Pipeline for Clinical LLMs",
+      "summary": "Clinical decision support systems (CDSS) require scrutable, auditable pipelines that enable rigorous, reproducible validation. Yet current LLM-based CDSS remain largely opaque. Most \"open\" models are open-weight only, releasing parameters while withholding the data provenance, curation procedures, and generation pipelines that determine model behavior. Fully Open (FO) models, which expose the complete training stack end-to-end, do not currently exist in medicine. We introduce Fully Open Meditron, the first fully open pipeline for building LLM-CDSS, comprising a clinician-audited training corpus, a reproducible data construction and training framework, and a use-aligned evaluation protocol. The corpus unifies eight public medical QA datasets into a normalized conversational format and expands coverage with three clinician-vetted synthetic extensions: exam-style QA, guideline-grounded QA derived from 46,469 clinical practice guidelines, and clinical vignettes. The pipeline enforces system-wide decontamination, gold-label resampling of teacher generations, and end-to-end validation by a four-physician panel. We evaluate using an LLM-as-a-judge protocol over expert-written clinical vignettes, calibrated against 204 human raters. We apply the recipe to five FO base models (Apertus-70B/8B-Instruct, OLMo-2-32B-SFT, EuroLLM-22B/9B-Instruct). All MeditronFO variants are preferred over their bases. Apertus-70B-MeditronFO improves +6.6 points over its base (47.2% to 53.8%) on aggregate medical benchmarks, establishing a new FO SoTA. Gemma-3-27B-MeditronFO is preferred over MedGemma in 58.6% of LLM-as-a-judge comparisons and outperforms it on HealthBench (58% vs 55.9%). These results show that fully open pipelines can achieve state-of-the-art domain-specific performance without sacrificing auditability or reproducibility.",
+      "published": "2026-05-15T17:29:08+00:00",
+      "url": "https://arxiv.org/pdf/2605.16215v1",
+      "authors": [
+        "Xavier Theimer-Lienhard",
+        "Mushtaha El-Amin",
+        "Fay Elhassan",
+        "Sahaj Vaidya",
+        "Victor Cartier-Negadi",
+        "David Sasu",
+        "Lars Klein",
+        "Mary-Anne Hartley"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16207v1",
+      "title": "Confirming Correct, Missing the Rest: LLM Tutoring Agents Struggle Where Feedback Matters Most",
+      "summary": "Effective tutoring requires distinguishing optimal, valid but suboptimal, and incorrect student solutions, a distinction central to intelligent tutoring systems (ITS) but untested for LLM-based tutors. As LLMs are increasingly explored as conversational complements to ITS, evaluating their diagnostic precision is essential. We present a benchmark of seven LLM feedback agents in propositional logic using knowledge-graph-derived ground truth across 10,836 solution--feedback pairs and three feedback conditions. Models achieved near-ceiling performance on optimal steps but systematically over-rejected valid but suboptimal reasoning and over-validated incorrect solutions, precisely where adaptive tutoring matters most. These failures persisted across models regardless of solution context, suggesting architectural rather than informational limits. Moreover, accurate diagnosis did not reliably produce pedagogically actionable feedback, revealing a gap between diagnostic judgment and instructional effectiveness. Our findings suggest that LLMs are better suited for hybrid architectures where KG-grounded models handle diagnosis while LLMs support open-ended scaffolding and dialogue.",
+      "published": "2026-05-15T17:24:42+00:00",
+      "url": "https://arxiv.org/pdf/2605.16207v1",
+      "authors": [
+        "Tahreem Yasir",
+        "Wenbo Li",
+        "Sam Gilson",
+        "Sutapa Dey Tithi",
+        "Xiaoyi Tian",
+        "Tiffany Barnes"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16205v1",
+      "title": "Context, Reasoning, and Hierarchy: A Cost-Performance Study of Compound LLM Agent Design in an Adversarial POMDP",
+      "summary": "Deploying compound LLM agents in adversarial, partially observable sequential environments requires navigating several design dimensions: (1) what the agent sees, (2) how it reasons, and (3) how tasks are decomposed across components. Yet practitioners lack guidance on which design choices improve performance versus merely increase inference costs. We present a controlled study of compound LLM agent design in CybORG CAGE-2, a cyber defense environment modeled as a Partially Observable Markov Decision Process (POMDP). Reward is non-positive, so all configurations operate in a failure-mitigation mode. Our evaluation spans five model families, six models, and twelve configurations (3,475 episodes) with token-level cost accounting. We vary context representation (raw observations vs. a deterministic state-tracking layer with compressed history), deliberation (self-questioning, self-critique, and self-improvement tools, with optional chain-of-thought prompting), and hierarchical decomposition (monolithic ReAct vs. delegation to specialized sub-agents). We find that: (1) Programmatic state abstraction delivers the largest returns per token spent (RPTS), improving mean return by up to 76% over raw observations. (2) Distributing deliberation tools across a hierarchy degrades performance relative to hierarchy alone for all five model families, reaching up to 3.4$\\times$ worse mean return while using 1.8-2.7$\\times$ more tokens. We call this destructive pattern a deliberation cascade. (3) Hierarchical decomposition without deliberation achieves the best absolute performance for most models, and context engineering is generally more cost-effective than deliberation. These findings suggest a design principle for structured adversarial POMDPs: invest in programmatic infrastructure and clean task decomposition rather than deeper per-agent reasoning, as these strategies can interfere when combined.",
+      "published": "2026-05-15T17:23:08+00:00",
+      "url": "https://arxiv.org/pdf/2605.16205v1",
+      "authors": [
+        "Igor Bogdanov",
+        "Chung-Horng Lung",
+        "Thomas Kunz",
+        "Jie Gao",
+        "Adrian Taylor",
+        "Marzia Zaman"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

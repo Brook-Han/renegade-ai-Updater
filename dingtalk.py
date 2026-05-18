@@ -22,9 +22,12 @@
 
 import sys
 import os
+from dotenv import load_dotenv
 
 # 确保项目根目录在 path 中
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# 加载 .env 环境变量（本地运行必须）
+load_dotenv()
 
 from notify.cli import main
 
