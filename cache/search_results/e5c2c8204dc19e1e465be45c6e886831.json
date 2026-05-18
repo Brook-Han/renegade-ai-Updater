@@ -1,0 +1,140 @@
+{
+  "timestamp": 1779073852.084883,
+  "source": "arxiv",
+  "query": "AI generated content cognitive impact",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.16258v1",
+      "title": "IVGT: Implicit Visual Geometry Transformer for Neural Scene Representation",
+      "summary": "Reconstructing coherent 3D geometry and appearance from unposed multi-view images is a fundamental yet challenging problem in computer vision. Most existing visual geometry foundation models predict explicit geometry by regressing pixel-aligned pointmaps, often suffering from redundancy and limited geometric continuity. We propose IVGT, an Implicit Visual Geometry Transformer that implicitly models continuous and coherent geometry from pose-free multi-view images. This formulation learns a continuous neural scene representation in a canonical coordinate system and supports continuous spatial queries at any 3D positions, retrieving local features to predict signed distance (SDF) values and colors using lightweight decoders. It allows direct extraction of continuous and coherent surface geometry, enabling rendering of RGB images, depth maps, and surface normal maps from arbitrary viewpoints. We train IVGT via multi-dataset joint optimization with 2D supervision and 3D geometric regularization. IVGT demonstrates generalization across scenes and achieves strong performance on various tasks, including mesh and point cloud reconstruction, novel view synthesis, depth and surface normal estimation, and camera pose estimation.",
+      "published": "2026-05-15T17:59:57+00:00",
+      "url": "https://arxiv.org/pdf/2605.16258v1",
+      "authors": [
+        "Yuqi Wu",
+        "Tianyu Hu",
+        "Wenzhao Zheng",
+        "Yuanhui Huang",
+        "Haowen Sun",
+        "Jie Zhou",
+        "Jiwen Lu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16255v1",
+      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
+      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
+      "published": "2026-05-15T17:58:58+00:00",
+      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "authors": [
+        "Grant Wilkins",
+        "Fiodar Kazhamiaka",
+        "Alok Gautam Kumbhare",
+        "Chaojie Zhang",
+        "Ricardo Bianchini"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16253v1",
+      "title": "TTP: A Hardware-Efficient Design for Precise Prefetching in Ray Tracing",
+      "summary": "Ray tracing (RT) is a 3D graphics technique that offers highly realistic visuals. It is becoming prominent and accessible as GPU vendors have integrated dedicated ray tracing acceleration hardware. However, tracing millions of rays through 3D scenes consisting of high numbers of triangles in real time is challenging and requires expensive hardware. The main bottleneck in RT workloads is the expensive Bounding Volume Hierarchy (BVH) traversal task, which is a large tree structure that encodes the 3D scene. BVH traversal is a memory-bound problem, as the GPU threads spend most of their time reading tree node data from memory. In this work, we attack the memory latency bottleneck of ray tracing through prefetching. We propose a novel hardware prefetcher, named Tree Traversal Prefetcher (TTP), for ray tracing. The main idea is to leverage the existing tree traversal stack in the RT units for highly accurate prefetching. In particular, TTP prefetches nodes using the addresses already available on the hardware traversal stacks of each thread. For DFS (Depth-first search) based traversal, prefetches are generated when nodes are being popped consecutively from the traversal stack, potentially corresponding to upward traversal through the tree. We evaluate TTP on a cycle-level simulator, Vulkan-sim 2.0, and show that it achieves 1.48x speedup on average (up to 1.89x) compared to the baseline, with nearly negligible hardware overhead. TTP achieves 98.92% average L1 accuracy, which is the ratio of the prefetched blocks being actually referenced by demand loads. The coverage, computed as the ratio of L1 miss reduction over baseline L1 misses, is 31.54%, correlating well with the achieved speedup.",
+      "published": "2026-05-15T17:57:31+00:00",
+      "url": "https://arxiv.org/pdf/2605.16253v1",
+      "authors": [
+        "Yavuz Selim Tozlu",
+        "Anshul Naithani",
+        "Huiyang Zhou"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16251v1",
+      "title": "Real-time Speech Restoration using Data Prediction Mean Flows",
+      "summary": "Generative models are capable to address difficult problems with non-unique solutions like bandwidth extension and gap filling, removing highly non-linear artifacts from codecs, clipping and distortion, as opposed to removing linear additive components like noise and reverb. While large offline processing models have shown impressive results, these tasks have not been solved with real-time capable models with low latency and compute. We propose a few-step flow matching model using Data Prediction Mean Flows in combination with suitable novel low-latency architecture to make flow matching models an attractive choice under theses constraints. Compared to state-of-the-art, our proposed mean flow model uses 120x less compute and introduces no algorithmic latency other than the STFT, while achieving similar audio quality.",
+      "published": "2026-05-15T17:56:04+00:00",
+      "url": "https://arxiv.org/pdf/2605.16251v1",
+      "authors": [
+        "Sebastian Braun"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16250v1",
+      "title": "A Generative AI Framework for Intelligent Utility Billing CO 2 Analytics and Sustainable Resource Optimisation",
+      "summary": "Distribution utilities are now expected to deliver bills that customers can actually read attach a defensible carbon number to every kWh sold and schedule load against grid stress and emissions constraints We propose an end-to-end framework that unifies four production-grade capabilities under one architectural roof a generative-AI agent that drafts each customers natural-language billing statement from structured numeric inputs under a constrained decoding policy a transformer-based forecaster that supplies the day-ahead consumption estimate with calibrated quantile bands",
+      "published": "2026-05-15T17:52:57+00:00",
+      "url": "https://arxiv.org/pdf/2605.16250v1",
+      "authors": [
+        "Pavan Manjunath",
+        "Thomas Pruefer"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16248v1",
+      "title": "Local Softmax and Global Weights in Non-Boolean Event Structures",
+      "summary": "Softmax and related normalized response functions are widely used in choice theory, machine learning, and cognitive science. In non-Boolean event structures with overlapping contexts, however, local normalization does not automatically yield a global probability weight. We show that imposing single-valuedness on shared atoms -- equivalently, no-disturbance or consistent connectedness -- collapses generalized softmax rules to coordinate parametrizations of the strictly positive part of the admissible-weight polytope. Any strictly positive admissible weight can be represented in this way, while boundary weights arise as limits. Exotic weights that exceed classical or quantum bounds are therefore properties of the event structure and the chosen weight, not of the normalizing link. The resulting hierarchy separates local normalization, cross-context gluing, Cauchy--Gleason linearity, and physical or cognitive realizability.",
+      "published": "2026-05-15T17:51:15+00:00",
+      "url": "https://arxiv.org/pdf/2605.16248v1",
+      "authors": [
+        "Karl Svozil"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16246v1",
+      "title": "FRESH: Information-Geometric Calibration of Patient-Level Models to Aggregate Evidence",
+      "summary": "This note introduces FRESH (Fusion of Recent Evidence and Subject Histories), a method for incorporating population-level summary results -- published clinical trials, registry summaries,   prior natural-history studies, and peer-reviewed indirect comparisons -- into predictive models trained on patient-level data. This method provides a principled means of combining both   patient-level and aggregate-level data types into a unified data-efficient model for clinical decision making.   FRESH assumes access to a generative model trained on patient-level data sources (e.g. clinical trial or real-world data). The method produces patient-level predictions from a re-calibrated   model that matches a set of specified aggregate statistics for a target population. This can be understood as a patient-level recapitulation of the aggregate source -- with the key property   that the recalibration is a minimal perturbation of the original joint distribution in a specific information-geometric sense. The resulting samples can be analyzed directly or combined into a   post-training procedure to update the original generative model.   This approach enables several applications where rigorously incorporating patient-level data with summary information is valuable, including (i) contextualizing single-arm trial results with   respect to recent standard-of-care, (ii) clinical-trial simulations for design and probability-of-technical-success estimation, and (iii) comparative-effectiveness analyses of on-market   therapies.",
+      "published": "2026-05-15T17:50:11+00:00",
+      "url": "https://arxiv.org/pdf/2605.16246v1",
+      "authors": [
+        "Franklin Fuller",
+        "Daniele Bertolini",
+        "Samantha Liang",
+        "Jason Christopher",
+        "Aaron M. Smith"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16245v1",
+      "title": "AI-Mediated Communication Can Steer Collective Opinion",
+      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
+      "published": "2026-05-15T17:49:24+00:00",
+      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "authors": [
+        "Stratis Tsirtsis",
+        "Kai Rawal",
+        "Chris Russell",
+        "Brent Mittelstadt",
+        "Sandra Wachter"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16241v1",
+      "title": "Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation",
+      "summary": "Billion-parameter Vision-Language-Action (VLA) policies have recently shown impressive performance in robotic manipulation, yet their size and inference cost remain major obstacles for real-time closed-loop control. We introduce \\textbf{VLA-AD}, a distillation framework that uses a Vision-Language Model as an offline semantic supervisor to transfer large VLA teachers into lightweight student policies. Instead of relying only on low-level action imitation, VLA-AD augments teacher-provided 7-DoF action targets with high-level semantic guidance, including task phase anchors and multi-frame operating-direction descriptions. These auxiliary signals are used only during training: at test time, the student policy runs independently, with neither the VLA teacher nor the VLM required. We evaluate VLA-AD on three LIBERO benchmark suites. Using OpenVLA-7B as the teacher, our method produces a 158M-parameter student, yielding a $44\\times$ reduction in model size while matching the teacher with only a $0.27\\%$ average relative gap. The resulting policy runs at 12.5 Hz on an RTX 4090, achieving a $3.28\\times$ inference speedup over OpenVLA-7B. We further show that the same semantic distillation pipeline generalizes to a different $_{0.5}$-4B teacher, where the student outperforms the teacher on two suites and remains within $0.53\\%$ on \\texttt{libero\\_goal}. Additional analysis indicates that phase-level supervision and multi-frame directional cues make the student less sensitive to noisy teacher actions, such as erroneous high-frequency gripper changes. Overall, VLA-AD demonstrates that offline semantic guidance from VLMs can substantially improve the efficiency, robustness, and deployability of VLA policy distillation.",
+      "published": "2026-05-15T17:48:25+00:00",
+      "url": "https://arxiv.org/pdf/2605.16241v1",
+      "authors": [
+        "Jin Shi",
+        "Brady Zhang",
+        "Yishun Lu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16239v1",
+      "title": "Dynamics-Level Watermarking of Flow Matching Models with Random Codes",
+      "summary": "We introduce a dynamics-level approach to watermarking generative models. Rather than embedding signals into model weights or outputs, we embed the watermark directly into the learned continuous dynamics -- the velocity field of a flow matching model. We formulate this as random coding over a continuous channel: a key-dependent perturbation is added during training, and the message is recovered at detection time from black-box queries. The perturbation is designed to leave the generated distribution unchanged. Experiments on MNIST and CIFAR-10 across different architectures confirm reliable message recovery, preserved generation quality, and chance-level decoding accuracy without the secret key.",
+      "published": "2026-05-15T17:48:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.16239v1",
+      "authors": [
+        "Shuchan Wang"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

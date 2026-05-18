@@ -1,0 +1,133 @@
+{
+  "timestamp": 1779073831.87702,
+  "source": "arxiv",
+  "query": "digital evolution selfish replication",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.16233v1",
+      "title": "FORGE: Self-Evolving Agent Memory With No Weight Updates via Population Broadcast",
+      "summary": "Can LLM agents improve decision-making through self-generated memory without gradient updates? We propose FORGE (Failure-Optimized Reflective Graduation and Evolution), a staged, population-based protocol that evolves prompt-injected natural-language memory for hierarchical ReAct agents. FORGE wraps a Reflexion-style inner loop, where a dedicated reflection agent (using the same underlying LLM, no distillation from a stronger model) converts failed trajectories into reusable knowledge artifacts: textual heuristics (Rules), few-shot demonstrations (Examples), or both (Mixed), with an outer loop that propagates the best-performing instance's memory to the population between stages and freezes converged instances via a graduation criterion. We evaluate on CybORG CAGE-2, a stochastic network-defense POMDP at a 30-step horizon against the B-line attacker, where all four tested LLM families (Gemini-2.5-Flash-Lite, Grok-4-Fast, Llama-4-Maverick, Qwen3-235B) exhibit strongly negative, heavy-tailed zero-shot rewards. Compared against both a zero-shot baseline and a Reflexion baseline (isolated single-stream learning), FORGE improves average evaluation return by 1.7-7.7$\\times$ over zero-shot and by 29-72% over Reflexion in all 12 model-representation conditions, reducing major-failure rates (below $-100$) to as low as $\\sim$1%. We find that (1) population broadcast is critical mechanism, with a no-graduation ablation confirming that broadcast carries the performance gains while graduation primarily saves compute; (2) Examples achieves the strongest returns for three of four models, Rules offers the best cost-reliability profile with $\\sim$40% fewer tokens; and (3) weaker baseline models benefit disproportionately, suggesting FORGE may mitigate capability gaps rather than amplify strong models. All evidence is confined to CAGE-2 B-line; cross-family findings are directional evidence.",
+      "published": "2026-05-15T17:42:49+00:00",
+      "url": "https://arxiv.org/pdf/2605.16233v1",
+      "authors": [
+        "Igor Bogdanov",
+        "Chung-Horng Lung",
+        "Thomas Kunz",
+        "Jie Gao",
+        "Adrian Taylor",
+        "Marzia Zaman"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16213v1",
+      "title": "ADS-IMC: Accelerating Data Sorting with In-Memory Computation",
+      "summary": "Sorting is a fundamental operation across numerous computational domains. Traditionally, this process involves transferring data from main memory to a processing unit for sorting, followed by writing the sorted data back to memory. This conventional approach incurs substantial latency and energy overheads due to the extensive data movement between memory and processing components. To mitigate these overheads, this paper introduces novel architectures for executing sorting operations directly within the memory fabric, eliminating the need for off-chip data transfer. To our knowledge, this work represents the first exploration of in-memory sorting using 6T SRAM. The proposed architecture is designed to operate on data represented in the standard weighted binary radix format commonly used in digital systems. The proposed architecture achieves a significant 3.4x reduction in latency compared to memristor-based IMC sorting.",
+      "published": "2026-05-15T17:27:52+00:00",
+      "url": "https://arxiv.org/pdf/2605.16213v1",
+      "authors": [
+        "Narendra Singh Dhakad",
+        "Santosh Kumar Vishvakarma"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16211v1",
+      "title": "Hypothesis-driven construction of mesoscopic dynamics",
+      "summary": "Traditional scientific modeling typically begins with fixed, instance-wise effective equations and then carries out equation-specific analysis and computation, a procedure that becomes exceptionally challenging in complex applications such as multiscale systems. We propose an alternative paradigm by learning mesoscopic dynamics within a mathematically constrained hypothesis class. Building upon a generalized Onsager principle, we introduce a unified framework encompassing both dissipative and conservative mesoscopic dynamics. We establish uniform and a priori theoretical guarantees, including global well-posedness, asymptotic stability, unique factorization identifiability, and discrete energy dissipation, applicable to all spatio-temporal evolution equations within this hypothesis class prior to all learning stages. Data from each problem instance is then used to guide the identification of members within our hypothesis class, giving rise to accurate, robust and interpretable dynamical models. We empirically validate this framework on both data from continuum PDE models as a check, and on data arising from microscopic chain models for which exact meso-scale models are unknown. The proposed approach not only acts as an effective dynamics learner, but also offers vital interpretable diagnostics of the underlying physics.",
+      "published": "2026-05-15T17:26:28+00:00",
+      "url": "https://arxiv.org/pdf/2605.16211v1",
+      "authors": [
+        "Zhuoyuan Li",
+        "Aiqing Zhu",
+        "Qianxiao Li"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16201v1",
+      "title": "Irreducible Graviton Floor from Reheating",
+      "summary": "Inflaton decay inevitably emits gravitons through bremsstrahlung during reheating. We show that the soft part of this emission amplitude, fixed by Weinberg's soft-graviton theorem, becomes an irreducible stochastic gravitational-wave (GW) background after accounting for cosmological evolution. The theorem fixes the infrared branch of the spectrum, $_{\\rm GW}\\propto f$, independently of the microscopic operator responsible for inflaton decay, while the normalization is controlled by the hard inflaton decay rate and by a phase-space factor. We carry this out for inflaton $n$-body decays, including the phase-space integrals, finding that the maximum of the spectrum scales as $2/n$ relative to the $n=2$ case. The signal can reach $_{\\rm GW}h^2\\sim \\mathcal O(10^{-17})$ at frequencies above the GHz scale. This predicts a stochastic graviton floor from perturbative reheating: a larger signal would require either other processes beyond perturbative bremsstrahlung or inflationary scenarios beyond conventional single-field slow roll.",
+      "published": "2026-05-15T17:15:45+00:00",
+      "url": "https://arxiv.org/pdf/2605.16201v1",
+      "authors": [
+        "James M. Cline",
+        "Yong Xu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16195v1",
+      "title": "Efficient quantum algorithm for linear matrix differential equations and applications to open quantum systems",
+      "summary": "We present an efficient, nearly optimal quantum algorithm for solving linear matrix differential equations, with applications to the simulation of open quantum systems and beyond. For unitary or dissipative dynamics, the algorithm computes an entry of the solution matrix with query complexity $\\widetilde{\\mathcal{O}}(\\mathcal{L} t/)$, where the constant $$ depends on the problem parameters, $\\mathcal{L}$ involves a time integral of upper bounds on the norms of evolution operators, and $$ is the error. In particular, $\\mathcal{L}$ is linear in $t$ for unitary dynamics and can be a constant for dissipative dynamics. Our result contrasts prior quantum approaches for differential equations that typically require exponential time for this problem due to the encoding in a quantum state, which can lead to exponentially small amplitudes. We demonstrate the utility of the algorithm through an end-to-end application, namely the simulation of dissipative dynamics for non-interacting fermions, which can be extended to other quantum and classical systems. We compare with classical algorithms and give evidence of polynomial quantum speedups for systems in a lattice, which become more pronounced for systems with long-range interactions and can be shown to be exponential in general. We also provide a lower bound of $(\\mathcal{L} t/)$ for unitary or dissipative dynamics that proves our algorithm is optimal up to logarithmic factors.",
+      "published": "2026-05-15T17:11:07+00:00",
+      "url": "https://arxiv.org/pdf/2605.16195v1",
+      "authors": [
+        "Sophia Simon",
+        "Dominic W. Berry",
+        "Rolando D. Somma"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16194v1",
+      "title": "paper.json: A Coordination Convention for LLM-Agent-Actionable Papers",
+      "summary": "LLM agents routinely serve as first (and sometimes only) readers of academic papers, skimming for sub-claims, extracting reproducibility steps, and generalizing scope. Standard prose papers produce recurring failures in this role: sub-claims that cannot be cited at sub-paper granularity, scope overextension beyond what the paper tests, and figure commands buried in codebases rather than the paper itself. We propose `paper.json`, a companion JSON file that travels with the PDF and addresses each failure with a lightweight convention: stable claim IDs (C1), an explicit does-not-claim list (C2), exact per-figure shell commands (C3), and stable definition IDs (C5). A fifth convention (C4) holds that minimum viable compliance, hand-written JSON alongside the PDF, is achievable in under an hour for a finished paper without touching the human-readable output. C1, C2, C3, and C5 are open invitations: an agent that reads a compliant paper and acts on it produces evidence for or against them. This paper is itself compliant: `uv run validator.py paper.json --against paper.typ` passes. Repo: https://github.com/arquicanedo/paper-json",
+      "published": "2026-05-15T17:10:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.16194v1",
+      "authors": [
+        "Arquimedes Canedo"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16177v1",
+      "title": "Observational signatures of negative mass wormholes through their shadows",
+      "summary": "We investigate systems containing objects with negative mass (NMOs). In a system consisting of one object with positive mass and one NMO, a bound state exists even though the force exerted by the NMO on the object with positive mass is repulsive. Unlike a standard system consisting of two objects with positive mass, the gravitational waves emitted from this system exhibit a decrease in frequency and amplitude over time. We propose a model of the time evolution of the Ellis-Bronnikov wormhole, along with a formulation that eliminates the ghost that appears when constructing the Ellis-Bronnikov wormhole, a candidate for an NMO. Furthermore, numerical simulations are performed to obtain the optical appearance of such NMOs. The observed luminosity is also compared with the Schwarzschild black hole and with the Simpson-Visser wormhole, leading to clear differences in the photon ring substructure around the central object.",
+      "published": "2026-05-15T16:57:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.16177v1",
+      "authors": [
+        "Shin'ichi Nojiri",
+        "Sergei D. Odintsov",
+        "Diego Sáez-Chillón Gómez"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16176v1",
+      "title": "How Far Back in Time a Digital Twin Reflects the State of the Physical Object: Age of Staleness",
+      "summary": "The groundbreaking metric age of information (AoI) has been introduced to measure information freshness in communication networks. As transformational as it is, AoI metric falls short in some applications, such as remote monitoring, since it is a semantic-agnostic metric which does not consider the dynamics of the random process. There is a need to quantify the performance of a remote estimator via a metric that combines freshness and semantic aspects. To this end, in this paper, we introduce a novel metric coined age of staleness (AoS) that measures when the last time that the current estimation was correct. First, we analyze a simple scenario where an $n$-ary symmetric Markov source is observed by a monitor via a constant sampling rate, obtain a closed-form expression for the AoS, and show that it is a monotonically decreasing function of the sampling rate. Next, we consider multiple distinct Markov sources, and formulate an optimization problem, where the remote monitor allocates the total sampling rate to tracking the sources. Although the optimization problem is non-convex, its structure is suitable for obtaining a near-optimal solution using the polyblock algorithm, which leverages the monotonicity of the objective function. While the new AoS metric could be applicable in many scenarios, we believe it is particularly well-suited for a digital twin network (DTN) where multiple physical objects (POs) are monitored with a total sampling rate constraint to maintain a digital representation of them, namely, their digital twin (DT).",
+      "published": "2026-05-15T16:55:00+00:00",
+      "url": "https://arxiv.org/pdf/2605.16176v1",
+      "authors": [
+        "Ismail Cosandal",
+        "Sennur Ulukus"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16161v1",
+      "title": "SRAM Based Digital Custom Compute Engine for Improved Area Efficiency of AI Hardware",
+      "summary": "This paper presents a novel architecture utilizing a 10T SRAM cell for XNOR-based in-memory computing, aimed at mitigating the extensive routing challenges typically encountered in conventional in-memory computing systems. By integrating a full adder between in-memory multiplication cells, the proposed design achieves a 50% reduction in routing complexity. The architecture performs multiply-accumulate (MAC) operations using XNOR computation optimized for binary neural networks (BNNs). Additionally, a 14T-based full adder is employed to construct an N-bit ripple carry adder in the adder tree, significantly reducing the area compared to traditional 28T-based CMOS designs. The 10T SRAM XNOR computation further enhances the latency for MAC operations. The proposed approach reduces the latency and area overhead, improving the overall hardware's area efficiency by 2.67x compared to the state-of-the-art.",
+      "published": "2026-05-15T16:39:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.16161v1",
+      "authors": [
+        "Narendra Singh Dhakad",
+        "Santosh Kumar Vishvakarma"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16159v1",
+      "title": "Restoring CFAR Validity for Single-Channel IoT Sensor Streams: A Monte Carlo Comparison of Five Detectors under Cortex-M0+ Constraints",
+      "summary": "Real-time event detection in IoT mesh sensor networks must balance sensitivity against false-positive load on a constrained mesh radio. We present a Monte Carlo comparison of the Temporal Spectral Noise-Floor Adaptation (TSNFA) detector against four classical comparators drawn from the radar Constant False Alarm Rate (CFAR) family and from sequential change detection: the Lipski FFT energy detector, Cell-Averaging CFAR (CA-CFAR), Ordered-Statistic CFAR (OS-CFAR), and state-machine Cumulative Sum (CUSUM). All five detectors are implemented to fit a Cortex-M0+ class envelope, process a 1-D 100 Hz time series in 128-sample frames, and use temporal reference windows in place of the spatial reference cells of conventional radar CFAR. Across a factorial set of four configurations (10 and 50 nodes; 12 dB and 18 dB SNR), each replicated five times over 24 hours, TSNFA achieves 99.97 to 100% event detection rate with 100% event precision and zero false-positive clusters per node. The classical comparators each succeed on one quality dimension and fail on another. Lipski FFT (k = 3), CA-CFAR, and OS-CFAR all maintain near-perfect detection rate but with event precision below 3% and per-node bandwidth between 145 kB/h and 1.2 MB/h. CA-CFAR and OS-CFAR are indistinguishable in false-alarm performance, both saturating the same broadband-statistic failure mode. CUSUM shows an SNR-dependent detection-rate drop from about 70% at 18 dB to 51% at 12 dB. TSNFA is the only algorithm tested that simultaneously achieves high detection rate, high precision, and low per-node bandwidth.",
+      "published": "2026-05-15T16:39:30+00:00",
+      "url": "https://arxiv.org/pdf/2605.16159v1",
+      "authors": [
+        "Sergii Makovetskyi",
+        "Lars Thomsen"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}

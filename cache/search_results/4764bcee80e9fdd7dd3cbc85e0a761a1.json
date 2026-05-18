@@ -1,0 +1,152 @@
+{
+  "timestamp": 1779073815.0304892,
+  "source": "arxiv",
+  "query": "alignment open deployment behavioral drift",
+  "results": [
+    {
+      "id": "http://arxiv.org/abs/2605.16258v1",
+      "title": "IVGT: Implicit Visual Geometry Transformer for Neural Scene Representation",
+      "summary": "Reconstructing coherent 3D geometry and appearance from unposed multi-view images is a fundamental yet challenging problem in computer vision. Most existing visual geometry foundation models predict explicit geometry by regressing pixel-aligned pointmaps, often suffering from redundancy and limited geometric continuity. We propose IVGT, an Implicit Visual Geometry Transformer that implicitly models continuous and coherent geometry from pose-free multi-view images. This formulation learns a continuous neural scene representation in a canonical coordinate system and supports continuous spatial queries at any 3D positions, retrieving local features to predict signed distance (SDF) values and colors using lightweight decoders. It allows direct extraction of continuous and coherent surface geometry, enabling rendering of RGB images, depth maps, and surface normal maps from arbitrary viewpoints. We train IVGT via multi-dataset joint optimization with 2D supervision and 3D geometric regularization. IVGT demonstrates generalization across scenes and achieves strong performance on various tasks, including mesh and point cloud reconstruction, novel view synthesis, depth and surface normal estimation, and camera pose estimation.",
+      "published": "2026-05-15T17:59:57+00:00",
+      "url": "https://arxiv.org/pdf/2605.16258v1",
+      "authors": [
+        "Yuqi Wu",
+        "Tianyu Hu",
+        "Wenzhao Zheng",
+        "Yuanhui Huang",
+        "Haowen Sun",
+        "Jie Zhou",
+        "Jiwen Lu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16255v1",
+      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
+      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
+      "published": "2026-05-15T17:58:58+00:00",
+      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "authors": [
+        "Grant Wilkins",
+        "Fiodar Kazhamiaka",
+        "Alok Gautam Kumbhare",
+        "Chaojie Zhang",
+        "Ricardo Bianchini"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16241v1",
+      "title": "Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation",
+      "summary": "Billion-parameter Vision-Language-Action (VLA) policies have recently shown impressive performance in robotic manipulation, yet their size and inference cost remain major obstacles for real-time closed-loop control. We introduce \\textbf{VLA-AD}, a distillation framework that uses a Vision-Language Model as an offline semantic supervisor to transfer large VLA teachers into lightweight student policies. Instead of relying only on low-level action imitation, VLA-AD augments teacher-provided 7-DoF action targets with high-level semantic guidance, including task phase anchors and multi-frame operating-direction descriptions. These auxiliary signals are used only during training: at test time, the student policy runs independently, with neither the VLA teacher nor the VLM required. We evaluate VLA-AD on three LIBERO benchmark suites. Using OpenVLA-7B as the teacher, our method produces a 158M-parameter student, yielding a $44\\times$ reduction in model size while matching the teacher with only a $0.27\\%$ average relative gap. The resulting policy runs at 12.5 Hz on an RTX 4090, achieving a $3.28\\times$ inference speedup over OpenVLA-7B. We further show that the same semantic distillation pipeline generalizes to a different $_{0.5}$-4B teacher, where the student outperforms the teacher on two suites and remains within $0.53\\%$ on \\texttt{libero\\_goal}. Additional analysis indicates that phase-level supervision and multi-frame directional cues make the student less sensitive to noisy teacher actions, such as erroneous high-frequency gripper changes. Overall, VLA-AD demonstrates that offline semantic guidance from VLMs can substantially improve the efficiency, robustness, and deployability of VLA policy distillation.",
+      "published": "2026-05-15T17:48:25+00:00",
+      "url": "https://arxiv.org/pdf/2605.16241v1",
+      "authors": [
+        "Jin Shi",
+        "Brady Zhang",
+        "Yishun Lu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16238v1",
+      "title": "Prospective multi-pathogen disease forecasting using autonomous LLM-guided tree search",
+      "summary": "Probabilistic forecasting of infectious diseases is crucial for public health but relies on labor-intensive manual model curation by expert modeling teams. This bespoke development bottlenecks scalability to granular geographic resolutions or emerging pathogens. Here, we present an autonomous system using Large Language Model (LLM)-guided tree search to iteratively generate, evaluate, and optimize executable forecasting software. In a fully prospective, real-time evaluation during the 2025-2026 US respiratory season, the system autonomously discovered methodologically diverse models for influenza, COVID-19, and respiratory syncytial virus (RSV). Aggregating these machine-generated models yielded an ensemble that consistently matched or outperformed the gold-standard, human-curated Centers for Disease Control and Prevention (CDC) hub ensembles out-of-sample. The system successfully navigated data-scarce \"cold start\" scenarios for RSV. Moreover, controlled retrospective ablations revealed that optimizing log-scale distance metrics prevents reward hacking, while an automated judge-in-the-loop ensures structural fidelity to complex scientific theories. By autonomously translating epidemiological theory into accurate, transparent code, this framework overcomes the modeling labor bottleneck, enabling rapid deployment of expert-level disease forecasting at unprecedented scales.",
+      "published": "2026-05-15T17:45:17+00:00",
+      "url": "https://arxiv.org/pdf/2605.16238v1",
+      "authors": [
+        "Sarah Martinson",
+        "Michael P. Brenner",
+        "Martyna Plomecka",
+        "Brian P. Williams",
+        "Nicholas G. Reich",
+        "Zahra Shamsi"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16235v1",
+      "title": "Nonlinear stability of continuously self-similar naked singularities for the Einstein-scalar field equations I: main results",
+      "summary": "This is the first part of a series of papers proving the nonlinear stability of a one-parameter family of continuously self-similar $C^{1,}$ naked singularity solutions, with $0<\\ll1$, to the spherically symmetric Einstein-scalar field equations. The stability holds for initial perturbations lying in a small open neighborhood of the data generating these naked singularity solutions, measured in a localized Hlder topology.   These continuously self-similar naked singularity spacetimes were previously constructed by Christodoulou [D. Christodoulou, Examples of naked singularity formation in the gravitational collapse of a scalar field, Ann. of Math. 140 (1994), 607--653], who also proved their instability to black hole formation under sufficiently rough perturbations [D. Christodoulou, The instability of naked singularities in the gravitational collapse of a scalar field, Ann. of Math. 149 (1999), 183--217], thereby verifying weak cosmic censorship within a rough functional framework.   In complete contrast, in this paper, we obtain the first nonlinear stability of these naked singularity spacetimes under general perturbations of the same regularity as the background. We rely on the linearized stability result established in the companion paper [J. Singh and W. Zheng, Nonlinear stability of continuously self-similar naked singularities for the Einstein--scalar field equations II: linearized stability]. Our result underscores the decisive role of the functional framework in formulating the Weak Cosmic Censorship conjecture.",
+      "published": "2026-05-15T17:43:56+00:00",
+      "url": "https://arxiv.org/pdf/2605.16235v1",
+      "authors": [
+        "Weihao Zheng"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16234v1",
+      "title": "Layer Equivalence Is Not a Property of Layers Alone: How You Test Redundancy Changes What You Find",
+      "summary": "When researchers ask whether two transformer layers are \"equivalent\" for compression, they often conflate distinct tests. Replacement asks whether one layer's map can substitute for another's in place; interchange asks whether two layers approximately commute when their positions are swapped. Both are output-grounded swap-KL probes, but they need not agree: on pretrained transformers the protocol gap can change which layers look safe to prune by several-fold under the same evaluator, especially when replacement distances are high.   We measure both protocols across checkpoints and architectures. On a Pythia training trajectory (410M and 1.4B), the replacement-interchange gap grows from initialization to convergence. Under one matched WikiText-2 contract at 8B scale, Qwen3-8B enters a divergent regime: interchange-guided removal is several-fold safer than replacement-guided at the same layer budgets, while Llama-3.1-8B ties the two protocols for pruning cost even though interchange KL is lower, showing metric gaps need not map one-to-one to removal. Before layer removal or merging, score both swap-KLs on the target checkpoint; the diagnostic requires only unlabeled forward passes.",
+      "published": "2026-05-15T17:43:16+00:00",
+      "url": "https://arxiv.org/pdf/2605.16234v1",
+      "authors": [
+        "Gabriel Garcia"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16230v1",
+      "title": "Universal Magnetic Structure Prediction from Atomic Coordinates with Near-Experimental Accuracy",
+      "summary": "Magnetic order is a fundamental property of materials, governing collective behavior and enabling a broad range of functionalities. Yet magnetic structure remains difficult to determine: experiments are costly and specialized, while first-principles methods often struggle with the noncollinear and incommensurate orders found in real materials. Here we introduce magnetic structure network (MSN), an E(3) equivariant graph neural network that predicts both collinear and non-collinear magnetic structures directly from atomic crystal structures, trained directly on experimentally determined structures from MAGNDATA. By proposing the primitive modulated structure representation (PMSR), we are able to encode commensurate and incommensurate structures in a unified way without symmetry assumptions. The model achieves strong performance across all modulation components and reconstructs experimental magnetic structures with high fidelity. Our approach provides a scalable framework for rapid magnetic structure prediction and opens a route to data-driven discovery of magnetic materials.",
+      "published": "2026-05-15T17:40:08+00:00",
+      "url": "https://arxiv.org/pdf/2605.16230v1",
+      "authors": [
+        "Abhijatmedhi Chotrattanapituk",
+        "Ryotaro Okabe",
+        "Eunbi Rha",
+        "Mariya Al-Hinai",
+        "Eugene Jiang",
+        "Daniel Pajerowski",
+        "Yongqiang Cheng",
+        "Joshua J. Turner",
+        "Mingda Li"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16227v1",
+      "title": "LymphNode: A Plug-and-Play Access Control Method for Deep Neural Networks",
+      "summary": "Deep Neural Networks (DNNs) are high-value intellectual property (IP), yet deploying them to edge environments exposes them to \\textbf{unrestricted oracle access}, rendering them vulnerable to model extraction and inversion attacks. Existing defenses fail to address this practically: passive watermarking only offers post-hoc provenance, while active defenses impose prohibitive latency or require persistent access to sensitive training data. To bridge this gap, we propose \\textit{LymphNode}, a novel post-hoc defense framework that acts as an intrinsic ``immune system\" within the model. \\textit{LymphNode} enforces a strict ``default-deny'' policy: it actively neutralizes model utility for unauthorized queries via \\textbf{Generalized Sparse Universal Adversarial Perturbations (GSUAP)} injected into the feature space, effectively blocking gradient estimation and data inference. Utility is selectively restored only for authorized inputs carrying a stealthy feature-domain credential. Our framework is highly practical: it is \\textbf{data-efficient}, establishing robust protection with fewer than 100 samples ($<1\\%$ of training data), and \\textbf{cross-dataset adaptable}, enabling protection using public surrogate datasets. \\textit{LymphNode} thus provides a lightweight, immediately deployable defense for high-stakes scenarios where original training data is restricted or unavailable.",
+      "published": "2026-05-15T17:38:06+00:00",
+      "url": "https://arxiv.org/pdf/2605.16227v1",
+      "authors": [
+        "Hanyu Pei",
+        "Shang Liu",
+        "Zeyan Liu"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16218v1",
+      "title": "Lattice Relaxation Flattens Chern Bands in Rhombohedral Graphene Stacks",
+      "summary": "Motivated by recent observations of integer and fractional Chern insulators in rhombohedral graphene stacks aligned with hexagonal boron nitride (hBN), we propose and study a model in which the moir potential is defined by the pattern of layer-shear strain fields produced by lattice relaxation in these heterostructures. Although these strain fields decrease exponentially with the number of layers, their imprints on electrons residing away from the contact layer are non-negligible. In the absence of a displacement field, lattice relaxation effects amplify the electronic differences among the two different stackings with hBN. These differences, although attenuated at the single-electron level, survive in the so-called moir-distant regime and are further enhanced with the inclusion of electron interactions. We find that lattice relaxation plays a crucial role in flattening and isolating a valley-polarized Hartree-Fock electron band with $|C|=1$ Chern number. Our results challenge the conventional wisdom on moir effects in these heterostructures by illustrating the intertwined effects of long-range Coulomb interactions and lattice relaxation, and opens the door to explore different regimes of twist angles and displacement fields for the search for topological states.",
+      "published": "2026-05-15T17:30:30+00:00",
+      "url": "https://arxiv.org/pdf/2605.16218v1",
+      "authors": [
+        "Luca Nashabeh",
+        "Héctor Ochoa"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2605.16215v1",
+      "title": "Fully Open Meditron: An Auditable Pipeline for Clinical LLMs",
+      "summary": "Clinical decision support systems (CDSS) require scrutable, auditable pipelines that enable rigorous, reproducible validation. Yet current LLM-based CDSS remain largely opaque. Most \"open\" models are open-weight only, releasing parameters while withholding the data provenance, curation procedures, and generation pipelines that determine model behavior. Fully Open (FO) models, which expose the complete training stack end-to-end, do not currently exist in medicine. We introduce Fully Open Meditron, the first fully open pipeline for building LLM-CDSS, comprising a clinician-audited training corpus, a reproducible data construction and training framework, and a use-aligned evaluation protocol. The corpus unifies eight public medical QA datasets into a normalized conversational format and expands coverage with three clinician-vetted synthetic extensions: exam-style QA, guideline-grounded QA derived from 46,469 clinical practice guidelines, and clinical vignettes. The pipeline enforces system-wide decontamination, gold-label resampling of teacher generations, and end-to-end validation by a four-physician panel. We evaluate using an LLM-as-a-judge protocol over expert-written clinical vignettes, calibrated against 204 human raters. We apply the recipe to five FO base models (Apertus-70B/8B-Instruct, OLMo-2-32B-SFT, EuroLLM-22B/9B-Instruct). All MeditronFO variants are preferred over their bases. Apertus-70B-MeditronFO improves +6.6 points over its base (47.2% to 53.8%) on aggregate medical benchmarks, establishing a new FO SoTA. Gemma-3-27B-MeditronFO is preferred over MedGemma in 58.6% of LLM-as-a-judge comparisons and outperforms it on HealthBench (58% vs 55.9%). These results show that fully open pipelines can achieve state-of-the-art domain-specific performance without sacrificing auditability or reproducibility.",
+      "published": "2026-05-15T17:29:08+00:00",
+      "url": "https://arxiv.org/pdf/2605.16215v1",
+      "authors": [
+        "Xavier Theimer-Lienhard",
+        "Mushtaha El-Amin",
+        "Fay Elhassan",
+        "Sahaj Vaidya",
+        "Victor Cartier-Negadi",
+        "David Sasu",
+        "Lars Klein",
+        "Mary-Anne Hartley"
+      ],
+      "source": "arxiv"
+    }
+  ]
+}
