@@ -80,7 +80,9 @@ CACHE_FILE = OUTPUT_DIR / "academic_cache.json"
 # ------------------------------------------------------------------
 def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
     with open(filepath, "r", encoding="utf-8") as f:
-        return [line.strip() for line in f if line.strip()]
+        # 用 split('#') 去掉行内中文注释，再 strip() 去掉首尾空格
+        return [line.split('#')[0].strip() for line in f
+                if line.split('#')[0].strip()]
 
 def safe_str(text: str) -> str:
     return text.encode("ascii", "ignore").decode("ascii")

@@ -75,9 +75,10 @@ CASE_VALUE_FILTER = getattr(
 
 
 def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
-    """加载关键词列表"""
+    """加载关键词列表（自动去掉 # 后的中文注释）"""
     with open(filepath, "r", encoding="utf-8") as f:
-        return [line.strip() for line in f if line.strip()]
+        return [line.split('#')[0].strip() for line in f
+                if line.split('#')[0].strip()]
 
 
 def get_news_cache_key(news: dict) -> str:
