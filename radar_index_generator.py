@@ -7,7 +7,7 @@
 ✅ 修复与改进：
   1. ✅ 新闻卡片分数提取失败时给默认值 5.0
   2. ✅ 链接路径正确（./news/xxx.html 形式）
-  3. ✅ 每日区块：新闻 Top 10 + 学术 Top 5（不再混合 Top 5）
+  3. ✅ 每日区块：新闻 Top 5 + 学术 Top 5（不再混合 Top 5）
   4. ✅ 调试输出显示实际展示的卡片类型
   5. ✅ 新闻/论文按钮改为直接跳转独立列表页
   6. ✅ 视觉风格与 v5.3 主页完全对齐
@@ -54,7 +54,7 @@ SUBDIR_CONFIG = {
     },
 }
 
-TOP_NEWS = 10
+TOP_NEWS = 5
 TOP_ACAD = 5
 SUMMARY_MAX_CHARS = 220
 
@@ -542,7 +542,7 @@ nav{
 /* ── CARD GRID ── */
 .card-grid{
   display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(450px,1fr));
+  grid-template-columns:repeat(auto-fill,minmax(750px,1fr));
   gap:1px;background:var(--border);
   border:1px solid var(--border);
 }
