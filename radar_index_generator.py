@@ -911,26 +911,42 @@ def auto_git_commit(data: dict) -> None:
         return
 
     try:
-        subprocess.run(
-            ["git", "pull", "--rebase", "--quiet"],
-            cwd=repo_root, check=True, capture_output=True,
+        result = subprocess.run(
+            ["git", "pull", "--rebase"],
+            cwd=repo_root, check=True, capture_output=True, text=True,
         )
-    except subprocess.CalledProcessError:
-        pass  # pull 失败不阻塞 push（比如还没设置 upstream）
+        # pull 成功才有机会 push
+        if result.stdout.strip():
+            print(f"📥 git pull: {result.stdout.strip()}")
+    except subprocess.CalledProcessError as e:
+        stderr = e.stderr.strip() if e.stderr else ""
+        if "no tracking information" in stderr:
+            print(f"ℹ️  没有 upstream 分支，直接 push（会新建远程分支）")
+        else:
+            print(f"⚠️ git pull 失败: {stderr or '未知错误'}")
 
     try:
         result = subprocess.run(
             ["git", "push", "origin", "HEAD"],
-            cwd=repo_root, capture_output=True,
+            cwd=repo_root, capture_output=True, text=True,
         )
         if result.returncode == 0:
             print("✅ Git push 成功")
         elif b"Everything up-to-date" in result.stderr or b"up to date" in result.stderr:
             print("✅ Already up-to-date")
+        elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
+            # 远程有本地没有的提交 → 先 pull --rebase 再重试一次
+            print(f"⚠️ 远程有更新，重新拉取后重试 push...")
+            subprocess.run(["git", "pull", "--rebase"], cwd=repo_root)
+            retry = subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_root)
+            if retry.returncode == 0:
+                print("✅ Git push 成功（重试后）")
+            else:
+                print(f"❌ 仍无法推送，请手动处理: git push origin HEAD")
         else:
-            print(f"⚠️ git push 失败: {result.stderr.decode()}")
+            print(f"⚠️ git push 失败: {result.stderr}")
     except subprocess.CalledProcessError as e:
-        print(f"⚠️ git push 失败: {e.stderr.decode()}")
+        print(f"⚠️ git push 失败: {e.stderr}")
 
 
 if __name__ == "__main__":

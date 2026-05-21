@@ -23,10 +23,34 @@ from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
 
-import arxiv
-import requests
-from openai import OpenAI
-from dotenv import load_dotenv
+# ── 依赖检查：提醒激活虚拟环境 ──────────────────────────
+# 如果在 venv 外直接 python 运行，会报 ModuleNotFoundError，
+# 这里提前捕获并给明确的解决提示。
+_missing_deps = []
+try:
+    import arxiv
+except ModuleNotFoundError:
+    _missing_deps.append("arxiv")
+try:
+    import requests
+except ModuleNotFoundError:
+    _missing_deps.append("requests")
+try:
+    from openai import OpenAI
+except ModuleNotFoundError:
+    _missing_deps.append("openai")
+try:
+    from dotenv import load_dotenv
+except ModuleNotFoundError:
+    _missing_deps.append("python-dotenv")
+
+if _missing_deps:
+    print(f"❌ 缺少依赖: {', '.join(_missing_deps)}")
+    print("💡 请先激活虚拟环境再运行：")
+    print("       source venv/bin/activate")
+    print("  或者安装依赖：")
+    print(f"       pip install {' '.join(_missing_deps)}")
+    sys.exit(1)
 
 # 自定义模块
 from config import Config

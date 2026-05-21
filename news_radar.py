@@ -23,9 +23,28 @@ import subprocess
 from pathlib import Path
 from typing import Optional
 
-import requests
-from openai import OpenAI
-from dotenv import load_dotenv
+# ── 依赖检查：提醒激活虚拟环境 ──────────────────────────
+_missing_deps = []
+try:
+    import requests
+except ModuleNotFoundError:
+    _missing_deps.append("requests")
+try:
+    from openai import OpenAI
+except ModuleNotFoundError:
+    _missing_deps.append("openai")
+try:
+    from dotenv import load_dotenv
+except ModuleNotFoundError:
+    _missing_deps.append("python-dotenv")
+
+if _missing_deps:
+    print(f"❌ 缺少依赖: {', '.join(_missing_deps)}")
+    print("💡 请先激活虚拟环境再运行：")
+    print("       source venv/bin/activate")
+    print("  或者安装依赖：")
+    print(f"       pip install {' '.join(_missing_deps)}")
+    sys.exit(1)
 
 # 自定义模块
 from config import Config
