@@ -14,8 +14,9 @@ source venv/bin/activate 2>/dev/null || source .venv/bin/activate 2>/dev/null
 # 🧹 清理残留 git 锁文件（上次中断留下的）
 # VS Code、radar_index_generator 等都可能留下死锁
 # 清掉 .git/ 下所有 .lock 文件，不限具体文件名
-for lf in .git/*.lock .git/objects/*.lock 2>/dev/null; do
-  [ -f "$lf" ] && rm -f "$lf" && echo "🧹 清理残留锁文件: $lf"
+shopt -s nullglob
+for lf in .git/*.lock .git/objects/*.lock; do
+  rm -f "$lf" && echo "🧹 清理残留锁文件: $lf"
 done
 
 SKIP_NOTIFY=false
