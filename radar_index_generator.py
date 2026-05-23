@@ -940,11 +940,10 @@ def auto_git_commit(data: dict) -> None:
         elif "Everything up-to-date" in result.stderr or "up to date" in result.stderr:
             print("✅ Already up-to-date")
         elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
-            print(f"⚠️ 远程有更新，尝试 force-with-lease 推送...")
-            retry = subprocess.run(
-                ["git", "push", "--force-with-lease", "origin", "HEAD"],
-                cwd=repo_root, capture_output=True, text=True,
-            )
+            # 远程有本地没有的提交 → 先 pull --rebase 再重试一次
+            print(f"⚠️ 远程有更新，重新拉取后重试 push...")
+            subprocess.run(["git", "pull", "--rebase"], cwd=repo_root)
+            retry = subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_root)
             if retry.returncode == 0:
                 print("✅ Git push 成功（force-with-lease）")
             else:
