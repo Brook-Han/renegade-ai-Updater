@@ -1,21 +1,15 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器 v2.1（新闻/论文分开展示版 · 优化版）
-视觉风格与 Renegade AI v5.3 网页对齐
+🏠 Renegade AI 雷达主页生成器 v2.2（v5.3 视觉/无障碍完全对齐版）
 
-✅ 修复与改进：
-  1. ✅ 新闻卡片分数提取失败时给默认值 5.0
-  2. ✅ 链接路径正确（./news/xxx.html 形式）
-  3. ✅ 每日区块：新闻 Top 5 + 学术 Top 5（不再混合 Top 5）
-  4. ✅ 调试输出显示实际展示的卡片类型
-  5. ✅ 新闻/论文按钮改为直接跳转独立列表页
-  6. ✅ 视觉风格与 v5.3 主页完全对齐
-  7. ✅ [v2.1] 用 lxml 替代正则解析 HTML，更稳健
-  8. ✅ [v2.1] HTML 模板提取为模块级常量，避免重复创建
-  9. ✅ [v2.1] 动态 import 增加异常处理
- 10. ✅ [v2.1] 摘要截断尊重词边界
- 11. ✅ [v2.1] 文件名正则合并为单次匹配
+✅ v2.2 同步更新：
+  1. ✅ 色彩系统与 v5.3 优化版完全对齐（WCAG AA 合规柔和高对比度）
+  2. ✅ 全局最小字号提升至 0.72rem + font-weight:500 补偿
+  3. ✅ 注入 :focus-visible / prefers-reduced-motion / 44px 触控热区
+  4. ✅ 卡片材质增加微弱投影，选中色优化
+  5. ✅ 筛选按钮增加 aria-pressed 状态同步
+  6. ✅ 保留 v2.1 全部修复（lxml降级/词边界截断/Git锁清理等）
 
 用法：
     cd your-project-root
@@ -72,8 +66,8 @@ def _safe_float(value, default=5.0):
 
 def _truncate_summary(text, max_chars=SUMMARY_MAX_CHARS):
     """截断文本至 max_chars，尽量在词边界处断开。"""
-    if len(text) <= max_chars:
-        return text, ""
+    if not text or len(text) <= max_chars:
+        return text or "", ""
     truncated = text[:max_chars]
     # 在空格或中文标点处断开
     for sep in (" ", "，", "。", "、", "；", ".", ",", "!", "?"):
@@ -348,7 +342,7 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
 
 
 # ═══════════════════════════════════════════════════════════════
-# HTML 模板 — 与 Renegade AI v5.3 视觉风格对齐（模块级常量）
+# HTML 模板 — 与 Renegade AI v5.3 优化版完全对齐
 # ═══════════════════════════════════════════════════════════════
 _HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -359,46 +353,65 @@ _HTML_TEMPLATE = '''<!DOCTYPE html>
   <meta name="description" content="Daily digest of AI news and academic papers, curated through the lens of Renegade AI.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-/* ── DESIGN TOKENS (mirrors v5.3) ── */
+/* ── DESIGN TOKENS (v5.3 Optimized · WCAG AA) ── */
 :root {
-  --bg:           #08080e;
-  --bg2:          #0d0d18;
-  --surface:      #111120;
-  --card:         #13131f;
-  --border:       #1e1e30;
-  --border-bright:#2e2e50;
-  --text:         #cccce0;
-  --text-muted:   #6868a0;
-  --text-faint:   #3a3a5a;
-  --accent:       #e8503a;
-  --accent-dim:   rgba(232,80,58,0.12);
-  --accent2:      #c9a040;
-  --accent3:      #4a8fcf;
-  --accent3-dim:  rgba(74,143,207,0.10);
-  --white:        #f0f0f8;
+  --bg:           #0a0a12;
+  --bg2:          #0f0f1a;
+  --surface:      #141422;
+  --card:         #181828;
+  --border:       #25253a;
+  --border-bright:#363655;
+  --text:         #e2e2f0;
+  --text-muted:   #9595c0;
+  --text-faint:   #4a4a6a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent2:      #d4af5c;
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.10);
+  --white:        #f4f4fc;
   --mono:         'Space Mono', monospace;
   --serif:        'Crimson Pro', Georgia, serif;
   --display:      'Bebas Neue', sans-serif;
   --ease:         cubic-bezier(0.4,0,0.2,1);
 }
 :root.light {
-  --bg:#f8f9fc; --bg2:#fff; --surface:#f0f2f8; --card:#fff;
-  --border:#e0e2ec; --border-bright:#c0c2d0;
-  --text:#2a2a40; --text-muted:#6a6a80; --text-faint:#a0a0b8;
-  --accent-dim:rgba(232,80,58,0.08); --accent3-dim:rgba(74,143,207,0.08);
-  --white:#2a2a40;
+  --bg:#f5f6fa; --bg2:#fff; --surface:#eceef5; --card:#fff;
+  --border:#d8dbe6; --border-bright:#c0c4d6;
+  --text:#222233; --text-muted:#5c5c75; --text-faint:#9a9ab0;
+  --accent:#e8503a; --accent-dim:rgba(232,80,58,0.08);
+  --accent2:#b88c2a; --accent3:#3a7fbf; --accent3-dim:rgba(74,143,207,0.08);
+  --white:#222233;
 }
 
-/* ── RESET ── */
+/* ── RESET & TYPOGRAPHY ── */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth}
-body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height:1.8;-webkit-font-smoothing:antialiased;overflow-x:hidden;transition:background .3s,color .3s}
-::selection{background:var(--accent);color:#000}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+  .noise{opacity:0!important}
+}
 
 /* ── NOISE OVERLAY ── */
 .noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
@@ -408,17 +421,17 @@ body{font-family:var(--serif);background:var(--bg);color:var(--text);line-height
 /* ── NAV ── */
 nav{
   position:fixed;top:0;width:100%;z-index:200;
-  background:rgba(8,8,14,.92);backdrop-filter:blur(24px);
+  background:rgba(10,10,18,.92);backdrop-filter:blur(24px);
   border-bottom:1px solid var(--border);
   height:56px;display:flex;align-items:center;justify-content:space-between;
   padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
 }
-.light nav{background:rgba(248,249,252,.92)}
+.light nav{background:rgba(245,246,250,.92)}
 .nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
 .nav-right{display:flex;gap:8px;align-items:center}
 .nav-pill{
   background:none;border:1px solid var(--border);color:var(--text-muted);
-  font-family:var(--mono);font-size:.62rem;letter-spacing:2px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
   padding:5px 14px;cursor:pointer;text-decoration:none;
   display:inline-flex;align-items:center;transition:all .2s;
 }
@@ -428,38 +441,33 @@ nav{
   width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
   font-size:.9rem;transition:all .2s;
 }
-.theme-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
 
 /* ── HERO STRIP ── */
 .hero-strip{
-  padding-top:56px;
-  border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto;
-  gap:0;
+  padding-top:56px;border-bottom:1px solid var(--border);
+  display:grid;grid-template-columns:1fr auto;gap:0;
 }
 .hero-left{padding:60px 72px 52px;border-right:1px solid var(--border)}
 .hero-eyebrow{
-  font-family:var(--mono);font-size:.62rem;letter-spacing:4px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:4px;
   color:var(--accent);text-transform:uppercase;
   margin-bottom:20px;display:flex;align-items:center;gap:12px;
 }
 .hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--accent)}
 .hero-title{
-  font-family:var(--display);
-  font-size:clamp(3.5rem,7vw,7rem);
-  line-height:.92;letter-spacing:3px;
-  color:var(--white);margin-bottom:18px;
+  font-family:var(--display);font-size:clamp(3.5rem,7vw,7rem);
+  line-height:.92;letter-spacing:3px;color:var(--white);margin-bottom:18px;
 }
 .hero-title span{color:var(--accent)}
 .hero-desc{
   font-size:1.05rem;color:var(--text-muted);font-style:italic;
   border-left:3px solid var(--accent);padding-left:16px;
-  max-width:480px;line-height:1.9;margin-bottom:32px;
-  transition:color .3s;
+  max-width:480px;line-height:1.9;margin-bottom:32px;transition:color .3s;
 }
 .hero-tags{display:flex;gap:6px;flex-wrap:wrap}
 .hero-tag{
-  font-family:var(--mono);font-size:.6rem;letter-spacing:1.5px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
   color:var(--text-muted);background:var(--surface);
   border:1px solid var(--border);padding:4px 12px;text-transform:uppercase;
 }
@@ -468,12 +476,9 @@ nav{
   padding:40px 48px;gap:24px;min-width:220px;
 }
 .stat-block{text-align:center}
-.stat-block .n{
-  font-family:var(--display);font-size:4rem;color:var(--accent);
-  line-height:1;display:block;
-}
+.stat-block .n{font-family:var(--display);font-size:4rem;color:var(--accent);line-height:1;display:block}
 .stat-block .l{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:2.5px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2.5px;
   color:var(--text-muted);text-transform:uppercase;display:block;margin-top:4px;
 }
 .stat-divider{width:1px;height:40px;background:var(--border)}
@@ -483,34 +488,33 @@ nav{
   display:flex;align-items:center;gap:0;
   border-bottom:1px solid var(--border);
   padding:0 72px;height:52px;
-  font-family:var(--mono);font-size:.62rem;
+  font-family:var(--mono);font-size:.72rem;
   overflow-x:auto;
 }
 .filter-btn{
   height:100%;padding:0 20px;
   background:none;border:none;border-right:1px solid var(--border);
   color:var(--text-muted);cursor:pointer;letter-spacing:2px;
-  text-transform:uppercase;font-family:var(--mono);font-size:.62rem;
+  text-transform:uppercase;font-family:var(--mono);font-size:.72rem;font-weight:500;
   transition:all .2s;white-space:nowrap;
 }
 .filter-btn:first-child{border-left:1px solid var(--border)}
 .filter-btn.active,.filter-btn:hover{color:var(--accent);background:var(--accent-dim)}
 .search-wrap{
   flex:1;display:flex;align-items:center;gap:10px;
-  padding:0 20px;border-right:1px solid var(--border);
-  min-width:180px;
+  padding:0 20px;border-right:1px solid var(--border);min-width:180px;
 }
 .search-wrap::before{content:'§';color:var(--text-faint);font-size:.8rem}
 .search-wrap input{
   background:none;border:none;color:var(--text);
-  font-family:var(--mono);font-size:.65rem;letter-spacing:1px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   width:100%;outline:none;
 }
 .search-wrap input::placeholder{color:var(--text-faint)}
 .controls-bar .list-link{
   height:100%;padding:0 20px;display:flex;align-items:center;
   color:var(--text-muted);text-decoration:none;letter-spacing:2px;
-  text-transform:uppercase;white-space:nowrap;
+  text-transform:uppercase;white-space:nowrap;font-size:.72rem;font-weight:500;
   border-right:1px solid var(--border);transition:all .2s;
 }
 .controls-bar .list-link:hover{color:var(--accent);background:var(--accent-dim)}
@@ -526,7 +530,7 @@ nav{
   border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:24px;
 }
 .day-eyebrow{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:3px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:3px;
   color:var(--accent);text-transform:uppercase;margin-bottom:4px;
 }
 .day-date{
@@ -534,26 +538,24 @@ nav{
   letter-spacing:2px;color:var(--white);line-height:1;
 }
 .day-header-right{
-  font-family:var(--mono);font-size:.58rem;letter-spacing:2px;
-  color:var(--text-faint);text-transform:uppercase;
-  padding-bottom:4px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-faint);text-transform:uppercase;padding-bottom:4px;
 }
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fill,minmax(750px,1fr));
-  gap:1px;background:var(--border);
-  border:1px solid var(--border);
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(450px,1fr));
+  gap:1px;background:var(--border);border:1px solid var(--border);
 }
 
 /* ── RADAR CARD ── */
 .radar-card{
   background:var(--card);padding:28px 24px;
   display:flex;flex-direction:column;gap:12px;
-  transition:background .2s;position:relative;
+  transition:background .2s,box-shadow .2s;position:relative;
   opacity:0;transform:translateY(16px);
   animation:fadeUp .55s var(--ease) forwards;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
 }
 .radar-card:hover{background:var(--surface)}
 .radar-card.hidden{display:none}
@@ -562,24 +564,24 @@ nav{
 .radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
 
 .type-tag{
-  font-family:var(--mono);font-size:.55rem;letter-spacing:2px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
   padding:3px 8px;text-transform:uppercase;
 }
-.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(74,143,207,.25)}
-.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(232,80,58,.25)}
+.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.25)}
+.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.25)}
 
 .card-chapter{
-  font-family:var(--mono);font-size:.55rem;letter-spacing:1px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   color:var(--text-faint);text-transform:uppercase;
 }
-.draft-dot{color:var(--accent2);font-size:.65rem;line-height:1}
+.draft-dot{color:var(--accent2);font-size:.72rem;line-height:1}
 
 .radar-score{
   font-family:var(--display);font-size:2rem;color:var(--accent);
   line-height:1;text-align:right;white-space:nowrap;flex-shrink:0;
 }
 .radar-score span{
-  display:block;font-family:var(--mono);font-size:.48rem;
+  display:block;font-family:var(--mono);font-size:.72rem;font-weight:500;
   color:var(--text-faint);letter-spacing:1px;text-align:right;margin-top:2px;
 }
 
@@ -590,12 +592,12 @@ nav{
 .radar-card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
 .radar-card-title a:hover{border-bottom-color:var(--accent2)}
 
-.radar-card-body{font-size:.88rem;color:var(--text-muted);line-height:1.8;flex:1;transition:color .3s}
+.radar-card-body{font-size:.92rem;color:var(--text-muted);line-height:1.8;flex:1;transition:color .3s}
 
 .radar-card-footer{
   display:flex;justify-content:space-between;align-items:center;
   padding-top:10px;border-top:1px solid var(--border);
-  font-family:var(--mono);font-size:.58rem;letter-spacing:1.5px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
   transition:border-color .3s;
 }
 .card-source-link{color:var(--accent2);text-decoration:none;text-transform:uppercase;transition:color .2s}
@@ -607,7 +609,7 @@ nav{
 .empty-state{
   display:none;text-align:center;padding:80px 32px;
   font-family:var(--mono);color:var(--text-faint);letter-spacing:2px;
-  font-size:.7rem;text-transform:uppercase;
+  font-size:.72rem;font-weight:500;text-transform:uppercase;
 }
 .empty-state .glyph{font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.3;display:block;margin-bottom:16px}
 
@@ -615,7 +617,7 @@ nav{
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
   background:var(--bg);border-top:1px solid var(--border);
-  padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
   color:var(--text-faint);letter-spacing:2px;
   display:flex;justify-content:space-between;align-items:center;
   transition:background .3s,border-color .3s;
@@ -627,6 +629,13 @@ nav{
 }
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE TOUCH TARGETS ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.filter-btn,.controls-bar .list-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
 
 /* ── RESPONSIVE ── */
 @media(max-width:900px){
@@ -664,7 +673,7 @@ nav{
       <span class="hero-tag" id="tagTotal">— REPORTS</span>
       <span class="hero-tag" id="tagDays">— DAYS</span>
       <span class="hero-tag" id="tagLatest">LATEST: —</span>
-      <span class="hero-tag">NEWS TOP 10 + PAPERS TOP 5</span>
+      <span class="hero-tag">NEWS TOP 5 + PAPERS TOP 5</span>
     </div>
   </div>
   <div class="hero-right">
@@ -682,11 +691,11 @@ nav{
 
 <!-- CONTROLS -->
 <div class="controls-bar">
-  <button class="filter-btn active" data-filter="all">ALL</button>
-  <button class="filter-btn" data-filter="news">📰 NEWS</button>
-  <button class="filter-btn" data-filter="academic">📄 PAPERS</button>
+  <button class="filter-btn active" data-filter="all" aria-pressed="true">ALL</button>
+  <button class="filter-btn" data-filter="news" aria-pressed="false">📰 NEWS</button>
+  <button class="filter-btn" data-filter="academic" aria-pressed="false">📄 PAPERS</button>
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="SEARCH TITLES &amp; SUMMARIES">
+    <input type="text" id="searchInput" placeholder="SEARCH TITLES &amp; SUMMARIES" aria-label="Search titles and summaries">
   </div>
   <a href="./news/" class="list-link">→ NEWS INDEX</a>
   <a href="./academic/" class="list-link">→ PAPERS INDEX</a>
@@ -754,8 +763,9 @@ nav{
   }
 
   btns.forEach(b=>b.addEventListener('click',()=>{
-    btns.forEach(x=>x.classList.remove('active'));
+    btns.forEach(x=>{x.classList.remove('active');x.setAttribute('aria-pressed','false')});
     b.classList.add('active');
+    b.setAttribute('aria-pressed','true');
     filter=b.dataset.filter;
     update();
   }));
@@ -800,7 +810,7 @@ document.querySelectorAll('.radar-card').forEach((c,i)=>{
 # 主函数
 # ═══════════════════════════════════════════════════════════════
 def main():
-    print("🚀 Renegade AI Radar Index Generator v2.1 (Optimized Edition)")
+    print("🚀 Renegade AI Radar Index Generator v2.2 (v5.3 Aligned)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
 
     data = collect_all_reports()
@@ -866,10 +876,6 @@ def auto_git_commit(data: dict) -> None:
     repo_root = REPORTS_ROOT.parent
 
     # ── 清理上次残留的 .lock 文件 ────────────────────────────
-    # git 进程异常中断（Ctrl+C、崩溃等）会留下各种 .lock 文件：
-    #   index.lock、HEAD.lock、maintenance.lock …
-    # 放任不管会堵死后续所有 git 操作。锁只存在于操作期间，
-    # 残留的 .lock 一定是死锁，全部清掉即可。
     for pattern in (".git/*.lock", ".git/objects/*.lock"):
         for f in repo_root.glob(pattern):
             try:
@@ -915,7 +921,6 @@ def auto_git_commit(data: dict) -> None:
             ["git", "pull", "--rebase"],
             cwd=repo_root, check=True, capture_output=True, text=True,
         )
-        # pull 成功才有机会 push
         if result.stdout.strip():
             print(f"📥 git pull: {result.stdout.strip()}")
     except subprocess.CalledProcessError as e:
@@ -935,7 +940,6 @@ def auto_git_commit(data: dict) -> None:
         elif b"Everything up-to-date" in result.stderr or b"up to date" in result.stderr:
             print("✅ Already up-to-date")
         elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
-            # 远程有本地没有的提交 → 先 pull --rebase 再重试一次
             print(f"⚠️ 远程有更新，重新拉取后重试 push...")
             subprocess.run(["git", "pull", "--rebase"], cwd=repo_root)
             retry = subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_root)
