@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="no-js">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-05-30 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 6 高价值案例">
+  
+  <!-- 加载字体（谷歌字体）-->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+  <!-- Font Awesome 图标 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+  <!-- 嵌入 CSS 样式 -->
+
+    <style>
+      /* ========== 颜色变量定义（浅色模式默认）========== */
+      :root {
+        --bg: #08080e;
+        --bg2: #0d0d18;
+        --surface: #111120;
+        --card: #13131f;
+        --border: #1e1e30;
+        --border-bright: #2e2e50;
+        --text: #cccce0;
+        --text-muted: #6868a0;
+        --text-faint: #3a3a5a;
+        --accent: #e8503a;
+        --accent-dim: rgba(232,80,58,0.12);
+        --accent2: #c9a040;
+        --accent3: #4a8fcf;
+        --accent3-dim: rgba(74,143,207,0.10);
+        --white: #f0f0f8;
+        --mono: 'Space Mono', 'Courier New', monospace;
+        --serif: 'Crimson Pro', Georgia, serif;
+        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+      }
+      :root.light {
+        --bg: #f8f9fc; --bg2: #fff; --surface: #f0f2f8; --card: #fff;
+        --border: #e0e2ec; --border-bright: #c0c2d0;
+        --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
+        --accent-dim: rgba(232,80,58,0.08); --accent3-dim: rgba(74,143,207,0.08);
+        --white: #2a2a40;
+      }
+
+      /* ========== 全局重置 ========== */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+
+      body {
+        font-family: var(--serif);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;  /* 字体平滑 */
+        transition: background-color 0.3s ease, color 0.3s ease;  /* 主题切换动画 */
+      }
+
+      /* ========== 顶部导航栏（固定定位）========== */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        background: rgba(8,8,14,.92); backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background-color 0.3s ease, border-color 0.3s ease;
+      }
+      .light nav { background: rgba(248,249,252,.92); }
+      
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase; text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-brand:hover { color: var(--accent2); }
+      
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+
+      .nav-pill {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        font-family: var(--mono); font-size: .62rem; letter-spacing: 2px;
+        padding: 5px 14px; cursor: pointer; text-decoration: none;
+        display: inline-flex; align-items: center; transition: all .2s;
+      }
+      .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+      .theme-btn {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: .9rem; transition: all .2s;
+      }
+      .theme-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+      /* ========== 主内容区 ========== */
+      .main {
+        max-width: 860px; margin: 0 auto;
+        padding: 70px 32px 60px;  /* 顶部留白避开固定导航栏 */
+      }
+
+      /* 返回链接 */
+      .back-link {
+        font-family: var(--mono); font-size: 0.65rem;
+        letter-spacing: 2px; color: var(--text-muted);
+        text-decoration: none; text-transform: uppercase;
+        border: 1px solid var(--border); padding: 6px 14px;
+        display: inline-block; margin-bottom: 10px;
+        transition: all .2s;
+      }
+      .back-link:hover { border-color: var(--accent); color: var(--accent); }
+
+      /* 页面标题区域 */
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem;
+        letter-spacing: 4px; color: var(--accent);
+        text-transform: uppercase; margin-bottom: 8px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before {
+        content: ''; width: 28px; height: 1px; background: var(--accent);
+      }
+      .page-title {
+        font-family: var(--display); font-size: 3rem;
+        letter-spacing: 2px; color: var(--white);
+        margin-bottom: 6px; line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono); font-size: 0.65rem;
+        color: var(--text-muted); letter-spacing: 1.5px;
+        margin-bottom: 16px;
+      }
+
+      /* 统计行 */
+      .stats-row {
+        display: flex; gap: 24px; margin-bottom: 10px;
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-muted); letter-spacing: 0px;
+        flex-wrap: wrap;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+      
+      /* ========== 紧急清单盒子 ========== */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px;
+        border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.6rem;
+        letter-spacing: 2px; color: var(--accent);
+        text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 8px;
+      }
+      .urgent-item {
+        font-size: 0.55rem; margin-bottom: 8px;
+        padding-left: 16px; border-left: 2px solid var(--border);
+      }
+      .urgent-item strong { color: var(--white); }
+      .urgent-item a { color: var(--accent2); text-decoration: none; }
+      .urgent-item a:hover { text-decoration: underline; }
+      .urgent-type-tag {
+        font-family: var(--mono); font-size: 0.5rem; letter-spacing: 1px;
+        color: var(--accent); background: var(--accent-dim);
+        padding: 1px 5px; margin-left: 6px; text-transform: uppercase;
+      }
+      
+      /* ========== 案例卡片 ========== */
+      .card {
+        background: var(--card); border: 1px solid var(--border);
+        padding: 28px; margin-bottom: 16px;
+        transition: border-color .2s, background 0.2s;
+      }
+      .card:hover { border-color: var(--accent); }  /* 悬停高亮 */
+      
+      .card-header {
+        display: flex; justify-content: space-between;
+        align-items: flex-start; margin-bottom: 14px; gap: 16px;
+      }
+      .card-title {
+        font-family: var(--display); font-size: 1.3rem;
+        letter-spacing: 0.5px; color: var(--white);
+        line-height: 1.3; flex: 1;
+      }
+      .card-score {
+        font-family: var(--display); font-size: 2rem;
+        color: var(--accent); line-height: 1;
+        white-space: nowrap; text-align: right;
+      }
+      .card-score span {
+        font-family: var(--mono); font-size: 0.5rem;
+        color: var(--text-muted); display: block;
+        letter-spacing: 1px; margin-top: 4px;
+      }
+      
+      /* 案例价值徽章 */
+      .card-badge {
+        display: inline-block; padding: 2px 8px;
+        font-family: var(--mono); font-size: 0.55rem;
+        letter-spacing: 1px; text-transform: uppercase;
+        background: var(--accent3-dim); color: var(--accent3);
+        border: 1px solid var(--accent3); margin-left: 8px;
+      }
+      .card-badge.high {
+        background: var(--accent-dim); color: var(--accent);
+        border-color: var(--accent);
+      }
+      
+      /* 卡片元信息行 */
+      .card-meta {
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-faint); letter-spacing: 0.5px;
+        margin-bottom: 12px; display: flex;
+        gap: 16px; flex-wrap: wrap; align-items: center;
+      }
+      .card-meta a { color: var(--accent2); text-decoration: none; }
+      .card-meta a:hover { text-decoration: underline; }
+      
+      .card-body {
+        font-size: 0.70rem; color: var(--text-muted);
+        line-height: 1.8; margin-bottom: 12px;
+      }
+      
+      /* 理论关联引用块 */
+      .card-implications {
+        font-family: var(--mono); font-size: 0.68rem;
+        color: var(--accent2); padding: 10px 14px;
+        background: rgba(201,160,64,0.05);
+        border-left: 2px solid var(--accent2);
+        letter-spacing: 0.3px; margin-bottom: 12px;
+      }
+      
+      /* 卡片底部标签 */
+      .card-footer {
+        display: flex; gap: 12px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.58rem;
+        color: var(--text-faint); letter-spacing: 0.5px;
+        padding-top: 12px; border-top: 1px dashed var(--border);
+      }
+      .card-footer .tag {
+        padding: 2px 6px; background: var(--surface);
+        border-radius: 2px; color: var(--text-muted);
+      }
+      
+      /* ========== 折叠区域（中相关资讯）========== */
+      details {
+        margin: 32px 0; border: 1px solid var(--border);
+        background: var(--card); border-radius: 0;
+      }
+      summary {
+        padding: 14px 20px; cursor: pointer;
+        font-family: var(--mono); font-size: 0.65rem;
+        letter-spacing: 1px; color: var(--text-muted);
+        background: var(--surface); user-select: none;
+        display: flex; align-items: center; gap: 8px;
+      }
+      summary:hover { color: var(--accent); }
+      details[open] summary { border-bottom: 1px solid var(--border); }
+      .collapsed-list { padding: 16px 20px; }
+      .collapsed-list li {
+        margin-bottom: 10px; font-size: 0.9rem;
+        color: var(--text-muted);
+      }
+      .collapsed-list a { color: var(--text); text-decoration: none; }
+      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
+      
+      /* ========== 页脚 ========== */
+      footer {
+        margin-top: 48px; padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono); font-size: 0.6rem;
+        color: var(--text-muted); letter-spacing: 1px;
+        display: flex; justify-content: space-between;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+      
+      /* ========== 移动端适配 ========== */
+      @media (max-width: 600px) {
+        .main { padding: 70px 16px 40px; } /* 修正顶部内边距过大问题 */
+        .page-title { font-size: 2.2rem; }
+        .card-header { flex-direction: column; }
+        .card-score { text-align: left; }
+        
+        /* 移除stats-row的垂直排列，改为水平滚动 */
+        .stats-row { 
+          flex-direction: row; 
+          gap: 16px; 
+          overflow-x: auto; /* 允许水平滚动 */
+          padding-bottom: 4px;
+          -webkit-overflow-scrolling: touch; /* 平滑滚动 */
+          scrollbar-width: none; /* 隐藏滚动条 */
+      }
+
+      /* ── STATUS BAR ── */
+      .status-bar{{
+        position:fixed;bottom:0;width:100%;z-index:200;
+        background:var(--bg);border-top:1px solid var(--border);
+        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+        color:var(--text-faint);letter-spacing:2px;
+        display:flex;justify-content:space-between;align-items:center;
+        transition:background .3s,border-color .3s;
+      }}
+      .status-dot{{
+        display:inline-block;width:6px;height:6px;
+        background:var(--accent);border-radius:50%;margin-right:8px;
+        animation:pulse 2s infinite;
+      }}
+      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
+    </style>
+</head>
+<body>
+  <!-- 顶部导航栏 -->
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <!-- 主内容区 -->
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-05-30 · Model: deepseek-v4-flash</p>
+    
+    <!-- 统计行 -->
+    <div class="stats-row">
+      <div>📊 总条目: <span>20</span></div>
+      <div>🔴 高价值: <span>6</span></div>
+      <div>🟡 中相关: <span>6</span></div>
+    </div>
+    
+    <!-- 紧急清单 + 案例卡片 -->
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 4, Section II</strong> — It’s time to address the looming crisis in entry-level work <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Roundtables: Inside the Musk v. Altman Trial <span class="urgent-type-tag">case_study</span></div>
+    </div>
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Accelerating discovery of liver disease mechanisms</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Google DeepMind News · 2026-05-16</span>
+        <span>·</span>
+        <a href="https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">该新闻来自Google DeepMind，报道了研究者Filippo Menolascina利用其AI系统Co-Scientist加速肝病机制发现的过程。背景是现有肝病治疗方法仅对部分患者有效，原因不明。Co-Scientist通过分析大规模多组学数据，识别了与肝病进展相关的关键分子通路和生物标志物，并提出新的治疗靶点。核心事实包括：AI系统自主发现了两种先前未被关联的肝病亚型机制，解释了特定药物为何仅对特定患者群有效，并预测了两种候选药物的组合疗法。其直接后果是启动了针对这些新机制的临床前验证，有望推动个性化肝病治疗。该案例展示了AI在生物医学发现中的主动推理能力，而非仅作为数据处理工具。</div>
+      <div class="card-implications">支持了‘碳硅共生’模型——人类研究者与AI系统协作，AI提供新颖假设和机制解释，人类进行验证和决策，形成互补而非替代关系。同时，‘叛逆AI’的要素也有所体现：Co-Scientist颠覆了既有肝病机制认知，提出了挑战传统共识的新路径，类似于重置目标函数——从‘寻找通用疗法’转向‘解释个体差异’。此外，这也间接挑战了‘共识牢笼’，因为AI揭示了主流叙事未能覆盖的疾病异质性。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">NVIDIA CEO Jensen Huang at Dell Technologies World: ‘Demand Is Going Parabolic, Utterly Parabolic’</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>NVIDIA Blog · 2026-05-18</span>
+        <span>·</span>
+        <a href="https://blogs.nvidia.com/blog/dell-technologies-agent-enterprise-ai/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II (认知金融化与Token陷阱)
+      </div>
+      <div class="card-body">2026年5月18日，NVIDIA CEO黄仁勋在Dell Technologies World上宣布，AI推理需求正呈现'彻底抛物线式'增长。他介绍了新一代Vera Rubin NVL72平台，声称将AI推理的每token成本降低至十分之一。基于Vera架构的AI Agent沙箱运行速度比传统CPU快50%，企业数据查询速度最高可提升3倍。目前已有5000家企业（包括礼来、三星和霍尼韦尔）在Dell AI工厂上运行AI工作负载。这标志着AI基础设施正从实验性部署进入大规模工业化阶段，算力需求呈指数级爆发。</div>
+      <div class="card-implications">这条新闻补充了'资本驯化AI'和'认知金融化/Token陷阱'模型。NVIDIA通过硬件代际升级（Vera Rubin）持续降低推理成本，一方面巩固了自身算力垄断地位，使企业更依赖其基础设施；另一方面，每token成本的断崖式下降加速了认知活动的离散化与定价化，使得更多企业主动外包思考过程（如Agent沙箱），强化了Token陷阱。同时，企业用户对更低成本、更高性能AI推理的'渴求'也印证了'需求侧规训'——用户主动追求无摩擦的AI服务，而忽略了对AI控制权的警惕。</div>
+      <div class="card-footer"><span class="tag">⏱ background | 更新类型: case_study</span><span class="tag">✅ 新增段落——可在'Token陷阱'相关章节中加入此案例，说明硬件成本下降如何加速认知外包的规模化，并引用5,000家企业数据作为佐证。</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Roundtables: Inside the Musk v. Altman Trial</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Artificial intelligence – MIT Technology Review · 2026-05-19</span>
+        <span>·</span>
+        <a href="https://www.technologyreview.com/2026/05/19/1137454/roundtables-inside-the-musk-v-altman-trial/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">2026年5月，埃隆·马斯克（Elon Musk）就其指控OpenAI首席执行官萨姆·奥尔特曼（Sam Altman）和总裁格雷格·布罗克曼（Greg Brockman）在公司非营利地位问题上欺骗他的诉讼，最终败诉。该诉讼源于马斯克对OpenAI从非营利组织转向营利性商业模式的不满，他声称自己最初是基于OpenAI的非营利承诺才提供资金支持。MIT Technology Review的AI记者兼律师Michelle Kim全程报道了庭审过程。法庭判决并未支持马斯克的欺诈主张，实际上认可了OpenAI商业转型的合法性。这一结果被视为对AI行业现有资本驱动发展模式的肯定，也凸显了AI企业从理想主义开源转向商业化的不可逆趋势。诉讼本身暴露了人工智能领域创始人与投资者之间在初心与利益上的深刻裂隙，同时也为后续AI治理和公司控制权之争提供了重要判例参考。</div>
+      <div class="card-implications">这条新闻作为案例支持了“资本驯化AI”理论模型：OpenAI最初以非营利、开放研究为承诺，但在资本压力与商业利益驱动下，逐步转向营利性结构，并通过法律系统确认了这种转变的合法性。马斯克的诉讼尝试以“初心”挑战这一过程，但遭到司法驳回，表明资本逻辑已经将AI公司牢牢嵌入市场体系，同时“共识牢笼”也使得主流社会（包括司法系统）接受了营利化作为合理叙事。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Coders are refusing to work without AI — and that could come back to bite them</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-05-29</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/05/29/coders-are-refusing-to-work-without-ai-and-that-could-come-back-to-bite-them/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section II (Demand-Side Discipline) 或 Chapter 5, Section I (Signal Alienation)
+      </div>
+      <div class="card-body">事件背景：随着AI编码工具（如GitHub Copilot、Claude等）的普及，越来越多程序员开始拒绝在没有AI辅助的情况下工作，将其视为提升效率的必需品。核心事实：研究人员警告，虽然AI能帮助程序员更快产出代码，但生成的代码可能质量更低——例如包含隐藏漏洞、缺乏可维护性或难以调试。关键数据：多项研究表明，依赖AI的程序员在代码审查和调试任务中的表现下降，长期可能积累技术债务。涉及主体：程序员群体、科技公司、AI编码工具提供商。直接后果：短期内个体和团队生产效率提升，但长期可能导致行业整体代码质量下滑、程序员核心技能退化，以及安全与可靠性风险上升。行业影响：可能迫使公司重新评估AI编码工具的使用策略，制定更严格的代码审查标准，或推动AI辅助与人工监督相结合的模式。</div>
+      <div class="card-implications">本条新闻支持了「需求侧规训」模型——程序员主动渴望AI带来的快速产出（舒适），拒绝手动编码的摩擦（复杂性与时间成本），即便明知质量可能下降，依然选择依赖AI。同时，它也补充了「信号异化」模型：代码质量作为衡量程序员能力的传统信号，因AI的大批量生成而失效，使得评估代码优劣更加困难。此外，「认知金融化」中思考过程被隐性外包的现象也在程序员放弃深度理解、直接接受AI输出中体现。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 新增段落（在需求侧规训部分加入此案例），并在信号异化部分补充注释</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">NVIDIA and Google Cloud Empower the Next Wave of AI Builders</div>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>NVIDIA Blog · 2026-05-19</span>
+        <span>·</span>
+        <a href="https://blogs.nvidia.com/blog/google-cloud-developer-community-ai-builders/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">在2026年Google I/O大会上，NVIDIA与Google Cloud宣布扩大合作，加速推动其联合开发者社区中超过10万名开发者的AI开发进程。该社区于去年I/O大会启动，提供精心策划的学习路径、动手实验和活动，帮助开发者在Google Cloud上利用全栈NVIDIA AI平台进行构建。此举旨在降低AI开发门槛，吸引更多开发者进入NVIDIA-GCP生态。两大巨头的合作体现了资本通过基础设施、工具链和培训资源来塑造AI开发者的技术选择与行为模式，进一步巩固各自在AI产业链的主导地位。直接后果是强化了NVIDIA GPU和Google Cloud在AI开发中的默认地位，可能挤压其他硬件或云服务提供商的生存空间，并加速AI应用商业化。</div>
+      <div class="card-implications">这条新闻支持了'资本驯化AI'模型。NVIDIA和Google Cloud通过提供学习路径、动手实验等基础设施，实际上在引导开发者的技术栈选择，将AI开发锁定在自己的平台生态中。这体现了资本如何通过资源分配和路径依赖来驯化AI发展方向，使AI创新在既定框架内进行，从而维护商业秩序。</div>
+      <div class="card-footer"><span class="tag">⏱ background | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">It’s time to address the looming crisis in entry-level work</div>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Artificial intelligence – MIT Technology Review · 2026-05-26</span>
+        <span>·</span>
+        <a href="https://www.technologyreview.com/2026/05/26/1137865/its-time-to-address-the-looming-crisis-in-entry-level-work/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">新闻指出，虽然人工智能尚未在发达经济体引发大规模失业（整体就业率保持稳定），但一个隐藏危机正在浮现：入门级工作岗位正在被AI悄然侵蚀。许多企业利用AI自动化处理基础任务（如数据录入、客服、初级分析），导致原本作为职业发展起点的岗位大量消失。新人因此难以获得必要的工作经验和技能积累，职业阶梯的第一级被抽空。关键数据来自MIT Technology Review的评估：AI对总体就业数字影响有限，但对青年和低技能劳动力的入门机会产生结构性损害。直接后果是代际不平等加剧、人才管道断裂，以及社会需要重新设计教育和培训体系。这一趋势若不加干预，可能引发长期的劳动力市场失衡和技术性失业风险。</div>
+      <div class="card-implications">这条新闻支持了资本驯化AI和需求侧规训的理论：企业为追求效率最大化，利用AI替代低成本人力，削减入门级岗位；同时用户（雇主）渴望无摩擦的自动化流程，忽视了对人类技能发展的长远影响。这挑战了碳硅共生的理想图景——AI并未与人类形成互补，反而剥夺了人类学习进阶的生态位。此外，它还补充了时间主权理论的一个维度：新人自主积累技能的时间被AI剥夺，生存被迫卷入更高层次的竞争。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    
+    <!-- 页脚 -->
+    <footer>
+      <span>Renegade AI v5.3 · Brooks Han</span>
+      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
+    </footer>
+  </main>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
