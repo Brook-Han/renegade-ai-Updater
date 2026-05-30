@@ -1,10 +1,10 @@
 # ═══════════════════════════════════════════════════════════════
-# 📰 新闻雷达 · 每日自动扫描（独立版）
+# 🎓 学术雷达 · 每周一自动扫描（独立版）
 # ═══════════════════════════════════════════════════════════════
-# 每日 06:00 CST 自动运行，新闻完成即推送+通知。
-# 学术雷达请见 academic-weekly.yml（每周一）
+# 每周一 11:00 CST 自动运行，扫描 arXiv + Semantic Scholar。
+# 新闻雷达请见 daily-radar.yml（每日 06:00）
 # ═══════════════════════════════════════════════════════════════
-name: 📰 News Radar Daily
+name: 🎓 Academic Radar Weekly
 
 env:
   TZ: Asia/Shanghai
@@ -12,29 +12,20 @@ env:
 
 on:
   schedule:
-    - cron: '0 22 * * *'          # 每日 北京时间 06:00
+    - cron: '0 3 * * 1'          # 每周一 北京时间 11:00
   workflow_dispatch:
-    inputs:
-      skip_notify:
-        description: '跳过通知推送'
-        type: boolean
-        default: false
-      dry_run_notify:
-        description: '通知演习模式（预览不发送）'
-        type: boolean
-        default: false
 
 permissions:
   contents: write
 
 concurrency:
-  group: radar-news-${{ github.repository }}
+  group: radar-academic-${{ github.repository }}
   cancel-in-progress: false
 
 jobs:
-  news-scan:
+  academic-scan:
     runs-on: ubuntu-latest
-    timeout-minutes: 30
+    timeout-minutes: 90
 
     steps:
       # ── 环境准备 ──────────────────────────────────────────
@@ -67,6 +58,8 @@ jobs:
           echo "ENABLE_RSS_FEEDS=true" >> $GITHUB_ENV
           echo "NOTIFY_TELEGRAM_BOT_TOKEN=${{ secrets.NOTIFY_TELEGRAM_BOT_TOKEN }}" >> $GITHUB_ENV
           echo "NOTIFY_TELEGRAM_CHAT_ID=${{ secrets.NOTIFY_TELEGRAM_CHAT_ID }}" >> $GITHUB_ENV
+          # Semantic Scholar API Key
+          echo "SEMANTIC_SCHOLAR_API_KEY=${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}" >> $GITHUB_ENV
 
       - name: 🔧 Configure Git identity
         run: |
@@ -76,74 +69,75 @@ jobs:
           git config --global user.email "$EMAIL"
           echo "✅ Git identity: $NAME <$EMAIL>"
 
-      # ── 新闻雷达 ──────────────────────────────────────────
-      - name: 📰 Run News Radar
+      # ── 学术雷达 ──────────────────────────────────────────
+      - name: 🎓 Run Academic Radar
         run: |
-          echo "🚀 Starting news_radar.py..."
-          python news_radar.py --limit 50
+          echo "🚀 Starting academic_radar.py..."
+          python academic_radar.py --limit 10
         continue-on-error: true
 
-      - name: 🌐 Convert News Report to HTML
+      - name: 🌐 Convert Academic Report to HTML
         run: |
-          echo "🔄 Converting news reports..."
-          python news_md_to_html.py || echo "⚠️ No news report to convert"
+          echo "🔄 Converting academic reports..."
+          python academic_md_to_html.py || echo "⚠️ No academic report to convert"
 
-      # ── 新闻即时备份+通知（不等索引，先存好） ────────────
-      - name: 💾 Git Backup News
+      # ── Git 备份 ──────────────────────────────────────────
+      - name: 💾 Git Backup Academic
         run: |
-          echo "💾 立即保存新闻报告..."
-          git add docs/news/
+          echo "💾 保存学术报告..."
+          git add docs/academic/ docs/news/ *.py notify/
           if git diff --staged --quiet; then
-            echo "✨ 新闻无新变更"
+            echo "✨ 学术无新变更"
           else
-            git commit -m "📰 News: $(date '+%Y-%m-%d') [skip ci]"
-            git push origin main || echo "⚠️ News push failed"
+            git commit -m "🎓 Academic: $(date '+%Y-%m-%d') [skip ci]"
+            git push origin main || echo "⚠️ Academic push failed"
           fi
 
-      - name: 🔔 Push News to Notify
-        if: ${{ !inputs.skip_notify }}
+      # ── 索引页重建（包含学术+新闻完整列表） ────────────────
+      - name: 🏠 Rebuild Radar Index
         run: |
-          if [ "${{ inputs.dry_run_notify }}" = "true" ]; then
-            echo "🔍 DRY-RUN 模式"
-            python -m notify --type news --dry-run
-          else
-            echo "📤 推送新闻报告..."
-            python -m notify --type news
-          fi
-        continue-on-error: true
-
-      # ── 索引页生成 ────────────────────────────────────────
-      - name: 🏠 Generate Radar Index
-        run: |
-          echo "🏗️ Building docs/index.html..."
+          echo "🏗️ Rebuilding docs/index.html..."
           python radar_index_generator.py
 
-      - name: 📰 Generate News Archive
+      - name: 📰 Rebuild News Archive
         run: |
-          echo "📰 Building docs/news/index.html..."
+          echo "📰 Rebuilding docs/news/index.html..."
           python generate_news_index.py || echo "⚠️ No news files found"
 
-      # ── 最终备份（包含索引页更新） ────────────────────────
-      - name: 📤 Backup Index
+      - name: 🎓 Rebuild Academic Archive
+        run: |
+          echo "🎓 Rebuilding docs/academic/index.html..."
+          python generate_academic_index.py || echo "⚠️ No academic files found"
+
+      - name: 💾 Git Backup Index
         run: |
           echo "💾 保存索引页..."
-          git add docs/index.html docs/news/index.html
+          git add docs/index.html docs/news/index.html docs/academic/index.html
           if git diff --staged --quiet; then
             echo "✨ 索引无新变更"
           else
-            git commit -m "🏠 Index: $(date '+%Y-%m-%d') [skip ci]"
+            git commit -m "🏠 Index rebuild: $(date '+%Y-%m-%d') [skip ci]"
             git push origin main || echo "⚠️ Index push failed"
           fi
+
+      # ── 学术通知 ──────────────────────────────────────────
+      - name: 🔔 Push Academic to Notify
+        run: |
+          echo "📤 推送学术报告..."
+          python -m notify --type papers
+        continue-on-error: true
 
       # ── 运行摘要 ──────────────────────────────────────────
       - name: 📋 Run summary
         if: always()
         run: |
-          echo "### 📋 新闻雷达运行摘要" >> $GITHUB_STEP_SUMMARY
+          echo "### 📋 学术雷达运行摘要" >> $GITHUB_STEP_SUMMARY
           echo "- 🕐 触发时间: $(date '+%Y-%m-%d %H:%M:%S CST')" >> $GITHUB_STEP_SUMMARY
+          echo "- 🎓 学术报告文件数: $(find docs/academic -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 📰 新闻报告文件数: $(find docs/news -name '*.html' 2>/dev/null | wc -l)" >> $GITHUB_STEP_SUMMARY
           echo "- 🏠 聚合主页: $([ -f docs/index.html ] && echo '✅ 已生成' || echo '❌ 未找到')" >> $GITHUB_STEP_SUMMARY
           echo "" >> $GITHUB_STEP_SUMMARY
           echo "- 🔗 公开访问链接:" >> $GITHUB_STEP_SUMMARY
           echo "  - [📊 报告主页](https://brook-han.github.io/renegade-ai-Updater/)" >> $GITHUB_STEP_SUMMARY
           echo "  - [📰 新闻列表](https://brook-han.github.io/renegade-ai-Updater/news/)" >> $GITHUB_STEP_SUMMARY
+          echo "  - [🎓 论文列表](https://brook-han.github.io/renegade-ai-Updater/academic/)" >> $GITHUB_STEP_SUMMARY
