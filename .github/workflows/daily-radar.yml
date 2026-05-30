@@ -35,7 +35,7 @@ concurrency:
 jobs:
   radar-core:
     runs-on: ubuntu-latest
-    timeout-minutes: 40
+    timeout-minutes: 90
 
     steps:
       # ── 环境准备 ──────────────────────────────────────────
@@ -70,6 +70,8 @@ jobs:
           # Telegram（可选通道）
           echo "NOTIFY_TELEGRAM_BOT_TOKEN=${{ secrets.NOTIFY_TELEGRAM_BOT_TOKEN }}" >> $GITHUB_ENV
           echo "NOTIFY_TELEGRAM_CHAT_ID=${{ secrets.NOTIFY_TELEGRAM_CHAT_ID }}" >> $GITHUB_ENV
+          # Semantic Scholar API Key（解决 429 限速）
+          echo "SEMANTIC_SCHOLAR_API_KEY=${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}" >> $GITHUB_ENV
 
       - name: 🔧 Configure Git identity
         run: |

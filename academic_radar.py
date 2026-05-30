@@ -258,14 +258,32 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
 
 
 def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
+    """
+    Semantic Scholar 论文检索（带熔断保护）
+
+    熔断逻辑（Circuit Breaker）：
+    - 没有 API Key 时，S2 匿名额度极低，大概率持续 429
+    - 连续 3 个关键词全部 429 → 判定 S2 不可用 → 全局跳过剩余所有关键词
+    - 这样 31 个关键词最多浪费 ~20 分钟，而非 ~4 小时
+    """
     API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
     headers = {"x-api-key": API_KEY} if API_KEY else {}
-    
+
     all_papers = []
     seen_ids = set()
     api_url = "https://api.semanticscholar.org/graph/v1/paper/search"
 
+    # ── 熔断器状态 ──
+    consecutive_429_count = 0          # 连续 429 计数器
+    CIRCUIT_BREAK_THRESHOLD = 3        # 连续 N 个关键词全部 429 → 熔断
+    circuit_open = False               # True = 熔断打开，跳过所有后续 S2 查询
+
     for keyword in keywords:
+        # ── 熔断检查：如果已判定 S2 不可用，直接跳过 ──
+        if circuit_open:
+            logger.info(f"🔌 [S2] 熔断生效，跳过关键词: {keyword}")
+            continue
+
         # 搜索缓存
         cached = get_search_cache("semantic_scholar", keyword, "papers")
         if cached is not None:
@@ -275,10 +293,14 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 if pid and pid not in seen_ids:
                     all_papers.append(p)
                     seen_ids.add(pid)
+            # 缓存命中不算 429，重置计数器
+            consecutive_429_count = 0
             continue
 
         logger.info(f"🔍 [S2] 正在检索: {keyword}")
         papers_from_kw = []
+        keyword_failed_429 = False  # 本关键词是否因 429 彻底失败
+
         for attempt in range(4):
             try:
                 params = {
@@ -295,6 +317,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                         time.sleep(wait)
                     else:
                         logger.error(f"   ❌ [S2] 429 限速后放弃，跳过关键词: {keyword}")
+                        keyword_failed_429 = True
                     continue
                 r.raise_for_status()
                 data = r.json().get("data", [])
@@ -320,6 +343,8 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                     count += 1
                 logger.info(f"   ✅ 成功提取 {count} 篇")
                 set_search_cache("semantic_scholar", keyword, papers_from_kw, "papers")
+                # 成功 = 重置熔断计数器
+                consecutive_429_count = 0
                 break
             except Exception as e:
                 if attempt < 3:
@@ -328,6 +353,20 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                     time.sleep(wait)
                 else:
                     logger.error(f"   ❌ 该关键词抓取失败: {keyword}")
+                    # 非 429 错误不算入熔断计数
+                    consecutive_429_count = 0
+
+        # ── 熔断判定：本关键词因 429 彻底失败 ──
+        if keyword_failed_429:
+            consecutive_429_count += 1
+            if consecutive_429_count >= CIRCUIT_BREAK_THRESHOLD:
+                circuit_open = True
+                remaining = len(keywords) - list(keywords).index(keyword) - 1
+                logger.warning(
+                    f"🔌 [S2] 熔断触发！连续 {consecutive_429_count} 个关键词 429，"
+                    f"判定 S2 不可用，跳过剩余 {remaining} 个关键词"
+                )
+
         time.sleep(1.5 if API_KEY else 6.0)
     return all_papers
 
