@@ -12,8 +12,6 @@ cd "$(dirname "$0")" || exit 1
 source venv/bin/activate 2>/dev/null || source .venv/bin/activate 2>/dev/null
 
 # 🧹 清理残留 git 锁文件（上次中断留下的）
-# VS Code、radar_index_generator 等都可能留下死锁
-# 清掉 .git/ 下所有 .lock 文件，不限具体文件名
 shopt -s nullglob
 for lf in .git/*.lock .git/objects/*.lock; do
   rm -f "$lf" && echo "🧹 清理残留锁文件: $lf"
@@ -79,6 +77,21 @@ if [ "$SKIP_NOTIFY" = false ]; then
   echo ""
 fi
 
+# 自动 git 提交 + 推送
+echo "========================================"
+echo "  💾 Git 提交 + 推送"
+echo "========================================"
+git add docs/ cache/
+if ! git diff --staged --quiet; then
+  git commit -m "🤖 本地全扫描: $(date '+%Y-%m-%d %H:%M')"
+  git fetch origin main 2>/dev/null || true
+  git rebase origin/main 2>/dev/null || true
+  git push origin main || echo "⚠️ 推送失败，请手动执行: git push origin main"
+else
+  echo "✨ 无新变更，跳过提交"
+fi
+
+echo ""
 echo "========================================"
 echo "  ✅ 全流程完成"
 date '+%Y-%m-%d %H:%M'
