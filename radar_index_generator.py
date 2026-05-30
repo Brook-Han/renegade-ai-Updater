@@ -937,7 +937,7 @@ def auto_git_commit(data: dict) -> None:
         )
         if result.returncode == 0:
             print("✅ Git push 成功")
-        elif b"Everything up-to-date" in result.stderr or b"up to date" in result.stderr:
+        elif "Everything up-to-date" in result.stderr or "up to date" in result.stderr:
             print("✅ Already up-to-date")
         elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
             print(f"⚠️ 远程有更新，重新拉取后重试 push...")
