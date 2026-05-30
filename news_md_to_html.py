@@ -217,7 +217,7 @@ CSS_TEMPLATE = """
       .theme-btn:hover, .theme-btn:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
 
       /* ========== MAIN ========== */
-      .main { max-width: 860px; margin: 0 auto; padding: 80px 32px 60px; }
+      .main { max-width: 960px; margin: 0 auto; padding: 80px 32px 60px; }
       .back-link {
         font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; 
         color: var(--text-muted); text-decoration: none; text-transform: uppercase;

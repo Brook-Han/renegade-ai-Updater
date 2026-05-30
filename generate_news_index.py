@@ -220,7 +220,7 @@ def get_html_template() -> str:
     .nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
     .theme-btn{background:none;border:1px solid var(--border);color:var(--text-muted);width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:.9rem;transition:all .2s}
     .theme-btn:hover{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
-    .main{max-width:860px;margin:0 auto;padding:100px 32px 60px}
+    .main{max-width:960px;margin:0 auto;padding:100px 32px 60px}
     .page-eyebrow{font-family:var(--mono);font-size:.62rem;letter-spacing:4px;color:var(--accent);text-transform:uppercase;margin-bottom:8px;display:flex;align-items:center;gap:10px}
     .page-eyebrow::before{content:'';width:28px;height:1px;background:var(--accent)}
     h1{font-family:var(--display);font-size:3rem;letter-spacing:2px;color:var(--white);margin-bottom:6px;line-height:1}
