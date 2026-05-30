@@ -918,7 +918,7 @@ def auto_git_commit(data: dict) -> None:
 
     try:
         result = subprocess.run(
-            ["git", "pull", "--rebase"],
+            ["git", "pull", "--rebase", "-X", "theirs", "--no-edit"],
             cwd=repo_root, check=True, capture_output=True, text=True,
         )
         if result.stdout.strip():
@@ -941,7 +941,7 @@ def auto_git_commit(data: dict) -> None:
             print("✅ Already up-to-date")
         elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
             print(f"⚠️ 远程有更新，重新拉取后重试 push...")
-            subprocess.run(["git", "pull", "--rebase"], cwd=repo_root)
+            subprocess.run(["git", "pull", "--rebase", "-X", "theirs", "--no-edit"], cwd=repo_root)
             retry = subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_root)
             if retry.returncode == 0:
                 print("✅ Git push 成功（重试后）")
