@@ -67,8 +67,6 @@ jobs:
           EMAIL="${GIT_EMAIL:-bot@renegade-ai.local}"
           git config --global user.name "$NAME"
           git config --global user.email "$EMAIL"
-          # 清理可能残留的冲突状态（来自上一轮中断的 rebase）
-          git rebase --abort 2>/dev/null; git merge --abort 2>/dev/null; true
           echo "✅ Git identity: $NAME <$EMAIL>"
 
       # ── 学术雷达 ──────────────────────────────────────────
@@ -93,7 +91,6 @@ jobs:
             echo "✨ 学术无新变更"
           else
             git commit -m "🎓 Academic: $(date '+%Y-%m-%d') [skip ci]"
-            git pull --rebase -X theirs --no-edit origin main || git rebase --abort
             git push origin main || echo "⚠️ Academic push failed"
           fi
 
@@ -121,7 +118,6 @@ jobs:
             echo "✨ 索引无新变更"
           else
             git commit -m "🏠 Index rebuild: $(date '+%Y-%m-%d') [skip ci]"
-            git pull --rebase -X theirs --no-edit origin main || git rebase --abort
             git push origin main || echo "⚠️ Index push failed"
           fi
 
