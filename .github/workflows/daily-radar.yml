@@ -98,7 +98,7 @@ jobs:
             echo "✨ 新闻无新变更"
           else
             git commit -m "📰 News: $(date '+%Y-%m-%d') [skip ci]"
-            git push origin main || echo "⚠️ News push failed"
+            git fetch origin main && git push --force-with-lease origin main || echo "⚠️ News push failed"
           fi
 
       - name: 🔔 Push News to Notify
@@ -133,7 +133,7 @@ jobs:
             echo "✨ 索引无新变更"
           else
             git commit -m "🏠 Index: $(date '+%Y-%m-%d') [skip ci]"
-            git push origin main || echo "⚠️ Index push failed"
+            git fetch origin main && git push --force-with-lease origin main || echo "⚠️ Index push failed"
           fi
 
       # ── 运行摘要 ──────────────────────────────────────────

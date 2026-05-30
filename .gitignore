@@ -51,23 +51,10 @@ env/
 Thumbs.db
 
 # ----------------------------------------------------------
-#  🗃️ 雷达缓存文件（提交到 git，跨 workflow 持久化，避免重复分析）
+#  🗃️ 雷达缓存文件（运行时持久化用，不提交 git）
+#     只保留 docs 下的 news_cache/academic_cache 在 git 中
+#     （用于跨 workflow 持久化，避免重复分析）
 #     注意：cache.json 仅存分析结果（标题+MD5+评分），不含密钥
 # ----------------------------------------------------------
-
-
-# 🗃️ 雷达缓存文件（由 GitHub Actions Cache 持久化，不走 git）
-docs/news/news_cache.json
-docs/academic/academic_cache.json
-
-# 🗃️ 雷达缓存文件（由 GitHub Actions Cache 持久化，不走 git）
-docs/news/news_cache.json
-docs/academic/academic_cache.json
-
-# 🗃️ 雷达缓存文件（仅运行时存在，不提交 git）
-docs/news/news_cache.json
-docs/academic/academic_cache.json
-
-# 🗃️ 雷达缓存文件（仅运行时存，不提交 git）
 docs/news/news_cache.json
 docs/academic/academic_cache.json

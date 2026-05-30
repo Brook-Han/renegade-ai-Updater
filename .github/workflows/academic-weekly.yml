@@ -91,7 +91,7 @@ jobs:
             echo "✨ 学术无新变更"
           else
             git commit -m "🎓 Academic: $(date '+%Y-%m-%d') [skip ci]"
-            git push origin main || echo "⚠️ Academic push failed"
+            git fetch origin main && git push --force-with-lease origin main || echo "⚠️ Academic push failed"
           fi
 
       # ── 索引页重建（包含学术+新闻完整列表） ────────────────
@@ -118,7 +118,7 @@ jobs:
             echo "✨ 索引无新变更"
           else
             git commit -m "🏠 Index rebuild: $(date '+%Y-%m-%d') [skip ci]"
-            git push origin main || echo "⚠️ Index push failed"
+            git fetch origin main && git push --force-with-lease origin main || echo "⚠️ Index push failed"
           fi
 
       # ── 学术通知 ──────────────────────────────────────────
