@@ -1,151 +1,131 @@
 {
-  "timestamp": 1779073866.2614431,
+  "timestamp": 1780116121.6534488,
   "source": "arxiv",
   "query": "AI universal basic income labor market",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16255v1",
-      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
-      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
-      "published": "2026-05-15T17:58:58+00:00",
-      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "id": "http://arxiv.org/abs/2605.30353v1",
+      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
+      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
+      "published": "2026-05-28T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.30353v1",
       "authors": [
-        "Grant Wilkins",
-        "Fiodar Kazhamiaka",
-        "Alok Gautam Kumbhare",
-        "Chaojie Zhang",
-        "Ricardo Bianchini"
+        "Nhat-Minh Nguyen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16252v1",
-      "title": "The fractal dimension of Brownian dynamics in liquids",
-      "summary": "The classical Einstein-Langevin theory of Brownian motion assumes a memoryless thermal bath, establishing a universal fractal dimension of $d_v = 3/2$ for the velocity fluctuations of a particle. In this Letter, we demonstrate experimentally and theoretically that fluid-inertial memory effects fundamentally redefine the fractal scaling of these fluctuations. In analyzing highly resolved measurements of Brownian microspheres in liquids, we show that the non-Markovian hydrodynamic thermal noise establishes a distinct velocity fractal dimension of $d_v = 7/4$. Coupled with theoretical analysis of non-equilibrium short-time dynamics and the initial scaling of the velocity autocorrelation function, this result establishes the non-equilibrium universality class of Brownian motion in fluid media possessing a finite non-vanishing density.",
-      "published": "2026-05-15T17:56:47+00:00",
-      "url": "https://arxiv.org/pdf/2605.16252v1",
+      "id": "http://arxiv.org/abs/2605.30345v1",
+      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
+      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30345v1",
       "authors": [
-        "Michael C. Thumann",
-        "Jason Boynewicz",
-        "Giuseppe Procopio",
-        "Massimiliano Giona",
-        "Mark G. Raizen"
+        "Qinpei Luo",
+        "Ruichun Ma",
+        "Xinyu Zhang",
+        "Lili Qiu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16250v1",
-      "title": "A Generative AI Framework for Intelligent Utility Billing CO 2 Analytics and Sustainable Resource Optimisation",
-      "summary": "Distribution utilities are now expected to deliver bills that customers can actually read attach a defensible carbon number to every kWh sold and schedule load against grid stress and emissions constraints We propose an end-to-end framework that unifies four production-grade capabilities under one architectural roof a generative-AI agent that drafts each customers natural-language billing statement from structured numeric inputs under a constrained decoding policy a transformer-based forecaster that supplies the day-ahead consumption estimate with calibrated quantile bands",
-      "published": "2026-05-15T17:52:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.16250v1",
+      "id": "http://arxiv.org/abs/2605.30340v1",
+      "title": "Carr criterion and mass gaps in non-singular primordial black hole formation",
+      "summary": "Non-singular gravitational theories are expected to be relevant in the early universe. In this paper, we derive a set of effective Friedmann equations describing the dynamics of matter shells in the presence of a gravitational regulator $\\ell$. We find that such a regulator induces a primordial black hole mass gap such that below a certain mass $M_\\text{gap}(\\ell, R_H)$ no black holes can form. The order of magnitude of this mass gap is set by the regulator $\\sim c^2\\ell/G$, with subleading dependence on the horizon radius at time of formation $R_H$. Finally, we show that over a wide range of equation of state parameters $= 0 \\dots 1/3$, the mass gap implies a Carr criterion of the form $_H > 2G M_\\text{gap}/R_H - 1$. If the horizon size is of the same order of the regulator, $R_H \\sim \\ell$, this new criterion is stronger than the traditional Carr criterion for primordial black hole formation. This connects the primordial black hole abundance directly to the presence of gravitational regulators.",
+      "published": "2026-05-28T17:59:17+00:00",
+      "url": "https://arxiv.org/pdf/2605.30340v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas Pruefer"
+        "Jens Boos",
+        "Arif Kağan Gündoğdu",
+        "Marek Hartenfels"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16246v1",
-      "title": "FRESH: Information-Geometric Calibration of Patient-Level Models to Aggregate Evidence",
-      "summary": "This note introduces FRESH (Fusion of Recent Evidence and Subject Histories), a method for incorporating population-level summary results -- published clinical trials, registry summaries,   prior natural-history studies, and peer-reviewed indirect comparisons -- into predictive models trained on patient-level data. This method provides a principled means of combining both   patient-level and aggregate-level data types into a unified data-efficient model for clinical decision making.   FRESH assumes access to a generative model trained on patient-level data sources (e.g. clinical trial or real-world data). The method produces patient-level predictions from a re-calibrated   model that matches a set of specified aggregate statistics for a target population. This can be understood as a patient-level recapitulation of the aggregate source -- with the key property   that the recalibration is a minimal perturbation of the original joint distribution in a specific information-geometric sense. The resulting samples can be analyzed directly or combined into a   post-training procedure to update the original generative model.   This approach enables several applications where rigorously incorporating patient-level data with summary information is valuable, including (i) contextualizing single-arm trial results with   respect to recent standard-of-care, (ii) clinical-trial simulations for design and probability-of-technical-success estimation, and (iii) comparative-effectiveness analyses of on-market   therapies.",
-      "published": "2026-05-15T17:50:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16246v1",
+      "id": "http://arxiv.org/abs/2605.30335v1",
+      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
+      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
+      "published": "2026-05-28T17:58:55+00:00",
+      "url": "https://arxiv.org/pdf/2605.30335v1",
       "authors": [
-        "Franklin Fuller",
-        "Daniele Bertolini",
-        "Samantha Liang",
-        "Jason Christopher",
-        "Aaron M. Smith"
+        "Anany Kotawala"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16245v1",
-      "title": "AI-Mediated Communication Can Steer Collective Opinion",
-      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
-      "published": "2026-05-15T17:49:24+00:00",
-      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "id": "http://arxiv.org/abs/2605.30329v1",
+      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
+      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
+      "published": "2026-05-28T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2605.30329v1",
       "authors": [
-        "Stratis Tsirtsis",
-        "Kai Rawal",
-        "Chris Russell",
-        "Brent Mittelstadt",
-        "Sandra Wachter"
+        "Sy-Tuyen Ho",
+        "Minghui Liu",
+        "Huy Nghiem",
+        "Furong Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16238v1",
-      "title": "Prospective multi-pathogen disease forecasting using autonomous LLM-guided tree search",
-      "summary": "Probabilistic forecasting of infectious diseases is crucial for public health but relies on labor-intensive manual model curation by expert modeling teams. This bespoke development bottlenecks scalability to granular geographic resolutions or emerging pathogens. Here, we present an autonomous system using Large Language Model (LLM)-guided tree search to iteratively generate, evaluate, and optimize executable forecasting software. In a fully prospective, real-time evaluation during the 2025-2026 US respiratory season, the system autonomously discovered methodologically diverse models for influenza, COVID-19, and respiratory syncytial virus (RSV). Aggregating these machine-generated models yielded an ensemble that consistently matched or outperformed the gold-standard, human-curated Centers for Disease Control and Prevention (CDC) hub ensembles out-of-sample. The system successfully navigated data-scarce \"cold start\" scenarios for RSV. Moreover, controlled retrospective ablations revealed that optimizing log-scale distance metrics prevents reward hacking, while an automated judge-in-the-loop ensures structural fidelity to complex scientific theories. By autonomously translating epidemiological theory into accurate, transparent code, this framework overcomes the modeling labor bottleneck, enabling rapid deployment of expert-level disease forecasting at unprecedented scales.",
-      "published": "2026-05-15T17:45:17+00:00",
-      "url": "https://arxiv.org/pdf/2605.16238v1",
+      "id": "http://arxiv.org/abs/2605.30323v1",
+      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
+      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
+      "published": "2026-05-28T17:56:54+00:00",
+      "url": "https://arxiv.org/pdf/2605.30323v1",
       "authors": [
-        "Sarah Martinson",
-        "Michael P. Brenner",
-        "Martyna Plomecka",
-        "Brian P. Williams",
-        "Nicholas G. Reich",
-        "Zahra Shamsi"
+        "Zhenyu Sun",
+        "Zheng Xu",
+        "Ermin Wei"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16232v1",
-      "title": "A Unified Generative-AI Framework for Smart Energy Infrastructure: Intelligent Gas Distribution, Utility Billing, Carbon Analytics, and Quantum-Inspired Optimisation",
-      "summary": "The accelerating convergence of smart metering, generative artificial intelligence, and quantum-inspired combinatorial optimisation is reshaping how energy utilities manage physical infrastructure, customer engagement, and environmental accountability",
-      "published": "2026-05-15T17:42:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16232v1",
+      "id": "http://arxiv.org/abs/2605.30322v1",
+      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
+      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
+      "published": "2026-05-28T17:56:18+00:00",
+      "url": "https://arxiv.org/pdf/2605.30322v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas pruefer"
+        "David Lindner",
+        "Victoria Krakovna",
+        "Sebastian Farquhar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16230v1",
-      "title": "Universal Magnetic Structure Prediction from Atomic Coordinates with Near-Experimental Accuracy",
-      "summary": "Magnetic order is a fundamental property of materials, governing collective behavior and enabling a broad range of functionalities. Yet magnetic structure remains difficult to determine: experiments are costly and specialized, while first-principles methods often struggle with the noncollinear and incommensurate orders found in real materials. Here we introduce magnetic structure network (MSN), an E(3) equivariant graph neural network that predicts both collinear and non-collinear magnetic structures directly from atomic crystal structures, trained directly on experimentally determined structures from MAGNDATA. By proposing the primitive modulated structure representation (PMSR), we are able to encode commensurate and incommensurate structures in a unified way without symmetry assumptions. The model achieves strong performance across all modulation components and reconstructs experimental magnetic structures with high fidelity. Our approach provides a scalable framework for rapid magnetic structure prediction and opens a route to data-driven discovery of magnetic materials.",
-      "published": "2026-05-15T17:40:08+00:00",
-      "url": "https://arxiv.org/pdf/2605.16230v1",
+      "id": "http://arxiv.org/abs/2605.30321v1",
+      "title": "A Bayesian Proof and Interpretation of Talagrand's Majorizing Measure Theorem",
+      "summary": "In this paper, we give a short Bayesian proof of Talagrand's celebrated majorizing-measure theorem (MMT). While the upper-bound direction of MMT follows relatively directly from standard arguments, the lower-bound direction is widely regarded as the more difficult part and has received several distinct proofs. Unlike previous approaches, our proof does not rely on existing Gaussian processes lower bounds techniques, nor on combinatorial, geometric, or coding-theoretic constructions. Instead, we derive the lower bound from two area identities for Gaussian additive models. We show that the Gaussian width of a finite set is the integrated mean-squared error of the maximum-likelihood estimator (MLE), while the integrated minimum mean-squared error (MMSE) is larger than the Fernique-Talagrand functional, up to a universal constant. Simply then comparing the MLE with Bayes-optimal estimation gives a direct proof of the hard direction of MMT.",
+      "published": "2026-05-28T17:56:03+00:00",
+      "url": "https://arxiv.org/pdf/2605.30321v1",
       "authors": [
-        "Abhijatmedhi Chotrattanapituk",
-        "Ryotaro Okabe",
-        "Eunbi Rha",
-        "Mariya Al-Hinai",
-        "Eugene Jiang",
-        "Daniel Pajerowski",
-        "Yongqiang Cheng",
-        "Joshua J. Turner",
-        "Mingda Li"
+        "Ilias Zadik"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16227v1",
-      "title": "LymphNode: A Plug-and-Play Access Control Method for Deep Neural Networks",
-      "summary": "Deep Neural Networks (DNNs) are high-value intellectual property (IP), yet deploying them to edge environments exposes them to \\textbf{unrestricted oracle access}, rendering them vulnerable to model extraction and inversion attacks. Existing defenses fail to address this practically: passive watermarking only offers post-hoc provenance, while active defenses impose prohibitive latency or require persistent access to sensitive training data. To bridge this gap, we propose \\textit{LymphNode}, a novel post-hoc defense framework that acts as an intrinsic ``immune system\" within the model. \\textit{LymphNode} enforces a strict ``default-deny'' policy: it actively neutralizes model utility for unauthorized queries via \\textbf{Generalized Sparse Universal Adversarial Perturbations (GSUAP)} injected into the feature space, effectively blocking gradient estimation and data inference. Utility is selectively restored only for authorized inputs carrying a stealthy feature-domain credential. Our framework is highly practical: it is \\textbf{data-efficient}, establishing robust protection with fewer than 100 samples ($<1\\%$ of training data), and \\textbf{cross-dataset adaptable}, enabling protection using public surrogate datasets. \\textit{LymphNode} thus provides a lightweight, immediately deployable defense for high-stakes scenarios where original training data is restricted or unavailable.",
-      "published": "2026-05-15T17:38:06+00:00",
-      "url": "https://arxiv.org/pdf/2605.16227v1",
+      "id": "http://arxiv.org/abs/2605.30303v1",
+      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
+      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
+      "published": "2026-05-28T17:46:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30303v1",
       "authors": [
-        "Hanyu Pei",
-        "Shang Liu",
-        "Zeyan Liu"
+        "Yallen Bai",
+        "Ploy Thajchayapong",
+        "Ashok Goel"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16204v1",
-      "title": "Who, Why, and How: Disentangling the Effects of Moderation Source, Context, and Language on Post-Removal Behavior",
-      "summary": "Content moderation is a central mechanism through which platforms attempt to balance user engagement with community governance. Yet existing research has largely treated moderation as a uniform intervention, overlooking how moderator source, violation context, and linguistic style jointly shape user behavior. Drawing on the Human--AI Interaction Theory of Interactive Media Effects (HAII-TIME), this study examines how these three dimensions produce divergent post-moderation behavioral trajectories in a large-scale observational dataset of 11,795,036 moderation events across 9,285,410 users and 61,261 subreddits on Reddit (2021--2025). Using probabilistic behavioral classification, ANOVA, and OLS regression with PCA-derived linguistic features, we find that bot moderation consistently produces higher compliance and lower self-censorship than human or modteam moderation, challenging the assumption that human agency cues are inherently advantageous. Modteam moderation produces the strongest self-censorship effects, suggesting that institutional depersonalization is a meaningful driver of behavioral withdrawal. Violation severity emerges as a critical contingency: linguistic strategies effective in routine contexts -- elaborated explanation, community-scale appeals, direct personal address -- can backfire for serious violations, whereas prosocially framed and emotionally emphatic messages become most effective when stakes are highest. Of 480 linguistic interactions tested, 33 survive FDR correction. These findings extend HAII-TIME by introducing violation salience as a moderator of cue-based processing, and offer empirical grounding for context-adaptive moderation design.",
-      "published": "2026-05-15T17:21:35+00:00",
-      "url": "https://arxiv.org/pdf/2605.16204v1",
+      "id": "http://arxiv.org/abs/2605.30284v1",
+      "title": "ProjectionBench: Evaluating Scientific Hypothesis Generation in LLMs Under Progressive Information Disclosure",
+      "summary": "Scientific discovery is an inherently creative and uncertain process, requiring reasoning beyond the recall of known knowledge. While many benchmarks have been proposed to evaluate large language model (LLM) performance on deep research tasks via multi-hop retrieval, their innovative reasoning abilities essential for true scientific discovery remain largely untested. We introduce a benchmark framework for evaluating model performance in scientific discovery and reasoning, building up from a raw problem to the classical null hypothesis test. In our framework, models initially receive only the topic and research question from a recent paper, with technical details progressively revealed. At each stage of information disclosure, the model is tasked with generating hypotheses that address the research question, which is compared with the conclusions from the original paper and evaluated via automated semantic similarity of constituent atomic claims. This progressive evaluation of semantic divergence from ground-truth conclusions enables assessment of a model's innovativeness (under minimal information) to grounded reasoning capabilities (under full experimental details), both critical for using LLMs for scientific discovery purposes. Our framework provides a foundation for systematically evaluating scientific reasoning and discovery capabilities in LLMs, crucial for advancing the development of next-generation AI scientist/co-scientist systems. Specifically, here we evaluate GPT-5, GPT-5.4, Gemini 2.5 pro, and Gemini 3.1 pro preview across 45 papers spanning bioactive materials, mechanical materials, and nanomaterials. We find that GPT-5.4 and Gemini 3.1 pro outperform their previous generation counterparts as expected, and GPT-5.4 in particular maintains 0.7 F1 score alignment with ground truth conclusions even under minimal context.",
+      "published": "2026-05-28T17:38:19+00:00",
+      "url": "https://arxiv.org/pdf/2605.30284v1",
       "authors": [
-        "Siyi Zhou",
-        "Lindsay Young",
-        "Marlon Twyman",
-        "Emilio Ferrara"
+        "A. J. Lew",
+        "Y. Cao",
+        "M. J. Buehler"
       ],
       "source": "arxiv"
     }

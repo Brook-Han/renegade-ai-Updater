@@ -1,137 +1,140 @@
 {
-  "timestamp": 1779073838.591956,
+  "timestamp": 1780116096.9646,
   "source": "arxiv",
   "query": "cognitive load AI assistance dependence",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16255v1",
-      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
-      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
-      "published": "2026-05-15T17:58:58+00:00",
-      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "id": "http://arxiv.org/abs/2605.30353v1",
+      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
+      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
+      "published": "2026-05-28T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.30353v1",
       "authors": [
-        "Grant Wilkins",
-        "Fiodar Kazhamiaka",
-        "Alok Gautam Kumbhare",
-        "Chaojie Zhang",
-        "Ricardo Bianchini"
+        "Nhat-Minh Nguyen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16253v1",
-      "title": "TTP: A Hardware-Efficient Design for Precise Prefetching in Ray Tracing",
-      "summary": "Ray tracing (RT) is a 3D graphics technique that offers highly realistic visuals. It is becoming prominent and accessible as GPU vendors have integrated dedicated ray tracing acceleration hardware. However, tracing millions of rays through 3D scenes consisting of high numbers of triangles in real time is challenging and requires expensive hardware. The main bottleneck in RT workloads is the expensive Bounding Volume Hierarchy (BVH) traversal task, which is a large tree structure that encodes the 3D scene. BVH traversal is a memory-bound problem, as the GPU threads spend most of their time reading tree node data from memory. In this work, we attack the memory latency bottleneck of ray tracing through prefetching. We propose a novel hardware prefetcher, named Tree Traversal Prefetcher (TTP), for ray tracing. The main idea is to leverage the existing tree traversal stack in the RT units for highly accurate prefetching. In particular, TTP prefetches nodes using the addresses already available on the hardware traversal stacks of each thread. For DFS (Depth-first search) based traversal, prefetches are generated when nodes are being popped consecutively from the traversal stack, potentially corresponding to upward traversal through the tree. We evaluate TTP on a cycle-level simulator, Vulkan-sim 2.0, and show that it achieves 1.48x speedup on average (up to 1.89x) compared to the baseline, with nearly negligible hardware overhead. TTP achieves 98.92% average L1 accuracy, which is the ratio of the prefetched blocks being actually referenced by demand loads. The coverage, computed as the ratio of L1 miss reduction over baseline L1 misses, is 31.54%, correlating well with the achieved speedup.",
-      "published": "2026-05-15T17:57:31+00:00",
-      "url": "https://arxiv.org/pdf/2605.16253v1",
+      "id": "http://arxiv.org/abs/2605.30350v1",
+      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
+      "summary": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language alignment, leaving motion understanding to downstream policies. We introduce DynaFLIP, a dynamics-aware multimodal pre-training framework that pushes motion understanding upstream into perception. We construct image-language-3D flow triplets from heterogeneous human and robot videos, and use these triplets as training-time supervision to shape an image-only encoder. Our key idea is to encourage the three modalities to span a small simplex volume in the shared hyperspherical space -- a smaller simplex volume indicating stronger alignment. To avoid the geometric ambiguity and trivial collapse of naive volume minimization, we combine simplex-volume minimization with a cosine regularizer and a contrastive objective. Our analyses show that DynaFLIP focuses on control-relevant regions critical for manipulation. The resulting dynamics-aware representations serve as reusable visual backbones and consistently outperform baselines across diverse downstream policies, including VLAs. We validate this across diverse simulation and real-world setups, with gains reaching +22.5% under out-of-distribution scenarios. Our results suggest that robot generalization improves when visual representations are trained to encode not just what is present, but how the world changes under action.",
+      "published": "2026-05-28T17:59:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30350v1",
       "authors": [
-        "Yavuz Selim Tozlu",
-        "Anshul Naithani",
-        "Huiyang Zhou"
+        "Jusuk Lee",
+        "Seungjae Lee",
+        "Jonghun Shin",
+        "Hoseong Jung",
+        "Sungha Kim",
+        "Daesol Cho",
+        "H. Jin Kim",
+        "Jia-Bin Huang",
+        "Furong Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16250v1",
-      "title": "A Generative AI Framework for Intelligent Utility Billing CO 2 Analytics and Sustainable Resource Optimisation",
-      "summary": "Distribution utilities are now expected to deliver bills that customers can actually read attach a defensible carbon number to every kWh sold and schedule load against grid stress and emissions constraints We propose an end-to-end framework that unifies four production-grade capabilities under one architectural roof a generative-AI agent that drafts each customers natural-language billing statement from structured numeric inputs under a constrained decoding policy a transformer-based forecaster that supplies the day-ahead consumption estimate with calibrated quantile bands",
-      "published": "2026-05-15T17:52:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.16250v1",
+      "id": "http://arxiv.org/abs/2605.30346v1",
+      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
+      "summary": "As video diffusion models (VDMs) advance toward world models, a key question arises: do they truly understand causality, or merely overfit to statistical temporal patterns? Existing benchmarks mostly rely on synthetic data, limiting real-world generalization due to the sim-to-real gap. We present YoCausal, a two-level benchmark inspired by the Violation of Expectation (VoE) paradigm from cognitive science. By temporally reversing real-world videos at zero cost as natural counterfactual samples, YoCausal establishes an arbitrarily extensible evaluation protocol. Level 1 introduces the Reverse Surprise Index (RSI), quantifying arrow-of-time perception via denoising loss. Level 2 introduces the Causality Cognition Index (CCI), which leverages a VLM to stratify datasets into causal and non-causal subsets, disentangling genuine causal reasoning from temporal bias. Evaluation of 13 state-of-the-art VDMs reveals that perceiving the arrow of time does not imply understanding causality, and a significant gap persists relative to human-level causal cognition.",
+      "published": "2026-05-28T17:59:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.30346v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas Pruefer"
+        "You-Zhe Xie",
+        "Yu-Hsuan Li",
+        "Jie-Ying Lee",
+        "Kaipeng Zhang",
+        "Yu-Lun Liu",
+        "Zhixiang Wang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16248v1",
-      "title": "Local Softmax and Global Weights in Non-Boolean Event Structures",
-      "summary": "Softmax and related normalized response functions are widely used in choice theory, machine learning, and cognitive science. In non-Boolean event structures with overlapping contexts, however, local normalization does not automatically yield a global probability weight. We show that imposing single-valuedness on shared atoms -- equivalently, no-disturbance or consistent connectedness -- collapses generalized softmax rules to coordinate parametrizations of the strictly positive part of the admissible-weight polytope. Any strictly positive admissible weight can be represented in this way, while boundary weights arise as limits. Exotic weights that exceed classical or quantum bounds are therefore properties of the event structure and the chosen weight, not of the normalizing link. The resulting hierarchy separates local normalization, cross-context gluing, Cauchy--Gleason linearity, and physical or cognitive realizability.",
-      "published": "2026-05-15T17:51:15+00:00",
-      "url": "https://arxiv.org/pdf/2605.16248v1",
+      "id": "http://arxiv.org/abs/2605.30345v1",
+      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
+      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30345v1",
       "authors": [
-        "Karl Svozil"
+        "Qinpei Luo",
+        "Ruichun Ma",
+        "Xinyu Zhang",
+        "Lili Qiu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16245v1",
-      "title": "AI-Mediated Communication Can Steer Collective Opinion",
-      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
-      "published": "2026-05-15T17:49:24+00:00",
-      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "id": "http://arxiv.org/abs/2605.30343v1",
+      "title": "Unlocking the Working Memory of Large Language Models for Latent Reasoning",
+      "summary": "To improve the reasoning capabilities of large language models, test-time compute is typically scaled by generating intermediate tokens before the final answer. However, this couples reasoning to autoregressive generation and thereby conflates internal computation with external communication. In contrast, human cognition can use working memory to hold and manipulate information internally without the need to externalize intermediate thoughts. Drawing on this principle, we introduce Reasoning in Memory (RiM), a latent reasoning method that replaces the autoregressive generation of reasoning steps with memory blocks. These memory blocks are fixed sequences of special tokens that unlock the working-memory capacity of large language models. Since they are fixed rather than generated, they can be processed in a single forward pass, enabling compute-efficient latent reasoning. To operationalize these memory blocks, we employ a two-stage curriculum. First, we ground them by predicting explicit reasoning steps after each memory block. Second, we discard this step-level supervision and iteratively refine the final answer after each memory block. Our experiments on reasoning benchmarks show that, across language models of different families and sizes, RiM matches or exceeds existing latent reasoning methods while avoiding the autoregressive generation of thoughts. These results demonstrate that large language models can be trained to use working memory as an effective mechanism for latent reasoning.",
+      "published": "2026-05-28T17:59:49+00:00",
+      "url": "https://arxiv.org/pdf/2605.30343v1",
       "authors": [
-        "Stratis Tsirtsis",
-        "Kai Rawal",
-        "Chris Russell",
-        "Brent Mittelstadt",
-        "Sandra Wachter"
+        "Lukas Aichberger",
+        "Sepp Hochreiter"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16242v1",
-      "title": "Near-degenerate competing magnetic orders in EuAgAs: a tunable route to altermagnetism",
-      "summary": "Altermagnets (AMs) have recently emerged as a distinct magnetic class bridging central features of ferromagnets (FMs) and antiferromagnets (AFMs), offering new opportunities for spin-based electronics. While they possess zero net magnetization like collinear AFMs, they simultaneously exhibit momentum-dependent spin splitting long thought exclusive to FMs. Despite intense theoretical interest, experimentally accessible materials hosting both altermagnetism and nontrivial band topology remain scarce. EuAgAs, crystallizing in space group $P6_3/mmc$, was previously identified via density functional theory (DFT) as a bulk altermagnetic Dirac semimetal. Contrary to these predictions, our neutron diffraction experiments reveal that the bulk ground state adopts a $\\mathbf{q} = (0,0,\\tfrac{1}{2})$ AFM structure with an in-plane $\\uparrow\\uparrow\\downarrow\\downarrow$ spin sequence. Systematic DFT calculations, however, uncover a remarkable near-degeneracy among competing magnetic orders: the FM and AM configurations lie only $0.11$ and $0.40~\\text{meV/f.u.}$ above the AFM ground state, respectively. We further show that while a simple Heisenberg model favors a spin-spiral ground state, the inclusion of non-Heisenberg biquadratic coupling stabilizes the observed commensurate AFM phase. This near-degeneracy renders the magnetic state highly tunable, with DFT predicting a transition to the altermagnetic phase under hydrostatic pressure at approximately $14 \\text{ GPa}$, establishing EuAgAs as a controllable platform for accessing topological altermagnetism.",
-      "published": "2026-05-15T17:48:40+00:00",
-      "url": "https://arxiv.org/pdf/2605.16242v1",
+      "id": "http://arxiv.org/abs/2605.30340v1",
+      "title": "Carr criterion and mass gaps in non-singular primordial black hole formation",
+      "summary": "Non-singular gravitational theories are expected to be relevant in the early universe. In this paper, we derive a set of effective Friedmann equations describing the dynamics of matter shells in the presence of a gravitational regulator $\\ell$. We find that such a regulator induces a primordial black hole mass gap such that below a certain mass $M_\\text{gap}(\\ell, R_H)$ no black holes can form. The order of magnitude of this mass gap is set by the regulator $\\sim c^2\\ell/G$, with subleading dependence on the horizon radius at time of formation $R_H$. Finally, we show that over a wide range of equation of state parameters $= 0 \\dots 1/3$, the mass gap implies a Carr criterion of the form $_H > 2G M_\\text{gap}/R_H - 1$. If the horizon size is of the same order of the regulator, $R_H \\sim \\ell$, this new criterion is stronger than the traditional Carr criterion for primordial black hole formation. This connects the primordial black hole abundance directly to the presence of gravitational regulators.",
+      "published": "2026-05-28T17:59:17+00:00",
+      "url": "https://arxiv.org/pdf/2605.30340v1",
       "authors": [
-        "Mohamed El Gazzah",
-        "Daniel Kaplan",
-        "Zachary Morgan",
-        "Abhijeet Nayak Resham Regmi",
-        "Sk Jamaluddin",
-        "Huibo Cao",
-        "Igor I. Mazin",
-        "Nirmal J. Ghimire"
+        "Jens Boos",
+        "Arif Kağan Gündoğdu",
+        "Marek Hartenfels"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16239v1",
-      "title": "Dynamics-Level Watermarking of Flow Matching Models with Random Codes",
-      "summary": "We introduce a dynamics-level approach to watermarking generative models. Rather than embedding signals into model weights or outputs, we embed the watermark directly into the learned continuous dynamics -- the velocity field of a flow matching model. We formulate this as random coding over a continuous channel: a key-dependent perturbation is added during training, and the message is recovered at detection time from black-box queries. The perturbation is designed to leave the generated distribution unchanged. Experiments on MNIST and CIFAR-10 across different architectures confirm reliable message recovery, preserved generation quality, and chance-level decoding accuracy without the secret key.",
-      "published": "2026-05-15T17:48:22+00:00",
-      "url": "https://arxiv.org/pdf/2605.16239v1",
+      "id": "http://arxiv.org/abs/2605.30335v1",
+      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
+      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
+      "published": "2026-05-28T17:58:55+00:00",
+      "url": "https://arxiv.org/pdf/2605.30335v1",
       "authors": [
-        "Shuchan Wang"
+        "Anany Kotawala"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16236v1",
-      "title": "Acoustic spin resonance in polariton condensates",
-      "summary": "We theoretically investigate acoustic spin resonance in a spatially homogeneous spinor polariton condensate. A longitudinal acoustic wave generates a time-periodic strain-induced effective magnetic field acting on the condensate pseudospin. When this field is transverse to the static in-plane linear-polarization splitting, it resonantly drives polarization oscillations. We show that spin-dependent interactions shift the resonance and produce nonlinear line shapes, while gain, reservoir dynamics, and spin relaxation make the response dissipative and history-dependent, producing amplitude hysteresis. In the presence of lifetime anisotropy, the condensate can develop a bifurcated stationary state with finite circular polarization, and a resonant acoustic drive can switch between the corresponding out-of-plane branches. A Zeeman splitting provides an additional conservative knob for tuning the resonance frequency. Our results identify coherent acoustic driving as a route to resonant, nonlinear, and switchable control of polariton pseudospin dynamics.",
-      "published": "2026-05-15T17:44:03+00:00",
-      "url": "https://arxiv.org/pdf/2605.16236v1",
+      "id": "http://arxiv.org/abs/2605.30333v1",
+      "title": "COMPOSE: Composing Future Theorems from Citations and Formal Structure",
+      "summary": "A plausible future mathematical claim must satisfy two constraints: it should follow the direction of prior work and respect the formal dependencies that constrain what can validly follow. Existing approaches typically model only one of these sources, producing claims that are either weakly grounded or insufficiently motivated. We introduce grounded future mathematical generation, where the goal is to generate a plausible future theorem-like claim for an anchor paper using two complementary sources of context: its scientific citation graph and aligned formal theorem dependency graph. To address this setting, we propose COMPOSE, a dual-graph framework that conditions a language model on both scientific citation context and formal theorem structure. To support this setting, we construct a dataset of 108K paired scientific-formal graph examples from arXiv and Mathlib, together with a benchmark of 47K future papers from 2024--2025. Experiments show that COMPOSE outperforms strong baselines on retrieval to real future papers and achieves the best overall performance under LLM-judge evaluation, producing more grounded and mathematically richer outputs. These results show that future mathematical generation benefits from combining scientific context with formal structure. Project page is available at https://david-busbib.github.io/COMPOSE-page/.",
+      "published": "2026-05-28T17:58:42+00:00",
+      "url": "https://arxiv.org/pdf/2605.30333v1",
       "authors": [
-        "D. A. Saltykova",
-        "A. Kudlis",
-        "A. V. Yulin",
-        "I. A. Shelykh"
+        "David Busbib",
+        "Michael Werman"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16232v1",
-      "title": "A Unified Generative-AI Framework for Smart Energy Infrastructure: Intelligent Gas Distribution, Utility Billing, Carbon Analytics, and Quantum-Inspired Optimisation",
-      "summary": "The accelerating convergence of smart metering, generative artificial intelligence, and quantum-inspired combinatorial optimisation is reshaping how energy utilities manage physical infrastructure, customer engagement, and environmental accountability",
-      "published": "2026-05-15T17:42:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16232v1",
+      "id": "http://arxiv.org/abs/2605.30332v1",
+      "title": "Colored Noise Diffusion Sampling",
+      "summary": "Diffusion models achieve state-of-the-art image synthesis, with their generative trajectories fundamentally exhibiting a spectral bias, resolving low-frequency global structures early and high-frequency fine details later. Conventional stochastic differential equation (SDE) solvers fail to account for this dynamic, naively injecting uniform white noise throughout the entire process and misusing the finite energy budget. In this work, we establish a mathematical framework that reconsiders SDE inference as a targeted, frequency-decoupled energy transfer. Leveraging this framework, we introduce Colored Noise Sampling (CNS), a novel, training-free stochastic solver. Rather than injecting uniform white noise, CNS utilizes a dynamic, timestep- and frequency-dependent schedule that more efficiently allocates injected energy toward structurally unresolved frequency bands. By actively exploiting the model's inherent spectral bias, CNS systematically steers the generated distribution toward the true data manifold. Extensive experiments demonstrate that CNS significantly outperforms standard ODE and SDE baselines as a strictly plug-and-play, inference-time sampler substitution across diverse architectures (SiT, JiT, FLUX). Compared to standard sampling on ImageNet-256, CNS achieves substantial unguided FID reductions, improving from 8.26 to 6.27 on SiT-XL/2, 32.39 to 26.69 on JiT-B/16, and 11.88 to 8.31 on JiT-H/16, while yielding consistent relative FID improvements with Classifier-Free Guidance. Project page is available at https://hadardavidson.github.io/CNS/.",
+      "published": "2026-05-28T17:58:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.30332v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas pruefer"
+        "Hadar Davidson",
+        "Noam Issachar",
+        "Sagie Benaim"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16231v1",
-      "title": "Scheme-invariant stratified factorization algebras for inclusive deep inelastic scattering",
-      "summary": "Inclusive deep inelastic scattering factorization combines two features that are often treated separately: an asymptotic reconstruction of the current-current matrix element from hard and long-distance data, and an invariance under finite changes of collinear scheme or operator basis. We formulate these two features as a single proof object. The construction packages the leading-region analysis, overlap subtraction, Wilson-line reduction, finite scheme kernels and physical measurement into a typed, filtered structure on a compactified space of asymptotic regimes. Its central carrier is the balanced hard-collinear core over the interface algebra of finite scheme transformations. The hard QCD input is the construction of a scheme-balanced comparison map from this core to the collinear collar of the regime algebra. Once this comparison is an equivalence through the chosen power accuracy and the measurement descends to convolution, the standard DIS convolution formula follows formally and independently of the chosen scheme presentation. We separate this formal implication from the analytic QCD obligations needed to construct the collar equivalence, describe Collins-style subtraction as descent and Mbius inversion on the region poset, and give a finite check relating $\\overline{\\mathrm{MS}}$ and DIS presentations. The framework is intended as proof infrastructure rather than as a new calculation of DIS coefficient functions. It supplies diagnostics for missing regions, nonclosed operator sectors, nonbalanced measurements and failed collar equivalences, and it gives a typed interface for future proof-assistant and machine-learning implementations of factorization workflows.",
-      "published": "2026-05-15T17:40:35+00:00",
-      "url": "https://arxiv.org/pdf/2605.16231v1",
+      "id": "http://arxiv.org/abs/2605.30329v1",
+      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
+      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
+      "published": "2026-05-28T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2605.30329v1",
       "authors": [
-        "Dustin Keller"
+        "Sy-Tuyen Ho",
+        "Minghui Liu",
+        "Huy Nghiem",
+        "Furong Huang"
       ],
       "source": "arxiv"
     }

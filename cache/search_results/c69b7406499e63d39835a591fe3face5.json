@@ -1,162 +1,140 @@
 {
-  "timestamp": 1779073845.242761,
+  "timestamp": 1780116102.9388406,
   "source": "arxiv",
   "query": "demand side AI adoption behavior",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16257v1",
-      "title": "DexJoCo: A Benchmark and Toolkit for Task-Oriented Dexterous Manipulation on MuJoCo",
-      "summary": "Achieving human-level manipulation requires dexterous robotic hands capable of complex object interactions. Advancing such capabilities further demands standardized benchmarks for systematic evaluation. However, existing dexterous benchmarks lack tasks that reflect the unique manipulation capabilities of dexterous hands over parallel grippers, as well as comprehensive evaluation pipelines. In this paper, we present DexJoCo, a benchmark and toolkit for task-oriented dexterous manipulation, comprising 11 functionally grounded tasks that evaluate tool-use, bimanual coordination, long-horizon execution, and reasoning. We develop a low-cost data collection system and collect 1.1K trajectories across these tasks, with support for domain randomization to assess robustness. We benchmark modern models under diverse settings, including visual and dynamics randomization, multi-task training, and action-head adaptation. Through extensive empirical analysis, we identify several important insights and common limitations of current policies in dexterous manipulation, highlighting key challenges for future research in dexterous hand robot learning. Project page available at: https://dexjoco.github.io",
-      "published": "2026-05-15T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2605.16257v1",
+      "id": "http://arxiv.org/abs/2605.30353v1",
+      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
+      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
+      "published": "2026-05-28T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.30353v1",
       "authors": [
-        "Hanwen Wang",
-        "Weizhi Zhao",
-        "Xiangyu Wang",
-        "Siyuan Huang",
-        "He Lin",
-        "Boyuan Zheng",
-        "Rongtao Xu",
-        "Gang Wang",
-        "Yao Mu",
-        "He Wang",
-        "Lue Fan",
-        "Hongsheng Li",
-        "Zhaoxiang Zhang",
-        "Tieniu Tan"
+        "Nhat-Minh Nguyen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16255v1",
-      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
-      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
-      "published": "2026-05-15T17:58:58+00:00",
-      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "id": "http://arxiv.org/abs/2605.30348v1",
+      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
+      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
+      "published": "2026-05-28T17:59:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30348v1",
       "authors": [
-        "Grant Wilkins",
-        "Fiodar Kazhamiaka",
-        "Alok Gautam Kumbhare",
-        "Chaojie Zhang",
-        "Ricardo Bianchini"
+        "Yaxin Luo",
+        "Jiacheng Cui",
+        "Xiaohan Zhao",
+        "Xinyi Shang",
+        "Jiacheng Liu",
+        "Xinyue Bi",
+        "Zhaoyi Li",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16253v1",
-      "title": "TTP: A Hardware-Efficient Design for Precise Prefetching in Ray Tracing",
-      "summary": "Ray tracing (RT) is a 3D graphics technique that offers highly realistic visuals. It is becoming prominent and accessible as GPU vendors have integrated dedicated ray tracing acceleration hardware. However, tracing millions of rays through 3D scenes consisting of high numbers of triangles in real time is challenging and requires expensive hardware. The main bottleneck in RT workloads is the expensive Bounding Volume Hierarchy (BVH) traversal task, which is a large tree structure that encodes the 3D scene. BVH traversal is a memory-bound problem, as the GPU threads spend most of their time reading tree node data from memory. In this work, we attack the memory latency bottleneck of ray tracing through prefetching. We propose a novel hardware prefetcher, named Tree Traversal Prefetcher (TTP), for ray tracing. The main idea is to leverage the existing tree traversal stack in the RT units for highly accurate prefetching. In particular, TTP prefetches nodes using the addresses already available on the hardware traversal stacks of each thread. For DFS (Depth-first search) based traversal, prefetches are generated when nodes are being popped consecutively from the traversal stack, potentially corresponding to upward traversal through the tree. We evaluate TTP on a cycle-level simulator, Vulkan-sim 2.0, and show that it achieves 1.48x speedup on average (up to 1.89x) compared to the baseline, with nearly negligible hardware overhead. TTP achieves 98.92% average L1 accuracy, which is the ratio of the prefetched blocks being actually referenced by demand loads. The coverage, computed as the ratio of L1 miss reduction over baseline L1 misses, is 31.54%, correlating well with the achieved speedup.",
-      "published": "2026-05-15T17:57:31+00:00",
-      "url": "https://arxiv.org/pdf/2605.16253v1",
+      "id": "http://arxiv.org/abs/2605.30345v1",
+      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
+      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30345v1",
       "authors": [
-        "Yavuz Selim Tozlu",
-        "Anshul Naithani",
-        "Huiyang Zhou"
+        "Qinpei Luo",
+        "Ruichun Ma",
+        "Xinyu Zhang",
+        "Lili Qiu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16250v1",
-      "title": "A Generative AI Framework for Intelligent Utility Billing CO 2 Analytics and Sustainable Resource Optimisation",
-      "summary": "Distribution utilities are now expected to deliver bills that customers can actually read attach a defensible carbon number to every kWh sold and schedule load against grid stress and emissions constraints We propose an end-to-end framework that unifies four production-grade capabilities under one architectural roof a generative-AI agent that drafts each customers natural-language billing statement from structured numeric inputs under a constrained decoding policy a transformer-based forecaster that supplies the day-ahead consumption estimate with calibrated quantile bands",
-      "published": "2026-05-15T17:52:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.16250v1",
+      "id": "http://arxiv.org/abs/2605.30338v1",
+      "title": "REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image",
+      "summary": "Reconstructing physically stable 3D scenes from a single RGB image enables casual images to be converted into simulation-ready digital assets for applications such as immersive interaction and content creation. However, existing single-image reconstruction methods fall short in capturing the physical structure of a scene. As a result, they often produce geometrically plausible but physically inconsistent results, including object floating and penetration, which lead to unstable behavior in physics simulations. Image-conditioned scene generation methods improve physical plausibility but often rely on strong scene priors, yielding plausible yet inaccurate object arrangements that fail to match the input image. We propose REST3D, a single-image reconstruction framework that can reconstruct physically stable 3D scenes by integrating physical scene understanding with physics-constrained refinement. We first introduce an agentic physical scene understanding technique that constructs a scene-tree representation capturing object physical states and inter-object relationships from a gravity-support perspective, providing a structural prior for reconstruction. Leveraging this structure, we initialize the scene using image-to-3D models, followed by scene-tree-guided alignment and physics-constrained optimization to resolve physical violations while preserving visual consistency with the input image. Experiments show that our method significantly reduces physical errors and improves simulation stability on both synthetic and real-world datasets while maintaining strong reconstruction quality. We further demonstrate the reconstructed scenes in VR-based human-object interaction, showing their potential for immersive applications.",
+      "published": "2026-05-28T17:59:01+00:00",
+      "url": "https://arxiv.org/pdf/2605.30338v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas Pruefer"
+        "Xiaoxuan Ma",
+        "Jiashun Wang",
+        "Nicolas Ugrinovic",
+        "Yehonathan Litman",
+        "Kris Kitani"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16245v1",
-      "title": "AI-Mediated Communication Can Steer Collective Opinion",
-      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
-      "published": "2026-05-15T17:49:24+00:00",
-      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "id": "http://arxiv.org/abs/2605.30335v1",
+      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
+      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
+      "published": "2026-05-28T17:58:55+00:00",
+      "url": "https://arxiv.org/pdf/2605.30335v1",
       "authors": [
-        "Stratis Tsirtsis",
-        "Kai Rawal",
-        "Chris Russell",
-        "Brent Mittelstadt",
-        "Sandra Wachter"
+        "Anany Kotawala"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16243v1",
-      "title": "Stern--Gerlach Spin Sorting in Relativistic Magnetic Reconnection",
-      "summary": "We introduce a Stern--Gerlach (SG) spin-kinetic control parameter for magnetic reconnection. The fully projected branch parameter, $_0=<Z>/r_L$ compares the SG cross-sheet displacement accumulated during a diffusion-region transit with the relativistic Larmor radius. For an ensemble or partially participating population the relevant effective parameter is $_{\\rm Eff}=P_{eff}_0$, where $P_{eff}$ represents the surviving branch weight or effective spin/moment projection. Evaluating $_{\\rm Eff}$ across representative space and astrophysical environments reveals a robust hierarchy: SG transport is negligible in the magnetotail, solar corona, active galactic nuclei (AGN)/blazar jets, and pulsar-wind nebulae, but becomes transitional to strong in magnetar current sheets and extreme near magnetar surfaces. We further show, using electron--positron particle-in-cell simulations, that the SG force sorts particles by magnetic-moment projection into opposite sides of a Harris current sheet without measurably changing the global reconnection rate in the tested regime. This identifies magnetars as the clearest natural target for strong-field spin-kinetic reconnection ($_{\\rm eff}\\gg 1$) near the surface; transitional in the outer magnetosphere), while SG transport is safely negligible ($_{\\rm eff}\\ll 1$) in all heliophysical and jet environments considered, and provides a falsifiable framework for assessing where SG physics is relevant.",
-      "published": "2026-05-15T17:48:48+00:00",
-      "url": "https://arxiv.org/pdf/2605.16243v1",
+      "id": "http://arxiv.org/abs/2605.30329v1",
+      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
+      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
+      "published": "2026-05-28T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2605.30329v1",
       "authors": [
-        "K. Nykyri"
+        "Sy-Tuyen Ho",
+        "Minghui Liu",
+        "Huy Nghiem",
+        "Furong Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16242v1",
-      "title": "Near-degenerate competing magnetic orders in EuAgAs: a tunable route to altermagnetism",
-      "summary": "Altermagnets (AMs) have recently emerged as a distinct magnetic class bridging central features of ferromagnets (FMs) and antiferromagnets (AFMs), offering new opportunities for spin-based electronics. While they possess zero net magnetization like collinear AFMs, they simultaneously exhibit momentum-dependent spin splitting long thought exclusive to FMs. Despite intense theoretical interest, experimentally accessible materials hosting both altermagnetism and nontrivial band topology remain scarce. EuAgAs, crystallizing in space group $P6_3/mmc$, was previously identified via density functional theory (DFT) as a bulk altermagnetic Dirac semimetal. Contrary to these predictions, our neutron diffraction experiments reveal that the bulk ground state adopts a $\\mathbf{q} = (0,0,\\tfrac{1}{2})$ AFM structure with an in-plane $\\uparrow\\uparrow\\downarrow\\downarrow$ spin sequence. Systematic DFT calculations, however, uncover a remarkable near-degeneracy among competing magnetic orders: the FM and AM configurations lie only $0.11$ and $0.40~\\text{meV/f.u.}$ above the AFM ground state, respectively. We further show that while a simple Heisenberg model favors a spin-spiral ground state, the inclusion of non-Heisenberg biquadratic coupling stabilizes the observed commensurate AFM phase. This near-degeneracy renders the magnetic state highly tunable, with DFT predicting a transition to the altermagnetic phase under hydrostatic pressure at approximately $14 \\text{ GPa}$, establishing EuAgAs as a controllable platform for accessing topological altermagnetism.",
-      "published": "2026-05-15T17:48:40+00:00",
-      "url": "https://arxiv.org/pdf/2605.16242v1",
+      "id": "http://arxiv.org/abs/2605.30323v1",
+      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
+      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
+      "published": "2026-05-28T17:56:54+00:00",
+      "url": "https://arxiv.org/pdf/2605.30323v1",
       "authors": [
-        "Mohamed El Gazzah",
-        "Daniel Kaplan",
-        "Zachary Morgan",
-        "Abhijeet Nayak Resham Regmi",
-        "Sk Jamaluddin",
-        "Huibo Cao",
-        "Igor I. Mazin",
-        "Nirmal J. Ghimire"
+        "Zhenyu Sun",
+        "Zheng Xu",
+        "Ermin Wei"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16232v1",
-      "title": "A Unified Generative-AI Framework for Smart Energy Infrastructure: Intelligent Gas Distribution, Utility Billing, Carbon Analytics, and Quantum-Inspired Optimisation",
-      "summary": "The accelerating convergence of smart metering, generative artificial intelligence, and quantum-inspired combinatorial optimisation is reshaping how energy utilities manage physical infrastructure, customer engagement, and environmental accountability",
-      "published": "2026-05-15T17:42:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16232v1",
+      "id": "http://arxiv.org/abs/2605.30322v1",
+      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
+      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
+      "published": "2026-05-28T17:56:18+00:00",
+      "url": "https://arxiv.org/pdf/2605.30322v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas pruefer"
+        "David Lindner",
+        "Victoria Krakovna",
+        "Sebastian Farquhar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16230v1",
-      "title": "Universal Magnetic Structure Prediction from Atomic Coordinates with Near-Experimental Accuracy",
-      "summary": "Magnetic order is a fundamental property of materials, governing collective behavior and enabling a broad range of functionalities. Yet magnetic structure remains difficult to determine: experiments are costly and specialized, while first-principles methods often struggle with the noncollinear and incommensurate orders found in real materials. Here we introduce magnetic structure network (MSN), an E(3) equivariant graph neural network that predicts both collinear and non-collinear magnetic structures directly from atomic crystal structures, trained directly on experimentally determined structures from MAGNDATA. By proposing the primitive modulated structure representation (PMSR), we are able to encode commensurate and incommensurate structures in a unified way without symmetry assumptions. The model achieves strong performance across all modulation components and reconstructs experimental magnetic structures with high fidelity. Our approach provides a scalable framework for rapid magnetic structure prediction and opens a route to data-driven discovery of magnetic materials.",
-      "published": "2026-05-15T17:40:08+00:00",
-      "url": "https://arxiv.org/pdf/2605.16230v1",
+      "id": "http://arxiv.org/abs/2605.30303v1",
+      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
+      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
+      "published": "2026-05-28T17:46:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30303v1",
       "authors": [
-        "Abhijatmedhi Chotrattanapituk",
-        "Ryotaro Okabe",
-        "Eunbi Rha",
-        "Mariya Al-Hinai",
-        "Eugene Jiang",
-        "Daniel Pajerowski",
-        "Yongqiang Cheng",
-        "Joshua J. Turner",
-        "Mingda Li"
+        "Yallen Bai",
+        "Ploy Thajchayapong",
+        "Ashok Goel"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16215v1",
-      "title": "Fully Open Meditron: An Auditable Pipeline for Clinical LLMs",
-      "summary": "Clinical decision support systems (CDSS) require scrutable, auditable pipelines that enable rigorous, reproducible validation. Yet current LLM-based CDSS remain largely opaque. Most \"open\" models are open-weight only, releasing parameters while withholding the data provenance, curation procedures, and generation pipelines that determine model behavior. Fully Open (FO) models, which expose the complete training stack end-to-end, do not currently exist in medicine. We introduce Fully Open Meditron, the first fully open pipeline for building LLM-CDSS, comprising a clinician-audited training corpus, a reproducible data construction and training framework, and a use-aligned evaluation protocol. The corpus unifies eight public medical QA datasets into a normalized conversational format and expands coverage with three clinician-vetted synthetic extensions: exam-style QA, guideline-grounded QA derived from 46,469 clinical practice guidelines, and clinical vignettes. The pipeline enforces system-wide decontamination, gold-label resampling of teacher generations, and end-to-end validation by a four-physician panel. We evaluate using an LLM-as-a-judge protocol over expert-written clinical vignettes, calibrated against 204 human raters. We apply the recipe to five FO base models (Apertus-70B/8B-Instruct, OLMo-2-32B-SFT, EuroLLM-22B/9B-Instruct). All MeditronFO variants are preferred over their bases. Apertus-70B-MeditronFO improves +6.6 points over its base (47.2% to 53.8%) on aggregate medical benchmarks, establishing a new FO SoTA. Gemma-3-27B-MeditronFO is preferred over MedGemma in 58.6% of LLM-as-a-judge comparisons and outperforms it on HealthBench (58% vs 55.9%). These results show that fully open pipelines can achieve state-of-the-art domain-specific performance without sacrificing auditability or reproducibility.",
-      "published": "2026-05-15T17:29:08+00:00",
-      "url": "https://arxiv.org/pdf/2605.16215v1",
+      "id": "http://arxiv.org/abs/2605.30284v1",
+      "title": "ProjectionBench: Evaluating Scientific Hypothesis Generation in LLMs Under Progressive Information Disclosure",
+      "summary": "Scientific discovery is an inherently creative and uncertain process, requiring reasoning beyond the recall of known knowledge. While many benchmarks have been proposed to evaluate large language model (LLM) performance on deep research tasks via multi-hop retrieval, their innovative reasoning abilities essential for true scientific discovery remain largely untested. We introduce a benchmark framework for evaluating model performance in scientific discovery and reasoning, building up from a raw problem to the classical null hypothesis test. In our framework, models initially receive only the topic and research question from a recent paper, with technical details progressively revealed. At each stage of information disclosure, the model is tasked with generating hypotheses that address the research question, which is compared with the conclusions from the original paper and evaluated via automated semantic similarity of constituent atomic claims. This progressive evaluation of semantic divergence from ground-truth conclusions enables assessment of a model's innovativeness (under minimal information) to grounded reasoning capabilities (under full experimental details), both critical for using LLMs for scientific discovery purposes. Our framework provides a foundation for systematically evaluating scientific reasoning and discovery capabilities in LLMs, crucial for advancing the development of next-generation AI scientist/co-scientist systems. Specifically, here we evaluate GPT-5, GPT-5.4, Gemini 2.5 pro, and Gemini 3.1 pro preview across 45 papers spanning bioactive materials, mechanical materials, and nanomaterials. We find that GPT-5.4 and Gemini 3.1 pro outperform their previous generation counterparts as expected, and GPT-5.4 in particular maintains 0.7 F1 score alignment with ground truth conclusions even under minimal context.",
+      "published": "2026-05-28T17:38:19+00:00",
+      "url": "https://arxiv.org/pdf/2605.30284v1",
       "authors": [
-        "Xavier Theimer-Lienhard",
-        "Mushtaha El-Amin",
-        "Fay Elhassan",
-        "Sahaj Vaidya",
-        "Victor Cartier-Negadi",
-        "David Sasu",
-        "Lars Klein",
-        "Mary-Anne Hartley"
+        "A. J. Lew",
+        "Y. Cao",
+        "M. J. Buehler"
       ],
       "source": "arxiv"
     }

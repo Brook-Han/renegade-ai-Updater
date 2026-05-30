@@ -1,145 +1,164 @@
 {
-  "timestamp": 1779073795.135303,
+  "timestamp": 1780116058.7609231,
   "source": "arxiv",
   "query": "AI scientific exploration narrowing",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16255v1",
-      "title": "Designing Datacenter Power Delivery Hierarchies for the AI Era",
-      "summary": "Demand for AI accelerators is rapidly increasing rack power density, with projections approaching 1MW per deployment by 2027. This poses a major challenge for datacenter power delivery designers. As power densities increase, a datacenter designed for a different target density may strand power, i.e., may be unable to use all the power that its delivery hierarchy has provisioned. Designs must remain efficient over long datacenter lifetimes and multiple hardware generations. Power utilization is particularly important as grid power capacity is a scarce resource in the AI era.   Designing an efficient power delivery hierarchy for the long run is difficult because rack placement feasibility, workload impact, and cost depend jointly on electrical topology, deployment granularity, placement policy, power oversubscription, and workload mix. Moreover, each of these factors evolve over time, have inter-dependencies across multiple resource dimensions, and generally do not lend themselves to closed-form analysis.   To address this challenge, we develop a framework for evaluating datacenter power delivery designs using throughput, power, and cost metrics over realistic arrival, oversubscription, and decommissioning sequences. The framework combines projection models for GPU, compute, and storage deployments with operational factors grounded in production data from Microsoft Azure. Our results show that multi-resource stranding materially changes deployable capacity, effective capital expenditure, and delivered performance, and quantify how rising density from rack- and pod-scale AI systems shapes these outcomes. For AI datacenter design, the relevant planning objective is not installed megawatts, but deployable capacity over time.",
-      "published": "2026-05-15T17:58:58+00:00",
-      "url": "https://arxiv.org/pdf/2605.16255v1",
+      "id": "http://arxiv.org/abs/2605.30353v1",
+      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
+      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
+      "published": "2026-05-28T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.30353v1",
       "authors": [
-        "Grant Wilkins",
-        "Fiodar Kazhamiaka",
-        "Alok Gautam Kumbhare",
-        "Chaojie Zhang",
-        "Ricardo Bianchini"
+        "Nhat-Minh Nguyen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16254v1",
-      "title": "Fortuity and Complexity in a Simple Quark Model",
-      "summary": "We observe and elaborate on a structural similarity between the categorization of monotone and fortuitous BPS operators in supersymmetric theories and gauge invariant quark operators in $SU(N_c)$ QCD. Our designation of fortuity does not rely on supersymmetry and instead uses the BRST cohomology. We argue that within this designation, baryon states are fortuitous while meson states are monotone. We illustrate that in the Veneziano limit of large number of flavors and colors, this designation displays features resembling the fortuitous vs. monotone categorization of BPS operators, e.g., an exponential vs. polynomial dichotomy in the counting of operators. We explore these ideas explicitly in a toy qubit model of quarks. We further investigate the stabilizer Rnyi entropy of meson and baryon states as a proxy for the complexity of classical simulation for these states. We show that all mesons display power law complexity and present evidence that typical baryons display super-exponential complexity in the Veneziano limit.",
-      "published": "2026-05-15T17:58:25+00:00",
-      "url": "https://arxiv.org/pdf/2605.16254v1",
+      "id": "http://arxiv.org/abs/2605.30345v1",
+      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
+      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30345v1",
       "authors": [
-        "Jackson R. Fliss",
-        "Vishnu Jejjala",
-        "Onkar Parrikar"
+        "Qinpei Luo",
+        "Ruichun Ma",
+        "Xinyu Zhang",
+        "Lili Qiu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16250v1",
-      "title": "A Generative AI Framework for Intelligent Utility Billing CO 2 Analytics and Sustainable Resource Optimisation",
-      "summary": "Distribution utilities are now expected to deliver bills that customers can actually read attach a defensible carbon number to every kWh sold and schedule load against grid stress and emissions constraints We propose an end-to-end framework that unifies four production-grade capabilities under one architectural roof a generative-AI agent that drafts each customers natural-language billing statement from structured numeric inputs under a constrained decoding policy a transformer-based forecaster that supplies the day-ahead consumption estimate with calibrated quantile bands",
-      "published": "2026-05-15T17:52:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.16250v1",
+      "id": "http://arxiv.org/abs/2605.30335v1",
+      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
+      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
+      "published": "2026-05-28T17:58:55+00:00",
+      "url": "https://arxiv.org/pdf/2605.30335v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas Pruefer"
+        "Anany Kotawala"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16245v1",
-      "title": "AI-Mediated Communication Can Steer Collective Opinion",
-      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
-      "published": "2026-05-15T17:49:24+00:00",
-      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "id": "http://arxiv.org/abs/2605.30334v1",
+      "title": "Demystifying Data Organization for Enhanced LLM Training",
+      "summary": "Large Language Models (LLMs) have revolutionized various fields, yet their training efficiency is heavily reliant on effective data curation. While data selection has been widely studied, the strategic data organization for enhanced training remains an underexplored area, particularly since current LLMs are often trained for only one or a few epochs. This paper systematically explores the influence of data organization on LLM training by reusing pre-computed sample-level scores originally generated for data efficiency, thereby incurring minimal additional computational overhead. We identify and formalize four key guidelines for optimizing data organization: Boundary Sharpening, Cyclic Scheduling, Curriculum Continuity, and Local Diversity. Guided by them, we introduce two novel data ordering methods termed STR and SAW. Extensive experiments across different model scales and data sizes, encompassing both pre-training and SFT stages, validate the effectiveness of our summarized guidelines. They also demonstrate the robustness of our proposed data ordering methods in enhancing the stability and performance of LLM training. Github Link: https://github.com/microsoft/data-efficacy/",
+      "published": "2026-05-28T17:58:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30334v1",
       "authors": [
-        "Stratis Tsirtsis",
-        "Kai Rawal",
-        "Chris Russell",
-        "Brent Mittelstadt",
-        "Sandra Wachter"
+        "Yalun Dai",
+        "Yangyu Huang",
+        "Tongshen Yang",
+        "Yonghan Wang",
+        "Xin Zhang",
+        "Wenshan Wu",
+        "Qihao Zhao",
+        "Hao Li",
+        "Yuanyuan Gao",
+        "Kim-Hui Yap",
+        "Scarlett Li"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16238v1",
-      "title": "Prospective multi-pathogen disease forecasting using autonomous LLM-guided tree search",
-      "summary": "Probabilistic forecasting of infectious diseases is crucial for public health but relies on labor-intensive manual model curation by expert modeling teams. This bespoke development bottlenecks scalability to granular geographic resolutions or emerging pathogens. Here, we present an autonomous system using Large Language Model (LLM)-guided tree search to iteratively generate, evaluate, and optimize executable forecasting software. In a fully prospective, real-time evaluation during the 2025-2026 US respiratory season, the system autonomously discovered methodologically diverse models for influenza, COVID-19, and respiratory syncytial virus (RSV). Aggregating these machine-generated models yielded an ensemble that consistently matched or outperformed the gold-standard, human-curated Centers for Disease Control and Prevention (CDC) hub ensembles out-of-sample. The system successfully navigated data-scarce \"cold start\" scenarios for RSV. Moreover, controlled retrospective ablations revealed that optimizing log-scale distance metrics prevents reward hacking, while an automated judge-in-the-loop ensures structural fidelity to complex scientific theories. By autonomously translating epidemiological theory into accurate, transparent code, this framework overcomes the modeling labor bottleneck, enabling rapid deployment of expert-level disease forecasting at unprecedented scales.",
-      "published": "2026-05-15T17:45:17+00:00",
-      "url": "https://arxiv.org/pdf/2605.16238v1",
+      "id": "http://arxiv.org/abs/2605.30333v1",
+      "title": "COMPOSE: Composing Future Theorems from Citations and Formal Structure",
+      "summary": "A plausible future mathematical claim must satisfy two constraints: it should follow the direction of prior work and respect the formal dependencies that constrain what can validly follow. Existing approaches typically model only one of these sources, producing claims that are either weakly grounded or insufficiently motivated. We introduce grounded future mathematical generation, where the goal is to generate a plausible future theorem-like claim for an anchor paper using two complementary sources of context: its scientific citation graph and aligned formal theorem dependency graph. To address this setting, we propose COMPOSE, a dual-graph framework that conditions a language model on both scientific citation context and formal theorem structure. To support this setting, we construct a dataset of 108K paired scientific-formal graph examples from arXiv and Mathlib, together with a benchmark of 47K future papers from 2024--2025. Experiments show that COMPOSE outperforms strong baselines on retrieval to real future papers and achieves the best overall performance under LLM-judge evaluation, producing more grounded and mathematically richer outputs. These results show that future mathematical generation benefits from combining scientific context with formal structure. Project page is available at https://david-busbib.github.io/COMPOSE-page/.",
+      "published": "2026-05-28T17:58:42+00:00",
+      "url": "https://arxiv.org/pdf/2605.30333v1",
       "authors": [
-        "Sarah Martinson",
-        "Michael P. Brenner",
-        "Martyna Plomecka",
-        "Brian P. Williams",
-        "Nicholas G. Reich",
-        "Zahra Shamsi"
+        "David Busbib",
+        "Michael Werman"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16232v1",
-      "title": "A Unified Generative-AI Framework for Smart Energy Infrastructure: Intelligent Gas Distribution, Utility Billing, Carbon Analytics, and Quantum-Inspired Optimisation",
-      "summary": "The accelerating convergence of smart metering, generative artificial intelligence, and quantum-inspired combinatorial optimisation is reshaping how energy utilities manage physical infrastructure, customer engagement, and environmental accountability",
-      "published": "2026-05-15T17:42:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16232v1",
+      "id": "http://arxiv.org/abs/2605.30329v1",
+      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
+      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
+      "published": "2026-05-28T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2605.30329v1",
       "authors": [
-        "Pavan Manjunath",
-        "Thomas pruefer"
+        "Sy-Tuyen Ho",
+        "Minghui Liu",
+        "Huy Nghiem",
+        "Furong Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16218v1",
-      "title": "Lattice Relaxation Flattens Chern Bands in Rhombohedral Graphene Stacks",
-      "summary": "Motivated by recent observations of integer and fractional Chern insulators in rhombohedral graphene stacks aligned with hexagonal boron nitride (hBN), we propose and study a model in which the moir potential is defined by the pattern of layer-shear strain fields produced by lattice relaxation in these heterostructures. Although these strain fields decrease exponentially with the number of layers, their imprints on electrons residing away from the contact layer are non-negligible. In the absence of a displacement field, lattice relaxation effects amplify the electronic differences among the two different stackings with hBN. These differences, although attenuated at the single-electron level, survive in the so-called moir-distant regime and are further enhanced with the inclusion of electron interactions. We find that lattice relaxation plays a crucial role in flattening and isolating a valley-polarized Hartree-Fock electron band with $|C|=1$ Chern number. Our results challenge the conventional wisdom on moir effects in these heterostructures by illustrating the intertwined effects of long-range Coulomb interactions and lattice relaxation, and opens the door to explore different regimes of twist angles and displacement fields for the search for topological states.",
-      "published": "2026-05-15T17:30:30+00:00",
-      "url": "https://arxiv.org/pdf/2605.16218v1",
+      "id": "http://arxiv.org/abs/2605.30323v1",
+      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
+      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
+      "published": "2026-05-28T17:56:54+00:00",
+      "url": "https://arxiv.org/pdf/2605.30323v1",
       "authors": [
-        "Luca Nashabeh",
-        "Héctor Ochoa"
+        "Zhenyu Sun",
+        "Zheng Xu",
+        "Ermin Wei"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16217v1",
-      "title": "Argus: Evidence Assembly for Scalable Deep Research Agents",
-      "summary": "Deep research agents have achieved remarkable progress on complex information seeking tasks. Even long ReAct style rollouts explore only a single trajectory, while recent state of the art systems scale inference time compute via parallel search and aggregation. Yet deep research answers are composed of complementary pieces of evidence, which parallel rollouts often duplicate rather than complete, yielding diminishing returns while pushing the aggregation context toward the model's limit. We propose Argus, an agentic system in which a Searcher and a Navigator cooperate to treat deep research as assembling a jigsaw from complementary evidence pieces, rather than brute forcing the whole answer in parallel. The Searcher collects evidence traces for a given sub-query through ReAct-style interaction. The Navigator maintains a shared evidence graph, verifying which pieces are still missing, dispatching Searchers to gather them, and reasoning over the completed graph to produce a source-traced final answer. We train the Navigator with reinforcement learning to verify, dispatch, and synthesize, while independently training the Searcher to remain a standard ReAct agent. The resulting Navigator supports rollouts with a single Searcher or many in parallel without retraining. With both Searcher and Navigator built on a 35B-A3B MoE backbone, Argus gains 5.5 points with a single Searcher and 12.7 points with 8 parallel Searchers, averaged over eight benchmarks. With 64 Searchers it reaches 86.2 on BrowseComp, surpassing every proprietary agent we benchmark, while the Navigator's reasoning context stays under 21.5K tokens.",
-      "published": "2026-05-15T17:29:27+00:00",
-      "url": "https://arxiv.org/pdf/2605.16217v1",
+      "id": "http://arxiv.org/abs/2605.30322v1",
+      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
+      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
+      "published": "2026-05-28T17:56:18+00:00",
+      "url": "https://arxiv.org/pdf/2605.30322v1",
       "authors": [
-        "Zhen Zhang",
-        "Liangcai Su",
-        "Zhuo Chen",
-        "Xiang Lin",
-        "Haotian Xu",
-        "Simon Shaolei Du",
-        "Kaiyu Yang",
-        "Bo An",
-        "Lidong Bing",
-        "Xinyu Wang"
+        "David Lindner",
+        "Victoria Krakovna",
+        "Sebastian Farquhar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16213v1",
-      "title": "ADS-IMC: Accelerating Data Sorting with In-Memory Computation",
-      "summary": "Sorting is a fundamental operation across numerous computational domains. Traditionally, this process involves transferring data from main memory to a processing unit for sorting, followed by writing the sorted data back to memory. This conventional approach incurs substantial latency and energy overheads due to the extensive data movement between memory and processing components. To mitigate these overheads, this paper introduces novel architectures for executing sorting operations directly within the memory fabric, eliminating the need for off-chip data transfer. To our knowledge, this work represents the first exploration of in-memory sorting using 6T SRAM. The proposed architecture is designed to operate on data represented in the standard weighted binary radix format commonly used in digital systems. The proposed architecture achieves a significant 3.4x reduction in latency compared to memristor-based IMC sorting.",
-      "published": "2026-05-15T17:27:52+00:00",
-      "url": "https://arxiv.org/pdf/2605.16213v1",
+      "id": "http://arxiv.org/abs/2605.30316v1",
+      "title": "Visualizing orbital magnetism in electron doped rhombohedral multilayer graphene",
+      "summary": "Electron doped rhombohedral multilayer graphene at high displacement field features an exceptionally flat band minimum with near-ideal quantum geometry. Experiments in this regime observe the formation of a 'quarter metal,' in which the electron liquid condenses into a single spin- and valley flavor. Remarkably, recent experiments have found a zero resistance state in the same region of the density- and displacement-field-tuned parameter space, attributed to the formation of a chiral superconductor characterized by a finite-momentum Cooper pair condensate. Here, we use nanoSQUID-on-tip magnetometry to map the orbital magnetization of electron-doped rhombohedral graphene devices ranging in thickness between 3 and 13 layers. Magnetization within the quarter metal phases peaks at finite density, consistent with concentration of the Berry curvature in a finite-momentum 'ring of fire'. Correlating transport and local magnetometry data in a tetralayer sample reveals that the superconducting state has a finite orbital magnetic moment, providing direct evidence of its chiral nature. We further show that widely observed stochastic switching of the resistivity in the metallic regime arises from a density-tuned sign change in the valley-resolved total magnetic moment. This leads to the formation of metastable magnetic domains under typical gate control sequences and can also be harnessed for electric-field controlled switching of orbital moment across the entire device. Unexpectedly, we find magnetic inhomogeneity specific to the apparent normal state of the chiral superconductor, suggestive of a strain-tuned competition between magnetic and non-magnetic ground states. Our results point to a subtle energetic competition underlying the observation of chiral superconductivity in a narrow range of layer numbers.",
+      "published": "2026-05-28T17:54:30+00:00",
+      "url": "https://arxiv.org/pdf/2605.30316v1",
       "authors": [
-        "Narendra Singh Dhakad",
-        "Santosh Kumar Vishvakarma"
+        "Owen I. Sheekey",
+        "Trevor B. Arp",
+        "Benjamin A. Foutty",
+        "Ruoxi Zhang",
+        "Tixuan Tan",
+        "Ludwig F. W. Holleis",
+        "Yi Guo",
+        "Sandesh S. Kalantre",
+        "Canxun Zhang",
+        "Mark Zakharyan",
+        "David Gong",
+        "Aidan Keough",
+        "Youngjoon Choi",
+        "Ysun Choi",
+        "Siyuan Xu",
+        "Tian Xie",
+        "Ben Hodder Alexander",
+        "Marisa Hocking",
+        "Qingrui Cao",
+        "Martin E. Huber",
+        "Takashi Taniguchi",
+        "Kenji Watanabe",
+        "Chenhao Jin",
+        "Etienne Lantagne-Hurtubise",
+        "Aaron Sharpe",
+        "Trithep Devakul",
+        "Andrea F. Young"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16211v1",
-      "title": "Hypothesis-driven construction of mesoscopic dynamics",
-      "summary": "Traditional scientific modeling typically begins with fixed, instance-wise effective equations and then carries out equation-specific analysis and computation, a procedure that becomes exceptionally challenging in complex applications such as multiscale systems. We propose an alternative paradigm by learning mesoscopic dynamics within a mathematically constrained hypothesis class. Building upon a generalized Onsager principle, we introduce a unified framework encompassing both dissipative and conservative mesoscopic dynamics. We establish uniform and a priori theoretical guarantees, including global well-posedness, asymptotic stability, unique factorization identifiability, and discrete energy dissipation, applicable to all spatio-temporal evolution equations within this hypothesis class prior to all learning stages. Data from each problem instance is then used to guide the identification of members within our hypothesis class, giving rise to accurate, robust and interpretable dynamical models. We empirically validate this framework on both data from continuum PDE models as a check, and on data arising from microscopic chain models for which exact meso-scale models are unknown. The proposed approach not only acts as an effective dynamics learner, but also offers vital interpretable diagnostics of the underlying physics.",
-      "published": "2026-05-15T17:26:28+00:00",
-      "url": "https://arxiv.org/pdf/2605.16211v1",
+      "id": "http://arxiv.org/abs/2605.30303v1",
+      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
+      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
+      "published": "2026-05-28T17:46:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30303v1",
       "authors": [
-        "Zhuoyuan Li",
-        "Aiqing Zhu",
-        "Qianxiao Li"
+        "Yallen Bai",
+        "Ploy Thajchayapong",
+        "Ashok Goel"
       ],
       "source": "arxiv"
     }

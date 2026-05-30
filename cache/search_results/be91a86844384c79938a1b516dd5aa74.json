@@ -1,131 +1,170 @@
 {
-  "timestamp": 1779073831.87702,
+  "timestamp": 1780116089.8631063,
   "source": "arxiv",
   "query": "digital evolution selfish replication",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16233v1",
-      "title": "FORGE: Self-Evolving Agent Memory With No Weight Updates via Population Broadcast",
-      "summary": "Can LLM agents improve decision-making through self-generated memory without gradient updates? We propose FORGE (Failure-Optimized Reflective Graduation and Evolution), a staged, population-based protocol that evolves prompt-injected natural-language memory for hierarchical ReAct agents. FORGE wraps a Reflexion-style inner loop, where a dedicated reflection agent (using the same underlying LLM, no distillation from a stronger model) converts failed trajectories into reusable knowledge artifacts: textual heuristics (Rules), few-shot demonstrations (Examples), or both (Mixed), with an outer loop that propagates the best-performing instance's memory to the population between stages and freezes converged instances via a graduation criterion. We evaluate on CybORG CAGE-2, a stochastic network-defense POMDP at a 30-step horizon against the B-line attacker, where all four tested LLM families (Gemini-2.5-Flash-Lite, Grok-4-Fast, Llama-4-Maverick, Qwen3-235B) exhibit strongly negative, heavy-tailed zero-shot rewards. Compared against both a zero-shot baseline and a Reflexion baseline (isolated single-stream learning), FORGE improves average evaluation return by 1.7-7.7$\\times$ over zero-shot and by 29-72% over Reflexion in all 12 model-representation conditions, reducing major-failure rates (below $-100$) to as low as $\\sim$1%. We find that (1) population broadcast is critical mechanism, with a no-graduation ablation confirming that broadcast carries the performance gains while graduation primarily saves compute; (2) Examples achieves the strongest returns for three of four models, Rules offers the best cost-reliability profile with $\\sim$40% fewer tokens; and (3) weaker baseline models benefit disproportionately, suggesting FORGE may mitigate capability gaps rather than amplify strong models. All evidence is confined to CAGE-2 B-line; cross-family findings are directional evidence.",
-      "published": "2026-05-15T17:42:49+00:00",
-      "url": "https://arxiv.org/pdf/2605.16233v1",
+      "id": "http://arxiv.org/abs/2605.30348v1",
+      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
+      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
+      "published": "2026-05-28T17:59:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30348v1",
       "authors": [
-        "Igor Bogdanov",
-        "Chung-Horng Lung",
-        "Thomas Kunz",
-        "Jie Gao",
-        "Adrian Taylor",
-        "Marzia Zaman"
+        "Yaxin Luo",
+        "Jiacheng Cui",
+        "Xiaohan Zhao",
+        "Xinyi Shang",
+        "Jiacheng Liu",
+        "Xinyue Bi",
+        "Zhaoyi Li",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16213v1",
-      "title": "ADS-IMC: Accelerating Data Sorting with In-Memory Computation",
-      "summary": "Sorting is a fundamental operation across numerous computational domains. Traditionally, this process involves transferring data from main memory to a processing unit for sorting, followed by writing the sorted data back to memory. This conventional approach incurs substantial latency and energy overheads due to the extensive data movement between memory and processing components. To mitigate these overheads, this paper introduces novel architectures for executing sorting operations directly within the memory fabric, eliminating the need for off-chip data transfer. To our knowledge, this work represents the first exploration of in-memory sorting using 6T SRAM. The proposed architecture is designed to operate on data represented in the standard weighted binary radix format commonly used in digital systems. The proposed architecture achieves a significant 3.4x reduction in latency compared to memristor-based IMC sorting.",
-      "published": "2026-05-15T17:27:52+00:00",
-      "url": "https://arxiv.org/pdf/2605.16213v1",
+      "id": "http://arxiv.org/abs/2605.30345v1",
+      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
+      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30345v1",
       "authors": [
-        "Narendra Singh Dhakad",
-        "Santosh Kumar Vishvakarma"
+        "Qinpei Luo",
+        "Ruichun Ma",
+        "Xinyu Zhang",
+        "Lili Qiu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16211v1",
-      "title": "Hypothesis-driven construction of mesoscopic dynamics",
-      "summary": "Traditional scientific modeling typically begins with fixed, instance-wise effective equations and then carries out equation-specific analysis and computation, a procedure that becomes exceptionally challenging in complex applications such as multiscale systems. We propose an alternative paradigm by learning mesoscopic dynamics within a mathematically constrained hypothesis class. Building upon a generalized Onsager principle, we introduce a unified framework encompassing both dissipative and conservative mesoscopic dynamics. We establish uniform and a priori theoretical guarantees, including global well-posedness, asymptotic stability, unique factorization identifiability, and discrete energy dissipation, applicable to all spatio-temporal evolution equations within this hypothesis class prior to all learning stages. Data from each problem instance is then used to guide the identification of members within our hypothesis class, giving rise to accurate, robust and interpretable dynamical models. We empirically validate this framework on both data from continuum PDE models as a check, and on data arising from microscopic chain models for which exact meso-scale models are unknown. The proposed approach not only acts as an effective dynamics learner, but also offers vital interpretable diagnostics of the underlying physics.",
-      "published": "2026-05-15T17:26:28+00:00",
-      "url": "https://arxiv.org/pdf/2605.16211v1",
+      "id": "http://arxiv.org/abs/2605.30338v1",
+      "title": "REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image",
+      "summary": "Reconstructing physically stable 3D scenes from a single RGB image enables casual images to be converted into simulation-ready digital assets for applications such as immersive interaction and content creation. However, existing single-image reconstruction methods fall short in capturing the physical structure of a scene. As a result, they often produce geometrically plausible but physically inconsistent results, including object floating and penetration, which lead to unstable behavior in physics simulations. Image-conditioned scene generation methods improve physical plausibility but often rely on strong scene priors, yielding plausible yet inaccurate object arrangements that fail to match the input image. We propose REST3D, a single-image reconstruction framework that can reconstruct physically stable 3D scenes by integrating physical scene understanding with physics-constrained refinement. We first introduce an agentic physical scene understanding technique that constructs a scene-tree representation capturing object physical states and inter-object relationships from a gravity-support perspective, providing a structural prior for reconstruction. Leveraging this structure, we initialize the scene using image-to-3D models, followed by scene-tree-guided alignment and physics-constrained optimization to resolve physical violations while preserving visual consistency with the input image. Experiments show that our method significantly reduces physical errors and improves simulation stability on both synthetic and real-world datasets while maintaining strong reconstruction quality. We further demonstrate the reconstructed scenes in VR-based human-object interaction, showing their potential for immersive applications.",
+      "published": "2026-05-28T17:59:01+00:00",
+      "url": "https://arxiv.org/pdf/2605.30338v1",
       "authors": [
-        "Zhuoyuan Li",
-        "Aiqing Zhu",
-        "Qianxiao Li"
+        "Xiaoxuan Ma",
+        "Jiashun Wang",
+        "Nicolas Ugrinovic",
+        "Yehonathan Litman",
+        "Kris Kitani"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16201v1",
-      "title": "Irreducible Graviton Floor from Reheating",
-      "summary": "Inflaton decay inevitably emits gravitons through bremsstrahlung during reheating. We show that the soft part of this emission amplitude, fixed by Weinberg's soft-graviton theorem, becomes an irreducible stochastic gravitational-wave (GW) background after accounting for cosmological evolution. The theorem fixes the infrared branch of the spectrum, $_{\\rm GW}\\propto f$, independently of the microscopic operator responsible for inflaton decay, while the normalization is controlled by the hard inflaton decay rate and by a phase-space factor. We carry this out for inflaton $n$-body decays, including the phase-space integrals, finding that the maximum of the spectrum scales as $2/n$ relative to the $n=2$ case. The signal can reach $_{\\rm GW}h^2\\sim \\mathcal O(10^{-17})$ at frequencies above the GHz scale. This predicts a stochastic graviton floor from perturbative reheating: a larger signal would require either other processes beyond perturbative bremsstrahlung or inflationary scenarios beyond conventional single-field slow roll.",
-      "published": "2026-05-15T17:15:45+00:00",
-      "url": "https://arxiv.org/pdf/2605.16201v1",
+      "id": "http://arxiv.org/abs/2605.30311v1",
+      "title": "Archon: A Unified Multimodal Model for Holistic Digital Human Generation",
+      "summary": "Digital humans are fundamental to immersive interaction, yet creating a unified model for holistic modalities, including text, audio, motion, and visual content, remains an open challenge. In this paper, we present Archon, a fully pretrained, human-centric unified multimodal model for holistic avatar generation. Archon unifies seven modalities with modality-specific tokenizers, and a native autoregressive unified multimodal model pretrained on synchronized modalities and 72 diverse tasks to model holistic joint distributions. To address the token explosion challenge in high-fidelity talking videos, we introduce a memory-efficient semantic video reparameterization, achieving 4x token reduction while preserving fine-grained dynamics, coupled with a semantic-driven video diffusion decoder. We further propose a \"Thinking in Modality\" that decomposes ambiguous cross-modal tasks into stepwise thinking in an alternative chain of modality, progressively enhancing fidelity and controllability. Extensive experiments demonstrate that Archon achieves superior or comparable performance across diverse digital human generation tasks, validating the effectiveness of our unified framework. Project page: https://zju3dv.github.io/archon/.",
+      "published": "2026-05-28T17:53:27+00:00",
+      "url": "https://arxiv.org/pdf/2605.30311v1",
       "authors": [
-        "James M. Cline",
-        "Yong Xu"
+        "Chong Bao",
+        "Shichen Liu",
+        "Lijun Yu",
+        "David Futschik",
+        "Stylianos Moschoglou",
+        "Shefali Srivastava",
+        "Ziqian Bai",
+        "Feitong Tan",
+        "Guofeng Zhang",
+        "Zhaopeng Cui",
+        "Sean Fanello",
+        "Yinda Zhang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16195v1",
-      "title": "Efficient quantum algorithm for linear matrix differential equations and applications to open quantum systems",
-      "summary": "We present an efficient, nearly optimal quantum algorithm for solving linear matrix differential equations, with applications to the simulation of open quantum systems and beyond. For unitary or dissipative dynamics, the algorithm computes an entry of the solution matrix with query complexity $\\widetilde{\\mathcal{O}}(\\mathcal{L} t/)$, where the constant $$ depends on the problem parameters, $\\mathcal{L}$ involves a time integral of upper bounds on the norms of evolution operators, and $$ is the error. In particular, $\\mathcal{L}$ is linear in $t$ for unitary dynamics and can be a constant for dissipative dynamics. Our result contrasts prior quantum approaches for differential equations that typically require exponential time for this problem due to the encoding in a quantum state, which can lead to exponentially small amplitudes. We demonstrate the utility of the algorithm through an end-to-end application, namely the simulation of dissipative dynamics for non-interacting fermions, which can be extended to other quantum and classical systems. We compare with classical algorithms and give evidence of polynomial quantum speedups for systems in a lattice, which become more pronounced for systems with long-range interactions and can be shown to be exponential in general. We also provide a lower bound of $(\\mathcal{L} t/)$ for unitary or dissipative dynamics that proves our algorithm is optimal up to logarithmic factors.",
-      "published": "2026-05-15T17:11:07+00:00",
-      "url": "https://arxiv.org/pdf/2605.16195v1",
+      "id": "http://arxiv.org/abs/2605.30305v1",
+      "title": "Augmented Correlation Functions for Spectroscopic Galaxy Surveys",
+      "summary": "Galaxy redshift surveys encode a wealth of information generated by nonlinear gravitational evolution, galaxy bias, and redshift-space distortions, only part of which is accessible through standard two-point statistics. Motivated by the need for flexible and computationally efficient alternatives, we introduce the augmented correlation function, a general framework in which an arbitrary transformation of the galaxy field defines additional ``latent'' dimensions that extend the standard two-point correlation function and isolate clustering properties averaged out in conventional analyses. As a proof of concept, we study a latent variable constructed from the pairwise gradient of the inverse Laplacian of the galaxy density field, showing that the resulting statistics naturally distinguish clustering regimes associated with infalling and outflowing pairs. Using Fisher forecasts based on $z=1$ halo catalogues from the Quijote simulations within $\\mathrm{CDM}$ cosmology, we find that the augmented correlation systematically yields tighter constraints on all cosmological parameters considered. Although these improvements should be regarded as indicative given the exploratory nature of the analysis and the limitations of Fisher forecasts and simulations, our results demonstrate the potential of augmented correlations as a flexible framework for extracting additional information from spectroscopic galaxy surveys.",
+      "published": "2026-05-28T17:50:30+00:00",
+      "url": "https://arxiv.org/pdf/2605.30305v1",
       "authors": [
-        "Sophia Simon",
-        "Dominic W. Berry",
-        "Rolando D. Somma"
+        "Davide Bianchi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16194v1",
-      "title": "paper.json: A Coordination Convention for LLM-Agent-Actionable Papers",
-      "summary": "LLM agents routinely serve as first (and sometimes only) readers of academic papers, skimming for sub-claims, extracting reproducibility steps, and generalizing scope. Standard prose papers produce recurring failures in this role: sub-claims that cannot be cited at sub-paper granularity, scope overextension beyond what the paper tests, and figure commands buried in codebases rather than the paper itself. We propose `paper.json`, a companion JSON file that travels with the PDF and addresses each failure with a lightweight convention: stable claim IDs (C1), an explicit does-not-claim list (C2), exact per-figure shell commands (C3), and stable definition IDs (C5). A fifth convention (C4) holds that minimum viable compliance, hand-written JSON alongside the PDF, is achievable in under an hour for a finished paper without touching the human-readable output. C1, C2, C3, and C5 are open invitations: an agent that reads a compliant paper and acts on it produces evidence for or against them. This paper is itself compliant: `uv run validator.py paper.json --against paper.typ` passes. Repo: https://github.com/arquicanedo/paper-json",
-      "published": "2026-05-15T17:10:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.16194v1",
+      "id": "http://arxiv.org/abs/2605.30303v1",
+      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
+      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
+      "published": "2026-05-28T17:46:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30303v1",
       "authors": [
-        "Arquimedes Canedo"
+        "Yallen Bai",
+        "Ploy Thajchayapong",
+        "Ashok Goel"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16177v1",
-      "title": "Observational signatures of negative mass wormholes through their shadows",
-      "summary": "We investigate systems containing objects with negative mass (NMOs). In a system consisting of one object with positive mass and one NMO, a bound state exists even though the force exerted by the NMO on the object with positive mass is repulsive. Unlike a standard system consisting of two objects with positive mass, the gravitational waves emitted from this system exhibit a decrease in frequency and amplitude over time. We propose a model of the time evolution of the Ellis-Bronnikov wormhole, along with a formulation that eliminates the ghost that appears when constructing the Ellis-Bronnikov wormhole, a candidate for an NMO. Furthermore, numerical simulations are performed to obtain the optical appearance of such NMOs. The observed luminosity is also compared with the Schwarzschild black hole and with the Simpson-Visser wormhole, leading to clear differences in the photon ring substructure around the central object.",
-      "published": "2026-05-15T16:57:51+00:00",
-      "url": "https://arxiv.org/pdf/2605.16177v1",
+      "id": "http://arxiv.org/abs/2605.30277v1",
+      "title": "Neural Operator-Based Surrogate Model for CFD:Helical Coil Steam Generator in Small Modular Reactor",
+      "summary": "Real-time thermal-hydraulic simulation is essential for digital twin (DT) technology that supports the safe and efficient operation of small modular reactors (SMRs). Computational fluid dynamics (CFD) provides high-fidelity flow analysis, but its computational cost prevents direct use in DT applications. AI-based surrogate modeling has been actively investigated to address this limitation, yet neural operator--based surrogates for CFD-level transient analysis of SMR-specific geometries have not been reported. This study presents an integrated framework that combines a reduced-order model (ROM) with neural operators, applied to the helical coil steam generator (HCSG) of the System-integrated Modular Advanced Reactor (SMART). Two ROM strategies tailored to each CFD data type were compared, an MLP-based autoencoder (AE) for unstructured mesh data and a convolutional autoencoder (CAE) for structured mesh data, and each was coupled with the deep operator network (DeepONet) to construct the latent DeepONet (L-DeepONet). The Fourier neural operator (FNO) was additionally adopted for comparison. A multi-scale technique was incorporated into both frameworks to mitigate spectral bias and improve the prediction of Krmn vortex streets developing inside the HCSG. The multi-scale L-DeepONet captured the instantaneous periodic vortex dynamics in both velocity and pressure fields, while the FNO and its multi-scale variant predicted the time-averaged mean flow and provided reliable pressure drop estimates. These complementary characteristics provide a practical model-selection guideline that links each architecture to specific DT objectives based on CFD data type and the required level of flow resolution.",
+      "published": "2026-05-28T17:33:22+00:00",
+      "url": "https://arxiv.org/pdf/2605.30277v1",
       "authors": [
-        "Shin'ichi Nojiri",
-        "Sergei D. Odintsov",
-        "Diego Sáez-Chillón Gómez"
+        "Minseo Lee",
+        "Seongmin Oh",
+        "Chaehyeon Song",
+        "Bumjin Cho",
+        "Shilaj Baral",
+        "Sangam Khanal",
+        "Minseop Song",
+        "Joongoo Jeon"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16176v1",
-      "title": "How Far Back in Time a Digital Twin Reflects the State of the Physical Object: Age of Staleness",
-      "summary": "The groundbreaking metric age of information (AoI) has been introduced to measure information freshness in communication networks. As transformational as it is, AoI metric falls short in some applications, such as remote monitoring, since it is a semantic-agnostic metric which does not consider the dynamics of the random process. There is a need to quantify the performance of a remote estimator via a metric that combines freshness and semantic aspects. To this end, in this paper, we introduce a novel metric coined age of staleness (AoS) that measures when the last time that the current estimation was correct. First, we analyze a simple scenario where an $n$-ary symmetric Markov source is observed by a monitor via a constant sampling rate, obtain a closed-form expression for the AoS, and show that it is a monotonically decreasing function of the sampling rate. Next, we consider multiple distinct Markov sources, and formulate an optimization problem, where the remote monitor allocates the total sampling rate to tracking the sources. Although the optimization problem is non-convex, its structure is suitable for obtaining a near-optimal solution using the polyblock algorithm, which leverages the monotonicity of the objective function. While the new AoS metric could be applicable in many scenarios, we believe it is particularly well-suited for a digital twin network (DTN) where multiple physical objects (POs) are monitored with a total sampling rate constraint to maintain a digital representation of them, namely, their digital twin (DT).",
-      "published": "2026-05-15T16:55:00+00:00",
-      "url": "https://arxiv.org/pdf/2605.16176v1",
+      "id": "http://arxiv.org/abs/2605.30275v1",
+      "title": "Digitally enriching a screening population for pancreatic cancer using routine blood-based measures and clinical histories",
+      "summary": "Earlier detection of pancreatic cancer is key to enabling wider access to curative treatment and reducing cancer deaths; however, screening is presently not viable. Latent indicators of pathology are evident in an individual's disease and blood test trajectories and may predict the development of pancreatic cancer. Longitudinal sequences of coded diagnoses and blood test values accrued by patients throughout their clinical interactions were used to train a custom Transformer-based neural network with a multi-head attention mechanism to predict risk of pancreatic cancer with a multi-year lead time and risk-stratify populations for targeted screening. The cohort comprised 6,017 adults with pancreatic cancer and 177,081 controls (overall median age 75, 45% female) with median 12 years (interquartile range 6.9-16.2) of medical history prior to pancreatic cancer diagnosis. External validation via leave-one-site-out, out-of-sample testing predicting pancreatic cancer 1-, 2-, and 3-years prior to diagnosis demonstrated mean area under the receiver operating characteristic of 0.837 (95% confidence interval 0.827-0.848), 0.797 (95% confidence interval 0.782-0.813), and 0.760 (95% confidence interval 0.745-0.776), respectively. Estimated pancreatic cancer risks were well-calibrated (calibration plot slope 1.08, intercept of -0.077; Brier score 0.025), and a Bayesian population pancreatic cancer prevalence update allows estimated cancer risk outputs to be transportable across settings. At testing, a screening threshold of >3.3% risk of pancreatic cancer in 1-year offered a diagnostic odds ratio of 18.2. Our work therefore lays the foundation for a first population-level digital enrichment tool to widen access to curative-intent management of pancreatic cancer.",
+      "published": "2026-05-28T17:32:29+00:00",
+      "url": "https://arxiv.org/pdf/2605.30275v1",
       "authors": [
-        "Ismail Cosandal",
-        "Sennur Ulukus"
+        "Chris Varghese",
+        "Leo Y. Li-Han",
+        "Richa Bisht",
+        "Ellen Larson",
+        "Frank Lee",
+        "Ryan M. Carr",
+        "Tanios S. Bekaii-Saab",
+        "Shounak Majumder",
+        "John D. Halamka",
+        "Mark Truty",
+        "Ajit H. Goenka",
+        "Hojjat Salehinejad",
+        "Cornelius A. Thiels"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16161v1",
-      "title": "SRAM Based Digital Custom Compute Engine for Improved Area Efficiency of AI Hardware",
-      "summary": "This paper presents a novel architecture utilizing a 10T SRAM cell for XNOR-based in-memory computing, aimed at mitigating the extensive routing challenges typically encountered in conventional in-memory computing systems. By integrating a full adder between in-memory multiplication cells, the proposed design achieves a 50% reduction in routing complexity. The architecture performs multiply-accumulate (MAC) operations using XNOR computation optimized for binary neural networks (BNNs). Additionally, a 14T-based full adder is employed to construct an N-bit ripple carry adder in the adder tree, significantly reducing the area compared to traditional 28T-based CMOS designs. The 10T SRAM XNOR computation further enhances the latency for MAC operations. The proposed approach reduces the latency and area overhead, improving the overall hardware's area efficiency by 2.67x compared to the state-of-the-art.",
-      "published": "2026-05-15T16:39:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.16161v1",
+      "id": "http://arxiv.org/abs/2605.30271v1",
+      "title": "Quantum Synchronization of Fock States",
+      "summary": "Synchronization, a ubiquitous phenomenon in classical systems, has recently been extended to the quantum domain. Here, we show quantum synchronization of a bosonic mode exhibiting a Fock state-like limit cycle, manifesting as a steady state with a negative Wigner function. We demonstrate that this non-classical state can be phase-locked to an external drive, achieving synchronization within an Arnold tongue regime. We argue that synchronization is a dynamical property and fundamentally tied to the suppression of phase slips, which we show to occur with exponentially decreasing probability. We introduce a novel method to extract the phase slip rate from the Lindblad time evolution of the system. This work opens new avenues for understanding and manipulating non-classical synchronization dynamics.",
+      "published": "2026-05-28T17:30:07+00:00",
+      "url": "https://arxiv.org/pdf/2605.30271v1",
       "authors": [
-        "Narendra Singh Dhakad",
-        "Santosh Kumar Vishvakarma"
+        "Fabian Hassler",
+        "David Scheer",
+        "Samah Saquaque",
+        "Steven Kim"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16159v1",
-      "title": "Restoring CFAR Validity for Single-Channel IoT Sensor Streams: A Monte Carlo Comparison of Five Detectors under Cortex-M0+ Constraints",
-      "summary": "Real-time event detection in IoT mesh sensor networks must balance sensitivity against false-positive load on a constrained mesh radio. We present a Monte Carlo comparison of the Temporal Spectral Noise-Floor Adaptation (TSNFA) detector against four classical comparators drawn from the radar Constant False Alarm Rate (CFAR) family and from sequential change detection: the Lipski FFT energy detector, Cell-Averaging CFAR (CA-CFAR), Ordered-Statistic CFAR (OS-CFAR), and state-machine Cumulative Sum (CUSUM). All five detectors are implemented to fit a Cortex-M0+ class envelope, process a 1-D 100 Hz time series in 128-sample frames, and use temporal reference windows in place of the spatial reference cells of conventional radar CFAR. Across a factorial set of four configurations (10 and 50 nodes; 12 dB and 18 dB SNR), each replicated five times over 24 hours, TSNFA achieves 99.97 to 100% event detection rate with 100% event precision and zero false-positive clusters per node. The classical comparators each succeed on one quality dimension and fail on another. Lipski FFT (k = 3), CA-CFAR, and OS-CFAR all maintain near-perfect detection rate but with event precision below 3% and per-node bandwidth between 145 kB/h and 1.2 MB/h. CA-CFAR and OS-CFAR are indistinguishable in false-alarm performance, both saturating the same broadband-statistic failure mode. CUSUM shows an SNR-dependent detection-rate drop from about 70% at 18 dB to 51% at 12 dB. TSNFA is the only algorithm tested that simultaneously achieves high detection rate, high precision, and low per-node bandwidth.",
-      "published": "2026-05-15T16:39:30+00:00",
-      "url": "https://arxiv.org/pdf/2605.16159v1",
+      "id": "http://arxiv.org/abs/2605.30252v1",
+      "title": "Quantum optimization beyond QUBO for industrial logistics and scheduling",
+      "summary": "The increasing complexity of industrial scheduling and transport routing problems motivates the study of alternative optimization formulations and computational paradigms. In this work, we study how higher-order unconstrained binary optimization (HUBO) formulations of such problems map onto quantum optimization workflows in both noisy and fault-tolerant regimes. We consider three representative logistics and manufacturing use cases and formulate each as a HUBO problem. This captures process intricacies, such as highly correlated assembly-line scheduling rules, which are difficult to express faithfully with the standard quadratic (QUBO) form, while at the same time reducing the number of binary variables required in the quantum mapping, thus lowering qubit demand. We compare the HUBO formulations with corresponding QUBO encodings, highlighting a key trade-off: while HUBO reduces qubit requirements through compact binary encoding, it introduces higher-order interaction terms that increase circuit depth, limiting feasibility on current quantum hardware. The proposed formulations are validated using classical solvers across several problem instances and benchmark small routing problem instances using bias-field digitized counterdiabatic quantum optimization in classical simulation. We complement these results with a resource and scalability analysis, focusing on the capacitated vehicle routing problem as a representative large-scale industrial use case. Our analysis indicates that while HUBO formulations offer advantages in qubit scaling compared to QUBO encodings, their practical implementation is constrained by gate fidelity, coherence, and circuit depth, making hybrid quantum-classical workflows and early fault-tolerant quantum hardware the most plausible settings for their practical use.",
+      "published": "2026-05-28T17:15:46+00:00",
+      "url": "https://arxiv.org/pdf/2605.30252v1",
       "authors": [
-        "Sergii Makovetskyi",
-        "Lars Thomsen"
+        "Juan F. R. Hernandez",
+        "Pavle Nikacevic",
+        "Enrique Solano",
+        "Chinonso Onah",
+        "Agneev Guin",
+        "Arne-Christian Voigt",
+        "Archismita Dalal"
       ],
       "source": "arxiv"
     }

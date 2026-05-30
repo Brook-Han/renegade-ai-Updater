@@ -1,138 +1,155 @@
 {
-  "timestamp": 1779071276.813916,
+  "timestamp": 1780115997.4443576,
   "source": "arxiv",
   "query": "automation bias high stakes decision",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.16254v1",
-      "title": "Fortuity and Complexity in a Simple Quark Model",
-      "summary": "We observe and elaborate on a structural similarity between the categorization of monotone and fortuitous BPS operators in supersymmetric theories and gauge invariant quark operators in $SU(N_c)$ QCD. Our designation of fortuity does not rely on supersymmetry and instead uses the BRST cohomology. We argue that within this designation, baryon states are fortuitous while meson states are monotone. We illustrate that in the Veneziano limit of large number of flavors and colors, this designation displays features resembling the fortuitous vs. monotone categorization of BPS operators, e.g., an exponential vs. polynomial dichotomy in the counting of operators. We explore these ideas explicitly in a toy qubit model of quarks. We further investigate the stabilizer Rnyi entropy of meson and baryon states as a proxy for the complexity of classical simulation for these states. We show that all mesons display power law complexity and present evidence that typical baryons display super-exponential complexity in the Veneziano limit.",
-      "published": "2026-05-15T17:58:25+00:00",
-      "url": "https://arxiv.org/pdf/2605.16254v1",
+      "id": "http://arxiv.org/abs/2605.30354v1",
+      "title": "Quiver Approach to Symmetry Theories",
+      "summary": "Global symmetry anomalies of a quantum field theory (QFT) can be packaged as specific couplings of a higher-dimensional symmetry theory (SymTh). In this work we show that for 5D superconformal field theories (SCFTs) engineered from M-theory backgrounds $X$ a Calabi-Yau cone, this data can be extracted from the path algebra of branes probing $X$. This provides a complementary algebraic approach compared with more geometric computations based on the explicit calculation of triple intersection numbers in a resolved geometry and / or $$-invariants extracted from the boundary geometry $\\partial X$. Our method applies in situations where the counterpart geometric computation is either unknown or combinatorially unwieldy. We illustrate with several toric threefold examples, including orbifolds $\\mathbb{C}^{3} / $ and more general non-orbifold Calabi-Yau cones of Sasaki-Einstein five-manifolds.",
+      "published": "2026-05-28T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2605.30354v1",
       "authors": [
-        "Jackson R. Fliss",
-        "Vishnu Jejjala",
-        "Onkar Parrikar"
+        "Vivek Chakrabhavi",
+        "Mirjam Cvetič",
+        "Jonathan J. Heckman",
+        "Shani Meynet"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16253v1",
-      "title": "TTP: A Hardware-Efficient Design for Precise Prefetching in Ray Tracing",
-      "summary": "Ray tracing (RT) is a 3D graphics technique that offers highly realistic visuals. It is becoming prominent and accessible as GPU vendors have integrated dedicated ray tracing acceleration hardware. However, tracing millions of rays through 3D scenes consisting of high numbers of triangles in real time is challenging and requires expensive hardware. The main bottleneck in RT workloads is the expensive Bounding Volume Hierarchy (BVH) traversal task, which is a large tree structure that encodes the 3D scene. BVH traversal is a memory-bound problem, as the GPU threads spend most of their time reading tree node data from memory. In this work, we attack the memory latency bottleneck of ray tracing through prefetching. We propose a novel hardware prefetcher, named Tree Traversal Prefetcher (TTP), for ray tracing. The main idea is to leverage the existing tree traversal stack in the RT units for highly accurate prefetching. In particular, TTP prefetches nodes using the addresses already available on the hardware traversal stacks of each thread. For DFS (Depth-first search) based traversal, prefetches are generated when nodes are being popped consecutively from the traversal stack, potentially corresponding to upward traversal through the tree. We evaluate TTP on a cycle-level simulator, Vulkan-sim 2.0, and show that it achieves 1.48x speedup on average (up to 1.89x) compared to the baseline, with nearly negligible hardware overhead. TTP achieves 98.92% average L1 accuracy, which is the ratio of the prefetched blocks being actually referenced by demand loads. The coverage, computed as the ratio of L1 miss reduction over baseline L1 misses, is 31.54%, correlating well with the achieved speedup.",
-      "published": "2026-05-15T17:57:31+00:00",
-      "url": "https://arxiv.org/pdf/2605.16253v1",
+      "id": "http://arxiv.org/abs/2605.30348v1",
+      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
+      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
+      "published": "2026-05-28T17:59:53+00:00",
+      "url": "https://arxiv.org/pdf/2605.30348v1",
       "authors": [
-        "Yavuz Selim Tozlu",
-        "Anshul Naithani",
-        "Huiyang Zhou"
+        "Yaxin Luo",
+        "Jiacheng Cui",
+        "Xiaohan Zhao",
+        "Xinyi Shang",
+        "Jiacheng Liu",
+        "Xinyue Bi",
+        "Zhaoyi Li",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16246v1",
-      "title": "FRESH: Information-Geometric Calibration of Patient-Level Models to Aggregate Evidence",
-      "summary": "This note introduces FRESH (Fusion of Recent Evidence and Subject Histories), a method for incorporating population-level summary results -- published clinical trials, registry summaries,   prior natural-history studies, and peer-reviewed indirect comparisons -- into predictive models trained on patient-level data. This method provides a principled means of combining both   patient-level and aggregate-level data types into a unified data-efficient model for clinical decision making.   FRESH assumes access to a generative model trained on patient-level data sources (e.g. clinical trial or real-world data). The method produces patient-level predictions from a re-calibrated   model that matches a set of specified aggregate statistics for a target population. This can be understood as a patient-level recapitulation of the aggregate source -- with the key property   that the recalibration is a minimal perturbation of the original joint distribution in a specific information-geometric sense. The resulting samples can be analyzed directly or combined into a   post-training procedure to update the original generative model.   This approach enables several applications where rigorously incorporating patient-level data with summary information is valuable, including (i) contextualizing single-arm trial results with   respect to recent standard-of-care, (ii) clinical-trial simulations for design and probability-of-technical-success estimation, and (iii) comparative-effectiveness analyses of on-market   therapies.",
-      "published": "2026-05-15T17:50:11+00:00",
-      "url": "https://arxiv.org/pdf/2605.16246v1",
+      "id": "http://arxiv.org/abs/2605.30346v1",
+      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
+      "summary": "As video diffusion models (VDMs) advance toward world models, a key question arises: do they truly understand causality, or merely overfit to statistical temporal patterns? Existing benchmarks mostly rely on synthetic data, limiting real-world generalization due to the sim-to-real gap. We present YoCausal, a two-level benchmark inspired by the Violation of Expectation (VoE) paradigm from cognitive science. By temporally reversing real-world videos at zero cost as natural counterfactual samples, YoCausal establishes an arbitrarily extensible evaluation protocol. Level 1 introduces the Reverse Surprise Index (RSI), quantifying arrow-of-time perception via denoising loss. Level 2 introduces the Causality Cognition Index (CCI), which leverages a VLM to stratify datasets into causal and non-causal subsets, disentangling genuine causal reasoning from temporal bias. Evaluation of 13 state-of-the-art VDMs reveals that perceiving the arrow of time does not imply understanding causality, and a significant gap persists relative to human-level causal cognition.",
+      "published": "2026-05-28T17:59:51+00:00",
+      "url": "https://arxiv.org/pdf/2605.30346v1",
       "authors": [
-        "Franklin Fuller",
-        "Daniele Bertolini",
-        "Samantha Liang",
-        "Jason Christopher",
-        "Aaron M. Smith"
+        "You-Zhe Xie",
+        "Yu-Hsuan Li",
+        "Jie-Ying Lee",
+        "Kaipeng Zhang",
+        "Yu-Lun Liu",
+        "Zhixiang Wang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16245v1",
-      "title": "AI-Mediated Communication Can Steer Collective Opinion",
-      "summary": "Generative artificial intelligence (AI) is increasingly integrated into the online platforms where humans exchange opinions; large language models (LLMs) now polish users' posts on LinkedIn and provide context for content shared on X. While prior work has shown that AI can express biased opinions and shape individuals' opinions during human-AI interactions, less attention has been paid to its influence on collective opinion formation when mediating human-to-human communication. We address this gap via a combination of empirical and theoretical analyses. We show empirically that LLMs from multiple popular families introduce directional biases when instructed to edit human-written texts on contested topics, for example, nudging texts in favor of gun control and against atheism. Building on this observation, we introduce a mathematical model of opinion dynamics in which an AI system sits between users on a social network, transforming the opinions they express and perceive. By analytically characterizing the equilibrium of this model and performing simulations on real social network data, we show that biases introduced by AI in human-to-human communication can be amplified through the network and shift collective opinion in their direction. In light of these findings, we investigate whether such biases are controllable by online platforms. We audit the \"Explain this post\" feature on X and find evidence of pro-life bias in Grok's outputs on abortion-related content, which we trace back to specific design choices. We conclude with a discussion of the broader implications of our findings in relation to ongoing legislative efforts in the European Union.",
-      "published": "2026-05-15T17:49:24+00:00",
-      "url": "https://arxiv.org/pdf/2605.16245v1",
+      "id": "http://arxiv.org/abs/2605.30344v1",
+      "title": "Tiny but Trusted: Efficient Vision-Language Reasoning for Time-Series Anomaly Detection",
+      "summary": "Recent advances in Vision-Language Models (VLMs) have achieved impressive performance across many tasks, yet prior studies report unsatisfactory performance when applying large language or multimodal models to finding abnormal patterns in sequential data. Public anomaly detection benchmarks typically provide interval annotations but not natural-language rationales, making it difficult to fine-tune VLMs to produce grounded, interpretable decisions. To address this gap, we construct VisAnomBench, a curated benchmark built from public time-series datasets and augmented with high-quality anomaly explanations selected from multiple large VLMs using fine-grained, task-specific rewards. Through fine-tuning on this benchmark, we develop VisAnomReasoner, a parameter-efficient VLM for time-series anomaly detection. Experimental results on VisAnomBench show that VisAnomReasoner achieves more accurate anomaly localization and consistently outperforms all baselines, with improvements of at least 21.23 and 23.87 percentage points in precision and F1, respectively. Additional experiments on the TSB-AD-U benchmark demonstrate strong cross-benchmark generalization, with VisAnomReasoner improving precision and F1 by 9.57 and 13.39 percentage points, respectively.",
+      "published": "2026-05-28T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2605.30344v1",
       "authors": [
-        "Stratis Tsirtsis",
-        "Kai Rawal",
-        "Chris Russell",
-        "Brent Mittelstadt",
-        "Sandra Wachter"
+        "Xiaona Zhou",
+        "Muntasir Wahed",
+        "Tianjiao Yu",
+        "Constantin Brif",
+        "Ismini Lourentzou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16243v1",
-      "title": "Stern--Gerlach Spin Sorting in Relativistic Magnetic Reconnection",
-      "summary": "We introduce a Stern--Gerlach (SG) spin-kinetic control parameter for magnetic reconnection. The fully projected branch parameter, $_0=<Z>/r_L$ compares the SG cross-sheet displacement accumulated during a diffusion-region transit with the relativistic Larmor radius. For an ensemble or partially participating population the relevant effective parameter is $_{\\rm Eff}=P_{eff}_0$, where $P_{eff}$ represents the surviving branch weight or effective spin/moment projection. Evaluating $_{\\rm Eff}$ across representative space and astrophysical environments reveals a robust hierarchy: SG transport is negligible in the magnetotail, solar corona, active galactic nuclei (AGN)/blazar jets, and pulsar-wind nebulae, but becomes transitional to strong in magnetar current sheets and extreme near magnetar surfaces. We further show, using electron--positron particle-in-cell simulations, that the SG force sorts particles by magnetic-moment projection into opposite sides of a Harris current sheet without measurably changing the global reconnection rate in the tested regime. This identifies magnetars as the clearest natural target for strong-field spin-kinetic reconnection ($_{\\rm eff}\\gg 1$) near the surface; transitional in the outer magnetosphere), while SG transport is safely negligible ($_{\\rm eff}\\ll 1$) in all heliophysical and jet environments considered, and provides a falsifiable framework for assessing where SG physics is relevant.",
-      "published": "2026-05-15T17:48:48+00:00",
-      "url": "https://arxiv.org/pdf/2605.16243v1",
+      "id": "http://arxiv.org/abs/2605.30332v1",
+      "title": "Colored Noise Diffusion Sampling",
+      "summary": "Diffusion models achieve state-of-the-art image synthesis, with their generative trajectories fundamentally exhibiting a spectral bias, resolving low-frequency global structures early and high-frequency fine details later. Conventional stochastic differential equation (SDE) solvers fail to account for this dynamic, naively injecting uniform white noise throughout the entire process and misusing the finite energy budget. In this work, we establish a mathematical framework that reconsiders SDE inference as a targeted, frequency-decoupled energy transfer. Leveraging this framework, we introduce Colored Noise Sampling (CNS), a novel, training-free stochastic solver. Rather than injecting uniform white noise, CNS utilizes a dynamic, timestep- and frequency-dependent schedule that more efficiently allocates injected energy toward structurally unresolved frequency bands. By actively exploiting the model's inherent spectral bias, CNS systematically steers the generated distribution toward the true data manifold. Extensive experiments demonstrate that CNS significantly outperforms standard ODE and SDE baselines as a strictly plug-and-play, inference-time sampler substitution across diverse architectures (SiT, JiT, FLUX). Compared to standard sampling on ImageNet-256, CNS achieves substantial unguided FID reductions, improving from 8.26 to 6.27 on SiT-XL/2, 32.39 to 26.69 on JiT-B/16, and 11.88 to 8.31 on JiT-H/16, while yielding consistent relative FID improvements with Classifier-Free Guidance. Project page is available at https://hadardavidson.github.io/CNS/.",
+      "published": "2026-05-28T17:58:13+00:00",
+      "url": "https://arxiv.org/pdf/2605.30332v1",
       "authors": [
-        "K. Nykyri"
+        "Hadar Davidson",
+        "Noam Issachar",
+        "Sagie Benaim"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16241v1",
-      "title": "Offline Semantic Guidance for Efficient Vision-Language-Action Policy Distillation",
-      "summary": "Billion-parameter Vision-Language-Action (VLA) policies have recently shown impressive performance in robotic manipulation, yet their size and inference cost remain major obstacles for real-time closed-loop control. We introduce \\textbf{VLA-AD}, a distillation framework that uses a Vision-Language Model as an offline semantic supervisor to transfer large VLA teachers into lightweight student policies. Instead of relying only on low-level action imitation, VLA-AD augments teacher-provided 7-DoF action targets with high-level semantic guidance, including task phase anchors and multi-frame operating-direction descriptions. These auxiliary signals are used only during training: at test time, the student policy runs independently, with neither the VLA teacher nor the VLM required. We evaluate VLA-AD on three LIBERO benchmark suites. Using OpenVLA-7B as the teacher, our method produces a 158M-parameter student, yielding a $44\\times$ reduction in model size while matching the teacher with only a $0.27\\%$ average relative gap. The resulting policy runs at 12.5 Hz on an RTX 4090, achieving a $3.28\\times$ inference speedup over OpenVLA-7B. We further show that the same semantic distillation pipeline generalizes to a different $_{0.5}$-4B teacher, where the student outperforms the teacher on two suites and remains within $0.53\\%$ on \\texttt{libero\\_goal}. Additional analysis indicates that phase-level supervision and multi-frame directional cues make the student less sensitive to noisy teacher actions, such as erroneous high-frequency gripper changes. Overall, VLA-AD demonstrates that offline semantic guidance from VLMs can substantially improve the efficiency, robustness, and deployability of VLA policy distillation.",
-      "published": "2026-05-15T17:48:25+00:00",
-      "url": "https://arxiv.org/pdf/2605.16241v1",
+      "id": "http://arxiv.org/abs/2605.30329v1",
+      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
+      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
+      "published": "2026-05-28T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2605.30329v1",
       "authors": [
-        "Jin Shi",
-        "Brady Zhang",
-        "Yishun Lu"
+        "Sy-Tuyen Ho",
+        "Minghui Liu",
+        "Huy Nghiem",
+        "Furong Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16238v1",
-      "title": "Prospective multi-pathogen disease forecasting using autonomous LLM-guided tree search",
-      "summary": "Probabilistic forecasting of infectious diseases is crucial for public health but relies on labor-intensive manual model curation by expert modeling teams. This bespoke development bottlenecks scalability to granular geographic resolutions or emerging pathogens. Here, we present an autonomous system using Large Language Model (LLM)-guided tree search to iteratively generate, evaluate, and optimize executable forecasting software. In a fully prospective, real-time evaluation during the 2025-2026 US respiratory season, the system autonomously discovered methodologically diverse models for influenza, COVID-19, and respiratory syncytial virus (RSV). Aggregating these machine-generated models yielded an ensemble that consistently matched or outperformed the gold-standard, human-curated Centers for Disease Control and Prevention (CDC) hub ensembles out-of-sample. The system successfully navigated data-scarce \"cold start\" scenarios for RSV. Moreover, controlled retrospective ablations revealed that optimizing log-scale distance metrics prevents reward hacking, while an automated judge-in-the-loop ensures structural fidelity to complex scientific theories. By autonomously translating epidemiological theory into accurate, transparent code, this framework overcomes the modeling labor bottleneck, enabling rapid deployment of expert-level disease forecasting at unprecedented scales.",
-      "published": "2026-05-15T17:45:17+00:00",
-      "url": "https://arxiv.org/pdf/2605.16238v1",
+      "id": "http://arxiv.org/abs/2605.30327v1",
+      "title": "Reasoning with Sampling: Cutting at Decision Points",
+      "summary": "Frontier reasoning models are produced by posttraining base language models with reinforcement learning. Recent work has challenged this by showing that sampling from a sharpened version of the base model's distribution, a so-called power distribution, elicits comparable reasoning without additional training, curated datasets, or verifiers. However, making this method practical requires efficiently sampling from the power distribution. A sampler needs to \"mix\" to the power distribution, which necessitates moving between modes of the target distribution; intuitively, e.g., trying different reasoning strategies. The samplers proposed in prior works repeatedly select a \"cut\" position in the current reasoning trace uniformly at random and resample the suffix from that position onward. However, reasoning traces typically contain a few consequential decisions (e.g., the choice of proof strategy or algorithm), and we observe that a uniformly chosen cut tends to rewrite local details rather than revisit decision points. We introduce an algorithm (Entropy-Cut Metropolis-Hastings) that uses the base model's next-token entropy as a proxy to identify key decision points and resample from those positions. We empirically verify that entropy jumps are a useful proxy for decision points and, in a stylized model of reasoning, prove that our method's mixing time scales with the number of decisions in a trace rather than with the number of tokens, which can be much larger. Across MATH500, HumanEval, GPQA Diamond, and AIME26, our method consistently improves over baselines and RL-trained models.",
+      "published": "2026-05-28T17:57:32+00:00",
+      "url": "https://arxiv.org/pdf/2605.30327v1",
       "authors": [
-        "Sarah Martinson",
-        "Michael P. Brenner",
-        "Martyna Plomecka",
-        "Brian P. Williams",
-        "Nicholas G. Reich",
-        "Zahra Shamsi"
+        "Felix Zhou",
+        "Anay Mehrotra",
+        "Quanquan C. Liu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16237v1",
-      "title": "Inside Baseball: The Automated Ball-Strike System as an Object Lesson in Technological Rule Enforcement",
-      "summary": "Clearly-defined rules are often assumed to be straightforward to automate and evaluate. We challenge this assumption through an in-depth study of Major League Baseball's (MLB) seven-year experimentation with the Automated Ball-Strike System (ABS). ABS is envisioned to call balls and strikes accurately: a seemingly straightforward use of technology to objectively determine the distance between a pitch and the strike zone. Although the strike zone is an area clearly defined in the rulebook, it took MLB seven years to figure out how to automate calling balls and strikes with ABS, showing how even seemingly straightforward rules require a complex translation process to operationalize via technological systems. In this paper, we trace the design decisions that led to the current implementation of ABS. Our case study reveals that \"distance\" exists even between a clear rule and its technological implementation. Using analytic frameworks from Science and Technology Studies (STS), we show that such distance exists because (1) historically, the \"ground truth\" of the strike zone is contested: the rule in practice has always reflected a hybrid between the rulebook definition and umpires' enforcement decisions; and (2) the use of ABS is embedded in an existing eco-system, where the implementation of a technological enforcement system needs to balance multiple stakeholder values. This perspective challenges conventional evaluation paradigms that center on the distance between a formalized rule and its technological implementation, and instead calls for evaluating how such systems are experienced in practice. Addressing this question requires in-depth social science approaches, contributing to ongoing conversations in FAccT about the implementation and evaluation of sociotechnical systems.",
-      "published": "2026-05-15T17:45:04+00:00",
-      "url": "https://arxiv.org/pdf/2605.16237v1",
+      "id": "http://arxiv.org/abs/2605.30326v1",
+      "title": "RoboWits: Unexpected Challenges for Robotic Creative Problem Solving",
+      "summary": "The ability to reason, adapt, and creatively solve problems under unexpected challenges is essential for robots operating in real-world environments. However, current robotic benchmarks primarily emphasize skill-level execution and provide limited insight into such cognitive reasoning capabilities. We introduce RoboWits, a bi-manual robotic benchmark designed to systematically evaluate cognitive reasoning, creative tool use, and robustness to unexpected conditions. To enable scalable construction of high-quality reasoning-centric unexpected scenarios, we propose an automated task generation pipeline formulated as a multi-agent cooperative framework, comprising agents for seed task generation and verification, metric generation, scene generation, and task mutation. Using the pipeline, we curated 30 diverse seed tasks and 208 tasks with mutations and graded difficulty across geometry, material, and assembly-based reasoning. We benchmark popular robot policies, pre-trained VLAs, and oracle-state planners. Our results reveal a significant performance gap: while pre-trained VLAs exhibit preliminary success on seed tasks after single-task fine-tuning, they struggle to perform on mutated tasks, implying their brittleness in manipulation tasks requiring reasoning, strategy adaptation, and robustness to deceptive or constrained environments. Project page is available at https://umass-embodied-agi.github.io/RoboWits.",
+      "published": "2026-05-28T17:57:15+00:00",
+      "url": "https://arxiv.org/pdf/2605.30326v1",
       "authors": [
-        "Andrea Wen-Yi Wang",
-        "Waki Kamino",
-        "David Mimno",
-        "Karen Levy",
-        "Malte F. Jung"
+        "Chunru Lin",
+        "Hongxin Zhang",
+        "Fenghao Yu",
+        "Zhehuan Chen",
+        "Thomas L. Griffiths",
+        "Yejin Choi",
+        "David Held",
+        "Chuang Gan"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16235v1",
-      "title": "Nonlinear stability of continuously self-similar naked singularities for the Einstein-scalar field equations I: main results",
-      "summary": "This is the first part of a series of papers proving the nonlinear stability of a one-parameter family of continuously self-similar $C^{1,}$ naked singularity solutions, with $0<\\ll1$, to the spherically symmetric Einstein-scalar field equations. The stability holds for initial perturbations lying in a small open neighborhood of the data generating these naked singularity solutions, measured in a localized Hlder topology.   These continuously self-similar naked singularity spacetimes were previously constructed by Christodoulou [D. Christodoulou, Examples of naked singularity formation in the gravitational collapse of a scalar field, Ann. of Math. 140 (1994), 607--653], who also proved their instability to black hole formation under sufficiently rough perturbations [D. Christodoulou, The instability of naked singularities in the gravitational collapse of a scalar field, Ann. of Math. 149 (1999), 183--217], thereby verifying weak cosmic censorship within a rough functional framework.   In complete contrast, in this paper, we obtain the first nonlinear stability of these naked singularity spacetimes under general perturbations of the same regularity as the background. We rely on the linearized stability result established in the companion paper [J. Singh and W. Zheng, Nonlinear stability of continuously self-similar naked singularities for the Einstein--scalar field equations II: linearized stability]. Our result underscores the decisive role of the functional framework in formulating the Weak Cosmic Censorship conjecture.",
-      "published": "2026-05-15T17:43:56+00:00",
-      "url": "https://arxiv.org/pdf/2605.16235v1",
+      "id": "http://arxiv.org/abs/2605.30325v1",
+      "title": "Veda: Scalable Video Diffusion via Distilled Sparse Attention",
+      "summary": "Scaling Diffusion Transformers to generate high-resolution, long videos is constrained by the quadratic cost of self-attention, and existing sparse attention methods degrade under high sparsity. We show empirically that generation quality is determined not by the sparsity ratio itself, but by how well the sparse mask aligns with the tile-wise geometry of full attention. Based on this insight, we propose Veda, a distilled sparse attention framework that formulates tile selection as an explicit reconstruction problem from full attention. Veda integrates statistics-aware tile scoring with head-aware tiling to reduce estimation error and structural mismatch, enabling aggressive sparsity. A hardware-efficient tile-skipping kernel converts theoretical sparsity into practical wall-clock speedups. Experiments on large video diffusion models, including Waver and Wan2.1, demonstrate substantial acceleration with no noticeable degradation in generation quality. To generate 720P 10-second videos on Waver-T2V-12B, Veda achieves a 5.1$\\times$ end-to-end speedup and a 10.5$\\times$ self-attention speedup, reducing attention overhead from 92% to 50%. Notably, the gains increase with sequence length, indicating that Veda scales favorably with spatiotemporal resolution across models.",
+      "published": "2026-05-28T17:57:07+00:00",
+      "url": "https://arxiv.org/pdf/2605.30325v1",
       "authors": [
-        "Weihao Zheng"
+        "Shihao Han",
+        "Hao Yang",
+        "Xinting Hu",
+        "Xiaofeng Mei",
+        "Yi Jiang",
+        "Xiaojuan Qi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.16234v1",
-      "title": "Layer Equivalence Is Not a Property of Layers Alone: How You Test Redundancy Changes What You Find",
-      "summary": "When researchers ask whether two transformer layers are \"equivalent\" for compression, they often conflate distinct tests. Replacement asks whether one layer's map can substitute for another's in place; interchange asks whether two layers approximately commute when their positions are swapped. Both are output-grounded swap-KL probes, but they need not agree: on pretrained transformers the protocol gap can change which layers look safe to prune by several-fold under the same evaluator, especially when replacement distances are high.   We measure both protocols across checkpoints and architectures. On a Pythia training trajectory (410M and 1.4B), the replacement-interchange gap grows from initialization to convergence. Under one matched WikiText-2 contract at 8B scale, Qwen3-8B enters a divergent regime: interchange-guided removal is several-fold safer than replacement-guided at the same layer budgets, while Llama-3.1-8B ties the two protocols for pruning cost even though interchange KL is lower, showing metric gaps need not map one-to-one to removal. Before layer removal or merging, score both swap-KLs on the target checkpoint; the diagnostic requires only unlabeled forward passes.",
-      "published": "2026-05-15T17:43:16+00:00",
-      "url": "https://arxiv.org/pdf/2605.16234v1",
+      "id": "http://arxiv.org/abs/2605.30323v1",
+      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
+      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
+      "published": "2026-05-28T17:56:54+00:00",
+      "url": "https://arxiv.org/pdf/2605.30323v1",
       "authors": [
-        "Gabriel Garcia"
+        "Zhenyu Sun",
+        "Zheng Xu",
+        "Ermin Wei"
       ],
       "source": "arxiv"
     }
