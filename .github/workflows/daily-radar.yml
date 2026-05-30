@@ -81,7 +81,9 @@ jobs:
           git config --global user.email "$EMAIL"
           echo "✅ Git identity: $NAME <$EMAIL>"
 
-      # ── 新闻雷达 ──────────────────────────────────────────
+      # ════════════════════════════════════════════════════════
+      #  新闻雷达 — 完事后立即备份+通知，防止后续步骤超时丢失
+      # ════════════════════════════════════════════════════════
       - name: 📰 Run News Radar
         run: |
           echo "🚀 Starting news_radar.py..."
@@ -93,7 +95,34 @@ jobs:
           echo "🔄 Converting news reports..."
           python news_md_to_html.py || echo "⚠️ No news report to convert"
 
-      # ── 学术雷达 ──────────────────────────────────────────
+      # ── 新闻即时备份（不管后面学术超不超时，新闻先存好） ──
+      - name: 💾 Git Backup News
+        run: |
+          echo "💾 立即保存新闻报告..."
+          git add docs/news/
+          if git diff --staged --quiet; then
+            echo "✨ 新闻无新变更"
+          else
+            git commit -m "📰 News: $(date '+%Y-%m-%d') [skip ci]"
+            git push origin main || echo "⚠️ News push failed"
+          fi
+
+      # ── 新闻即时通知（不等学术，先推送） ──
+      - name: 🔔 Push News to Notify
+        if: ${{ !inputs.skip_notify }}
+        run: |
+          if [ "${{ inputs.dry_run_notify }}" = "true" ]; then
+            echo "🔍 DRY-RUN 模式"
+            python -m notify --type news --dry-run
+          else
+            echo "📤 推送新闻报告..."
+            python -m notify --type news
+          fi
+        continue-on-error: true
+
+      # ════════════════════════════════════════════════════════
+      #  学术雷达（独立执行，超时或失败不影响新闻已备份）
+      # ════════════════════════════════════════════════════════
       - name: 🎓 Run Academic Radar
         run: |
           echo "🚀 Starting academic_radar.py..."
@@ -121,7 +150,7 @@ jobs:
           echo "🎓 Building docs/academic/index.html..."
           python generate_academic_index.py || echo "⚠️ No academic files found"
 
-      # ── Git 备份 ──────────────────────────────────────────
+      # ── 最终全量备份（新闻+学术+索引） ──────────────────
       - name: 📤 Backup to main branch
         run: |
           echo "💾 Checking for changes to backup..."
@@ -129,25 +158,11 @@ jobs:
           if git diff --staged --quiet; then
             echo "✨ No new changes to backup"
           else
-            git config --global user.name "${GIT_NAME:-renegade-ai-bot}"
-            git config --global user.email "${GIT_EMAIL:-bot@renegade-ai.local}"
-            git commit -m "🤖 Backup: $(date '+%Y-%m-%d %H:%M CST') [skip ci]"
+            git commit -m "🤖 Full backup: $(date '+%Y-%m-%d %H:%M CST') [skip ci]"
             git push origin main || echo "⚠️ Push to main failed (may be protected)"
           fi
 
-      # ── 通知推送（统一 notify 模块） ──────────────────────
-      - name: 🔔 Push News to Notify
-        if: ${{ !inputs.skip_notify }}
-        run: |
-          if [ "${{ inputs.dry_run_notify }}" = "true" ]; then
-            echo "🔍 DRY-RUN 模式"
-            python -m notify --type news --dry-run
-          else
-            echo "📤 推送新闻报告..."
-            python -m notify --type news
-          fi
-        continue-on-error: true
-
+      # ── 学术通知（此时新闻已通知过，这里是学术专享） ────
       - name: 🔔 Push Academic to Notify
         if: ${{ !inputs.skip_notify }}
         run: |
