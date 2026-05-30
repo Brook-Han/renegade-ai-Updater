@@ -84,8 +84,9 @@ jobs:
       # ── Git 备份 ──────────────────────────────────────────
       - name: 💾 Git Backup Academic
         run: |
-          echo "💾 保存学术报告..."
-          git add docs/academic/ docs/news/ *.py notify/
+          echo "💾 保存学术报告 + 搜索缓存..."
+          mkdir -p cache/search_results
+          git add docs/academic/ docs/news/ cache/ *.py notify/
           if git diff --staged --quiet; then
             echo "✨ 学术无新变更"
           else

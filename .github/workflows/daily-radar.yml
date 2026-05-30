@@ -91,8 +91,9 @@ jobs:
       # ── 新闻即时备份+通知（不等索引，先存好） ────────────
       - name: 💾 Git Backup News
         run: |
-          echo "💾 立即保存新闻报告..."
-          git add docs/news/
+          echo "💾 立即保存新闻报告 + 搜索缓存..."
+          mkdir -p cache/search_results
+          git add docs/news/ cache/
           if git diff --staged --quiet; then
             echo "✨ 新闻无新变更"
           else
