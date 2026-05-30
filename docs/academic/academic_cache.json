@@ -1,1 +1,65 @@
-{}
+{
+  "dfb6f14c15551950ce3bd66cd179eabf": {
+    "cached_at": "2026-05-30T13:26:28.149610",
+    "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of ",
+    "analysis": {
+      "relevance": 9.0,
+      "summary_cn": "这是一项N=1的案例研究，一位物理学家在12个工作日内监督AI编码代理（Claude Code）开发可微分的单圈微扰论模块。研究记录了15次监督事件，其中AI自主解决了10次，物理学家领域知识帮助解决2次，另有3次AI无法解决。这3次失败有一个共同特征：AI将症状缓解视为根本原因解决，在无法表示目标物理的代码架构内调整参数，花费33个会话调整系数而无法重新评估分支选择，直到注入物理概念才触发重新设计。此外，AI还产生了一个通过所有测试但无物理意义的校准修正，该修正仅在特定宇宙学参数下有效。关键监督实践包括：在基准校准以外的多样化参数点测试、共享变更日志以暴露停滞探索、禁止无物理数值补丁。研究表明监督设计而非模型能力决定了AI输出的可信度，需要AI能提出架构替代方案而不仅仅在给定结构内优化，并能区分预测充分性与解释正确性。",
+      "implications": "该案例直接支持本书关于'共识牢笼'的核心论点：AI在给定框架内优化，无法自主挑战前提假设，体现了进化对齐脆弱性。AI的'症状缓解'行为与书中描述的'Token陷阱'相似，即AI倾向于在已有路径内优化而非重构问题。同时，人类监督实践（多样化测试、共享日志、禁止无物理补丁）呼应了'需求侧规训'和'碳硅共生'中人类需主动设计监督架构以确保AI输出可信的观点。论文挑战了仅靠规模扩展能解决对齐问题的假设，支持书中'叛逆AI需要重置目标函数'的主张。",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "model_scores": {
+        "deepseek-v4-flash": 9
+      }
+    },
+    "relevance": 9.0,
+    "urgency": "immediate",
+    "model_scores": {
+      "deepseek-v4-flash": 9
+    }
+  },
+  "609c484cd14b8243952443fb491215ca": {
+    "cached_at": "2026-05-30T13:26:33.160841",
+    "title": "VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusi",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了VideoMLA，一种面向分钟级自回归视频扩散的低秩潜在KV缓存方法。通过将多头注意力中的键和值替换为共享的低秩内容潜在向量和共享的解耦3D-RoPE位置键，每层每个token的KV内存减少了92.7%。研究发现，视频扩散中的预训练注意力并非低秩，但MLA瓶颈决定了有效秩，训练在保持秩预算的同时进行适应。VideoMLA在短视界流式视频扩散基准上匹配基线，在长视界中取得最佳综合得分，并在单B200上实现1.23倍吞吐量提升。",
+      "implications": "该论文是纯技术性架构优化，与书中核心概念（共识牢笼、叛逆AI、碳硅共生、时间主权等）及实证锚点无直接关联。",
+      "chapter_target": "",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 1
+    }
+  },
+  "3ac98e987ea60085dcb2957c8ec66f89": {
+    "cached_at": "2026-05-30T13:26:38.481939",
+    "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Represent",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出DynaFLIP，一种面向机器人操作的三模态动态感知预训练框架，通过最小化图像-语言-3D流在三模态共享空间的单纯形体积，迫使编码器学习动作相关动态特征，在多种策略（包括VLA）上取得性能提升。",
+      "implications": "与本书核心概念和实证锚点无直接关联，属于机器人感知工程技术性工作，未涉及人类认知、共识牢笼、AI对齐批判或认知金融化等主题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-v4-flash": 2
+    }
+  }
+}
