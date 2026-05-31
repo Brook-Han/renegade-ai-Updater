@@ -541,13 +541,13 @@ def generate_academic_html(data: dict, output_path: str):
 
     {urgent_html}
     {papers_html}
-
-    <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
-    <footer>
-      <span>Renegade AI v5.3 · Academic Radar</span>
-      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
-    </footer>
   </main>
+
+  <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.3 · Academic Radar</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
 
   <div class="status-bar">
     <span><span class="status-dot"></span><span id="statusText">STATUS: [ ACADEMIC_PIPELINE · NOMINAL ]</span></span>
