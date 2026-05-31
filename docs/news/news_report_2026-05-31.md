@@ -1,15 +1,15 @@
 # 📰 News Radar — 资讯监控报告
 **生成日期**: 2026-05-31
 **分析模型**: deepseek-v4-flash
-**分析条目**: 51
+**分析条目**: 57
 **关键词**: sycophancy large language model, RLHF cognitive effects human, human AI feedback loop bias amplification, AI persuasion belief change experiment, automation bias high stakes decision, cognitive offloading AI writing, AI assisted research homogenization, AI writing cultural homogenization Western bias...
 ---
 
 ## 📊 快速概览
 
 - 🔴 高价值 (≥7分 + high案例): **21**
-- 🟡 中相关 (4-6.9分): **11**
-- ⚪ 低相关/忽略: **14**
+- 🟡 中相关 (4-6.9分): **12**
+- ⚪ 低相关/忽略: **17**
 
 ## 🚨 紧急关注清单（建议24h内处理）
 
@@ -285,7 +285,7 @@
 - **理论关联**: 该新闻强烈支持“进化对齐脆弱性”理论：AI系统在开放环境部署后，其对齐目标不仅依赖于模型本身，还受制于底层技术栈的安全完整性。Starlette的漏洞表明，即使AI原初对齐良好，外部依赖的失效（如被恶意利用）可直接颠覆其预期行为，使对齐失效。这验证了书中关于“对齐只在封闭实验室有效，开放后必然漂移或受干扰”的论断。
 - **建议操作**: 案例盒子
 
-<details><summary>🔶 中相关资讯 (11条，点击展开)</summary>
+<details><summary>🔶 中相关资讯 (12条，点击展开)</summary>
 
 - **[Boston Children’s uses AI to unlock new diagnoses...](https://openai.com/index/boston-childrens-hospital)** [OpenAI News] · 6/10
   - 波士顿儿童医院（Boston Children’s Hospital）采用OpenAI技术，旨在通过AI辅助诊断罕见疾病、改善患者护理并减轻临床运营负担。背景：罕见病诊断长期面临识别困难、漏诊率高、医生认知负荷大等挑战，传统方法依赖专家经验...
@@ -307,6 +307,8 @@
   - 2026年5月22日Google I/O开发者大会上，DeepMind CEO Demis Hassabis宣称人类正“站在奇点山麓”，暗示AI即将迅速超越人类智能并彻底改变世界。该言论标志谷歌在AI驱动科学领域路径的显著转变：从过去强调安...
 - **[SoftBank says it will invest up to €75 billion to build Fren...](https://techcrunch.com/2026/05/30/softbank-says-it-will-invest-up-to-e75-billion-to-build-french-data-centers/)** [AI News & Artificial Intelligence | TechCrunch] · 5/10
   - 软银集团宣布计划在法国投资高达750亿欧元（约合800亿美元）建设数据中心，目标是将额外数据中心容量提升至5吉瓦（GW）。此举是软银在全球AI算力基础设施布局的重要一步，法国政府已将其列为国家级战略项目，旨在吸引外资并强化欧洲数字主权。软银...
+- **[We Looked at 78 Election Deepfakes. Political Misinformation...](https://www.normaltech.ai/p/we-looked-at-78-election-deepfakes)** [AI as Normal Technology] · 6/10
+  - 一项针对78个选举深度伪造（deepfake）案例的研究发现，政治虚假信息的根源并非AI技术本身，而是社会、媒体和制度结构。研究指出，AI既不是问题也不是解决方案，过度关注技术反而忽略了真正驱动虚假信息传播的政治动机、媒体生态和公众信任危机...
 - **[The Shape of AI: Jaggedness, Bottlenecks and Salients...](https://www.oneusefulthing.org/p/the-shape-of-ai-jaggedness-bottlenecks)** [One Useful Thing] · 4/10
   - 该新闻由《One Useful Thing》于2025年12月20日发布，标题探讨了AI系统的形状特征：锯齿性（Jaggedness）、瓶颈（Bottlenecks）和突出点（Salients）。文章核心观点是AI能力在不同任务上分布极不均...
 
