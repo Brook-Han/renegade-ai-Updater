@@ -15,7 +15,8 @@ def setup_logging(name="renegade_radar", level=logging.INFO):
     logger.addHandler(console_handler)
     
     # 文件 handler（详细日志，用于事后排查）
-    file_handler = logging.FileHandler('radar.log', encoding='utf-8')
+    log_path = Path(__file__).parent / "radar.log"
+    file_handler = logging.FileHandler(log_path, encoding='utf-8')
     file_handler.setFormatter(logging.Formatter('%(asctime)s [%(levelname)s] %(name)s: %(message)s'))
     logger.addHandler(file_handler)
     

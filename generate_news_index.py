@@ -16,54 +16,14 @@ import re
 from pathlib import Path
 from html import escape
 
+from config import Config
+from card_utils import extract_cards_from_html
+
 # ───────────────────────────────
 # 配置
 # ───────────────────────────────
-NEWS_DIR = Path("docs/news")
+NEWS_DIR = Config.OUTPUT_DIR / "news"
 OUTPUT_FILE = NEWS_DIR / "index.html"
-
-# ───────────────────────────────
-# 从 HTML 提取卡片（复用主页逻辑）
-# ───────────────────────────────
-def extract_cards_from_html(html_path: Path, report_type: str = "news") -> list[dict]:
-    try:
-        content = html_path.read_text(encoding="utf-8")
-    except Exception as e:
-        print(f"⚠️ 读取失败 {html_path.name}: {e}")
-        return []
-
-    cards = []
-    card_blocks = re.findall(
-        r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
-        content,
-        re.DOTALL,
-    )
-
-    for block in card_blocks:
-        card = {"type": report_type}
-        # 标题
-        title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
-        if title_m:
-            card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
-        # 评分
-        score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
-        card["score"] = score_m.group(1) if score_m else "5.0"
-        # 原文链接
-        link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
-        if link_m:
-            card["link"] = link_m.group(1)
-        # 摘要
-        summary_m = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
-        if summary_m:
-            card["summary"] = re.sub(r"<[^>]+>", "", summary_m.group(1)).strip()
-        # 章节
-        chapter_m = re.search(r"📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)", block)
-        if chapter_m:
-            card["chapter"] = chapter_m.group(1).strip()
-
-        if card.get("title"):
-            cards.append(card)
-    return cards
 
 
 # ───────────────────────────────

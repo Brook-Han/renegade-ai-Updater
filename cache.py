@@ -68,7 +68,7 @@ def save_draft(paper, draft_text, cache):
 # 搜索缓存（避免重复调用 arXiv/S2/NewsAPI）
 # ------------------------------------------------------------
 
-SEARCH_CACHE_DIR = Path("cache/search_results")
+SEARCH_CACHE_DIR = Config.BASE_DIR / "cache" / "search_results"
 SEARCH_CACHE_EXPIRY = {
     "papers": 7 * 24 * 3600,    # 7 天
     "news": 24 * 3600           # 1 天

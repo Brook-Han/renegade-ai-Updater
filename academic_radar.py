@@ -104,14 +104,20 @@ CACHE_FILE = OUTPUT_DIR / "academic_cache.json"
 # ------------------------------------------------------------------
 def load_keywords(filepath: str = Config.KEYWORDS_FILE) -> list[str]:
     keywords = []
-    for line in open(filepath, "r", encoding="utf-8").readlines():
-        clean_line = line.split('#')[0].strip()  # 去掉中文注释和首尾空格
-        if clean_line:                            # 跳过空行
-            keywords.append(clean_line)
+    with open(filepath, "r", encoding="utf-8") as f:
+        for line in f.readlines():
+            clean_line = line.split('#')[0].strip()  # 去掉中文注释和首尾空格
+            if clean_line:                            # 跳过空行
+                keywords.append(clean_line)
     return keywords
 
 def safe_str(text: str) -> str:
-    return text.encode("ascii", "ignore").decode("ascii")
+    """清理文本中的控制字符，保留所有可见字符（含中文、日文等）"""
+    import unicodedata
+    return "".join(
+        ch for ch in text
+        if unicodedata.category(ch) not in ("Cc", "Cf") or ch in ("\n", "\r", "\t")
+    )
 
 def get_paper_cache_key(paper: dict) -> str:
     content = (paper.get("title", "") + " " + paper.get("summary", "")).encode("utf-8", errors="ignore")
@@ -361,7 +367,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
             consecutive_429_count += 1
             if consecutive_429_count >= CIRCUIT_BREAK_THRESHOLD:
                 circuit_open = True
-                remaining = len(keywords) - list(keywords).index(keyword) - 1
+                remaining = len(keywords) - keywords.index(keyword) - 1
                 logger.warning(
                     f"🔌 [S2] 熔断触发！连续 {consecutive_429_count} 个关键词 429，"
                     f"判定 S2 不可用，跳过剩余 {remaining} 个关键词"
@@ -599,8 +605,8 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
         )
         draft = resp.choices[0].message.content.strip()
         if len(draft) < 50:
-            logger.warning(f"   ⚠️ 草稿过短，重试生成...")
-            return draft_patch(paper, merged)
+            logger.warning(f"   ⚠️ 草稿过短（{len(draft)} 字），跳过重试以避免无限循环")
+            return None
         return draft
     except Exception as e:
         logger.error(f"草稿生成失败: {e}")

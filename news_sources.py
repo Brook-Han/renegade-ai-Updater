@@ -122,7 +122,7 @@ def fetch_newsapi(keywords: List[str], days_back: int = 3, max_retries: int = 2)
             counter_data = json.loads(counter_file.read_text())
             if counter_data.get("date") != today:
                 counter_data = {"date": today, "count": 0}
-        except:
+        except Exception:
             counter_data = {"date": today, "count": 0}
     else:
         counter_data = {"date": today, "count": 0}
