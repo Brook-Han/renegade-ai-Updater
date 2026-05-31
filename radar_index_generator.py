@@ -916,42 +916,29 @@ def auto_git_commit(data: dict) -> None:
         print(f"⚠️ git commit 失败: {result.stderr.decode()}")
         return
 
-    try:
-        result = subprocess.run(
-            ["git", "pull", "--rebase", "-X", "theirs", "--no-edit"],
-            cwd=repo_root, check=True, capture_output=True, text=True,
-        )
-        if result.stdout.strip():
-            print(f"📥 git pull: {result.stdout.strip()}")
-    except subprocess.CalledProcessError as e:
-        stderr = e.stderr.strip() if e.stderr else ""
-        if "no tracking information" in stderr:
-            print(f"ℹ️  没有 upstream 分支，直接 push（会新建远程分支）")
-        else:
-            print(f"⚠️ git pull 失败: {stderr or '未知错误'}")
+    # ── 先 fetch 远程状态（fetch 不怕工作区脏） ────────────────
+    subprocess.run(
+        ["git", "fetch", "origin", "main"],
+        cwd=repo_root, capture_output=True, text=True,
+    )
 
+    # ── 用 force-with-lease 推送（安全强推，不怕 remote 有变更） ──
     try:
         result = subprocess.run(
-            ["git", "push", "origin", "HEAD"],
+            ["git", "push", "--force-with-lease", "origin", "HEAD"],
             cwd=repo_root, capture_output=True, text=True,
         )
         if result.returncode == 0:
-            print("✅ Git push 成功")
+            print("✅ Git push 成功（force-with-lease）")
         elif "Everything up-to-date" in result.stderr or "up to date" in result.stderr:
             print("✅ Already up-to-date")
-        elif "non-fast-forward" in result.stderr or "[rejected]" in result.stderr:
-            # 远程有本地没有的提交 → 先 pull --rebase 再重试一次
-            print(f"⚠️ 远程有更新，重新拉取后重试 push...")
-            subprocess.run(["git", "pull", "--rebase"], cwd=repo_root)
-            retry = subprocess.run(["git", "push", "origin", "HEAD"], cwd=repo_root)
-            if retry.returncode == 0:
-                print("✅ Git push 成功（force-with-lease）")
-            else:
-                print(f"❌ 仍无法推送: {retry.stderr}")
+        elif "failed to push" in result.stderr or "[rejected]" in result.stderr:
+            print(f"⚠️ force-with-lease 也被拒，可能是远程有意料外的提交。")
+            print(f"   错误: {result.stderr}")
         else:
             print(f"⚠️ git push 失败: {result.stderr}")
     except subprocess.CalledProcessError as e:
-        print(f"⚠️ git push 失败: {e.stderr}")
+        print(f"⚠️ git push 异常: {e.stderr}")
 
 
 if __name__ == "__main__":
