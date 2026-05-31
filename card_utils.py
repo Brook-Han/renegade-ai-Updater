@@ -133,7 +133,7 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
     return cards
 
 
-def extract_cards_from_html(html_path: Path, report_type: str) -> list[dict]:
+def extract_cards_from_html(html_path: Path, report_type: str = "") -> list[dict]:
     """
     从 HTML 报告中提取卡片信息。
     自动选择 lxml（优先）或正则降级方案。

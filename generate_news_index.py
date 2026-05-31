@@ -80,7 +80,7 @@ def generate_day_block(date: str, entries: list[dict], top_n: int = None) -> str
     """
     all_cards = []
     for e in entries:
-        cards = extract_cards_from_html(e["path"])
+        cards = extract_cards_from_html(e["path"], "news")
         for c in cards:
             c["_report_link"] = e["relative_link"]
         all_cards.extend(cards)
