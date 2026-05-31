@@ -36,7 +36,7 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
         print(f"   ⚠️ 解析失败 {html_path.name}: {e}")
         return []
 
-    card_elements = tree.xpath("//div[@class='card']")
+    card_elements = tree.xpath("//*[contains(concat(' ', @class, ' '), ' card ')]")
     if card_elements:
         print(f"   🔍 {html_path.name}: 找到 {len(card_elements)} 个卡片区块")
 
@@ -44,7 +44,7 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
     for card_el in card_elements:
         card = {"type": report_type}
 
-        title_els = card_el.xpath(".//div[@class='card-title']")
+        title_els = card_el.xpath(".//*[contains(@class, 'card-title')]")
         if not title_els:
             continue
         card["title"] = title_els[0].text_content().strip()
@@ -96,7 +96,7 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
 
     cards = []
     card_blocks = re.findall(
-        r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
+        r'<(?:div|article) class="card">(.*?)</(?:div|article)>\s*(?=<(?:div|article) class="card">|</main>|</body>|$)',
         content,
         re.DOTALL,
     )
@@ -106,7 +106,7 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
     for block in card_blocks:
         card = {"type": report_type}
 
-        title_m = re.search(r'<div class="card-title">(.*?)</div>', block, re.DOTALL)
+        title_m = re.search(r'<(?:div|h2) class="card-title">(.*?)</(?:div|h2)>', block, re.DOTALL)
         if title_m:
             card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
 
