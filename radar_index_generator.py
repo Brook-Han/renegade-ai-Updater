@@ -96,7 +96,7 @@ if _HAS_LXML:
             print(f"   ⚠️ 解析失败 {html_path.name}: {e}")
             return []
 
-        card_elements = tree.xpath("//*[@class='card']")
+        card_elements = tree.xpath("//div[@class='card']")
         if card_elements:
             print(f"   🔍 {html_path.name}: 找到 {len(card_elements)} 个卡片区块")
 
@@ -164,7 +164,7 @@ else:
 
         cards = []
         card_blocks = re.findall(
-            r'<(?:div|article)\s+class="card">(.*?)</(?:div|article)>\s*(?=<(?:div|article)\s+class="card">|</main>|</body>|$)',
+            r'<div class="card">(.*?)</div>\s*(?=<div class="card">|</main>|</body>|$)',
             content,
             re.DOTALL,
         )
