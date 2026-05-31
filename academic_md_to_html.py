@@ -400,20 +400,20 @@ CSS_TEMPLATE = """
       }
 
       /* ── STATUS BAR ── */
-      .status-bar{{
+      .status-bar{
         position:fixed;bottom:0;width:100%;z-index:200;
         background:var(--bg);border-top:1px solid var(--border);
         padding:10px 32px;font-family:var(--mono);font-size:.6rem;
         color:var(--text-faint);letter-spacing:2px;
         display:flex;justify-content:space-between;align-items:center;
         transition:background .3s,border-color .3s;
-      }}
-      .status-dot{{
+      }
+      .status-dot{
         display:inline-block;width:6px;height:6px;
         background:var(--accent);border-radius:50%;margin-right:8px;
         animation:pulse 2s infinite;
-      }}
-      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
+      }
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
     </style>
 """
 
