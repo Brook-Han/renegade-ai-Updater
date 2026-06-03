@@ -394,8 +394,6 @@ CSS_TEMPLATE = """
       @media (max-width: 600px) {
         .main { padding: 80px 16px 60px; }
         .page-title { font-size: 2.2rem; }
-        .card-header { flex-direction: column; }
-        .card-score { text-align: left; }
         .stats-row { overflow-x: auto; padding-bottom: 4px; }
       }
 

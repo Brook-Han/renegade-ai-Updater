@@ -277,8 +277,8 @@ CSS_TEMPLATE = """
         color: var(--white); line-height: 1.3; flex: 1;
       }
       .card-score {
-        font-family: var(--display); font-size: 2.2rem; color: var(--accent); 
-        line-height: 1; white-space: nowrap; text-align: right;
+        font-family: var(--display); font-size: 2.2rem; color: var(--accent);
+        line-height: 1; white-space: nowrap; text-align: right; flex-shrink: 0;
       }
       .card-score span {
         font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
@@ -354,8 +354,6 @@ CSS_TEMPLATE = """
       @media (max-width: 600px) {
         .main { padding: 70px 16px 60px; }
         .page-title { font-size: 2.2rem; }
-        .card-header { flex-direction: column; }
-        .card-score { text-align: left; }
         .stats-row { flex-direction: row; gap: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
       }
     </style>"""
