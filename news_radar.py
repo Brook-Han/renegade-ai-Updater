@@ -288,6 +288,17 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
     返回报告文件路径，若跳过则返回 None。
     """
     today = datetime.date.today().isoformat()
+    yesterday = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
+
+    # ── 新鲜度过滤：只保留今天或昨天分析的条目 ──
+    news_data = [
+        d for d in news_data
+        if d.get("cached_at", "").startswith(today)
+        or d.get("cached_at", "").startswith(yesterday)
+    ]
+    if not news_data:
+        logger.info("📭 没有新增新闻（所有结果均来自缓存），跳过报告生成。")
+        return None
 
     # 分类统计
     high = [d for d in news_data if d["analysis"].get("relevance", 0) >= 7
@@ -436,6 +447,7 @@ def main() -> None:
             news_data.append({
                 "news": item,
                 "analysis": cache[fp]["analysis"],
+                "cached_at": cache[fp].get("cached_at", ""),
             })
         else:
             news_data.append({
@@ -458,6 +470,7 @@ def main() -> None:
             result = analyze_news_item(
                 news_item, ANALYSIS_MODEL, deepseek_client)
             d["analysis"] = result
+            d["cached_at"] = datetime.datetime.now().isoformat()
 
             # 更新缓存
             fp = d["_cache_key"]

@@ -616,8 +616,21 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
 # ------------------------------------------------------------------
 # 报告生成（学术版）
 # ------------------------------------------------------------------
-def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> str:
+def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> Optional[str]:
     today = datetime.date.today().isoformat()
+    yesterday = (datetime.date.today() - datetime.timedelta(days=1)).isoformat()
+
+    # ── 新鲜度过滤：只保留今天或昨天发现的新论文 ──
+    fresh = [
+        d for d in papers_data
+        if d.get("cached_at", "").startswith(today)
+        or d.get("cached_at", "").startswith(yesterday)
+    ]
+    if not fresh:
+        logger.info("📭 没有新增论文（所有结果均来自缓存），跳过报告生成。")
+        return ""
+    papers_data = fresh
+
     lines = [
         f"# 🔬 Academic Radar — 学术论文监控报告",
         f"**生成日期**: {today}",
@@ -741,6 +754,7 @@ def main() -> None:
                 "paper": paper,
                 "merged": cached_entry["analysis"],
                 "draft": cached_entry.get("draft_paragraph"),
+                "cached_at": cache[fp].get("cached_at", ""),
             })
         else:
             papers_data.append({
@@ -766,6 +780,7 @@ def main() -> None:
                 target = need_map.get(paper["id"])
                 if target:
                     target["merged"] = merged
+                    target["cached_at"] = datetime.datetime.now().isoformat()
                 # 保存分析缓存
                 fp = get_paper_cache_key(paper)
                 cache[fp] = {
@@ -805,7 +820,10 @@ def main() -> None:
 
     # 生成报告
     report_path = generate_academic_report(papers_data, keywords)
-    logger.info(f"✅ 完成: {report_path}")
+    if report_path:
+        logger.info(f"✅ 完成: {report_path}")
+    else:
+        logger.info("📭 学术报告跳过（无新增论文）")
 
 if __name__ == "__main__":
     main()
