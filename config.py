@@ -44,6 +44,7 @@ class Config:
     # =========================================================================
     DEEPSEEK_API_KEY: str = os.getenv("DEEPSEEK_API_KEY", "")
     SEMANTIC_SCHOLAR_API_KEY: str = os.getenv("SEMANTIC_SCHOLAR_API_KEY", "")
+    OPENROUTER_API_KEY: str = os.getenv("OPENROUTER_API_KEY", "")
 
     # =========================================================================
     #  抓取设置
@@ -71,16 +72,29 @@ class Config:
     # 遇到 429 时快速失败，交给上层脚本的指数退避+抖动来处理
 
     # =========================================================================
-    #  模型配置 (2026-05-09 完美版)
-    #  策略：全程 DeepSeek 官网直连，彻底弃用 OpenRouter
-    #   - DeepSeek V4 Flash (deepseek-v4-flash) → 大量论文/资讯分析（快速便宜）
+    #  模型配置 (2026-06-05 双模型并行)
+    #  策略：
+    #   - DeepSeek V4 Flash (deepseek-v4-flash) → 主分析模型（快速便宜）
+    #   - OpenRouter → NVIDIA Nemotron 3 Ultra (free) → 次分析模型（并行互补）
     #   - DeepSeek V4 Pro  (deepseek-v4-pro)  → 书稿草稿生成（强推理，少量调用）
     # =========================================================================
-    ANALYSIS_MODEL_DIRECT: str = "deepseek-v4-flash"  # 分析专用模型
+    ANALYSIS_MODEL_DIRECT: str = "deepseek-v4-flash"  # 分析专用主模型
     DRAFTING_MODEL: str = "deepseek-v4-pro"           # 草稿生成专用模型
 
-    # 分析模型列表（目前只有直连，保留结构方便未来扩展）
+    # -------------------------------------------------------------------------
+    #  OpenRouter 配置（NVIDIA Nemotron 3 Ultra 免费模型）
+    # -------------------------------------------------------------------------
+    OPENROUTER_MODEL: str = os.getenv(
+        "OPENROUTER_MODEL", "nvidia/nemotron-3-ultra-550b-a55b:free"
+    )
+    OPENROUTER_BASE_URL: str = os.getenv(
+        "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
+    )
+
+    # 分析模型列表（主模型 + OpenRouter 次模型）
     ANALYSIS_MODELS: list[str] = [ANALYSIS_MODEL_DIRECT]
+    if OPENROUTER_API_KEY:
+        ANALYSIS_MODELS.append(OPENROUTER_MODEL)
 
     # 草稿自动生成阈值
     DRAFT_RELEVANCE_THRESHOLD: int = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
@@ -307,6 +321,12 @@ class Config:
         cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         cls.LOG_DIR.mkdir(parents=True, exist_ok=True)
 
+        # 打印 OpenRouter 状态（仅提示，非必需）
+        if cls.OPENROUTER_API_KEY:
+            print(f"🌐 OpenRouter（{cls.OPENROUTER_MODEL}）已就绪，将作为第二分析模型并行运行")
+        else:
+            print("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型分析")
+
         print("✅ 配置验证通过，所有必要目录已就绪。")
 
     # =========================================================================
@@ -316,7 +336,8 @@ class Config:
         """避免在日志或错误输出中暴露真实 API 密钥"""
         return (
             f"<Config(DEEPSEEK_API_KEY={'***' if self.DEEPSEEK_API_KEY else 'MISSING'}, "
-            f"SEMANTIC_SCHOLAR_API_KEY={'***' if self.SEMANTIC_SCHOLAR_API_KEY else 'MISSING'})>"
+            f"SEMANTIC_SCHOLAR_API_KEY={'***' if self.SEMANTIC_SCHOLAR_API_KEY else 'MISSING'}, "
+            f"OPENROUTER_API_KEY={'***' if self.OPENROUTER_API_KEY else 'MISSING'})>"
         )
 
 

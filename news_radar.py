@@ -73,13 +73,30 @@ else:
     logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
     sys.exit(1)
 
+# ── OpenRouter 客户端（第二分析模型：NVIDIA Nemotron 3 Ultra ──────
+openrouter_client = None
+if Config.OPENROUTER_API_KEY:
+    openrouter_client = OpenAI(
+        api_key=Config.OPENROUTER_API_KEY,
+        base_url=Config.OPENROUTER_BASE_URL,
+        default_headers={
+            "HTTP-Referer": "https://github.com/brook-han/renegade-ai-Updater",
+            "X-Title": "Renegade AI Radar",
+        }
+    )
+    logger.info(
+        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）将作为第二分析模型并行运行"
+    )
+else:
+    logger.info("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型")
+
 # ------------------------------------------------------------------
 # 固定配置
 # ------------------------------------------------------------------
 OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "news"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-ANALYSIS_MODEL = Config.ANALYSIS_MODEL_DIRECT  # 新闻分析仅用单模型
+ANALYSIS_MODEL = Config.ANALYSIS_MODEL_DIRECT  # 新闻分析主模型（DeepSeek）
 CACHE_FILE = OUTPUT_DIR / "news_cache.json"
 
 # 从 Config 读取新闻专用阈值（已补充到 config.py）
@@ -280,6 +297,42 @@ def analyze_news_item(news: dict, model_name: str, client: OpenAI) -> dict:
 
 
 # ------------------------------------------------------------------
+# 多模型分析（DeepSeek 主模型 + OpenRouter/Nemotron 并行）
+# ------------------------------------------------------------------
+def analyze_news_item_multi(news: dict) -> dict:
+    """
+    多模型并行分析：同时调用 DeepSeek 和 OpenRouter，以 DeepSeek 结果为主。
+    当 Nemotron 评分显著偏低（差距 ≥ 4 分）时，取两者均值。
+    """
+    primary = analyze_news_item(news, ANALYSIS_MODEL, deepseek_client)
+
+    if openrouter_client:
+        secondary = analyze_news_item(
+            news, Config.OPENROUTER_MODEL, openrouter_client
+        )
+        # 记录双模型评分
+        primary["_model_scores"] = {
+            ANALYSIS_MODEL: primary.get("relevance", 0),
+            Config.OPENROUTER_MODEL: secondary.get("relevance", 0),
+        }
+        diff = abs(primary.get("relevance", 0) - secondary.get("relevance", 0))
+        if diff >= 4:
+            avg_rel = round(
+                (primary.get("relevance", 0) + secondary.get("relevance", 0)) / 2
+            )
+            logger.info(
+                f"⚖️ 双模型分歧较大（差{diff}分），取均值 {avg_rel}"
+            )
+            primary["relevance"] = avg_rel
+    else:
+        primary["_model_scores"] = {
+            ANALYSIS_MODEL: primary.get("relevance", 0),
+        }
+
+    return primary
+
+
+# ------------------------------------------------------------------
 # 报告生成（智能存盘：内容不变不写盘）
 # ------------------------------------------------------------------
 def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional[str]:
@@ -311,7 +364,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
     lines = [
         f"# 📰 News Radar — 资讯监控报告",
         f"**生成日期**: {today}",
-        f"**分析模型**: {ANALYSIS_MODEL}",
+        f"**分析模型**: {ANALYSIS_MODEL}{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}",
         f"**分析条目**: {len(news_data)}",
         f"**关键词**: {', '.join(keywords[:8])}{'...' if len(keywords) > 8 else ''}",
         "---\n",
@@ -461,14 +514,14 @@ def main() -> None:
     to_analyze = to_analyze[:args.limit]  # 限流
 
     if to_analyze:
-        logger.info(f"🤖 分析 {len(to_analyze)} 条资讯（模型: {ANALYSIS_MODEL}）...")
+        logger.info(f"🤖 分析 {len(to_analyze)} 条资讯（模型: {ANALYSIS_MODEL}"
+                    f"{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}）...")
         for i, d in enumerate(to_analyze, 1):
             news_item = d["news"]
             logger.info(
                 f"[{i}/{len(to_analyze)}] {news_item['title'][:50]}...")
 
-            result = analyze_news_item(
-                news_item, ANALYSIS_MODEL, deepseek_client)
+            result = analyze_news_item_multi(news_item)
             d["analysis"] = result
             d["cached_at"] = datetime.datetime.now().isoformat()
 
@@ -482,6 +535,7 @@ def main() -> None:
                 "relevance": result.get("relevance", 0),
                 "urgency": result.get("urgency", "background"),
                 "case_value": result.get("case_value", "low"),
+                "model_scores": result.get("_model_scores", {}),
             }
             save_news_cache(cache)  # 实时保存
             time.sleep(1.5)          # API 限流保护

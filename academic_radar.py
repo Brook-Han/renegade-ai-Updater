@@ -79,6 +79,23 @@ else:
     logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
     sys.exit(1)
 
+# ── OpenRouter 客户端（第二分析模型：NVIDIA Nemotron 3 Ultra ──────
+openrouter_client = None
+if Config.OPENROUTER_API_KEY:
+    openrouter_client = OpenAI(
+        api_key=Config.OPENROUTER_API_KEY,
+        base_url=Config.OPENROUTER_BASE_URL,
+        default_headers={
+            "HTTP-Referer": "https://github.com/brook-han/renegade-ai-Updater",
+            "X-Title": "Renegade AI Radar",
+        }
+    )
+    logger.info(
+        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）将作为第二分析模型并行运行"
+    )
+else:
+    logger.info("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型")
+
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
     delay_seconds=Config.ARXIV_DELAY_SECONDS,
@@ -544,10 +561,15 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    """多模型并行分析"""
+    """多模型并行分析（DeepSeek + OpenRouter/Nemotron）"""
     tasks = [(ANALYSIS_MODEL_DIRECT, deepseek_client)]
+    if openrouter_client:
+        tasks.append((Config.OPENROUTER_MODEL, openrouter_client))
+
+    max_workers = len(tasks)  # 每个模型一个 worker
+
     results: list[dict] = []
-    with ThreadPoolExecutor(max_workers=1) as executor:
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
         future_map = {
             executor.submit(analyze_single_model, paper, model_name, client): model_name
             for model_name, client in tasks
@@ -634,7 +656,7 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> Op
     lines = [
         f"# 🔬 Academic Radar — 学术论文监控报告",
         f"**生成日期**: {today}",
-        f"**分析模型**: {ANALYSIS_MODEL_DIRECT}",
+        f"**分析模型**: {ANALYSIS_MODEL_DIRECT}{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}",
         f"**草稿模型**: {DRAFTING_MODEL}",
         f"**分析条目数**: {len(papers_data)}",
         f"**关键词**: {', '.join(keywords[:10])}{'...' if len(keywords)>10 else ''}",
