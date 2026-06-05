@@ -204,7 +204,7 @@ def get_html_template() -> str:
     .card-score span{font-family:var(--mono);font-size:.5rem;color:var(--text-muted);display:block}
     .card-meta{font-family:var(--mono);font-size:.6rem;color:var(--text-muted);margin-bottom:12px;display:flex;gap:16px;flex-wrap:wrap}
     .card-meta a{color:var(--accent2);text-decoration:none}
-    .card-body{font-size:.70rem;color:var(--text);line-height:1.8;margin-bottom:8px}
+    .card-body{font-size:.90rem;color:var(--text);line-height:1.8;margin-bottom:8px}
     .card-link{font-family:var(--mono);font-size:.65rem;margin-top:10px}
     .card-link a{color:var(--accent);text-decoration:none}
     .type-badge{display:inline-block;font-family:var(--mono);font-size:.55rem;padding:2px 6px;border-radius:2px;margin-left:6px}

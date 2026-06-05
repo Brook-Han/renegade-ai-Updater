@@ -155,7 +155,7 @@ CSS_TEMPLATE = """
       :root {
         --bg: #0a0a12; --bg2: #0f0f1a; --surface: #141422; --card: #181828;
         --border: #25253a; --border-bright: #363655;
-        --text: #e2e2f0; --text-muted: #9595c0; --text-faint: #4a4a6a;
+        --text: #e2e2f0; --text-muted: #7878a8; --text-faint: #4a4a6a;
         --accent: #ff5c45; --accent-dim: rgba(255,92,69,0.12);
         --accent2: #d4af5c; --accent3: #5ba3e6; --accent3-dim: rgba(91,163,230,0.10);
         --white: #f4f4fc;
