@@ -1,7 +1,7 @@
 # 📰 News Radar — 资讯监控报告
 **生成日期**: 2026-06-05
-**分析模型**: deepseek-v4-flash + nvidia/nemotron-3-ultra-550b-a55b:free
-**分析条目**: 19
+**分析模型**: deepseek-v4-flash + nvidia/nemotron-3-ultra-550b-a55b
+**分析条目**: 20
 **关键词**: sycophancy large language model, RLHF cognitive effects human, human AI feedback loop bias amplification, AI persuasion belief change experiment, automation bias high stakes decision, cognitive offloading AI writing, AI assisted research homogenization, AI writing cultural homogenization Western bias...
 ---
 
@@ -9,7 +9,7 @@
 
 - 🔴 高价值 (≥7分 + high案例): **0**
 - 🟡 中相关 (4-6.9分): **0**
-- ⚪ 低相关/忽略: **19**
+- ⚪ 低相关/忽略: **20**
 
 ---
 ## 💾 数据导出
