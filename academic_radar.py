@@ -75,11 +75,8 @@ if Config.DEEPSEEK_API_KEY:
         api_key=Config.DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com"
     )
-else:
-    logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
-    sys.exit(1)
 
-# ── OpenRouter 客户端（第二分析模型：NVIDIA Nemotron 3 Ultra ──────
+# ── OpenRouter 客户端（NVIDIA Nemotron 3 Ultra）──────
 openrouter_client = None
 if Config.OPENROUTER_API_KEY:
     openrouter_client = OpenAI(
@@ -91,10 +88,15 @@ if Config.OPENROUTER_API_KEY:
         }
     )
     logger.info(
-        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）将作为第二分析模型并行运行"
+        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）已就绪"
     )
 else:
-    logger.info("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型")
+    logger.info("ℹ️  未配置 OPENROUTER_API_KEY")
+
+# 至少要有一个可用的分析客户端
+if not deepseek_client and not openrouter_client:
+    logger.error("❌ 未配置任何分析模型 API Key（需要 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY）")
+    sys.exit(1)
 
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
@@ -108,7 +110,13 @@ arxiv_client = arxiv.Client(
 OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "academic"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-ANALYSIS_MODELS = Config.ANALYSIS_MODELS
+# 动态构建可用模型列表（根据实际客户端配置）
+_ANALYSIS_MODELS: list[str] = []
+if deepseek_client:
+    _ANALYSIS_MODELS.append(Config.ANALYSIS_MODEL_DIRECT)
+if openrouter_client:
+    _ANALYSIS_MODELS.append(Config.OPENROUTER_MODEL)
+ANALYSIS_MODELS = _ANALYSIS_MODELS
 ANALYSIS_MODEL_DIRECT = Config.ANALYSIS_MODEL_DIRECT
 DRAFTING_MODEL = Config.DRAFTING_MODEL
 DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD
@@ -492,15 +500,24 @@ def analyze_single_model(paper: dict, model_name: str, client: OpenAI) -> dict:
 请返回JSON格式分析结果。"""
 
     try:
-        resp = client.chat.completions.create(
-            model=model_name,
-            messages=[
+        # 构建 API 请求参数
+        kwargs = {
+            "model": model_name,
+            "messages": [
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_prompt},
             ],
-            temperature=0.2,
-            max_tokens=1900,
-        )
+            "temperature": 0.2,
+            "max_tokens": 1900,
+        }
+        # 仅对 Nemotron 模型启用 thinking 功能
+        if "nemotron" in model_name.lower():
+            kwargs["extra_body"] = {
+                "chat_template_kwargs": {"enable_thinking": True},
+                "reasoning_budget": 16384,
+            }
+            logger.debug(f"[Nemotron] Thinking enabled for paper: {paper['title'][:40]}...")
+        resp = client.chat.completions.create(**kwargs)
         content = resp.choices[0].message.content
         # 清理Markdown标记
         for marker in ("```json", "```"):

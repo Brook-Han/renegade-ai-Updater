@@ -275,15 +275,24 @@ def analyze_news_item(news: dict, model_name: str, client: OpenAI) -> dict:
 请按 JSON 格式返回分析结果。"""
 
     try:
-        resp = client.chat.completions.create(
-            model=model_name,
-            messages=[
+        # 构建 API 请求参数
+        kwargs = {
+            "model": model_name,
+            "messages": [
                 {"role": "system", "content": NEWS_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
-            temperature=0.2,
-            max_tokens=1500,
-        )
+            "temperature": 0.2,
+            "max_tokens": 1500,
+        }
+        # 仅对 Nemotron 模型启用 thinking 功能
+        if "nemotron" in model_name.lower():
+            kwargs["extra_body"] = {
+                "chat_template_kwargs": {"enable_thinking": True},
+                "reasoning_budget": 16384,
+            }
+            logger.debug(f"[Nemotron] Thinking enabled for: {news['title'][:40]}...")
+        resp = client.chat.completions.create(**kwargs)
         content = resp.choices[0].message.content
         # 清理可能的 Markdown 代码块包裹
         for marker in ("```json", "```"):

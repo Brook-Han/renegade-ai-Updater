@@ -83,13 +83,13 @@ class Config:
     DRAFTING_MODEL: str = "deepseek-v4-pro"           # 草稿生成专用模型
 
     # -------------------------------------------------------------------------
-    #  OpenRouter 配置（NVIDIA Nemotron 3 Ultra 免费模型）
+    #  Nemotron 配置（NVIDIA 官方 API，通过 OpenRouter 兼容接口）
     # -------------------------------------------------------------------------
     OPENROUTER_MODEL: str = os.getenv(
-        "OPENROUTER_MODEL", "nvidia/nemotron-3-ultra-550b-a55b:free"
+        "OPENROUTER_MODEL", "nvidia/nemotron-3-ultra-550b-a55b"
     )
     OPENROUTER_BASE_URL: str = os.getenv(
-        "OPENROUTER_BASE_URL", "https://openrouter.ai/api/v1"
+        "OPENROUTER_BASE_URL", "https://integrate.api.nvidia.com/v1"
     )
 
     # 分析模型列表（主模型 + OpenRouter 次模型）
