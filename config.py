@@ -2,8 +2,9 @@ import os
 from pathlib import Path
 from dotenv import load_dotenv
 
-# 加载 .env 文件中的环境变量（项目根目录下）
-load_dotenv()
+# 加载 .env 文件（使用 __file__ 显式指定路径，避免 CWD 依赖）
+_env_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path=_env_path)
 
 
 # ═══════════════════════════════════════════════════════

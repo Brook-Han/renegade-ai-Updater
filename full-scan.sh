@@ -31,39 +31,39 @@ done
 echo "========================================"
 echo "  📰 News Radar — 资讯扫描"
 echo "========================================"
-python news_radar.py --limit 50 || echo "⚠️ 资讯扫描失败"
+python3 news_radar.py --limit 50 || echo "⚠️ 资讯扫描失败"
 echo ""
 
 echo "========================================"
 echo "  🌐 新闻报告 → HTML"
 echo "========================================"
-python news_md_to_html.py || echo "⚠️ 无新闻报告"
+python3 news_md_to_html.py || echo "⚠️ 无新闻报告"
 echo ""
 
 echo "========================================"
 echo "  🔬 Academic Radar — 学术论文扫描"
 echo "========================================"
-python academic_radar.py --limit 10 || echo "⚠️ 学术扫描失败"
+python3 academic_radar.py --limit 10 || echo "⚠️ 学术扫描失败"
 echo ""
 
 echo "========================================"
 echo "  🌐 学术报告 → HTML"
 echo "========================================"
-python academic_md_to_html.py || echo "⚠️ 无学术报告"
+python3 academic_md_to_html.py || echo "⚠️ 无学术报告"
 echo ""
 
 echo "========================================"
 echo "  🏠 生成主页 index.html（含 git 提交 + 推送）"
 echo "========================================"
-python radar_index_generator.py
+python3 radar_index_generator.py
 echo ""
 
 if [ "$SKIP_NOTIFY" = false ]; then
   echo "========================================"
   echo "  🔔 推送通知"
   echo "========================================"
-  python -m notify --type news $DRY_RUN
-  python -m notify --type papers $DRY_RUN
+  python3 -m notify --type news $DRY_RUN
+  python3 -m notify --type papers $DRY_RUN
   echo ""
 fi
 

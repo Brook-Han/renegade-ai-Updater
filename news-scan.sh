@@ -4,6 +4,6 @@
 cd "$(dirname "$0")" || exit 1
 source venv/bin/activate
 
-python news_radar.py "$@"                     # 抓取 + 分析
-python news_md_to_html.py || true             # Markdown → HTML
-python radar_index_generator.py || true       # 重建主页（含 git 提交 + 推送）
+python3 news_radar.py "$@"                     # 抓取 + 分析
+python3 news_md_to_html.py || true             # Markdown → HTML
+python3 radar_index_generator.py || true       # 重建主页（含 git 提交 + 推送）
