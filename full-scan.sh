@@ -11,6 +11,9 @@
 cd "$(dirname "$0")" || exit 1
 source venv/bin/activate 2>/dev/null || source .venv/bin/activate 2>/dev/null
 
+# 自动安装缺失依赖（静默，已装则跳过）
+pip install --break-system-packages -r requirements.txt -q 2>/dev/null
+
 # 🧹 清理残留 git 锁文件（安全检查：确认是 git 仓库）
 if [ -d ".git" ]; then
   shopt -s nullglob
