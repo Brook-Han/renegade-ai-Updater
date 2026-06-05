@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Radar · 2026-06-05 | Renegade AI</title>
+  <meta name="description" content="学术论文监控报告 · 7 高相关论文">
+  <!-- 加载 Google 字体（和主页完全一样） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+      /* ══════════════ 全局颜色变量（Design Tokens） ══════════════
+         这些变量控制整个页面的颜色，和主页共用同一套。
+         暗色主题是默认，当 <html> 加上 class="light" 时切换到亮色。
+      */
+      :root {
+        --bg:           #08080e;      /* 页面背景 */
+        --bg2:          #0d0d18;      /* 次级背景 */
+        --surface:      #111120;      /* 卡片悬浮时的背景 */
+        --card:         #13131f;      /* 卡片默认背景 */
+        --border:       #1e1e30;      /* 边框线 */
+        --border-bright:#2e2e50;      /* 亮一点的边框（悬浮时用） */
+        --text:         #cccce0;      /* 正文文字 */
+        --text-muted:   #6868a0;      /* 次要文字 */
+        --text-faint:   #3a3a5a;      /* 更淡的文字 */
+        --accent:       #e8503a;      /* 强调色（橙红） */
+        --accent-dim:   rgba(232,80,58,0.12);
+        --accent2:      #c9a040;      /* 第二种强调色（金） */
+        --accent3:      #4a8fcf;      /* 第三种强调色（蓝） */
+        --accent3-dim:  rgba(74,143,207,0.10);
+        --white:        #f0f0f8;      /* 最亮的文字（标题） */
+        --mono:         'Space Mono', 'Courier New', monospace;
+        --serif:        'Crimson Pro', Georgia, serif;
+        --display:      'Bebas Neue', 'Arial Narrow', sans-serif;
+        --ease:         cubic-bezier(0.4,0,0.2,1);  /* 平滑动画曲线 */
+      }
+      :root.light {
+        --bg:           #f8f9fc;
+        --bg2:          #ffffff;
+        --surface:      #f0f2f8;
+        --card:         #ffffff;
+        --border:       #e0e2ec;
+        --border-bright:#c0c2d0;
+        --text:         #2a2a40;
+        --text-muted:   #6a6a80;
+        --text-faint:   #a0a0b8;
+        --accent-dim:   rgba(232,80,58,0.08);
+        --accent3-dim:  rgba(74,143,207,0.08);
+        --white:        #2a2a40;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--serif);
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;  /* 让字体更清晰 */
+        transition: background-color 0.3s, color 0.3s;
+      }
+      /* 选中文字的颜色 */
+      ::selection { background: var(--accent); color: #000; }
+
+      /* ══════════════ 固定导航栏（和主页一模一样） ══════════════ */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        /* 毛玻璃效果：背景半透明 + 模糊 */
+        background: rgba(8,8,14,0.92); backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background 0.3s, border-color 0.3s;
+      }
+      .light nav { background: rgba(248,249,252,0.92); }
+      /* 左侧品牌文字 */
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase; text-decoration: none;
+      }
+      .nav-brand:hover { color: var(--accent2); }
+      /* 右侧按钮组 */
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+      /* 返回 Radar 主页的按钮（也用在主页的导航中，这里样式完全一致） */
+      .nav-pill {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); font-family: var(--mono);
+        font-size: 0.62rem; letter-spacing: 2px; padding: 5px 14px;
+        cursor: pointer; text-decoration: none; text-transform: uppercase;
+        transition: all 0.2s;
+      }
+      .nav-pill:hover {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim);
+      }
+      /* 主题切换按钮 ◐ */
+      .theme-btn {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); width: 36px; height: 36px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 0.9rem; transition: all 0.2s;
+      }
+      .theme-btn:hover {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim);
+      }
+
+      /* ══════════════ 页面主体 ══════════════ */
+      .main {
+        max-width: 900px; margin: 0 auto;
+        padding: 80px 32px 80px;  /* 上面留出导航栏的空间 */
+      }
+
+      /* 顶部装饰线 */
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 4px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before {
+        content: ''; width: 28px; height: 1px; background: var(--accent);
+      }
+      .page-title {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        letter-spacing: 2px; color: var(--white); margin-bottom: 8px;
+        line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
+        letter-spacing: 1.5px; margin-bottom: 28px;
+      }
+      .stats-row {
+        display: flex; gap: 20px; margin-bottom: 24px;
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        flex-wrap: wrap;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+
+      /* ══════════════ 紧急清单区块 ══════════════ */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 2px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+      }
+      .urgent-item {
+        font-size: 0.75rem; margin-bottom: 6px; padding-left: 16px;
+        border-left: 2px solid var(--border-bright); color: var(--text);
+      }
+      .urgent-item strong { color: var(--white); }
+
+      /* ══════════════ 论文卡片（和主页的 radar-card 风格统一） ══════════════ */
+      .card {
+        background: var(--card); border: 1px solid var(--border);
+        padding: 28px 24px; margin-bottom: 16px;
+        transition: background 0.2s, border-color 0.2s;
+        opacity: 0; transform: translateY(12px);
+        animation: fadeUp 0.45s var(--ease) forwards;  /* 淡入上移动画 */
+      }
+      .card:hover { background: var(--surface); border-color: var(--border-bright); }
+      .card-header {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 12px; gap: 16px; flex-wrap: wrap;
+      }
+      .card-title {
+        font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.5px;
+        color: var(--white); line-height: 1.25; flex: 1;
+      }
+      .card-score {
+        font-family: var(--display); font-size: 2rem; color: var(--accent);
+        line-height: 1; white-space: nowrap; text-align: right;
+        flex-shrink: 0;
+      }
+      .card-score span {
+        font-family: var(--mono); font-size: 0.5rem; color: var(--text-faint);
+        display: block; letter-spacing: 1px; margin-top: 4px;
+      }
+      .card-meta {
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint);
+        letter-spacing: 0.5px; margin-bottom: 14px;
+        display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+      }
+      .card-meta a { color: var(--accent2); text-decoration: none; }
+      .card-meta a:hover { text-decoration: underline; }
+      .card-authors { color: var(--text-muted); font-style: italic; }
+      .card-pub { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      .card-body {
+        font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+      }
+      .card-implications {
+        font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
+        background: rgba(201,160,64,0.05); border-left: 2px solid var(--accent2);
+        padding: 10px 14px; margin-bottom: 12px;
+      }
+      .card-model-scores {
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+      }
+      .model-tag { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      /* 自动生成的草稿样式 */
+      .card-draft {
+        background: var(--surface); border-left: 4px solid var(--accent);
+        padding: 18px 22px; margin-top: 12px; font-size: 0.9rem;
+        color: var(--text); line-height: 1.8; font-style: italic;
+      }
+      .card-draft::before {
+        content: '✍️ 自动生成书稿草稿';
+        display: block; font-family: var(--mono); font-size: 0.55rem;
+        letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
+        font-style: normal; margin-bottom: 8px;
+      }
+      .card-footer {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 12px;
+      }
+      .card-footer .tag {
+        padding: 2px 6px; background: var(--surface); border-radius: 2px;
+      }
+
+      /* ══════════════ 页脚（和主页底部的状态栏风格一致） ══════════════ */
+      footer {
+        margin-top: 48px; padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        letter-spacing: 1px;
+        display: flex; justify-content: space-between;
+        flex-wrap: wrap; gap: 8px;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+
+      /* ══════════════ 动画 ══════════════ */
+      @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+      /* ══════════════ 手机适配 ══════════════ */
+      @media (max-width: 600px) {
+        .main { padding: 80px 16px 60px; }
+        .page-title { font-size: 2.2rem; }
+        .stats-row { overflow-x: auto; padding-bottom: 4px; }
+      }
+
+      /* ── STATUS BAR ── */
+      .status-bar{
+        position:fixed;bottom:0;width:100%;z-index:200;
+        background:var(--bg);border-top:1px solid var(--border);
+        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+        color:var(--text-faint);letter-spacing:2px;
+        display:flex;justify-content:space-between;align-items:center;
+        transition:background .3s,border-color .3s;
+      }
+      .status-dot{
+        display:inline-block;width:6px;height:6px;
+        background:var(--accent);border-radius:50%;margin-right:8px;
+        animation:pulse 2s infinite;
+      }
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+    </style>
+
+</head>
+<body>
+  <!-- ══════════════ 头部导航栏（和主页一模一样） ══════════════ -->
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="../news/index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ Academic Radar</div>
+    <h1 class="page-title">LITERATURE SCAN</h1>
+    <p class="page-sub">2026-06-05 · 分析: deepseek-v4-flash + nvidia/nemotron-3-ultra-550b-a55b:free · 草稿: deepseek-v4-pro</p>
+
+    <div class="stats-row">
+      <div>📊 总条目: <span>10</span></div>
+      <div>⭐ 高相关: <span>7</span></div>
+      <div>🔶 中相关: <span>1</span></div>
+    </div>
+
+    
+    
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Risk Analysis of Artificial Intelligence in HighStakes Human Decision Systems</div>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Muhammad Yaaseen Hossenbux</span> <span class="card-pub">📅 2026</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/f7ddbdac3ef78fb46cc7385b79b2905955fb717d" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section V; Chapter 5, Section III
+      </div>
+      <div class="card-body">该论文系统梳理了AI在高风险人类决策系统（医疗诊断、司法裁决、金融预测、自主控制）中的六大风险类别：算法不透明、数据机密性脆弱性、自动化偏见、伦理置换、系统性脆弱性和对抗性操纵。核心发现指出，随着AI决策自主权上升，人类监督逐步缩位，导致不可预测故障、偏见结果和价值错位风险放大；社会技术基础设施的互联性使局部算法错误可跨机构级联传播。作者提出以透明度、以人为本监督、伦理治理和监管对齐为核心的缓解框架。</div>
+      
+      <div class="card-implications">强力佐证Chapter 8（高风险决策中的自动化偏见）与Chapter 5 Section III（需求侧规训：监督缩位机制）。论文的六大风险分类法直接呼应Horowitz & Kahn (2024)的国家安全自动化偏见实证，并将「伦理置换」与「系统性脆弱性」上升为结构性风险，补充了书中「共识牢笼」在关键基础设施层面的系统性论证。同时，「人类监督渐进式缩位」实证支持「时间主权」被算法自主权侵蚀的论点。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 9/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Critical Integration of Generative AI in Higher Education: Cognitive, Pedagogical and Ethical</div>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Dr. Ahmedtelba Elycheikh, Dr. Mitereva Svetlana, D. Magda</span> <span class="card-pub">📅 2024</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/c76c9b47d7947c071d518824adb63f0d3ead5e3f" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section V; Chapter 9, Section III
+      </div>
+      <div class="card-body">该研究通过多机构证据和准实验设计，系统考察生成式AI对高等教育中学生认知过程的影响。核心发现呈现双刃剑效应：AI工具虽能提升语法准确性、检索效率与事实回忆，但显著侵蚀创造力、批判性思维、独立修订能力及元认知投入。研究识别出三大风险模式：认知卸载导致脚手架消解、确认偏误常态化、以及从批判性采纳向盲目依赖的滑坡。作者主张必须通过课程层面的结构化、批判性中介整合，而非单纯技术接入，以守护长期技能发展与学术诚信。</div>
+      
+      <div class="card-implications">强力支撑第8章（认知基建）第V节『需求侧规训』与第9章（教育重构）第III节『脚手架消解与暗时间』的核心论点。实证直接佐证『Token陷阱』导致的认知卸载、『共识牢笼』中的规范化与确认偏误、『暗时间』中元认知能力的萎缩。准实验设计为『认知金融化』提供微观机制证据：学生用Token换取短期效率，实则出售认知主权。研究提出的『批判性中介整合』框架，呼应『叛逆AI』视角下的『重置目标函数』——将AI从答案生成器重构为认知对抗伙伴。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 9/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Engaging with AI: How Interface Design Shapes Human-AI Collaboration in High-Stakes Decision-Making</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Zichen Chen, Yunhao Luo, Misha Sra</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/5a4e1494cbf8801c989a4f706c7f9d57787da65c" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section III (Demand-Side Discipline: Automation Bias) & Chapter 8, Section II (Carbon-Silicon Symbiosis: Trust Calibration Mechanisms)
+      </div>
+      <div class="card-body">该研究通过108名参与者的糖尿病管理决策实验，系统测试了六种决策支持机制（文本/可视化解释、四类认知强制函数CFF）对人机协作绩效的影响。核心发现：人机组合表现劣于单独AI，自动化偏见是主因；AI置信度、文本解释、绩效可视化能提升协作绩效与信任；人工反馈与AI驱动提问虽促进深度反思，却因增加认知负荷降低任务绩效；简单可视化解释效果微弱。研究揭示了在高风险决策中，解释设计需在“降低认知门槛”与“强制系统2思考”之间寻找平衡点。</div>
+      
+      <div class="card-implications">强力支撑本书Ch.5“需求侧规训”关于自动化偏见的实证锚点（Horowitz & Kahn, 2024），同时为Ch.8“碳硅共生”中的信任校准机制提供细粒度设计证据：并非所有CFF都有效，强制反思类机制可能因认知成本过高而适得其反，这补充了“叛逆AI”重构人机关系时的边界条件——即干预不能超越用户的认知预算。挑战了“解释即解药”的简化假设，呼应Ch.3“共识牢笼”对System 1思维惯性的批判。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 8/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Cognitive Offload Instruction with Generative AI: A QuasiExperimental Study on Critical Thinking Gains in English Writing</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Hui Hong, P. Vate-U-Lan, C. Viriyavejakul</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/084e19fddf9ab633e272a2e262ce4cd754bd49b5" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section V (碳硅共生：从外包到共生的教法重构)
+      </div>
+      <div class="card-body">该准实验研究（N=240，12周）考察了生成式AI辅助的“认知卸载教学法”对大一学生英语写作批判性思维的影响。实验组将低阶写作任务（头脑风暴、起草）委托给AI，学生专注于分析、评价与反思等高阶认知活动。结果显示：AI卸载组在标准化批判性思维测评及文章逻辑连贯性、证据使用、独创性上显著优于传统教学组；中介分析证实认知卸载行为部分解释了AI使用与批判性思维提升的关系。研究强调：唯有经过刻意脚手架设计的AI整合，才能避免认知退化，实现人机共生下的高阶思维增强。</div>
+      
+      <div class="card-implications">直接回应书中引用的 Kosmyna et al. (2024) 实证锚点（AI辅助写作导致80%学生无法回忆内容），提供关键边界条件：结构化脚手架下的认知卸载反而能增强高阶思维。支持第8章“碳硅共生”中关于“需求侧规训”与“刻意脚手架”的论点，即AI是否成为认知拐杖取决于教学设计而非技术本身；同时补充第7章“认知金融化”讨论，证明通过教法干预可规避Token陷阱式的认知外包。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 8/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Enhancing Critical Thinking Skills: Exploring Generative AI-enabled Cognitive Offload Instruction in English Essay Writing</div>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Hui Hong, C. Viriyavejakul, P. Vate-U-Lan</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/433196bdfd94b207f666959860d68fa5228cf06f" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section V (Token Trap: Cognitive Offloading in Education)
+      </div>
+      <div class="card-body">该研究采用定量方法，针对240名大一英语专业学生，考察生成式AI赋能的“认知卸载教学设计”对英语论文写作中批判性思维的影响。结果显示，结构化的AI辅助认知卸载教学策略显著提升了学生的分析性思维、问题解决与有效沟通能力，并促进了原创性、批判性思考与负责任的写作实践。这表明：认知卸载本身并非必然导致认知退化，关键在于教学设计是否将卸载转化为元认知脚手架。</div>
+      
+      <div class="card-implications">直接关联第8章（Token陷阱/认知卸载）与第9章（暗时间/教育场景）。本书核心论点倾向于警示“无结构卸载导致认知空心化”（Kosmyna et al., 2024），本文提供反向实证：在显式教学设计下，卸载可成为批判性思维的催化剂。这对“需求侧规训”论点构成补充——规训不应仅是拒绝卸载，而应是设计“可审计的卸载接口”。同时挑战“进化对齐脆弱性”在教育语境下的绝对化表述。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 8/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Cognitive Offloading: Implications of AI Dependency for Senior High School Learners Deep Learning and Retention</div>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Marlita V. Madera, Analou Lawas – Ong, Cedric Jon R. Solivio et al.</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/adbdadaec2d67000eda2d6f859a75b1c60a31bfa" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section IV / Chapter 8, Section II
+      </div>
+      <div class="card-body">该研究调查了736名菲律宾高中生对AI工具的使用情况及其对深度学习与记忆保持的影响。结果显示：学生仅偶尔使用生成式AI和写作助手，主要用于翻译、语法检查和快速查事实；学生普遍不认为AI能增强批判性思维、概念理解、应用能力或长期保持，但承认其辅助价值并意识到过度依赖风险。关键发现：AI依赖度与记忆保持无显著相关性，AI依赖度与深度学习也无显著相关性；相反，深度学习强力预测记忆保持，凸显高阶以人为本实践对学业成就的重要性。</div>
+      
+      <div class="card-implications">直接挑战书中引用的Kosmyna et al. (2024)实证锚点（AI辅助写作导致80%学生无法回忆内容）。本研究在更大样本（N=736）中未发现AI依赖与记忆保持的显著负相关，提示认知卸载效应可能受教育阶段、任务类型、使用模式调节。同时支持书中「需求侧规训」论点：学生已意识到过度依赖风险，深度学习（人类高阶认知）仍是保持的核心预测因子，印证「碳硅共生」中人类主体性不可替代。可用于修正第3章「共识牢笼」中关于认知卸载必然导致记忆衰退的绝对化表述，或在第8章实证讨论中作为限界条件证据。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 7/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="card">
+      <div class="card-header">
+        <div class="card-title">Navigating AI in Academia: Undergraduate Experiences with ChatGPT and the Redefinition of Academic Writing</div>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span class="card-authors">👤 Meliza Chatto, Ferlyn Logronio</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/d97bfe72a82829e87435f893b5ca2d91d60d47fb" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III (Cognitive Offloading & Demand-Side Discipline); Chapter 5, Section II (Institutional Consensus Cage); Chapter 7, Section I (Carbon-Silicon Symbiosis & Temporal Sovereignty)
+      </div>
+      <div class="card-body">该研究基于菲律宾14名本科生的半结构化访谈与焦点小组，揭示了学生在论文写作中使用ChatGPT的六大主题：学术赋能、易用性、伦理边界协商、认知权衡、同伴与政策影响、技术局限。学生普遍认为ChatGPT提升了生产力与信心，但同时担忧批判性思维退化、过度依赖、机构指南模糊导致的伦理灰区。研究呼吁建立清晰制度规范、纳入AI素养课程、推动反思性使用。</div>
+      
+      <div class="card-implications">强力佐证第4章『需求侧规训』中关于『认知卸载』与『Token陷阱』的论点：学生自述的『认知权衡』与『批判性思维减弱』是需求侧规训失效的微观证据；『伦理边界协商』与『同伴与政策影响』实证了第5章『共识牢笼』中制度规范滞后于技术实践、学生被迫在模糊共识中自我规训的过程；『学术赋能』与『认知依赖』的张力直接呼应第7章『碳硅共生』中『时间主权』让渡与『黑箱委托』的辩证关系。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b:fre: 7/10</span><span class="model-tag">deepseek-v4-flash: 0/10</span></div>
+      
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </div>
+  </main>
+
+  <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.3 · Academic Radar</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ ACADEMIC_PIPELINE · NOMINAL ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+    /* ══════════════ 主题切换（使用和主页同一个 localStorage 键） ══════════════ */
+    (function() {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeBtn');
+      const KEY = 'renegade-theme';   // 和主页保持一致，切换一次全局生效
+
+      // 应用主题：light 或 dark
+      function apply(theme) {
+        html.classList.toggle('light', theme === 'light');
+        localStorage.setItem(KEY, theme);
+      }
+
+      // 优先读取本地存储，否则跟随系统偏好
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem(KEY) || (systemDark ? 'dark' : 'light');
+      apply(saved);
+
+      // 点击按钮切换
+      btn.onclick = function() {
+        const current = html.classList.contains('light') ? 'dark' : 'light';
+        apply(current);
+      };
+    })();
+
+    /* ══════════════ 卡片逐个淡入 ══════════════ */
+    document.querySelectorAll('.card').forEach(function(card, index) {
+      card.style.animationDelay = (index * 0.05) + 's';
+    });
+
+    /* ══════════════ 状态栏轮播 ══════════════ */
+    (function(){
+      const msgs=[
+        'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+        'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+        'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+        'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+        'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+        'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+        'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+      ];
+      let i=0;
+      const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+      function tick(){
+        st.textContent=msgs[i%msgs.length];i++;
+        tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+      }
+      tick();setInterval(tick,5000);
+    })();
+  </script>
+</body>
+</html>

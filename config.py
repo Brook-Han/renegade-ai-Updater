@@ -305,12 +305,13 @@ class Config:
     def validate(cls, require_s2: bool = False) -> None:
         """
         启动时调用，检查必要的环境变量和目录。
-        - require_s2=False：只检查 DEEPSEEK_API_KEY（适用于 news_radar）
+        - require_s2=False：检查 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY 至少一个
         - require_s2=True ：额外检查 SEMANTIC_SCHOLAR_API_KEY（适用于 academic_radar）
         """
         missing_keys = []
-        if not cls.DEEPSEEK_API_KEY:
-            missing_keys.append("DEEPSEEK_API_KEY")
+        # 至少要有一个分析模型的 key
+        if not cls.DEEPSEEK_API_KEY and not cls.OPENROUTER_API_KEY:
+            missing_keys.append("DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY")
         if require_s2 and not cls.SEMANTIC_SCHOLAR_API_KEY:
             missing_keys.append("SEMANTIC_SCHOLAR_API_KEY")
         if missing_keys:

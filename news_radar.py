@@ -69,11 +69,8 @@ if Config.DEEPSEEK_API_KEY:
         api_key=Config.DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com"
     )
-else:
-    logger.error("❌ 未配置 DEEPSEEK_API_KEY，程序无法运行！")
-    sys.exit(1)
 
-# ── OpenRouter 客户端（第二分析模型：NVIDIA Nemotron 3 Ultra ──────
+# ── OpenRouter 客户端（NVIDIA Nemotron 3 Ultra）──────
 openrouter_client = None
 if Config.OPENROUTER_API_KEY:
     openrouter_client = OpenAI(
@@ -85,10 +82,25 @@ if Config.OPENROUTER_API_KEY:
         }
     )
     logger.info(
-        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）将作为第二分析模型并行运行"
+        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）已就绪"
     )
 else:
-    logger.info("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型")
+    logger.info("ℹ️  未配置 OPENROUTER_API_KEY")
+
+# 至少要有一个可用的分析客户端
+if not deepseek_client and not openrouter_client:
+    logger.error("❌ 未配置任何分析模型 API Key（需要 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY）")
+    sys.exit(1)
+
+# 确定主分析模型：优先 DeepSeek，其次 OpenRouter
+if deepseek_client:
+    PRIMARY_MODEL = Config.ANALYSIS_MODEL_DIRECT
+    primary_client = deepseek_client
+    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (DeepSeek)")
+elif openrouter_client:
+    PRIMARY_MODEL = Config.OPENROUTER_MODEL
+    primary_client = openrouter_client
+    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (OpenRouter)")
 
 # ------------------------------------------------------------------
 # 固定配置
@@ -96,7 +108,7 @@ else:
 OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "news"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-ANALYSIS_MODEL = Config.ANALYSIS_MODEL_DIRECT  # 新闻分析主模型（DeepSeek）
+ANALYSIS_MODEL = PRIMARY_MODEL
 CACHE_FILE = OUTPUT_DIR / "news_cache.json"
 
 # 从 Config 读取新闻专用阈值（已补充到 config.py）
