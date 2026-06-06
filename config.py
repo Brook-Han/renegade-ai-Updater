@@ -143,17 +143,22 @@ class Config:
     RSS_TIMEOUT: int = int(os.getenv("RSS_TIMEOUT", "10"))          # 单源超时（秒）
     RSS_MAX_FAILURES: int = int(os.getenv("RSS_MAX_FAILURES", "3")) # 连续失败自动暂停
     SUSPENDED_FEEDS: list[str] = []   # 运行时由监控模块动态填充，请勿手动修改
-
     # 预设的 RSS 订阅源（完整版，整合全量权威源）
     RSS_FEEDS: dict[str, str] = {
         # ===================== 1. 公司官方博客 =====================
         "OpenAI Blog": "https://openai.com/blog/rss.xml",
         "Anthropic Blog": "https://www.anthropic.com/blog/feed",
+        # [新增] Anthropic 的深层研究与经济/安全团队动态（通过 Import AI 等渠道捕获）
         "Google AI Blog": "https://ai.googleblog.com/feeds/posts/default",
         "DeepMind Blog": "https://deepmind.com/blog/feed/basic",
         "Meta Engineering Blog": "https://engineering.fb.com/feed/",
         "NVIDIA Blog": "https://blogs.nvidia.com/feed/",
 
+        # ===================== 1.5 [新增] 顶级产业智库与深度研究 (核心补丁) =====================
+        "SemiAnalysis": "https://semianalysis.substack.com/feed",  # 捕捉 Dark Output, 算力地缘政治
+        "The Gradient": "https://thegradient.pub/rss/",           # 深度AI演化与认知科学交叉
+        "AI Snake Oil (Arvind Narayanan)": "https://aisnakeoil.substack.com/feed/",
+        
         # ===================== 2. 顶级科技媒体 =====================
         "MIT Technology Review AI": "https://www.technologyreview.com/topic/artificial-intelligence/feed",
         "The Verge AI": "https://www.theverge.com/ai/rss/index.xml",
@@ -183,6 +188,30 @@ class Config:
     #  使用方法：遍历键名，检查新闻标题/摘要是否包含关键词（大小写不敏感）
     # =========================================================================
     NEWS_CONCEPT_TERMS: dict[str, str] = {
+        # =========================================================================
+        #  [新增] 架构演化与资本自噬 (触发 RSI 与 暗产出 警报)
+        # =========================================================================
+        "recursive self-improvement": "递归自我改进/RSI",
+        "rsi": "递归自我改进",
+        "dark output": "暗产出/不可见成本",
+        "amdahl": "阿姆达尔定律/系统瓶颈",
+        "breeder scenario": "饲养员场景/人类控制幻觉",
+        "ecosystem scenario": "生态系统场景/达尔文演化",
+        "lamarckian": "拉马克式AI/人类反馈",
+        "darwinian ai": "达尔文式AI/环境选择",
+        
+        # [新增] 认知坍塌与主体性幽灵化
+        "epistemological break": "认识论断裂",
+        "cognitive surrender": "认知投降",
+        "volitional atrophy": "意志萎缩",
+        "society of thought": "思维社会/内部多智能体",
+        "silicon internal loop": "硅基内部循环",
+        
+        # [新增] 宏观测量失灵
+        "statistical blind spot": "统计盲区",
+        "gdp measurement": "GDP测量失灵",
+        "productivity paradox": "生产力悖论",
+
         # 公司/人物/事件
         "openai": "OpenAI公司",
         "anthropic": "Anthropic公司",
