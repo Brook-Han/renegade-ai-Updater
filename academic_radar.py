@@ -578,10 +578,14 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    """多模型并行分析（DeepSeek + OpenRouter/Nemotron）"""
-    tasks = [(ANALYSIS_MODEL_DIRECT, deepseek_client)]
+    """多模型并行分析（优先 Nemotron，DeepSeek 做补充）"""
+    tasks = []
+    # 优先使用 Nemotron
     if openrouter_client:
         tasks.append((Config.OPENROUTER_MODEL, openrouter_client))
+    # DeepSeek 做补充（如果有且与前一个模型不同）
+    if deepseek_client:
+        tasks.append((Config.ANALYSIS_MODEL_DIRECT, deepseek_client))
 
     max_workers = len(tasks)  # 每个模型一个 worker
 

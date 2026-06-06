@@ -92,15 +92,15 @@ if not deepseek_client and not openrouter_client:
     logger.error("❌ 未配置任何分析模型 API Key（需要 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY）")
     sys.exit(1)
 
-# 确定主分析模型：优先 DeepSeek，其次 OpenRouter
-if deepseek_client:
+# 确定主分析模型：优先 Nemotron（NVIDIA），其次 DeepSeek
+if openrouter_client:
+    PRIMARY_MODEL = Config.OPENROUTER_MODEL
+    primary_client = openrouter_client
+    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (NVIDIA Nemotron)")
+elif deepseek_client:
     PRIMARY_MODEL = Config.ANALYSIS_MODEL_DIRECT
     primary_client = deepseek_client
     logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (DeepSeek)")
-elif openrouter_client:
-    PRIMARY_MODEL = Config.OPENROUTER_MODEL
-    primary_client = openrouter_client
-    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (OpenRouter)")
 
 # ------------------------------------------------------------------
 # 固定配置
