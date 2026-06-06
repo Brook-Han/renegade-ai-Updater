@@ -73,29 +73,32 @@ class Config:
     # 遇到 429 时快速失败，交给上层脚本的指数退避+抖动来处理
 
     # =========================================================================
-    #  模型配置 (2026-06-05 双模型并行)
-    #  策略：
-    #   - DeepSeek V4 Flash (deepseek-v4-flash) → 主分析模型（快速便宜）
-    #   - OpenRouter → NVIDIA Nemotron 3 Ultra (free) → 次分析模型（并行互补）
-    #   - DeepSeek V4 Pro  (deepseek-v4-pro)  → 书稿草稿生成（强推理，少量调用）
+    #  模型配置 (2026-06-07 三模型并行 via NVIDIA API)
+    #  策略：全部通过 NVIDIA 官方 API (https://integrate.api.nvidia.com/v1) 调用
+    #   - nvidia/nemotron-3-ultra-550b-a55b  → 主分析模型（强推理）
+    #   - deepseek-ai/deepseek-v4-flash        → 次模型（快速，低成本）
+    #   - moonshotai/kimi-k2.6                 → 次模型（补充视角）
+    #  三个模型并行分析后合并结果。
     # =========================================================================
-    ANALYSIS_MODEL_DIRECT: str = "deepseek-v4-flash"  # 分析专用主模型
-    DRAFTING_MODEL: str = "deepseek-v4-pro"           # 草稿生成专用模型
+    ANALYSIS_MODEL_DIRECT: str = os.getenv(
+        "ANALYSIS_MODEL_DIRECT", "nvidia/nemotron-3-ultra-550b-a55b"
+    )
+    DRAFTING_MODEL: str = os.getenv(
+        "DRAFTING_MODEL", "deepseek-ai/deepseek-v4-flash"
+    )
 
     # -------------------------------------------------------------------------
-    #  Nemotron 配置（NVIDIA 官方 API，通过 OpenRouter 兼容接口）
+    #  NVIDIA 官方 API 配置（所有模型共用）
     # -------------------------------------------------------------------------
-    OPENROUTER_MODEL: str = os.getenv(
-        "OPENROUTER_MODEL", "nvidia/nemotron-3-ultra-550b-a55b"
-    )
     OPENROUTER_BASE_URL: str = os.getenv(
         "OPENROUTER_BASE_URL", "https://integrate.api.nvidia.com/v1"
     )
 
-    # 分析模型列表（主模型 + OpenRouter 次模型）
-    ANALYSIS_MODELS: list[str] = [ANALYSIS_MODEL_DIRECT]
-    if OPENROUTER_API_KEY:
-        ANALYSIS_MODELS.append(OPENROUTER_MODEL)
+    # 并行分析模型列表（按优先级排序）
+    ANALYSIS_MODELS: list[str] = os.getenv(
+        "ANALYSIS_MODELS",
+        "nvidia/nemotron-3-ultra-550b-a55b,deepseek-ai/deepseek-v4-flash,moonshotai/kimi-k2.6"
+    ).split(",")
 
     # 草稿自动生成阈值
     DRAFT_RELEVANCE_THRESHOLD: int = int(os.getenv("DRAFT_RELEVANCE_THRESHOLD", "8"))
@@ -323,11 +326,12 @@ class Config:
         cls.OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
         cls.LOG_DIR.mkdir(parents=True, exist_ok=True)
 
-        # 打印 OpenRouter 状态（仅提示，非必需）
         if cls.OPENROUTER_API_KEY:
-            print(f"🌐 OpenRouter（{cls.OPENROUTER_MODEL}）已就绪，将作为第二分析模型并行运行")
+            print(f"🌐 NVIDIA API 已就绪，三模型并行: {', '.join(cls.ANALYSIS_MODELS)}")
+        elif cls.DEEPSEEK_API_KEY:
+            print(f"ℹ️  仅 DeepSeek 模式（无 NVIDIA API Key），模型: {cls.ANALYSIS_MODEL_DIRECT}")
         else:
-            print("ℹ️  未配置 OPENROUTER_API_KEY，仅使用 DeepSeek 主模型分析")
+            print("⚠️  未配置任何 API Key")
 
         print("✅ 配置验证通过，所有必要目录已就绪。")
 
@@ -337,9 +341,8 @@ class Config:
     def __repr__(self) -> str:
         """避免在日志或错误输出中暴露真实 API 密钥"""
         return (
-            f"<Config(DEEPSEEK_API_KEY={'***' if self.DEEPSEEK_API_KEY else 'MISSING'}, "
-            f"SEMANTIC_SCHOLAR_API_KEY={'***' if self.SEMANTIC_SCHOLAR_API_KEY else 'MISSING'}, "
-            f"OPENROUTER_API_KEY={'***' if self.OPENROUTER_API_KEY else 'MISSING'})>"
+            f"<Config(NVIDIA_API_KEY={'***' if self.OPENROUTER_API_KEY else 'MISSING'}, "
+            f"SEMANTIC_SCHOLAR_API_KEY={'***' if self.SEMANTIC_SCHOLAR_API_KEY else 'MISSING'})>"
         )
 
 

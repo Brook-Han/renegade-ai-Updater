@@ -60,11 +60,7 @@ jobs:
           echo "NOTIFY_TELEGRAM_CHAT_ID=${{ secrets.NOTIFY_TELEGRAM_CHAT_ID }}" >> $GITHUB_ENV
           # Semantic Scholar API Key
           echo "SEMANTIC_SCHOLAR_API_KEY=${{ secrets.SEMANTIC_SCHOLAR_API_KEY }}" >> $GITHUB_ENV
-<<<<<<< Updated upstream
-          # NVIDIA Nemotron（优先于 DeepSeek）
-=======
-          # NVIDIA Nemotron
->>>>>>> Stashed changes
+          # NVIDIA API（用于所有分析模型）
           echo "OPENROUTER_API_KEY=${{ secrets.OPENROUTER_API_KEY }}" >> $GITHUB_ENV
           echo "OPENROUTER_BASE_URL=https://integrate.api.nvidia.com/v1" >> $GITHUB_ENV
 

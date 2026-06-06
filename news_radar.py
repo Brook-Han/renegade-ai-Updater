@@ -70,10 +70,10 @@ if Config.DEEPSEEK_API_KEY:
         base_url="https://api.deepseek.com"
     )
 
-# ── OpenRouter 客户端（NVIDIA Nemotron 3 Ultra）──────
-openrouter_client = None
+# ── NVIDIA 官方 API 客户端（三个模型共用）──────
+nvidia_client = None
 if Config.OPENROUTER_API_KEY:
-    openrouter_client = OpenAI(
+    nvidia_client = OpenAI(
         api_key=Config.OPENROUTER_API_KEY,
         base_url=Config.OPENROUTER_BASE_URL,
         default_headers={
@@ -82,33 +82,29 @@ if Config.OPENROUTER_API_KEY:
         }
     )
     logger.info(
-        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）已就绪"
+        f"🌐 NVIDIA API 已就绪，模型列表: {Config.ANALYSIS_MODELS}"
     )
 else:
-    logger.info("ℹ️  未配置 OPENROUTER_API_KEY")
+    logger.info("ℹ️  未配置 NVIDIA API Key")
 
 # 至少要有一个可用的分析客户端
-if not deepseek_client and not openrouter_client:
-    logger.error("❌ 未配置任何分析模型 API Key（需要 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY）")
+if not deepseek_client and not nvidia_client:
+    logger.error("❌ 未配置任何分析模型 API Key（需要 OPENROUTER_API_KEY 或 DEEPSEEK_API_KEY）")
     sys.exit(1)
 
-# 确定主分析模型：优先 Nemotron（NVIDIA），其次 DeepSeek
-if openrouter_client:
-    PRIMARY_MODEL = Config.OPENROUTER_MODEL
-    primary_client = openrouter_client
-    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (NVIDIA Nemotron)")
+# 优先使用 NVIDIA 客户端
+primary_client = nvidia_client if nvidia_client else deepseek_client
+PRIMARY_MODEL = Config.ANALYSIS_MODEL_DIRECT  # 默认第一个模型
+if nvidia_client:
+    logger.info(f"🎯 全部模型通过 NVIDIA API 调用: {', '.join(Config.ANALYSIS_MODELS)}")
 elif deepseek_client:
-    PRIMARY_MODEL = Config.ANALYSIS_MODEL_DIRECT
-    primary_client = deepseek_client
-    logger.info(f"🎯 主分析模型: {PRIMARY_MODEL} (DeepSeek)")
+    logger.info(f"🎯 使用 DeepSeek 独立 API: {PRIMARY_MODEL}")
 
-# ------------------------------------------------------------------
 # 固定配置
-# ------------------------------------------------------------------
 OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "news"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-ANALYSIS_MODEL = PRIMARY_MODEL
+ANALYSIS_MODEL = Config.ANALYSIS_MODELS[0] if Config.ANALYSIS_MODELS else Config.ANALYSIS_MODEL_DIRECT
 CACHE_FILE = OUTPUT_DIR / "news_cache.json"
 
 # 从 Config 读取新闻专用阈值（已补充到 config.py）
@@ -318,37 +314,37 @@ def analyze_news_item(news: dict, model_name: str, client: OpenAI) -> dict:
 
 
 # ------------------------------------------------------------------
-# 多模型分析（DeepSeek 主模型 + OpenRouter/Nemotron 并行）
+# 多模型分析（三模型并行 via NVIDIA API）
 # ------------------------------------------------------------------
 def analyze_news_item_multi(news: dict) -> dict:
     """
-    多模型并行分析：同时调用 DeepSeek 和 OpenRouter，以 DeepSeek 结果为主。
-    当 Nemotron 评分显著偏低（差距 ≥ 4 分）时，取两者均值。
-    """
-    primary = analyze_news_item(news, ANALYSIS_MODEL, deepseek_client)
+    三模型并行分析（全部通过 NVIDIA API 调用）。
+    取所有模型评分均值作为最终 relevance。"""
+    models_to_use = list(Config.ANALYSIS_MODELS)
 
-    if openrouter_client:
-        secondary = analyze_news_item(
-            news, Config.OPENROUTER_MODEL, openrouter_client
-        )
-        # 记录双模型评分
-        primary["_model_scores"] = {
-            ANALYSIS_MODEL: primary.get("relevance", 0),
-            Config.OPENROUTER_MODEL: secondary.get("relevance", 0),
-        }
-        diff = abs(primary.get("relevance", 0) - secondary.get("relevance", 0))
-        if diff >= 4:
-            avg_rel = round(
-                (primary.get("relevance", 0) + secondary.get("relevance", 0)) / 2
-            )
-            logger.info(
-                f"⚖️ 双模型分歧较大（差{diff}分），取均值 {avg_rel}"
-            )
-            primary["relevance"] = avg_rel
-    else:
-        primary["_model_scores"] = {
-            ANALYSIS_MODEL: primary.get("relevance", 0),
-        }
+    results = {}
+    for model_name in models_to_use:
+        if nvidia_client:
+            result = analyze_news_item(news, model_name, nvidia_client)
+        elif deepseek_client:
+            result = analyze_news_item(news, model_name, deepseek_client)
+        else:
+            result = {"relevance": 0, "_model": model_name}
+        results[model_name] = result
+
+    # 选第一个模型（Nemotron）作为主结果载体
+    primary = results.get(
+        Config.ANALYSIS_MODEL_DIRECT,
+        next(iter(results.values()))
+    )
+    primary["_model_scores"] = {
+        name: r.get("relevance", 0)
+        for name, r in results.items()
+    }
+    # 取所有有效评分的均值
+    valid_scores = [r.get("relevance", 0) for r in results.values() if r.get("relevance", 0) > 0]
+    if valid_scores:
+        primary["relevance"] = round(sum(valid_scores) / len(valid_scores), 1)
 
     return primary
 
@@ -385,7 +381,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
     lines = [
         f"# 📰 News Radar — 资讯监控报告",
         f"**生成日期**: {today}",
-        f"**分析模型**: {ANALYSIS_MODEL}{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}",
+        "**分析模型**: " + (" + ".join(Config.ANALYSIS_MODELS) if nvidia_client else ANALYSIS_MODEL),
         f"**分析条目**: {len(news_data)}",
         f"**关键词**: {', '.join(keywords[:8])}{'...' if len(keywords) > 8 else ''}",
         "---\n",
