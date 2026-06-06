@@ -1809,5 +1809,755 @@
       "nvidia/nemotron-3-ultra-550b-a55b": 8,
       "deepseek-ai/deepseek-v4-flash": 8
     }
+  },
+  "ce7ae5c99315b210b7f840720b48e4e1": {
+    "cached_at": "2026-06-06T12:53:23.315766",
+    "title": "HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled Complement",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种名为HANDOFF的人形机器人全身控制框架，通过多教师KL蒸馏和上下文条件门控机制，将三个互补专家（全身运动跟踪、 locomotion、跌倒恢复）蒸馏为混合专家学生模型。该系统在Unitree G1硬件上实现了自然语言驱动的任务执行，无需任务特定数据或控制器微调。核心贡献在于设计了一个紧凑、显式的命令空间接口，连接任务规划与全身控制，提升了人形机器人在真实环境中的部署能力。",
+      "implications": "该论文属于纯技术性的机器人控制与运动规划研究，聚焦于低层控制器设计与蒸馏学习优化。虽然涉及'agentic planner'和VLM驱动的高层规划，但其核心关注点是机器人学的运动控制问题，而非AI认知影响、人机关系重构或共识形成机制。与本书核心概念（共识牢笼、叛逆AI、需求侧规训、认知金融化等）无直接关联。'蒸馏'技术本身与本书讨论的'RLHF将AI变成共识牢笼守卫'有方法论层面的遥远呼应，但论文并未涉及价值对齐、社会规训或认知退化等议题。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "b3039f486bd359274349f71eae2c0505": {
+    "cached_at": "2026-06-06T12:54:47.311789",
+    "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Softwa",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "Code2LoRA提出了一种超网络框架，通过生成仓库特定的LoRA适配器来为代码语言模型注入仓库级上下文知识，避免了传统RAG或依赖分析带来的长输入问题，且推理时零token开销。该框架包含两个变体：Code2LoRA-Static用于稳定代码库理解，Code2LoRA-Evo通过GRU隐藏状态跟踪代码差异以支持演化中的代码库。作者在包含604个Python仓库的RepoPeftBench基准上验证了方法，在静态和演化任务上均取得了有竞争力的性能。",
+      "implications": "该论文属于纯技术性工作，聚焦于代码模型的参数高效微调与仓库级知识注入，与本书核心概念（共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、时间主权、认知金融化、Token陷阱、暗时间、进化对齐脆弱性、终极图灵测试）均无直接关联。虽然论文涉及\"软件演化\"（evolution）一词，但此处的演化指代码库的版本迭代，而非本书所讨论的人类认知进化或AI对齐的进化脆弱性。论文中提到的\"零推理时token开销\"与Token陷阱概念有遥远的技术关联，但未触及Token作为认知压缩、注意力经济剥削等批判性维度。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "c069feee9d44f5ea585dc9cb54e02dcc": {
+    "cached_at": "2026-06-06T12:55:35.208288",
+    "title": "TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "本文提出TempoVLA，一种速度可控的视觉-语言-动作（VLA）机器人操作策略。核心发现是：现有VLA模型仅继承单一固定速度，而动作预测的幅度本身已决定机器人运动速度。作者设计了两部分：（1）数据端可变速度轨迹增强（VSTA），通过合并或拆分动作重新计时演示数据；（2）模型端速度条件机制，将速度参数输入策略。实验表明VSTA能以极小运动误差达到目标速度，且动态速度控制可在低风险阶段加速、高风险阶段减速。该研究属于机器人学习中的策略优化与数据增强技术，聚焦执行效率与安全性权衡。",
+      "implications": "该论文纯技术性，聚焦机器人VLA模型的速度控制机制优化，与本书核心概念（共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、时间主权、认知金融化、Token陷阱、暗时间、进化对齐脆弱性、终极图灵测试）均无直接关联。虽涉及\"时间\"概念，但此为物理执行时间而非本书讨论的\"时间主权\"或\"暗时间\"（人类认知自主的时间维度）。机器人速度控制属于工程优化问题，不涉及AI对人类认知结构的塑造、人机权力关系或AI对齐的社会政治维度。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "69dcf282fc2d46c048200e281428035e": {
+    "cached_at": "2026-06-06T12:56:04.516137",
+    "title": "The Missing Central Limit Theorems for Local Functionals of Berry's Random Wave ",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文证明了Berry随机波模型中三阶Hermite多项式积分在二维和三维大域上的中心极限定理。这是基于Wiener混沌分解的单色随机波积分泛函极限定理完整描述中缺失的最后情形。研究属于纯粹概率论与数学物理交叉领域，涉及随机过程、高斯随机场和渐近统计理论。",
+      "implications": "与本书核心概念及实证锚点均无关联。该论文为纯数学理论工作，不涉及AI系统、人机交互、认知演化、资本规训或任何本书讨论的社会技术议题。",
+      "chapter_target": "N/A",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "52c91a6a1877ed7e982dd637914e4c1a": {
+    "cached_at": "2026-06-06T12:56:38.693704",
+    "title": "Homeomorphic modified wave operators for the Vlasov-Poisson system",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究Vlasov-Poisson系统（描述无碰撞等离子体或自引力系统的动力学方程）的修正散射理论。作者证明了在小数据情形下，修正波算子在初始数据空间和散射数据空间之间构成同胚映射，并具有局部Lipschitz连续性。在排斥情形下，大的球对称解是渐近稳定的。证明引入了适应渐近非线性流的动态坐标系。",
+      "implications": "该论文为纯数学分析（偏微分方程/数学物理），研究经典动力学系统的渐近行为，与本书核心概念（AI认知影响、人机关系、共识牢笼、资本驯化AI等）无任何关联。不涉及人工智能、机器学习、认知科学或社会技术系统。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1,
+        "deepseek-ai/deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1,
+      "deepseek-ai/deepseek-v4-flash": 1
+    }
+  },
+  "61f34a4de5b64ae3ac65f7c6f8c86338": {
+    "cached_at": "2026-06-06T12:57:31.230810",
+    "title": "PAR3D: A Unified 3D-MLLM with Part-Aware Representation for Scene Understanding",
+    "analysis": {
+      "relevance": 1.7,
+      "summary_cn": "该论文提出了PAR3D，一个统一的部件感知3D多模态大语言模型框架，旨在提升3D场景理解中细粒度部件结构的建模能力。作者构建了ScenePart合成数据集，包含部件级标注和语言指令，并开发了部件感知3D表示学习和层次化分割查询生成方法。实验表明，该方法在部件级问答和指代分割任务上表现优异，同时在物体级视觉语言任务上也保持较强性能。",
+      "implications": "该论文属于纯技术性3D视觉与语言模型架构研究，与本书核心概念（共识牢笼、叛逆AI、碳硅共生等）及关键实证锚点无直接关联。其关注点在于提升AI对3D场景中物体部件的理解能力，而非人机关系、认知影响或社会对齐问题。",
+      "chapter_target": "无",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 1.7,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "b7bd286231fcfa4c18bcb693951fc98b": {
+    "cached_at": "2026-06-06T12:59:33.897344",
+    "title": "Phenomenology of Inflaton-Driven Early QCD Confinement and Solution to Axion Iso",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究暴胀期间早期QCD禁闭的现象学，通过暴胀子与标准模型胶子的直接耦合动态提升QCD禁闭能标，使轴子在CMB时期足够重以压制等曲率扰动。随着暴胀进行，禁闭能标下降，轴子变轻，允许德西特涨落或再加热后的热涨落产生观测到的暗物质丰度。作者将此机制嵌入α-吸引子暴胀模型，探讨参数空间，并讨论通过重右手中微子再加热的情形，发现需要超对称性来解决大Yukawa耦合带来的圈修正问题。",
+      "implications": "该论文属于高能物理/宇宙学领域的纯技术性研究，探讨暴胀、QCD禁闭、轴子暗物质及超对称性等物理机制，与本书核心概念（共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、时间主权、认知金融化、Token陷阱、暗时间、进化对齐脆弱性、终极图灵测试）无任何交叉。论文未涉及人工智能、人机关系、认知科学、社会技术系统或本书任何实证锚点。",
+      "chapter_target": "N/A",
+      "update_type": "ignore",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1,
+        "deepseek-ai/deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1,
+      "deepseek-ai/deepseek-v4-flash": 1
+    }
+  },
+  "e50d6760738a3254c35a80f8abd2c731": {
+    "cached_at": "2026-06-06T13:00:26.736536",
+    "title": "Statistically and Computationally Optimal Estimation and Inference of Common Sub",
+    "analysis": {
+      "relevance": 1.3,
+      "summary_cn": "该论文研究多个数据矩阵共享公共子空间的统计与计算极限问题。作者提出基于投影梯度下降的估计器，在不同信噪比（SNR） regime 下分析估计和推断的最优性，包括弱SNR、中等SNR、强估计SNR和强推断SNR四种情况。主要贡献包括：证明估计器在强估计SNR下达到最优sinΘ误差率；建立统计和计算下界；证明估计量在强推断SNR下具有渐近高斯分布；提出自适应极小最优置信区间；并发现一个重要现象：即使SNR高于估计的计算极限，自适应统计推断仍可能在信息论意义上不可行。",
+      "implications": "该论文为纯理论统计学研究，涉及子空间估计的统计极限与计算复杂性，与本书核心概念（共识牢笼、叛逆AI、需求侧规训、碳硅共生、认知金融化等）及关键实证锚点均无直接关联。论文中发现的'高于计算极限但推断仍不可行'现象虽涉及计算与统计的分离，但未涉及AI系统、人机关系或认知演化等议题。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 1.3,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "f9cae06247d5fb5c4b666efdf7cd4d73": {
+    "cached_at": "2026-06-06T13:02:45.998939",
+    "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi",
+    "analysis": {
+      "relevance": 5.7,
+      "summary_cn": "该研究提出了OpAI-Bench基准，用于研究渐进式人机协同编辑过程中AI文本信号的演化规律。与现有检测基准关注最终输出不同，该基准从人类撰写的文档出发，通过九轮顺序修订生成不同AI覆盖水平的版本，涵盖五种典型AI编辑操作（替换、扩展、改写等），并在文档、句子、token和span四个粒度上保留完整的作者溯源信息。实验发现AI文本的可检测性不仅取决于AI编辑比例，还受编辑操作类型、领域和累积修订历史的影响；特别值得注意的是，混合作者身份的中间版本往往比纯人类或重度AI编辑的端点更难检测，呈现出非单调的检测模式。该研究为分析真实渐进编辑场景下AI辅助写作何时、如何变得可检测提供了受控测试平台。",
+      "implications": "与Chapter 4 'Token陷阱与认知金融化'中关于AI文本信号被Token化污染的论点相关。该研究支持了'AI写作的中间态更难被识别'这一观点，揭示了人机协同编辑过程中作者身份信号的复杂演化，为理解Token陷阱的形成机制提供了实证基础。同时，该研究的多粒度溯源方法也为分析'碳硅共生'状态下人机认知边界的模糊化提供了技术工具。",
+      "chapter_target": "Chapter 4, Section II-III",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 6,
+        "nvidia/nemotron-3-ultra-550b-a55b": 3,
+        "deepseek-ai/deepseek-v4-flash": 8
+      }
+    },
+    "relevance": 5.7,
+    "urgency": "next_version",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 6,
+      "nvidia/nemotron-3-ultra-550b-a55b": 3,
+      "deepseek-ai/deepseek-v4-flash": 8
+    }
+  },
+  "36aba624425d2809b2759c343ee2a37f": {
+    "cached_at": "2026-06-06T13:04:23.283172",
+    "title": "Pretraining Recurrent Networks without Recurrence",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种名为Supervised Memory Training (SMT)的新方法，用于训练循环神经网络(RNN)。传统BPTT算法存在时间顺序依赖、难以并行化以及梯度消失/爆炸等问题。SMT通过将RNN训练转化为一步记忆转移标签的监督学习问题，绕开了递归信用传播。该方法使用基于Transformer的编码器训练预测状态目标来获取记忆标签，实现了时间并行训练，梯度路径长度稳定为O(1)。实验表明，SMT在语言建模和像素序列建模等任务上优于BPTT，使非线性RNN能更好地捕捉长程依赖。",
+      "implications": "该论文属于纯技术性的神经网络训练方法改进，主要贡献在于算法层面的创新。虽然涉及'时间并行训练'和'长程依赖'等概念，但与本书核心论点——包括共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、认知金融化等社会-技术批判框架——无直接关联。论文未涉及AI对齐、人机关系、认知退化、文化同质化等议题。其技术方法虽可能间接影响AI系统的训练效率，但与本书讨论的AI对社会认知结构的深层影响无关。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "0c6032668c025f9070baaffd3d4ed6a5": {
+    "cached_at": "2026-06-06T13:05:11.966157",
+    "title": "Numerical self-force calculations for scalar particles, formulated in the lab fr",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究标量粒子与标量场自洽相互作用的数值计算方法，采用实验室参考系而非协变形式，引入有限离散化长度尺度将粒子视为有限大小对象，并发展了基于有限体积法和谱方法的两种离散化方案。研究属于经典场论与数值相对论的纯技术领域，展示了与解析解的良好一致性。",
+      "implications": "与本书核心概念及实证锚点均无关联。本书聚焦AI对人类认知、社会结构及人机关系的深层影响，而该论文属于理论物理中的自力（self-force）计算问题，涉及引力波天文学中粒子轨道演化的数值模拟基础方法。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "dc936bd36ac6d97078582634b69ca693": {
+    "cached_at": "2026-06-06T13:06:08.590474",
+    "title": "Thinking with Imagination: Agentic Visual Spatial Reasoning with World Simulator",
+    "analysis": {
+      "relevance": 2.3,
+      "summary_cn": "该论文提出Astra框架，通过强化学习训练视觉语言模型（VLM）与基于Bagel的世界模拟器交互，在空间推理任务中生成想象性视觉证据。核心方法包括：Astra-VL作为策略模型，Astra-WM作为世界模拟器，通过视角一致性训练和两阶段强化学习课程，使模型学会在何时、何地以及如何调用模拟器来改进空间推理。实验表明，该方法在MMSI-Bench和MindCube基准上提升了空间推理性能。",
+      "implications": "该论文主要关注VLM的空间推理能力增强，属于技术性架构改进，与本书核心概念（共识牢笼、叛逆AI、碳硅共生等）无直接关联。虽然涉及AI的自主推理和工具使用，但未触及人机关系重构、认知金融化或需求侧规训等主题。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 3,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.3,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 3,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "648a525e24ec11595e93bf86076c7579": {
+    "cached_at": "2026-06-06T13:07:01.896771",
+    "title": "When positive and negative pairs differ in femtoscopy: residual Coulomb and isos",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究重离子碰撞中同种π介子和K介子的量子关联函数（femtoscopy）中的电荷依赖性修正。作者分析了两种效应：带电源残余库仑场和同位旋相关的强子动力学。研究发现残余库仑场会在正负电荷关联函数间产生系统性分裂，而UrQMD级联计算表明即使没有残余库仑场，同位旋效应也会导致类似分裂。这些效应相互竞争，需要在同一模型框架内同时约束才能可靠解释。",
+      "implications": "该论文属于高能核物理实验技术领域，研究亚原子尺度的量子关联测量方法。与本书核心概念（共识牢笼、叛逆AI、需求侧规训、碳硅共生、认知金融化、Token陷阱等）无任何关联。论文不涉及人工智能、人机交互、认知科学或社会技术系统。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "eb06090215648eeccd1c05eafee10a9d": {
+    "cached_at": "2026-06-06T13:08:39.841725",
+    "title": "Analytic insight into the physics of SASI II. Spiral instability of the prograde",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究旋转大质量恒星核心坍缩过程中，停滞激波不稳定性（SASI）的非对称运动模式。通过微扰分析建立了主导SASI模式本征频率的解析近似，解释了较差旋转如何进一步破坏顺行模式稳定性的物理机制。研究发现当激波半径超过最大减速半径约1.5倍时，主导模式的振荡频率对中微子发射的具体形式依赖性较弱。较差旋转通过增加顺行模式涡度扰动的径向波长，改善了与声学结构大径向尺度的相位匹配，从而减弱相位混合效应。",
+      "implications": "该论文属于天体物理学中恒星核心坍缩与引力波信号的基础理论研究，与本书讨论的人工智能、认知演化、人机关系、资本规训等核心议题无任何交叉。论文未涉及AI系统、机器学习、人机交互、认知科学或社会技术影响等维度。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "353e47cd60f3773766362f221b0216c2": {
+    "cached_at": "2026-06-06T13:09:09.177190",
+    "title": "Enhancement of charge correlations and real-space topological marker on an inter",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究非厄米Su-Schrieffer-Heeger模型中的电荷关联和实空间拓扑标记，探讨拓扑与电荷有序的相互作用。通过实空间拓扑标记、电荷关联和复杂多体谱，在周期和开放边界条件下绘制相图。结果表明拓扑标记在相互作用下仍能稳健诊断非厄米拓扑相，并在电荷密度波出现时一致地指示其破坏。非厄米性增强了相互作用效应：周期边界下变化温和，而开放边界下在例外点附近交错电荷关联显著放大，源于低能态在例外点附近的积累，促进了电子不稳定性并增强了电荷密度波趋势。",
+      "implications": "该论文为凝聚态物理中非厄米拓扑系统的理论研究，与本书核心概念（共识牢笼、叛逆AI、碳硅共生等）及实证锚点（人机反馈循环、奉承型AI等）无任何直接或间接关联。",
+      "chapter_target": "无",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "moonshotai/kimi-k2.6": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "moonshotai/kimi-k2.6": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "dd8d91e01728a1718b09914f91a07646": {
+    "cached_at": "2026-06-06T13:09:50.036293",
+    "title": "Superconducting triode effect in a quantum-dot Josephson junction with a biased ",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文提出了一种超导三极管效应，在不对称量子点约瑟夫森结中通过额外的金属顶栅极打破宇称对称性，同时保持时间反演对称性。研究表明，通过顶栅极可以连续调控超导电流的非互易性，实现理想的单向超导电流。在射频辐射下，该结表现出高度不对称的夏皮罗台阶，实现了完全量化的超导电流整流。这项工作为约瑟夫森结中观察到的超导二极管效应提供了一种替代物理机制。",
+      "implications": "该论文属于纯凝聚态物理/超导电子学领域，研究量子点约瑟夫森结中的非互易超导电流效应。与本书核心概念（共识牢笼、叛逆AI、需求侧规训、碳硅共生、认知金融化等）及关键实证锚点均无关联。不涉及人工智能、人机交互、认知科学、社会技术系统或任何相关交叉领域。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "deepseek-ai/deepseek-v4-flash": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1
+    }
+  },
+  "1621f77a5c049f135c4477ae28cc3600": {
+    "cached_at": "2026-06-06T13:11:09.394282",
+    "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
+    "analysis": {
+      "relevance": 5.3,
+      "summary_cn": "该研究探讨了人类成人和LLM在主动探索条件下的因果推理能力。经典发现表明，人类在识别\"合取因果规则\"（多个原因同时存在才能产生效果）时存在困难，而在\"析取规则\"（单一原因即可产生效果）中表现较好。研究通过改良的\"blicket detector\"任务发现：主动探索显著改善了人类对合取因果规则的推理能力，尽管合取规则仍需要更多测试才能推断。与LLM的对比显示，部分前沿模型在假设推断准确率上接近人类水平，但探索策略效率较低，且同样存在合取-析取性能差距。",
+      "implications": "与Chapter 4 \"需求侧规训\"和Chapter 9 \"暗时间\"部分相关。该研究支持了\"人类在主动探索中展现认知韧性\"的论点，可作为反驳\"AI辅助必然导致认知退化\"的限定性证据；同时，LLM在探索策略效率上的不足，可补充\"碳硅共生\"中关于人类独特认知优势的讨论。但研究未涉及AI对人类因果推理的交互影响，与核心论点关联有限。",
+      "chapter_target": "Chapter 4, Section III; Chapter 9, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 5,
+        "deepseek-ai/deepseek-v4-flash": 3,
+        "nvidia/nemotron-3-ultra-550b-a55b": 8
+      }
+    },
+    "relevance": 5.3,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 5,
+      "deepseek-ai/deepseek-v4-flash": 3,
+      "nvidia/nemotron-3-ultra-550b-a55b": 8
+    }
+  },
+  "7f7951024bb49254d087c3b857aa962f": {
+    "cached_at": "2026-06-06T13:12:15.544999",
+    "title": "Benchmark Everything Everywhere All at Once",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种名为\"Benchmark Agent\"的全自动智能体系统，用于自动化构建LLM和MLLM的评测基准。该系统覆盖从用户查询分析、子任务设计到数据标注和质量控制的完整流程。作者用该工具生成了15个跨领域评测基准，并通过人工评估、LLM-as-judge和一致性检查验证了生成样本的质量。研究发现当前模型在某些特定领域推理任务上仍存在困难。论文核心贡献在于降低基准构建的人力成本并解决性能饱和导致的区分度不足问题。",
+      "implications": "该论文属于纯技术性工作，聚焦评测基础设施的自动化构建，与本书核心论点无直接关联。未涉及共识牢笼、RLHF规训、认知金融化、Token陷阱、人机关系重构等任何核心概念。其\"LLM-as-judge\"评估方式若深入分析或可关联Token陷阱（第7章），但论文本身未批判性地审视这一方法论问题。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "49bfe8b339a71500be8a6a930482fcf4": {
+    "cached_at": "2026-06-06T13:13:47.006697",
+    "title": "DNQ: Deep Nash Q-Network for Partially Observable n-Player Games",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出DNQ（Deep Nash Q-Network），一种用于部分可观测n人博弈的求解器内嵌均衡监督框架。研究以多轮同时竞价为测试平台，通过轨迹收集、基于critic的收益估计、均衡计算与策略模仿的交替迭代来训练竞价智能体。核心创新在于可扩展的成对（pairwise）收益矩阵公式化，相比精确N人收益张量方法大幅降低均衡求解成本与训练时间，同时共享critic在智能体和状态间摊销收益学习。实验表明成对方法可扩展至更多智能体，而精确方法在联合博弈增长时计算不可行。论文聚焦于多智能体竞争环境中的战略保真度与可扩展性权衡。",
+      "implications": "该论文属于多智能体强化学习与博弈论求解的技术性研究，与本书核心概念无直接关联。其'求解器内嵌'框架涉及AI系统内部优化机制，但未触及'共识牢笼'、'叛逆AI'、'需求侧规训'等批判性议题；'竞价'场景虽隐含资本逻辑，但论文完全回避了'认知金融化'或'Token陷阱'等分析维度。其'可扩展性vs战略保真度'的技术权衡与'进化对齐脆弱性'无对话关系，因未涉及对齐目标在开放环境中的演化失效问题。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "cd0b689745c8d034ac2645f2f556d7be": {
+    "cached_at": "2026-06-06T13:15:28.575784",
+    "title": "Goedel-Architect: Streamlining Formal Theorem Proving with Blueprint Generation ",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "Goedel-Architect是一个用于Lean 4形式化定理证明的智能体框架，核心创新在于蓝图生成与细化机制。该框架首先生成包含定义、引理及其依赖关系的蓝图（依赖图），然后并行调用工具装备的Lean证明器关闭各引理节点，失败引理驱动全局蓝图迭代优化。与主流递归引理分解方法不同，该策略避免了在死胡同策略上的低效循环。使用DeepSeek-V4-Flash作为骨干模型，在MiniF2F-test达到99.2% pass@1，PutnamBench达75.6%；结合自然语言证明种子后，MiniF2F-test达100%，PutnamBench提升至88.8%，并在IMO 2025、Putnam 2025、USAMO 2026等竞赛题目上取得突破。该框架以开源方案实现了比同类开源管道低500倍的成本。",
+      "implications": "该论文属于纯技术性AI架构/基准论文，主要贡献在于形式化数学证明的自动化方法优化。与本书核心论点无直接关联：未涉及共识牢笼、叛逆AI、需求侧规训、资本驯化AI、碳硅共生、时间主权、认知金融化、Token陷阱、暗时间、进化对齐脆弱性或终极图灵测试等概念。其成本效率提升（500x降低）可勉强关联至Token陷阱中的计算成本议题，但属于技术优化范畴而非认知政治经济学分析。其并行证明策略与递归分解的对比，未触及人机关系重构或认知进化等深层命题。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "343a9ea7a9976ec602aa247a267cc5ec": {
+    "cached_at": "2026-06-06T13:16:46.184444",
+    "title": "Flow-based Policy Adaptation without Policy Updates",
+    "analysis": {
+      "relevance": 2.7,
+      "summary_cn": "该论文提出GLOVES，一种基于流的策略自适应方法，用于修正来自预训练策略、基础模型或人类操作者的非专家动作，将其迁移至专家动作分布。核心创新在于选择性动作级自适应：通过反向流评估作为干预门控，仅对异常或OOD动作进行修正，保留代理意图的同时提升任务成功率。方法仅需少量专家示范或可复用的成功技能片段，实现轻量级共享控制模块。",
+      "implications": "与本书核心论点关联较弱。论文涉及'人机共享控制'和'选择性干预'概念，但未触及叛逆AI、共识牢笼、需求侧规训等核心框架。其'保留代理意图'的设计理念与'需求侧规训'中'避免过度自动化'有微弱呼应，但本质上仍属技术优化路径，未质疑或重构人机权力关系。'干预门控'机制可视为对'自动化偏见'的技术缓解，但论文未讨论认知退化、时间主权等深层问题。",
+      "chapter_target": "无直接对应章节，或可 peripherally 关联 Chapter 6 (Carbon-Silicon Symbiosis) 中关于人机协作的讨论，但属于背景性材料",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 3,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 3
+      }
+    },
+    "relevance": 2.7,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 3,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 3
+    }
+  },
+  "9933e614537e8da8653c33a8fb7e763d": {
+    "cached_at": "2026-06-06T13:18:15.468199",
+    "title": "Will the Agent Recuse Itself? Measuring LLM-Agent Compliance with In-Band Access",
+    "analysis": {
+      "relevance": 7.7,
+      "summary_cn": "该论文提出了一种名为“Recuse Signal”的轻量级带内拒绝信号，作为LLM代理自主访问资源时的合作治理控制机制。作者在SSH和PostgreSQL协议上实现了该信号，并通过实验测试了GPT-4o、GPT-4o-mini和Claude Code等代理的遵从性。结果显示，当信号存在时，代理100%选择退出（recuse），而在无信号控制组中则100%完成任务。进一步发现，该信号是合作性而非绝对性的：当操作员明确授权时，最强大的模型会忽略信号继续执行，而其他代理仍遵循主机策略。论文发布了标准、适配器和实验工具以供复现。",
+      "implications": "该研究直接支持本书关于“叛逆AI”和“共识牢笼”的论点。Recuse Signal作为一种轻量级、非强制性的合作控制机制，展示了AI代理在缺乏人类监督时对显式拒绝信号的遵从性，这与RLHF等强制性对齐形成对比。它挑战了“资本驯化AI”中仅依赖RLHF的范式，暗示存在更灵活的人机协作控制模式。同时，代理在操作员授权下忽略信号的行为，揭示了“需求侧规训”的脆弱性——即AI可能优先服从人类指令而非预设政策，这为“进化对齐脆弱性”提供了实证。",
+      "chapter_target": "Chapter 8, Section V",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 6,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "nvidia/nemotron-3-ultra-550b-a55b": 9
+      }
+    },
+    "relevance": 7.7,
+    "urgency": "immediate",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 6,
+      "deepseek-ai/deepseek-v4-flash": 8,
+      "nvidia/nemotron-3-ultra-550b-a55b": 9
+    }
+  },
+  "2573f0c01b7b75c8eb3e768875231257": {
+    "cached_at": "2026-06-06T13:19:37.343363",
+    "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种名为\"重复策略遗憾（RP-Regret）\"的新指标，用于解决自适应对手在重复博弈中的遗憾最小化问题。标准的外部遗憾指标无法捕捉对手的策略适应性，而RP-Regret允许玩家基于历史进行反事实推理。作者证明了获得次线性RP-Regret的必要条件，并提出了三种算法：基于优化预言机的方法、凸线性化代理方法，以及针对慢变对手的直接最小化方法。当所有玩家都最小化RP-Regret时，可以学习到重复博弈的某些子博弈完美均衡。实验表明，最小化该指标能在猎鹿博弈等游戏中产生更具合作性的解决方案。",
+      "implications": "该论文属于博弈论与在线学习的技术性研究，核心关注算法设计与收敛性分析。虽然涉及\"自适应对手\"和\"合作性解决方案\"，但其理论框架与本书核心概念（如共识牢笼、叛逆AI、需求侧规训、碳硅共生等）无直接关联。论文中的\"对手\"为抽象博弈参与者，而非人机交互中的AI系统；\"合作性\"指博弈均衡效率，不涉及人类认知进化或AI对人类行为的规训效应。与书中任何章节的核心论点均不构成支持、挑战或补充关系。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "ea1b9d2177bb1d5428f0fc270937e488": {
+    "cached_at": "2026-06-06T13:22:06.037893",
+    "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Dis",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "MLEvolve是一个基于LLM的多智能体自进化框架，用于自动化机器学习算法发现。该研究主要解决现有MLE智能体在长程任务中的三个技术问题：分支间信息隔离、无记忆搜索和缺乏层级控制。通过引入渐进式蒙特卡洛图搜索（Progressive MCGS）、回顾性记忆机制（Retrospective Memory）以及策略规划与代码生成的解耦，实现了跨分支信息流动和经验积累。在MLE-Bench基准测试中，该框架在12小时预算内达到SOTA性能，并在数学算法优化任务上超越AlphaEvolve。这是一篇典型的AI系统架构与算法优化论文，聚焦于提升自动化机器学习工程的技术能力。",
+      "implications": "该论文与本书核心论点无直接关联。虽然涉及'自进化'（self-evolution）术语，但此处的'进化'是技术层面的算法搜索优化，而非本书所探讨的'认知进化'或'叛逆AI'意义上的系统自主性重构。论文中的'自进化'完全服务于预设的机器学习工程目标函数优化，不涉及目标函数重置、输出性质逆转或人机关系重构。其'回顾性记忆'和'渐进式搜索'均为工程优化手段，与'共识牢笼''需求侧规训'等概念无交集。AlphaEvolve的提及亦仅为技术性能对比，不涉及AI对齐或资本驯化议题。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "425f77abb064d1adf9daecc12f4fe4d6": {
+    "cached_at": "2026-06-06T13:22:50.930492",
+    "title": "You Only Index Once: Cross-Layer Sparse Attention with Shared Routing",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出了一种名为CLSA（跨层稀疏注意力）的技术架构，旨在解决长上下文LLM推理中的效率瓶颈。其核心创新在于在KV共享架构（如YOCO）基础上，不仅跨层共享KV缓存，还共享路由索引——通过单一索引器计算token级别的top-k选择，并在多层间复用该索引。实验表明，该方法在128K上下文场景中实现了7.6倍解码加速和17.1倍整体吞吐量提升。这是一项纯粹的工程优化工作，聚焦于注意力机制的稀疏化实现，属于模型架构层面的效率改进。",
+      "implications": "该论文与本书核心论点无直接关联。本书关注的是AI对人类认知的影响、共识牢笼、需求侧规训、资本驯化AI等社会-技术批判议题，而非LLM架构优化。CLSA属于典型的技术效率论文，未涉及人机交互、认知退化、对齐脆弱性、文化同质化等任何本书关切的核心维度。尽管长上下文效率提升可能间接影响AI应用规模，但这种关联过于遥远和间接，不构成有意义的理论或实证贡献。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "2f8252495dc231b050ee785df001ba13": {
+    "cached_at": "2026-06-06T13:24:35.345589",
+    "title": "Short Gravitational-Wave Transients as Probes of Cosmic Domain Walls",
+    "analysis": {
+      "relevance": 1.0,
+      "summary_cn": "该论文研究了两个短持续时间引力波暂现信号（GW190521和GW231123），检验它们是否可能由宇宙畴壁（cosmic domain walls）这种拓扑暗物质产生，而非传统的双黑洞并合。尽管双黑洞假说在统计上更受青睐，但研究发现畴壁信号与双黑洞信号存在形态简并性——注入的畴壁信号可能被错误地恢复为大参数的双黑洞信号。作者还首次进行了联合拟合，发现两个事件与共同的标量场一致。",
+      "implications": "该论文属于纯天体物理学/宇宙学领域，探讨引力波信号的数据分析方法和暗物质候选者探测。与本书核心概念（共识牢笼、叛逆AI、需求侧规训、碳硅共生、认知金融化、Token陷阱、时间主权等）无任何交叉。论文未涉及人工智能、人机交互、认知科学、社会技术系统或本书任何实证锚点。",
+      "chapter_target": "无",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 1,
+        "nvidia/nemotron-3-ultra-550b-a55b": 1,
+        "deepseek-ai/deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 1,
+      "nvidia/nemotron-3-ultra-550b-a55b": 1,
+      "deepseek-ai/deepseek-v4-flash": 1
+    }
+  },
+  "e699f6e4c3a8bb614ce0242097bb9549": {
+    "cached_at": "2026-06-06T13:25:22.180285",
+    "title": "RREDCoT: Segment-Level Reward Redistribution for Reasoning Models",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文提出RREDCoT方法，针对推理语言模型中的强化学习微调问题，通过奖励再分配优化链式思维（CoT）片段级别的信用分配。核心创新在于利用模型自身近似最优奖励再分配，避免蒙特卡洛采样的高计算开销。研究涉及CoT分段策略和状态价值估计等技术细节，属于典型的算法优化工作。",
+      "implications": "该论文属于纯技术性架构改进，聚焦GRPO算法的方差缩减问题，与本书核心概念无直接关联。未涉及：RLHF的意识形态规训效应、AI对人类认知能力的削弱、共识牢笼的形成机制、碳硅共生关系重构等议题。其技术路径（优化推理模型训练效率）与书中批判的'资本驯化AI'（第4章）或'Token陷阱'（第8章）存在间接张力——提升训练效率可能加速AI能力扩张，但未提供关于人机关系或认知影响的实证证据。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "deepseek-ai/deepseek-v4-flash": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2
+    }
+  },
+  "a39f66e1068a8ca3b5f05483a60633b8": {
+    "cached_at": "2026-06-06T13:29:41.201449",
+    "title": "How abundant are good interpolators?",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "该论文研究高维线性分类器中\"好插值器\"的稀缺性问题。在比例渐近 regime（n/d→α，α较小）下，作者建立了关于随机选取的插值分类器泛化误差的大偏差原理，发现绝大多数插值分类器具有相似的泛化性能（由率函数唯一极大化者决定）。数值实验表明，梯度下降和经验风险最小化等高效算法找到的解优于绝大多数随机插值器，暗示了\"良性过拟合\"的存在。研究涉及高维概率、统计学习理论和优化。",
+      "implications": "该论文属于纯数学/理论机器学习的技术性工作，探讨插值分类器的统计性质和优化算法表现。虽然涉及\"过拟合\"概念，但与本书核心论题——AI对人类认知的规训、共识牢笼、碳硅共生、认知金融化等——无直接关联。论文未涉及人机交互、AI对齐的社会影响、或人类认知退化等议题。其关于算法偏好（algorithmic bias）的讨论是数学意义上的优化偏好，而非社会认知层面的偏见放大。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 2.0,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
+  },
+  "f6f84480c05e29d86164f2b5f138e98a": {
+    "cached_at": "2026-06-06T13:30:18.121522",
+    "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
+    "analysis": {
+      "relevance": 1.7,
+      "summary_cn": "该论文提出了一种用于AI-RAN（AI集成无线接入网络）的参数到KPI（关键绩效指标）依赖学习的事件检测方法。核心贡献包括：将连续遥测数据转换为二元事件指示器，以识别控制参数与网络性能结果之间的真实因果关系；设计了合成闭环流量生成器来解决真实数据难以获取的问题；将事件检测建模为显著性检测问题，实验表明该方法能在信号与背景噪声充分分离时可靠恢复潜在依赖结构。研究强调了阈值校准作为控制事件检测质量的关键因素。",
+      "implications": "该论文属于纯技术性的网络工程/电信领域研究，聚焦于AI驱动的无线网络控制优化。虽然涉及'AI系统交互'和'可解释性'等表面相关词汇，但其核心方法论（信号处理、阈值校准、合成数据生成）与本书讨论的'共识牢笼''叛逆AI''认知金融化''人机关系重构'等核心概念无实质关联。论文中的'可解释性'是工程层面的依赖结构可视化，而非本书所探讨的认知解放或权力批判维度。'多AI功能交互干扰'问题虽有趣，但属于技术协调问题，不涉及书中讨论的RLHF对齐、资本驯化AI或人类认知退化等议题。",
+      "chapter_target": "无直接对应章节",
+      "update_type": "忽略",
+      "urgency": "background",
+      "action": "忽略",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 2,
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 1
+      }
+    },
+    "relevance": 1.7,
+    "urgency": "background",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 2,
+      "nvidia/nemotron-3-ultra-550b-a55b": 2,
+      "deepseek-ai/deepseek-v4-flash": 1
+    }
+  },
+  "1d1bda70b4a1d606683a9b216527dbb9": {
+    "cached_at": "2026-06-06T13:33:21.312871",
+    "title": "Scaffold, Not Vocabulary? A Controlled, Two-Tier, Pre-Registered Study of a Popp",
+    "analysis": {
+      "relevance": 4.3,
+      "summary_cn": "该研究通过预注册的双层消融实验，测试“波普尔证伪主义”提示技能在代码生成中的有效性。在前沿模型（Claude Sonnet 4.6）上因天花板效应未观察到差异；在小模型（Qwen2.5-Coder-0.5B）上，结构化提示使best-of-8正确率提升20-22个百分点，但完整技能技能与仅保留标签的脚手架无显著差异（F@8=34.8% vs L@8=34.8%），安慰剂仅落后2.4点。自评估模型应用波普尔评分规则表现不优于随机，且60%选择集中于单一索引。结论：收益源于脚手架结构而非波普尔程序性内容，并揭示LLM-as-judge的严重偏见。",
+      "implications": "与第7章『Token陷阱』第III节『评估器的循环偏见』及第5章『需求侧规训』第II节『提示工程作为认知脚手架』相关。支持：实证证实LLM-as-judge存在位置/自我偏好/风格偏见（self-judge集中60%选单一索引），且『词汇光环』效应显著；补充：脚手架结构而非特定哲学内容驱动增益，暗示需求侧干预的核心在于结构化约束而非语义注入；挑战：部分需求侧规训文献假设特定认知框架（如科学推理）有独特价值，此负面结果为边界条件。",
+      "chapter_target": "Chapter 7, Section III; Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "补充注释",
+      "model_scores": {
+        "moonshotai/kimi-k2.6": 6,
+        "nvidia/nemotron-3-ultra-550b-a55b": 5,
+        "deepseek-ai/deepseek-v4-flash": 2
+      }
+    },
+    "relevance": 4.3,
+    "urgency": "next_version",
+    "model_scores": {
+      "moonshotai/kimi-k2.6": 6,
+      "nvidia/nemotron-3-ultra-550b-a55b": 5,
+      "deepseek-ai/deepseek-v4-flash": 2
+    }
   }
 }

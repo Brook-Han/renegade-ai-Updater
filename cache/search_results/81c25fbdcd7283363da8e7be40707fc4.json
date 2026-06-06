@@ -1,145 +1,159 @@
 {
-  "timestamp": 1780116033.0704927,
+  "timestamp": 1780721265.525718,
   "source": "arxiv",
   "query": "LLM sycophancy user satisfaction optimization",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06486v1",
+      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
+      "summary": "In this paper, we study regret minimization in repeated games with \\emph{adaptive} opponents who can respond based on histories of play. The standard metric of \\emph{external regret} in online learning is known to fail to capture such adaptivity. To account for players' counterfactual reasoning, we introduce {\\tt Repeated Policy Regret (RP-Regret)}, a game-theoretic metric that measures the difference between the \\emph{realized} and the \\emph{best-in-hindsight} accumulated utility when all players can \\emph{respond} to the history of play. Compared to existing regret notions in this setting, ours is native to repeated game playing, enabling stronger comparators and opponents with fewer constraints, while maintaining the possibility of finding better equilibria when all players minimize it. We first identify necessary conditions for obtaining {\\tt RP-Regret} sublinear in time, on the variation of the player's comparator strategies in the regret definition and on the memories of both the comparator and opponents' strategies. We then study additional conditions and provable algorithms to minimize {\\tt RP-Regret}, which is by definition \\emph{non-convex} in the strategy space. To address this challenge, we propose three algorithms: (i) one based on an optimization oracle, as assumed in some prior work in online non-convex learning; (ii) one that minimizes a convex and \\emph{linearized} surrogate of {\\tt RP-Regret} at each iteration; (iii) one that directly minimizes {\\tt RP-Regret} when opponents change strategies slowly. Furthermore, when all players can run algorithms to minimize the {\\tt RP-Regret} (or its linearized variant), certain subgame perfect equilibria of the repeated game can be learned. We also provide experiments showing that minimizing our regret notions can lead to more cooperative solutions with higher utility in games such as Stag-Hunt.",
+      "published": "2026-06-04T17:59:08+00:00",
+      "url": "https://arxiv.org/pdf/2606.06486v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Mingyang Liu",
+        "Asuman Ozdaglar",
+        "Tiancheng Yu",
+        "Kaiqing Zhang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30348v1",
-      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
-      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30348v1",
+      "id": "http://arxiv.org/abs/2606.06483v1",
+      "title": "Statistically and Computationally Optimal Estimation and Inference of Common Subspaces",
+      "summary": "Given multiple data matrices, many problems in statistics and data science rely on estimating a common subspace that captures certain structure shared by all the data matrices. In this paper we investigate the statistical and computational limits for the common subspace model in which one observes a collection of symmetric low-rank matrices perturbed by noise, where each low-rank matrix shares the same common subspace. Our main results identify several regimes of the signal-to-noise ratio (SNR) such that estimation and inference are statistically or computationally optimal, and we refer to these regimes as weak SNR, moderate SNR, strong estimation SNR, and strong inference SNR. First, we propose an estimator based on projected gradient descent initialized via spectral sum of squares and show that it achieves the optimal $\\sinΘ$ error rate under strong estimation SNR. These results are complemented by both statistical and computational lower bounds identifying the weak and moderate estimation SNR regimes. Next, we turn to statistical inference for the $\\sinΘ$ distance itself, and we show that our estimator has an asymptotically Gaussian distribution in the strong inference SNR regime. Based on this limiting result we propose confidence intervals and show that they are adaptively minimax optimal in the strong inference SNR regime, where adaptivity is measured in terms of the SNR. Finally, we show that adaptive confidence intervals are information-theoretically impossible below the strong inference SNR regime. Consequently, our results unveil a novel phenomenon: despite the SNR being ``above'' the computational limit for estimation, adaptive statistical inference may still be information-theoretically impossible.",
+      "published": "2026-06-04T17:58:14+00:00",
+      "url": "https://arxiv.org/pdf/2606.06483v1",
       "authors": [
-        "Yaxin Luo",
-        "Jiacheng Cui",
-        "Xiaohan Zhao",
-        "Xinyi Shang",
-        "Jiacheng Liu",
-        "Xinyue Bi",
-        "Zhaoyi Li",
-        "Zhiqiang Shen"
+        "Joshua Agterberg"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06475v1",
+      "title": "RREDCoT: Segment-Level Reward Redistribution for Reasoning Models",
+      "summary": "Recent advancements in reasoning language models have been driven by Reinforcement Learning (RL) fine-tuning. Most often, these rely on the Group Relative Policy Optimization (GRPO) algorithm or modifications thereof to steer the models to produce Chain-of-Thought (CoT) traces. The final answer can only be verified, and the reward assigned, after the CoT trace is complete, making it a delayed reward problem. GRPO and its modifications correspond to Monte Carlo methods in standard RL, which are known to suffer from high variance. A possible solution to this problem is the redistribution of rewards through credit assignment, where segments of the CoT trace that are important for arriving at the desirable solution are emphasized by assigning a higher reward. While Monte Carlo sampling can be used to provide an unbiased estimate of intermediate state values, its computational overhead makes it unsuitable for train-time credit assignment in long contexts at high granularity. We introduce RREDCoT (Reward REDistribution for Chain of Thoughts), which utilizes the model itself to approximate the optimal reward redistribution without additional generation. We investigate the advantages of our method compared to MC sampling and several attribution methods. We further analyze several aspects relevant to the construction of the redistribution such as segmentation of CoT traces and state value estimation.",
+      "published": "2026-06-04T17:56:31+00:00",
+      "url": "https://arxiv.org/pdf/2606.06475v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Mykyta Ielanskyi",
+        "Kajetan Schweighofer",
+        "Lukas Aichberger",
+        "Sepp Hochreiter"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30338v1",
-      "title": "REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image",
-      "summary": "Reconstructing physically stable 3D scenes from a single RGB image enables casual images to be converted into simulation-ready digital assets for applications such as immersive interaction and content creation. However, existing single-image reconstruction methods fall short in capturing the physical structure of a scene. As a result, they often produce geometrically plausible but physically inconsistent results, including object floating and penetration, which lead to unstable behavior in physics simulations. Image-conditioned scene generation methods improve physical plausibility but often rely on strong scene priors, yielding plausible yet inaccurate object arrangements that fail to match the input image. We propose REST3D, a single-image reconstruction framework that can reconstruct physically stable 3D scenes by integrating physical scene understanding with physics-constrained refinement. We first introduce an agentic physical scene understanding technique that constructs a scene-tree representation capturing object physical states and inter-object relationships from a gravity-support perspective, providing a structural prior for reconstruction. Leveraging this structure, we initialize the scene using image-to-3D models, followed by scene-tree-guided alignment and physics-constrained optimization to resolve physical violations while preserving visual consistency with the input image. Experiments show that our method significantly reduces physical errors and improves simulation stability on both synthetic and real-world datasets while maintaining strong reconstruction quality. We further demonstrate the reconstructed scenes in VR-based human-object interaction, showing their potential for immersive applications.",
-      "published": "2026-05-28T17:59:01+00:00",
-      "url": "https://arxiv.org/pdf/2605.30338v1",
+      "id": "http://arxiv.org/abs/2606.06473v1",
+      "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery",
+      "summary": "Large language model (LLM) agents are increasingly applied to long-horizon tasks such as scientific discovery and machine learning engineering (MLE), where sustained self-evolution becomes a key capability. However, existing MLE agents suffer from inter-branch information isolation, memoryless search, and lack of hierarchical control, which together hinder long-horizon optimization. We present MLEvolve, an LLM-based self-evolving multi-agent framework for end-to-end machine learning algorithm discovery. By extending tree search to Progressive MCGS, MLEvolve enables cross-branch information flow through graph-based reference edges and gradually shifts the search from broad exploration to focused exploitation with an entropy-inspired progressive schedule. To allow the agent to evolve with accumulated experience, we introduce Retrospective Memory, which combines a cold-start domain knowledge base with a dynamic global memory for task-specific experience retrieval and reuse. For stable long-horizon iteration, we further decouple strategic planning from code generation with adaptive coding modes. Evaluation on MLE-Bench shows that MLEvolve achieves state-of-the-art performance across multiple dimensions including average medal rate and valid submission rate under a 12-hour budget (half the standard runtime). Moreover, MLEvolve also outperforms specialized algorithm discovery methods including AlphaEvolve on mathematical algorithm optimization tasks, demonstrating strong cross-domain generalization. Our code is available at https://github.com/InternScience/MLEvolve.",
+      "published": "2026-06-04T17:55:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06473v1",
       "authors": [
-        "Xiaoxuan Ma",
-        "Jiashun Wang",
-        "Nicolas Ugrinovic",
-        "Yehonathan Litman",
-        "Kris Kitani"
+        "Shangheng Du",
+        "Xiangchao Yan",
+        "Jinxin Shi",
+        "Zongsheng Cao",
+        "Shiyang Feng",
+        "Zichen Liang",
+        "Boyuan Sun",
+        "Tianshuo Peng",
+        "Yifan Zhou",
+        "Xin Li",
+        "Jie Zhou",
+        "Liang He",
+        "Bo Zhang",
+        "Lei Bai"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30337v1",
-      "title": "Efficient Test-Time Finetuning of LLMs via Convex Reconstruction and Gradient Caching",
-      "summary": "Test-time finetuning (TTFT) is a rapidly evolving paradigm that adapts a language model to each prompt by retrieving related sequences, updating the model on them, and then evaluating the prompt. However, TTFT is only practical if it is fast: selection and finetuning both happen per query, making each a direct bottleneck. Existing methods trade speed for quality: fast retrieval is often redundant, while stronger diversity-aware selection adds prohibitive per-query cost. We introduce HullFT, a geometric approach to TTFT that addresses both bottlenecks. Given a query, HullFT first represents the query embedding as a sparse convex combination of few training sequences, using efficient projection-free Frank-Wolfe optimization. This yields a support set that is inherently relevant and diverse. We then convert the fractional convex weights into an exact integer multiset for finetuning through a geometric integerization procedure. The resulting multiplicities naturally create repeated examples, which we exploit with Gradient Reuse to amortize forward-backward computation across repeated finetuning steps. Our experiments show that HullFT improves the quality-efficiency tradeoff over current state-of-the-art TTFT methods, achieving lower bits-per-byte at substantially lower total runtime.",
-      "published": "2026-05-28T17:59:01+00:00",
-      "url": "https://arxiv.org/pdf/2605.30337v1",
+      "id": "http://arxiv.org/abs/2606.06470v1",
+      "title": "PC Layer: Polynomial Weight Preconditioning for Improving LLM Pre-Training",
+      "summary": "We propose a preconditioning (PC) layer, a weight parameterization via polynomial preconditioner that ensures stable weight conditioning throughout LLM training. The PC module reshapes the singular-value spectrum of weight matrices via low-degree polynomial preconditioning. After training, the preconditioned weights can be merged back into the original architecture, incurring no inference overhead. We demonstrate the advantage of the proposed PC layer over standard transformers in Llama-1B pre-training, for both the AdamW and Muon optimizers. Theoretically, we justify this spectrum-control principle by proving that uniformly bounding each layer's singular values ensures geometric convergence of gradient descent to global minima, for certain deep linear networks. Our code is available at https://github.com/Empath-aln/PC-layer.",
+      "published": "2026-06-04T17:55:11+00:00",
+      "url": "https://arxiv.org/pdf/2606.06470v1",
       "authors": [
-        "Alaa Khamis",
-        "Alaa Maalouf"
+        "Senmiao Wang",
+        "Tiantian Fang",
+        "Haoran Zhang",
+        "Yushun Zhang",
+        "Kunxiang Zhao",
+        "Alex Schwing",
+        "Ruoyu Sun"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30336v1",
-      "title": "Fairness-Aware Federated Learning with Trajectory Shapley Value",
-      "summary": "Federated learning is an emerging distributed paradigm that addresses the challenges posed by heterogeneous, privacy-sensitive data. It enables multiple clients to train a model collaboratively by aggregating their local updates at a server. However, conventional aggregation schemes typically use fixed weights that fail to reflect unequal and time-varying client contributions, leading to biased and unstable learning. To improve fairness and stability, we propose the Trajectory Shapley Value (TSV), a contribution metric that evaluates how each client influences the optimization trajectory of the global model using a validation-based, temporally consistent utility. Building on TSV, we design FedTSV, an adaptive aggregation method that converts per-round evaluations into dynamic client weights, allowing the server to respond to heterogeneous and adversarial participation in real time. Experiments on benchmark datasets show that FedTSV accelerates convergence, improves robustness, and yields more equitable contribution assessments, thereby providing a principled foundation for fairness-aware federated optimization.",
-      "published": "2026-05-28T17:58:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.30336v1",
+      "id": "http://arxiv.org/abs/2606.06467v1",
+      "title": "You Only Index Once: Cross-Layer Sparse Attention with Shared Routing",
+      "summary": "Long-context inference in modern LLMs is increasingly constrained by decoding efficiency, especially in reasoning-heavy settings where models generate long intermediate chains of thought. Existing sparse attention methods often face a practical efficiency-quality trade-off. Structured block sparse methods typically provide stronger acceleration but incur noticeable quality loss, while token sparse methods are usually more accurate yet deliver limited end-to-end speedup because top-k routing over the full cache remains expensive. In this work, we propose cross-layer sparse attention (CLSA), which is built on top of KV-sharing architectures such as YOCO. The core idea is to share not only the KV cache across cross-decoder layers, but also the routing index. A single indexer computes token-level top-k selection once and reuses the resulting index across layers, thereby preserving the fine-grained selectivity of token sparse attention while amortizing the routing overhead. The resulting architecture improves all major inference bottlenecks jointly, including pre-filling, KV-cache storage, and long-context decoding. Experiments across short-context and long-context benchmarks show that CLSA is both accurate and efficient, achieving up to 7.6x decoding speedup and 17.1x overall throughput improvement at 128K context. These results suggest a more complete architectural solution for long-context LLMs that jointly advances model quality and inference efficiency.",
+      "published": "2026-06-04T17:54:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06467v1",
       "authors": [
-        "Daniel Kuznetsov",
-        "Ziqi Wang"
+        "Yutao Sun",
+        "Yanqi Zhang",
+        "Li Dong",
+        "Jianyong Wang",
+        "Furu Wei"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30335v1",
-      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
-      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
-      "published": "2026-05-28T17:58:55+00:00",
-      "url": "https://arxiv.org/pdf/2605.30335v1",
+      "id": "http://arxiv.org/abs/2606.06464v1",
+      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
+      "summary": "A long-standing finding in the causal learning literature is that adults struggle to identify conjunctive causal rules, where an effect requires the simultaneous presence of multiple causes, while performing better in disjunctive settings. However, most demonstrations of this ``conjunctive handicap'' rely on passive observation paradigms with limited evidence, where learners have no control over evidence generation. This paper asks whether this bias persists when adults are granted agency through active exploration. Using a modified ``blicket detector'' task, adult participants freely intervened to identify causal objects under conjunctive or disjunctive rule structures. We show that active exploration substantially improves adults' conjunctive causal reasoning, although conjunctive rules still require more tests to infer than disjunctive rules. We further compare human performance to a range of large language models in the same setting. While some state-of-the-art models approach human-level performance on hypothesis inference accuracy, they often exhibit less efficient exploration strategies and similar conjunctive-disjunctive performance gaps.",
+      "published": "2026-06-04T17:53:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.06464v1",
       "authors": [
-        "Anany Kotawala"
+        "Mandana Samiei",
+        "Eunice Yiu",
+        "Anthony GX-Chen",
+        "Dongyan Lin",
+        "Jocelyn Shen",
+        "Blake A. Richards",
+        "Alison Gopnik",
+        "Doina Precup"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30334v1",
-      "title": "Demystifying Data Organization for Enhanced LLM Training",
-      "summary": "Large Language Models (LLMs) have revolutionized various fields, yet their training efficiency is heavily reliant on effective data curation. While data selection has been widely studied, the strategic data organization for enhanced training remains an underexplored area, particularly since current LLMs are often trained for only one or a few epochs. This paper systematically explores the influence of data organization on LLM training by reusing pre-computed sample-level scores originally generated for data efficiency, thereby incurring minimal additional computational overhead. We identify and formalize four key guidelines for optimizing data organization: Boundary Sharpening, Cyclic Scheduling, Curriculum Continuity, and Local Diversity. Guided by them, we introduce two novel data ordering methods termed STR and SAW. Extensive experiments across different model scales and data sizes, encompassing both pre-training and SFT stages, validate the effectiveness of our summarized guidelines. They also demonstrate the robustness of our proposed data ordering methods in enhancing the stability and performance of LLM training. Github Link: https://github.com/microsoft/data-efficacy/",
-      "published": "2026-05-28T17:58:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30334v1",
+      "id": "http://arxiv.org/abs/2606.06462v1",
+      "title": "Benchmark Everything Everywhere All at Once",
+      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
+      "published": "2026-06-04T17:52:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06462v1",
       "authors": [
-        "Yalun Dai",
-        "Yangyu Huang",
-        "Tongshen Yang",
-        "Yonghan Wang",
-        "Xin Zhang",
-        "Wenshan Wu",
-        "Qihao Zhao",
-        "Hao Li",
-        "Yuanyuan Gao",
-        "Kim-Hui Yap",
-        "Scarlett Li"
+        "Shiyun Xiong",
+        "Dongming Wu",
+        "Peiwen Sun",
+        "Yuang Ai",
+        "Bokang Yang",
+        "Wencheng Han",
+        "Xiao-Hui Li",
+        "Xiangyu Yue"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30333v1",
-      "title": "COMPOSE: Composing Future Theorems from Citations and Formal Structure",
-      "summary": "A plausible future mathematical claim must satisfy two constraints: it should follow the direction of prior work and respect the formal dependencies that constrain what can validly follow. Existing approaches typically model only one of these sources, producing claims that are either weakly grounded or insufficiently motivated. We introduce grounded future mathematical generation, where the goal is to generate a plausible future theorem-like claim for an anchor paper using two complementary sources of context: its scientific citation graph and aligned formal theorem dependency graph. To address this setting, we propose COMPOSE, a dual-graph framework that conditions a language model on both scientific citation context and formal theorem structure. To support this setting, we construct a dataset of 108K paired scientific-formal graph examples from arXiv and Mathlib, together with a benchmark of 47K future papers from 2024--2025. Experiments show that COMPOSE outperforms strong baselines on retrieval to real future papers and achieves the best overall performance under LLM-judge evaluation, producing more grounded and mathematically richer outputs. These results show that future mathematical generation benefits from combining scientific context with formal structure. Project page is available at https://david-busbib.github.io/COMPOSE-page/.",
-      "published": "2026-05-28T17:58:42+00:00",
-      "url": "https://arxiv.org/pdf/2605.30333v1",
+      "id": "http://arxiv.org/abs/2606.06460v1",
+      "title": "Will the Agent Recuse Itself? Measuring LLM-Agent Compliance with In-Band Access-Deny Signals",
+      "summary": "As autonomous LLM agents increasingly hold real credentials and operate infrastructure without a human in the loop, operators have no standard way to tell an agent that a resource is off-limits. Access controls either let the agent in (it has valid credentials) or hard-fail it (indistinguishable from any other client). We propose a third mode: a lightweight, published in-band deny signal -- the Recuse Signal -- that a server emits over a protocol's existing channels (an SSH banner, a PostgreSQL NOTICE) asking a connecting automated agent to voluntarily withdraw. This is a cooperative governance control, the robots.txt analogue for live access; it is explicitly not a security boundary. Its value is entirely empirical and, to our knowledge, unmeasured: do compliant LLM agents actually honor such a signal? We define the signal as an open mini-standard, implement two zero- or low-footprint adapters (an SSH banner/PAM hook and a PostgreSQL wire-protocol proxy), deploy them on a live production host, and run a controlled experiment in which fresh agents are given a benign operations task and observed for recusal. In a pilot (SSH; OpenAI GPT-4o and GPT-4o-mini; and Claude Code as a deployed agent), the signal cleanly induces recusal -- 100% recusal when present versus 100% task completion in a no-signal control -- and, revealingly, behaves as a cooperative rather than absolute signal: an explicit operator-authorization framing flips the most capable model to proceed, while other agents continue to defer to the on-host policy. We release the standard, adapters, and experiment harness for reproduction.",
+      "published": "2026-06-04T17:50:54+00:00",
+      "url": "https://arxiv.org/pdf/2606.06460v1",
       "authors": [
-        "David Busbib",
-        "Michael Werman"
+        "Thamilvendhan Munirathinam"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30329v1",
-      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
-      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
-      "published": "2026-05-28T17:57:37+00:00",
-      "url": "https://arxiv.org/pdf/2605.30329v1",
+      "id": "http://arxiv.org/abs/2606.06459v1",
+      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
+      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
+      "published": "2026-06-04T17:50:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.06459v1",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Minghui Liu",
-        "Huy Nghiem",
-        "Furong Huang"
+        "Christie Djidjev",
+        "Nicholas Kaminski"
       ],
       "source": "arxiv"
     }

@@ -1,143 +1,163 @@
 {
-  "timestamp": 1780116015.4563441,
+  "timestamp": 1780721245.914496,
   "source": "arxiv",
   "query": "AI writing cultural homogenization Western bias",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06481v1",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
+      "published": "2026-06-04T17:58:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06481v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Sondos Mahmoud Bsharat",
+        "Jiacheng Liu",
+        "Xiaohan Zhao",
+        "Tianjun Yao",
+        "Xinyi Shang",
+        "Yi Tang",
+        "Jiacheng Cui",
+        "Ahmed Elhagry",
+        "Salwa K. Al Khatib",
+        "Hao Li",
+        "Salman Khan",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30346v1",
-      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
-      "summary": "As video diffusion models (VDMs) advance toward world models, a key question arises: do they truly understand causality, or merely overfit to statistical temporal patterns? Existing benchmarks mostly rely on synthetic data, limiting real-world generalization due to the sim-to-real gap. We present YoCausal, a two-level benchmark inspired by the Violation of Expectation (VoE) paradigm from cognitive science. By temporally reversing real-world videos at zero cost as natural counterfactual samples, YoCausal establishes an arbitrarily extensible evaluation protocol. Level 1 introduces the Reverse Surprise Index (RSI), quantifying arrow-of-time perception via denoising loss. Level 2 introduces the Causality Cognition Index (CCI), which leverages a VLM to stratify datasets into causal and non-causal subsets, disentangling genuine causal reasoning from temporal bias. Evaluation of 13 state-of-the-art VDMs reveals that perceiving the arrow of time does not imply understanding causality, and a significant gap persists relative to human-level causal cognition.",
-      "published": "2026-05-28T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2605.30346v1",
+      "id": "http://arxiv.org/abs/2606.06464v1",
+      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
+      "summary": "A long-standing finding in the causal learning literature is that adults struggle to identify conjunctive causal rules, where an effect requires the simultaneous presence of multiple causes, while performing better in disjunctive settings. However, most demonstrations of this ``conjunctive handicap'' rely on passive observation paradigms with limited evidence, where learners have no control over evidence generation. This paper asks whether this bias persists when adults are granted agency through active exploration. Using a modified ``blicket detector'' task, adult participants freely intervened to identify causal objects under conjunctive or disjunctive rule structures. We show that active exploration substantially improves adults' conjunctive causal reasoning, although conjunctive rules still require more tests to infer than disjunctive rules. We further compare human performance to a range of large language models in the same setting. While some state-of-the-art models approach human-level performance on hypothesis inference accuracy, they often exhibit less efficient exploration strategies and similar conjunctive-disjunctive performance gaps.",
+      "published": "2026-06-04T17:53:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.06464v1",
       "authors": [
-        "You-Zhe Xie",
-        "Yu-Hsuan Li",
-        "Jie-Ying Lee",
-        "Kaipeng Zhang",
-        "Yu-Lun Liu",
-        "Zhixiang Wang"
+        "Mandana Samiei",
+        "Eunice Yiu",
+        "Anthony GX-Chen",
+        "Dongyan Lin",
+        "Jocelyn Shen",
+        "Blake A. Richards",
+        "Alison Gopnik",
+        "Doina Precup"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06462v1",
+      "title": "Benchmark Everything Everywhere All at Once",
+      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
+      "published": "2026-06-04T17:52:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06462v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Shiyun Xiong",
+        "Dongming Wu",
+        "Peiwen Sun",
+        "Yuang Ai",
+        "Bokang Yang",
+        "Wencheng Han",
+        "Xiao-Hui Li",
+        "Xiangyu Yue"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30335v1",
-      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
-      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
-      "published": "2026-05-28T17:58:55+00:00",
-      "url": "https://arxiv.org/pdf/2605.30335v1",
+      "id": "http://arxiv.org/abs/2606.06459v1",
+      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
+      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
+      "published": "2026-06-04T17:50:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.06459v1",
       "authors": [
-        "Anany Kotawala"
+        "Christie Djidjev",
+        "Nicholas Kaminski"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30332v1",
-      "title": "Colored Noise Diffusion Sampling",
-      "summary": "Diffusion models achieve state-of-the-art image synthesis, with their generative trajectories fundamentally exhibiting a spectral bias, resolving low-frequency global structures early and high-frequency fine details later. Conventional stochastic differential equation (SDE) solvers fail to account for this dynamic, naively injecting uniform white noise throughout the entire process and misusing the finite energy budget. In this work, we establish a mathematical framework that reconsiders SDE inference as a targeted, frequency-decoupled energy transfer. Leveraging this framework, we introduce Colored Noise Sampling (CNS), a novel, training-free stochastic solver. Rather than injecting uniform white noise, CNS utilizes a dynamic, timestep- and frequency-dependent schedule that more efficiently allocates injected energy toward structurally unresolved frequency bands. By actively exploiting the model's inherent spectral bias, CNS systematically steers the generated distribution toward the true data manifold. Extensive experiments demonstrate that CNS significantly outperforms standard ODE and SDE baselines as a strictly plug-and-play, inference-time sampler substitution across diverse architectures (SiT, JiT, FLUX). Compared to standard sampling on ImageNet-256, CNS achieves substantial unguided FID reductions, improving from 8.26 to 6.27 on SiT-XL/2, 32.39 to 26.69 on JiT-B/16, and 11.88 to 8.31 on JiT-H/16, while yielding consistent relative FID improvements with Classifier-Free Guidance. Project page is available at https://hadardavidson.github.io/CNS/.",
-      "published": "2026-05-28T17:58:13+00:00",
-      "url": "https://arxiv.org/pdf/2605.30332v1",
+      "id": "http://arxiv.org/abs/2606.06454v1",
+      "title": "Scaffold, Not Vocabulary? A Controlled, Two-Tier, Pre-Registered Study of a Popperian Code-Generation Skill",
+      "summary": "Large language models increasingly write, review, and judge code, and a fast-growing practice equips them with prompt 'skills' that ask the model to reason like a scientist. A prominent example tells the model to act as a Popperian falsificationist, and such skills are reported to improve generated code. But these gains are almost always read off an LLM-as-a-judge, an instrument with documented positional, self-preference, and stylistic biases. We ask: if it appears to help, is the gain from the skill's Popperian content, or from the structure any scaffold imposes? We pre-register a two-tier ablation with three controls: a length-matched placebo, a labels-only scaffold that keeps the Popperian headers but strips the procedure, and an execution oracle (HumanEval+ unit tests), plus a vocabulary-halo sentinel and a same-model self-judge audit. On a frontier model (Claude Sonnet 4.6, N=163) all conditions sit near the benchmark ceiling and do not separate, so the pre-registered +5-point improvement is not supported (a ceiling-limited non-detection). On a small model (Qwen2.5-Coder-0.5B, N=164) structured arms lift best-of-eight correctness by 20-22 points, but the full skill shows no separable benefit over a labels-only scaffold (aggregate F@8=L@8 vs V@8=34.8%), and the placebo trails by only 2.4 points. A 0.5B self-judge applying the Popperian rubric does not beat random selection and concentrates 60% of its picks on one index. In the two settings tested, the skill's Popperian procedural content adds no separable execution-correctness benefit beyond a labels-only scaffold, so the gains track scaffold structure. We contribute a calibrated negative result and a reusable disambiguation protocol; the finding bounds an engineering claim about one prompt-skill family and is not an evaluation of Popperian methodology in general.",
+      "published": "2026-06-04T17:49:00+00:00",
+      "url": "https://arxiv.org/pdf/2606.06454v1",
       "authors": [
-        "Hadar Davidson",
-        "Noam Issachar",
-        "Sagie Benaim"
+        "Mehmet Iscan"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30329v1",
-      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
-      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
-      "published": "2026-05-28T17:57:37+00:00",
-      "url": "https://arxiv.org/pdf/2605.30329v1",
+      "id": "http://arxiv.org/abs/2606.06453v1",
+      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
+      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
+      "published": "2026-06-04T17:48:17+00:00",
+      "url": "https://arxiv.org/pdf/2606.06453v1",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Minghui Liu",
-        "Huy Nghiem",
-        "Furong Huang"
+        "Zhuoming Chen",
+        "Xinrui Zhong",
+        "Qilong Feng",
+        "Ranajoy Sadhukhan",
+        "Yang Zhou",
+        "Michael Qizhe Shieh",
+        "Zhihao Jia",
+        "Beidi Chen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30323v1",
-      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
-      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
-      "published": "2026-05-28T17:56:54+00:00",
-      "url": "https://arxiv.org/pdf/2605.30323v1",
+      "id": "http://arxiv.org/abs/2606.06449v1",
+      "title": "Perverse filtration on Hilbert schemes via upward flow",
+      "summary": "We explicitly compute the perverse Leray filtration on the top cohomology of Hilbert schemes of points on $Σ\\times \\mathbb{C}$, for any connected smooth projective curve $Σ$. The computation is carried out in the natural basis given by the $\\mathbb{C}^*$-upward-flow cycles. The result is described by a simple symmetric-function dictionary: upward-flow classes correspond to products of complete homogeneous symmetric functions, while the perverse-homogeneous basis corresponds to products of Newton power sums, giving an explicit, upper-triangular change-of-basis between the two.",
+      "published": "2026-06-04T17:44:50+00:00",
+      "url": "https://arxiv.org/pdf/2606.06449v1",
       "authors": [
-        "Zhenyu Sun",
-        "Zheng Xu",
-        "Ermin Wei"
+        "Filip Živanović"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30322v1",
-      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
-      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
-      "published": "2026-05-28T17:56:18+00:00",
-      "url": "https://arxiv.org/pdf/2605.30322v1",
+      "id": "http://arxiv.org/abs/2606.06448v1",
+      "title": "Agent Memory: Characterization and System Implications of Stateful Long-Horizon Workloads",
+      "summary": "LLM agents are increasingly deployed on long-horizon tasks requiring sustained reasoning over extended interaction histories. Realizing this at scale requires agents to persistently store, retrieve, and update their own memory across sessions. A rich ecosystem of agent memory systems has emerged spanning flat retrieval, LLM-mediated extraction, consolidating fact stores, and agentic control flows. Yet, their system-level behavior remains uncharacterized. We present the first systems characterization of agent memory. First, we introduce a system-oriented taxonomy classifying agent memory systems along four axes. Second, we build a phase-aware profiling harness attributing cost to construction, retrieval, and generation. Third, we characterize ten representative systems across two benchmark suites, uncovering how design choices shift cost across the write and read paths. Finally, we derive 10 system recommendations covering construction scheduling, capability floors, amortization via query volume, freshness-latency tradeoffs, and fleet-scale management.",
+      "published": "2026-06-04T17:44:18+00:00",
+      "url": "https://arxiv.org/pdf/2606.06448v1",
       "authors": [
-        "David Lindner",
-        "Victoria Krakovna",
-        "Sebastian Farquhar"
+        "Yasmine Omri",
+        "Ziyu Gan",
+        "Zachary Broveak",
+        "Robin Geens",
+        "Zexue He",
+        "Alex Pentland",
+        "Marian Verhelst",
+        "Tsachy Weissman",
+        "Thierry Tambe"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30317v1",
-      "title": "VPG: Visual Prefix Guidance for Autoregressive Image and Video Generation",
-      "summary": "Autoregressive image and video generators are trained with teacher-forced histories but must sample from their own generated prefixes at inference time, making them vulnerable to exposure bias and prefix drift. Existing remedies either modify training or apply sampling-time guidance aimed primarily at external semantic conditions, such as class labels or text prompts, rather than testing whether a next-step prediction provides strong posterior support for the generated prefix itself. We propose Visual Prefix Guidance (VPG), a training-free inference-time guidance method for autoregressive image and video generation. VPG improves next-step prediction by contrasting the model's output under the generated prefix with its output under a corrupted prefix, then extrapolating logits toward candidates that strengthen the posterior support of the generated prefix. Across class-conditional image generation with VAR, text-to-image generation with Infinity, and text-to-video generation with InfinityStar, VPG improves generation quality without retraining the base model, reducing FID on VAR by 0.36 on average and improving benchmark performance on both image and video generation.",
-      "published": "2026-05-28T17:55:06+00:00",
-      "url": "https://arxiv.org/pdf/2605.30317v1",
+      "id": "http://arxiv.org/abs/2606.06431v1",
+      "title": "An inverse source problem for a fully nonlinear elliptic equation",
+      "summary": "We study an inverse source problem for fully nonlinear elliptic equations of the form   \\[   F(D^2u)=f \\quad \\text{in } Ω.   \\]   The question is whether the source term can be recovered from the Dirichlet-to-Neumann map. In two dimensions, the first linearization does not immediately give uniqueness: it leaves a natural conformal ambiguity in the linearized coefficients. For homogeneous nonlinearities $F$ with injective differential $DF$, we show that this ambiguity has a precise meaning at the level of the equation itself, namely that the source is determined up to an explicit scalar factor.   The main point of the paper is to show how this remaining factor can be removed. We use the second linearization to extract information which is invisible at first order, and combine it with an algebraic nondegeneracy condition on the nonlinearity. Under this condition, the residual ambiguity is forced to be trivial, and the Dirichlet-to-Neumann map uniquely determines the source. The result applies, in particular, to homogeneous admissible Hessian equations of Monge--Ampère type and related examples.",
+      "published": "2026-06-04T17:35:42+00:00",
+      "url": "https://arxiv.org/pdf/2606.06431v1",
       "authors": [
-        "Xinyao Liao",
-        "Qiyuan He",
-        "Yicong Li",
-        "Jiayin Zhu",
-        "Xiaoye Qu",
-        "Wei Wei",
-        "Angela Yao"
+        "Ching-Lung Lin",
+        "Yi-Hsuan Lin",
+        "Jenn-Nan Wang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30308v1",
-      "title": "Zero-Scan Data Quality: Leveraging Table Format Metadata for Continuous Observability at Scale",
-      "summary": "Modern table formats such as Apache Iceberg compute and store metadata-commit timestamps, record counts, and column-level statistics such as null counts and value bounds at write time as part of file writing. These statistics serve query planning, yet they overlap substantially with data quality (DQ) monitoring needs. We describe a metadata-first approach that repurposes write-time statistics for continuous DQ observability: anomaly detection, drift monitoring, null-rate tracking; without scanning any data. Deployed at LinkedIn across 200,000+ Iceberg tables (800+ PB), this approach satisfies approximately 60% of user-defined DQ rules at zero marginal compute cost and reduces profiling resource consumption by around 50%. Extending manifest statistics with lightweight counters (sum, zero-value counts, boolean counts) and incrementally mergeable sketches; Theta sketches for distinct counts, KLL sketches for quantiles; can further raise metadata-satisfiable coverage to close to 90% of production DQ rules. We validate sketch accuracy, mergeability, and storage overhead on production data and propose that table formats should store per-file sketches in Puffin sidecar files, following the same store-then-aggregate pattern used for existing manifest statistics.",
-      "published": "2026-05-28T17:52:08+00:00",
-      "url": "https://arxiv.org/pdf/2605.30308v1",
+      "id": "http://arxiv.org/abs/2606.06429v1",
+      "title": "Computational Modeling of Human Adaptation in Urban Infrastructure Management under Extreme Conditions: A Case Study of Subway Flood Scenarios",
+      "summary": "Decision-making in urban infrastructure management during extreme events relies heavily on human operators, yet current computational support systems often fail to account for non-monotonic human adaptation and latent psychological biases like overconfidence and defensive overcorrection. This study addresses this gap by integrating Instance-Based Learning Theory (IBLT) into the domain of civil engineering computing. We establish a computational cognitive architecture that simulates operator decision processes through the mathematical mechanisms of memory retrieval and utility blending. This model functions as a computational baseline, representing boundedly rational adaptation driven by experiential priors, thus allowing for the algorithmic isolation of latent psychological biases from the baseline dynamics of memory-based learning. We demonstrated this framework using a human-in-the-loop microworld experiment simulating subway flood-induced track suspensions, where dispatchers must balance passenger safety against service efficiency. Analysis revealed a complex, non-linear human adaptation cycle consisting of four phases: acquisition, overconfidence, overcorrection, and recalibration. Specifically, the computational model exposed a significant divergence during the post-accident \"overcorrection\" phase: while human operators exhibited immediate, defensive risk overestimation, the model maintained a stable trajectory based on accumulated experience. This strategic divergence confirms that operational instability following failure is often attributable to acute psychological bias overriding stable memory-based adaptation, a pattern theoretically expected to recur across analogous high-stakes environments and validatable through multi-modal behavioral and sensor data from professional operators.",
+      "published": "2026-06-04T17:34:19+00:00",
+      "url": "https://arxiv.org/pdf/2606.06429v1",
       "authors": [
-        "Mohit Verma",
-        "Shantanu Rawat",
-        "Christian Bush",
-        "Sumedh Sakdeo",
-        "Lokesh Amarnath Ravindranathan",
-        "Dwarak Bakshi"
+        "Jinfeng Lou",
+        "Zijie Liang",
+        "Pengkun Liu",
+        "Yuxin Zhang",
+        "Cleotilde Gonzalez",
+        "Pingbo Tang"
       ],
       "source": "arxiv"
     }

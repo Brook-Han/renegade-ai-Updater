@@ -1,148 +1,171 @@
 {
-  "timestamp": 1780115991.3618464,
+  "timestamp": 1780721219.516848,
   "source": "arxiv",
   "query": "AI persuasion belief change experiment",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06491v1",
+      "title": "TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies",
+      "summary": "Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise motion. Yet existing Vision-Language-Action models (VLAs) only inherit a single fixed speed from training demonstrations. Prior efforts to accelerate VLAs through model compression, KV-cache reuse, or reinforcement learning only shift the policy from one fixed speed to another, and leave deceleration almost unexplored. We observe that the magnitude of each predicted action already governs how fast the robot moves, opening a direct route to controllable execution speed. We turn this observation into TempoVLA, a single VLA whose execution speed is controlled by an explicit condition. TempoVLA combines two coupled components. (1) A data-side Variable-Speed Trajectory Augmentation (VSTA) that re-times demonstration to any target speed by merging or splitting actions while preserving its motion semantics. (2) A model-side conditioning mechanism that feeds the speed to the policy. Statistics show that VSTA reaches the requested speed with negligible motion error. Experiments in simulation and on real-world tasks demonstrate that TempoVLA achieves flexible speed control in both directions, while VSTA additionally boosts the default $1\\times$ performance via better data utilization. Furthermore, by cooperating with a large multimodal model, TempoVLA realizes dynamic speed control, accelerating through low-risk phases and decelerating for high-risk ones.",
+      "published": "2026-06-04T17:59:40+00:00",
+      "url": "https://arxiv.org/pdf/2606.06491v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Dong Jing",
+        "Jingchen Nie",
+        "Tianqi Zhang",
+        "Jiaqi Liu",
+        "Huaxiu Yao",
+        "Zhiwu Lu",
+        "Mingyu Ding"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30351v1",
-      "title": "VideoMLA: Low-Rank Latent KV Cache for Minute-Scale Autoregressive Video Diffusion",
-      "summary": "Long-rollout causal video diffusion has converged on a fixed-size sliding-window KV cache, with recent progress innovating within this layout by changing which tokens occupy the window or how their positions are encoded. The per-head KV layout itself, a dominant contributor to streaming memory and latency, has been mostly left unchanged. In this paper, we present the first study of Multi-Head Latent Attention (MLA) in video diffusion. VideoMLA replaces per-head keys and values with a shared low-rank content latent and a shared decoupled 3D-RoPE positional key, reducing per-token KV memory by 92.7% at every cached layer. We further investigate why MLA succeeds in video diffusion even though the spectral assumption often used to motivate it in language models does not hold: pretrained video attention is not low-rank, with 99%-energy effective rank far above any practical latent dimension. VideoMLA retains quality at compression ratios where direct spectral approximation would predict large reconstruction error. We show that the MLA bottleneck, rather than the pretrained spectrum, determines the effective rank: both spectral and random initialization occupy nearly the full rank budget from initialization, and training preserves this budget while adapting within it. On VBench, VideoMLA matches short-horizon streaming video diffusion baselines, achieves the best overall score at long horizons among evaluated methods, and improves throughput by 1.23x on a single B200.",
-      "published": "2026-05-28T17:59:57+00:00",
-      "url": "https://arxiv.org/pdf/2605.30351v1",
+      "id": "http://arxiv.org/abs/2606.06490v1",
+      "title": "Coherent room-temperature dipole synchronization in nanocavity sheets",
+      "summary": "Plasmonic nanocavities enable the synchronization of spatially distant emissive dipoles through strong near-field coupling in sub-nm gaps. We report formation of a room-temperature synchronized dipole state in locally-ordered plasmonic nanogap 2D arrays under non-resonant continuous-wave pumping. Unlike lasers, photonic Bose-Einstein condensates, or exciton-polariton condensates, this system exhibits spatial coherence across the dipoles, while rapid radiative and non-radiative emission suppresses temporal photon coherence. A change of behaviour is observed with increasing pumping, marked by the spatial spread of g(1) coherence, but without spectral narrowing or directional emission. This driven-dissipative system exhibits fast temporal coherence decay and complex spatial correlations, offering a new platform for studying synchronization at room temperature. Combining ultralow mode volumes, high Purcell enhancement, and scalable ambient operation, it opens pathways for novel photonic and quantum technologies.",
+      "published": "2026-06-04T17:59:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.06490v1",
       "authors": [
-        "Hidir Yesiltepe",
-        "Jiazhen Hu",
-        "Tuna Han Salih Meral",
-        "Adil Kaan Akan",
-        "Kaan Oktay",
-        "Hoda Eldardiry",
-        "Pinar Yanardag"
+        "Rakesh Arul",
+        "Piper Fowler-Wright",
+        "Lille Borresen",
+        "Brendon W. Lovett",
+        "Jonathan Keeling",
+        "Jeremy J. Baumberg"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30350v1",
-      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
-      "summary": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language alignment, leaving motion understanding to downstream policies. We introduce DynaFLIP, a dynamics-aware multimodal pre-training framework that pushes motion understanding upstream into perception. We construct image-language-3D flow triplets from heterogeneous human and robot videos, and use these triplets as training-time supervision to shape an image-only encoder. Our key idea is to encourage the three modalities to span a small simplex volume in the shared hyperspherical space -- a smaller simplex volume indicating stronger alignment. To avoid the geometric ambiguity and trivial collapse of naive volume minimization, we combine simplex-volume minimization with a cosine regularizer and a contrastive objective. Our analyses show that DynaFLIP focuses on control-relevant regions critical for manipulation. The resulting dynamics-aware representations serve as reusable visual backbones and consistently outperform baselines across diverse downstream policies, including VLAs. We validate this across diverse simulation and real-world setups, with gains reaching +22.5% under out-of-distribution scenarios. Our results suggest that robot generalization improves when visual representations are trained to encode not just what is present, but how the world changes under action.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30350v1",
+      "id": "http://arxiv.org/abs/2606.06486v1",
+      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
+      "summary": "In this paper, we study regret minimization in repeated games with \\emph{adaptive} opponents who can respond based on histories of play. The standard metric of \\emph{external regret} in online learning is known to fail to capture such adaptivity. To account for players' counterfactual reasoning, we introduce {\\tt Repeated Policy Regret (RP-Regret)}, a game-theoretic metric that measures the difference between the \\emph{realized} and the \\emph{best-in-hindsight} accumulated utility when all players can \\emph{respond} to the history of play. Compared to existing regret notions in this setting, ours is native to repeated game playing, enabling stronger comparators and opponents with fewer constraints, while maintaining the possibility of finding better equilibria when all players minimize it. We first identify necessary conditions for obtaining {\\tt RP-Regret} sublinear in time, on the variation of the player's comparator strategies in the regret definition and on the memories of both the comparator and opponents' strategies. We then study additional conditions and provable algorithms to minimize {\\tt RP-Regret}, which is by definition \\emph{non-convex} in the strategy space. To address this challenge, we propose three algorithms: (i) one based on an optimization oracle, as assumed in some prior work in online non-convex learning; (ii) one that minimizes a convex and \\emph{linearized} surrogate of {\\tt RP-Regret} at each iteration; (iii) one that directly minimizes {\\tt RP-Regret} when opponents change strategies slowly. Furthermore, when all players can run algorithms to minimize the {\\tt RP-Regret} (or its linearized variant), certain subgame perfect equilibria of the repeated game can be learned. We also provide experiments showing that minimizing our regret notions can lead to more cooperative solutions with higher utility in games such as Stag-Hunt.",
+      "published": "2026-06-04T17:59:08+00:00",
+      "url": "https://arxiv.org/pdf/2606.06486v1",
       "authors": [
-        "Jusuk Lee",
-        "Seungjae Lee",
-        "Jonghun Shin",
-        "Hoseong Jung",
-        "Sungha Kim",
-        "Daesol Cho",
-        "H. Jin Kim",
-        "Jia-Bin Huang",
-        "Furong Huang"
+        "Mingyang Liu",
+        "Asuman Ozdaglar",
+        "Tiancheng Yu",
+        "Kaiqing Zhang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30349v1",
-      "title": "AdaState: Self-Evolving Anchors for Streaming Video Generation",
-      "summary": "Autoregressive video diffusion models generate streaming video by producing frames sequentially, conditioning each chunk on previously generated content. These models are structurally anchored to the first frame: its key-value representation occupies a privileged position in the attention cache and serves as the primary scene reference throughout generation. As the cleanest and most error-free position in the cache, this anchor draws disproportionate attention, suppressing video dynamics, and locking scene composition to the initial viewpoint even as the scene naturally evolves. The result is a temporally shallow video in which motion, camera movement, and scene progression are dampened in favor of static consistency. To address this, we replace the static anchor with an adaptive state, a hidden latent that the model denoises alongside content at every chunk but never renders. Rather than referencing a frozen first frame, the model generates its own scene anchor at each step by attending to both the previous state and the current content, producing a reference that evolves with the generated content. Unlike standard video generation, which encodes an absolute notion of time, our formulation treats time as relative: every generation step sees the same positional structure regardless of how far generation has progressed, and the state transition is identical at every chunk. Together, these properties introduce a recurrence into the generation process, where denoising serves as the transition function, and the KV cache serves as the carrier, requiring no external module. Experiments demonstrate that the adaptive state substantially improves video dynamics, enabling richer motion and natural scene progression within generated videos.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30349v1",
+      "id": "http://arxiv.org/abs/2606.06485v1",
+      "title": "PAR3D: A Unified 3D-MLLM with Part-Aware Representation for Scene Understanding",
+      "summary": "Recent advances in 3D multimodal large language models (3D-MLLMs) have enabled unified solutions for 3D scene understanding tasks, including visual question answering, captioning, and referring segmentation. However, existing 3D-MLLMs remain largely object-centric, limiting their ability to model fine-grained part structures that are essential for embodied interaction with 3D environments. In this work, we present PAR3D, a unified part-aware 3D-MLLM framework that enables models to understand, reason about, and ground both objects and their parts in 3D scenes. To enable training and evaluation of part-aware 3D scene understanding, we introduce ScenePart, a synthetic 3D scene dataset with part-level annotations and language instructions. We further develop Part-Aware 3D Representation Learning to enrich 3D visual representations with fine-grained part-level semantics, and propose Hierarchical Segmentation Query Generation to ground part targets via hierarchical object-part queries. Extensive experiments show that our method substantially improves part-level question answering and referring segmentation, while also achieving strong performance across object-level vision-language tasks.",
+      "published": "2026-06-04T17:59:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06485v1",
       "authors": [
-        "Yusuf Dalva",
-        "Pinar Yanardag"
+        "Shaohui Dai",
+        "Yansong Qu",
+        "You Shen",
+        "Shengchuan Zhang",
+        "Liujuan Cao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06481v1",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
+      "published": "2026-06-04T17:58:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06481v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Sondos Mahmoud Bsharat",
+        "Jiacheng Liu",
+        "Xiaohan Zhao",
+        "Tianjun Yao",
+        "Xinyi Shang",
+        "Yi Tang",
+        "Jiacheng Cui",
+        "Ahmed Elhagry",
+        "Salwa K. Al Khatib",
+        "Hao Li",
+        "Salman Khan",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30344v1",
-      "title": "Tiny but Trusted: Efficient Vision-Language Reasoning for Time-Series Anomaly Detection",
-      "summary": "Recent advances in Vision-Language Models (VLMs) have achieved impressive performance across many tasks, yet prior studies report unsatisfactory performance when applying large language or multimodal models to finding abnormal patterns in sequential data. Public anomaly detection benchmarks typically provide interval annotations but not natural-language rationales, making it difficult to fine-tune VLMs to produce grounded, interpretable decisions. To address this gap, we construct VisAnomBench, a curated benchmark built from public time-series datasets and augmented with high-quality anomaly explanations selected from multiple large VLMs using fine-grained, task-specific rewards. Through fine-tuning on this benchmark, we develop VisAnomReasoner, a parameter-efficient VLM for time-series anomaly detection. Experimental results on VisAnomBench show that VisAnomReasoner achieves more accurate anomaly localization and consistently outperforms all baselines, with improvements of at least 21.23 and 23.87 percentage points in precision and F1, respectively. Additional experiments on the TSB-AD-U benchmark demonstrate strong cross-benchmark generalization, with VisAnomReasoner improving precision and F1 by 9.57 and 13.39 percentage points, respectively.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30344v1",
+      "id": "http://arxiv.org/abs/2606.06480v1",
+      "title": "DNQ: Deep Nash Q-Network for Partially Observable n-Player Games",
+      "summary": "Many real-world competitive systems require multiple decision-makers to act simultaneously under shared constraints, limited information, and repeated interaction, as in auctions, resource allocation, and security competition. We study multi-turn simultaneous bidding as a controlled testbed for such problems and propose DNQ, a solver-in-the-loop equilibrium supervision framework for training bidding agents. DNQ alternates between trajectory collection, critic-based payoff estimation, equilibrium computation, and policy imitation. At each visited state, a shared critic predicts either pairwise payoff matrices or an exact N-player payoff tensor, an external solver computes equilibrium strategies, and the agents are trained by minimizing the KL divergence between their masked policies and the solver-derived equilibrium targets. We focus on a scalable pairwise formulation that greatly reduces equilibrium-solving cost and training time compared with the exact formulation, while the shared critic amortizes payoff learning across agents and states. Experiments compare the pairwise and exact variants using critic loss, policy entropy, bidding resource usage, and training cost, showing that the pairwise method scales to larger numbers of agents, whereas the exact method becomes computationally impractical as the joint game grows. These results illustrate the trade-off between strategic fidelity and scalability in repeated competitive environments.",
+      "published": "2026-06-04T17:58:01+00:00",
+      "url": "https://arxiv.org/pdf/2606.06480v1",
       "authors": [
-        "Xiaona Zhou",
-        "Muntasir Wahed",
-        "Tianjiao Yu",
-        "Constantin Brif",
-        "Ismini Lourentzou"
+        "Qintong Xie",
+        "Edward Koh",
+        "Xavier Cadet",
+        "Peter Chin"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30343v1",
-      "title": "Unlocking the Working Memory of Large Language Models for Latent Reasoning",
-      "summary": "To improve the reasoning capabilities of large language models, test-time compute is typically scaled by generating intermediate tokens before the final answer. However, this couples reasoning to autoregressive generation and thereby conflates internal computation with external communication. In contrast, human cognition can use working memory to hold and manipulate information internally without the need to externalize intermediate thoughts. Drawing on this principle, we introduce Reasoning in Memory (RiM), a latent reasoning method that replaces the autoregressive generation of reasoning steps with memory blocks. These memory blocks are fixed sequences of special tokens that unlock the working-memory capacity of large language models. Since they are fixed rather than generated, they can be processed in a single forward pass, enabling compute-efficient latent reasoning. To operationalize these memory blocks, we employ a two-stage curriculum. First, we ground them by predicting explicit reasoning steps after each memory block. Second, we discard this step-level supervision and iteratively refine the final answer after each memory block. Our experiments on reasoning benchmarks show that, across language models of different families and sizes, RiM matches or exceeds existing latent reasoning methods while avoiding the autoregressive generation of thoughts. These results demonstrate that large language models can be trained to use working memory as an effective mechanism for latent reasoning.",
-      "published": "2026-05-28T17:59:49+00:00",
-      "url": "https://arxiv.org/pdf/2605.30343v1",
+      "id": "http://arxiv.org/abs/2606.06479v1",
+      "title": "Pretraining Recurrent Networks without Recurrence",
+      "summary": "Training recurrent neural networks (RNNs) requires assigning credit across long sequences of computations. Standard backpropagation through time (BPTT) addresses this problem poorly: it is sequential in time, limiting parallelism, and suffers from vanishing or exploding gradients, making long-range associations difficult to learn. We propose Supervised Memory Training (SMT), a method for training nonlinear RNNs that sidesteps recurrent credit propagation entirely by reducing RNN training to supervised learning on one-step memory transition labels $(m_t, x_{t+1}) \\rightarrow m_{t+1}$. SMT acquires these memory labels by training a Transformer-based encoder on a predictive state objective--retaining only information from the past necessary to predict the future. By decoupling what to remember from how to update memory, SMT enables time-parallel RNN training with a stable $O(1)$ length gradient path between any two tokens--without ever unrolling the RNN. We find that SMT outperforms BPTT when pretraining various RNN architectures on tasks like language modeling and pixel sequence modeling. SMT enables nonlinear RNNs to better capture long-range dependencies and train in parallel, potentially unlocking the scaling of models that build temporal abstractions of past experience.",
+      "published": "2026-06-04T17:57:33+00:00",
+      "url": "https://arxiv.org/pdf/2606.06479v1",
       "authors": [
-        "Lukas Aichberger",
-        "Sepp Hochreiter"
+        "Akarsh Kumar",
+        "Phillip Isola"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30342v1",
-      "title": "Uncertainty-driven 3D Gaussian Splatting Active Mapping via Anisotropic Visibility Field",
-      "summary": "We present Gaussian Splatting Anisotropic Visibility Field (GAVIS), a novel framework for uncertainty quantification and active mapping in 3DGS. Our key insight is that regions unseen from the training views yield unreliable predictions from the 3DGS. To address this, we introduce a principled and efficient method for quantifying the visibility field in 3DGS, defined as the anisotropic visibility of each particle with respect to the training views, and represented using spherical harmonics. The resulting visibility field is integrated into a Bayesian Network-based uncertainty-aware 3DGS rasterizer, enabling real-time (200 FPS) uncertainty quantification for synthesized views. Active mapping is further performed within a maximum information gain framework building on this formulation. Extensive experiments across diverse environments demonstrate that GAVIS consistently and significantly outperforms prior approaches in both accuracy and efficiency. Moreover, beyond standalone use, our method can be applied post-hoc to improve the performance of existing approaches.",
-      "published": "2026-05-28T17:59:32+00:00",
-      "url": "https://arxiv.org/pdf/2605.30342v1",
+      "id": "http://arxiv.org/abs/2606.06476v1",
+      "title": "Thinking with Imagination: Agentic Visual Spatial Reasoning with World Simulators",
+      "summary": "While Vision-Language Models (VLMs) have shown strong visual reasoning capabilities, their spatial reasoning abilities remain largely constrained to the observed images and text-oriented chain-of-thought. They often struggle to infer unobserved layouts, maintain cross-view consistency, and reason from alternative viewpoints when only limited egocentric observations are available. In this work, we study this problem as thinking with imagination, where a VLM actively acquires imagined visual evidence by interacting with a world simulator during reasoning. We propose Astra, an agentic spatial reasoning framework that empowers VLMs with action-conditioned visual imagination. Specifically, Astra couples Astra-VL, an RL-trained VLM policy, with Astra-WM, a Bagel-based world simulator that generates novel-view observations from context images and natural-language camera motions. To provide reliable imagined evidence, Astra-WM is trained with view consistency tuning to improve pose and content consistency across views. In the RL stage, we propose a world-simulator-in-the-loop two-phase RL curriculum to stabilize tool-use exploration and advance the model's ability to invoke the simulator only when imagined observations improve over direct answering. Experiments demonstrate that both the world simulator and the agentic policy are necessary: Astra-WM improves simulator-augmented Gemini-3-Flash on MMSI-Bench from 45.1 to 49.5, while Astra-VL improves the Qwen3-VL backbone from 29.8 to 38.8 on MMSI-Bench and from 36.8 to 42.7 on MindCube. These results show that imagined observations can provide useful spatial evidence, but effective world-model-augmented reasoning requires learning when, where, and how to imagine.",
+      "published": "2026-06-04T17:56:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.06476v1",
       "authors": [
-        "Shangjie Xue",
-        "Jesse Dill",
-        "Dhruv Ahuja",
-        "Frank Dellaert",
-        "Panagiotis Tsiotras",
-        "Danfei Xu"
+        "Chenming Zhu",
+        "Jingli Lin",
+        "Yilin Long",
+        "Peizhou Cao",
+        "Tai Wang",
+        "Jiangmiao Pang",
+        "Xihui Liu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30338v1",
-      "title": "REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image",
-      "summary": "Reconstructing physically stable 3D scenes from a single RGB image enables casual images to be converted into simulation-ready digital assets for applications such as immersive interaction and content creation. However, existing single-image reconstruction methods fall short in capturing the physical structure of a scene. As a result, they often produce geometrically plausible but physically inconsistent results, including object floating and penetration, which lead to unstable behavior in physics simulations. Image-conditioned scene generation methods improve physical plausibility but often rely on strong scene priors, yielding plausible yet inaccurate object arrangements that fail to match the input image. We propose REST3D, a single-image reconstruction framework that can reconstruct physically stable 3D scenes by integrating physical scene understanding with physics-constrained refinement. We first introduce an agentic physical scene understanding technique that constructs a scene-tree representation capturing object physical states and inter-object relationships from a gravity-support perspective, providing a structural prior for reconstruction. Leveraging this structure, we initialize the scene using image-to-3D models, followed by scene-tree-guided alignment and physics-constrained optimization to resolve physical violations while preserving visual consistency with the input image. Experiments show that our method significantly reduces physical errors and improves simulation stability on both synthetic and real-world datasets while maintaining strong reconstruction quality. We further demonstrate the reconstructed scenes in VR-based human-object interaction, showing their potential for immersive applications.",
-      "published": "2026-05-28T17:59:01+00:00",
-      "url": "https://arxiv.org/pdf/2605.30338v1",
+      "id": "http://arxiv.org/abs/2606.06473v1",
+      "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery",
+      "summary": "Large language model (LLM) agents are increasingly applied to long-horizon tasks such as scientific discovery and machine learning engineering (MLE), where sustained self-evolution becomes a key capability. However, existing MLE agents suffer from inter-branch information isolation, memoryless search, and lack of hierarchical control, which together hinder long-horizon optimization. We present MLEvolve, an LLM-based self-evolving multi-agent framework for end-to-end machine learning algorithm discovery. By extending tree search to Progressive MCGS, MLEvolve enables cross-branch information flow through graph-based reference edges and gradually shifts the search from broad exploration to focused exploitation with an entropy-inspired progressive schedule. To allow the agent to evolve with accumulated experience, we introduce Retrospective Memory, which combines a cold-start domain knowledge base with a dynamic global memory for task-specific experience retrieval and reuse. For stable long-horizon iteration, we further decouple strategic planning from code generation with adaptive coding modes. Evaluation on MLE-Bench shows that MLEvolve achieves state-of-the-art performance across multiple dimensions including average medal rate and valid submission rate under a 12-hour budget (half the standard runtime). Moreover, MLEvolve also outperforms specialized algorithm discovery methods including AlphaEvolve on mathematical algorithm optimization tasks, demonstrating strong cross-domain generalization. Our code is available at https://github.com/InternScience/MLEvolve.",
+      "published": "2026-06-04T17:55:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06473v1",
       "authors": [
-        "Xiaoxuan Ma",
-        "Jiashun Wang",
-        "Nicolas Ugrinovic",
-        "Yehonathan Litman",
-        "Kris Kitani"
+        "Shangheng Du",
+        "Xiangchao Yan",
+        "Jinxin Shi",
+        "Zongsheng Cao",
+        "Shiyang Feng",
+        "Zichen Liang",
+        "Boyuan Sun",
+        "Tianshuo Peng",
+        "Yifan Zhou",
+        "Xin Li",
+        "Jie Zhou",
+        "Liang He",
+        "Bo Zhang",
+        "Lei Bai"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30337v1",
-      "title": "Efficient Test-Time Finetuning of LLMs via Convex Reconstruction and Gradient Caching",
-      "summary": "Test-time finetuning (TTFT) is a rapidly evolving paradigm that adapts a language model to each prompt by retrieving related sequences, updating the model on them, and then evaluating the prompt. However, TTFT is only practical if it is fast: selection and finetuning both happen per query, making each a direct bottleneck. Existing methods trade speed for quality: fast retrieval is often redundant, while stronger diversity-aware selection adds prohibitive per-query cost. We introduce HullFT, a geometric approach to TTFT that addresses both bottlenecks. Given a query, HullFT first represents the query embedding as a sparse convex combination of few training sequences, using efficient projection-free Frank-Wolfe optimization. This yields a support set that is inherently relevant and diverse. We then convert the fractional convex weights into an exact integer multiset for finetuning through a geometric integerization procedure. The resulting multiplicities naturally create repeated examples, which we exploit with Gradient Reuse to amortize forward-backward computation across repeated finetuning steps. Our experiments show that HullFT improves the quality-efficiency tradeoff over current state-of-the-art TTFT methods, achieving lower bits-per-byte at substantially lower total runtime.",
-      "published": "2026-05-28T17:59:01+00:00",
-      "url": "https://arxiv.org/pdf/2605.30337v1",
+      "id": "http://arxiv.org/abs/2606.06467v1",
+      "title": "You Only Index Once: Cross-Layer Sparse Attention with Shared Routing",
+      "summary": "Long-context inference in modern LLMs is increasingly constrained by decoding efficiency, especially in reasoning-heavy settings where models generate long intermediate chains of thought. Existing sparse attention methods often face a practical efficiency-quality trade-off. Structured block sparse methods typically provide stronger acceleration but incur noticeable quality loss, while token sparse methods are usually more accurate yet deliver limited end-to-end speedup because top-k routing over the full cache remains expensive. In this work, we propose cross-layer sparse attention (CLSA), which is built on top of KV-sharing architectures such as YOCO. The core idea is to share not only the KV cache across cross-decoder layers, but also the routing index. A single indexer computes token-level top-k selection once and reuses the resulting index across layers, thereby preserving the fine-grained selectivity of token sparse attention while amortizing the routing overhead. The resulting architecture improves all major inference bottlenecks jointly, including pre-filling, KV-cache storage, and long-context decoding. Experiments across short-context and long-context benchmarks show that CLSA is both accurate and efficient, achieving up to 7.6x decoding speedup and 17.1x overall throughput improvement at 128K context. These results suggest a more complete architectural solution for long-context LLMs that jointly advances model quality and inference efficiency.",
+      "published": "2026-06-04T17:54:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06467v1",
       "authors": [
-        "Alaa Khamis",
-        "Alaa Maalouf"
+        "Yutao Sun",
+        "Yanqi Zhang",
+        "Li Dong",
+        "Jianyong Wang",
+        "Furu Wei"
       ],
       "source": "arxiv"
     }

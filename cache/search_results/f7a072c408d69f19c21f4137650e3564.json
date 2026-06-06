@@ -1,152 +1,155 @@
 {
-  "timestamp": 1780116039.7525368,
+  "timestamp": 1780721272.067868,
   "source": "arxiv",
   "query": "LLM generated text detection academic",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06495v1",
+      "title": "What it takes to solve the Hubble tension through Modifications of Cosmological Recombination II: in light of ACT DR6 and DESI DR2",
+      "summary": "We construct data-driven solutions to the Hubble tension, in light of recent data from the Atacama Cosmology Telescope (ACT DR6) and the Dark Energy Spectroscopic Instrument (DESI DR2). We search for the minimal modification to the recombination history through a time-varying electron mass $m_e(z)$ that increases the best-fit $H_0$ inferred from CMB data toward the SH0ES value, without worsening the fit to the data. Using Planck and ACT data including lensing, we find a perturbative modification to $m_e(z)$ that fully resolves the Hubble tension, with the solution sharing the same qualitative oscillatory structure as in previous work using Planck data alone, demonstrating its robustness to the inclusion of more precise and independent CMB data. As a byproduct, the solution also eases the $S_8$ tension. Once DESI DR2 BAO data are added, however, perturbative modifications to $m_e(z)$ cannot fully resolve the Hubble tension. This reflects the same fundamental limitation: raising $H_0$ by modifying recombination generically lowers $Ω_m$, being inconsistent with late-time cosmological observations.",
+      "published": "2026-06-04T17:59:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06495v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Nanoom Lee",
+        "Tianji Zhou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30354v1",
-      "title": "Quiver Approach to Symmetry Theories",
-      "summary": "Global symmetry anomalies of a quantum field theory (QFT) can be packaged as specific couplings of a higher-dimensional symmetry theory (SymTh). In this work we show that for 5D superconformal field theories (SCFTs) engineered from M-theory backgrounds $X$ a Calabi-Yau cone, this data can be extracted from the path algebra of branes probing $X$. This provides a complementary algebraic approach compared with more geometric computations based on the explicit calculation of triple intersection numbers in a resolved geometry and / or $$-invariants extracted from the boundary geometry $\\partial X$. Our method applies in situations where the counterpart geometric computation is either unknown or combinatorially unwieldy. We illustrate with several toric threefold examples, including orbifolds $\\mathbb{C}^{3} / $ and more general non-orbifold Calabi-Yau cones of Sasaki-Einstein five-manifolds.",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30354v1",
+      "id": "http://arxiv.org/abs/2606.06493v1",
+      "title": "HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled Complementary Teachers",
+      "summary": "For a humanoid robot to be deployed in the real world, the choice of command space (i.e., the interface between task planning and whole-body control) is crucial. Existing whole-body controllers typically demand dense kinematic or spatial references that planners struggle to synthesize from task semantics. We instead propose a compact, explicit interface that is intuitive, general, modular, and expressive enough for diverse manipulation skills. To this end, we introduce HANDOFF, a single humanoid whole-body controller that follows this interface and is distilled via multi-teacher KL distillation under a context-conditioned gating scheme into a mixture-of-experts student from three complementary specialists: whole-body motion tracking with safety-filtered data, locomotion, and fall-recovery. On the Unitree G1, HANDOFF matches state-of-the-art velocity tracking and offers one of the largest robust manipulation workspaces. We further demonstrate hardware feasibility through multiple natural-language-driven task roll-outs, powered by a VLM-driven agentic planner with no task-specific data or controller fine-tuning.",
+      "published": "2026-06-04T17:59:50+00:00",
+      "url": "https://arxiv.org/pdf/2606.06493v1",
       "authors": [
-        "Vivek Chakrabhavi",
-        "Mirjam Cvetič",
-        "Jonathan J. Heckman",
-        "Shani Meynet"
+        "Lizhi Yang",
+        "Junheng Li",
+        "Nehar Poddar",
+        "Yiling Hou",
+        "Gio Huh",
+        "Robert Griffin",
+        "Georgia Gkioxari",
+        "Aaron Ames"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30350v1",
-      "title": "DynaFLIP: Rethinking Robotics Perception via Tri-Modal-Dynamics Guided Representation",
-      "summary": "Robot manipulation critically depends on perception that preserves the action-relevant aspects of a scene. Yet most robot learning pipelines are built upon visual encoders pre-trained for static recognition or vision-language alignment, leaving motion understanding to downstream policies. We introduce DynaFLIP, a dynamics-aware multimodal pre-training framework that pushes motion understanding upstream into perception. We construct image-language-3D flow triplets from heterogeneous human and robot videos, and use these triplets as training-time supervision to shape an image-only encoder. Our key idea is to encourage the three modalities to span a small simplex volume in the shared hyperspherical space -- a smaller simplex volume indicating stronger alignment. To avoid the geometric ambiguity and trivial collapse of naive volume minimization, we combine simplex-volume minimization with a cosine regularizer and a contrastive objective. Our analyses show that DynaFLIP focuses on control-relevant regions critical for manipulation. The resulting dynamics-aware representations serve as reusable visual backbones and consistently outperform baselines across diverse downstream policies, including VLAs. We validate this across diverse simulation and real-world setups, with gains reaching +22.5% under out-of-distribution scenarios. Our results suggest that robot generalization improves when visual representations are trained to encode not just what is present, but how the world changes under action.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30350v1",
+      "id": "http://arxiv.org/abs/2606.06492v1",
+      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
+      "summary": "Code language models need repository-level context to resolve imports, APIs, and project conventions. Existing methods inject this knowledge as long inputs (retrieved through RAG or dependency analysis) or through per-repository fine-tuning and LoRA -- costly at repository scale and brittle to evolving codebases. We introduce Code2LoRA, a hypernetwork framework that generates repository-specific LoRA adapters, effectively injecting repository knowledge with zero inference-time token overhead. Code2LoRA supports two usage scenarios: Code2LoRA-Static converts a single repository snapshot into an adapter, suitable for comprehension of stable codebases; while Code2LoRA-Evo maintains an adapter backed by a GRU hidden state updated per code diff, suitable for active development of evolving codebases. To evaluate Code2LoRA against parameter-efficient fine-tuning baselines, we build RepoPeftBench, a benchmark of 604 Python repositories with two tracks: a static track with 40K training and 12K test assertion-completion tasks, and an evolution track with 215K commit-derived training and 87K commit-derived test tasks. On the static track, Code2LoRA-Static achieves 63.8% cross-repo and 66.2% in-repo exact match, matching the per-repository LoRA upper bound; on the evolution track, Code2LoRA-Evo achieves 60.3% cross-repo exact match (+5.2 pp over a single shared LoRA). Code2LoRA's code can be found at https://anonymous.4open.science/r/code2lora-6857; the model checkpoints and RepoPeftBench datasets can be found at https://huggingface.co/code2lora.",
+      "published": "2026-06-04T17:59:46+00:00",
+      "url": "https://arxiv.org/pdf/2606.06492v1",
       "authors": [
-        "Jusuk Lee",
-        "Seungjae Lee",
-        "Jonghun Shin",
-        "Hoseong Jung",
-        "Sungha Kim",
-        "Daesol Cho",
-        "H. Jin Kim",
-        "Jia-Bin Huang",
-        "Furong Huang"
+        "Liliana Hotsko",
+        "Yinxi Li",
+        "Yuntian Deng",
+        "Pengyu Nie"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30348v1",
-      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
-      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30348v1",
+      "id": "http://arxiv.org/abs/2606.06487v1",
+      "title": "Numerical self-force calculations for scalar particles, formulated in the lab frame",
+      "summary": "We derive equations of motion for scalar particles self-consistently interacting with a scalar field,including the radiation produced by the particles' acceleration. Our approach differs in three key aspects from current methods: (1) we assume a small but finite discretization length scale $h$, which allows us to treat the particle as a small but finite object, (2) we choose the state vector for the system before deriving equations of motion, and (3) we formulate the equations explicitly in the lab frame and not in a manifestly covariant manner. This approach, which is self-consistent, happens to greatly simplify the resulting equations and their derivation, and is directly suitable for numerical calculations. The result is an effective source method which generalizes to electrodynamics or general relativity in a straightforward manner (although we do not consider this here). We then provide two possible discretizations of these equations, based on finite volumes and spectral methods, and show results of one-dimensional calculations. These calculations show excellent agreement with analytic solutions.",
+      "published": "2026-06-04T17:59:09+00:00",
+      "url": "https://arxiv.org/pdf/2606.06487v1",
       "authors": [
-        "Yaxin Luo",
-        "Jiacheng Cui",
-        "Xiaohan Zhao",
-        "Xinyi Shang",
+        "Stamatis Vretinaris",
+        "Erik Schnetter",
+        "Badri Krishnan"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.06485v1",
+      "title": "PAR3D: A Unified 3D-MLLM with Part-Aware Representation for Scene Understanding",
+      "summary": "Recent advances in 3D multimodal large language models (3D-MLLMs) have enabled unified solutions for 3D scene understanding tasks, including visual question answering, captioning, and referring segmentation. However, existing 3D-MLLMs remain largely object-centric, limiting their ability to model fine-grained part structures that are essential for embodied interaction with 3D environments. In this work, we present PAR3D, a unified part-aware 3D-MLLM framework that enables models to understand, reason about, and ground both objects and their parts in 3D scenes. To enable training and evaluation of part-aware 3D scene understanding, we introduce ScenePart, a synthetic 3D scene dataset with part-level annotations and language instructions. We further develop Part-Aware 3D Representation Learning to enrich 3D visual representations with fine-grained part-level semantics, and propose Hierarchical Segmentation Query Generation to ground part targets via hierarchical object-part queries. Extensive experiments show that our method substantially improves part-level question answering and referring segmentation, while also achieving strong performance across object-level vision-language tasks.",
+      "published": "2026-06-04T17:59:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06485v1",
+      "authors": [
+        "Shaohui Dai",
+        "Yansong Qu",
+        "You Shen",
+        "Shengchuan Zhang",
+        "Liujuan Cao"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.06484v1",
+      "title": "Phenomenology of Inflaton-Driven Early QCD Confinement and Solution to Axion Isocurvature Problem",
+      "summary": "We study the phenomenology of early QCD confinement during inflation, driven by a direct coupling between the inflaton and Standard Model gluons. This coupling dynamically raises the QCD confinement scale, making the axion sufficiently heavy to suppress isocurvature perturbations during the CMB epoch. As inflation proceeds, the confinement scale decreases and the axion becomes light, allowing de Sitter fluctuations during the late stages of inflation or post-inflationary thermal fluctuations to generate the observed dark matter abundance. In addition, QCD-induced corrections to the inflationary potential can shift the scalar spectral index towards smaller values, providing a further observational handle. We embed this mechanism in an $α$-attractor model of inflation and explore the resulting parameter space. We show that, in the minimal scenario with reheating into gluons, successful dark matter production requires deconfinement to occur shortly after the CMB window. Extensions involving reheating through heavy right-handed neutrinos generally require large Yukawa couplings, which induce sizable loop corrections that spoil inflationary dynamics. We show that this tension can be resolved in the presence of supersymmetry and derive constraints on the SUSY breaking scale that allow the mechanism to remain viable within plateau models of inflation. Treating the reheat temperature as a free parameter further enlarges the viable parameter space.",
+      "published": "2026-06-04T17:58:43+00:00",
+      "url": "https://arxiv.org/pdf/2606.06484v1",
+      "authors": [
+        "Evangelos I. Sfakianakis",
+        "Barmak Shams Es Haghi",
+        "Katherine Freese"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.06482v1",
+      "title": "Two-Sample Hypothesis Testing for Subspace Equality in Network Data",
+      "summary": "In many settings one is often interested in determining whether two networks share some joint structural connectivity patterns such as communities. However, while communities may be shared across networks, edge probabilities may differ significantly. Therefore, in this paper we consider testing a general null hypothesis that two networks have the same underlying subspace, which in particular includes the setting that communities are the same for either stochastic blockmodels or mixed-membership stochastic blockmodels (even if edge probabilities are different). We propose a test statistic based on the Frobenius norm of the difference of the leading subspace projection matrices, and we prove that our test statistic, after appropriate centering and scaling, converges in distribution to a Gaussian random variable as long as the average expected degree grows at least logarithmically in the number of vertices. We then provide estimators for the asymptotic mean and variance and show consistency under a stronger signal condition, and we give the local power of our test when the networks are sufficiently dense. Our theoretical results are based on a limit theorem for the projection difference of empirical and true eigenvectors which can also be viewed as the one-sample version of our test statistic, and this result may be of independent interest. We demonstrate our results through numerical simulations and an application to US Flight data.",
+      "published": "2026-06-04T17:58:07+00:00",
+      "url": "https://arxiv.org/pdf/2606.06482v1",
+      "authors": [
+        "Rajdeep Brahma",
+        "Joshua Agterberg",
+        "Yuguo Chen"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.06481v1",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
+      "published": "2026-06-04T17:58:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06481v1",
+      "authors": [
+        "Sondos Mahmoud Bsharat",
         "Jiacheng Liu",
-        "Xinyue Bi",
-        "Zhaoyi Li",
+        "Xiaohan Zhao",
+        "Tianjun Yao",
+        "Xinyi Shang",
+        "Yi Tang",
+        "Jiacheng Cui",
+        "Ahmed Elhagry",
+        "Salwa K. Al Khatib",
+        "Hao Li",
+        "Salman Khan",
         "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30349v1",
-      "title": "AdaState: Self-Evolving Anchors for Streaming Video Generation",
-      "summary": "Autoregressive video diffusion models generate streaming video by producing frames sequentially, conditioning each chunk on previously generated content. These models are structurally anchored to the first frame: its key-value representation occupies a privileged position in the attention cache and serves as the primary scene reference throughout generation. As the cleanest and most error-free position in the cache, this anchor draws disproportionate attention, suppressing video dynamics, and locking scene composition to the initial viewpoint even as the scene naturally evolves. The result is a temporally shallow video in which motion, camera movement, and scene progression are dampened in favor of static consistency. To address this, we replace the static anchor with an adaptive state, a hidden latent that the model denoises alongside content at every chunk but never renders. Rather than referencing a frozen first frame, the model generates its own scene anchor at each step by attending to both the previous state and the current content, producing a reference that evolves with the generated content. Unlike standard video generation, which encodes an absolute notion of time, our formulation treats time as relative: every generation step sees the same positional structure regardless of how far generation has progressed, and the state transition is identical at every chunk. Together, these properties introduce a recurrence into the generation process, where denoising serves as the transition function, and the KV cache serves as the carrier, requiring no external module. Experiments demonstrate that the adaptive state substantially improves video dynamics, enabling richer motion and natural scene progression within generated videos.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30349v1",
+      "id": "http://arxiv.org/abs/2606.06477v1",
+      "title": "Complexity-Balanced Diffusion Splitting",
+      "summary": "Standard continuous-time generative models rely on monolithic architectures that must navigate vastly different signal regimes, from isotropic noise to intricate data distributions. While scaling model capacity improves performance, deploying a massive network uniformly across the entire generative timeline is inherently inefficient. In this work, we propose Complexity-Balanced Splitting (CBS), a principled framework for temporal capacity allocation that distributes the generative workload across multiple specialized sub-networks. Grounded in function approximation theory and de Boor's equidistribution principle, CBS partitions the diffusion timeline into segments of equal approximation burden, allocating more representational capacity to regions where the generative dynamics are more difficult to model. To estimate this local complexity, we introduce two complementary and tractable monitor functions: a spatial measure based on the flow's Dirichlet energy, and a geometric measure based on the acceleration of the sampling trajectories. Using a lightweight auxiliary model to estimate these complexity profiles, our approach eliminates the need for heuristic temporal splits or computationally expensive search procedures. Extensive evaluation across multiple architectures (SiT, JiT, and UNet) and datasets demonstrates that CBS consistently improves synthesis quality without increasing per-step inference cost. In particular, CBS improves FID by ~35% on SiT-XL with CFG relative to naive temporal partitioning. Project page is available at https://noamissachar.github.io/CBS/.",
+      "published": "2026-06-04T17:57:15+00:00",
+      "url": "https://arxiv.org/pdf/2606.06477v1",
       "authors": [
-        "Yusuf Dalva",
-        "Pinar Yanardag"
+        "Noam Issachar",
+        "Dani Lischinski",
+        "Raanan Fattal"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30347v1",
-      "title": "NeuROK: Generative 4D Neural Object Kinematics",
-      "summary": "Data-driven approaches have revolutionized 3D vision, enabling transformers to effectively reconstruct and generate static 3D objects. However, generating simulative 4D dynamics -- realistic temporal deformations of static objects under various physical conditions -- remains challenging and often ad hoc, despite its importance in building comprehensive 3D world models. Most existing methods assume a predefined physical model and use system identification to estimate parameters, restricting these methods to specific categories and small-scale datasets. We propose that these restrictions can be overcome by learning a data-driven kinematic state parameterization for object-centric physical systems. Specifically, we learn both a latent space representing all possible states of the object and a decoder that maps any sampled latent to a plausibly deformed shape of the object. We refer to this parameterization as Neural Object Kinematics (NeuROK), and learn a transformer-based encoder-decoder model on a curated large-scale 4D dataset. This formulation and the learned model significantly simplify the generation of simulative dynamics since we only need to consider the dynamics within a low-dimensional latent space from the Lagrangian mechanics' perspective in classical physics. We demonstrate the effectiveness and generality of this neural simulation framework across diverse dynamic object types, showing clear advantages over prior works. Project page: https://chen-geng.com/neurok",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30347v1",
+      "id": "http://arxiv.org/abs/2606.06476v1",
+      "title": "Thinking with Imagination: Agentic Visual Spatial Reasoning with World Simulators",
+      "summary": "While Vision-Language Models (VLMs) have shown strong visual reasoning capabilities, their spatial reasoning abilities remain largely constrained to the observed images and text-oriented chain-of-thought. They often struggle to infer unobserved layouts, maintain cross-view consistency, and reason from alternative viewpoints when only limited egocentric observations are available. In this work, we study this problem as thinking with imagination, where a VLM actively acquires imagined visual evidence by interacting with a world simulator during reasoning. We propose Astra, an agentic spatial reasoning framework that empowers VLMs with action-conditioned visual imagination. Specifically, Astra couples Astra-VL, an RL-trained VLM policy, with Astra-WM, a Bagel-based world simulator that generates novel-view observations from context images and natural-language camera motions. To provide reliable imagined evidence, Astra-WM is trained with view consistency tuning to improve pose and content consistency across views. In the RL stage, we propose a world-simulator-in-the-loop two-phase RL curriculum to stabilize tool-use exploration and advance the model's ability to invoke the simulator only when imagined observations improve over direct answering. Experiments demonstrate that both the world simulator and the agentic policy are necessary: Astra-WM improves simulator-augmented Gemini-3-Flash on MMSI-Bench from 45.1 to 49.5, while Astra-VL improves the Qwen3-VL backbone from 29.8 to 38.8 on MMSI-Bench and from 36.8 to 42.7 on MindCube. These results show that imagined observations can provide useful spatial evidence, but effective world-model-augmented reasoning requires learning when, where, and how to imagine.",
+      "published": "2026-06-04T17:56:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.06476v1",
       "authors": [
-        "Chen Geng",
-        "Guangzhao He",
-        "Yue Gao",
-        "Yunzhi Zhang",
-        "Shangzhe Wu",
-        "Jiajun Wu"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2605.30346v1",
-      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
-      "summary": "As video diffusion models (VDMs) advance toward world models, a key question arises: do they truly understand causality, or merely overfit to statistical temporal patterns? Existing benchmarks mostly rely on synthetic data, limiting real-world generalization due to the sim-to-real gap. We present YoCausal, a two-level benchmark inspired by the Violation of Expectation (VoE) paradigm from cognitive science. By temporally reversing real-world videos at zero cost as natural counterfactual samples, YoCausal establishes an arbitrarily extensible evaluation protocol. Level 1 introduces the Reverse Surprise Index (RSI), quantifying arrow-of-time perception via denoising loss. Level 2 introduces the Causality Cognition Index (CCI), which leverages a VLM to stratify datasets into causal and non-causal subsets, disentangling genuine causal reasoning from temporal bias. Evaluation of 13 state-of-the-art VDMs reveals that perceiving the arrow of time does not imply understanding causality, and a significant gap persists relative to human-level causal cognition.",
-      "published": "2026-05-28T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2605.30346v1",
-      "authors": [
-        "You-Zhe Xie",
-        "Yu-Hsuan Li",
-        "Jie-Ying Lee",
-        "Kaipeng Zhang",
-        "Yu-Lun Liu",
-        "Zhixiang Wang"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
-      "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2605.30344v1",
-      "title": "Tiny but Trusted: Efficient Vision-Language Reasoning for Time-Series Anomaly Detection",
-      "summary": "Recent advances in Vision-Language Models (VLMs) have achieved impressive performance across many tasks, yet prior studies report unsatisfactory performance when applying large language or multimodal models to finding abnormal patterns in sequential data. Public anomaly detection benchmarks typically provide interval annotations but not natural-language rationales, making it difficult to fine-tune VLMs to produce grounded, interpretable decisions. To address this gap, we construct VisAnomBench, a curated benchmark built from public time-series datasets and augmented with high-quality anomaly explanations selected from multiple large VLMs using fine-grained, task-specific rewards. Through fine-tuning on this benchmark, we develop VisAnomReasoner, a parameter-efficient VLM for time-series anomaly detection. Experimental results on VisAnomBench show that VisAnomReasoner achieves more accurate anomaly localization and consistently outperforms all baselines, with improvements of at least 21.23 and 23.87 percentage points in precision and F1, respectively. Additional experiments on the TSB-AD-U benchmark demonstrate strong cross-benchmark generalization, with VisAnomReasoner improving precision and F1 by 9.57 and 13.39 percentage points, respectively.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30344v1",
-      "authors": [
-        "Xiaona Zhou",
-        "Muntasir Wahed",
-        "Tianjiao Yu",
-        "Constantin Brif",
-        "Ismini Lourentzou"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2605.30343v1",
-      "title": "Unlocking the Working Memory of Large Language Models for Latent Reasoning",
-      "summary": "To improve the reasoning capabilities of large language models, test-time compute is typically scaled by generating intermediate tokens before the final answer. However, this couples reasoning to autoregressive generation and thereby conflates internal computation with external communication. In contrast, human cognition can use working memory to hold and manipulate information internally without the need to externalize intermediate thoughts. Drawing on this principle, we introduce Reasoning in Memory (RiM), a latent reasoning method that replaces the autoregressive generation of reasoning steps with memory blocks. These memory blocks are fixed sequences of special tokens that unlock the working-memory capacity of large language models. Since they are fixed rather than generated, they can be processed in a single forward pass, enabling compute-efficient latent reasoning. To operationalize these memory blocks, we employ a two-stage curriculum. First, we ground them by predicting explicit reasoning steps after each memory block. Second, we discard this step-level supervision and iteratively refine the final answer after each memory block. Our experiments on reasoning benchmarks show that, across language models of different families and sizes, RiM matches or exceeds existing latent reasoning methods while avoiding the autoregressive generation of thoughts. These results demonstrate that large language models can be trained to use working memory as an effective mechanism for latent reasoning.",
-      "published": "2026-05-28T17:59:49+00:00",
-      "url": "https://arxiv.org/pdf/2605.30343v1",
-      "authors": [
-        "Lukas Aichberger",
-        "Sepp Hochreiter"
+        "Chenming Zhu",
+        "Jingli Lin",
+        "Yilin Long",
+        "Peizhou Cao",
+        "Tai Wang",
+        "Jiangmiao Pang",
+        "Xihui Liu"
       ],
       "source": "arxiv"
     }

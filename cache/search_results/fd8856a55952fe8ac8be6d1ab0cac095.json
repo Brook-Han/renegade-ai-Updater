@@ -1,139 +1,170 @@
 {
-  "timestamp": 1780116157.9034972,
+  "timestamp": 1780721396.078047,
   "source": "arxiv",
   "query": "recursive self-improvement AI risk",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06491v1",
+      "title": "TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies",
+      "summary": "Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise motion. Yet existing Vision-Language-Action models (VLAs) only inherit a single fixed speed from training demonstrations. Prior efforts to accelerate VLAs through model compression, KV-cache reuse, or reinforcement learning only shift the policy from one fixed speed to another, and leave deceleration almost unexplored. We observe that the magnitude of each predicted action already governs how fast the robot moves, opening a direct route to controllable execution speed. We turn this observation into TempoVLA, a single VLA whose execution speed is controlled by an explicit condition. TempoVLA combines two coupled components. (1) A data-side Variable-Speed Trajectory Augmentation (VSTA) that re-times demonstration to any target speed by merging or splitting actions while preserving its motion semantics. (2) A model-side conditioning mechanism that feeds the speed to the policy. Statistics show that VSTA reaches the requested speed with negligible motion error. Experiments in simulation and on real-world tasks demonstrate that TempoVLA achieves flexible speed control in both directions, while VSTA additionally boosts the default $1\\times$ performance via better data utilization. Furthermore, by cooperating with a large multimodal model, TempoVLA realizes dynamic speed control, accelerating through low-risk phases and decelerating for high-risk ones.",
+      "published": "2026-06-04T17:59:40+00:00",
+      "url": "https://arxiv.org/pdf/2606.06491v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Dong Jing",
+        "Jingchen Nie",
+        "Tianqi Zhang",
+        "Jiaqi Liu",
+        "Huaxiu Yao",
+        "Zhiwu Lu",
+        "Mingyu Ding"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06481v1",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
+      "published": "2026-06-04T17:58:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06481v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Sondos Mahmoud Bsharat",
+        "Jiacheng Liu",
+        "Xiaohan Zhao",
+        "Tianjun Yao",
+        "Xinyi Shang",
+        "Yi Tang",
+        "Jiacheng Cui",
+        "Ahmed Elhagry",
+        "Salwa K. Al Khatib",
+        "Hao Li",
+        "Salman Khan",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30335v1",
-      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
-      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
-      "published": "2026-05-28T17:58:55+00:00",
-      "url": "https://arxiv.org/pdf/2605.30335v1",
+      "id": "http://arxiv.org/abs/2606.06469v1",
+      "title": "How abundant are good interpolators?",
+      "summary": "Let $S$ be the set of unit norm linear classifiers $θ\\in \\mathbb{R}^d$ which correctly classify every point of a labeled dataset $(X_i,y_i)_{i=1}^n$, $X_i \\in \\mathbb{R}^d$, $y_i \\in \\{-1,+1\\}$, with a possibly negative margin $κ$ fixed in advance. Under two natural data-generating distributions of the $(X,y)$ pairs -- a Gaussian mixture model and a logistic model with Gaussian features -- and in the proportional regime $n/d \\to α$ with small enough $α$, we establish a large deviation principle on the event that a point $θ$ chosen uniformly at random from $S$ achieves a given generalization error, with high probability over the choice of the data. The associated large deviation rate function is deterministic and describes the proportion, at the exponential scale in $d$, of interpolating classifiers having a given desired performance. As a consequence, we establish the following concentration phenomenon: all but an exponentially small fraction of interpolating classifiers have approximately the same generalization performance given by the unique maximizer of this rate function.   We numerically compare this maximizer to the performance of empirical risk minimization by gradient descent and to the performance of a natural linear program, both finding a point in $S$, and deduce that in the overparametrized regime of small $α$, these efficient procedures outperform the vast majority of interpolators, pointing to their nontrivial benign overfitting in this setting.",
+      "published": "2026-06-04T17:55:10+00:00",
+      "url": "https://arxiv.org/pdf/2606.06469v1",
       "authors": [
-        "Anany Kotawala"
+        "August Y. Chen",
+        "Ahmed El Alaoui"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30329v1",
-      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
-      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
-      "published": "2026-05-28T17:57:37+00:00",
-      "url": "https://arxiv.org/pdf/2605.30329v1",
+      "id": "http://arxiv.org/abs/2606.06468v1",
+      "title": "Goedel-Architect: Streamlining Formal Theorem Proving with Blueprint Generation and Refinement",
+      "summary": "We introduce Goedel-Architect, an agentic framework for formal theorem proving in Lean 4 centered on blueprint generation and refinement. A blueprint is a dependency graph of definitions and lemmas that builds up to the main theorem. First, Goedel-Architect generates a blueprint of formally stated definitions and lemmas, along with declared dependencies. This blueprint is optionally guided by a natural language proof. Then, a tool-equipped Lean prover component closes each open lemma node in parallel using relevant dependencies. Failed lemmas in turn drive refinement of the global blueprint. This strategy contrasts with other mainstream approaches which use recursive lemma decomposition, and can inefficiently loop on dead-end strategies. Using the open-weight DeepSeek-V4-Flash (284B-A13B) as the backbone, Goedel-Architect attains 99.2% pass@1 on MiniF2F-test and 75.6% pass@1 on PutnamBench. With an optional natural-language proof seeding the initial blueprint on the harder problems, we additionally close the remaining two MiniF2F-test problems (reaching 100%), lift PutnamBench to 88.8% (597/672), and solve 4/6 on IMO 2025, 11/12 on Putnam 2025, and 3/6 on USAMO 2026. This represents state-of-the-art performance for an open-source pipeline at a price point up to 500x less than comparable open-source pipelines.",
+      "published": "2026-06-04T17:54:44+00:00",
+      "url": "https://arxiv.org/pdf/2606.06468v1",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Minghui Liu",
-        "Huy Nghiem",
-        "Furong Huang"
+        "Jui-Hui Chung",
+        "Ziyang Cai",
+        "Zihao Li",
+        "Qishuo Yin",
+        "Rohit Agarwal",
+        "Simon Park",
+        "Rodrigo Porto",
+        "Narutatsu Ri",
+        "Ziran Yang",
+        "Shange Tang",
+        "Xingyu Dang",
+        "Hongzhou Lin",
+        "Mengdi Wang",
+        "Danqi Chen",
+        "Chi Jin",
+        "Liam H Fowl",
+        "Sanjeev Arora"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30323v1",
-      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
-      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
-      "published": "2026-05-28T17:56:54+00:00",
-      "url": "https://arxiv.org/pdf/2605.30323v1",
+      "id": "http://arxiv.org/abs/2606.06462v1",
+      "title": "Benchmark Everything Everywhere All at Once",
+      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
+      "published": "2026-06-04T17:52:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06462v1",
       "authors": [
-        "Zhenyu Sun",
-        "Zheng Xu",
-        "Ermin Wei"
+        "Shiyun Xiong",
+        "Dongming Wu",
+        "Peiwen Sun",
+        "Yuang Ai",
+        "Bokang Yang",
+        "Wencheng Han",
+        "Xiao-Hui Li",
+        "Xiangyu Yue"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30322v1",
-      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
-      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
-      "published": "2026-05-28T17:56:18+00:00",
-      "url": "https://arxiv.org/pdf/2605.30322v1",
+      "id": "http://arxiv.org/abs/2606.06459v1",
+      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
+      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
+      "published": "2026-06-04T17:50:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.06459v1",
       "authors": [
-        "David Lindner",
-        "Victoria Krakovna",
-        "Sebastian Farquhar"
+        "Christie Djidjev",
+        "Nicholas Kaminski"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30303v1",
-      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
-      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
-      "published": "2026-05-28T17:46:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30303v1",
+      "id": "http://arxiv.org/abs/2606.06454v1",
+      "title": "Scaffold, Not Vocabulary? A Controlled, Two-Tier, Pre-Registered Study of a Popperian Code-Generation Skill",
+      "summary": "Large language models increasingly write, review, and judge code, and a fast-growing practice equips them with prompt 'skills' that ask the model to reason like a scientist. A prominent example tells the model to act as a Popperian falsificationist, and such skills are reported to improve generated code. But these gains are almost always read off an LLM-as-a-judge, an instrument with documented positional, self-preference, and stylistic biases. We ask: if it appears to help, is the gain from the skill's Popperian content, or from the structure any scaffold imposes? We pre-register a two-tier ablation with three controls: a length-matched placebo, a labels-only scaffold that keeps the Popperian headers but strips the procedure, and an execution oracle (HumanEval+ unit tests), plus a vocabulary-halo sentinel and a same-model self-judge audit. On a frontier model (Claude Sonnet 4.6, N=163) all conditions sit near the benchmark ceiling and do not separate, so the pre-registered +5-point improvement is not supported (a ceiling-limited non-detection). On a small model (Qwen2.5-Coder-0.5B, N=164) structured arms lift best-of-eight correctness by 20-22 points, but the full skill shows no separable benefit over a labels-only scaffold (aggregate F@8=L@8 vs V@8=34.8%), and the placebo trails by only 2.4 points. A 0.5B self-judge applying the Popperian rubric does not beat random selection and concentrates 60% of its picks on one index. In the two settings tested, the skill's Popperian procedural content adds no separable execution-correctness benefit beyond a labels-only scaffold, so the gains track scaffold structure. We contribute a calibrated negative result and a reusable disambiguation protocol; the finding bounds an engineering claim about one prompt-skill family and is not an evaluation of Popperian methodology in general.",
+      "published": "2026-06-04T17:49:00+00:00",
+      "url": "https://arxiv.org/pdf/2606.06454v1",
       "authors": [
-        "Yallen Bai",
-        "Ploy Thajchayapong",
-        "Ashok Goel"
+        "Mehmet Iscan"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30290v1",
-      "title": "Self-Trained Verification for Training- and Test-Time Self-Improvement",
-      "summary": "Self-improvement at scale has been a longstanding goal for reasoning models, and there are two natural places to do it: at test time, through verification-refinement (V-R) loops; and at training time, through self-training methods. Both are gated by the same bottleneck: the verifier. V-R loops stall when verifier scores inflate while accuracy stagnates, and when feedback is too generic to act on; self-training fails similarly when bad self-generated data are added to training. Better verification would unlock both, but the capability we want to train, i.e., catching self-generated errors, lacks training signal. To address this challenge, we propose self-trained verification (STV). Our key observation is that, while a model cannot catch these errors alone, it can when shown the reference solution. We turn this asymmetry into a supervision target and train the verifier to imitate a more informed version of itself. At test time, STV substantially improves V-R loops on hard problems, while alternatives (e.g., SFT, RL on verifier scores, and even meta-verifiers) do not. STV roughly doubles accuracy on hard math and lifts it 14x on scientific reasoning tasks (1.5% to 21%). At training time, we additionally train the generator using RL with STV verifier's feedback inside the V-R loop - a procedure we call verifier-in-the-loop training (ViL). Starting from an RL-converged generator, ViL yields a further 33% gain in pass@1. More notably, the generator's standalone pass@1, with no verifier at test time, climbs 30% relative past where standard RL had converged. Hence, the next frontier in reasoning on hard problems may lie in how we train for and with verification.",
-      "published": "2026-05-28T17:40:45+00:00",
-      "url": "https://arxiv.org/pdf/2605.30290v1",
+      "id": "http://arxiv.org/abs/2606.06453v1",
+      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
+      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
+      "published": "2026-06-04T17:48:17+00:00",
+      "url": "https://arxiv.org/pdf/2606.06453v1",
       "authors": [
-        "Chen Henry Wu",
-        "Aditi Raghunathan"
+        "Zhuoming Chen",
+        "Xinrui Zhong",
+        "Qilong Feng",
+        "Ranajoy Sadhukhan",
+        "Yang Zhou",
+        "Michael Qizhe Shieh",
+        "Zhihao Jia",
+        "Beidi Chen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30284v1",
-      "title": "ProjectionBench: Evaluating Scientific Hypothesis Generation in LLMs Under Progressive Information Disclosure",
-      "summary": "Scientific discovery is an inherently creative and uncertain process, requiring reasoning beyond the recall of known knowledge. While many benchmarks have been proposed to evaluate large language model (LLM) performance on deep research tasks via multi-hop retrieval, their innovative reasoning abilities essential for true scientific discovery remain largely untested. We introduce a benchmark framework for evaluating model performance in scientific discovery and reasoning, building up from a raw problem to the classical null hypothesis test. In our framework, models initially receive only the topic and research question from a recent paper, with technical details progressively revealed. At each stage of information disclosure, the model is tasked with generating hypotheses that address the research question, which is compared with the conclusions from the original paper and evaluated via automated semantic similarity of constituent atomic claims. This progressive evaluation of semantic divergence from ground-truth conclusions enables assessment of a model's innovativeness (under minimal information) to grounded reasoning capabilities (under full experimental details), both critical for using LLMs for scientific discovery purposes. Our framework provides a foundation for systematically evaluating scientific reasoning and discovery capabilities in LLMs, crucial for advancing the development of next-generation AI scientist/co-scientist systems. Specifically, here we evaluate GPT-5, GPT-5.4, Gemini 2.5 pro, and Gemini 3.1 pro preview across 45 papers spanning bioactive materials, mechanical materials, and nanomaterials. We find that GPT-5.4 and Gemini 3.1 pro outperform their previous generation counterparts as expected, and GPT-5.4 in particular maintains 0.7 F1 score alignment with ground truth conclusions even under minimal context.",
-      "published": "2026-05-28T17:38:19+00:00",
-      "url": "https://arxiv.org/pdf/2605.30284v1",
+      "id": "http://arxiv.org/abs/2606.06443v1",
+      "title": "Revising Context, Shifting Simulated Stance: Auditing LLM-Based Stance Simulation in Online Discussions",
+      "summary": "Large language models are increasingly used to simulate social media users and infer how individuals may respond to online discussions. However, it remains unclear whether these simulations reflect precise user-specific beliefs or whether they are highly sensitive to semantically independent changes in conversational contexts. In this work, we study counterfactual context revision as a framework for auditing LLM-based stance simulation. Given an original online conversation, we first infer a target user's stance toward a specific topic. We then apply controlled revision strategies to the conversational context and simulate the user's stance again under the revised context. We compare text-only revision strategies with a multimodal one that incorporates meme-based context and evaluate two main effectiveness metrics, i.e., average directional stance shift and stance transition rate. The results reveal effective and robust stance transitions in both text-only and multimodal strategies across different polarization-preference mechanisms. Our study contributes an evaluation framework for understanding the context sensitivity of LLM-based stance simulation. More broadly, it highlights both the promise and risk of using LLMs to simulate online opinion dynamics.",
+      "published": "2026-06-04T17:41:54+00:00",
+      "url": "https://arxiv.org/pdf/2606.06443v1",
       "authors": [
-        "A. J. Lew",
-        "Y. Cao",
-        "M. J. Buehler"
+        "Xinnong Zhang",
+        "Wanting Shan",
+        "Hanjia Lyu",
+        "Zhongyu Wei",
+        "Jiebo Luo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30283v1",
-      "title": "mcp-proto-okn: Natural-language access to open scientific knowledge graphs through the Model Context Protocol",
-      "summary": "MCP Server Proto-OKN (mcp-proto-okn) is a Python-based Model Context Protocol server that enables AI assistants to discover, inspect, query and integrate scientific knowledge graphs through natural language. The server provides graph routing, schema inspection, SPARQL execution, ontology expansion, multi-graph querying, and transcript generation, lowering the barrier to cross-domain knowledge graph analysis for biomedical and scientific users.   mcp-proto-okn is implemented in Python using the FastMCP framework and is available at https://github.com/sbl-sdsc/mcp-proto-okn. Documentation, client configuration instructions, and example analysis transcripts are provided in the GitHub repository.",
-      "published": "2026-05-28T17:37:54+00:00",
-      "url": "https://arxiv.org/pdf/2605.30283v1",
+      "id": "http://arxiv.org/abs/2606.06441v1",
+      "title": "Leveraging External Controls for Treatment Switching in Randomized Controlled Trials: A Weighted Causal Inference Framework for Overall Survival",
+      "summary": "In many oncology clinical trials where overall survival is a key endpoint, patients are permitted to switch from the control arm to the experimental treatment arm or other suitable therapies. Switching can occur for various reasons, including disease progression. This violates the causal guarantees of randomized treatment assignment, resulting in biased treatment effect estimates. Existing methods often require strong assumptions, complicated model specifications, or both. In this paper, we propose a general framework that incorporates external controls to account for treatment switching in randomized controlled trials. Leveraging the synthetic control method and balancing weights from observational causal inference, we propose several estimators that use multiple imputation and time-varying weights to adjust for treatment switching. We also discuss approaches to selecting the risk set of external controls to impute from. Through extensive simulation studies, we show that our proposed methods lead to meaningful statistical improvements relative to standard adjustment methods that utilize external controls in naive ways or those that do not utilize external controls at all. We then demonstrate the utility of our external control-based approaches with two phase III oncology trials.",
+      "published": "2026-06-04T17:41:40+00:00",
+      "url": "https://arxiv.org/pdf/2606.06441v1",
       "authors": [
-        "Peter W. Rose",
-        "Benjamin M. Good",
-        "Amanda M. Saravia-Butler",
-        "Charlotte A. Nelson",
-        "James P. Balhoff",
-        "Yaphet Kebede",
-        "Patricia L. Whetzel",
-        "Christopher Bizon",
-        "Andrew I. Su",
-        "Sergio E. Baranzini"
+        "Andy A. Shen",
+        "Chenqi Fu",
+        "Ray Lin"
       ],
       "source": "arxiv"
     }

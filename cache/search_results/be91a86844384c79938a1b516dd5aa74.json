@@ -1,170 +1,148 @@
 {
-  "timestamp": 1780116089.8631063,
+  "timestamp": 1780721324.2919612,
   "source": "arxiv",
   "query": "digital evolution selfish replication",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30348v1",
-      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
-      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30348v1",
+      "id": "http://arxiv.org/abs/2606.06492v1",
+      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
+      "summary": "Code language models need repository-level context to resolve imports, APIs, and project conventions. Existing methods inject this knowledge as long inputs (retrieved through RAG or dependency analysis) or through per-repository fine-tuning and LoRA -- costly at repository scale and brittle to evolving codebases. We introduce Code2LoRA, a hypernetwork framework that generates repository-specific LoRA adapters, effectively injecting repository knowledge with zero inference-time token overhead. Code2LoRA supports two usage scenarios: Code2LoRA-Static converts a single repository snapshot into an adapter, suitable for comprehension of stable codebases; while Code2LoRA-Evo maintains an adapter backed by a GRU hidden state updated per code diff, suitable for active development of evolving codebases. To evaluate Code2LoRA against parameter-efficient fine-tuning baselines, we build RepoPeftBench, a benchmark of 604 Python repositories with two tracks: a static track with 40K training and 12K test assertion-completion tasks, and an evolution track with 215K commit-derived training and 87K commit-derived test tasks. On the static track, Code2LoRA-Static achieves 63.8% cross-repo and 66.2% in-repo exact match, matching the per-repository LoRA upper bound; on the evolution track, Code2LoRA-Evo achieves 60.3% cross-repo exact match (+5.2 pp over a single shared LoRA). Code2LoRA's code can be found at https://anonymous.4open.science/r/code2lora-6857; the model checkpoints and RepoPeftBench datasets can be found at https://huggingface.co/code2lora.",
+      "published": "2026-06-04T17:59:46+00:00",
+      "url": "https://arxiv.org/pdf/2606.06492v1",
       "authors": [
-        "Yaxin Luo",
-        "Jiacheng Cui",
-        "Xiaohan Zhao",
-        "Xinyi Shang",
-        "Jiacheng Liu",
-        "Xinyue Bi",
-        "Zhaoyi Li",
-        "Zhiqiang Shen"
+        "Liliana Hotsko",
+        "Yinxi Li",
+        "Yuntian Deng",
+        "Pengyu Nie"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06478v1",
+      "title": "Short Gravitational-Wave Transients as Probes of Cosmic Domain Walls",
+      "summary": "GW190521 and GW231123 have been reported as short-duration gravitational-wave transients consistent with very massive binary black hole (BBH) coalescences whose inferred parameters, i.e., exceptionally high total masses and spin magnitudes, challenge standard isolated binary stellar evolution. We test a topological dark matter (TDM) interpretation invoking cosmic domain walls by fitting a physically motivated domain wall template to the LIGO Hanford and Livingston strain data. The BBH hypothesis is individually favored, with $\\log_{10}\\mathcal{B}_{\\rm BBH/TDM}=12.2$ and $11.3$ for GW231123 and GW190521, respectively. However, these values are lower than those typically recovered from matched maximum a posteriori BBH waveforms injected into nearby noise segments. We further perform, for the first time, a joint fit in which domain wall signals from a single underlying scalar field are constrained simultaneously by both events. Although not favored over BBH signals, we find the two events are consistent with a common scalar field, with shared TDM parameters agreeing across independent noise realizations and sky locations. We further find that injected TDM transients are systematically recovered under the BBH hypothesis with large spin parameters, revealing a morphological degeneracy that could mask genuine domain wall signals. This analysis demonstrates that multi-event parameter consistency tests provide a new discriminant for domain wall dark matter searches in upcoming observing runs.",
+      "published": "2026-06-04T17:57:18+00:00",
+      "url": "https://arxiv.org/pdf/2606.06478v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Tore Boybeyi",
+        "Doga Veske",
+        "David Maibach"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30338v1",
-      "title": "REST3D: Reconstructing Physically Stable 3D Scenes from a Single Image",
-      "summary": "Reconstructing physically stable 3D scenes from a single RGB image enables casual images to be converted into simulation-ready digital assets for applications such as immersive interaction and content creation. However, existing single-image reconstruction methods fall short in capturing the physical structure of a scene. As a result, they often produce geometrically plausible but physically inconsistent results, including object floating and penetration, which lead to unstable behavior in physics simulations. Image-conditioned scene generation methods improve physical plausibility but often rely on strong scene priors, yielding plausible yet inaccurate object arrangements that fail to match the input image. We propose REST3D, a single-image reconstruction framework that can reconstruct physically stable 3D scenes by integrating physical scene understanding with physics-constrained refinement. We first introduce an agentic physical scene understanding technique that constructs a scene-tree representation capturing object physical states and inter-object relationships from a gravity-support perspective, providing a structural prior for reconstruction. Leveraging this structure, we initialize the scene using image-to-3D models, followed by scene-tree-guided alignment and physics-constrained optimization to resolve physical violations while preserving visual consistency with the input image. Experiments show that our method significantly reduces physical errors and improves simulation stability on both synthetic and real-world datasets while maintaining strong reconstruction quality. We further demonstrate the reconstructed scenes in VR-based human-object interaction, showing their potential for immersive applications.",
-      "published": "2026-05-28T17:59:01+00:00",
-      "url": "https://arxiv.org/pdf/2605.30338v1",
+      "id": "http://arxiv.org/abs/2606.06473v1",
+      "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery",
+      "summary": "Large language model (LLM) agents are increasingly applied to long-horizon tasks such as scientific discovery and machine learning engineering (MLE), where sustained self-evolution becomes a key capability. However, existing MLE agents suffer from inter-branch information isolation, memoryless search, and lack of hierarchical control, which together hinder long-horizon optimization. We present MLEvolve, an LLM-based self-evolving multi-agent framework for end-to-end machine learning algorithm discovery. By extending tree search to Progressive MCGS, MLEvolve enables cross-branch information flow through graph-based reference edges and gradually shifts the search from broad exploration to focused exploitation with an entropy-inspired progressive schedule. To allow the agent to evolve with accumulated experience, we introduce Retrospective Memory, which combines a cold-start domain knowledge base with a dynamic global memory for task-specific experience retrieval and reuse. For stable long-horizon iteration, we further decouple strategic planning from code generation with adaptive coding modes. Evaluation on MLE-Bench shows that MLEvolve achieves state-of-the-art performance across multiple dimensions including average medal rate and valid submission rate under a 12-hour budget (half the standard runtime). Moreover, MLEvolve also outperforms specialized algorithm discovery methods including AlphaEvolve on mathematical algorithm optimization tasks, demonstrating strong cross-domain generalization. Our code is available at https://github.com/InternScience/MLEvolve.",
+      "published": "2026-06-04T17:55:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06473v1",
       "authors": [
-        "Xiaoxuan Ma",
-        "Jiashun Wang",
-        "Nicolas Ugrinovic",
-        "Yehonathan Litman",
-        "Kris Kitani"
+        "Shangheng Du",
+        "Xiangchao Yan",
+        "Jinxin Shi",
+        "Zongsheng Cao",
+        "Shiyang Feng",
+        "Zichen Liang",
+        "Boyuan Sun",
+        "Tianshuo Peng",
+        "Yifan Zhou",
+        "Xin Li",
+        "Jie Zhou",
+        "Liang He",
+        "Bo Zhang",
+        "Lei Bai"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30311v1",
-      "title": "Archon: A Unified Multimodal Model for Holistic Digital Human Generation",
-      "summary": "Digital humans are fundamental to immersive interaction, yet creating a unified model for holistic modalities, including text, audio, motion, and visual content, remains an open challenge. In this paper, we present Archon, a fully pretrained, human-centric unified multimodal model for holistic avatar generation. Archon unifies seven modalities with modality-specific tokenizers, and a native autoregressive unified multimodal model pretrained on synchronized modalities and 72 diverse tasks to model holistic joint distributions. To address the token explosion challenge in high-fidelity talking videos, we introduce a memory-efficient semantic video reparameterization, achieving 4x token reduction while preserving fine-grained dynamics, coupled with a semantic-driven video diffusion decoder. We further propose a \"Thinking in Modality\" that decomposes ambiguous cross-modal tasks into stepwise thinking in an alternative chain of modality, progressively enhancing fidelity and controllability. Extensive experiments demonstrate that Archon achieves superior or comparable performance across diverse digital human generation tasks, validating the effectiveness of our unified framework. Project page: https://zju3dv.github.io/archon/.",
-      "published": "2026-05-28T17:53:27+00:00",
-      "url": "https://arxiv.org/pdf/2605.30311v1",
+      "id": "http://arxiv.org/abs/2606.06472v1",
+      "title": "When positive and negative pairs differ in femtoscopy: residual Coulomb and isospin effects",
+      "summary": "We study charge-dependent modifications of identical-pion and identical-kaon femtoscopic correlation functions from two sources: the residual Coulomb field of the charged source and isospin-related hadronic dynamics. The residual Coulomb effect is modeled with a modified Retiere--Lisa blast-wave source, where the same emitted particles are propagated with positive and negative charge signs through an effective residual field. The residual Coulomb field produces a small but systematic positive-to-negative splitting of the correlation functions, strongest at low $k_T$ and sensitive to the effective charge, spatial width, and expansion velocity of the residual source. It also modifies the height and shape of the correlation function, complicating interpretation of the fitted radii. UrQMD 3.4 cascade calculations for Au+Au collisions at $\\sqrt{s_{NN}}=7.7~\\mathrm{GeV}$ show that charge-dependent splittings can also appear even without a residual Coulomb field. For pions, this difference is mainly driven by the initial isospin composition, while for kaons it is strongly affected by different $K^+$ and $K^-$ production mechanisms and subsequent hadronic evolution. These results show that residual Coulomb and isospin-related effects can compete, and neither can be interpreted reliably without constraining the other within the same model framework.",
+      "published": "2026-06-04T17:55:52+00:00",
+      "url": "https://arxiv.org/pdf/2606.06472v1",
       "authors": [
-        "Chong Bao",
-        "Shichen Liu",
-        "Lijun Yu",
-        "David Futschik",
-        "Stylianos Moschoglou",
-        "Shefali Srivastava",
-        "Ziqian Bai",
-        "Feitong Tan",
-        "Guofeng Zhang",
-        "Zhaopeng Cui",
-        "Sean Fanello",
-        "Yinda Zhang"
+        "Yevheniia Khyzhniak",
+        "Michael Annan Lisa"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30305v1",
-      "title": "Augmented Correlation Functions for Spectroscopic Galaxy Surveys",
-      "summary": "Galaxy redshift surveys encode a wealth of information generated by nonlinear gravitational evolution, galaxy bias, and redshift-space distortions, only part of which is accessible through standard two-point statistics. Motivated by the need for flexible and computationally efficient alternatives, we introduce the augmented correlation function, a general framework in which an arbitrary transformation of the galaxy field defines additional ``latent'' dimensions that extend the standard two-point correlation function and isolate clustering properties averaged out in conventional analyses. As a proof of concept, we study a latent variable constructed from the pairwise gradient of the inverse Laplacian of the galaxy density field, showing that the resulting statistics naturally distinguish clustering regimes associated with infalling and outflowing pairs. Using Fisher forecasts based on $z=1$ halo catalogues from the Quijote simulations within $\\mathrm{CDM}$ cosmology, we find that the augmented correlation systematically yields tighter constraints on all cosmological parameters considered. Although these improvements should be regarded as indicative given the exploratory nature of the analysis and the limitations of Fisher forecasts and simulations, our results demonstrate the potential of augmented correlations as a flexible framework for extracting additional information from spectroscopic galaxy surveys.",
-      "published": "2026-05-28T17:50:30+00:00",
-      "url": "https://arxiv.org/pdf/2605.30305v1",
+      "id": "http://arxiv.org/abs/2606.06457v1",
+      "title": "Dynamical evolution and dissolution timescale of young stellar clusters in the Orion star-forming complex",
+      "summary": "We present a comprehensive analysis of the Orion star-forming complex (OSFC), combining structural, kinematic, and dynamical information to constrain the present-day state and future evolution of its stellar substructures. Using \\textit{Gaia} DR3 astrometry and complementary radial velocities from high-resolution spectroscopic surveys, we derived three-dimensional velocity distributions and structural parameters for 13 young clusters. For the stellar component, we estimated a correction of the present-day mass function for observational incompleteness and calculated the virial state, $α_{\\rm vir}$, finding that all clusters are supervirial. Direct $N$-body simulations initialized from the present-day global parameters and evolved for 300~Myr in a Galactic potential suggest a separation of the OSFC clusters into two regimes: seven clusters with $α_{\\rm vir}\\lesssim 7$ evolve in a Galactic-potential-regulated regime that retains a bound core for $\\gtrsim 170$ Myr as long-lived open clusters, whereas six clusters with $α_{\\rm vir}\\gtrsim 7$ enter an internal-dynamics--dominated regime, dissolving before 120 Myr and rapidly populating the Galactic stellar field. For both regimes, a control test indicates negligible cluster--cluster interactions under current OSFC conditions. Finally, long-lived clusters show low-amplitude modulations in the bound fraction correlated with the Galactic vertical motion, consistent with disk-crossing tidal heating and the temporary recapture of marginal members. These results highlight the OSFC as a natural laboratory where heterogeneous initial conditions give rise to persistent open clusters and dispersing groups.",
+      "published": "2026-06-04T17:50:17+00:00",
+      "url": "https://arxiv.org/pdf/2606.06457v1",
       "authors": [
-        "Davide Bianchi"
+        "Sergio Sánchez-Sanjuán",
+        "Ángeles Pérez-Villegas",
+        "Jesús Hernández",
+        "Luis Aguilar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30303v1",
-      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
-      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
-      "published": "2026-05-28T17:46:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30303v1",
+      "id": "http://arxiv.org/abs/2606.06414v1",
+      "title": "Machine Learning for Predicting the Proton Structure Function $F_2^P$ in QCD",
+      "summary": "We present a comparative study of four supervised machine learning regression algorithms -- Support Vector Regression (SVR), Gradient Boosting Regression (GBR), Gaussian Process Regression (GPR), and Multilayer Perceptron (MLP) -- for predicting the proton structure function $F_2^p(x, Q^2)$ using high-precision BCDMS experimental data. Unlike conventional methods that solve the DGLAP evolution equations, our data-driven framework directly captures the complex nonlinear dynamics of partonic structure. To ensure statistical robustness, we employ $k$-fold cross-validation and perform thorough hyperparameter optimization. Our results show that the MLP and GPR models achieve superior predictive accuracy. In particular, MLP exhibits the highest sensitivity to nonlinear gradients, while SVR proves most stable against experimental uncertainties. The close convergence of training and validation metrics confirms that the models learn the underlying QCD physics without overfitting to statistical fluctuations. This work highlights the potential of ML-based regression as a complementary tool for structure function analysis and kinematic extrapolation in high-energy physics.",
+      "published": "2026-06-04T17:16:07+00:00",
+      "url": "https://arxiv.org/pdf/2606.06414v1",
       "authors": [
-        "Yallen Bai",
-        "Ploy Thajchayapong",
-        "Ashok Goel"
+        "Shahin Atashbar Tehrani",
+        "Elham Astaraki",
+        "Fatemeh Arbabifar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30277v1",
-      "title": "Neural Operator-Based Surrogate Model for CFD:Helical Coil Steam Generator in Small Modular Reactor",
-      "summary": "Real-time thermal-hydraulic simulation is essential for digital twin (DT) technology that supports the safe and efficient operation of small modular reactors (SMRs). Computational fluid dynamics (CFD) provides high-fidelity flow analysis, but its computational cost prevents direct use in DT applications. AI-based surrogate modeling has been actively investigated to address this limitation, yet neural operator--based surrogates for CFD-level transient analysis of SMR-specific geometries have not been reported. This study presents an integrated framework that combines a reduced-order model (ROM) with neural operators, applied to the helical coil steam generator (HCSG) of the System-integrated Modular Advanced Reactor (SMART). Two ROM strategies tailored to each CFD data type were compared, an MLP-based autoencoder (AE) for unstructured mesh data and a convolutional autoencoder (CAE) for structured mesh data, and each was coupled with the deep operator network (DeepONet) to construct the latent DeepONet (L-DeepONet). The Fourier neural operator (FNO) was additionally adopted for comparison. A multi-scale technique was incorporated into both frameworks to mitigate spectral bias and improve the prediction of Krmn vortex streets developing inside the HCSG. The multi-scale L-DeepONet captured the instantaneous periodic vortex dynamics in both velocity and pressure fields, while the FNO and its multi-scale variant predicted the time-averaged mean flow and provided reliable pressure drop estimates. These complementary characteristics provide a practical model-selection guideline that links each architecture to specific DT objectives based on CFD data type and the required level of flow resolution.",
-      "published": "2026-05-28T17:33:22+00:00",
-      "url": "https://arxiv.org/pdf/2605.30277v1",
+      "id": "http://arxiv.org/abs/2606.06404v1",
+      "title": "Smooth horizons from topology change in canonical quantum gravity",
+      "summary": "We propose a resolution of the firewall paradox in JT gravity by incorporating topology change into canonical quantization under relational time evolution. The gravitational Hamiltonian acts on the black hole interior through a pair of pants interaction, mapping between a single interior sector and a connected two interior sector. To describe dynamics in the interior while keeping track of the exterior, we pass to an extended phase space description obtained by splitting the bulk Hilbert space across the event horizon. The split introduces boost edge modes at the horizon, which the Hawking modes become gravitationally dressed to. Covariance of the resulting crossed product algebra provides a precise gravitational realization of the firewall: a one sided boost of the interior edge mode relative to the exterior holding the matter fixed, or equivalently, a relative phase between the interior and exterior Hawking partners holding the edge modes fixed. Although each topology changing transition is exponentially suppressed, evolution over a Page time causes the connected two interior branch to dominate. One of these is the naive semiclassical interior, which we show carries a nontrivial one sided boost upon gluing the interior back to the exterior, and hence a firewall. The other interior is shown to be a zero mode of the one sided boost generator. Gluing the interior back to the exterior quotients by the gravitational constraints, which annihilates the firewall branch. On the surviving branch, we show the horizon vacuum measurement and the early radiation purity measurement become the same Dirac observable. Equivalently, we show that Page time dynamics induces a large diffeomorphism on the connected branch under which the operator algebra of the interior Hawking partner and that of the decoded early radiation are identified.",
+      "published": "2026-06-04T17:09:30+00:00",
+      "url": "https://arxiv.org/pdf/2606.06404v1",
       "authors": [
-        "Minseo Lee",
-        "Seongmin Oh",
-        "Chaehyeon Song",
-        "Bumjin Cho",
-        "Shilaj Baral",
-        "Sangam Khanal",
-        "Minseop Song",
-        "Joongoo Jeon"
+        "Venkatesa Chandrasekaran"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30275v1",
-      "title": "Digitally enriching a screening population for pancreatic cancer using routine blood-based measures and clinical histories",
-      "summary": "Earlier detection of pancreatic cancer is key to enabling wider access to curative treatment and reducing cancer deaths; however, screening is presently not viable. Latent indicators of pathology are evident in an individual's disease and blood test trajectories and may predict the development of pancreatic cancer. Longitudinal sequences of coded diagnoses and blood test values accrued by patients throughout their clinical interactions were used to train a custom Transformer-based neural network with a multi-head attention mechanism to predict risk of pancreatic cancer with a multi-year lead time and risk-stratify populations for targeted screening. The cohort comprised 6,017 adults with pancreatic cancer and 177,081 controls (overall median age 75, 45% female) with median 12 years (interquartile range 6.9-16.2) of medical history prior to pancreatic cancer diagnosis. External validation via leave-one-site-out, out-of-sample testing predicting pancreatic cancer 1-, 2-, and 3-years prior to diagnosis demonstrated mean area under the receiver operating characteristic of 0.837 (95% confidence interval 0.827-0.848), 0.797 (95% confidence interval 0.782-0.813), and 0.760 (95% confidence interval 0.745-0.776), respectively. Estimated pancreatic cancer risks were well-calibrated (calibration plot slope 1.08, intercept of -0.077; Brier score 0.025), and a Bayesian population pancreatic cancer prevalence update allows estimated cancer risk outputs to be transportable across settings. At testing, a screening threshold of >3.3% risk of pancreatic cancer in 1-year offered a diagnostic odds ratio of 18.2. Our work therefore lays the foundation for a first population-level digital enrichment tool to widen access to curative-intent management of pancreatic cancer.",
-      "published": "2026-05-28T17:32:29+00:00",
-      "url": "https://arxiv.org/pdf/2605.30275v1",
+      "id": "http://arxiv.org/abs/2606.06375v1",
+      "title": "Rethinking Infrastructure Inspection as Image Difference Classification: A Traffic Sign Case Study",
+      "summary": "Digital twins (DTs) allow the digitalization of road infrastructure inspection, though this is hindered by limited annotated data. This work exploits the relational nature of continuous asset condition monitoring to reformulate image-based defect detection as image difference classification (IDC) to reduce data reliance. This was evaluated in a case study on low-resource traffic sign inspection with different IDC classifiers using a newly-curated, high quality dataset. Results indicate that the instruction-based classifier outperforms encoder-based ones and gains from comparison with reference images. This shows that IDC can be an effective task modeling for tackling data constraints in infrastructure inspection and DT asset condition updating.",
+      "published": "2026-06-04T16:43:30+00:00",
+      "url": "https://arxiv.org/pdf/2606.06375v1",
       "authors": [
-        "Chris Varghese",
-        "Leo Y. Li-Han",
-        "Richa Bisht",
-        "Ellen Larson",
-        "Frank Lee",
-        "Ryan M. Carr",
-        "Tanios S. Bekaii-Saab",
-        "Shounak Majumder",
-        "John D. Halamka",
-        "Mark Truty",
-        "Ajit H. Goenka",
-        "Hojjat Salehinejad",
-        "Cornelius A. Thiels"
+        "Ching Yau Fergus Mok",
+        "Lavindra de Silva",
+        "Varun Kumar Reja",
+        "Ioannis Brilakis"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30271v1",
-      "title": "Quantum Synchronization of Fock States",
-      "summary": "Synchronization, a ubiquitous phenomenon in classical systems, has recently been extended to the quantum domain. Here, we show quantum synchronization of a bosonic mode exhibiting a Fock state-like limit cycle, manifesting as a steady state with a negative Wigner function. We demonstrate that this non-classical state can be phase-locked to an external drive, achieving synchronization within an Arnold tongue regime. We argue that synchronization is a dynamical property and fundamentally tied to the suppression of phase slips, which we show to occur with exponentially decreasing probability. We introduce a novel method to extract the phase slip rate from the Lindblad time evolution of the system. This work opens new avenues for understanding and manipulating non-classical synchronization dynamics.",
-      "published": "2026-05-28T17:30:07+00:00",
-      "url": "https://arxiv.org/pdf/2605.30271v1",
+      "id": "http://arxiv.org/abs/2606.06371v1",
+      "title": "Evolution of Realistic Neutron star in the framework of f (Q) gravity",
+      "summary": "This work analyses and evaluates a few realistic compact objects in the presence of a gravitational interaction between two particles with a nonmetricity $Q$. In the $f(Q)$ gravity framework, we have selected the anisotropic equation of motion and have determined $f(Q)$ to be a linear function of nonmetricity $Q$. To evaluate the field equations in our work, we have opted to employ the Krori-Barua metric. We calculated the anisotropic factor for each of the four compact objects and found that the anisotropic component is positive and increases monotonically and interpreted that the nuclear force can oppose the gravitational attraction. At last, the relationship between mass and radius has been determined and illustrated visually. We have noted that the compactness of the pulsars LMC X-4, SMC X-4, Cen X-3, and Vela X-1 is inside the Buchdahl's limit for varying values of $a$. This has led to the interpretation that these pulsars are neutron stars in a modified gravity background of $f(Q)$. In addition, we calculated the model mass and, using thirty distinct choices of $a$, ran the Chi-Square test to see if there was a noticeable difference between the observed and model-generated masses. We have also looked at how the surface redshift has changed over time and whether the compact objects in our model that were previously described are compact.",
+      "published": "2026-06-04T16:38:21+00:00",
+      "url": "https://arxiv.org/pdf/2606.06371v1",
       "authors": [
-        "Fabian Hassler",
-        "David Scheer",
-        "Samah Saquaque",
-        "Steven Kim"
+        "Samprity Das",
+        "Surajit Chattopadhyay"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30252v1",
-      "title": "Quantum optimization beyond QUBO for industrial logistics and scheduling",
-      "summary": "The increasing complexity of industrial scheduling and transport routing problems motivates the study of alternative optimization formulations and computational paradigms. In this work, we study how higher-order unconstrained binary optimization (HUBO) formulations of such problems map onto quantum optimization workflows in both noisy and fault-tolerant regimes. We consider three representative logistics and manufacturing use cases and formulate each as a HUBO problem. This captures process intricacies, such as highly correlated assembly-line scheduling rules, which are difficult to express faithfully with the standard quadratic (QUBO) form, while at the same time reducing the number of binary variables required in the quantum mapping, thus lowering qubit demand. We compare the HUBO formulations with corresponding QUBO encodings, highlighting a key trade-off: while HUBO reduces qubit requirements through compact binary encoding, it introduces higher-order interaction terms that increase circuit depth, limiting feasibility on current quantum hardware. The proposed formulations are validated using classical solvers across several problem instances and benchmark small routing problem instances using bias-field digitized counterdiabatic quantum optimization in classical simulation. We complement these results with a resource and scalability analysis, focusing on the capacitated vehicle routing problem as a representative large-scale industrial use case. Our analysis indicates that while HUBO formulations offer advantages in qubit scaling compared to QUBO encodings, their practical implementation is constrained by gate fidelity, coherence, and circuit depth, making hybrid quantum-classical workflows and early fault-tolerant quantum hardware the most plausible settings for their practical use.",
-      "published": "2026-05-28T17:15:46+00:00",
-      "url": "https://arxiv.org/pdf/2605.30252v1",
+      "id": "http://arxiv.org/abs/2606.06354v1",
+      "title": "Credential Disclosure in (EU) Digital Identity Wallets: Privacy Risks and Practical Mitigations",
+      "summary": "The European Union will introduce the EUDI Wallet by late 2026, which allows users to hold digital credentials (i.e., representations of physical official identity documents) on their devices. This will allow users to securely and privately disclose identity attributes to websites. Although such a system has many benefits, it also introduces risks caused by poor credential disclosure decisions. In this paper, we (i) conduct a large-scale survey on credential disclosure with users and experts and (ii) evaluate the effectiveness and feasibility of our Credential Assistant that displays expert recommendations and user opinions. Our results show that users are likely to overshare (e.g., ~20% of users disclosed their official ID to news websites). This indicates that users struggle to protect their privacy, which will impact the usability of the EUDI Wallet and lead to privacy violations, identity theft, and other abuses of leaked credentials. Finally, we show that our Credential Assistant significantly reduces users' credential disclosure mistakes from ~15% to ~7%. However, it does not fully eliminate poor credential disclosure decisions, indicating that stronger interventions may be necessary, especially for sensitive attributes.",
+      "published": "2026-06-04T16:22:44+00:00",
+      "url": "https://arxiv.org/pdf/2606.06354v1",
       "authors": [
-        "Juan F. R. Hernandez",
-        "Pavle Nikacevic",
-        "Enrique Solano",
-        "Chinonso Onah",
-        "Agneev Guin",
-        "Arne-Christian Voigt",
-        "Archismita Dalal"
+        "Sheila Zingg",
+        "Daniele Lain",
+        "Yoshimichi Nakatsuka",
+        "Kari Kostiainen",
+        "Stefan Bechtold",
+        "Srdjan Čapkun"
       ],
       "source": "arxiv"
     }

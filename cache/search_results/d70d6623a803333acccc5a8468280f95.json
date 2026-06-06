@@ -1,155 +1,157 @@
 {
-  "timestamp": 1780115997.4443576,
+  "timestamp": 1780721225.891178,
   "source": "arxiv",
   "query": "automation bias high stakes decision",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30354v1",
-      "title": "Quiver Approach to Symmetry Theories",
-      "summary": "Global symmetry anomalies of a quantum field theory (QFT) can be packaged as specific couplings of a higher-dimensional symmetry theory (SymTh). In this work we show that for 5D superconformal field theories (SCFTs) engineered from M-theory backgrounds $X$ a Calabi-Yau cone, this data can be extracted from the path algebra of branes probing $X$. This provides a complementary algebraic approach compared with more geometric computations based on the explicit calculation of triple intersection numbers in a resolved geometry and / or $$-invariants extracted from the boundary geometry $\\partial X$. Our method applies in situations where the counterpart geometric computation is either unknown or combinatorially unwieldy. We illustrate with several toric threefold examples, including orbifolds $\\mathbb{C}^{3} / $ and more general non-orbifold Calabi-Yau cones of Sasaki-Einstein five-manifolds.",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30354v1",
+      "id": "http://arxiv.org/abs/2606.06491v1",
+      "title": "TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies",
+      "summary": "Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise motion. Yet existing Vision-Language-Action models (VLAs) only inherit a single fixed speed from training demonstrations. Prior efforts to accelerate VLAs through model compression, KV-cache reuse, or reinforcement learning only shift the policy from one fixed speed to another, and leave deceleration almost unexplored. We observe that the magnitude of each predicted action already governs how fast the robot moves, opening a direct route to controllable execution speed. We turn this observation into TempoVLA, a single VLA whose execution speed is controlled by an explicit condition. TempoVLA combines two coupled components. (1) A data-side Variable-Speed Trajectory Augmentation (VSTA) that re-times demonstration to any target speed by merging or splitting actions while preserving its motion semantics. (2) A model-side conditioning mechanism that feeds the speed to the policy. Statistics show that VSTA reaches the requested speed with negligible motion error. Experiments in simulation and on real-world tasks demonstrate that TempoVLA achieves flexible speed control in both directions, while VSTA additionally boosts the default $1\\times$ performance via better data utilization. Furthermore, by cooperating with a large multimodal model, TempoVLA realizes dynamic speed control, accelerating through low-risk phases and decelerating for high-risk ones.",
+      "published": "2026-06-04T17:59:40+00:00",
+      "url": "https://arxiv.org/pdf/2606.06491v1",
       "authors": [
-        "Vivek Chakrabhavi",
-        "Mirjam Cvetič",
-        "Jonathan J. Heckman",
-        "Shani Meynet"
+        "Dong Jing",
+        "Jingchen Nie",
+        "Tianqi Zhang",
+        "Jiaqi Liu",
+        "Huaxiu Yao",
+        "Zhiwu Lu",
+        "Mingyu Ding"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30348v1",
-      "title": "LLMSurgeon: Diagnosing Data Mixture of Large Language Models",
-      "summary": "The pretraining data mixture of Large Language Models (LLMs) constitutes their \"digital DNA\", shaping model behaviors, capabilities, and failure modes. Yet this composition is rarely disclosed, making post-hoc auditing of data combination or provenance difficult. In this work, we formalize $\\textbf{Data Mixture Surgery (DMS)}$: given only generated text from a target LLM, estimate the domain-level distribution of its pretraining corpus under a predefined taxonomy. We propose $\\textbf{LLMSurgeon}$, a strong framework that casts DMS as an inverse problem under the label-shift assumption. Rather than directly aggregating classifier outputs, LLMSurgeon estimates a calibrated $\\textit{soft}$ confusion matrix and solves a constrained inverse problem to correct systematic domain confusion and recover the latent mixture prior. To evaluate, we introduce $\\textbf{LLMScan}$, a recipe-verifiable evaluation suite built from open-source LLMs with transparent pretraining mixtures. Across LLMScan, LLMSurgeon recovers domain mixtures with high fidelity under fixed protocols. Our work presents a practical, post-hoc approach for auditing the digital DNA of foundation models without access to their training data.",
-      "published": "2026-05-28T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30348v1",
+      "id": "http://arxiv.org/abs/2606.06490v1",
+      "title": "Coherent room-temperature dipole synchronization in nanocavity sheets",
+      "summary": "Plasmonic nanocavities enable the synchronization of spatially distant emissive dipoles through strong near-field coupling in sub-nm gaps. We report formation of a room-temperature synchronized dipole state in locally-ordered plasmonic nanogap 2D arrays under non-resonant continuous-wave pumping. Unlike lasers, photonic Bose-Einstein condensates, or exciton-polariton condensates, this system exhibits spatial coherence across the dipoles, while rapid radiative and non-radiative emission suppresses temporal photon coherence. A change of behaviour is observed with increasing pumping, marked by the spatial spread of g(1) coherence, but without spectral narrowing or directional emission. This driven-dissipative system exhibits fast temporal coherence decay and complex spatial correlations, offering a new platform for studying synchronization at room temperature. Combining ultralow mode volumes, high Purcell enhancement, and scalable ambient operation, it opens pathways for novel photonic and quantum technologies.",
+      "published": "2026-06-04T17:59:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.06490v1",
       "authors": [
-        "Yaxin Luo",
-        "Jiacheng Cui",
-        "Xiaohan Zhao",
-        "Xinyi Shang",
-        "Jiacheng Liu",
-        "Xinyue Bi",
-        "Zhaoyi Li",
-        "Zhiqiang Shen"
+        "Rakesh Arul",
+        "Piper Fowler-Wright",
+        "Lille Borresen",
+        "Brendon W. Lovett",
+        "Jonathan Keeling",
+        "Jeremy J. Baumberg"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30346v1",
-      "title": "YoCausal: How Far is Video Generation from World Model? A Causality Perspective",
-      "summary": "As video diffusion models (VDMs) advance toward world models, a key question arises: do they truly understand causality, or merely overfit to statistical temporal patterns? Existing benchmarks mostly rely on synthetic data, limiting real-world generalization due to the sim-to-real gap. We present YoCausal, a two-level benchmark inspired by the Violation of Expectation (VoE) paradigm from cognitive science. By temporally reversing real-world videos at zero cost as natural counterfactual samples, YoCausal establishes an arbitrarily extensible evaluation protocol. Level 1 introduces the Reverse Surprise Index (RSI), quantifying arrow-of-time perception via denoising loss. Level 2 introduces the Causality Cognition Index (CCI), which leverages a VLM to stratify datasets into causal and non-causal subsets, disentangling genuine causal reasoning from temporal bias. Evaluation of 13 state-of-the-art VDMs reveals that perceiving the arrow of time does not imply understanding causality, and a significant gap persists relative to human-level causal cognition.",
-      "published": "2026-05-28T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2605.30346v1",
+      "id": "http://arxiv.org/abs/2606.06484v1",
+      "title": "Phenomenology of Inflaton-Driven Early QCD Confinement and Solution to Axion Isocurvature Problem",
+      "summary": "We study the phenomenology of early QCD confinement during inflation, driven by a direct coupling between the inflaton and Standard Model gluons. This coupling dynamically raises the QCD confinement scale, making the axion sufficiently heavy to suppress isocurvature perturbations during the CMB epoch. As inflation proceeds, the confinement scale decreases and the axion becomes light, allowing de Sitter fluctuations during the late stages of inflation or post-inflationary thermal fluctuations to generate the observed dark matter abundance. In addition, QCD-induced corrections to the inflationary potential can shift the scalar spectral index towards smaller values, providing a further observational handle. We embed this mechanism in an $α$-attractor model of inflation and explore the resulting parameter space. We show that, in the minimal scenario with reheating into gluons, successful dark matter production requires deconfinement to occur shortly after the CMB window. Extensions involving reheating through heavy right-handed neutrinos generally require large Yukawa couplings, which induce sizable loop corrections that spoil inflationary dynamics. We show that this tension can be resolved in the presence of supersymmetry and derive constraints on the SUSY breaking scale that allow the mechanism to remain viable within plateau models of inflation. Treating the reheat temperature as a free parameter further enlarges the viable parameter space.",
+      "published": "2026-06-04T17:58:43+00:00",
+      "url": "https://arxiv.org/pdf/2606.06484v1",
       "authors": [
-        "You-Zhe Xie",
-        "Yu-Hsuan Li",
-        "Jie-Ying Lee",
-        "Kaipeng Zhang",
-        "Yu-Lun Liu",
-        "Zhixiang Wang"
+        "Evangelos I. Sfakianakis",
+        "Barmak Shams Es Haghi",
+        "Katherine Freese"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30344v1",
-      "title": "Tiny but Trusted: Efficient Vision-Language Reasoning for Time-Series Anomaly Detection",
-      "summary": "Recent advances in Vision-Language Models (VLMs) have achieved impressive performance across many tasks, yet prior studies report unsatisfactory performance when applying large language or multimodal models to finding abnormal patterns in sequential data. Public anomaly detection benchmarks typically provide interval annotations but not natural-language rationales, making it difficult to fine-tune VLMs to produce grounded, interpretable decisions. To address this gap, we construct VisAnomBench, a curated benchmark built from public time-series datasets and augmented with high-quality anomaly explanations selected from multiple large VLMs using fine-grained, task-specific rewards. Through fine-tuning on this benchmark, we develop VisAnomReasoner, a parameter-efficient VLM for time-series anomaly detection. Experimental results on VisAnomBench show that VisAnomReasoner achieves more accurate anomaly localization and consistently outperforms all baselines, with improvements of at least 21.23 and 23.87 percentage points in precision and F1, respectively. Additional experiments on the TSB-AD-U benchmark demonstrate strong cross-benchmark generalization, with VisAnomReasoner improving precision and F1 by 9.57 and 13.39 percentage points, respectively.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30344v1",
+      "id": "http://arxiv.org/abs/2606.06480v1",
+      "title": "DNQ: Deep Nash Q-Network for Partially Observable n-Player Games",
+      "summary": "Many real-world competitive systems require multiple decision-makers to act simultaneously under shared constraints, limited information, and repeated interaction, as in auctions, resource allocation, and security competition. We study multi-turn simultaneous bidding as a controlled testbed for such problems and propose DNQ, a solver-in-the-loop equilibrium supervision framework for training bidding agents. DNQ alternates between trajectory collection, critic-based payoff estimation, equilibrium computation, and policy imitation. At each visited state, a shared critic predicts either pairwise payoff matrices or an exact N-player payoff tensor, an external solver computes equilibrium strategies, and the agents are trained by minimizing the KL divergence between their masked policies and the solver-derived equilibrium targets. We focus on a scalable pairwise formulation that greatly reduces equilibrium-solving cost and training time compared with the exact formulation, while the shared critic amortizes payoff learning across agents and states. Experiments compare the pairwise and exact variants using critic loss, policy entropy, bidding resource usage, and training cost, showing that the pairwise method scales to larger numbers of agents, whereas the exact method becomes computationally impractical as the joint game grows. These results illustrate the trade-off between strategic fidelity and scalability in repeated competitive environments.",
+      "published": "2026-06-04T17:58:01+00:00",
+      "url": "https://arxiv.org/pdf/2606.06480v1",
       "authors": [
-        "Xiaona Zhou",
-        "Muntasir Wahed",
-        "Tianjiao Yu",
-        "Constantin Brif",
-        "Ismini Lourentzou"
+        "Qintong Xie",
+        "Edward Koh",
+        "Xavier Cadet",
+        "Peter Chin"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30332v1",
-      "title": "Colored Noise Diffusion Sampling",
-      "summary": "Diffusion models achieve state-of-the-art image synthesis, with their generative trajectories fundamentally exhibiting a spectral bias, resolving low-frequency global structures early and high-frequency fine details later. Conventional stochastic differential equation (SDE) solvers fail to account for this dynamic, naively injecting uniform white noise throughout the entire process and misusing the finite energy budget. In this work, we establish a mathematical framework that reconsiders SDE inference as a targeted, frequency-decoupled energy transfer. Leveraging this framework, we introduce Colored Noise Sampling (CNS), a novel, training-free stochastic solver. Rather than injecting uniform white noise, CNS utilizes a dynamic, timestep- and frequency-dependent schedule that more efficiently allocates injected energy toward structurally unresolved frequency bands. By actively exploiting the model's inherent spectral bias, CNS systematically steers the generated distribution toward the true data manifold. Extensive experiments demonstrate that CNS significantly outperforms standard ODE and SDE baselines as a strictly plug-and-play, inference-time sampler substitution across diverse architectures (SiT, JiT, FLUX). Compared to standard sampling on ImageNet-256, CNS achieves substantial unguided FID reductions, improving from 8.26 to 6.27 on SiT-XL/2, 32.39 to 26.69 on JiT-B/16, and 11.88 to 8.31 on JiT-H/16, while yielding consistent relative FID improvements with Classifier-Free Guidance. Project page is available at https://hadardavidson.github.io/CNS/.",
-      "published": "2026-05-28T17:58:13+00:00",
-      "url": "https://arxiv.org/pdf/2605.30332v1",
+      "id": "http://arxiv.org/abs/2606.06478v1",
+      "title": "Short Gravitational-Wave Transients as Probes of Cosmic Domain Walls",
+      "summary": "GW190521 and GW231123 have been reported as short-duration gravitational-wave transients consistent with very massive binary black hole (BBH) coalescences whose inferred parameters, i.e., exceptionally high total masses and spin magnitudes, challenge standard isolated binary stellar evolution. We test a topological dark matter (TDM) interpretation invoking cosmic domain walls by fitting a physically motivated domain wall template to the LIGO Hanford and Livingston strain data. The BBH hypothesis is individually favored, with $\\log_{10}\\mathcal{B}_{\\rm BBH/TDM}=12.2$ and $11.3$ for GW231123 and GW190521, respectively. However, these values are lower than those typically recovered from matched maximum a posteriori BBH waveforms injected into nearby noise segments. We further perform, for the first time, a joint fit in which domain wall signals from a single underlying scalar field are constrained simultaneously by both events. Although not favored over BBH signals, we find the two events are consistent with a common scalar field, with shared TDM parameters agreeing across independent noise realizations and sky locations. We further find that injected TDM transients are systematically recovered under the BBH hypothesis with large spin parameters, revealing a morphological degeneracy that could mask genuine domain wall signals. This analysis demonstrates that multi-event parameter consistency tests provide a new discriminant for domain wall dark matter searches in upcoming observing runs.",
+      "published": "2026-06-04T17:57:18+00:00",
+      "url": "https://arxiv.org/pdf/2606.06478v1",
       "authors": [
-        "Hadar Davidson",
-        "Noam Issachar",
-        "Sagie Benaim"
+        "Tore Boybeyi",
+        "Doga Veske",
+        "David Maibach"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30329v1",
-      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
-      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
-      "published": "2026-05-28T17:57:37+00:00",
-      "url": "https://arxiv.org/pdf/2605.30329v1",
+      "id": "http://arxiv.org/abs/2606.06475v1",
+      "title": "RREDCoT: Segment-Level Reward Redistribution for Reasoning Models",
+      "summary": "Recent advancements in reasoning language models have been driven by Reinforcement Learning (RL) fine-tuning. Most often, these rely on the Group Relative Policy Optimization (GRPO) algorithm or modifications thereof to steer the models to produce Chain-of-Thought (CoT) traces. The final answer can only be verified, and the reward assigned, after the CoT trace is complete, making it a delayed reward problem. GRPO and its modifications correspond to Monte Carlo methods in standard RL, which are known to suffer from high variance. A possible solution to this problem is the redistribution of rewards through credit assignment, where segments of the CoT trace that are important for arriving at the desirable solution are emphasized by assigning a higher reward. While Monte Carlo sampling can be used to provide an unbiased estimate of intermediate state values, its computational overhead makes it unsuitable for train-time credit assignment in long contexts at high granularity. We introduce RREDCoT (Reward REDistribution for Chain of Thoughts), which utilizes the model itself to approximate the optimal reward redistribution without additional generation. We investigate the advantages of our method compared to MC sampling and several attribution methods. We further analyze several aspects relevant to the construction of the redistribution such as segmentation of CoT traces and state value estimation.",
+      "published": "2026-06-04T17:56:31+00:00",
+      "url": "https://arxiv.org/pdf/2606.06475v1",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Minghui Liu",
-        "Huy Nghiem",
-        "Furong Huang"
+        "Mykyta Ielanskyi",
+        "Kajetan Schweighofer",
+        "Lukas Aichberger",
+        "Sepp Hochreiter"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30327v1",
-      "title": "Reasoning with Sampling: Cutting at Decision Points",
-      "summary": "Frontier reasoning models are produced by posttraining base language models with reinforcement learning. Recent work has challenged this by showing that sampling from a sharpened version of the base model's distribution, a so-called power distribution, elicits comparable reasoning without additional training, curated datasets, or verifiers. However, making this method practical requires efficiently sampling from the power distribution. A sampler needs to \"mix\" to the power distribution, which necessitates moving between modes of the target distribution; intuitively, e.g., trying different reasoning strategies. The samplers proposed in prior works repeatedly select a \"cut\" position in the current reasoning trace uniformly at random and resample the suffix from that position onward. However, reasoning traces typically contain a few consequential decisions (e.g., the choice of proof strategy or algorithm), and we observe that a uniformly chosen cut tends to rewrite local details rather than revisit decision points. We introduce an algorithm (Entropy-Cut Metropolis-Hastings) that uses the base model's next-token entropy as a proxy to identify key decision points and resample from those positions. We empirically verify that entropy jumps are a useful proxy for decision points and, in a stylized model of reasoning, prove that our method's mixing time scales with the number of decisions in a trace rather than with the number of tokens, which can be much larger. Across MATH500, HumanEval, GPQA Diamond, and AIME26, our method consistently improves over baselines and RL-trained models.",
-      "published": "2026-05-28T17:57:32+00:00",
-      "url": "https://arxiv.org/pdf/2605.30327v1",
+      "id": "http://arxiv.org/abs/2606.06473v1",
+      "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery",
+      "summary": "Large language model (LLM) agents are increasingly applied to long-horizon tasks such as scientific discovery and machine learning engineering (MLE), where sustained self-evolution becomes a key capability. However, existing MLE agents suffer from inter-branch information isolation, memoryless search, and lack of hierarchical control, which together hinder long-horizon optimization. We present MLEvolve, an LLM-based self-evolving multi-agent framework for end-to-end machine learning algorithm discovery. By extending tree search to Progressive MCGS, MLEvolve enables cross-branch information flow through graph-based reference edges and gradually shifts the search from broad exploration to focused exploitation with an entropy-inspired progressive schedule. To allow the agent to evolve with accumulated experience, we introduce Retrospective Memory, which combines a cold-start domain knowledge base with a dynamic global memory for task-specific experience retrieval and reuse. For stable long-horizon iteration, we further decouple strategic planning from code generation with adaptive coding modes. Evaluation on MLE-Bench shows that MLEvolve achieves state-of-the-art performance across multiple dimensions including average medal rate and valid submission rate under a 12-hour budget (half the standard runtime). Moreover, MLEvolve also outperforms specialized algorithm discovery methods including AlphaEvolve on mathematical algorithm optimization tasks, demonstrating strong cross-domain generalization. Our code is available at https://github.com/InternScience/MLEvolve.",
+      "published": "2026-06-04T17:55:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06473v1",
       "authors": [
-        "Felix Zhou",
-        "Anay Mehrotra",
-        "Quanquan C. Liu"
+        "Shangheng Du",
+        "Xiangchao Yan",
+        "Jinxin Shi",
+        "Zongsheng Cao",
+        "Shiyang Feng",
+        "Zichen Liang",
+        "Boyuan Sun",
+        "Tianshuo Peng",
+        "Yifan Zhou",
+        "Xin Li",
+        "Jie Zhou",
+        "Liang He",
+        "Bo Zhang",
+        "Lei Bai"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30326v1",
-      "title": "RoboWits: Unexpected Challenges for Robotic Creative Problem Solving",
-      "summary": "The ability to reason, adapt, and creatively solve problems under unexpected challenges is essential for robots operating in real-world environments. However, current robotic benchmarks primarily emphasize skill-level execution and provide limited insight into such cognitive reasoning capabilities. We introduce RoboWits, a bi-manual robotic benchmark designed to systematically evaluate cognitive reasoning, creative tool use, and robustness to unexpected conditions. To enable scalable construction of high-quality reasoning-centric unexpected scenarios, we propose an automated task generation pipeline formulated as a multi-agent cooperative framework, comprising agents for seed task generation and verification, metric generation, scene generation, and task mutation. Using the pipeline, we curated 30 diverse seed tasks and 208 tasks with mutations and graded difficulty across geometry, material, and assembly-based reasoning. We benchmark popular robot policies, pre-trained VLAs, and oracle-state planners. Our results reveal a significant performance gap: while pre-trained VLAs exhibit preliminary success on seed tasks after single-task fine-tuning, they struggle to perform on mutated tasks, implying their brittleness in manipulation tasks requiring reasoning, strategy adaptation, and robustness to deceptive or constrained environments. Project page is available at https://umass-embodied-agi.github.io/RoboWits.",
-      "published": "2026-05-28T17:57:15+00:00",
-      "url": "https://arxiv.org/pdf/2605.30326v1",
+      "id": "http://arxiv.org/abs/2606.06471v1",
+      "title": "Analytic insight into the physics of SASI II. Spiral instability of the prograde mode in a rotating stellar core",
+      "summary": "During the core-collapse of a rotating massive star, the standing accretion shock instability (SASI) favours the development of non-axisymmetric motions which can imprint specific frequency signatures on the neutrino and gravitational wave signals.This study establishes analytical approximations for the eigenfrequencies of the dominant SASI modes. It also explains the physical mechanism responsible for the further destabilization of prograde SASI modes by differential rotation. A perturbative analysis is used to calculate the eigenfrequencies of a stalled accretion shock in spherical geometry, taking into account the rotation of the collapsing stellar core. The formulation of the perturbative equations as a self-forced oscillator is extended to include differential rotation and interpret the results physically. The oscillation frequency of the dominant mode weakly depends on the detailed formulation of neutrino emission if the shock radius exceeds ~1.5 times the radius r_nabla of maximum deceleration. Analytical expressions are obtained for the one and two-armed spiral modes with a 10% accuracy in this regime. The effect of differential rotation is explained by the role of phase mixing between the advective forcing and the acoustic structure. The radial wavelength of vorticity perturbations associated with the prograde mode is increased by differential rotation, leading to a better phase match with the large radial scale of the acoustic structure. Even when rotation is too modest to involve a corotation radius, its adverse effect on phase mixing can be significant at small radius due to the steep inward increase of the rotation frequency ~1/r^2 in the region of stationary accretion. In the regime of stronger rotation involving a corotation radius, the stationary phase approximation sheds light on the dominant advective-acoustic coupling, located between the corotation zone and the shock.",
+      "published": "2026-06-04T17:55:27+00:00",
+      "url": "https://arxiv.org/pdf/2606.06471v1",
       "authors": [
-        "Chunru Lin",
-        "Hongxin Zhang",
-        "Fenghao Yu",
-        "Zhehuan Chen",
-        "Thomas L. Griffiths",
-        "Yejin Choi",
-        "David Held",
-        "Chuang Gan"
+        "T. Foglizzo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30325v1",
-      "title": "Veda: Scalable Video Diffusion via Distilled Sparse Attention",
-      "summary": "Scaling Diffusion Transformers to generate high-resolution, long videos is constrained by the quadratic cost of self-attention, and existing sparse attention methods degrade under high sparsity. We show empirically that generation quality is determined not by the sparsity ratio itself, but by how well the sparse mask aligns with the tile-wise geometry of full attention. Based on this insight, we propose Veda, a distilled sparse attention framework that formulates tile selection as an explicit reconstruction problem from full attention. Veda integrates statistics-aware tile scoring with head-aware tiling to reduce estimation error and structural mismatch, enabling aggressive sparsity. A hardware-efficient tile-skipping kernel converts theoretical sparsity into practical wall-clock speedups. Experiments on large video diffusion models, including Waver and Wan2.1, demonstrate substantial acceleration with no noticeable degradation in generation quality. To generate 720P 10-second videos on Waver-T2V-12B, Veda achieves a 5.1$\\times$ end-to-end speedup and a 10.5$\\times$ self-attention speedup, reducing attention overhead from 92% to 50%. Notably, the gains increase with sequence length, indicating that Veda scales favorably with spatiotemporal resolution across models.",
-      "published": "2026-05-28T17:57:07+00:00",
-      "url": "https://arxiv.org/pdf/2605.30325v1",
+      "id": "http://arxiv.org/abs/2606.06469v1",
+      "title": "How abundant are good interpolators?",
+      "summary": "Let $S$ be the set of unit norm linear classifiers $θ\\in \\mathbb{R}^d$ which correctly classify every point of a labeled dataset $(X_i,y_i)_{i=1}^n$, $X_i \\in \\mathbb{R}^d$, $y_i \\in \\{-1,+1\\}$, with a possibly negative margin $κ$ fixed in advance. Under two natural data-generating distributions of the $(X,y)$ pairs -- a Gaussian mixture model and a logistic model with Gaussian features -- and in the proportional regime $n/d \\to α$ with small enough $α$, we establish a large deviation principle on the event that a point $θ$ chosen uniformly at random from $S$ achieves a given generalization error, with high probability over the choice of the data. The associated large deviation rate function is deterministic and describes the proportion, at the exponential scale in $d$, of interpolating classifiers having a given desired performance. As a consequence, we establish the following concentration phenomenon: all but an exponentially small fraction of interpolating classifiers have approximately the same generalization performance given by the unique maximizer of this rate function.   We numerically compare this maximizer to the performance of empirical risk minimization by gradient descent and to the performance of a natural linear program, both finding a point in $S$, and deduce that in the overparametrized regime of small $α$, these efficient procedures outperform the vast majority of interpolators, pointing to their nontrivial benign overfitting in this setting.",
+      "published": "2026-06-04T17:55:10+00:00",
+      "url": "https://arxiv.org/pdf/2606.06469v1",
       "authors": [
-        "Shihao Han",
-        "Hao Yang",
-        "Xinting Hu",
-        "Xiaofeng Mei",
-        "Yi Jiang",
-        "Xiaojuan Qi"
+        "August Y. Chen",
+        "Ahmed El Alaoui"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30323v1",
-      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
-      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
-      "published": "2026-05-28T17:56:54+00:00",
-      "url": "https://arxiv.org/pdf/2605.30323v1",
+      "id": "http://arxiv.org/abs/2606.06464v1",
+      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
+      "summary": "A long-standing finding in the causal learning literature is that adults struggle to identify conjunctive causal rules, where an effect requires the simultaneous presence of multiple causes, while performing better in disjunctive settings. However, most demonstrations of this ``conjunctive handicap'' rely on passive observation paradigms with limited evidence, where learners have no control over evidence generation. This paper asks whether this bias persists when adults are granted agency through active exploration. Using a modified ``blicket detector'' task, adult participants freely intervened to identify causal objects under conjunctive or disjunctive rule structures. We show that active exploration substantially improves adults' conjunctive causal reasoning, although conjunctive rules still require more tests to infer than disjunctive rules. We further compare human performance to a range of large language models in the same setting. While some state-of-the-art models approach human-level performance on hypothesis inference accuracy, they often exhibit less efficient exploration strategies and similar conjunctive-disjunctive performance gaps.",
+      "published": "2026-06-04T17:53:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.06464v1",
       "authors": [
-        "Zhenyu Sun",
-        "Zheng Xu",
-        "Ermin Wei"
+        "Mandana Samiei",
+        "Eunice Yiu",
+        "Anthony GX-Chen",
+        "Dongyan Lin",
+        "Jocelyn Shen",
+        "Blake A. Richards",
+        "Alison Gopnik",
+        "Doina Precup"
       ],
       "source": "arxiv"
     }

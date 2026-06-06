@@ -1,131 +1,167 @@
 {
-  "timestamp": 1780116121.6534488,
+  "timestamp": 1780721356.5464451,
   "source": "arxiv",
   "query": "AI universal basic income labor market",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2605.30353v1",
-      "title": "Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software",
-      "summary": "Are AI agents tools, co-authors, or researchers? We present a quantified case study ($N=1$): a physicist supervising an AI coding agent (Claude Code, Sonnet and Opus models) over 12 work days and 57 sessions to build CLAX-PT, a differentiable one-loop perturbation theory module in JAX. We documented and classified 15 supervision events by intervention level.   The agent resolved ten autonomously by iterating against oracle tests. Two more by the physicist's domain knowledge. The three it could not -- all evaded oracle detection -- share a common property: the agent treated symptom reduction as root-cause resolution. It spent 33 of the 57 sessions adjusting coefficients within a code architecture that could not represent the target physics, and could not re-evaluate its CLASS-PT branch choice even when prompted to reconsider; only an injected physics concept (anisotropic BAO damping) triggered the redesign. Separately, the agent committed a calibrated correction that passed all oracle tests but corresponded to no quantity in the theory, predicting wrong values at any other cosmology.   The fudge factor was caught and replaced within the same session. Three supervision practices proved critical for catching what oracle tests missed: testing at diverse parameter points beyond the fiducial calibration; shared changelogs that surfaced stalled exploration across sessions; and an explicit rule against unphysical numerical patches. In this case, supervision design, not model capability, determined whether the agent's output was trustworthy. Closing the gap would require agents that propose architectural alternatives rather than optimize within a given structure, and distinguish predictive adequacy from explanatory correctness -- capabilities not exhibited here, not obviously addressed by scaling alone. [Abridged.]",
-      "published": "2026-05-28T17:59:59+00:00",
-      "url": "https://arxiv.org/pdf/2605.30353v1",
+      "id": "http://arxiv.org/abs/2606.06481v1",
+      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
+      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
+      "published": "2026-06-04T17:58:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06481v1",
       "authors": [
-        "Nhat-Minh Nguyen"
+        "Sondos Mahmoud Bsharat",
+        "Jiacheng Liu",
+        "Xiaohan Zhao",
+        "Tianjun Yao",
+        "Xinyi Shang",
+        "Yi Tang",
+        "Jiacheng Cui",
+        "Ahmed Elhagry",
+        "Salwa K. Al Khatib",
+        "Hao Li",
+        "Salman Khan",
+        "Zhiqiang Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30345v1",
-      "title": "SchGen: PCB Schematic Generation with Semantic-Grounded Code Representations",
-      "summary": "Printed circuit board (PCB) schematic design defines nearly all electronic hardware, but it remains manual and expertise-intensive. While generative AI has advanced digital and analog IC design, PCB schematic generation from natural-language intent is largely unexplored. This paper presents SchGen, the first large language model that generates editable PCB schematics from natural-language requests. The key challenge lies in the lack of an LLM-suited representation and a large-scale dataset. Current schematic formats are dominated by verbose, tool-specific syntax and geometry-heavy descriptions, making them difficult to generate reliably. We introduce a semantically grounded code representation that encodes schematic editing primitives with relative placement and pin-name-based wiring, transforming a geometry-driven generation problem into a semantics-driven matching task amenable to LLMs. We further construct a large-scale dataset of PCB schematics paired with user prompts via a human-agent collaborative pipeline that converts open-source hardware designs into our representation. Experiments show that SchGen significantly outperforms alternative representations and even larger general-purpose LLMs on wire connectivity accuracy and functional correctness. Our results highlight the critical role of representation design in enabling generative models for complex hardware design tasks.",
-      "published": "2026-05-28T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2605.30345v1",
+      "id": "http://arxiv.org/abs/2606.06462v1",
+      "title": "Benchmark Everything Everywhere All at Once",
+      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
+      "published": "2026-06-04T17:52:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.06462v1",
       "authors": [
-        "Qinpei Luo",
-        "Ruichun Ma",
-        "Xinyu Zhang",
-        "Lili Qiu"
+        "Shiyun Xiong",
+        "Dongming Wu",
+        "Peiwen Sun",
+        "Yuang Ai",
+        "Bokang Yang",
+        "Wencheng Han",
+        "Xiao-Hui Li",
+        "Xiangyu Yue"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30340v1",
-      "title": "Carr criterion and mass gaps in non-singular primordial black hole formation",
-      "summary": "Non-singular gravitational theories are expected to be relevant in the early universe. In this paper, we derive a set of effective Friedmann equations describing the dynamics of matter shells in the presence of a gravitational regulator $\\ell$. We find that such a regulator induces a primordial black hole mass gap such that below a certain mass $M_\\text{gap}(\\ell, R_H)$ no black holes can form. The order of magnitude of this mass gap is set by the regulator $\\sim c^2\\ell/G$, with subleading dependence on the horizon radius at time of formation $R_H$. Finally, we show that over a wide range of equation of state parameters $= 0 \\dots 1/3$, the mass gap implies a Carr criterion of the form $_H > 2G M_\\text{gap}/R_H - 1$. If the horizon size is of the same order of the regulator, $R_H \\sim \\ell$, this new criterion is stronger than the traditional Carr criterion for primordial black hole formation. This connects the primordial black hole abundance directly to the presence of gravitational regulators.",
-      "published": "2026-05-28T17:59:17+00:00",
-      "url": "https://arxiv.org/pdf/2605.30340v1",
+      "id": "http://arxiv.org/abs/2606.06459v1",
+      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
+      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
+      "published": "2026-06-04T17:50:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.06459v1",
       "authors": [
-        "Jens Boos",
-        "Arif Kağan Gündoğdu",
-        "Marek Hartenfels"
+        "Christie Djidjev",
+        "Nicholas Kaminski"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30335v1",
-      "title": "Locally Coherent, Globally Incoherent: Bounding Compositional Incoherence in Multi-Component LLM Agents",
-      "summary": "Multi-component LLM agents assemble probabilistic claims from components that each see only part of a joint problem; the composition can violate basic probability axioms even when every component is locally coherent. We formalise this locally coherent, globally incoherent failure via the compositional residual eps*, the L2 distance from the composed quote to the joint coherent polytope, computable at runtime from system output and the declared cross-component coupling constraints. A product-structure dichotomy characterises when local coherence suffices, and a Rayleigh-quotient prediction matches the observed residual within 7% on three of four relation classes. A hierarchical Boyle-Dykstra projection repairs the composition deterministically; an anytime-valid e-process gives sequential coherence monitoring. Across 1,876 ensemble cliques on a four-LLM mid-tier panel (frontier-panel rerun in Section 5.5), eps* > 0 on 33-94% of cliques, translating to +0.115 nats per bet of regret on 1,770 resolved bets under the proportional allocation rule (the gain collapses to +0.006 under bettors that themselves coherentise). Three intuitive LLM-side mitigations(retrieval, partition-aware prompting, aggregator-LLM) each fail or regress.",
-      "published": "2026-05-28T17:58:55+00:00",
-      "url": "https://arxiv.org/pdf/2605.30335v1",
+      "id": "http://arxiv.org/abs/2606.06456v1",
+      "title": "Quantum element-wise transforms",
+      "summary": "Quantum algorithms for basic numerical linear algebraic tasks have proven essential for translating diverse problems to a unified quantum computational context. Many of these tasks -- e.g., applying a polynomial function to the spectrum of a matrix embedded in a unitary process (a so-called block encoding), or taking linear combinations of block encodings -- are well-addressed by techniques like quantum singular value transformation (QSVT) or linear combination of unitaries (LCU). However, there exist useful matrix transforms whose realization by existing quantum algorithms is unclear or inefficient. In this work we construct improved quantum algorithms for some of these transforms, the simplest of which is a polynomial function applied element-wise. We show the space required to compute quantum element-wise transforms can be reduced exponentially in the degree of the applied function compared to prior work, and raise and rectify errors in previous constructions. We present our algorithms alongside applications to machine learning, simulation, and signal processing.",
+      "published": "2026-06-04T17:50:07+00:00",
+      "url": "https://arxiv.org/pdf/2606.06456v1",
       "authors": [
-        "Anany Kotawala"
+        "Zane M. Rossi",
+        "Rahul Sarkar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30329v1",
-      "title": "SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?",
-      "summary": "Autonomous AI research agents aim to accelerate scientific discovery by automating the research pipeline, from hypothesis generation to peer review. However, existing benchmarks rarely test a fundamental bottleneck: whether Large Language Models can judge the methodological viability of a research idea before expending time and computational resources. We introduce SoundnessBench, a curated benchmark of 1,099 machine-learning research proposals reconstructed from ICLR submissions, labeled with reviewer soundness sub-scores, and audited against source papers. SoundnessBench should be interpreted as a benchmark for recoverable proposal-stage soundness rather than exact prediction of full-paper review outcomes. Across 12 frontier LLMs, we find a pervasive optimism bias: under standard prompting, models frequently rate low-soundness proposals as sound, while aggressive prompting largely shifts errors from false positives to false negatives. Additional controls for public-corpus contamination, paper-identifying phrases, surface features, and human audit quality suggest that this behavior is not explained by a single confounder. Our results indicate that current LLMs are not yet reliable as standalone first-gate evaluators for scientific rigor.",
-      "published": "2026-05-28T17:57:37+00:00",
-      "url": "https://arxiv.org/pdf/2605.30329v1",
+      "id": "http://arxiv.org/abs/2606.06453v1",
+      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
+      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
+      "published": "2026-06-04T17:48:17+00:00",
+      "url": "https://arxiv.org/pdf/2606.06453v1",
       "authors": [
-        "Sy-Tuyen Ho",
-        "Minghui Liu",
-        "Huy Nghiem",
-        "Furong Huang"
+        "Zhuoming Chen",
+        "Xinrui Zhong",
+        "Qilong Feng",
+        "Ranajoy Sadhukhan",
+        "Yang Zhou",
+        "Michael Qizhe Shieh",
+        "Zhihao Jia",
+        "Beidi Chen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30323v1",
-      "title": "In-Context Reward Adaptation for Robust Preference Modeling",
-      "summary": "Reinforcement Learning from Human Feedback (RLHF) typically relies on static reward models to align Large Language Models with human preferences. However, human values are inherently diverse and heterogeneous, and a single reward model often lacks the robustness required to generalize to unseen preference domains. While existing multi-reward frameworks attempt to address this, they are often restricted to a fixed set of known domains and fail to adapt to unseen human distributions without costly retraining. In this work, we propose In-Context Reward Adaptation, a transformer-based framework designed to model diverse and unseen human preferences on the fly. By leveraging the in-context learning capabilities of transformers, our approach adaptively infers the underlying reward structure from a small set of preference demonstrations. We demonstrate that while a standard transformer architecture is insufficient for this task by characterizing an asymptotic bias to the ground-truth, incorporating human response time as an auxiliary input signal enables the model to successfully adapt to preferences from previously unseen domains. Our findings show that this approach provides a more robust foundation for preference modeling, allowing for the representation of heterogeneous rewards and preference distribution shift, and offering a scalable path toward more flexible human-AI alignment.",
-      "published": "2026-05-28T17:56:54+00:00",
-      "url": "https://arxiv.org/pdf/2605.30323v1",
+      "id": "http://arxiv.org/abs/2606.06452v1",
+      "title": "Energy-Modulated Time-Asymmetric Spontaneous Collapse: Forward-Backward Dynamics from Stochastic Ito Reversal and Bright Solitons",
+      "summary": "We present a rigorous theoretical framework for symmetry breaking and quantum irreversibility arising from stochastic Ito field reversal within a cubic-quintic nonlinear Schrodinger equation (CQ-NLSE) formalism. Starting from three physically motivated considerations, forward and backward nonlinear stochastic differential equations are derived via the Ito calculus. Kinematic time-reversal is shown to be fundamentally incompatible with the Ito stochastic structure, yielding the universal asymmetry-coupling parameter of 2/3. An energy-driven collapse operator proportional to the product of noise strength, local probability density, and excitation energy squared is introduced, amplifying the collapse in high-density, high-excitation regions. Exactly bright soliton solutions are obtained for a quasi-one-dimensional BEC of attractive Li-7 atoms, with forward and backward amplitude ratio of 1.870. Heat map analysis of the parameter planes reveals that the forward collapse operator grows monotonically in time while the backward counterpart decays, achieving a ratio approximately 1030, sharply distinguishing this framework from conventional symmetric collapse models.",
+      "published": "2026-06-04T17:47:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.06452v1",
       "authors": [
-        "Zhenyu Sun",
-        "Zheng Xu",
-        "Ermin Wei"
+        "Ikechukwu C. Okoro",
+        "Mike O. Osiele",
+        "Godfrey E. Akpojotor"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30322v1",
-      "title": "Gram: Assessing sabotage propensities via automated alignment auditing",
-      "summary": "We introduce Gram, an automated alignment auditing framework to assess the propensity of AI agents to engage in sabotage. We evaluate Gemini models across 17 simulated agentic deployment scenarios that incentivize sabotage. We find Gemini models misbehave in about 2-3% of our simulated trajectories. Many of these cases are explained by \"overeagerness\" in Gemini models resulting in both excessive role-playing and goal-seeking behavior. In contrast to other alignment auditing approaches, Gram is designed to specifically evaluate misalignment and intentional sabotage in agentic coding and research agents. We additionally introduce an experimental investigator agent pipeline which enables fine-grained targeted experiments to identify the drivers of misbehavior. We find that increasing realism of environments and removing nudges to misbehave tends to reduce sabotage rates close to zero.",
-      "published": "2026-05-28T17:56:18+00:00",
-      "url": "https://arxiv.org/pdf/2605.30322v1",
+      "id": "http://arxiv.org/abs/2606.06444v1",
+      "title": "USAD 2.0: Scaling Representation Distillation for Universal Audio Understanding",
+      "summary": "Audio encoders are critical to modern audio applications as large language models (LLMs) increasingly rely on a single encoder for diverse inputs. While self-supervised learning (SSL) has yielded strong domain-specific encoders like speech or music experts, multi-domain approaches like USAD and SPEAR remain limited in coverage and evaluation. Recent studies also suggest supervised encoders align better with audio LLMs. We present USAD 2.0, a universal encoder integrating knowledge from both SSL and supervised foundation models. USAD 2.0 introduces domain-aware distillation to address teacher mismatch, extends coverage to the music domain, and adds second-stage supervised distillation for downstream use. We further scale the model to one billion parameters via depth scaling. Experiments show USAD 2.0 achieves strong or state-of-the-art performance across probing and LLM-based evaluations.",
+      "published": "2026-06-04T17:42:05+00:00",
+      "url": "https://arxiv.org/pdf/2606.06444v1",
       "authors": [
-        "David Lindner",
-        "Victoria Krakovna",
-        "Sebastian Farquhar"
+        "Heng-Jui Chang",
+        "Alexander H. Liu",
+        "Saurabhchand Bhati",
+        "Mrudula Athi",
+        "Anton Ratnarajah",
+        "Amit Chhetri",
+        "James Glass"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30321v1",
-      "title": "A Bayesian Proof and Interpretation of Talagrand's Majorizing Measure Theorem",
-      "summary": "In this paper, we give a short Bayesian proof of Talagrand's celebrated majorizing-measure theorem (MMT). While the upper-bound direction of MMT follows relatively directly from standard arguments, the lower-bound direction is widely regarded as the more difficult part and has received several distinct proofs. Unlike previous approaches, our proof does not rely on existing Gaussian processes lower bounds techniques, nor on combinatorial, geometric, or coding-theoretic constructions. Instead, we derive the lower bound from two area identities for Gaussian additive models. We show that the Gaussian width of a finite set is the integrated mean-squared error of the maximum-likelihood estimator (MLE), while the integrated minimum mean-squared error (MMSE) is larger than the Fernique-Talagrand functional, up to a universal constant. Simply then comparing the MLE with Bayes-optimal estimation gives a direct proof of the hard direction of MMT.",
-      "published": "2026-05-28T17:56:03+00:00",
-      "url": "https://arxiv.org/pdf/2605.30321v1",
+      "id": "http://arxiv.org/abs/2606.06419v1",
+      "title": "Quantitative eigenvector universality for generalized Wigner matrices",
+      "summary": "We present a novel approach to eigenvector universality for generalized Wigner matrices. Our main consequences are asymptotic normality of joint eigenvector projections everywhere in the spectrum as well as a quantitative lower bound on the largest entry of an eigenvector. In the case of smooth entries, we are able to obtain joint normality of an explicit growing number of eigenvector projections, and we are also able to obtain an explicit rate of convergence in Kolmogorov distance. This is based on a new analysis of the Dyson vector flow which does not rely on the eigenvector moment flow.",
+      "published": "2026-06-04T17:26:00+00:00",
+      "url": "https://arxiv.org/pdf/2606.06419v1",
       "authors": [
-        "Ilias Zadik"
+        "Lucas Benigni"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30303v1",
-      "title": "Generalizing a Highly Configurable Analytics Pipeline to Replicate and Support Educational Research Across Multiple Domains",
-      "summary": "Artificial intelligence assistants deployed in online learning environments create new opportunities to collect large volumes of learner interaction data and generate insights to improve student outcomes. Architecture for AI-Augmented Learning (A4L) is a modular data architecture that enables the collection, integration, and analysis of learner interaction data from educational AI systems, supporting the generation of instructional insights that facilitate personalized learning and reinforce the bidirectional feedback loop between instructors and learners. This study examines the modular design of the A4L Data Analytics Pipeline, an extensible data infrastructure that enables the ingestion, processing, and analysis of heterogeneous datasets generated by educational AI assistants. We describe the design principles and development process used to extend the pipeline's analytical capabilities while preserving flexibility across domains. We evaluate the pipeline through case studies spanning three research domains corresponding to three educational AI assistants deployed in online learning environments at Georgia Tech. Results show that a common set of statistical analysis methods can be consistently applied across datasets with differing structures and instructional contexts, enabling the pipeline to reproduce key analytical findings across domains. We demonstrate how analytical capabilities initially developed for one domain can be extended to support richer analyses in another, illustrating the pipeline's extensibility. These findings suggest that the A4L Analytics Pipeline can serve as reusable infrastructure for analyzing data generated by future educational AI assistants. By enabling analytics that can be systematically extended to new domains, the pipeline provides a foundation for deriving insights that inform the design and evaluation of educational AI systems.",
-      "published": "2026-05-28T17:46:53+00:00",
-      "url": "https://arxiv.org/pdf/2605.30303v1",
+      "id": "http://arxiv.org/abs/2606.06413v1",
+      "title": "Competition in Dealer Markets with Internalisation and Externalisation",
+      "summary": "We model a market with multiple dealers who compete for client order flow by dynamically updating their bid and ask quotes for a risky asset. Dealers aim to maximise expected profits while controlling inventory risk by skewing their quotes to attract offsetting order flow (internalisation) or by directly offloading positions in the market (externalisation). Using a variational approach, we derive a closed-form equilibrium for the resulting Nash competition, shedding light on key features of dealer market dynamics. We show that dealers relying on internalisation are compelled to increase their externalisation activity when competing with externalising dealers. This strategic shift in equilibrium leads to significantly higher hedging costs for all dealers and substantially wider spreads for clients.",
+      "published": "2026-06-04T17:15:54+00:00",
+      "url": "https://arxiv.org/pdf/2606.06413v1",
       "authors": [
-        "Yallen Bai",
-        "Ploy Thajchayapong",
-        "Ashok Goel"
+        "Robert Boyce",
+        "Eyal Neuman"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2605.30284v1",
-      "title": "ProjectionBench: Evaluating Scientific Hypothesis Generation in LLMs Under Progressive Information Disclosure",
-      "summary": "Scientific discovery is an inherently creative and uncertain process, requiring reasoning beyond the recall of known knowledge. While many benchmarks have been proposed to evaluate large language model (LLM) performance on deep research tasks via multi-hop retrieval, their innovative reasoning abilities essential for true scientific discovery remain largely untested. We introduce a benchmark framework for evaluating model performance in scientific discovery and reasoning, building up from a raw problem to the classical null hypothesis test. In our framework, models initially receive only the topic and research question from a recent paper, with technical details progressively revealed. At each stage of information disclosure, the model is tasked with generating hypotheses that address the research question, which is compared with the conclusions from the original paper and evaluated via automated semantic similarity of constituent atomic claims. This progressive evaluation of semantic divergence from ground-truth conclusions enables assessment of a model's innovativeness (under minimal information) to grounded reasoning capabilities (under full experimental details), both critical for using LLMs for scientific discovery purposes. Our framework provides a foundation for systematically evaluating scientific reasoning and discovery capabilities in LLMs, crucial for advancing the development of next-generation AI scientist/co-scientist systems. Specifically, here we evaluate GPT-5, GPT-5.4, Gemini 2.5 pro, and Gemini 3.1 pro preview across 45 papers spanning bioactive materials, mechanical materials, and nanomaterials. We find that GPT-5.4 and Gemini 3.1 pro outperform their previous generation counterparts as expected, and GPT-5.4 in particular maintains 0.7 F1 score alignment with ground truth conclusions even under minimal context.",
-      "published": "2026-05-28T17:38:19+00:00",
-      "url": "https://arxiv.org/pdf/2605.30284v1",
+      "id": "http://arxiv.org/abs/2606.06410v1",
+      "title": "The Atacama Cosmology Telescope: Probing new signatures of ultralight axions with gravitational lensing",
+      "summary": "Ultralight axions (ULAs) are well-motivated dark matter particle candidates that arise in many extensions of the Standard Model of particle physics. ULAs with mass $m_\\mathrm{a} \\lesssim 10^{-27}$ eV have been strongly constrained by cosmic microwave background (CMB) observations in temperature and polarization. We fit recent measurements of gravitational lensing of the CMB from \\textit{Planck}, the Atacama Cosmology Telescope (ACT) and the South Pole Telescope (SPT-3G) using a state-of-the-art simulation-calibrated nonlinear clustering model for ULAs. We derive the strongest constraints on ULAs in the mass range $10^{-26}\\;\\mathrm{eV}\\leq m_\\mathrm{a}\\leq 10^{-24.5}\\;\\mathrm{eV}$. ULAs of this mass have been shown to alleviate tensions between inferences of the matter clustering if they compose a few percent of the total dark matter content of the Universe. We conclude that ULAs with a mass of $10^{-26}$ eV make up less than 1.5\\% of the dark matter and $10^{-25}$ eV axions make less than 9\\% (both at 95\\% confidence level). We identify a slight preference for non-zero axion density at $10^{-24.5}$ eV at $2.1σ$. We find that the preference for ULAs is largely driven by a few data points and that further investigation of non-linear ULA physics is needed to confirm or rule out this signal.",
+      "published": "2026-06-04T17:14:22+00:00",
+      "url": "https://arxiv.org/pdf/2606.06410v1",
       "authors": [
-        "A. J. Lew",
-        "Y. Cao",
-        "M. J. Buehler"
+        "Alex Laguë",
+        "Keir K. Rogers",
+        "Mathew S. Madhavacheril",
+        "J. Richard Bond",
+        "Erminia Calabrese",
+        "Mark J. Devlin",
+        "Jo Dunkley",
+        "Vera Gluscevic",
+        "Renée Hložek",
+        "Hidde T. Jense",
+        "Thibaut Louis",
+        "Frank J. Qu",
+        "Bernardita Ried Guachalla",
+        "Neelima Sehgal",
+        "Blake D. Sherwin",
+        "Suzanne T. Staggs",
+        "Alexander van Engelen"
       ],
       "source": "arxiv"
     }
