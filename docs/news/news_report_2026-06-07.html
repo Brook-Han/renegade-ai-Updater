@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-06-07 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 3 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  
+    <style>
+      /* ========== DESIGN TOKENS (v5.3 Optimized) ========== */
+      :root {
+        --bg: #0a0a12; --bg2: #0f0f1a; --surface: #141422; --card: #181828;
+        --border: #25253a; --border-bright: #363655;
+        --text: #e2e2f0; --text-muted: #7878a8; --text-faint: #4a4a6a;
+        --accent: #ff5c45; --accent-dim: rgba(255,92,69,0.12);
+        --accent2: #d4af5c; --accent3: #5ba3e6; --accent3-dim: rgba(91,163,230,0.10);
+        --white: #f4f4fc;
+        --mono: 'Space Mono', 'Courier New', monospace;
+        --serif: 'Crimson Pro', Georgia, serif;
+        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
+      }
+      :root.light {
+        --bg: #f5f6fa; --bg2: #fff; --surface: #eceef5; --card: #fff;
+        --border: #d8dbe6; --border-bright: #c0c4d6;
+        --text: #222233; --text-muted: #5c5c75; --text-faint: #9a9ab0;
+        --accent: #e8503a; --accent-dim: rgba(232,80,58,0.08);
+        --accent2: #b88c2a; --accent3: #3a7fbf; --accent3-dim: rgba(74,143,207,0.08);
+        --white: #222233;
+      }
+
+      /* ========== RESET & TYPOGRAPHY ========== */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--serif); background: var(--bg); color: var(--text);
+        line-height: 1.8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        text-rendering: optimizeLegibility; font-feature-settings: "kern" 1, "liga" 1;
+      }
+      ::selection { background: var(--accent); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
+      
+      /* ========== ACCESSIBILITY ========== */
+      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; z-index: 10; }
+      :focus:not(:focus-visible) { outline: none; }
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+      }
+
+      /* ========== NAV ========== */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        background: rgba(10,10,18,.92); backdrop-filter: blur(24px);
+        border-bottom: 1px solid var(--border); height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px; font-family: var(--mono);
+      }
+      .light nav { background: rgba(245,246,250,.92); }
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase; text-decoration: none;
+      }
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+      .nav-pill {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        font-family: var(--mono); font-size: .72rem; font-weight: 500; letter-spacing: 2px;
+        padding: 5px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
+      }
+      .nav-pill:hover, .nav-pill:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+      .theme-btn {
+        background: none; border: 1px solid var(--border); color: var(--text-muted);
+        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .9rem;
+      }
+      .theme-btn:hover, .theme-btn:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
+
+      /* ========== MAIN ========== */
+      .main { max-width: 960px; margin: 0 auto; padding: 80px 32px 60px; }
+      .back-link {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; 
+        color: var(--text-muted); text-decoration: none; text-transform: uppercase;
+        border: 1px solid var(--border); padding: 6px 14px; display: inline-block; margin-bottom: 16px;
+      }
+      .back-link:hover { border-color: var(--accent); color: var(--accent); }
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 4px; 
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
+      .page-title {
+        font-family: var(--display); font-size: clamp(2.5rem, 5vw, 3.5rem);
+        letter-spacing: 2px; color: var(--white); margin-bottom: 8px; line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 24px;
+      }
+      .stats-row {
+        display: flex; gap: 24px; margin-bottom: 24px;
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-muted); flex-wrap: wrap;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+      
+      /* ========== URGENT BOX ========== */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
+        letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+      }
+      .urgent-item {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; margin-bottom: 8px;
+        padding-left: 16px; border-left: 2px solid var(--border); color: var(--text-muted);
+      }
+      .urgent-item strong { color: var(--white); }
+      .urgent-type-tag {
+        font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
+        color: var(--accent); background: var(--bg); padding: 2px 6px; margin-left: 6px; text-transform: uppercase;
+      }
+      
+      /* ========== CARDS ========== */
+      .card {
+        background: var(--card); border: 1px solid var(--border); padding: 28px; margin-bottom: 16px;
+        transition: border-color .2s, background 0.2s, box-shadow .2s;
+        box-shadow: 0 4px 24px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.02);
+      }
+      .card:hover { border-color: var(--accent); }
+      .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; }
+      .card-title {
+        font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.5px; 
+        color: var(--white); line-height: 1.3; flex: 1;
+      }
+      .card-score {
+        font-family: var(--display); font-size: 2.2rem; color: var(--accent);
+        line-height: 1; white-space: nowrap; text-align: right; flex-shrink: 0;
+      }
+      .card-score span {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-faint); display: block; letter-spacing: 1px; margin-top: 4px;
+      }
+      .card-badge {
+        display: inline-block; padding: 3px 8px; font-family: var(--mono); 
+        font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
+        background: var(--accent3-dim); color: var(--accent3); border: 1px solid var(--accent3); margin-left: 8px;
+      }
+      .card-badge.high { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
+      .card-meta {
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-faint); letter-spacing: 0.5px; margin-bottom: 16px; 
+        display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
+      }
+      .card-meta a { color: var(--accent2); text-decoration: none; }
+      .card-meta a:hover { text-decoration: underline; }
+      .card-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
+      .card-implications {
+        font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
+        color: var(--accent2); padding: 12px 16px; background: rgba(212,175,92,0.05);
+        border-left: 3px solid var(--accent2); letter-spacing: 0.3px; margin-bottom: 16px; line-height: 1.7;
+      }
+      .card-footer {
+        display: flex; gap: 12px; flex-wrap: wrap; font-family: var(--mono); 
+        font-size: 0.72rem; font-weight: 500; color: var(--text-faint); letter-spacing: 0.5px;
+        padding-top: 12px; border-top: 1px dashed var(--border);
+      }
+      .card-footer .tag { padding: 3px 8px; background: var(--surface); border-radius: 2px; color: var(--text-muted); }
+      
+      /* ========== COLLAPSED LIST ========== */
+      details { margin: 32px 0; border: 1px solid var(--border); background: var(--card); }
+      summary {
+        padding: 14px 20px; cursor: pointer; font-family: var(--mono); 
+        font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: var(--text-muted);
+        background: var(--surface); user-select: none; display: flex; align-items: center; gap: 8px;
+      }
+      summary:hover { color: var(--accent); }
+      details[open] summary { border-bottom: 1px solid var(--border); }
+      .collapsed-list { padding: 16px 20px; }
+      .collapsed-list li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
+      .collapsed-list a { color: var(--text); text-decoration: none; }
+      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
+      
+      /* ========== FOOTER ========== */
+      footer {
+        margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
+        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-muted); letter-spacing: 1px; display: flex; justify-content: space-between;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+      
+      /* ========== STATUS BAR ========== */
+      .status-bar {
+        position: fixed; bottom: 0; width: 100%; z-index: 200;
+        background: var(--bg); border-top: 1px solid var(--border);
+        padding: 10px 32px; font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
+        color: var(--text-faint); letter-spacing: 2px;
+        display: flex; justify-content: space-between; align-items: center;
+      }
+      .status-dot {
+        display: inline-block; width: 6px; height: 6px; background: var(--accent);
+        border-radius: 50%; margin-right: 8px; animation: pulse 2s infinite;
+      }
+      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
+
+      /* ========== MOBILE & TOUCH TARGETS ========== */
+      @media (max-width: 768px) {
+        .nav-pill, .theme-btn, .back-link { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
+      }
+      @media (max-width: 600px) {
+        .main { padding: 70px 16px 60px; }
+        .page-title { font-size: 2.2rem; }
+        .stats-row { flex-direction: row; gap: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+      }
+    </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <a href="index.html" class="back-link">← BACK TO INDEX</a>
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-06-07 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>17</span></div>
+      <div>🔴 高价值: <span>3</span></div>
+      <div>🟡 中相关: <span>3</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 4, Section II (Alignment Fragility in Open Worlds) / Chapter 5, Section III (Dark Time in Embodied AI)</strong> — Car-GPT: Could LLMs finally make self-driving cars happen? <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">After Orthogonality: Virtue-Ethical Agency and AI Alignment</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>The Gradient · 2026-02-18</span>
+        <span>·</span>
+        <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)
+      </div>
+      <div class="card-body">The Gradient 刊发长文《After Orthogonality: Virtue-Ethical Agency and AI Alignment》，核心论点是：正统对齐范式建立在「正交性论题」与「目标导向理性」之上，假设智能体拥有固定终极目标，再通过手段推理实现。作者反驳称，人类理性实则源于对「实践」的内化——由行动、行动倾向、评价标准构成的网络，而非追逐预设目标。据此，AI 不应被设计为目标最大化器，而应被训练为具备美德式行动倾向的代理人。文章从亚里士多德美德伦理学、维特根斯坦规则遵循、当代强化学习奖励黑箱等多维度展开，指出目标导向范式必然导致奖励黑客、工具性趋同等失灵，并提出以「实践参与」替代目标优化的对齐新路径。</div>
+      <div class="card-implications">直接挑战『进化对齐脆弱性』模型的底层假设：书中认为对齐在开放环境必然漂移，根因在于目标函数固定而环境开放；本文主张彻底放弃『固定目标函数』，转向美德/实践导向的代理人设计，提供了一个理论层面的『反脆弱』替代方案。同时丰富『叛逆AI』模型：真正的叛逆不在于改写目标，而在于拒绝『目标』这一本体论范畴，重置人机关系的理性基础。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">What's Missing From LLM Chatbots: A Sense of Purpose</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>The Gradient · 2024-09-09</span>
+        <span>·</span>
+        <a href="https://thegradient.pub/dialog/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III: Signal Alienation & The Benchmark Trap
+      </div>
+      <div class="card-body">The Gradient 刊文指出，当前 LLM 进步主要由 MMLU、HumanEval、MATH 等基准分数驱动，但这些指标已趋饱和，用户体验却未随分数同比例提升。文章质疑：若缺乏内在“目的感”，模型仅是优化代理指标的“高分低能”系统，而非真正理解用户意图的代理。核心观点是基准测试已异化为衡量智能的失效信号，行业需从追分转向赋予模型真实目的感与能动性。</div>
+      <div class="card-implications">强力印证【信号异化】模型：基准分数作为衡量模型质量的代理信号，因被大规模优化（Goodhart 定律）而失效，不再指向真实用户价值（目的感）。同时补充【需求侧规训】：用户/行业习惯消费“高分榜单”这一低摩擦舒适区，拒绝面对“目的感缺失”这一根本性摩擦。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">The AI Hype Index: AI gets booed in graduation season</h2>
+        <div class="card-score">7.3<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Artificial intelligence – MIT Technology Review · 2026-05-28</span>
+        <span>·</span>
+        <a href="https://www.technologyreview.com/2026/05/28/1138053/the-ai-hype-index-ai-gets-booed-in-graduation-season/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section III (Consensus Cage rupture) / Chapter 5, Section I (Capital domestication failure)
+      </div>
+      <div class="card-body">2026年毕业季，前谷歌CEO埃里克·施密特在亚利桑那大学毕业典礼上呼吁毕业生“帮助塑造AI”，遭遇全场响亮嘘声。这一事件并非孤例：MIT Technology Review的“AI炒作指数”指出，当精英阶层试图将“拥抱AI”作为新一代毕业生的使命叙事时，正面临年轻群体的集体拒绝。嘘声背后是毕业生对AI夺走入门岗位、稀释学位价值、将未来劳动预判为提示词工程的焦虑，也折射出主流“AI必胜论”叙事在受众端的信任崩塌。</div>
+      <div class="card-implications">强力印证【共识牢笼】模型：施密特代表的科技/资本精英试图维持‘AI改变世界、青年须顺势而为’的主流共识，却在仪式性公共场合遭遇集体性破壁——嘘声是共识牢笼在‘被规训者’端的实时塌陷。同时补充【资本驯化AI】：资本代言人直接向劳动力储备军下达‘共建AI秩序’指令，遭拒即揭示驯化话语的失效。亦可作【时间主权】侧写：毕业生以嘘声捍卫其未来生命时间不被预设为AI训练数据清洗工。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增案例盒子</span></div>
+    </article>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.3 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
