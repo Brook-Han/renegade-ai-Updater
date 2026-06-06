@@ -76,10 +76,10 @@ if Config.DEEPSEEK_API_KEY:
         base_url="https://api.deepseek.com"
     )
 
-# ── OpenRouter 客户端（NVIDIA Nemotron 3 Ultra）──────
-openrouter_client = None
+# ── NVIDIA 官方 API 客户端（三个模型共用）──────
+nvidia_client = None
 if Config.OPENROUTER_API_KEY:
-    openrouter_client = OpenAI(
+    nvidia_client = OpenAI(
         api_key=Config.OPENROUTER_API_KEY,
         base_url=Config.OPENROUTER_BASE_URL,
         default_headers={
@@ -88,15 +88,21 @@ if Config.OPENROUTER_API_KEY:
         }
     )
     logger.info(
-        f"🌐 OpenRouter（{Config.OPENROUTER_MODEL}）已就绪"
+        f"🌐 NVIDIA API 已就绪，模型列表: {Config.ANALYSIS_MODELS}"
     )
 else:
-    logger.info("ℹ️  未配置 OPENROUTER_API_KEY")
+    logger.info("ℹ️  未配置 NVIDIA API Key")
 
 # 至少要有一个可用的分析客户端
-if not deepseek_client and not openrouter_client:
-    logger.error("❌ 未配置任何分析模型 API Key（需要 DEEPSEEK_API_KEY 或 OPENROUTER_API_KEY）")
+if not deepseek_client and not nvidia_client:
+    logger.error("❌ 未配置任何分析模型 API Key（需要 OPENROUTER_API_KEY 或 DEEPSEEK_API_KEY）")
     sys.exit(1)
+
+# 优先使用 NVIDIA 客户端
+if nvidia_client:
+    logger.info(f"🎯 全部模型通过 NVIDIA API 调用: {', '.join(Config.ANALYSIS_MODELS)}")
+elif deepseek_client:
+    logger.info(f"🎯 使用 DeepSeek 独立 API: {Config.ANALYSIS_MODEL_DIRECT}")
 
 arxiv_client = arxiv.Client(
     page_size=Config.ARXIV_PAGE_SIZE,
@@ -110,13 +116,14 @@ arxiv_client = arxiv.Client(
 OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "academic"
 OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-# 动态构建可用模型列表（根据实际客户端配置）
-_ANALYSIS_MODELS: list[str] = []
-if deepseek_client:
-    _ANALYSIS_MODELS.append(Config.ANALYSIS_MODEL_DIRECT)
-if openrouter_client:
-    _ANALYSIS_MODELS.append(Config.OPENROUTER_MODEL)
-ANALYSIS_MODELS = _ANALYSIS_MODELS
+# 固定配置
+OUTPUT_DIR = Path(Config.OUTPUT_DIR) / "academic"
+OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+
+# 使用 Config 中预定义的模型列表（Nemotron → DeepSeek → Kimi，全部走 NVIDIA API）
+ANALYSIS_MODELS = list(Config.ANALYSIS_MODELS) if nvidia_client else (
+    [Config.ANALYSIS_MODEL_DIRECT] if deepseek_client else []
+)
 ANALYSIS_MODEL_DIRECT = Config.ANALYSIS_MODEL_DIRECT
 DRAFTING_MODEL = Config.DRAFTING_MODEL
 DRAFT_RELEVANCE_THRESHOLD = Config.DRAFT_RELEVANCE_THRESHOLD
@@ -578,16 +585,17 @@ def merge_results(results: list[dict]) -> dict:
 
 
 def analyze_paper_multi_model(paper: dict, models: list[str]) -> tuple[list[dict], dict]:
-    """多模型并行分析（优先 Nemotron，DeepSeek 做补充）"""
+    """多模型并行分析（三个模型全部通过 NVIDIA API 调用）"""
     tasks = []
-    # 优先使用 Nemotron
-    if openrouter_client:
-        tasks.append((Config.OPENROUTER_MODEL, openrouter_client))
-    # DeepSeek 做补充（如果有且与前一个模型不同）
-    if deepseek_client:
-        tasks.append((Config.ANALYSIS_MODEL_DIRECT, deepseek_client))
+    client = nvidia_client if nvidia_client else deepseek_client
+    if not client:
+        logger.error("❌ 无可用分析客户端")
+        return [], {"relevance": 0, "action": "忽略"}
 
-    max_workers = len(tasks)  # 每个模型一个 worker
+    for model_name in models:
+        tasks.append((model_name, client))
+
+    max_workers = min(len(tasks), 3)  # 最多 3 个并行
 
     results: list[dict] = []
     with ThreadPoolExecutor(max_workers=max_workers) as executor:
@@ -611,7 +619,11 @@ DRAFT_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evol
 
 def draft_patch(paper: dict, merged: dict) -> Optional[str]:
     """为高相关论文生成书稿草稿"""
-    if not deepseek_client:
+    draft_client = deepseek_client if deepseek_client else nvidia_client
+    draft_model = DRAFTING_MODEL if deepseek_client else (
+        ANALYSIS_MODELS[0] if ANALYSIS_MODELS else None
+    )
+    if not draft_client or not draft_model:
         return None
 
     first_author = paper["authors"][0].split()[-1] if paper["authors"] else "et al."
@@ -637,15 +649,23 @@ def draft_patch(paper: dict, merged: dict) -> Optional[str]:
 请生成一段 150-250 字的中英双语书稿，风格与全书一致。不要加标题，直接输出段落正文。"""
 
     try:
-        resp = deepseek_client.chat.completions.create(
-            model=DRAFTING_MODEL,
-            messages=[
+        # 构建 API 请求参数
+        kwargs = {
+            "model": draft_model,
+            "messages": [
                 {"role": "system", "content": DRAFT_SYSTEM_PROMPT},
                 {"role": "user", "content": user_prompt},
             ],
-            temperature=0.3,
-            max_tokens=2000,
-        )
+            "temperature": 0.3,
+            "max_tokens": 2000,
+        }
+        # 仅对 Nemotron 模型启用 thinking
+        if "nemotron" in draft_model.lower():
+            kwargs["extra_body"] = {
+                "chat_template_kwargs": {"enable_thinking": True},
+                "reasoning_budget": 16384,
+            }
+        resp = draft_client.chat.completions.create(**kwargs)
         draft = resp.choices[0].message.content.strip()
         if len(draft) < 50:
             logger.warning(f"   ⚠️ 草稿过短（{len(draft)} 字），跳过重试以避免无限循环")
@@ -677,7 +697,7 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> Op
     lines = [
         f"# 🔬 Academic Radar — 学术论文监控报告",
         f"**生成日期**: {today}",
-        f"**分析模型**: {ANALYSIS_MODEL_DIRECT}{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}",
+        "**分析模型**: " + (" + ".join(ANALYSIS_MODELS) if nvidia_client else ANALYSIS_MODEL_DIRECT),
         f"**草稿模型**: {DRAFTING_MODEL}",
         f"**分析条目数**: {len(papers_data)}",
         f"**关键词**: {', '.join(keywords[:10])}{'...' if len(keywords)>10 else ''}",

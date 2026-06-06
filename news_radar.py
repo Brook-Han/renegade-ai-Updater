@@ -531,8 +531,8 @@ def main() -> None:
     to_analyze = to_analyze[:args.limit]  # 限流
 
     if to_analyze:
-        logger.info(f"🤖 分析 {len(to_analyze)} 条资讯（模型: {ANALYSIS_MODEL}"
-                    f"{' + ' + Config.OPENROUTER_MODEL if openrouter_client else ''}）...")
+        model_info = " + ".join(Config.ANALYSIS_MODELS) if nvidia_client else ANALYSIS_MODEL
+        logger.info(f"🤖 分析 {len(to_analyze)} 条资讯（模型: {model_info}）...")
         for i, d in enumerate(to_analyze, 1):
             news_item = d["news"]
             logger.info(
