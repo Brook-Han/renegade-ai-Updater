@@ -147,7 +147,8 @@ class Config:
     RSS_FEEDS: dict[str, str] = {
         # ===================== 1. 公司官方博客 =====================
         "OpenAI Blog": "https://openai.com/blog/rss.xml",
-        "Anthropic Blog": "https://www.anthropic.com/blog/feed",
+        # ❌ Anthropic Blog 已于 2025 年底改版为 Webflow，完全移除了 RSS feed
+        #    替代渠道：Hacker News AI、Import AI、Interconnects 等都会覆盖 Anthropic 的重要发布
         # [新增] Anthropic 的深层研究与经济/安全团队动态（通过 Import AI 等渠道捕获）
         "Google AI Blog": "https://ai.googleblog.com/feeds/posts/default",
         "DeepMind Blog": "https://deepmind.com/blog/feed/basic",
