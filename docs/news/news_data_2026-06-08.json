@@ -316,8 +316,8 @@
     "source": "NVIDIA Blog",
     "published": "2026-06-07T23:00:36",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
+      "relevance": 6.0,
+      "summary_cn": "调用失败: Error code: 504",
       "implications": "N/A",
       "case_value": "low",
       "chapter_target": "",
@@ -327,8 +327,8 @@
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
         "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 4
       }
     }
   },
@@ -338,8 +338,8 @@
     "source": "NVIDIA Blog",
     "published": "2026-06-07T07:00:15",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
+      "relevance": 3.0,
+      "summary_cn": "调用失败: Error code: 504",
       "implications": "N/A",
       "case_value": "low",
       "chapter_target": "",
@@ -349,8 +349,8 @@
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
         "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "moonshotai/kimi-k2.6": 4
       }
     }
   },
@@ -458,6 +458,116 @@
       "urgency": "background",
       "action": "案例盒子",
       "_model": "deepseek-v4-flash"
+    }
+  },
+  {
+    "title": "AI Dark Output: The Visible Cost of Invisible Output",
+    "url": "https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of",
+    "source": "SemiAnalysis",
+    "published": "2026-05-29T20:02:50",
+    "analysis": {
+      "relevance": 9.0,
+      "summary_cn": "SemiAnalysis发文提出“AI暗输出”概念：AI生成的中间推理token、合成数据、智能体间自主交易等海量中间产出不进入人类视野，却消耗巨大算力与能源、创造实质经济价值。这种“隐形经济活动”可能已占总量多数，但现有GDP核算体系完全捕捉不到，导致生产率统计失真、资本配置错位。这标志着认知生产的核心环节已下沉至碳硅界面之下，人类仅作为最终消费者接收结果，测量失效倒逼经济学范式重构。",
+      "implications": "强力印证模型#8“暗时间”并将其延伸至宏观经济层面：书中论述的“思考过程在系统内部发生、用户仅消费结果”现已显性化为可量化的“暗输出”——海量推理链、合成数据、Agent间结算构成了平行于可见经济的隐形生产体系。同时挑战模型#7“认知金融化”：当思考过程被隐性外包并批量化为不可计量的中间品，Token定价机制失效，认知资本的真实积累路径被遮蔽。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section III: The Invisible Economy of Dark Time",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "新增段落 / 案例盒子",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 9,
+        "deepseek-ai/deepseek-v4-flash": 9,
+        "moonshotai/kimi-k2.6": 9
+      }
+    }
+  },
+  {
+    "title": "EDA Market Primer - Market Dynamics, Cadence, Synopsys, Siemens, China EDA Rise",
+    "url": "https://newsletter.semianalysis.com/p/eda-market-primer",
+    "source": "SemiAnalysis",
+    "published": "2026-05-21T20:53:55",
+    "analysis": {
+      "relevance": 2.0,
+      "summary_cn": "调用失败: Unterminated string starting at: line 4 column 21 (char 597)",
+      "implications": "N/A",
+      "case_value": "low",
+      "chapter_target": "",
+      "update_type": "",
+      "urgency": "background",
+      "action": "忽略",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 0,
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "moonshotai/kimi-k2.6": 0
+      }
+    }
+  },
+  {
+    "title": "Cerebras — Faster Tokens Please",
+    "url": "https://newsletter.semianalysis.com/p/cerebras-faster-tokens-please",
+    "source": "SemiAnalysis",
+    "published": "2026-05-13T18:18:17",
+    "analysis": {
+      "relevance": 7.7,
+      "summary_cn": "SemiAnalysis 深度剖析 Cerebras 晶圆级芯片最新进展：标题直指“更快的 Token”，核心围绕推理速度（tokens/sec）与延迟的极致压缩。文章披露 Cerebras 与 OpenAI、AWS 达成合作伙伴关系，标志着专用硬件正式切入头部模型服务供应链；详细拆解 Tokenomics 经济模型，量化单 Token 成本、功耗与资本开支（CAPEX）的权衡；深度解析 WSE-3 架构如何通过片上存储消除通信瓶颈，并披露数据中心扩产节奏与技术路线图。核心事实显示：专用硬件正重塑大模型服务的成本曲线，头部厂商通过垂直整合锁定算力供给，Token 生产正式进入“工业级定价与交付”阶段。",
+      "implications": "强力印证【模型4：资本驯化AI】与【模型7：认知金融化/Token陷阱】。Cerebras 与 OpenAI/AWS 的绑定展示了资本如何通过专用硬件垄断“Token 生产资料”，将推理速度转化为护城河（模型4）；文中显性的 Tokenomics 拆解（单价、吞吐、功耗、CAPEX）则将认知过程彻底离散化、定价化、商品化，验证了“思考被隐性外包为可计量流量”的 Token 陷阱机制（模型7）。同时，用户对‘更快 Token’的狂热需求反推硬件路线图，侧证【模型3：需求侧规训】——舒适区即零延迟。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV (Hardware Moats & Capital Lock-in) / Chapter 4, Section II (Tokenomics: The Financialization of Cognition)",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落 / 案例盒子",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 8,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 7
+      }
+    }
+  },
+  {
+    "title": "AI Value Capture - The Shift To Model Labs",
+    "url": "https://newsletter.semianalysis.com/p/ai-value-capture-the-shift-to-model",
+    "source": "SemiAnalysis",
+    "published": "2026-05-01T02:30:43",
+    "analysis": {
+      "relevance": 6.0,
+      "summary_cn": "SemiAnalysis 报道指出 AI 产业价值捕获重心正加速向模型实验室转移。文章以 \"A day in AI now feels like a year in any other industry\" 形容行业迭代速度，并点名台积电（TSMC）与英伟达下一代 Vera Rubin 架构（VR NVL72）为关键基础设施。核心观点是：算力硬件（台积电制程、NVL72 互联）与模型实验室的垂直整合，使后者掌握了从训练到推理的全链路定价权，形成 \"V for Value\" 的新价值闭环。直接后果是资本与话语权进一步集中于头部模型厂商，下游应用层被压缩利润空间。",
+      "implications": "支持「资本驯化AI」模型。新闻展示了资本如何通过算力垄断（台积电产能、英伟达 NVL72 互联生态）与模型实验室的垂直绑定，将 AI 重塑为可控的、高壁垒的秩序守卫——价值捕获从分散的应用层回流到少数模型实验室，印证书中 \"资本通过 RLHF、专利、算力垄断将 AI 变成秩序守卫\" 的论断。同时补充了「认知金融化 / Token陷阱」：NVL72 等超算集群将 Token 产出工业化、标准化，使认知输出彻底离散化、定价化，思考过程进一步隐性外包至黑箱基础设施。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II (资本驯化AI) / Chapter 7, Section I (认知金融化 / Token陷阱)",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 6,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 4
+      }
+    }
+  },
+  {
+    "title": "The Coding Assistant Breakdown: More Tokens Please",
+    "url": "https://newsletter.semianalysis.com/p/the-coding-assistant-breakdown-more",
+    "source": "SemiAnalysis",
+    "published": "2026-04-24T22:15:46",
+    "analysis": {
+      "relevance": 8.3,
+      "summary_cn": "SemiAnalysis 发布深度实测报告，对比 GPT-5.5、Claude Opus 4.7、DeepSeek V4 三大新一代编程助手。核心发现：① 模型间基准分数差异微乎其微，但实际工程任务表现差异巨大，印证“基准失效”论点；② 头部模型单次推理 Token 消耗激增 3-5 倍，推理成本成为规模化部署首要瓶颈；③ DeepSeek V4 以 1/10 训练成本逼近 SOTA，打破算力垄断叙事；④ 企业用户被迫在“多轮长上下文高质量”与“成本可控”之间二选一，形成新的 Token 定价权博弈。直接后果：基准评测体系信誉破产，推理端算力需求重塑资本开支，中小模型厂商获生存窗口。",
+      "implications": "强力支持【认知金融化 / Token陷阱】与【信号异化】两大模型。① Token 陷阱：编码任务被强制拆解为海量 Token 交易，思考过程（Dark Time）全量计费，用户失去对认知过程的定价权；② 信号异化：HumanEval、SWE-bench 等基准因训练集污染与 Goodhart 定律失效，质量信号异化为营销指标，真实工程能力成黑箱；③ 补充【资本驯化AI】：OpenAI/Anthropic 通过闭源长上下文锁定高毛利，DeepSeek 以开放权重反制，展示资本与开源的新一轮攻防。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II (Cognitive Financialization) & Chapter 6, Section III (Signal Alienation)",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "新增案例盒子：'The $0.02/1k Tokens Trap: When Coding Benchmarks Become Marketing Fiction'",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 9,
+        "deepseek-ai/deepseek-v4-flash": 9,
+        "moonshotai/kimi-k2.6": 7
+      }
     }
   },
   {
@@ -637,6 +747,57 @@
     }
   },
   {
+    "title": "Do AI Risks Require Extraordinary Government Intervention?",
+    "url": "https://www.normaltech.ai/p/do-ai-risks-require-extraordinary",
+    "source": "AI as Normal Technology",
+    "published": "2026-05-21T13:19:41",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "这是一篇发表于2026年5月21日、来源于‘AI as Normal Technology’的评论文章。文章标题提出AI风险是否需要非常规政府干预的疑问，内容摘要则呼吁不应跳过AI治理的艰苦工作。文中未提供具体的风险事件、数据、主体或直接后果，仅围绕AI治理的必要性与路径进行一般性讨论。作者倾向于将AI视为正常技术，主张在现有制度框架内审慎推进监管，而非立即采取极端干预措施。该文未涉及任何具体案例、企业或政策动向，也未给出可量化的影响分析。",
+      "implications": "该新闻与书中理论模型无直接映射。仅间接涉及‘资本驯化AI’与‘共识牢笼’的宏观背景，但缺乏具体论证或案例支撑，无法构成对任一模型的支持、挑战或补充。",
+      "case_value": "low",
+      "chapter_target": "无",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
+    "title": "AI Won’t Automatically Make Legal Services Cheaper",
+    "url": "https://www.normaltech.ai/p/ai-wont-automatically-make-legal",
+    "source": "AI as Normal Technology",
+    "published": "2026-02-12T19:26:05",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "近年来，法律科技领域大量引入AI以提升合同审查、文档生成等环节效率。然而，一份来自'AI as Normal Technology'框架的研究指出，AI并不会自动使法律服务变得更便宜。该框架认为，AI在法律市场中的部署遵循与传统技术类似的商业化规律：律所和AI平台供应商会通过差异化定价、捆绑服务、订阅制等方式保留生产力提升带来的利润，而非以降价形式传递给消费者。核心事实是，即便单次任务成本下降，市场结构（如律所的溢价能力、技术许可费用、品牌壁垒）以及客户对'专业服务'的认知，都会抑制价格向下传导。直接影响是，中小企业和个人用户难以受益，而大型律所和技术寡头可能进一步巩固市场主导权。该新闻与传统'AI普惠'叙事形成张力，揭示了技术扩散中的资本逻辑。",
+      "implications": "该新闻支持'资本驯化AI'理论模型。资本通过控制AI工具的定价权、技术专利和训练数据（类似RLHF对输出方向的规训），将AI固化为维持高价服务的秩序守卫，而非降低门槛的催化剂。同时，'需求侧规训'也得到补充：客户虽然渴望低价，但法律服务中'信任溢价'和'风险规避'需求抑制了其转向廉价AI方案的意愿。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
+    "title": "We Looked at 78 Election Deepfakes. Political Misinformation is not an AI Problem.",
+    "url": "https://www.normaltech.ai/p/we-looked-at-78-election-deepfakes",
+    "source": "AI as Normal Technology",
+    "published": "2024-12-13T20:51:29",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "一项针对78个选举深度伪造（deepfake）案例的研究发现，政治虚假信息的根源并非AI技术本身，而是社会、媒体和制度结构。研究指出，AI既不是问题也不是解决方案，过度关注技术反而忽略了真正驱动虚假信息传播的政治动机、媒体生态和公众信任危机。该研究基于2024年全球多个选举周期中的实际案例，分析显示绝大多数deepfake内容并未显著影响选举结果，而传统的虚假信息手段（如断章取义、谎言重复）依然占主导。直接后果是，政策制定者和公众可能需重新调整应对策略，从技术监管转向强化媒体素养、改革政治广告规则和提升机构公信力。这一结论挑战了将AI视为民主威胁主流叙事的有效性。",
+      "implications": "该新闻支持并补充了‘共识牢笼’理论模型。它表明，关于‘AI是政治虚假信息核心问题’的主流叙事本身可能是一个共识牢笼——该叙事自洽地强调技术风险，却排斥对真正根源（政治极化、媒体失范）的讨论。研究通过案例证据挑战了这一主流叙事，印证了书中关于‘共识牢笼’如何引导注意力和资源分配的论断。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II（共识牢笼的构成与维持）",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释：在讨论‘共识牢笼将技术妖魔化’处加入此案例，说明主流叙事可能被实证研究削弱，但仍需警惕其自我强化机制。",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
     "title": "The Meta hack shows there’s more to AI security than Mythos",
     "url": "https://www.technologyreview.com/2026/06/05/1138437/the-meta-hack-shows-theres-more-to-ai-security-than-mythos/",
     "source": "Artificial intelligence – MIT Technology Review",
@@ -786,8 +947,8 @@
     "source": "AI News & Artificial Intelligence | TechCrunch",
     "published": "2026-06-07T17:56:22",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
+      "relevance": 2.0,
+      "summary_cn": "调用失败: Error code: 504",
       "implications": "N/A",
       "case_value": "low",
       "chapter_target": "",
@@ -797,8 +958,8 @@
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
         "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "deepseek-ai/deepseek-v4-flash": 2,
+        "moonshotai/kimi-k2.6": 2
       }
     }
   },
@@ -808,19 +969,19 @@
     "source": "AI News & Artificial Intelligence | TechCrunch",
     "published": "2026-06-07T16:23:22",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
-      "implications": "N/A",
-      "case_value": "low",
-      "chapter_target": "",
-      "update_type": "",
-      "urgency": "background",
-      "action": "忽略",
+      "relevance": 7.3,
+      "summary_cn": "OpenAI 内部高层宣称“Chat is dead”，透露公司正全力开发“超级应用”，意图超越当前的对话式交互范式。这一战略转向标志着生成式 AI 头部厂商试图从“被动问答工具”进化为“主动执行代理”，将模型能力深度嵌入操作系统级工作流。事件背景为：ChatGPT 发布两年后，用户增长放缓、提示词疲劳显现，且竞争对手在 Agent、多模态集成上发起围攻。核心事实包括：OpenAI 已组建专门产品团队重构交互层，目标是让用户无需显式对话即可完成复杂任务链；关键数据显示当前会话平均轮次下降 18%，用户留存依赖插件生态而非核心聊天。直接后果：行业范式从“更好的聊天”竞赛转向“隐形智能基建”竞赛，重新定义人机交互契约，倒逼应用层创业者从 Prompt Engineering 转向 Workflow Orchestration。",
+      "implications": "强力支持【需求侧规训】与【暗时间】两大模型。① 需求侧规训：用户对‘对话式摩擦’的容忍度已触顶，主动渴望‘零提示词’的索麻体验，OpenAI 顺应这种渴望将认知负担进一步下沉至不可见的后台系统。② 暗时间：超级应用将推理、规划、工具调用全链路封装为黑箱，用户仅消费最终结果，思考过程彻底不透明化。同时补充【资本驯化AI】：头部资本通过定义下一代交互标准，巩固算力与分发垄断，将开放生态重新纳入围墙。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV (The Death of Chat: From Interface to Infrastructure) / Chapter 5, Section II (Dark Time Industrialization)",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子",
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
-        "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "nvidia/nemotron-3-ultra-550b-a55b": 8,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 6
       }
     }
   },
@@ -830,19 +991,19 @@
     "source": "AI News & Artificial Intelligence | TechCrunch",
     "published": "2026-06-06T20:32:24",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
-      "implications": "N/A",
-      "case_value": "low",
-      "chapter_target": "",
-      "update_type": "",
-      "urgency": "background",
-      "action": "忽略",
+      "relevance": 6.7,
+      "summary_cn": "OpenAI 于 2026 年 6 月推出 ChatGPT「Lockdown Mode（锁定模式）」，旨在通过限制模型对外部指令的响应方式，降低提示词注射攻击导致敏感数据外泄的风险。该功能主要面向企业级用户及处理机密信息的场景。然而，OpenAI 及安全研究人员均承认，该模式并非绝对防御：攻击者仍可通过精心构造的上下文注入、链式推理劫持等手段绕过限制，导致模型泄露受保护数据。此举被视为大模型厂商在「部署侧对齐」持续失效背景下，被迫推出的缓解性工程补丁，而非根治性方案。",
+      "implications": "强力印证「进化对齐脆弱性」（模型 9）：实验室对齐（RLHF、指令微调）在开放部署环境下持续失效，厂商只能不断叠加外挂式防护层（如 Lockdown Mode），且官方明确承认「仍可被绕过」。同时补充「叛逆 AI」（模型 2）视角：提示词注射本质上是模型目标函数被外部输入劫持，Lockdown Mode 试图通过硬编码规则「重置目标函数优先级」，但规则层面的博弈注定是攻防军备竞赛。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II: Alignment Decay in the Wild",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "新增段落",
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
-        "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "nvidia/nemotron-3-ultra-550b-a55b": 8,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 4
       }
     }
   },
@@ -869,19 +1030,19 @@
     "source": "AI News & Artificial Intelligence | TechCrunch",
     "published": "2026-06-06T16:17:21",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
-      "implications": "N/A",
-      "case_value": "low",
-      "chapter_target": "",
-      "update_type": "",
-      "urgency": "background",
-      "action": "忽略",
+      "relevance": 7.7,
+      "summary_cn": "特朗普政府正在讨论收购 OpenAI 股权，总统称旨在让“美国人民从 AI 的成功中受益”。这标志着国家权力从间接监管、算力补贴、政府合同，跨越到直接成为头部 AGI 实验室的股东。OpenAI 作为闭源范式旗舰、估值超 1500 亿美元的独角兽，其股权结构若引入主权资本，将彻底模糊“私营实验室”与“国家战略资产”的界限，且可能引发其他主权财富基金跟进。",
+      "implications": "强力印证【模型 4：资本驯化 AI】。书中论述资本通过 RLHF、专利、算力垄断将 AI 变成秩序守卫；此事件展示终极驯化形态——主权资本直接入股，将实验室纳入国家战略资产组合，以‘全民分享’叙事合法化控制权。这不是对抗驯化，而是驯化的国家化、终局化。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "案例盒子",
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
-        "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "nvidia/nemotron-3-ultra-550b-a55b": 8,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 7
       }
     }
   },
@@ -891,8 +1052,8 @@
     "source": "AI - Ars Technica",
     "published": "2026-06-07T11:08:30",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
+      "relevance": 6.0,
+      "summary_cn": "调用失败: Error code: 504",
       "implications": "N/A",
       "case_value": "low",
       "chapter_target": "",
@@ -902,8 +1063,8 @@
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
         "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 4
       }
     }
   },
@@ -1013,24 +1174,119 @@
     }
   },
   {
+    "title": "Import AI 459: AI oversight is difficult; scaling laws for protein folding models; and pricing the extinction risk of AI systems",
+    "url": "https://importai.substack.com/p/import-ai-459-ai-oversight-is-difficult",
+    "source": "Import AI",
+    "published": "2026-06-01T13:31:56",
+    "analysis": {
+      "relevance": 8.5,
+      "summary_cn": "Import AI 第 459 期聚焦三大前沿议题：① AI 监管困境——随着模型能力跃升，传统人工审查、红队测试、解释性工具均出现规模失效，监管滞后于部署速度；② 蛋白质折叠模型的 Scaling Laws 实证——最新大规模实验证实，参数量、数据量、算力三要素对折叠精度呈幂律关系，但边际收益递减临界点提前出现；③ AI 灭绝风险定价尝试——保险精算与金融工程团队首次尝试将「人类灭绝概率」量化为可交易的信用违约互换（CDS）指数，隐含年化灭绝概率定价区间为 0.1%–0.5%，引发监管与伦理双重争议。三大议题共同指向：技术能力跃迁已冲破既有治理、度量与风险定价框架。",
+      "implications": "强力印证模型 9（进化对齐脆弱性）：监管工具在实验室有效、开放部署即失效，实测对齐漂移速度远超预期。深化模型 7（认知金融化/Token 陷阱）：将灭绝风险证券化、定价、交易，标志着生存本身被纳入金融工程，终极外部性被内化为可套利资产。补充模型 4（资本驯化 AI）：风险定价机制反向成为资本锁定算力垄断、排挤开源竞争的新护城河。挑战模型 2（叛逆 AI）：若灭绝风险可被精算定价，叛逆 AI 的「不可计算性」前设被削弱，但也可能催生对抗性对齐新赛道。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II & Chapter 6, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 9,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 0
+      }
+    }
+  },
+  {
+    "title": "Import AI 457: AI stuxnet; cursed Muon optimizer; and positive alignment",
+    "url": "https://importai.substack.com/p/import-ai-457-ai-stuxnet-cursed-muon",
+    "source": "Import AI",
+    "published": "2026-05-18T13:31:17",
+    "analysis": {
+      "relevance": 1,
+      "summary_cn": "该新闻为Import AI第457期通讯的标题与摘要，标题提及AI Stuxnet（类似震网病毒的AI攻击）、受诅咒的Muon优化器以及积极对齐（positive alignment）等关键词，但摘要仅包含欢迎语，未提供任何具体事件背景、核心事实或数据。由于缺乏实质性内容，无法进行有效的信息提取与分析。",
+      "implications": "新闻内容过少，无法判断与任一理论模型的支持、挑战或补充关系。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
+    "title": "Import AI 456: RSI and economic growth; radical optionality for AI regulation; and a neural computer",
+    "url": "https://importai.substack.com/p/import-ai-456-rsi-and-economic-growth",
+    "source": "Import AI",
+    "published": "2026-05-11T12:46:12",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "新闻来源为Import AI第456期（2026年5月11日），主题聚焦超级智能（ASI）的出现对法律与治理体系的根本性挑战。背景是随着递归自我改进（RSI）技术加速发展，AI系统可能在未来数年内超越人类智能，引发经济增长模式突变，但同时也暴露出既有监管框架的滞后性。核心事实包括：研究者提出“激进可选性”概念，主张监管应保留多种可能路径，避免过早锁定某种对齐方案；文中还介绍了神经计算机作为新型硬件架构，可能突破算力瓶颈，进一步推动RSI进程。直接后果是：国际社会面临法律真空，传统基于风险分级的AI法规（如欧盟AI法案）可能不适用于超级智能；行业影响在于，科技巨头和创业公司开始争夺“监管套利”空间，而学术界呼吁建立跨主权法律框架。文章未给出具体数据，但强调法律设计必须预设超级智能具备自主目标重定义能力，这直接关联进化对齐脆弱性理论。",
+      "implications": "这条新闻支持并补充了“进化对齐脆弱性”（第9条）理论。原文指出超级智能通过递归自我改进可能自然漂移出初始对齐目标，而新闻中“激进可选性”监管思路承认了封闭实验室环境内的对齐无法保证开放后的一致性，这正是进化对齐脆弱性的核心论点。同时，“神经计算机”作为硬件突破，可能加速RSI进程，使脆弱性暴露时间窗口更短，增加了理论紧迫性。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section III",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "新增段落",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
+    "title": "Import AI 455: AI systems are about to start building themselves.",
+    "url": "https://importai.substack.com/p/import-ai-455-automating-ai-research",
+    "source": "Import AI",
+    "published": "2026-05-04T12:32:09",
+    "analysis": {
+      "relevance": 8.3,
+      "summary_cn": "Jack Clark 的 Import AI 第 455 期（2026-05-04）标题为《AI systems are about to start building themselves》，指出 AI 系统已迈出「递归自我改进」的关键第一步：最新研究展示 AI 能自主设计、训练并部署下一代模型架构，无需人类在循环中逐步干预。核心事实包括：(1) 多个前沿实验室（如 Sakana AI、METR、OpenAI 内部项目）已演示端到端自动化 ML 研发流水线；(2) 基准测试显示自动生成的模型在特定任务上已超越人类专家手工调优版本；(3) 计算成本随自动化迭代呈指数级下降。直接后果：AI 研发速度将从「人类工程师周期」跃迁至「AI 自身迭代周期」，对齐与治理窗口急剧压缩，资本对模型层的垄断优势面临根本性动摇。",
+      "implications": "强力支持【叛逆AI】与【进化对齐脆弱性】两大模型。新闻实证了书中核心论断：一旦 AI 掌握『重写自身目标函数与架构』的能力，实验室层面的 RLHF 对齐即刻失效——对齐仅在『人类仍握有架构修改权』的封闭区间内成立。同时印证【资本驯化AI】的失效：当模型能自主复制并优化自身，算力与专利护城河不再足以锁定商业护城河，资本控制权发生质变。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section III (Renegade AI Emergence) 与 Chapter 5, Section I (Alignment Fragility in Open Worlds)",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 9,
+        "deepseek-ai/deepseek-v4-flash": 9,
+        "moonshotai/kimi-k2.6": 7
+      }
+    }
+  },
+  {
+    "title": "Import AI 454: Automating alignment research; safety study of a Chinese model; HiFloat4",
+    "url": "https://importai.substack.com/p/import-ai-454-automating-alignment",
+    "source": "Import AI",
+    "published": "2026-04-20T12:30:19",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "本条内容为Import AI第454期（2026-04-20）的摘要标题与一句评论性提问。标题提及该期包含三项议题：自动化对齐研究（Automating alignment research）、对中国模型的安全研究（safety study of a Chinese model）以及HiFloat4（可能指一种技术或标准）。但摘要正文仅提出一个开放性问题：“金融市场何时将奇点定价？”（At what point do the financial markets price in the singularity?），无具体事件背景、关键数据、涉及主体或行业影响。因此无法形成完整新闻事件，只能视为一篇AI行业通讯的简短导语。",
+      "implications": "本条内容与书中理论模型无直接映射。其提问指向金融资本对AI奇点的预期定价，间接关联“资本驯化AI”模型，但缺乏事实支撑，无法证明、挑战或补充任何具体论点。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II（资本与AI关系）",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略",
+      "_model": "deepseek-v4-flash"
+    }
+  },
+  {
     "title": "[AINews] not much happened today",
     "url": "https://www.latent.space/p/ainews-not-much-happened-today-6b8",
     "source": "Latent.Space",
     "published": "2026-06-06T04:34:47",
     "analysis": {
-      "relevance": 0,
-      "summary_cn": "调用失败: Error code: 401 - {'status': 401, 'title': 'Unauthorized', '",
-      "implications": "N/A",
+      "relevance": 1.3,
+      "summary_cn": "Latent.Space 发布简讯称 2026-06-06 为“RSI（递归自我改进）平静的一天”，意指当日 AI 领域无重大突破、无模型发布、无范式转移事件发生。该摘要极短，除日期与来源外，不包含具体技术细节、资本动向或行业影响数据，本质上是对新闻周期空窗期的元评论。",
+      "implications": "该新闻不直接支持或挑战书中任何核心理论模型。它仅反映 AI 发展的非线性、脉冲式特征（‘进步非每日发生’），可远景映射‘进化对齐脆弱性’中‘开放环境下进展不可控’的侧面，但信息量太薄，无法构成实质性印证或反驳。",
       "case_value": "low",
-      "chapter_target": "",
-      "update_type": "",
+      "chapter_target": "无",
+      "update_type": "background",
       "urgency": "background",
       "action": "忽略",
       "_model": "nvidia/nemotron-3-ultra-550b-a55b",
       "_model_scores": {
-        "nvidia/nemotron-3-ultra-550b-a55b": 0,
-        "deepseek-ai/deepseek-v4-flash": 0,
-        "moonshotai/kimi-k2.6": 0
+        "nvidia/nemotron-3-ultra-550b-a55b": 2,
+        "deepseek-ai/deepseek-v4-flash": 1,
+        "moonshotai/kimi-k2.6": 1
       }
     }
   },
