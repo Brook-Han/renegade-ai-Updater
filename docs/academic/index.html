@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Archive · Renegade AI</title>
+  <title>Academic Archive | Renegade AI v5.4</title>
   <meta name="description" content="Academic paper archive curated through the lens of Renegade AI — cognitive friction, not cognitive flattery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -62,7 +62,7 @@ body{
 
 /* ── ACCESSIBILITY ── */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
-:focus:not(:focus-visible){outline: none}
+:focus:not(:focus-visible){outline:none}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:.01ms!important;animation-iteration-count:1!important;
@@ -134,7 +134,7 @@ nav{
 }
 .hero-title span{color:var(--accent);text-shadow:0 0 40px rgba(255,92,69,.25)}
 .hero-desc{
-  font-size:1.1rem;color:var(--text-muted);font-style: italic;
+  font-size:1.1rem;color:var(--text-muted);font-style:italic;
   border-left:3px solid var(--accent);padding-left:18px;
   max-width:520px;line-height:1.85;margin-bottom:32px;transition:color .3s;
 }
@@ -185,7 +185,7 @@ nav{
 .search-wrap input{
   background:none;border:none;color:var(--text);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
-  width:100%;outline: none;
+  width:100%;outline:none;
 }
 .search-wrap input::placeholder{color:var(--text-faint);transition:color .2s}
 .search-wrap input:focus::placeholder{color:transparent}
@@ -232,7 +232,7 @@ nav{
   display:flex;flex-direction:column;gap:14px;
   transition:background .25s var(--ease),box-shadow .35s var(--ease),border-color .25s;
   position:relative;
-  opacity:0;transform: translateY(16px);
+  opacity:0;transform:translateY(16px);
   animation:fadeUp .4s var(--ease) forwards;
   box-shadow:0 2px 16px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03);
   border-left:2px solid transparent;
@@ -335,6 +335,16 @@ nav{
   display:block;margin-bottom:20px;line-height:1;
 }
 
+/* ── FOOTER ── */
+footer{
+  margin-top:64px;padding-top:24px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);letter-spacing:1px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+footer a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--accent)}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -389,17 +399,7 @@ nav{
   .card-grid{grid-template-columns:1fr}
   .nav-center{display:none}
 }
-  
-/* ── PAPER META (Academic specific) ── */
-.paper-meta{font-family:var(--mono);font-size:.65rem;letter-spacing:1.5px;color:var(--text-muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.paper-meta span{display:inline-flex;align-items:center;gap:4px}
-.paper-abstract{font-size:.95rem;color:var(--text);line-height:1.85;margin-bottom:16px;position:relative}
-.paper-abstract::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:1.8em;background:linear-gradient(90deg,transparent,var(--card));pointer-events:none}
-.radar-card:hover .paper-abstract::after{background:linear-gradient(90deg,transparent,var(--surface))}
-.paper-implications{background:var(--bg2);border:1px solid var(--border);padding:16px 20px;margin-top:12px;font-size:.88rem;color:var(--text-muted);line-height:1.7}
-.paper-implications strong{color:var(--accent2);font-weight:600;letter-spacing:.5px}
-.draft-box{background:var(--accent-dim);border:1px solid var(--accent);padding:12px 16px;margin-top:12px;font-size:.82rem;color:var(--accent);line-height:1.6}
-</style>
+  </style>
 </head>
 <body>
 <div class="noise"></div>
@@ -446,18 +446,17 @@ nav{
 
 <!-- CONTROLS -->
 <div class="controls-bar">
-  <button class="filter-btn active" data-filter="all">ALL</button>
-  <button class="filter-btn" data-filter="draft">✍ DRAFT</button>
+  <button class="filter-btn active" data-filter="all" aria-pressed="true">ALL</button>
+  <button class="filter-btn" data-filter="draft" aria-pressed="false">✍ DRAFT</button>
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="SEARCH TITLES &amp; ABSTRACTS">
+    <input type="text" id="searchInput" placeholder="SEARCH TITLES &amp; ABSTRACTS" aria-label="Search titles and abstracts">
   </div>
-  <a href="../index.html" class="back-link">← MAIN DIGEST</a>
+  <a href="../index.html" class="list-link">← MAIN DIGEST</a>
 </div>
 
 <!-- MAIN -->
 <main class="main">
-  
-<div class="day-group" data-date="2026-06-06">
+  <div class="day-group" data-date="2026-06-06">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">ACADEMIC · 00:00:00</div>
@@ -469,12 +468,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section II &#x27;Token陷阱的文化维度&#x27; 及 Chapter 2, Section IV &#x27;共识牢笼的地理边界&#x27;</span>
           
         </div>
-        <div class="radar-score">9.3<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:93%"></div></div>
+        <div class="radar-score">
+          9.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/cfaa7a68c7a10c6fc22461ce63ed811a13fd739d" target="_blank" rel="noopener">AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nuances</a>
@@ -488,7 +489,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-06-05">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -501,12 +501,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 8, Section V; Chapter 5, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/f7ddbdac3ef78fb46cc7385b79b2905955fb717d" target="_blank" rel="noopener">Risk Analysis of Artificial Intelligence in HighStakes Human Decision Systems</a>
@@ -520,7 +522,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-06-03">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -533,12 +534,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section III (RLHF与共识牢笼构建), Chapter 6, Section I (奉承型AI的认知危害)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</a>
@@ -552,7 +555,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-06-01">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -565,12 +567,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section III (RLHF与共识牢笼构建), Chapter 6, Section I (奉承型AI的认知危害)</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</a>
@@ -584,7 +588,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-31">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -597,12 +600,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -616,7 +621,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-30">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -629,12 +633,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -648,7 +654,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-25">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -661,12 +666,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -680,7 +687,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-24">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -693,12 +699,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 3, Section II（The Role of AI as Consensus Gatekeeper）或Chapter 5, Section III（RLHF as Ideological Filter）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -712,7 +720,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-23">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -725,12 +732,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 2 (Consensus Cage), Section III (RLHF as Alignment to Consensus) 和 Chapter 5 (Capital Domestication of AI), Section II (AI as Gatekeepers)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -744,7 +753,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-22">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -757,12 +765,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section V; Chapter 5, Section II</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -776,7 +786,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-21">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -789,12 +798,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -808,7 +819,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-20">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -821,12 +831,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section II（共识牢笼的形成机制）或 Chapter 5, Section III（资本驯化AI的实证）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -840,7 +852,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-19">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -853,12 +864,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -872,7 +885,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-18">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -885,12 +897,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 3, Section IV (共识牢笼的生成机制：人机反馈循环)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -904,7 +918,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-16">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -917,12 +930,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill mid" style="width:80%"></div></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06656v1" target="_blank" rel="noopener">Why Global LLM Leaderboards Are Misleading: Small Portfolios for Heterogeneous Supervised ML</a>
@@ -936,7 +951,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-15">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -949,12 +963,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -968,7 +984,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-14">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -981,12 +996,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -1000,7 +1017,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-13">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -1013,12 +1029,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -1032,7 +1050,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-12">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -1045,12 +1062,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -1064,7 +1083,6 @@ nav{
   </div>
 </div>
 
-
 <div class="day-group" data-date="2026-05-11">
   <div class="day-header-row">
     <div class="day-header-left">
@@ -1077,12 +1095,14 @@ nav{
     <article class="radar-card" data-type="academic">
       <div class="radar-card-top">
         <div class="radar-card-meta">
-          <span class="type-tag">PAPER</span>
+          <span class="type-tag academic">PAPER</span>
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:100%"></div></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -1098,11 +1118,11 @@ nav{
 
   <div class="empty-state" id="emptyState">
     <span class="glyph">∅</span>
-    NO RESULTS · ADJUST SEARCH TERMS
+    <p>NO RESULTS · ADJUST SEARCH TERMS</p>
   </div>
   <footer>
-    <span>Renegade AI v5.3 · Brooks Han</span>
-    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank" rel="noopener">GitHub ↗</a>
   </footer>
 </main>
 

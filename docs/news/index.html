@@ -62,7 +62,7 @@ body{
 
 /* ── ACCESSIBILITY ── */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
-:focus:not(:focus-visible){outline: none}
+:focus:not(:focus-visible){outline:none}
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{
     animation-duration:.01ms!important;animation-iteration-count:1!important;
@@ -134,7 +134,7 @@ nav{
 }
 .hero-title span{color:var(--accent);text-shadow:0 0 40px rgba(255,92,69,.25)}
 .hero-desc{
-  font-size:1.1rem;color:var(--text-muted);font-style: italic;
+  font-size:1.1rem;color:var(--text-muted);font-style:italic;
   border-left:3px solid var(--accent);padding-left:18px;
   max-width:520px;line-height:1.85;margin-bottom:32px;transition:color .3s;
 }
@@ -185,7 +185,7 @@ nav{
 .search-wrap input{
   background:none;border:none;color:var(--text);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
-  width:100%;outline: none;
+  width:100%;outline:none;
 }
 .search-wrap input::placeholder{color:var(--text-faint);transition:color .2s}
 .search-wrap input:focus::placeholder{color:transparent}
@@ -232,7 +232,7 @@ nav{
   display:flex;flex-direction:column;gap:14px;
   transition:background .25s var(--ease),box-shadow .35s var(--ease),border-color .25s;
   position:relative;
-  opacity:0;transform: translateY(16px);
+  opacity:0;transform:translateY(16px);
   animation:fadeUp .4s var(--ease) forwards;
   box-shadow:0 2px 16px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03);
   border-left:2px solid transparent;
@@ -335,6 +335,16 @@ nav{
   display:block;margin-bottom:20px;line-height:1;
 }
 
+/* ── FOOTER ── */
+footer{
+  margin-top:64px;padding-top:24px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);letter-spacing:1px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+footer a{color:var(--text-muted);text-decoration:none;transition:color .2s}
+footer a:hover{color:var(--accent)}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -389,17 +399,7 @@ nav{
   .card-grid{grid-template-columns:1fr}
   .nav-center{display:none}
 }
-  
-/* ── PAPER META (Academic specific) ── */
-.paper-meta{font-family:var(--mono);font-size:.65rem;letter-spacing:1.5px;color:var(--text-muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
-.paper-meta span{display:inline-flex;align-items:center;gap:4px}
-.paper-abstract{font-size:.95rem;color:var(--text);line-height:1.85;margin-bottom:16px;position:relative}
-.paper-abstract::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:1.8em;background:linear-gradient(90deg,transparent,var(--card));pointer-events:none}
-.radar-card:hover .paper-abstract::after{background:linear-gradient(90deg,transparent,var(--surface))}
-.paper-implications{background:var(--bg2);border:1px solid var(--border);padding:16px 20px;margin-top:12px;font-size:.88rem;color:var(--text-muted);line-height:1.7}
-.paper-implications strong{color:var(--accent2);font-weight:600;letter-spacing:.5px}
-.draft-box{background:var(--accent-dim);border:1px solid var(--accent);padding:12px 16px;margin-top:12px;font-size:.82rem;color:var(--accent);line-height:1.6}
-</style>
+  </style>
 </head>
 <body>
 <div class="noise"></div>
@@ -416,31 +416,45 @@ nav{
 </nav>
 
 <!-- HERO -->
-
+<div class="hero-strip">
+  <div class="hero-left">
+    <div class="hero-eyebrow">§ News Archive</div>
+    <h1 class="hero-title">NEWS<br><span>ARCHIVE</span></h1>
+    <p class="hero-desc">
+      News signal extracted from the noise — ranked by relevance to cognitive friction and civilizational diagnosis.
+    </p>
+    <div class="hero-tags">
+      <span class="hero-tag" id="tagTotal">— REPORTS</span>
+      <span class="hero-tag" id="tagDays">— DAYS</span>
+      <span class="hero-tag">TOP 3 LATEST · TOP 1 ARCHIVE</span>
+      <span class="hero-tag">SCORE / 10</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="stat-block">
+      <span class="n" id="statTotal">—</span>
+      <span class="l">Reports</span>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="stat-block">
+      <span class="n" id="statDays">—</span>
+      <span class="l">Days</span>
+    </div>
+  </div>
+</div>
 
 <!-- CONTROLS -->
 <div class="controls-bar">
-  <button class="filter-btn active" data-filter="all">ALL</button>
-  
+  <button class="filter-btn active" data-filter="all" aria-pressed="true">ALL</button>
   <div class="search-wrap">
-    <input type="text" id="searchInput" placeholder="Search news titles...">
+    <input type="text" id="searchInput" placeholder="Search news titles..." aria-label="Search news titles">
   </div>
-  
+  <a href="../index.html" class="list-link">← MAIN DIGEST</a>
 </div>
 
 <!-- MAIN -->
 <main class="main">
-    <div class="hero-eyebrow">§ News Archive</div>
-    <h1>NEWS ARCHIVE</h1>
-    <div class="hero-desc">
-      <span>📰 全部新闻条目 · 按日期排序</span>
-      <span id="statsLine">共 26 份报告 · 26 天</span>
-    </div>
-    <div class="controls-bar">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <div class="search-wrap"><input type="text" id="searchInput" placeholder="Search..."></div>
-    </div>
-    <div class="day-group" data-date="2026-06-08">
+  <div class="day-group" data-date="2026-06-08">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
@@ -455,8 +469,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
         </div>
-        <div class="radar-score">7.7<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:77.0%"></div></div>
+        <div class="radar-score">
+          7.7<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">The Trump administration might take an equity stake in OpenAI</a>
@@ -485,8 +501,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:80.0%"></div></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">After Orthogonality: Virtue-Ethical Agency and AI Alignment</a>
@@ -515,8 +533,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section III: The Invisible Economy of Dark Time</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">AI Dark Output: The Visible Cost of Invisible Output</a>
@@ -545,8 +565,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
@@ -575,8 +597,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section IV: Signal Alienation and the Collapse of Authenticity</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">Google rolls out fake call detection to protect against AI deepfake impersonation scams</a>
@@ -605,8 +629,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
@@ -635,8 +661,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -656,7 +684,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-31</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 21 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -665,8 +693,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -686,7 +716,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-30</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 21 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -695,8 +725,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -716,7 +748,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-25</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -725,8 +757,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
@@ -746,7 +780,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-24</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -755,8 +789,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (The Bureaucratization of AI: Corporate Deployment as Control Mechanism)</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</a>
@@ -776,7 +812,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-23</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -785,8 +821,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:80.0%"></div></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">AdventHealth advances whole-person care with OpenAI</a>
@@ -806,7 +844,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -815,8 +853,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">The next phase of OpenAI’s Education for Countries</a>
@@ -836,7 +876,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -845,8 +885,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II（叛逆AI的实证案例）</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">An OpenAI model has disproved a central conjecture in discrete geometry</a>
@@ -866,7 +908,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-20</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -875,8 +917,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II (认知金融化与暗时间)</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">How business operations teams use Codex</a>
@@ -896,7 +940,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-19</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -905,8 +949,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -926,7 +972,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -935,8 +981,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</a>
@@ -956,7 +1004,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-17</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -965,8 +1013,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4: The Renegade AI Emergence 中的 Section II (Self-improvement Loops) 或 Chapter 6: Evolution Alignment Fragility</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
@@ -986,7 +1036,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-16</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -995,8 +1045,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section II（资本驯化AI：基础设施垄断）</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">NVIDIA Spectrum-X — the Open, AI-Native Ethernet Fabric — Sets the Standard for Gigascale AI, Now With MRC</a>
@@ -1016,7 +1068,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-15</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1025,8 +1077,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</a>
@@ -1046,7 +1100,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-14</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1055,8 +1109,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">Anthropic’s Cat Wu says that, in the future, AI will anticipate your needs before you know what they are</a>
@@ -1076,7 +1132,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1085,8 +1141,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -1106,7 +1164,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 22 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1115,8 +1173,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -1136,7 +1196,7 @@ nav{
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-11</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 21 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1145,8 +1205,10 @@ nav{
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -1160,11 +1222,15 @@ nav{
   </div>
 </div>
 
-    <div class="empty-state" id="emptyState" style="display:none">
-      <div class="glyph">∅</div>
-      <p>无匹配结果 · 请尝试其他关键词</p>
-    </div>
-  </main>
+  <div class="empty-state" id="emptyState">
+    <span class="glyph">∅</span>
+    <p>无匹配结果 · 请尝试其他关键词</p>
+  </div>
+  <footer>
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank" rel="noopener">GitHub ↗</a>
+  </footer>
+</main>
 
 <!-- STATUS BAR -->
 <div class="status-bar">
@@ -1183,7 +1249,7 @@ nav{
 
 /* ── STATS ── */
 (function(){
-  const t=23,d=23;
+  const t=26,d=26;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
@@ -1202,10 +1268,9 @@ nav{
   function update(){
     let visible=0;
     cards.forEach(c=>{
-      const hasDraft = c.querySelector('.draft-dot') !== null;
       const titleT   = (c.querySelector('.radar-card-title')?.textContent||'').toLowerCase();
       const bodyT    = (c.querySelector('.radar-card-body')?.textContent||'').toLowerCase();
-      const filterOk = filter==='all' || (filter==='draft' && hasDraft);
+      const filterOk = filter==='all';
       const searchOk = !query || titleT.includes(query) || bodyT.includes(query);
       const show     = filterOk && searchOk;
       c.classList.toggle('hidden',!show);
@@ -1237,7 +1302,7 @@ nav{
   const messages=[
     'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
     'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
-    'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
     'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
     'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
     'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
