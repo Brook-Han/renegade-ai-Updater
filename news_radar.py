@@ -469,6 +469,116 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
 
 
 # ------------------------------------------------------------------
+# WorkBuddy 集成：--no-llm 模式 → 保存文章供 WorkBuddy 分析
+# ------------------------------------------------------------------
+def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str]) -> None:
+    """保存预筛选后的文章到JSON，供WorkBuddy内置模型分析"""
+    today = datetime.date.today().isoformat()
+    articles_path = OUTPUT_DIR / f"news_articles_{today}.json"
+
+    articles = []
+    for item in filtered_news:
+        fp = get_news_cache_key(item)
+        articles.append({
+            "_cache_key": fp,
+            "title": item.get("title", "")[:200],
+            "summary": item.get("summary", "")[:500],
+            "published": item.get("published", ""),
+            "url": item.get("url", ""),
+            "source": item.get("source", "rss"),
+            "source_name": item.get("source_name", "Unknown"),
+        })
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    with open(articles_path, "w", encoding="utf-8") as f:
+        json.dump(articles, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"📦 预筛选文章已保存: {articles_path} ({len(articles)} 条)")
+    logger.info("🤖 接下来请 WorkBuddy 读取该文件进行分析。")
+    print(f"\n✅ 数据采集完成！")
+    print(f"📄 文章文件: {articles_path}")
+    print(f"📊 共 {len(articles)} 条预筛选文章，等待 WorkBuddy 分析。")
+    print(f"💡 下一步: 让 WorkBuddy 读取此文件，逐条分析后将结果写入缓存文件:")
+    print(f"   {CACHE_FILE}")
+    print(f"   分析完成后调用: python3 news_radar.py --report-from-cache {articles_path}")
+
+
+# ------------------------------------------------------------------
+# WorkBuddy 集成：--report-from-cache 模式 → 从缓存重建报告
+# ------------------------------------------------------------------
+def _generate_report_from_cache(articles_path: str) -> None:
+    """从文章JSON + 缓存重建 news_data 并生成报告"""
+    articles_file = Path(articles_path)
+    if not articles_file.exists():
+        logger.error(f"❌ 文章文件不存在: {articles_path}")
+        sys.exit(1)
+
+    with open(articles_file, "r", encoding="utf-8") as f:
+        articles = json.load(f)
+
+    cache = load_news_cache()
+
+    news_data: list[dict] = []
+    for art in articles:
+        ck = art.get("_cache_key", "")
+        if ck in cache and "analysis" in cache[ck]:
+            news_data.append({
+                "news": {
+                    "title": art["title"],
+                    "summary": art.get("summary", ""),
+                    "published": art.get("published", ""),
+                    "url": art.get("url", ""),
+                    "source_name": art.get("source_name", ""),
+                    "source": art.get("source", "rss"),
+                },
+                "analysis": cache[ck]["analysis"],
+                "cached_at": cache[ck].get("cached_at", ""),
+            })
+            logger.info(f"✅ 缓存命中: {art['title'][:40]}...")
+        else:
+            logger.warning(f"⚠️ 缓存未命中（尚未分析）: {art['title'][:40]}...")
+
+    if not news_data:
+        logger.error("❌ 没有可用的分析结果。请先让 WorkBuddy 完成分析并写入缓存。")
+        sys.exit(1)
+
+    logger.info(f"📊 有效分析: {len(news_data)} 条")
+
+    # 加载关键词用于报告头部
+    keywords = load_keywords(Config.KEYWORDS_FILE)
+
+    # 生成报告
+    report_path = generate_news_report(news_data, keywords)
+    if report_path is None:
+        logger.info("🔄 报告内容无变化，已跳过。")
+    else:
+        # 导出 JSON 原始数据
+        export_path = OUTPUT_DIR / f"news_data_{datetime.date.today().isoformat()}.json"
+        export_data = [
+            {
+                "title": d["news"]["title"],
+                "url": d["news"]["url"],
+                "source": d["news"].get("source_name", ""),
+                "published": d["news"].get("published", ""),
+                "analysis": d["analysis"]
+            }
+            for d in news_data
+        ]
+        with open(export_path, "w", encoding="utf-8") as f:
+            json.dump(export_data, f, ensure_ascii=False, indent=2)
+        logger.info(f"💾 原始数据导出: {export_path}")
+
+        # 自动转 HTML
+        try:
+            subprocess.run(["python", "news_md_to_html.py",
+                           str(report_path)], check=True)
+        except Exception as e:
+            logger.warning(f"HTML 转换失败（可手工执行）: {e}")
+
+    logger.info("✅ 报告生成完成。")
+
+
+# ------------------------------------------------------------------
 # 主函数
 # ------------------------------------------------------------------
 def main() -> None:
@@ -476,9 +586,18 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=20, help="单次最大分析资讯数")
     parser.add_argument("--keywords", type=str, help="临时关键词文件路径")
     parser.add_argument("--force", action="store_true", help="强制重新分析（忽略缓存）")
+    parser.add_argument("--no-llm", action="store_true",
+                        help="仅抓取+预筛选，跳过LLM分析，输出JSON供WorkBuddy内置模型分析")
+    parser.add_argument("--report-from-cache", type=str, metavar="ARTICLES_JSON",
+                        help="从指定文章JSON + 缓存重建news_data并生成报告（供WorkBuddy完成分析后调用）")
     args = parser.parse_args()
 
     logger.info("🚀 News Radar 启动（轻量分析模式）")
+
+    # ── 模式：从缓存+文章JSON生成报告（WorkBuddy完成分析后调用）──
+    if args.report_from_cache:
+        _generate_report_from_cache(args.report_from_cache)
+        return
 
     # 检查资讯源配置
     if not (getattr(Config, "ENABLE_NEWS_API", False) or getattr(Config, "ENABLE_RSS_FEEDS", False)):
@@ -506,6 +625,11 @@ def main() -> None:
     filtered_news = prescreen_news(all_news)
     if not filtered_news:
         logger.info("🔍 预筛选后无相关资讯，退出。")
+        return
+
+    # ── 模式：仅数据采集（--no-llm），输出JSON供WorkBuddy分析 ──
+    if args.no_llm:
+        _save_articles_for_workbuddy(filtered_news, keywords)
         return
 
     # 匹配缓存 / 标记待分析
