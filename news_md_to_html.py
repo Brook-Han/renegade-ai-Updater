@@ -341,6 +341,66 @@ nav{
 
 /* ── MAIN CONTENT ── */
 .main{max-width:100%;padding:64px 72px 80px;position:relative;z-index:1}
+.back-link{
+  display:inline-block;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  letter-spacing:2px;color:var(--text-muted);text-decoration:none;
+  margin-bottom:24px;text-transform:uppercase;transition:color .2s;
+}
+.back-link:hover{color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;flex-wrap:wrap;
+  border:1px solid var(--border);border-left:none;border-right:none;
+  padding:16px 0;margin-bottom:32px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
+  color:var(--text-muted);text-transform:uppercase;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid rgba(255,92,69,.2);
+  padding:20px 24px;margin-bottom:40px;
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
+  color:var(--text-muted);margin-bottom:6px;
+}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.68rem;font-weight:600;letter-spacing:1.5px;
+  color:var(--accent2);background:var(--accent2-dim);
+  padding:2px 8px;margin-left:8px;border:1px solid rgba(212,175,92,.2);
+  text-transform:uppercase;
+}
+
+/* ── CARD BADGE & IMPLICATIONS ── */
+.card-badge{
+  display:inline-block;font-family:var(--mono);font-size:.68rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent2);background:var(--accent2-dim);
+  padding:3px 10px;margin-left:12px;border:1px solid rgba(212,175,92,.25);
+  text-transform:uppercase;vertical-align:middle;
+}
+.card-badge.high{color:var(--accent);background:var(--accent-dim);border-color:rgba(255,92,69,.25)}
+.card-implications{
+  font-size:.92rem;color:var(--text);line-height:1.8;
+  border-left:3px solid var(--accent3);padding:12px 16px;
+  background:var(--accent3-dim);margin-top:12px;
+}
 
 /* ── DAY GROUP ── */
 .day-group{margin-bottom:64px}
