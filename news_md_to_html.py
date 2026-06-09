@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-📰 News Radar MD → HTML 转换器（v5.3 视觉/无障碍完全对齐版）
+📰 News Radar MD → HTML 转换器（v5.4 与主页完全对齐版）
 
 功能：将 news_radar.py 生成的 Markdown 报告转换为漂亮的网页
-风格：与 Renegade AI v5.3 优化版完全对齐（WCAG AA 合规）
+风格：与 Renegade AI v5.4 主页完全对齐（高级 CSS 布局与动效）
 
 📋 用法：
     # 方式1：转换指定文件
@@ -16,7 +16,7 @@
 🔧 输出：同目录下生成 .html 文件，可直接用浏览器打开
 
 作者：Brooks Han
-版本：v1.2 (2026-05-30)
+版本：v1.3 (2026-06-09) v5.4
 """
 
 # ──────────────────────────────────────────────────────────────
@@ -153,12 +153,12 @@ CSS_TEMPLATE = """
     <style>
       /* ========== DESIGN TOKENS (v5.3 Optimized) ========== */
       :root {
-        --bg: #0a0a12; --bg2: #0f0f1a; --surface: #141422; --card: #181828;
-        --border: #25253a; --border-bright: #363655;
+        --bg:           #0c0c18; --bg2:          #10101e; --surface:      #12121e; --card:         #1a1a2e;
+        --border:       #282840; --border-bright:#3a3a5a;
         --text: #e2e2f0; --text-muted: #7878a8; --text-faint: #4a4a6a;
         --accent: #ff5c45; --accent-dim: rgba(255,92,69,0.12);
         --accent2: #d4af5c; --accent3: #5ba3e6; --accent3-dim: rgba(91,163,230,0.10);
-        --white: #f4f4fc;
+        --white:        #f4f4fc;
         --mono: 'Space Mono', 'Courier New', monospace;
         --serif: 'Crimson Pro', Georgia, serif;
         --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
@@ -425,20 +425,20 @@ def generate_news_html(data: dict, output_path: str):
         tags_html = ''.join(tags) if tags else ''
         
         items_html += f'''
-    <article class="card">
-      <div class="card-header">
-        <h2 class="card-title">{it["title"]}{case_badge}</h2>
-        <div class="card-score">{score_display}<span>/10</span></div>
+    <article class="radar-card">
+      <div class="radar-card-top">
+        <h2 class="radar-card-title">{it["title"]}{case_badge}</h2>
+        <div class="radar-score">{score_display}<span>/10</span></div>
       </div>
-      <div class="card-meta">
+      <div class="radar-card-meta">
         {f'<span>{it["source"]}</span>' if it.get('source') and it['source'] != 'N/A' else ''}
         {f'<span>·</span>' if it.get('source') and link_html else ''}
         {link_html}
         {f'<span>·</span>' if chapter_html and (it.get('source') or link_html) else ''}
         {chapter_html}
       </div>
-      <div class="card-body">{it["summary"]}</div>{implications_html}
-      {f'<div class="card-footer">{tags_html}</div>' if tags_html else ''}
+      <div class="radar-card-body">{it["summary"]}</div>{implications_html}
+      {f'<div class="radar-card-footer">{tags_html}</div>' if tags_html else ''}
     </article>'''
     
     # ── 3️⃣ 拼接完整 HTML 文档 ──
@@ -457,7 +457,7 @@ def generate_news_html(data: dict, output_path: str):
 </head>
 <body>
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
     <div class="nav-right">
       <a href="../index.html" class="nav-pill">HOME</a>
       <a href="index.html" class="nav-pill">NEWS</a>
@@ -483,7 +483,7 @@ def generate_news_html(data: dict, output_path: str):
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <span>Renegade AI v5.3 · Brooks Han</span>
+    <span>Renegade AI v5.4 · Brooks Han</span>
     <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
   </footer>
 

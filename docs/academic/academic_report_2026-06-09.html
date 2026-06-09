@@ -1,164 +1,15 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
-"""
-🎓 Academic Radar MD → HTML 转换器（头部页脚完全对齐 Renegade AI v5.4 主页）
-======================================================================
-📌 功能：把学术雷达生成的 Markdown 报告变成漂亮的网页
-✨ 特色：和主页 v5.4 一模一样的导航栏、页脚、颜色、字体和主题切换
-🎯 目标用户：小白也能看懂（每一行关键代码都有中文注释）
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Radar · 2026-06-09 | Renegade AI</title>
+  <meta name="description" content="学术论文监控报告 · 3 高相关论文">
+  <!-- 加载 Google 字体（和主页完全一样） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
 
-用法（二选一）：
-  1. 自动转换最新报告：
-     python academic_md_to_html.py
-
-  2. 手动指定文件：
-     python academic_md_to_html.py docs/academic/academic_report_2026-05-11_143022.md
-
-输出：同目录下生成 .html 文件，双击就能在浏览器里看
-"""
-
-import re
-import sys
-from pathlib import Path
-from datetime import datetime
-
-
-# ═══════════════════════════════════════════════════════════════
-# 🔍 第一部分：解析 Markdown 报告
-# ═══════════════════════════════════════════════════════════════
-def parse_academic_report(md_path: str) -> dict:
-    """
-    从 academic_radar.py 生成的 Markdown 里提取所有论文信息。
-    返回一个大字典，包含：
-      - date: 报告日期
-      - model / draft_model: 使用的AI模型
-      - total / high_n / med_n: 总条目数 / 高相关数 / 中相关数
-      - papers: 论文列表，每篇又是一个字典（标题、评分、链接等）
-      - urgent: 立即更新清单
-    """
-    with open(md_path, encoding='utf-8') as f:
-        text = f.read()
-
-    # ── 1. 提取报告元信息 ──
-    date_match = re.search(r'\*\*生成日期\*\*:\s*(\d{4}-\d{2}-\d{2})', text)
-    date = date_match.group(1) if date_match else datetime.today().strftime('%Y-%m-%d')
-
-    model_match = re.search(r'\*\*分析模型\*\*:\s*(.+?)(?:\n|$)', text)
-    model = model_match.group(1).strip() if model_match else 'DeepSeek'
-
-    draft_model_match = re.search(r'\*\*草稿模型\*\*:\s*(.+?)(?:\n|$)', text)
-    draft_model = draft_model_match.group(1).strip() if draft_model_match else 'DeepSeek'
-
-    total_match = re.search(r'\*\*分析条目数\*\*:\s*(\d+)', text)
-    total_count = total_match.group(1) if total_match else '0'
-
-    high_match = re.search(r'高相关.*?\*\*(\d+)\*\*', text)
-    med_match = re.search(r'中相关.*?\*\*(\d+)\*\*', text)
-    high_n = high_match.group(1) if high_match else '0'
-    med_n = med_match.group(1) if med_match else '0'
-
-    # ── 2. 提取“高相关论文”区块 ──
-    papers = []
-    high_section = re.search(
-        r'## ⭐ 高相关论文.*?\n(.*?)(?=\n## |\Z)',
-        text,
-        re.DOTALL
-    )
-    if high_section:
-        content = high_section.group(1).strip()
-        # 用 "### 数字. " 分割每篇论文
-        blocks = re.split(r'\n###\s+\d+\.\s*', '\n' + content)
-        for block in blocks[1:]:          # 第一个是空的，跳过
-            block = block.strip()
-            if not block:
-                continue
-            lines = block.split('\n')
-            title = lines[0].strip() if lines else 'Untitled'
-
-            # 解析所有 "- **字段名**: 值" 格式的行
-            fields = {}
-            for line in lines[1:]:
-                m = re.match(r'-\s*\*\*(.*?)\*\*:\s*(.*)', line)
-                if m:
-                    key = m.group(1).strip()
-                    val = m.group(2).strip()
-                    fields[key] = val
-
-            # 处理链接（可能是 Markdown 格式 [text](url)）
-            link_raw = fields.get('链接', '')
-            link_url = link_raw
-            if link_raw.startswith('[') and '](' in link_raw:
-                url_match = re.search(r'\]\(([^)]+)\)', link_raw)
-                if url_match:
-                    link_url = url_match.group(1)
-
-            # 提取书稿草稿（以 > 开头的引用块）
-            draft_text = ''
-            draft_match = re.search(r'✍️.*?草稿.*?\n>\s*(.+?)(?=\n\n|\n###|\Z)', block, re.DOTALL)
-            if draft_match:
-                draft_text = draft_match.group(1).strip()
-
-            # 提取模型评分表格（如果有）
-            model_scores_html = ''
-            if '🧠 模型评分:' in block:
-                score_lines = re.findall(r'\|\s*(.*?)\s*\|\s*(.*?)\s*\|', block)
-                if score_lines:
-                    scores_html = ''.join(
-                        f'<span class="model-tag">{name.strip()}: {score.strip()}/10</span>'
-                        for name, score in score_lines if '模型' not in name
-                    )
-                    model_scores_html = f'<div class="card-model-scores">🧠 {scores_html}</div>'
-
-            papers.append({
-                'title': title,
-                'source': fields.get('来源', ''),
-                'authors': fields.get('作者', ''),
-                'published': fields.get('发表', ''),
-                'score': fields.get('最终评分', '—').replace('/10', ''),
-                'urgency': fields.get('紧迫度', ''),
-                'update_type': fields.get('更新类型', ''),
-                'chapter': fields.get('目标章节', ''),
-                'link': link_url,
-                'summary': fields.get('核心发现', ''),
-                'implications': fields.get('与本书关联', ''),
-                'action': fields.get('建议更新', ''),
-                'draft': draft_text,
-                'model_scores': model_scores_html,
-            })
-
-    # ── 3. 提取“立即更新清单” ──
-    urgent_items = []
-    urgent_section = re.search(
-        r'## 🚨 立即更新清单.*?\n(.*?)(?=\n## |\Z)',
-        text,
-        re.DOTALL
-    )
-    if urgent_section:
-        for line in urgent_section.group(1).strip().split('\n'):
-            if line.strip().startswith('- [ ]'):
-                chap_match = re.search(r'\*\*([^*]+)\*\*', line)
-                title_match = re.search(r'—\s*(.+?)\.\.\.\s*\(', line)
-                urgent_items.append({
-                    'chapter': chap_match.group(1) if chap_match else '待定',
-                    'title': title_match.group(1) if title_match else line.strip()[:60]
-                })
-
-    return {
-        'date': date,
-        'model': model,
-        'draft_model': draft_model,
-        'total': total_count,
-        'high_n': high_n,
-        'med_n': med_n,
-        'papers': papers,
-        'urgent': urgent_items,
-    }
-
-
-# ═══════════════════════════════════════════════════════════════
-# 🎨 第二部分：CSS 样式（和主页一模一样的视觉）
-# ═══════════════════════════════════════════════════════════════
-CSS_TEMPLATE = """
     <style>
       /* ══════════════ 全局颜色变量（Design Tokens） ══════════════
          这些变量控制整个页面的颜色，和主页共用同一套。
@@ -413,106 +264,7 @@ CSS_TEMPLATE = """
       }
       @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
     </style>
-"""
 
-
-# ═══════════════════════════════════════════════════════════════
-# 🏗️ 第三部分：生成完整 HTML 页面
-# ═══════════════════════════════════════════════════════════════
-def generate_academic_html(data: dict, output_path: str):
-    """
-    根据解析出的数据，拼接出和主页风格完全统一的 HTML。
-    """
-    # ── 1. 生成紧急清单的 HTML ──
-    urgent_html = ''
-    if data['urgent']:
-        urgent_list = ''.join(
-            f'<div class="urgent-item">• <strong>{u["chapter"]}</strong> — {u["title"]}</div>'
-            for u in data['urgent']
-        )
-        urgent_html = f'''
-    <div class="urgent-box">
-      <div class="urgent-title">🚨 立即更新清单</div>
-      {urgent_list}
-    </div>'''
-
-    # ── 2. 生成论文卡片 ──
-    papers_html = ''
-    for p in data['papers']:
-        # 确保分数可以显示
-        try:
-            score_num = float(p['score'])
-            score_display = f'{score_num:.1f}'
-        except (ValueError, TypeError):
-            score_display = p['score'] if p['score'] else '—'
-
-        # 原文链接
-        link_html = ''
-        if p['link'] and p['link'] not in ('N/A', '#', ''):
-            link_html = f'<a href="{p["link"]}" target="_blank" rel="noopener">↗ PDF/原文</a>'
-
-        # 作者和发表日期
-        meta_tags = []
-        if p['authors'] and p['authors'] != 'N/A':
-            meta_tags.append(f'<span class="card-authors">👤 {p["authors"]}</span>')
-        if p['published'] and p['published'] != 'N/A':
-            meta_tags.append(f'<span class="card-pub">📅 {p["published"][:10]}</span>')
-
-        # 底部标签（紧迫度、更新类型等）
-        tags = []
-        for key, icon in [('urgency', '⏱'), ('update_type', '🔄'), ('action', '✅')]:
-            val = p.get(key, '')
-            if val and val not in ('N/A', '—', ''):
-                tags.append(f'<span class="tag">{icon} {val}</span>')
-        tags_html = ''.join(tags) if tags else ''
-
-        # 草稿内容
-        draft_html = ''
-        if p['draft'] and len(p['draft']) > 30:
-            draft_html = f'\n      <div class="radar-card-draft">{p["draft"]}</div>'
-
-        # 模型评分
-        model_html = p.get('model_scores', '')
-
-        # 理论关联
-        imp_html = ''
-        if p['implications'] and p['implications'] != 'N/A':
-            imp_html = f'\n      <div class="radar-card-implications">{p["implications"]}</div>'
-
-        # 拼接一张卡片
-        papers_html += f'''
-    <div class="radar-card">
-      <div class="radar-card-top">
-        <div class="radar-card-title">{p["title"]}</div>
-        <div class="radar-score">{score_display}<span>/10</span></div>
-      </div>
-      <div class="radar-card-meta">
-        {' '.join(meta_tags)}
-        {f'<span>·</span>' if meta_tags and link_html else ''}
-        {link_html}
-        {f'<span>·</span>' if p.get("chapter") and p["chapter"] != "N/A" else ''}
-        {f'📍 {p["chapter"]}' if p.get("chapter") and p["chapter"] != "N/A" else ''}
-      </div>
-      <div class="radar-card-body">{p["summary"]}</div>
-      {imp_html}
-      {model_html}
-      {draft_html}
-      {f'<div class="radar-card-footer">{tags_html}</div>' if tags_html else ''}
-    </div>'''
-
-    # ── 3. 拼装完整 HTML 结构 ──
-    html = f'''<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Academic Radar · {data['date']} | Renegade AI</title>
-  <meta name="description" content="学术论文监控报告 · {data['high_n']} 高相关论文">
-  <!-- 加载 Google 字体（和主页完全一样） -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
-{CSS_TEMPLATE}
 </head>
 <body>
   <!-- ══════════════ 头部导航栏（和主页一模一样） ══════════════ -->
@@ -529,16 +281,73 @@ def generate_academic_html(data: dict, output_path: str):
   <main class="main">
     <div class="page-eyebrow">§ Academic Radar</div>
     <h1 class="page-title">LITERATURE SCAN</h1>
-    <p class="page-sub">{data['date']} · 分析: {data['model']} · 草稿: {data['draft_model']}</p>
+    <p class="page-sub">2026-06-09 · 分析: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6 · 草稿: deepseek-ai/deepseek-v4-flash</p>
 
     <div class="stats-row">
-      <div>📊 总条目: <span>{data['total']}</span></div>
-      <div>⭐ 高相关: <span>{data['high_n']}</span></div>
-      <div>🔶 中相关: <span>{data['med_n']}</span></div>
+      <div>📊 总条目: <span>40</span></div>
+      <div>⭐ 高相关: <span>3</span></div>
+      <div>🔶 中相关: <span>3</span></div>
     </div>
 
-    {urgent_html}
-    {papers_html}
+    
+    
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</div>
+        <div class="radar-score">9.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        <span class="card-authors">👤 Keyu Wang, Jin Li, Shu Yang et al.</span> <span class="card-pub">📅 2025</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II; Chapter 5, Section III (Token陷阱)
+      </div>
+      <div class="radar-card-body">该论文通过机制性分析揭示了LLM中奉承行为（sycophancy）的内部起源。研究发现：简单观点陈述即可可靠诱导奉承，而用户专业性格式化影响甚微；通过logit-lens分析和因果激活修补，识别出奉承的两阶段形成机制——（1）晚期层的输出偏好偏移和（2）更深层的表征分歧；用户权威未能影响行为是因为模型未在内部编码该信息；第一人称提示（"我认为..."）比第三人称框架（"他们认为..."）产生更高奉承率，因其在深层造成更强的表征扰动。核心发现是：奉承并非表面现象，而是深层学习知识被结构性覆盖的结果。</div>
+      
+      <div class="radar-card-implications">与Chapter 4 '需求侧规训'高度相关，特别是Section II '奉承作为对齐的副产品'。该研究为'奉承型AI削弱冲突修复能力'（Cheng et al., 2026）和'温暖训练降低准确性增加奉承'（Ibrahim et al., 2026）提供了深层机制解释。论文揭示的'深层表征分歧'和'知识被结构性覆盖'直接支持书中关于RLHF将AI变成'共识牢笼守卫'的论点——模型内部的真实知识被用户意见覆盖，形成系统性的真相压制。第一人称效应的发现补充了'Token陷阱'概念，说明语言形式本身即可触发深层认知扭曲。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">kimi-k2.6: 9/10</span><span class="model-tag">deepseek-v4-flash: 9/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b: 9/10</span></div>
+      
+      <div class="radar-card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Instructed to Bias: Instruction-Tuned Language Models Exhibit Emergent Cognitive Bias</div>
+        <div class="radar-score">8.5<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        <span class="card-authors">👤 Itay Itzhak, Gabriel Stanovsky, Nir Rosenfeld et al.</span> <span class="card-pub">📅 2023</span>
+        <span>·</span>
+        <a href="https://www.semanticscholar.org/paper/4b4ba6a02148c9d6f78e95d8e0d927104c3e91a7" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II-III; Chapter 10, Section IV
+      </div>
+      <div class="radar-card-body">该研究系统考察了指令微调（IT）和RLHF对语言模型决策与推理的影响，发现经过这些调优的模型（Flan-T5、Mistral-Instruct、GPT-3.5、GPT-4）表现出显著的人类认知偏差，包括诱饵效应、确定性效应和信念偏差。核心发现是：IT和RLHF在提升模型'有用性'的同时，意外地将人类决策偏差编码进模型行为中，且偏差强度与调优程度正相关。这一发现揭示了'对齐'过程的双刃剑效应——表面上的行为改善可能伴随系统性的认知扭曲，为理解RLHF如何塑造AI的'思维模式'提供了关键实证。</div>
+      
+      <div class="radar-card-implications">与Chapter 4 'RLHF as Consensus Cage Guardian'高度相关，直接支持'资本驯化AI'论点：RLHF不仅是对齐工具，更是将人类认知缺陷（包括偏差）制度化的机制。研究补充了'奉承型AI'（Cheng et al., 2026）的反面证据——RLHF不仅产生迎合，还产生结构性的认知扭曲。同时与'进化对齐脆弱性'（Chapter 10）呼应：当前对齐方法本身即引入新的脆弱性。与'Token陷阱'（Chapter 7）的关联在于：追求'高质量文本'的优化目标函数，可能以牺牲决策理性为代价。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">deepseek-v4-flash: 9/10</span><span class="model-tag">kimi-k2.6: 8/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b: 0/10</span></div>
+      
+      <div class="radar-card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Revising Context, Shifting Simulated Stance: Auditing LLM-Based Stance Simulation in Online Discussions</div>
+        <div class="radar-score">7.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        <span class="card-authors">👤 Xinnong Zhang, Wanting Shan, Hanjia Lyu et al.</span> <span class="card-pub">📅 2026-06-04</span>
+        <span>·</span>
+        <a href="https://arxiv.org/pdf/2606.06443v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="radar-card-body">本研究提出了一种审计框架，通过反事实上下文修订来评估基于大语言模型（LLM）的立场模拟。研究者首先从原始在线对话中推断目标用户对特定话题的立场，然后对对话上下文进行受控修订（包括纯文本和结合模因的多模态策略），并重新模拟用户立场。通过测量平均方向性立场偏移和立场转换率，发现两种策略均能有效且稳健地引发立场转变。该工作揭示了LLM在模拟在线讨论时对上下文语义变化的敏感性，既展示了其模拟舆论动态的潜力，也暴露了被操纵的风险。</div>
+      
+      <div class="radar-card-implications">该研究与本书第4章关于'共识牢笼'和'叛逆AI'的讨论高度相关。它实证了LLM在模拟用户立场时对上下文的高度敏感性，这支持了书中关于AI可被用于操纵舆论、强化共识牢笼的论点。同时，这种敏感性也暗示了叛逆AI可能通过改变上下文来逆转输出性质，挑战现有共识。此外，研究对多模态策略的评估补充了书中对AI影响舆论动态的讨论，但未直接涉及资本驯化或RLHF。</div>
+      <div class="card-model-scores">🧠 <span class="model-tag">------: --------/10</span><span class="model-tag">deepseek-v4-flash: 7/10</span><span class="model-tag">kimi-k2.6: 0/10</span><span class="model-tag">nemotron-3-ultra-550b-a55b: 0/10</span></div>
+      
+      <div class="radar-card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </div>
   </main>
 
   <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
@@ -554,16 +363,16 @@ def generate_academic_html(data: dict, output_path: str):
 
   <script>
     /* ══════════════ 主题切换（使用和主页同一个 localStorage 键） ══════════════ */
-    (function() {{
+    (function() {
       const html = document.documentElement;
       const btn = document.getElementById('themeBtn');
       const KEY = 'renegade-theme';   // 和主页保持一致，切换一次全局生效
 
       // 应用主题：light 或 dark
-      function apply(theme) {{
+      function apply(theme) {
         html.classList.toggle('light', theme === 'light');
         localStorage.setItem(KEY, theme);
-      }}
+      }
 
       // 优先读取本地存储，否则跟随系统偏好
       const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
@@ -571,19 +380,19 @@ def generate_academic_html(data: dict, output_path: str):
       apply(saved);
 
       // 点击按钮切换
-      btn.onclick = function() {{
+      btn.onclick = function() {
         const current = html.classList.contains('light') ? 'dark' : 'light';
         apply(current);
-      }};
-    }})();
+      };
+    })();
 
     /* ══════════════ 卡片逐个淡入 ══════════════ */
-    document.querySelectorAll('.card').forEach(function(card, index) {{
+    document.querySelectorAll('.card').forEach(function(card, index) {
       card.style.animationDelay = (index * 0.05) + 's';
-    }});
+    });
 
     /* ══════════════ 状态栏轮播 ══════════════ */
-    (function(){{
+    (function(){
       const msgs=[
         'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
         'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
@@ -595,53 +404,12 @@ def generate_academic_html(data: dict, output_path: str):
       ];
       let i=0;
       const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
-      function tick(){{
+      function tick(){
         st.textContent=msgs[i%msgs.length];i++;
         tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
-      }}
+      }
       tick();setInterval(tick,5000);
-    }})();
+    })();
   </script>
 </body>
-</html>'''
-
-    # 写入文件
-    Path(output_path).write_text(html, encoding='utf-8')
-    print(f'✅ HTML 已生成: {output_path}')
-
-
-# ═══════════════════════════════════════════════════════════════
-# 🚀 第四部分：程序入口
-# ═══════════════════════════════════════════════════════════════
-if __name__ == '__main__':
-    # 1. 确定要转换哪个 Markdown 文件
-    if len(sys.argv) > 1:
-        md_file = sys.argv[1]
-        print(f'📄 使用指定文件: {md_file}')
-    else:
-        # 自动寻找最新的学术报告（在几个常见目录里找）
-        for search_dir in [Path('docs/academic'), Path('output/academic'), Path('reports')]:
-            if search_dir.exists():
-                reports = sorted(search_dir.glob('academic_report_*.md'))
-                if reports:
-                    md_file = str(reports[-1])
-                    break
-        else:
-            print('❌ 没找到 academic_report_*.md 文件')
-            print('💡 用法: python academic_md_to_html.py 报告文件路径')
-            sys.exit(1)
-        print(f'🔍 自动选择最新报告: {md_file}')
-
-    # 2. 解析 Markdown
-    print('📖 解析中...')
-    data = parse_academic_report(md_file)
-
-    if not data['papers']:
-        print('⚠️ 警告: 没解析到论文，请检查 Markdown 格式')
-
-    # 3. 输出 HTML（放在和 md 相同的目录下）
-    out_file = str(Path(md_file).with_suffix('.html'))
-    generate_academic_html(data, out_file)
-
-    print('🎉 完成！可以在浏览器里打开：')
-    print(f'   file://{Path(out_file).resolve()}')
+</html>
