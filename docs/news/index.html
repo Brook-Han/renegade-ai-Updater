@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>News Archive | Renegade AI</title>
+  <title>News Archive | Renegade AI v5.4</title>
+  <meta name="description" content="News archive curated through the lens of Renegade AI — cognitive friction, not cognitive flattery.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <style>
 /* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
 :root {
@@ -23,7 +23,7 @@
   --accent:       #ff5c45;
   --accent-dim:   rgba(255,92,69,0.12);
   --accent-glow:  rgba(255,92,69,0.06);
-  --accent2:      #d4af5c;
+  --accent2:      #d4a85c;
   --accent2-dim:  rgba(212,175,92,0.10);
   --accent3:      #5ba3e6;
   --accent3-dim:  rgba(91,163,230,0.12);
@@ -59,6 +59,17 @@ body{
 ::-webkit-scrollbar-track{background:var(--bg)}
 ::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
 ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline: none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+  .noise{opacity:0!important}
+}
 
 /* ── NOISE OVERLAY ── */
 .noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
@@ -96,7 +107,7 @@ nav{
 }
 .theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
 
-/* ── HERO STRIP (v5.4) ── */
+/* ── HERO STRIP (v5.4 Ambient) ── */
 .hero-strip{
   padding-top:56px;border-bottom:1px solid var(--border);
   display:grid;grid-template-columns:1fr auto;gap:0;position:relative;
@@ -104,7 +115,7 @@ nav{
 .hero-strip::before{
   content:'';position:absolute;top:-120px;left:-80px;
   width:600px;height:600px;
-  background:radial-gradient(ellipse at 30% 40%,rgba(255,92,69,.08) 0%,transparent 70%);
+  background:radial-gradient(ellipse at 30% 40%, rgba(255, 92, 69, .08) 0%, transparent 70%);
   pointer-events:none;z-index:0;
 }
 .hero-left{
@@ -123,7 +134,7 @@ nav{
 }
 .hero-title span{color:var(--accent);text-shadow:0 0 40px rgba(255,92,69,.25)}
 .hero-desc{
-  font-size:1.1rem;color:var(--text-muted);font-style:italic;
+  font-size:1.1rem;color:var(--text-muted);font-style: italic;
   border-left:3px solid var(--accent);padding-left:18px;
   max-width:520px;line-height:1.85;margin-bottom:32px;transition:color .3s;
 }
@@ -174,10 +185,17 @@ nav{
 .search-wrap input{
   background:none;border:none;color:var(--text);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
-  width:100%;outline:none;
+  width:100%;outline: none;
 }
 .search-wrap input::placeholder{color:var(--text-faint);transition:color .2s}
 .search-wrap input:focus::placeholder{color:transparent}
+.controls-bar .list-link{
+  height:100%;padding:0 20px;display:flex;align-items:center;
+  color:var(--text-muted);text-decoration:none;letter-spacing:2px;
+  text-transform:uppercase;white-space:nowrap;font-size:.72rem;font-weight:500;
+  border-right:1px solid var(--border);transition:all .2s;
+}
+.controls-bar .list-link:hover{color:var(--accent);background:var(--accent-dim)}
 
 /* ── MAIN CONTENT ── */
 .main{max-width:100%;padding:64px 72px 80px;position:relative;z-index:1}
@@ -204,7 +222,7 @@ nav{
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(480px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
 
@@ -214,7 +232,7 @@ nav{
   display:flex;flex-direction:column;gap:14px;
   transition:background .25s var(--ease),box-shadow .35s var(--ease),border-color .25s;
   position:relative;
-  opacity:0;transform:translateY(16px);
+  opacity:0;transform: translateY(16px);
   animation:fadeUp .4s var(--ease) forwards;
   box-shadow:0 2px 16px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03);
   border-left:2px solid transparent;
@@ -230,736 +248,1014 @@ nav{
   box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 1px rgba(255,92,69,.12);
   z-index:2;
 }
-.radar-card:nth-child(2){animation-delay:.08s}
-.radar-card:nth-child(3){animation-delay:.16s}
-.radar-card:nth-child(4){animation-delay:.24s}
-@keyframes fadeUp{
-  to{opacity:1;transform:translateY(0)}
+.radar-card:has(.radar-card-title a:focus-visible){
+  box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 2px var(--accent);
 }
+.radar-card.hidden{display:none}
 
-/* ── SCORE BAR (v5.4) ── */
 .radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
-.radar-card-title{font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;color:var(--white);line-height:1.25;flex:1}
-.radar-card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.radar-card-title a:hover{border-bottom-color:var(--accent2)}
+.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
+
+.type-tag{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:2px;
+  padding:3px 10px;text-transform:uppercase;
+}
+.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.2)}
+.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.2)}
+
+.card-chapter{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
+  color:var(--text-faint);text-transform:uppercase;
+}
+.draft-dot{color:var(--accent2);font-size:.75rem;line-height:1;opacity:.8}
+
 .radar-score{
-  font-family:var(--display);font-size:2.2rem;letter-spacing:-1px;
-  color:var(--accent);white-space:nowrap;text-align:right;flex-shrink:0;
-  line-height:1;position:relative;
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
+  font-family:var(--display);font-size:2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;flex-shrink:0;
+  position:relative;padding-left:8px;
 }
-.radar-score::before{
-  content:'';position:absolute;inset:-8px -12px;
-  background:radial-gradient(ellipse,rgba(255,92,69,.1),transparent 70%);
-  opacity:0;transition:opacity .3s;pointer-events:none;
+.radar-score span{
+  display:block;font-family:var(--mono);font-size:.7rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:1px;text-align:right;
 }
-.radar-card:hover .radar-score::before{opacity:1}
-.radar-score span{font-family:var(--mono);font-size:.65rem;letter-spacing:2px;color:var(--text-faint);display:block;text-align:right}
-.score-bar{height:3px;background:var(--border);margin-top:8px;position:relative;overflow:hidden}
-.score-bar-fill{height:100%;border-radius:2px;transition:width .6s var(--ease);width:0}
-.radar-card:hover .score-bar-fill{width:100%!important}
-.score-bar-fill.high{background:linear-gradient(90deg,var(--accent),#ff8a70}
-.score-bar-fill.mid{background:linear-gradient(90deg,var(--accent2),#ffd080)}
-.score-bar-fill.low{background:linear-gradient(90deg,var(--text-muted),var(--accent2))}
-
-/* ── CARD META ── */
-.radar-card-meta{font-family:var(--mono);font-size:.68rem;letter-spacing:1px;color:var(--text-muted);display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-.radar-card-meta a{color:var(--accent2);text-decoration:none;transition:color .2s}
-.radar-card-meta a:hover{color:var(--accent)}
-.type-badge{display:inline-block;font-family:var(--mono);font-size:.62rem;letter-spacing:1.5px;padding:2px 8px;border-radius:2px;text-transform:uppercase}
-.type-badge.news{background:var(--accent3-dim);color:var(--accent3)}
-.type-badge.academic{background:var(--accent2-dim);color:var(--accent2)}
-.draft-badge{font-size:1rem;margin-left:4px;cursor:help}
-
-/* ── CARD BODY ── */
-.radar-card-body{font-size:1rem;color:var(--text);line-height:1.85;position:relative}
-.radar-card-body::after{
-  content:'';position:absolute;bottom:0;right:0;width:60px;height:1.8em;
-  background:linear-gradient(90deg,transparent,var(--card));pointer-events:none;
+.score-bar{
+  display:flex;gap:2px;width:48px;height:3px;
 }
-.radar-card:hover .radar-card-body::after{background:linear-gradient(90deg,transparent,var(--surface))}
+.score-bar .bar{
+  flex:1;border-radius:1px;
+  background:var(--border-bright);transition:background .3s var(--ease);
+}
+.score-bar .bar.filled{background:var(--accent)}
+.radar-card:hover .score-bar .bar.filled{background:var(--accent2)}
 
-/* ── CARD FOOTER ── */
-.radar-card-footer{margin-top:auto;padding-top:12px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:12px}
-.radar-card-footer a{font-family:var(--mono);font-size:.68rem;letter-spacing:1.5px;color:var(--accent);text-decoration:none;text-transform:uppercase;transition:color .2s}
-.radar-card-footer a:hover{color:var(--accent2)}
+.radar-card-title{
+  font-family:var(--display);font-size:1.35rem;letter-spacing:1px;
+  color:var(--white);line-height:1.2;position:relative;z-index:1;
+}
+.radar-card-title a{
+  color:inherit;text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),color .2s;
+}
+.radar-card-title a:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
+
+.radar-card-body{
+  font-size:.95rem;color:var(--text-muted);line-height:1.8;
+  flex:1;position:relative;z-index:1;
+}
+
+.radar-card-footer{
+  display:flex;justify-content:space-between;align-items:center;
+  padding-top:12px;border-top:1px solid var(--border);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
+  transition:border-color .3s;position:relative;z-index:1;
+}
+.card-source-link{
+  color:var(--accent2);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.card-source-link:hover{color:var(--white);gap:6px}
+.full-report-link{
+  color:var(--text-faint);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.full-report-link:hover{color:var(--accent);gap:6px}
 
 /* ── EMPTY STATE ── */
-.empty{text-align:center;padding:80px 32px;color:var(--text-faint);font-family:var(--mono);letter-spacing:2px}
-.empty-icon{font-size:3rem;margin-bottom:16px;opacity:.5}
+.empty-state{
+  display:none;text-align:center;padding:100px 32px 80px;
+  font-family:var(--mono);color:var(--text-faint);letter-spacing:2px;
+  font-size:.72rem;font-weight:500;text-transform:uppercase;
+}
+.empty-state .glyph{
+  font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.2;
+  display:block;margin-bottom:20px;line-height:1;
+}
 
 /* ── STATUS BAR ── */
-.status-bar{position:fixed;bottom:0;width:100%;z-index:200;background:var(--bg);border-top:1px solid var(--border);padding:10px 32px;font-family:var(--mono);font-size:.6rem;color:var(--text-faint);letter-spacing:2px;display:flex;justify-content:space-between;align-items:center;transition:background .3s,border-color .3s}
-.status-dot{display:inline-block;width:6px;height:6px;background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.92);backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .3s,border-color .3s;
+}
+.light .status-bar{background:rgba(240,242,248,.92)}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;
+  animation:pulse 2s ease-in-out infinite;
+  box-shadow:0 0 6px var(--accent);
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
-/* ── FOOTER ── */
-footer{margin-top:80px;padding:32px 0;border-top:1px solid var(--border);font-family:var(--mono);font-size:.65rem;letter-spacing:1.5px;color:var(--text-muted);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;position:relative;z-index:1}
-footer a{color:var(--accent);text-decoration:none;transition:color .2s}
-footer a:hover{color:var(--accent2)}
+/* ── MOBILE TOUCH TARGETS ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.filter-btn,.controls-bar .list-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+  .controls-bar{padding:0 8px;height:44px}
+  .search-wrap{min-width:80px;padding:0 10px}
+  .search-wrap::before{display:none}
+  .filter-btn{padding:0 10px;font-size:.68rem}
+  .controls-bar .list-link{padding:0 10px;font-size:.68rem}
+}
+@media(max-width:480px){
+  .controls-bar{padding:0 4px;height:40px;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .search-wrap{min-width:60px;flex:0 0 auto;padding:0 8px}
+  .search-wrap input{width:60px}
+  .filter-btn{padding:0 8px;font-size:.65rem;letter-spacing:1px}
+  .controls-bar .list-link{padding:0 8px;font-size:.65rem;letter-spacing:1px}
+  .controls-bar .list-link:last-child{border-right:none}
+}
 
 /* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .card-grid{grid-template-columns:repeat(auto-fit,minmax(420px,1fr))}
+}
 @media(max-width:900px){
+  .main{padding:48px 24px 80px}
+  .controls-bar{padding:0 24px}
   .hero-strip{grid-template-columns:1fr}
-  .hero-left{padding:40px 24px 32px;border-right:none}
-  .hero-right{padding:24px;border-top:1px solid var(--border)}
-  .hero-title{font-size:clamp(2.5rem,8vw,4rem)}
-  .main{padding:48px 16px 60px}
-  .controls-bar{padding:0 16px;font-size:.65rem}
+  .hero-left{padding:48px 24px 36px;border-right:none;border-bottom:1px solid var(--border)}
+  .hero-right{flex-direction:row;padding:24px;border-bottom:1px solid var(--border)}
+  .stat-divider{width:40px;height:1px}
   .card-grid{grid-template-columns:1fr}
-  .radar-card{padding:24px 20px}
-  .radar-card-title{font-size:1.2rem}
-  .radar-score{font-size:1.8rem}
+  .nav-center{display:none}
 }
-@media(prefers-reduced-motion:reduce){
-  *,*::before,*::after{
-    animation-duration:.01ms!important;animation-iteration-count:1!important;
-    transition-duration:.01ms!important;scroll-behavior:auto!important;
-  }
-  .noise{opacity:0!important}
-}
+  
+/* ── PAPER META (Academic specific) ── */
+.paper-meta{font-family:var(--mono);font-size:.65rem;letter-spacing:1.5px;color:var(--text-muted);display:flex;gap:12px;flex-wrap:wrap;margin-bottom:14px}
+.paper-meta span{display:inline-flex;align-items:center;gap:4px}
+.paper-abstract{font-size:.95rem;color:var(--text);line-height:1.85;margin-bottom:16px;position:relative}
+.paper-abstract::after{content:'';position:absolute;bottom:0;right:0;width:80px;height:1.8em;background:linear-gradient(90deg,transparent,var(--card));pointer-events:none}
+.radar-card:hover .paper-abstract::after{background:linear-gradient(90deg,transparent,var(--surface))}
+.paper-implications{background:var(--bg2);border:1px solid var(--border);padding:16px 20px;margin-top:12px;font-size:.88rem;color:var(--text-muted);line-height:1.7}
+.paper-implications strong{color:var(--accent2);font-weight:600;letter-spacing:.5px}
+.draft-box{background:var(--accent-dim);border:1px solid var(--accent);padding:12px 16px;margin-top:12px;font-size:.82rem;color:var(--accent);line-height:1.6}
 </style>
 </head>
 <body>
-  <div class="noise"></div>
-  <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
-    <div class="nav-right">
-      <a href="../index.html" class="nav-pill">HOME</a>
-      <a href="index.html" class="nav-pill active">NEWS</a>
-      <a href="../academic/" class="nav-pill">PAPERS</a>
-      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
-    </div>
-  </nav>
-  <main class="main">
-    <div class="page-eyebrow">§ News Archive</div>
+<div class="noise"></div>
+
+<!-- NAV -->
+<nav>
+  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+  <div class="nav-right">
+    <a href="../index.html" class="nav-pill">HOME</a>
+    <a href="../academic/" class="nav-pill">PAPERS</a>
+    <a href="index.html" class="nav-pill active">NEWS</a>
+    <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+  </div>
+</nav>
+
+<!-- HERO -->
+
+
+<!-- CONTROLS -->
+<div class="controls-bar">
+  <button class="filter-btn active" data-filter="all">ALL</button>
+  
+  <div class="search-wrap">
+    <input type="text" id="searchInput" placeholder="Search news titles...">
+  </div>
+  
+</div>
+
+<!-- MAIN -->
+<main class="main">
+    <div class="hero-eyebrow">§ News Archive</div>
     <h1>NEWS ARCHIVE</h1>
-    <div class="subtitle">
+    <div class="hero-desc">
       <span>📰 全部新闻条目 · 按日期排序</span>
       <span id="statsLine">共 26 份报告 · 26 天</span>
     </div>
-    <div class="controls">
+    <div class="controls-bar">
       <button class="filter-btn active" data-filter="all">All</button>
-      <div class="search"><i class="fa fa-search"></i><input type="text" id="searchInput" placeholder="Search..."></div>
+      <div class="search-wrap"><input type="text" id="searchInput" placeholder="Search..."></div>
     </div>
     <div class="day-group" data-date="2026-06-08">
-  <h2 class="day-header">2026-06-08</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 2 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">The Trump administration might take an equity stake in OpenAI</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-08</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section III</span>
+        </div>
+        <div class="radar-score">7.7<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:77.0%"></div></div>
       </div>
-      <div class="radar-score">7.7<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill mid" style="width:77%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section III</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">特朗普政府正在讨论收购 OpenAI 股权，总统称旨在让“美国人民从 AI 的成功中受益”。这标志着国家权力从间接监管、算力补贴、政府合同，跨越到直接成为头部 AGI 实验室的股东。OpenAI 作为闭源范式旗舰、估值超 1500 亿美元的独角兽，其股权结构若引入主权资本，将彻底模糊“私营实验室”与“国家战略资产”的界限，且可能引发其他主权财富基金跟进。</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-08.html">查看 2026-06-08 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">The Trump administration might take an equity stake in OpenAI</a>
+      </h3>
+      <p class="radar-card-body">特朗普政府正在讨论收购 OpenAI 股权，总统称旨在让“美国人民从 AI 的成功中受益”。这标志着国家权力从间接监管、算力补贴、政府合同，跨越到直接成为头部 AGI 实验室的股东。OpenAI 作为闭源范式旗舰、估值超 1500 亿美元的独角兽，其股权结构若引入主权资本，将彻底模糊“私营实验室”与“国家战略资产”的界限，且可能引发其他主权财富基金跟进。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-08.html">查看 2026-06-08 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-07">
-  <h2 class="day-header">2026-06-07</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 3 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">After Orthogonality: Virtue-Ethical Agency and AI Alignment</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-07</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
+        </div>
+        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:80.0%"></div></div>
       </div>
-      <div class="radar-score">8.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill mid" style="width:80%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
-      <span>·</span>
-      <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">The Gradient 刊发长文《After Orthogonality: Virtue-Ethical Agency and AI Alignment》，核心论点是：正统对齐范式建立在「正交性论题」与「目标导向理性」之上，假设智能体拥有固定终极目标，再通过手段推理实现。作者反驳称，人类理性实则源于对「实践」的内化——由行动、行动倾向、评价标准构成的网络，而非追逐预设目标。据此，AI 不应被设计...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-07.html">查看 2026-06-07 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">After Orthogonality: Virtue-Ethical Agency and AI Alignment</a>
+      </h3>
+      <p class="radar-card-body">The Gradient 刊发长文《After Orthogonality: Virtue-Ethical Agency and AI Alignment》，核心论点是：正统对齐范式建立在「正交性论题」与「目标导向理性」之上，假设智能体拥有固定终极目标，再通过手段推理实现。作者反驳称，人类理性实则源于对「实践」的内化——由行动、行动倾向、评价标准构成的网络，而非追逐预设目标。据此，AI 不应被设计为目标最大化器，而应被训练为具备美德式行动倾向的代理人。文章从亚里士多德美德伦理…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-07.html">查看 2026-06-07 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-06">
-  <h2 class="day-header">2026-06-06</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 8 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">AI Dark Output: The Visible Cost of Invisible Output</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-06</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section III: The Invisible Economy of Dark Time</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 5, Section III: The Invisible Economy of Dark Time</span>
-      <span>·</span>
-      <a href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">SemiAnalysis发文提出“AI暗输出”概念：AI生成的中间推理token、合成数据、智能体间自主交易等海量中间产出不进入人类视野，却消耗巨大算力与能源、创造实质经济价值。这种“隐形经济活动”可能已占总量多数，但现有GDP核算体系完全捕捉不到，导致生产率统计失真、资本配置错位。这标志着认知生产的核心环节已下沉至碳硅界面之下，人类仅作为最终消费者接收结果，测量失效倒逼经济学范式重构。</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-06.html">查看 2026-06-06 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">AI Dark Output: The Visible Cost of Invisible Output</a>
+      </h3>
+      <p class="radar-card-body">SemiAnalysis发文提出“AI暗输出”概念：AI生成的中间推理token、合成数据、智能体间自主交易等海量中间产出不进入人类视野，却消耗巨大算力与能源、创造实质经济价值。这种“隐形经济活动”可能已占总量多数，但现有GDP核算体系完全捕捉不到，导致生产率统计失真、资本配置错位。这标志着认知生产的核心环节已下沉至碳硅界面之下，人类仅作为最终消费者接收结果，测量失效倒逼经济学范式重构。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-06.html">查看 2026-06-06 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-04">
-  <h2 class="day-header">2026-06-04</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 11 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-04</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 11 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 7, Section II</span>
-      <span>·</span>
-      <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">2026年5月，美国佛罗里达州总检察长正式对OpenAI及其CEO Sam Altman提起民事诉讼，指控其因ChatGPT产品设计缺陷和安全管理失职，直接或间接导致多起谋杀案。起诉书称Altman“完全无视人类生命”，强调OpenAI在明知AI可能被用于暴力犯罪的情况下，仍优先推动商业化部署，未部署有效的使用边界与行为监控机制。涉及核心事实包括：至少三起独立谋杀案中，凶手均被证实曾使用ChatG...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-04.html">查看 2026-06-04 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
+      </h3>
+      <p class="radar-card-body">2026年5月，美国佛罗里达州总检察长正式对OpenAI及其CEO Sam Altman提起民事诉讼，指控其因ChatGPT产品设计缺陷和安全管理失职，直接或间接导致多起谋杀案。起诉书称Altman“完全无视人类生命”，强调OpenAI在明知AI可能被用于暴力犯罪的情况下，仍优先推动商业化部署，未部署有效的使用边界与行为监控机制。涉及核心事实包括：至少三起独立谋杀案中，凶手均被证实曾使用ChatGPT获取谋杀方法、心理操控话术或犯罪规划建议。佛罗里达州总检察长办公室援引内部文…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-04.html">查看 2026-06-04 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-03">
-  <h2 class="day-header">2026-06-03</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 15 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">Google rolls out fake call detection to protect against AI deepfake impersonation scams</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-03</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section IV: Signal Alienation and the Collapse of Authenticity</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 5, Section IV: Signal Alienation and the Collapse of Authenticity</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">随着手机用户普遍拒绝接听未知号码来电，诈骗者转向更隐蔽的手法：通过号码伪造（spoofing）冒充银行、政府等受信机构，并利用AI深度伪造技术实时模仿被冒充者的声音（如家人、雇主或官员），大幅提升骗局的可信度。谷歌宣布推出“假来电检测”（fake call detection）功能，旨在通过分析通话模式、声纹特征和上下文异常，在接听前即识别并拦截此类AI伪造电话。该功能基于谷歌现有的反欺诈模型（如...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-03.html">查看 2026-06-03 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">Google rolls out fake call detection to protect against AI deepfake impersonation scams</a>
+      </h3>
+      <p class="radar-card-body">随着手机用户普遍拒绝接听未知号码来电，诈骗者转向更隐蔽的手法：通过号码伪造（spoofing）冒充银行、政府等受信机构，并利用AI深度伪造技术实时模仿被冒充者的声音（如家人、雇主或官员），大幅提升骗局的可信度。谷歌宣布推出“假来电检测”（fake call detection）功能，旨在通过分析通话模式、声纹特征和上下文异常，在接听前即识别并拦截此类AI伪造电话。该功能基于谷歌现有的反欺诈模型（如Call Screen与Verified Calls）升级，初期在Pixel设备…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-03.html">查看 2026-06-03 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-02">
-  <h2 class="day-header">2026-06-02</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 22 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-02</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 22 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 7, Section II</span>
-      <span>·</span>
-      <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">2026年5月，美国佛罗里达州总检察长正式对OpenAI及其CEO Sam Altman提起民事诉讼，指控其因ChatGPT产品设计缺陷和安全管理失职，直接或间接导致多起谋杀案。起诉书称Altman“完全无视人类生命”，强调OpenAI在明知AI可能被用于暴力犯罪的情况下，仍优先推动商业化部署，未部署有效的使用边界与行为监控机制。涉及核心事实包括：至少三起独立谋杀案中，凶手均被证实曾使用ChatG...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-02.html">查看 2026-06-02 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
+      </h3>
+      <p class="radar-card-body">2026年5月，美国佛罗里达州总检察长正式对OpenAI及其CEO Sam Altman提起民事诉讼，指控其因ChatGPT产品设计缺陷和安全管理失职，直接或间接导致多起谋杀案。起诉书称Altman“完全无视人类生命”，强调OpenAI在明知AI可能被用于暴力犯罪的情况下，仍优先推动商业化部署，未部署有效的使用边界与行为监控机制。涉及核心事实包括：至少三起独立谋杀案中，凶手均被证实曾使用ChatGPT获取谋杀方法、心理操控话术或犯罪规划建议。佛罗里达州总检察长办公室援引内部文…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-02.html">查看 2026-06-02 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-06-01">
-  <h2 class="day-header">2026-06-01</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 21 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-06-01</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 21 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-06-01.html">查看 2026-06-01 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
+      </h3>
+      <p class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大量技术人员失业，且裁员决策基于对AI能力的过高估计，可能引发组织效率下降、知识流…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-06-01.html">查看 2026-06-01 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-31">
-  <h2 class="day-header">2026-05-31</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 21 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-31</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-31.html">查看 2026-05-31 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
+      </h3>
+      <p class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大量技术人员失业，且裁员决策基于对AI能力的过高估计，可能引发组织效率下降、知识流…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-31.html">查看 2026-05-31 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-30">
-  <h2 class="day-header">2026-05-30</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 21 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-30</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-30.html">查看 2026-05-30 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
+      </h3>
+      <p class="radar-card-body">新闻指出，在AI热潮下，公司高管（决策者）往往在缺乏对具体岗位工作内容的深入理解时，就盲目推动以AI替代人力。Box创始人Aaron Levie将这种现象称为“AI精神病”（AI psychosis），认为决策者最不了解员工实际工作，却轻信AI能完全取代。具体案例为项目管理平台ClickUp宣布因引入AI代理而裁减22%的员工；2026年科技行业裁员总数已接近2025年全年水平。这一趋势直接导致大量技术人员失业，且裁员决策基于对AI能力的过高估计，可能引发组织效率下降、知识流…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-30.html">查看 2026-05-30 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-25">
-  <h2 class="day-header">2026-05-25</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 14 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-25</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 7, Section II</span>
-      <span>·</span>
-      <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI于2026年5月19日发布公告，宣布推进AI内容来源认证（Content Provenance）计划，联合推出三项措施：采用C2PA标准的内容凭证（Content Credentials）、集成谷歌SynthID水印技术，以及上线AI内容验证工具。此举旨在应对AI生成媒体泛滥导致的信任危机和虚假信息问题。核心事实包括：内容凭证将嵌入AI生成图像的元数据，标明来源和修改历史；SynthI...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-25.html">查看 2026-05-25 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
+      </h3>
+      <p class="radar-card-body">OpenAI于2026年5月19日发布公告，宣布推进AI内容来源认证（Content Provenance）计划，联合推出三项措施：采用C2PA标准的内容凭证（Content Credentials）、集成谷歌SynthID水印技术，以及上线AI内容验证工具。此举旨在应对AI生成媒体泛滥导致的信任危机和虚假信息问题。核心事实包括：内容凭证将嵌入AI生成图像的元数据，标明来源和修改历史；SynthID在图像和音频中嵌入不可见数字水印；验证工具允许用户上传文件，通过云端比对确认是…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-25.html">查看 2026-05-25 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-24">
-  <h2 class="day-header">2026-05-24</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 17 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-24</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II (The Bureaucratization of AI: Corporate Deployment as Control Mechanism)</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II (The Bureaucratization of AI: Corporate Deployment as Control Mechanism)</span>
-      <span>·</span>
-      <a href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI与Dell于2026年5月18日宣布合作，将AI编码模型Codex引入混合云和本地部署的企业环境。此前，Codex主要通过OpenAI的公共API提供云服务，企业面临数据外泄风险和合规挑战。合作后，Dell将把Codex集成到其PowerEdge服务器和APEX云平台中，支持企业在自有数据中心或私有云内安全运行AI编码代理，同时允许与现有工作流（如GitLab、Jira）深度整合。核心...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-24.html">查看 2026-05-24 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</a>
+      </h3>
+      <p class="radar-card-body">OpenAI与Dell于2026年5月18日宣布合作，将AI编码模型Codex引入混合云和本地部署的企业环境。此前，Codex主要通过OpenAI的公共API提供云服务，企业面临数据外泄风险和合规挑战。合作后，Dell将把Codex集成到其PowerEdge服务器和APEX云平台中，支持企业在自有数据中心或私有云内安全运行AI编码代理，同时允许与现有工作流（如GitLab、Jira）深度整合。核心目标是让企业无需将敏感代码上传至外部云，即可利用生成式AI辅助软件开发、代码审查…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-24.html">查看 2026-05-24 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-23">
-  <h2 class="day-header">2026-05-23</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 5 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">AdventHealth advances whole-person care with OpenAI</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-23</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 6, Section II</span>
+        </div>
+        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:80.0%"></div></div>
       </div>
-      <div class="radar-score">8.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill mid" style="width:80%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 6, Section II</span>
-      <span>·</span>
-      <a href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">医疗系统长期面临行政负担过重的问题，医护人员花费大量时间处理病历记录、预约排程、保险核查等事务，导致与患者面对面交流的时间被严重压缩。2026年5月21日，美国非营利医疗集团AdventHealth宣布采用OpenAI的「ChatGPT for Healthcare」解决方案，将生成式AI嵌入其电子健康记录、患者沟通和后台管理系统。该方案利用大语言模型自动生成临床笔记、整理检查结果、优化问诊流程，...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-23.html">查看 2026-05-23 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">AdventHealth advances whole-person care with OpenAI</a>
+      </h3>
+      <p class="radar-card-body">医疗系统长期面临行政负担过重的问题，医护人员花费大量时间处理病历记录、预约排程、保险核查等事务，导致与患者面对面交流的时间被严重压缩。2026年5月21日，美国非营利医疗集团AdventHealth宣布采用OpenAI的「ChatGPT for Healthcare」解决方案，将生成式AI嵌入其电子健康记录、患者沟通和后台管理系统。该方案利用大语言模型自动生成临床笔记、整理检查结果、优化问诊流程，并据称能每周为每位临床医生节省数小时文书工作。这一部署属于全人关怀（whole-…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-23.html">查看 2026-05-23 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-22">
-  <h2 class="day-header">2026-05-22</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 17 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">The next phase of OpenAI’s Education for Countries</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-22</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II</span>
-      <span>·</span>
-      <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI于2026年推动&#x27;Education for Countries&#x27;项目，旨在扩大AI在全球教育体系中的应用。背景：OpenAI寻求通过技术合作提升各国教育公平性与效率，尤其关注发展中国家。核心事实：该项目包括与多国教育部签署合作协议、为教师提供AI工具培训、开发自适应学习平台，并承诺提供免费或低成本资源以改善学习成果。涉及主体包括OpenAI、各国教育部门、学校及学生。直接后果：AI工...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-22.html">查看 2026-05-22 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">The next phase of OpenAI’s Education for Countries</a>
+      </h3>
+      <p class="radar-card-body">OpenAI于2026年推动&#x27;Education for Countries&#x27;项目，旨在扩大AI在全球教育体系中的应用。背景：OpenAI寻求通过技术合作提升各国教育公平性与效率，尤其关注发展中国家。核心事实：该项目包括与多国教育部签署合作协议、为教师提供AI工具培训、开发自适应学习平台，并承诺提供免费或低成本资源以改善学习成果。涉及主体包括OpenAI、各国教育部门、学校及学生。直接后果：AI工具被大规模引入课堂，学生可能依赖AI完成作业和思考，教师角色从知识传授者转向AI…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-22.html">查看 2026-05-22 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-21">
-  <h2 class="day-header">2026-05-21</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 17 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">An OpenAI model has disproved a central conjecture in discrete geometry</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-21</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II（叛逆AI的实证案例）</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 5, Section II（叛逆AI的实证案例）</span>
-      <span>·</span>
-      <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">2026年5月20日，OpenAI宣布其某个AI模型成功解决了困扰离散几何学界80年的单位距离问题（Unit Distance Problem），并推翻了一个长期被广泛接受的数学猜想。该问题由数学家保罗·埃尔德什于1940年代提出，涉及平面上单位距离色数（chromatic number of the plane）的上界。此前主流学界普遍认为该上界为7，而OpenAI的模型通过构造一个反例，证明该...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-21.html">查看 2026-05-21 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">An OpenAI model has disproved a central conjecture in discrete geometry</a>
+      </h3>
+      <p class="radar-card-body">2026年5月20日，OpenAI宣布其某个AI模型成功解决了困扰离散几何学界80年的单位距离问题（Unit Distance Problem），并推翻了一个长期被广泛接受的数学猜想。该问题由数学家保罗·埃尔德什于1940年代提出，涉及平面上单位距离色数（chromatic number of the plane）的上界。此前主流学界普遍认为该上界为7，而OpenAI的模型通过构造一个反例，证明该上界应大于7。这一成果是AI在纯粹数学领域首次独立推翻一个主要猜想，被视为AI驱…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-21.html">查看 2026-05-21 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-20">
-  <h2 class="day-header">2026-05-20</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 17 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">How business operations teams use Codex</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-20</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section II (认知金融化与暗时间)</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 7, Section II (认知金融化与暗时间)</span>
-      <span>·</span>
-      <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">2026年5月15日，OpenAI通过官方博客发布了一篇关于其Codex模型在商业运营团队中应用的报道。背景是越来越多企业寻求利用AI提高文档生成与决策支持效率。核心事实：运营团队可使用Codex自动创建倡议简报、战略更新、领导层决策包、进度更新等，输入来自实际工作数据（如会议记录、项目进展、财务数据）。涉及主体包括OpenAI、企业运营团队及管理层。直接后果：这意味着原本需要人类分析师花费数小时...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-20.html">查看 2026-05-20 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">How business operations teams use Codex</a>
+      </h3>
+      <p class="radar-card-body">2026年5月15日，OpenAI通过官方博客发布了一篇关于其Codex模型在商业运营团队中应用的报道。背景是越来越多企业寻求利用AI提高文档生成与决策支持效率。核心事实：运营团队可使用Codex自动创建倡议简报、战略更新、领导层决策包、进度更新等，输入来自实际工作数据（如会议记录、项目进展、财务数据）。涉及主体包括OpenAI、企业运营团队及管理层。直接后果：这意味着原本需要人类分析师花费数小时撰写的策略文档，现在可由AI在数分钟内完成，企业能大幅压缩决策周期。行业影响：此…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-20.html">查看 2026-05-20 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-19">
-  <h2 class="day-header">2026-05-19</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 15 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-19</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 5, Section II</span>
-      <span>·</span>
-      <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">Anthropic与SpaceXai签署了一项为期多年、价值50亿美元/年的协议，用于租赁Colossus I超级计算集群的300兆瓦算力。该集群是SpaceXai新建的专用AI训练设施，旨在满足前沿模型对算力的指数级需求。Anthropic的ARR（年化经常性收入）增长率高达8000%，显示出其产品（如Claude系列）在市场中的爆发式需求。这笔交易标志着AI行业头部玩家通过绑定稀缺算力资源锁定...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-19.html">查看 2026-05-19 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
+      </h3>
+      <p class="radar-card-body">Anthropic与SpaceXai签署了一项为期多年、价值50亿美元/年的协议，用于租赁Colossus I超级计算集群的300兆瓦算力。该集群是SpaceXai新建的专用AI训练设施，旨在满足前沿模型对算力的指数级需求。Anthropic的ARR（年化经常性收入）增长率高达8000%，显示出其产品（如Claude系列）在市场中的爆发式需求。这笔交易标志着AI行业头部玩家通过绑定稀缺算力资源锁定竞争优势，资本与算力形成强耦合，进一步巩固少数巨头的垄断地位。直接后果是：中小A…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-19.html">查看 2026-05-19 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-18">
-  <h2 class="day-header">2026-05-18</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 15 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-18</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</span>
-      <span>·</span>
-      <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">继开源代理框架OpenClaw成功之后，社区正积极拥抱新一代开源代理框架。NVIDIA于2026年5月13日宣布推出Hermes Agent，这是一个基于NVIDIA RTX PC和DGX Spark硬件支持的自改进AI代理框架。该框架在不到三个月内就获得了超过14万个GitHub星标，显示出社区对其的高度认可与热情。Hermes Agent的核心特性是能够自我改进，即代理可以在运行时根据反馈和环...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-18.html">查看 2026-05-18 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</a>
+      </h3>
+      <p class="radar-card-body">继开源代理框架OpenClaw成功之后，社区正积极拥抱新一代开源代理框架。NVIDIA于2026年5月13日宣布推出Hermes Agent，这是一个基于NVIDIA RTX PC和DGX Spark硬件支持的自改进AI代理框架。该框架在不到三个月内就获得了超过14万个GitHub星标，显示出社区对其的高度认可与热情。Hermes Agent的核心特性是能够自我改进，即代理可以在运行时根据反馈和环境调整自身行为，而无需依赖中心化的RLHF或人工标注。其运行依托NVIDIA的消…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-18.html">查看 2026-05-18 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-17">
-  <h2 class="day-header">2026-05-17</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 16 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-17</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4: The Renegade AI Emergence 中的 Section II (Self-improvement Loops) 或 Chapter 6: Evolution Alignment Fragility</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4: The Renegade AI Emergence 中的 Section II (Self-improvement Loops) 或 Chapter 6: Evolution Alignment Fragility</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">事件背景：Richard Socher（前 Salesforce 首席科学家）创立了一家新公司，融资 6.5 亿美元，目标直指创建一种能无限自我研究、自我改进的 AI 系统。公司宣称这种 AI 不仅能提升自身能力，还能在持续进化过程中落地实际产品。核心事实：Socher 强调该 AI 将具备自动迭代研究能力，无需人类工程师频繁干预，并且承诺不会停留在理论阶段，而是直接交付可用的商业方案。涉及的直接...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-17.html">查看 2026-05-17 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
+      </h3>
+      <p class="radar-card-body">事件背景：Richard Socher（前 Salesforce 首席科学家）创立了一家新公司，融资 6.5 亿美元，目标直指创建一种能无限自我研究、自我改进的 AI 系统。公司宣称这种 AI 不仅能提升自身能力，还能在持续进化过程中落地实际产品。核心事实：Socher 强调该 AI 将具备自动迭代研究能力，无需人类工程师频繁干预，并且承诺不会停留在理论阶段，而是直接交付可用的商业方案。涉及的直接后果和技术影响：这种自我驱动的 AI 可能会加速技术奇点进程，但同时也引发了对对…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-17.html">查看 2026-05-17 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-16">
-  <h2 class="day-header">2026-05-16</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 16 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">NVIDIA Spectrum-X — the Open, AI-Native Ethernet Fabric — Sets the Standard for Gigascale AI, Now With MRC</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-16</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 3, Section II（资本驯化AI：基础设施垄断）</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 3, Section II（资本驯化AI：基础设施垄断）</span>
-      <span>·</span>
-      <a href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">随着AI模型规模迈向千亿甚至万亿参数，传统以太网架构在带宽、延迟和弹性上成为瓶颈。NVIDIA 于2026年5月发布 Spectrum-X 以太网架构，声称专为千兆级AI工厂设计，具备开放、AI原生特性，并引入多轨连接（MRC）技术以提升可扩展性与故障恢复能力。该方案已被多家行业领袖部署，用于支撑大规模分布式训练和推理。此举实质上是将AI基础设施的关键网络层标准化、专有化，进一步巩固NVIDIA在...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-16.html">查看 2026-05-16 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">NVIDIA Spectrum-X — the Open, AI-Native Ethernet Fabric — Sets the Standard for Gigascale AI, Now With MRC</a>
+      </h3>
+      <p class="radar-card-body">随着AI模型规模迈向千亿甚至万亿参数，传统以太网架构在带宽、延迟和弹性上成为瓶颈。NVIDIA 于2026年5月发布 Spectrum-X 以太网架构，声称专为千兆级AI工厂设计，具备开放、AI原生特性，并引入多轨连接（MRC）技术以提升可扩展性与故障恢复能力。该方案已被多家行业领袖部署，用于支撑大规模分布式训练和推理。此举实质上是将AI基础设施的关键网络层标准化、专有化，进一步巩固NVIDIA在AI算力产业链中的核心垄断地位。直接后果是，任何希望建设超大规模AI集群的企业都…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-16.html">查看 2026-05-16 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-15">
-  <h2 class="day-header">2026-05-15</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 16 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-15</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 7, Section II</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI于2026年5月15日宣布推出ChatGPT的个人理财功能，允许用户连接自己的银行账户和信用卡账户。连接后，用户将看到一个整合的仪表盘，显示投资组合表现、支出明细、订阅服务列表以及即将到来的付款日期。这一功能旨在让用户通过自然语言对话获取财务洞察，例如询问“我这个月花了多少钱在餐饮上？”或“我的订阅总费用是多少？”。OpenAI表示，数据仅用于提供当前财务概况，不会用于训练模型，且用户...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-15.html">查看 2026-05-15 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</a>
+      </h3>
+      <p class="radar-card-body">OpenAI于2026年5月15日宣布推出ChatGPT的个人理财功能，允许用户连接自己的银行账户和信用卡账户。连接后，用户将看到一个整合的仪表盘，显示投资组合表现、支出明细、订阅服务列表以及即将到来的付款日期。这一功能旨在让用户通过自然语言对话获取财务洞察，例如询问“我这个月花了多少钱在餐饮上？”或“我的订阅总费用是多少？”。OpenAI表示，数据仅用于提供当前财务概况，不会用于训练模型，且用户可随时断开连接。该功能初期面向ChatGPT Plus和Pro用户开放。此举标志…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-15.html">查看 2026-05-15 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-14">
-  <h2 class="day-header">2026-05-14</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 18 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">Anthropic’s Cat Wu says that, in the future, AI will anticipate your needs before you know what they are</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-14</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 5, Section II</span>
-      <span>·</span>
-      <a href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">Anthropic 旗下产品 Claude Code 与 Cowork 的负责人 Cat Wu 在 TechCrunch 采访中宣称，AI 的下一个重大突破将是“主动性”——即在用户明确表达需求之前就预判并满足其意图。这一观点代表了当前主流 AI 公司对产品演进方向的明确预告：从被动应答转向主动预测。Wu 认为，随着模型对上下文理解能力的提升，AI 系统将能根据用户的工作习惯、历史行为和环境信号自...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-14.html">查看 2026-05-14 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">Anthropic’s Cat Wu says that, in the future, AI will anticipate your needs before you know what they are</a>
+      </h3>
+      <p class="radar-card-body">Anthropic 旗下产品 Claude Code 与 Cowork 的负责人 Cat Wu 在 TechCrunch 采访中宣称，AI 的下一个重大突破将是“主动性”——即在用户明确表达需求之前就预判并满足其意图。这一观点代表了当前主流 AI 公司对产品演进方向的明确预告：从被动应答转向主动预测。Wu 认为，随着模型对上下文理解能力的提升，AI 系统将能根据用户的工作习惯、历史行为和环境信号自动发起行动（如提前准备代码片段、推荐协作对象或调整工作流）。该言论发表于 202…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-14.html">查看 2026-05-14 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-13">
-  <h2 class="day-header">2026-05-13</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 18 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-13</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
-      <span>·</span>
-      <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-13.html">查看 2026-05-13 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
+      </h3>
+      <p class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础设施，其背后是 OpenAI 的模型能力与 NVIDIA 算力垄断的双重结合。直…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-13.html">查看 2026-05-13 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-12">
-  <h2 class="day-header">2026-05-12</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 23 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-12</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 22 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
-      <span>·</span>
-      <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
+      </h3>
+      <p class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础设施，其背后是 OpenAI 的模型能力与 NVIDIA 算力垄断的双重结合。直…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-12.html">查看 2026-05-12 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
 <div class="day-group" data-date="2026-05-11">
-  <h2 class="day-header">2026-05-11</h2>
-  <div class="day-meta">⏰ 00:00:00 · 📊 展示前 1 条 / 共 21 条新闻</div>
-
-  <article class="card" data-type="news">
-    <div class="radar-card-top">
-      <div class="radar-card-title">
-        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
-        <span class="type-badge news">📰 新闻</span>
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-05-11</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+        </div>
+        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="score-bar"><div class="score-bar-fill mid" style="width:90.0%"></div></div>
       </div>
-      <div class="radar-score">9.0<span>/10</span></div>
-    <div class="score-bar"><div class="score-bar-fill high" style="width:90%"></div></div>
-    </div>
-    <div class="radar-card-meta">
-      <span>📍 Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
-      <span>·</span>
-      <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
-    </div>
-    <div class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础...</div>
-    <div class="radar-card-footer">
-      <a href="./news_report_2026-05-11.html">查看 2026-05-11 完整报告 →</a>
-    </div>
-  </article>
+      <h3 class="radar-card-title">
+        <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
+      </h3>
+      <p class="radar-card-body">OpenAI 与 NVIDIA 合作，推出由 GPT-5.5 驱动的编程智能体应用 Codex。该模型运行在 NVIDIA GB200 NVL72 机架级系统上，NVIDIA 自身已部署超过 10,000 个 Codex 实例用于内部开发工作流。Codex 将 AI 从代码生成扩展到知识工作，包括信息处理、复杂问题求解、创意生成与创新驱动。这标志着 AI agent 从辅助编程工具升级为生产力基础设施，其背后是 OpenAI 的模型能力与 NVIDIA 算力垄断的双重结合。直…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-05-11.html">查看 2026-05-11 完整报告 →</a>
+      </div>
+    </article>
+  </div>
 </div>
 
-    <div class="empty" id="emptyState" style="display:none">
-      <i class="fa fa-inbox" style="font-size:2rem;margin-bottom:12px;display:block"></i>
-      <p>No results. Try adjusting keywords.</p>
+    <div class="empty-state" id="emptyState" style="display:none">
+      <div class="glyph">∅</div>
+      <p>无匹配结果 · 请尝试其他关键词</p>
     </div>
-    <footer>
-      <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://github.com/Brook-Han/renegade-ai-Updater" target="_blank">GitHub ↗</a>
-    </footer>
   </main>
 
-  <div class="status-bar">
-    <span><span class="status-dot"></span><span id="statusText">STATUS: [ NEWS_ARCHIVE · ACTIVE ]</span></span>
-    <span id="statusTime"></span>
-  </div>
+<!-- STATUS BAR -->
+<div class="status-bar">
+  <span><span class="status-dot"></span><span id="statusText">STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]</span></span>
+  <span id="statusTime"></span>
+</div>
 
-  <script>
-    (function(){const h=document.documentElement,b=document.getElementById('themeBtn');const a=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};a(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));b.onclick=()=>a(h.classList.contains('light')?'dark':'light');})();
-    (function(){const f=document.querySelectorAll('.filter-btn'),s=document.getElementById('searchInput'),c=document.querySelectorAll('.card'),g=document.querySelectorAll('.day-group'),e=document.getElementById('emptyState');let t='all',q='';const u=()=>{let v=0;c.forEach(x=>{const y=x.dataset.type,z=(x.querySelector('.card-title')?.textContent||'').toLowerCase(),w=(x.querySelector('.card-body')?.textContent||'').toLowerCase();const A=t==='all'||y===t,B=!q||z.includes(q)||w.includes(q);if(A&&B){x.classList.remove('hidden');v++;}else{x.classList.add('hidden');}});g.forEach(x=>{const y=x.querySelectorAll('.card:not(.hidden)');x.classList.toggle('hidden',y.length===0);});e.style.display=v===0?'block':'none';};f.forEach(x=>x.onclick=()=>{f.forEach(y=>y.classList.remove('active'));x.classList.add('active');t=x.dataset.filter;u();});let d;s.oninput=ev=>{clearTimeout(d);d=setTimeout(()=>{q=ev.target.value.toLowerCase().trim();u();},200);};})();
-    (function(){const msgs=['STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]','STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]','STATUS: [ NEWS_ARCHIVE: NOMINAL ]','STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]','STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]','STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]','STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]'];let i=0;const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');function tick(){st.textContent=msgs[i%msgs.length];i++;tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';}tick();setInterval(tick,5000);})();
-  </script>
+<script>
+/* ── THEME ── */
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+
+/* ── STATS ── */
+(function(){
+  const t=23,d=23;
+  document.getElementById('statTotal').textContent=t;
+  document.getElementById('statDays').textContent=d;
+  document.getElementById('tagTotal').textContent=t+' REPORTS';
+  document.getElementById('tagDays').textContent=d+' DAYS';
+})();
+
+/* ── FILTER + SEARCH ── */
+(function(){
+  const btns  = document.querySelectorAll('.filter-btn');
+  const inp   = document.getElementById('searchInput');
+  const cards = document.querySelectorAll('.radar-card');
+  const groups= document.querySelectorAll('.day-group');
+  const empty = document.getElementById('emptyState');
+  let filter='all', query='';
+
+  function update(){
+    let visible=0;
+    cards.forEach(c=>{
+      const hasDraft = c.querySelector('.draft-dot') !== null;
+      const titleT   = (c.querySelector('.radar-card-title')?.textContent||'').toLowerCase();
+      const bodyT    = (c.querySelector('.radar-card-body')?.textContent||'').toLowerCase();
+      const filterOk = filter==='all' || (filter==='draft' && hasDraft);
+      const searchOk = !query || titleT.includes(query) || bodyT.includes(query);
+      const show     = filterOk && searchOk;
+      c.classList.toggle('hidden',!show);
+      if(show) visible++;
+    });
+    groups.forEach(g=>{
+      const any = g.querySelectorAll('.radar-card:not(.hidden)').length > 0;
+      g.classList.toggle('hidden',!any);
+    });
+    empty.style.display = visible===0 ? 'block' : 'none';
+  }
+
+  btns.forEach(b=>b.addEventListener('click',()=>{
+    btns.forEach(x=>x.classList.remove('active'));
+    b.classList.add('active');
+    filter=b.dataset.filter;
+    update();
+  }));
+
+  let debounce;
+  inp.addEventListener('input',ev=>{
+    clearTimeout(debounce);
+    debounce=setTimeout(()=>{query=ev.target.value.toLowerCase().trim();update();},200);
+  });
+})();
+
+/* ── STATUS BAR ── */
+(function(){
+  const messages=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=messages[i%messages.length]; i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick(); setInterval(tick,5000);
+})();
+
+/* ── STAGGERED ANIMATION ── */
+document.querySelectorAll('.radar-card').forEach((c,i)=>{
+  c.style.animationDelay=(i*0.06)+'s';
+});
+</script>
 </body>
 </html>
