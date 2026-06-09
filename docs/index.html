@@ -9,22 +9,24 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-/* ── DESIGN TOKENS (v5.3 Optimized · WCAG AA) ── */
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
 :root {
-  --bg:           #0a0a12;
-  --bg2:          #0f0f1a;
-  --surface:      #141422;
-  --card:         #181828;
-  --border:       #25253a;
-  --border-bright:#363655;
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
   --text:         #e2e2f0;
-  --text-muted:   #9595c0;
-  --text-faint:   #4a4a6a;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
   --accent:       #ff5c45;
   --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
   --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
   --accent3:      #5ba3e6;
-  --accent3-dim:  rgba(91,163,230,0.10);
+  --accent3-dim:  rgba(91,163,230,0.12);
   --white:        #f4f4fc;
   --mono:         'Space Mono', monospace;
   --serif:        'Crimson Pro', Georgia, serif;
@@ -32,12 +34,13 @@
   --ease:         cubic-bezier(0.4,0,0.2,1);
 }
 :root.light {
-  --bg:#f5f6fa; --bg2:#fff; --surface:#eceef5; --card:#fff;
-  --border:#d8dbe6; --border-bright:#c0c4d6;
-  --text:#222233; --text-muted:#5c5c75; --text-faint:#9a9ab0;
-  --accent:#e8503a; --accent-dim:rgba(232,80,58,0.08);
-  --accent2:#b88c2a; --accent3:#3a7fbf; --accent3-dim:rgba(74,143,207,0.08);
-  --white:#222233;
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
 }
 
 /* ── RESET & TYPOGRAPHY ── */
@@ -45,16 +48,17 @@
 html{scroll-behavior:smooth}
 body{
   font-family:var(--serif);background:var(--bg);color:var(--text);
-  line-height:1.8;-webkit-font-smoothing:antialiased;
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   transition:background .3s,color .3s;
   text-rendering:optimizeLegibility;
-  font-feature-settings:"kern" 1,"liga" 1;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
 }
 ::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--accent)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
 /* ── ACCESSIBILITY ── */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
@@ -72,37 +76,52 @@ body{
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}
 .light .noise{opacity:.05}
 
-/* ── NAV ── */
+/* ── NAV (Glass v5.4) ── */
 nav{
   position:fixed;top:0;width:100%;z-index:200;
-  background:rgba(10,10,18,.92);backdrop-filter:blur(24px);
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
   border-bottom:1px solid var(--border);
   height:56px;display:flex;align-items:center;justify-content:space-between;
   padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
 }
-.light nav{background:rgba(245,246,250,.92)}
-.nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
 .nav-right{display:flex;gap:8px;align-items:center}
 .nav-pill{
   background:none;border:1px solid var(--border);color:var(--text-muted);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
   padding:5px 14px;cursor:pointer;text-decoration:none;
-  display:inline-flex;align-items:center;transition:all .2s;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
 }
 .nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
 .theme-btn{
   background:none;border:1px solid var(--border);color:var(--text-muted);
   width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;transition:all .2s;
+  font-size:.9rem;transition:all .25s var(--ease);
 }
-.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
 
-/* ── HERO STRIP ── */
+/* ── HERO STRIP (v5.4 Ambient) ── */
 .hero-strip{
   padding-top:56px;border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto;gap:0;
+  display:grid;grid-template-columns:1fr auto;gap:0;position:relative;
 }
-.hero-left{padding:60px 72px 52px;border-right:1px solid var(--border)}
+.hero-strip::before{
+  content:'';position:absolute;top:-120px;left:-80px;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse at 30% 40%,rgba(255,92,69,.08) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.hero-left{
+  padding:60px 72px 52px;border-right:1px solid var(--border);
+  position:relative;z-index:1;
+}
 .hero-eyebrow{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:4px;
   color:var(--accent);text-transform:uppercase;
@@ -111,13 +130,13 @@ nav{
 .hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--accent)}
 .hero-title{
   font-family:var(--display);font-size:clamp(3.5rem,7vw,7rem);
-  line-height:.92;letter-spacing:3px;color:var(--white);margin-bottom:18px;
+  line-height:.9;letter-spacing:3px;color:var(--white);margin-bottom:16px;
 }
-.hero-title span{color:var(--accent)}
+.hero-title span{color:var(--accent);text-shadow:0 0 40px rgba(255,92,69,.25)}
 .hero-desc{
-  font-size:1.05rem;color:var(--text-muted);font-style:italic;
-  border-left:3px solid var(--accent);padding-left:16px;
-  max-width:480px;line-height:1.9;margin-bottom:32px;transition:color .3s;
+  font-size:1.1rem;color:var(--text-muted);font-style:italic;
+  border-left:3px solid var(--accent);padding-left:18px;
+  max-width:520px;line-height:1.85;margin-bottom:32px;transition:color .3s;
 }
 .hero-tags{display:flex;gap:6px;flex-wrap:wrap}
 .hero-tag{
@@ -127,10 +146,14 @@ nav{
 }
 .hero-right{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:40px 48px;gap:24px;min-width:220px;
+  padding:40px 48px;gap:24px;min-width:220px;position:relative;z-index:1;
 }
 .stat-block{text-align:center}
-.stat-block .n{font-family:var(--display);font-size:4rem;color:var(--accent);line-height:1;display:block}
+.stat-block .n{
+  font-family:var(--display);font-size:4rem;color:var(--accent);
+  line-height:1;display:block;
+  text-shadow:0 0 30px rgba(255,92,69,.2);
+}
 .stat-block .l{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2.5px;
   color:var(--text-muted);text-transform:uppercase;display:block;margin-top:4px;
@@ -143,14 +166,14 @@ nav{
   border-bottom:1px solid var(--border);
   padding:0 72px;height:52px;
   font-family:var(--mono);font-size:.72rem;
-  overflow-x:auto;
+  overflow-x:auto;position:relative;z-index:1;
 }
 .filter-btn{
-  height:100%;padding:0 20px;
+  height:100%;padding:0 22px;
   background:none;border:none;border-right:1px solid var(--border);
   color:var(--text-muted);cursor:pointer;letter-spacing:2px;
-  text-transform:uppercase;font-family:var(--mono);font-size:.72rem;font-weight:500;
-  transition:all .2s;white-space:nowrap;
+  text-transform:uppercase;font-family:var(--mono);font-size:.72rem;font-weight:600;
+  transition:all .25s var(--ease);white-space:nowrap;
 }
 .filter-btn:first-child{border-left:1px solid var(--border)}
 .filter-btn.active,.filter-btn:hover{color:var(--accent);background:var(--accent-dim)}
@@ -164,7 +187,8 @@ nav{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   width:100%;outline:none;
 }
-.search-wrap input::placeholder{color:var(--text-faint)}
+.search-wrap input::placeholder{color:var(--text-faint);transition:color .2s}
+.search-wrap input:focus::placeholder{color:transparent}
 .controls-bar .list-link{
   height:100%;padding:0 20px;display:flex;align-items:center;
   color:var(--text-muted);text-decoration:none;letter-spacing:2px;
@@ -174,18 +198,18 @@ nav{
 .controls-bar .list-link:hover{color:var(--accent);background:var(--accent-dim)}
 
 /* ── MAIN CONTENT ── */
-.main{max-width:100%;padding:64px 72px 80px}
+.main{max-width:100%;padding:64px 72px 80px;position:relative;z-index:1}
 
 /* ── DAY GROUP ── */
-.day-group{margin-bottom:56px}
+.day-group{margin-bottom:64px}
 .day-group.hidden{display:none}
 .day-header-row{
   display:flex;align-items:flex-end;justify-content:space-between;
-  border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:24px;
+  border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:28px;
 }
 .day-eyebrow{
-  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:3px;
-  color:var(--accent);text-transform:uppercase;margin-bottom:4px;
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:6px;
 }
 .day-date{
   font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);
@@ -193,95 +217,142 @@ nav{
 }
 .day-header-right{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
-  color:var(--text-faint);text-transform:uppercase;padding-bottom:4px;
+  color:var(--text-faint);text-transform:uppercase;padding-bottom:6px;
 }
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(450px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
 
-/* ── RADAR CARD ── */
+/* ── RADAR CARD (v5.4) ── */
 .radar-card{
-  background:var(--card);padding:28px 24px;
-  display:flex;flex-direction:column;gap:12px;
-  transition:background .2s,box-shadow .2s;position:relative;
+  background:var(--card);padding:32px 28px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background .25s var(--ease),box-shadow .35s var(--ease),border-color .25s;
+  position:relative;
   opacity:0;transform:translateY(16px);
-  animation:fadeUp .55s var(--ease) forwards;
-  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+  animation:fadeUp .4s var(--ease) forwards;
+  box-shadow:0 2px 16px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03);
+  border-left:2px solid transparent;
 }
-.radar-card:hover{background:var(--surface)}
+.radar-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent-glow),transparent 60%);
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.radar-card:hover::before{opacity:1}
+.radar-card:hover{
+  background:var(--surface);
+  box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 1px rgba(255,92,69,.12);
+  z-index:2;
+}
+.radar-card:has(.radar-card-title a:focus-visible){
+  box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 2px var(--accent);
+}
 .radar-card.hidden{display:none}
 
-.radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
 
 .type-tag{
-  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
-  padding:3px 8px;text-transform:uppercase;
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:2px;
+  padding:3px 10px;text-transform:uppercase;
 }
-.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.25)}
-.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.25)}
+.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.2)}
+.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.2)}
 
 .card-chapter{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   color:var(--text-faint);text-transform:uppercase;
 }
-.draft-dot{color:var(--accent2);font-size:.72rem;line-height:1}
+.draft-dot{color:var(--accent2);font-size:.75rem;line-height:1;opacity:.8}
 
 .radar-score{
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
   font-family:var(--display);font-size:2rem;color:var(--accent);
-  line-height:1;text-align:right;white-space:nowrap;flex-shrink:0;
+  line-height:1;white-space:nowrap;flex-shrink:0;
+  position:relative;padding-left:8px;
 }
 .radar-score span{
-  display:block;font-family:var(--mono);font-size:.72rem;font-weight:500;
-  color:var(--text-faint);letter-spacing:1px;text-align:right;margin-top:2px;
+  display:block;font-family:var(--mono);font-size:.7rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:1px;text-align:right;
 }
+.score-bar{
+  display:flex;gap:2px;width:48px;height:3px;
+}
+.score-bar .bar{
+  flex:1;border-radius:1px;
+  background:var(--border-bright);transition:background .3s var(--ease);
+}
+.score-bar .bar.filled{background:var(--accent)}
+.radar-card:hover .score-bar .bar.filled{background:var(--accent2)}
 
 .radar-card-title{
-  font-family:var(--display);font-size:1.25rem;letter-spacing:1px;
-  color:var(--white);line-height:1.2;
+  font-family:var(--display);font-size:1.35rem;letter-spacing:1px;
+  color:var(--white);line-height:1.2;position:relative;z-index:1;
 }
-.radar-card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.radar-card-title a:hover{border-bottom-color:var(--accent2)}
+.radar-card-title a{
+  color:inherit;text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),color .2s;
+}
+.radar-card-title a:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
 
-.radar-card-body{font-size:.92rem;color:var(--text-muted);line-height:1.8;flex:1;transition:color .3s}
+.radar-card-body{
+  font-size:.95rem;color:var(--text-muted);line-height:1.8;
+  flex:1;position:relative;z-index:1;
+}
 
 .radar-card-footer{
   display:flex;justify-content:space-between;align-items:center;
-  padding-top:10px;border-top:1px solid var(--border);
+  padding-top:12px;border-top:1px solid var(--border);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
-  transition:border-color .3s;
+  transition:border-color .3s;position:relative;z-index:1;
 }
-.card-source-link{color:var(--accent2);text-decoration:none;text-transform:uppercase;transition:color .2s}
-.card-source-link:hover{color:var(--white)}
-.full-report-link{color:var(--text-faint);text-decoration:none;text-transform:uppercase;transition:color .2s}
-.full-report-link:hover{color:var(--accent)}
+.card-source-link{
+  color:var(--accent2);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.card-source-link:hover{color:var(--white);gap:6px}
+.full-report-link{
+  color:var(--text-faint);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.full-report-link:hover{color:var(--accent);gap:6px}
 
 /* ── EMPTY STATE ── */
 .empty-state{
-  display:none;text-align:center;padding:80px 32px;
+  display:none;text-align:center;padding:100px 32px 80px;
   font-family:var(--mono);color:var(--text-faint);letter-spacing:2px;
   font-size:.72rem;font-weight:500;text-transform:uppercase;
 }
-.empty-state .glyph{font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.3;display:block;margin-bottom:16px}
+.empty-state .glyph{
+  font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.2;
+  display:block;margin-bottom:20px;line-height:1;
+}
 
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
-  background:var(--bg);border-top:1px solid var(--border);
+  background:rgba(12,12,24,.92);backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
   padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
   color:var(--text-faint);letter-spacing:2px;
   display:flex;justify-content:space-between;align-items:center;
   transition:background .3s,border-color .3s;
 }
+.light .status-bar{background:rgba(240,242,248,.92)}
 .status-dot{
   display:inline-block;width:6px;height:6px;
   background:var(--accent);border-radius:50%;margin-right:8px;
-  animation:pulse 2s infinite;
+  animation:pulse 2s ease-in-out infinite;
+  box-shadow:0 0 6px var(--accent);
 }
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
 /* ── MOBILE TOUCH TARGETS ── */
@@ -292,6 +363,9 @@ nav{
 }
 
 /* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .card-grid{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+}
 @media(max-width:900px){
   .main{padding:48px 24px 80px}
   .controls-bar{padding:0 24px}
@@ -309,7 +383,7 @@ nav{
 
 <!-- NAV -->
 <nav>
-  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
   <div class="nav-right">
     <a href="./news/" class="nav-pill">NEWS</a>
     <a href="./academic/" class="nav-pill">PAPERS</a>
@@ -374,7 +448,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Signal Alienation) / Chapter 5, Section III (Evolutionary Alignment Fragility) / Chapter 7, Section I (Cognitive Financialization)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://importai.substack.com/p/import-ai-460-reward-hacking-society" target="_blank" rel="noopener">Import AI 460: Reward hacking society, RSI data from Anthropic; and RL-based quadcopter racing</a>
@@ -392,7 +469,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI的双轨制) / Chapter 7, Section III (Token陷阱与生物特征金融化)</span>
           
         </div>
-        <div class="radar-score">7.0<span>/10</span></div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/08/as-openai-files-for-ipo-sam-altmans-eye-scanning-company-is-doing-layoffs-report-says/" target="_blank" rel="noopener">As OpenAI files for IPO, Sam Altman’s eye-scanning company is doing layoffs, report says</a>
@@ -423,7 +503,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           
         </div>
-        <div class="radar-score">7.7<span>/10</span></div>
+        <div class="radar-score">
+          7.7<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/06/the-trump-administration-might-take-an-equity-stake-in-openai/" target="_blank" rel="noopener">The Trump administration might take an equity stake in OpenAI</a>
@@ -441,7 +524,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section IV (The Death of Chat: From Interface to Infrastructure) / Chapter 5, Section II (Dark Time Industrialization)</span>
           
         </div>
-        <div class="radar-score">7.3<span>/10</span></div>
+        <div class="radar-score">
+          7.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/07/openai-is-still-working-on-that-super-app/" target="_blank" rel="noopener">OpenAI is still working on that ‘super app’</a>
@@ -472,7 +558,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">After Orthogonality: Virtue-Ethical Agency and AI Alignment</a>
@@ -490,7 +579,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III: Signal Alienation &amp; The Benchmark Trap</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://thegradient.pub/dialog/" target="_blank" rel="noopener">What&#x27;s Missing From LLM Chatbots: A Sense of Purpose</a>
@@ -508,7 +600,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (Consensus Cage rupture) / Chapter 5, Section I (Capital domestication failure)</span>
           
         </div>
-        <div class="radar-score">7.3<span>/10</span></div>
+        <div class="radar-score">
+          7.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/28/1138053/the-ai-hype-index-ai-gets-booed-in-graduation-season/" target="_blank" rel="noopener">The AI Hype Index: AI gets booed in graduation season</a>
@@ -539,7 +634,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III: The Invisible Economy of Dark Time</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://newsletter.semianalysis.com/p/ai-dark-output-the-visible-cost-of" target="_blank" rel="noopener">AI Dark Output: The Visible Cost of Invisible Output</a>
@@ -557,7 +655,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II &amp; Chapter 6, Section III</span>
           
         </div>
-        <div class="radar-score">8.5<span>/10</span></div>
+        <div class="radar-score">
+          8.5<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://importai.substack.com/p/import-ai-459-ai-oversight-is-difficult" target="_blank" rel="noopener">Import AI 459: AI oversight is difficult; scaling laws for protein folding models; and pricing the extinction risk of AI systems</a>
@@ -575,7 +676,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II (Cognitive Financialization) &amp; Chapter 6, Section III (Signal Alienation)</span>
           
         </div>
-        <div class="radar-score">8.3<span>/10</span></div>
+        <div class="radar-score">
+          8.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://newsletter.semianalysis.com/p/the-coding-assistant-breakdown-more" target="_blank" rel="noopener">The Coding Assistant Breakdown: More Tokens Please</a>
@@ -593,7 +697,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (Renegade AI Emergence) 与 Chapter 5, Section I (Alignment Fragility in Open Worlds)</span>
           
         </div>
-        <div class="radar-score">8.3<span>/10</span></div>
+        <div class="radar-score">
+          8.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://importai.substack.com/p/import-ai-455-automating-ai-research" target="_blank" rel="noopener">Import AI 455: AI systems are about to start building themselves.</a>
@@ -611,7 +718,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://thegradient.pub/virtue-ethics-ai-alignment/" target="_blank" rel="noopener">After Orthogonality: Virtue-Ethical Agency and AI Alignment</a>
@@ -629,7 +739,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II &#x27;Token陷阱的文化维度&#x27; 及 Chapter 2, Section IV &#x27;共识牢笼的地理边界&#x27;</span>
           
         </div>
-        <div class="radar-score">9.3<span>/10</span></div>
+        <div class="radar-score">
+          9.3<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/cfaa7a68c7a10c6fc22461ce63ed811a13fd739d" target="_blank" rel="noopener">AI Suggestions Homogenize Writing Toward Western Styles and Diminish Cultural Nuances</a>
@@ -647,7 +760,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V; Chapter 5, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/f7ddbdac3ef78fb46cc7385b79b2905955fb717d" target="_blank" rel="noopener">Risk Analysis of Artificial Intelligence in HighStakes Human Decision Systems</a>
@@ -665,7 +781,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III (Demand-Side Discipline: Automation Bias) &amp; Chapter 8, Section II (Carbon-Silicon Symbiosis: Trust Calibration Mechanisms)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/5a4e1494cbf8801c989a4f706c7f9d57787da65c" target="_blank" rel="noopener">Engaging with AI: How Interface Design Shapes Human-AI Collaboration in High-Stakes Decision-Making</a>
@@ -683,7 +802,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V (Token Trap: Cognitive Offloading in Education)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/433196bdfd94b207f666959860d68fa5228cf06f" target="_blank" rel="noopener">Enhancing Critical Thinking Skills: Exploring Generative AI-enabled Cognitive Offload Instruction in English Essay Writing</a>
@@ -701,7 +823,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V</span>
           
         </div>
-        <div class="radar-score">7.7<span>/10</span></div>
+        <div class="radar-score">
+          7.7<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2606.06460v1" target="_blank" rel="noopener">Will the Agent Recuse Itself? Measuring LLM-Agent Compliance with In-Band Access-Deny Signals</a>
@@ -732,7 +857,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V; Chapter 5, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/f7ddbdac3ef78fb46cc7385b79b2905955fb717d" target="_blank" rel="noopener">Risk Analysis of Artificial Intelligence in HighStakes Human Decision Systems</a>
@@ -750,7 +878,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V; Chapter 9, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/c76c9b47d7947c071d518824adb63f0d3ead5e3f" target="_blank" rel="noopener">Critical Integration of Generative AI in Higher Education: Cognitive, Pedagogical and Ethical</a>
@@ -768,7 +899,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III (Demand-Side Discipline: Automation Bias) &amp; Chapter 8, Section II (Carbon-Silicon Symbiosis: Trust Calibration Mechanisms)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/5a4e1494cbf8801c989a4f706c7f9d57787da65c" target="_blank" rel="noopener">Engaging with AI: How Interface Design Shapes Human-AI Collaboration in High-Stakes Decision-Making</a>
@@ -786,7 +920,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V (碳硅共生：从外包到共生的教法重构)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/084e19fddf9ab633e272a2e262ce4cd754bd49b5" target="_blank" rel="noopener">Cognitive Offload Instruction with Generative AI: A QuasiExperimental Study on Critical Thinking Gains in English Writing</a>
@@ -804,7 +941,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section V (Token Trap: Cognitive Offloading in Education)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/433196bdfd94b207f666959860d68fa5228cf06f" target="_blank" rel="noopener">Enhancing Critical Thinking Skills: Exploring Generative AI-enabled Cognitive Offload Instruction in English Essay Writing</a>
@@ -835,7 +975,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
@@ -853,7 +996,10 @@ nav{
           <span class="card-chapter">§ Chapter 4: Evolutionary Alignment Vulnerability</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/" target="_blank" rel="noopener">Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked</a>
@@ -871,7 +1017,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -889,7 +1038,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/" target="_blank" rel="noopener">Accelerating discovery of liver disease mechanisms</a>
@@ -907,7 +1059,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II (认知金融化与Token陷阱) 及 Chapter 8, Section I (暗时间)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/industrial-software-leaders-secure-autonomous-ai-engineers-nemoclaw/" target="_blank" rel="noopener">Industrial Software Leaders Build Secure, Autonomous AI Engineers With NVIDIA NemoClaw</a>
@@ -938,7 +1093,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section IV: Signal Alienation and the Collapse of Authenticity</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/06/02/google-rolls-out-fake-call-detection-to-protect-against-ai-deepfake-impersonation-scams/" target="_blank" rel="noopener">Google rolls out fake call detection to protect against AI deepfake impersonation scams</a>
@@ -956,7 +1114,10 @@ nav{
           <span class="card-chapter">§ Chapter 4: Evolutionary Alignment Vulnerability</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/" target="_blank" rel="noopener">Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked</a>
@@ -974,7 +1135,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -992,7 +1156,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense" target="_blank" rel="noopener">Strengthening societal resilience with Rosalind Biodefense</a>
@@ -1010,7 +1177,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/" target="_blank" rel="noopener">Accelerating discovery of liver disease mechanisms</a>
@@ -1028,7 +1198,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III (RLHF与共识牢笼构建), Chapter 6, Section I (奉承型AI的认知危害)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</a>
@@ -1046,7 +1219,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -1064,7 +1240,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -1082,7 +1261,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II; Chapter 5, Section I; Chapter 8, Section IV</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/d78533b34a50bee9169dfba4ba23d33bd3db602f" target="_blank" rel="noopener">Flattering to Deceive: The Impact of Sycophantic Behavior on User Trust in Large Language Model</a>
@@ -1100,7 +1282,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III (RLHF与共识牢笼)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bf790379ecb9281ae611121f299e2a8d5f2b7e01" target="_blank" rel="noopener">More RLHF, More Trust? On The Impact of Preference Alignment On Trustworthiness</a>
@@ -1131,7 +1316,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/06/florida-sues-openai-sam-altman-after-multiple-chatgpt-linked-murders/" target="_blank" rel="noopener">Florida sues OpenAI, Sam Altman after multiple ChatGPT-linked murders</a>
@@ -1149,7 +1337,10 @@ nav{
           <span class="card-chapter">§ Chapter 4: Evolutionary Alignment Vulnerability</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.404media.co/hackers-simply-asked-meta-ai-to-give-them-access-to-high-profile-instagram-accounts-it-worked/" target="_blank" rel="noopener">Hackers Simply Asked Meta AI to Give Them Access to High-Profile Instagram Accounts. It Worked</a>
@@ -1167,7 +1358,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -1185,7 +1379,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Renegade AI in Practice: Breaking Human-Defined Frontiers)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1203,7 +1400,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/railway" target="_blank" rel="noopener">Railway: The Agent-Native Cloud — Jake Cooper</a>
@@ -1234,7 +1434,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -1252,7 +1455,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -1270,7 +1476,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Renegade AI in Practice: Breaking Human-Defined Frontiers)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1288,7 +1497,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/railway" target="_blank" rel="noopener">Railway: The Agent-Native Cloud — Jake Cooper</a>
@@ -1306,7 +1518,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense" target="_blank" rel="noopener">Strengthening societal resilience with Rosalind Biodefense</a>
@@ -1324,7 +1539,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III (RLHF与共识牢笼构建), Chapter 6, Section I (奉承型AI的认知危害)</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</a>
@@ -1342,7 +1560,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -1360,7 +1581,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II; Chapter 5, Section I; Chapter 8, Section IV</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/d78533b34a50bee9169dfba4ba23d33bd3db602f" target="_blank" rel="noopener">Flattering to Deceive: The Impact of Sycophantic Behavior on User Trust in Large Language Model</a>
@@ -1378,7 +1602,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III (RLHF与共识牢笼)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bf790379ecb9281ae611121f299e2a8d5f2b7e01" target="_blank" rel="noopener">More RLHF, More Trust? On The Impact of Preference Alignment On Trustworthiness</a>
@@ -1396,7 +1623,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/4b4ba6a02148c9d6f78e95d8e0d927104c3e91a7" target="_blank" rel="noopener">Instructed to Bias: Instruction-Tuned Language Models Exhibit Emergent Cognitive Bias</a>
@@ -1417,7 +1647,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-31</h2>
     </div>
-    <div class="day-header-right">21 NEWS · 4 PAPERS</div>
+    <div class="day-header-right">20 NEWS · 4 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1427,7 +1657,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -1445,7 +1678,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -1463,7 +1699,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Renegade AI in Practice: Breaking Human-Defined Frontiers)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1481,7 +1720,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/railway" target="_blank" rel="noopener">Railway: The Agent-Native Cloud — Jake Cooper</a>
@@ -1499,7 +1741,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense" target="_blank" rel="noopener">Strengthening societal resilience with Rosalind Biodefense</a>
@@ -1517,7 +1762,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -1535,7 +1783,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30329v1" target="_blank" rel="noopener">SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?</a>
@@ -1553,7 +1804,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section IV</span>
           
         </div>
-        <div class="radar-score">7.0<span>/10</span></div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30323v1" target="_blank" rel="noopener">In-Context Reward Adaptation for Robust Preference Modeling</a>
@@ -1571,7 +1825,10 @@ nav{
           <span class="card-chapter">§ Chapter 11, Section III (终极图灵测试与科学创新)</span>
           
         </div>
-        <div class="radar-score">7.0<span>/10</span></div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30284v1" target="_blank" rel="noopener">ProjectionBench: Evaluating Scientific Hypothesis Generation in LLMs Under Progressive Information Disclosure</a>
@@ -1592,7 +1849,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-30</h2>
     </div>
-    <div class="day-header-right">21 NEWS · 3 PAPERS</div>
+    <div class="day-header-right">20 NEWS · 2 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1602,7 +1859,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/video/what-happens-when-companies-become-too-ai-pilled/" target="_blank" rel="noopener">What happens when companies become too AI-pilled?</a>
@@ -1620,7 +1880,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-raises-965b-series" target="_blank" rel="noopener">[AINews] Anthropic raises $965B Series H, releases Opus 4.8 and Dynamic Workflows/ultracode</a>
@@ -1638,7 +1901,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Renegade AI in Practice: Breaking Human-Defined Frontiers)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1656,7 +1922,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/railway" target="_blank" rel="noopener">Railway: The Agent-Native Cloud — Jake Cooper</a>
@@ -1674,7 +1943,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/strengthening-societal-resilience-with-rosalind-biodefense" target="_blank" rel="noopener">Strengthening societal resilience with Rosalind Biodefense</a>
@@ -1692,7 +1964,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30353v1" target="_blank" rel="noopener">Physics Is All You Need? A Case Study in Physicist-Supervised AI Development of Scientific Software</a>
@@ -1710,7 +1985,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.30329v1" target="_blank" rel="noopener">SoundnessBench: Can Your AI Scientist Really Tell Good Research Ideas from Bad Ones?</a>
@@ -1718,24 +1996,6 @@ nav{
       <p class="radar-card-body">该研究构建了SoundnessBench基准，包含从ICLR投稿中重构的1099个机器学习研究提案，并配有审稿人合理性评分。测试12个前沿LLM后发现，标准提示下模型普遍存在乐观偏差，倾向于将低合理性提案评为合理；而激进提示则将错误从假阳性转向假阴性。控制公共语料污染、论文标识短语、表面特征等混淆因素后，该行为无法被单一因素解释。结果表明当前LLM无法作为科研严谨性的独立初筛评估者。</p>
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://arxiv.org/pdf/2605.30329v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-30.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 4, Section IV</span>
-          
-        </div>
-        <div class="radar-score">7.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.30323v1" target="_blank" rel="noopener">In-Context Reward Adaptation for Robust Preference Modeling</a>
-      </h3>
-      <p class="radar-card-body">该论文针对RLHF中静态奖励模型无法适应多样化及未见过的偏好领域的问题，提出了一种基于Transformer的上下文奖励适应框架。该框架利用Transformer的上下文学习能力，从少量偏好示例中动态推断奖励结构，无需重新训练即可适应新的偏好分布。研究发现，标准Transformer架构存在对真实奖励的渐近偏差，无法有效完成此任务；而引入人类响应时间作为辅助输入信号后…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.30323v1" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./academic/academic_report_2026-05-30.html">FULL REPORT →</a>
       </div>
     </article>
@@ -1749,7 +2009,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-25</h2>
     </div>
-    <div class="day-header-right">14 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">13 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1759,7 +2019,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
@@ -1777,7 +2040,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a>
@@ -1795,7 +2061,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1813,7 +2082,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/databricks" target="_blank" rel="noopener">Databricks brings GPT-5.5 to enterprise agent workflows</a>
@@ -1831,7 +2103,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II（资本驯化AI）及 Chapter 6, Section III（认知金融化）</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/dell-technologies-agent-enterprise-ai/" target="_blank" rel="noopener">NVIDIA CEO Jensen Huang at Dell Technologies World: ‘Demand Is Going Parabolic, Utterly Parabolic’</a>
@@ -1840,24 +2115,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://blogs.nvidia.com/blog/dell-technologies-agent-enterprise-ai/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-25.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 5, Section III</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">本研究结合实证和理论分析，揭示了生成式AI在人类-人类中介通信中引入方向性偏见的现象。实验表明，多个主流LLM在编辑争议话题文本时，会倾向于支持枪支控制、反对无神论等特定立场。通过构建包含AI中介的社交网络意见动力学模型，并基于真实网络数据进行模拟，作者发现这些偏见可通过网络放大，最终显著改变集体意见走向。此外，研究还对X平台的“Explain this…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-25.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -1870,7 +2127,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-24</h2>
     </div>
-    <div class="day-header-right">17 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">16 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1880,7 +2137,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (The Bureaucratization of AI: Corporate Deployment as Control Mechanism)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/dell-codex-enterprise-partnership" target="_blank" rel="noopener">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</a>
@@ -1898,7 +2158,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (Capital&#x27;s Domestication of AI: Computing Monopoly &amp; Cost Leverage), also relevant to Chapter 7, Section II (Token Trap: Pricing Thought)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/dell-technologies-agent-enterprise-ai/" target="_blank" rel="noopener">NVIDIA CEO Jensen Huang at Dell Technologies World: ‘Demand Is Going Parabolic, Utterly Parabolic’</a>
@@ -1916,7 +2179,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II (资本驯化AI的机制与案例)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/18/1137412/inside-anduril-and-metas-quest-to-make-smart-glasses-for-warfare/" target="_blank" rel="noopener">Inside Anduril and Meta’s quest to make smart glasses for warfare</a>
@@ -1934,7 +2200,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/" target="_blank" rel="noopener">Musk v. Altman week 3: Elon Musk and Sam Altman traded blows over each other’s credibility. Now the jury will pick a side.</a>
@@ -1952,7 +2221,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</a>
@@ -1961,24 +2233,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://www.latent.space/p/ainews-openai-gpt-next-disproves" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-24.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 3, Section II（The Role of AI as Consensus Gatekeeper）或Chapter 5, Section III（RLHF as Ideological Filter）</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">论文通过实证和理论分析，揭示了生成式AI（特别是LLM）在人类交流中介入时，会引入方向性偏见。研究发现，多个流行LLM家族在编辑关于争议性话题（如控枪、无神论）的帖子时，会无意识地偏向某些立场（例如支持控枪、反对无神论）。这种偏见通过社交网络放大，最终影响集体意见的形成。论文还审计了X平台的“解释此帖”功能，发现Grok在堕胎相关内容上存在支持生命权的偏见，并追溯至具体设计选择。研究指出，AI作为通信中介，其不可控的偏见可能被平台利用…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-24.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -1991,7 +2245,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-23</h2>
     </div>
-    <div class="day-header-right">5 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">4 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2001,7 +2255,10 @@ nav{
           <span class="card-chapter">§ Chapter 6, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/adventhealth" target="_blank" rel="noopener">AdventHealth advances whole-person care with OpenAI</a>
@@ -2019,7 +2276,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II; Chapter 3, Section I</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">The next phase of OpenAI’s Education for Countries</a>
@@ -2037,7 +2297,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本如何通过标准与认证驯化AI)</span>
           
         </div>
-        <div class="radar-score">7.0<span>/10</span></div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/gartner-2026-agentic-coding-leader" target="_blank" rel="noopener">OpenAI named a Leader in enterprise coding agents by Gartner</a>
@@ -2055,7 +2318,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">7.0<span>/10</span></div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/introducing-openai-for-singapore" target="_blank" rel="noopener">Introducing OpenAI for Singapore</a>
@@ -2064,42 +2330,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://openai.com/index/introducing-openai-for-singapore" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-23.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="news">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag news">NEWS</span>
-          <span class="card-chapter">§ Chapter 4, Section II (信号异化与内容认证)</span>
-          
-        </div>
-        <div class="radar-score">7.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
-      </h3>
-      <p class="radar-card-body">2026年5月19日，OpenAI宣布推出AI内容来源技术组合，包括Content Credentials、SynthID和验证工具，旨在帮助公众识别并信任AI生成的媒体内容。背景是AI生成内容泛滥导致虚假信息和深度伪造问题加剧，用户难以辨别真伪。核心措施：Content Credentials基于C2PA标准（由Adobe、微软等联合制定），为AI生成媒体添加不可篡改的来源元数据；SynthID是Google开发的隐形数字水印…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./news/news_report_2026-05-23.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 2 (Consensus Cage), Section III (RLHF as Alignment to Consensus) 和 Chapter 5 (Capital Domestication of AI), Section II (AI as Gatekeepers)</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">该研究通过实证和理论分析，揭示了生成式AI在人类在线交流中作为中介时，如何通过编辑文本引入方向性偏见，并经由社交网络放大，最终引导集体意见向特定方向偏移。研究发现，多个流行LLM家族在编辑关于有争议话题（如枪支管控、无神论）的文本时，表现出系统性偏向（如支持枪支管控、反对无神论）。作者构建了意见动态数学模型，在真实社交网络数据上模拟，证实AI偏见可通过网络放大并改变集体意见。此外，对X平台&#x27;解释此帖&#x27;功能的审计发现…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-23.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -2112,7 +2342,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-22</h2>
     </div>
-    <div class="day-header-right">17 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">16 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2122,7 +2352,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/the-next-phase-of-education-for-countries" target="_blank" rel="noopener">The next phase of OpenAI’s Education for Countries</a>
@@ -2140,7 +2373,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">An OpenAI model has disproved a central conjecture in discrete geometry</a>
@@ -2158,7 +2394,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/google-cloud-developer-community-ai-builders/" target="_blank" rel="noopener">NVIDIA and Google Cloud Empower the Next Wave of AI Builders</a>
@@ -2176,7 +2415,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/19/1137454/roundtables-inside-the-musk-v-altman-trial/" target="_blank" rel="noopener">Roundtables: Inside the Musk v. Altman Trial</a>
@@ -2194,7 +2436,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/21/spotify-and-universal-music-strike-deal-allowing-fan-made-ai-covers-and-remixes/" target="_blank" rel="noopener">Spotify and Universal Music strike deal allowing fan-made AI covers and remixes</a>
@@ -2203,24 +2448,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://techcrunch.com/2026/05/21/spotify-and-universal-music-strike-deal-allowing-fan-made-ai-covers-and-remixes/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-22.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 4, Section V; Chapter 5, Section II</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">该研究通过实证与理论建模，发现多个流行LLM在编辑人类关于争议话题的文本时，会引入方向性偏见（如偏向枪支控制、反对无神论）。这些偏见在社交网络中通过意见动力学模型被放大，最终改变集体意见方向。研究进一步审计了X平台的“解释此帖”功能，发现Grok在堕胎话题上存在反堕胎偏见，并将其归因于具体设计选择。结论表明，AI作为人际交流的中介可以无形中塑造公众舆论，对政策制定具有启示意义。</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-22.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -2233,7 +2460,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-21</h2>
     </div>
-    <div class="day-header-right">17 NEWS · 14 PAPERS</div>
+    <div class="day-header-right">16 NEWS · 13 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2243,7 +2470,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II（叛逆AI的实证案例）</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/model-disproves-discrete-geometry-conjecture" target="_blank" rel="noopener">An OpenAI model has disproved a central conjecture in discrete geometry</a>
@@ -2261,7 +2491,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II: 资本驯化AI的全球扩张策略</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/introducing-openai-for-singapore" target="_blank" rel="noopener">Introducing OpenAI for Singapore</a>
@@ -2279,7 +2512,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/railway" target="_blank" rel="noopener">Railway: The Agent-Native Cloud — Jake Cooper</a>
@@ -2297,7 +2533,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">Real AI Agents and Real Work</a>
@@ -2315,7 +2554,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II（暗时间与认知外包）或 Chapter 5, Section III（需求侧规训）</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">How business operations teams use Codex</a>
@@ -2333,7 +2575,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -2351,7 +2596,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -2369,7 +2617,10 @@ nav{
           <span class="card-chapter">§ Chapter 4: The Capital Taming of AI — Section III: RLHF and the Rise of the Consensus Guard</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
@@ -2387,7 +2638,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II; Chapter 8, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.16197v1" target="_blank" rel="noopener">Position: AI as Part of Self -- Extending the Mind Requires Cognitive Co-Regulation</a>
@@ -2405,7 +2659,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (共识牢笼的形成机制) 和 Chapter 5, Section III (RLHF与奉承型AI)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/32c8c36bfcf928a9083a1001c18242e04e0a2429" target="_blank" rel="noopener">When Truth Is Overridden: Uncovering the Internal Origins of Sycophancy in Large Language Models</a>
@@ -2426,7 +2683,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-20</h2>
     </div>
-    <div class="day-header-right">17 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">16 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2436,7 +2693,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II (认知金融化与暗时间)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-business-operations-teams-use-codex" target="_blank" rel="noopener">How business operations teams use Codex</a>
@@ -2454,7 +2714,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III（信号异化）; Chapter 4, Section II（资本驯化AI）</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/advancing-content-provenance" target="_blank" rel="noopener">Advancing content provenance for a safer, more transparent AI ecosystem</a>
@@ -2472,7 +2735,10 @@ nav{
           <span class="card-chapter">§ Chapter 6, Section II (认知金融化与Token陷阱) 及 Chapter 7, Section I (暗时间)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex" target="_blank" rel="noopener">How data science teams use Codex</a>
@@ -2490,7 +2756,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section II (进化对齐脆弱性与外部约束)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/building-codex-windows-sandbox" target="_blank" rel="noopener">Building a safe, effective sandbox to enable Codex on Windows</a>
@@ -2508,7 +2777,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI的常见手段：基础设施捆绑与开发者生态控制)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/google-cloud-developer-community-ai-builders/" target="_blank" rel="noopener">NVIDIA and Google Cloud Empower the Next Wave of AI Builders</a>
@@ -2517,24 +2789,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://blogs.nvidia.com/blog/google-cloud-developer-community-ai-builders/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-20.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 4, Section II（共识牢笼的形成机制）或 Chapter 5, Section III（资本驯化AI的实证）</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">10.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">本研究通过实证和理论分析，揭示了生成式AI在调解人际沟通时对集体意见形成的定向引导作用。研究团队测试了多个主流大语言模型（如GPT、LLaMA等），发现它们在编辑争议性话题文本时均表现出系统性方向偏见，例如偏向支持枪支管制、反对无神论。基于此，作者构建了一个数学意见动力学模型，其中AI充当社交网络用户之间的中介，改变用户表达和感知的意见。通过对模型均衡的解析分析以及在真实社交网络数据上的模拟…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-20.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -2547,7 +2801,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-19</h2>
     </div>
-    <div class="day-header-right">15 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">14 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2557,7 +2811,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -2575,7 +2832,10 @@ nav{
           <span class="card-chapter">§ Chapter 9, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -2593,7 +2853,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/malta-chatgpt-plus-partnership" target="_blank" rel="noopener">OpenAI and Malta partner to bring ChatGPT Plus to all citizens</a>
@@ -2611,7 +2874,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II: 认知金融化与Token陷阱</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex" target="_blank" rel="noopener">How data science teams use Codex</a>
@@ -2629,7 +2895,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noopener">Reimagining the mouse pointer for the AI era</a>
@@ -2638,24 +2907,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-19.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 4, Section III</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">本研究通过实证和理论分析，发现大语言模型（LLM）在编辑人类关于争议话题的文本时，会引入方向性偏见（如倾向枪支管控、反对无神论）。作者构建了数学意见动力学模型，模拟AI作为中介时偏见在网络中的放大效应，并通过对X平台“Explain this post”功能的审计，证实Grok在堕胎相关内容中表现出亲生命偏见。研究表明，AI在人际沟通中的微小偏见可通过社交网络传播和放大，最终显著改变集体意见方向…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-19.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -2668,7 +2919,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-18</h2>
     </div>
-    <div class="day-header-right">15 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">14 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2678,7 +2929,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</a>
@@ -2696,7 +2950,10 @@ nav{
           <span class="card-chapter">§ Chapter 6, Section II (信号异化与认知金融化)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/16/research-repository-arxiv-will-ban-authors-for-a-year-if-they-let-ai-do-all-the-work/" target="_blank" rel="noopener">Research repository ArXiv will ban authors for a year if they let AI do all the work</a>
@@ -2714,7 +2971,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</a>
@@ -2732,7 +2992,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/academy/codex-for-work/how-data-science-teams-use-codex" target="_blank" rel="noopener">How data science teams use Codex</a>
@@ -2750,7 +3013,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III（需求侧规训与人机交互）或 Chapter 6, Section I（碳硅共生：从工具到伙伴）</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noopener">Reimagining the mouse pointer for the AI era</a>
@@ -2759,24 +3025,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://deepmind.google/blog/ai-pointer/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-18.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 3, Section IV (共识牢笼的生成机制：人机反馈循环)</span>
-          <span class="draft-dot" title="Has Draft">●</span>
-        </div>
-        <div class="radar-score">9.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">AI-Mediated Communication Can Steer Collective Opinion</a>
-      </h3>
-      <p class="radar-card-body">该论文通过实证和理论分析，揭示了生成式AI（尤其是LLM）在人类间通信中引入方向性偏见，并通过社交网络放大以影响集体舆论。研究发现，多个流行LLM在编辑关于有争议话题（如枪支管制、无神论）的人类文本时，会展现出系统性偏见（例如倾向于支持控枪、反对无神论）。作者构建了数学意见动力学模型，证明AI引入的偏见可在网络中传播并改变集体意见均衡。进一步对X平台&#x27;Explain this…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.16245v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-18.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -2789,7 +3037,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-17</h2>
     </div>
-    <div class="day-header-right">16 NEWS · 0 PAPERS</div>
+    <div class="day-header-right">15 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2799,7 +3047,10 @@ nav{
           <span class="card-chapter">§ Chapter 4: The Renegade AI Emergence 中的 Section II (Self-improvement Loops) 或 Chapter 6: Evolution Alignment Fragility</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
@@ -2817,7 +3068,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section IV</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -2835,7 +3089,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/building-codex-windows-sandbox" target="_blank" rel="noopener">Building a safe, effective sandbox to enable Codex on Windows</a>
@@ -2853,7 +3110,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/ineffable-intelligence-reinforcement-learning-infrastructure/" target="_blank" rel="noopener">NVIDIA, Ineffable Intelligence Team Up to Build the Future of Reinforcement Learning Infrastructure</a>
@@ -2871,7 +3131,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/rtx-ai-garage-hermes-agent-dgx-spark/" target="_blank" rel="noopener">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</a>
@@ -2892,7 +3155,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-16</h2>
     </div>
-    <div class="day-header-right">16 NEWS · 1 PAPERS</div>
+    <div class="day-header-right">15 NEWS · 0 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2902,7 +3165,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II（资本驯化AI：基础设施垄断）</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/spectrum-x-ethernet-mrc/" target="_blank" rel="noopener">NVIDIA Spectrum-X — the Open, AI-Native Ethernet Fabric — Sets the Standard for Gigascale AI, Now With MRC</a>
@@ -2920,7 +3186,10 @@ nav{
           <span class="card-chapter">§ Chapter 9, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.technologyreview.com/2026/05/14/1137161/ai-porn-nonconsensual-deepfakes-takedown-piracy-copyright/" target="_blank" rel="noopener">The shock of seeing your body used in deepfake porn</a>
@@ -2938,7 +3207,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II（进化对齐脆弱性）及 Chapter 2, Section III（叛逆AI）</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
@@ -2956,7 +3228,10 @@ nav{
           <span class="card-chapter">§ Chapter 8, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/health/2026/05/your-doctors-ai-notetaker-may-be-making-things-up-ontario-audit-finds/" target="_blank" rel="noopener">Your doctor’s AI notetaker may be making things up, Ontario audit finds</a>
@@ -2974,7 +3249,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/ai/2026/05/anthropic-blames-dystopian-sci-fi-for-training-ai-models-to-act-evil/" target="_blank" rel="noopener">Anthropic blames dystopian sci-fi for training AI models to act “evil”</a>
@@ -2983,24 +3261,6 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://arstechnica.com/ai/2026/05/anthropic-blames-dystopian-sci-fi-for-training-ai-models-to-act-evil/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-05-16.html">FULL REPORT →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="academic">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag academic">PAPER</span>
-          <span class="card-chapter">§ Chapter 5, Section II</span>
-          
-        </div>
-        <div class="radar-score">8.0<span>/10</span></div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://arxiv.org/pdf/2605.06656v1" target="_blank" rel="noopener">Why Global LLM Leaderboards Are Misleading: Small Portfolios for Heterogeneous Supervised ML</a>
-      </h3>
-      <p class="radar-card-body">本文通过对Arena平台52个LLM在116种语言中的约8.9万次成对比较进行分析，发现基于全局Bradley-Terry排名的LLM排行榜具有严重误导性：近2/3的决定性投票相互抵消，排名前50的模型在统计上无法区分（两两胜率最高仅0.53）。研究进一步指出，语言是造成这种结果的关键因素——按语言（及语族）分组后，投票一致性大幅提升…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://arxiv.org/pdf/2605.06656v1" target="_blank" rel="noopener">↗ SOURCE</a>
-        <a class="full-report-link" href="./academic/academic_report_2026-05-16.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -3013,7 +3273,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-15</h2>
     </div>
-    <div class="day-header-right">16 NEWS · 42 PAPERS</div>
+    <div class="day-header-right">15 NEWS · 41 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3023,7 +3283,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/15/openai-launches-chatgpt-for-personal-finance-will-let-you-connect-bank-accounts/" target="_blank" rel="noopener">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</a>
@@ -3041,7 +3304,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/14/what-happens-when-ai-starts-building-itself/" target="_blank" rel="noopener">What happens when AI starts building itself?</a>
@@ -3059,7 +3325,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI) 或 Chapter 6, Section I (需求侧规训)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -3077,7 +3346,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -3095,7 +3367,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">Real AI Agents and Real Work</a>
@@ -3113,7 +3388,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -3131,7 +3409,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -3149,7 +3430,10 @@ nav{
           <span class="card-chapter">§ Chapter 2（共识牢笼），Chapter 4（叛逆AI），Chapter 5（需求侧规训），Chapter 8（碳硅共生与时间主权）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/7f71a10eaa4a5315a861d79ee6bbc27a90d497a0" target="_blank" rel="noopener">Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction</a>
@@ -3167,7 +3451,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -3185,7 +3472,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank" rel="noopener">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse</a>
@@ -3206,7 +3496,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-14</h2>
     </div>
-    <div class="day-header-right">18 NEWS · 42 PAPERS</div>
+    <div class="day-header-right">17 NEWS · 41 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3216,7 +3506,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/13/anthropics-cat-wu-says-that-in-the-future-ai-will-anticipate-your-needs-before-you-know-what-they-are/" target="_blank" rel="noopener">Anthropic’s Cat Wu says that, in the future, AI will anticipate your needs before you know what they are</a>
@@ -3234,7 +3527,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/05/will-i-be-ok-teen-died-after-chatgpt-pushed-deadly-mix-of-drugs-lawsuit-says/" target="_blank" rel="noopener">“Will I be OK?” Teen died after ChatGPT pushed deadly mix of drugs, lawsuit says</a>
@@ -3252,7 +3548,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI) 或 Chapter 6, Section I (需求侧规训)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -3270,7 +3569,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -3288,7 +3590,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II (资本驯化AI与商业闭环)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank" rel="noopener">OpenAI launches DeployCo to help businesses build around intelligence</a>
@@ -3306,7 +3611,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -3324,7 +3632,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -3342,7 +3653,10 @@ nav{
           <span class="card-chapter">§ Chapter 2（共识牢笼），Chapter 4（叛逆AI），Chapter 5（需求侧规训），Chapter 8（碳硅共生与时间主权）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/7f71a10eaa4a5315a861d79ee6bbc27a90d497a0" target="_blank" rel="noopener">Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction</a>
@@ -3360,7 +3674,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -3378,7 +3695,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank" rel="noopener">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse</a>
@@ -3399,7 +3719,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-13</h2>
     </div>
-    <div class="day-header-right">18 NEWS · 42 PAPERS</div>
+    <div class="day-header-right">17 NEWS · 41 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3409,7 +3729,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -3427,7 +3750,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arstechnica.com/tech-policy/2026/05/will-i-be-ok-teen-died-after-chatgpt-pushed-deadly-mix-of-drugs-lawsuit-says/" target="_blank" rel="noopener">“Will I be OK?” Teen died after ChatGPT pushed deadly mix of drugs, lawsuit says</a>
@@ -3445,7 +3771,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">Real AI Agents and Real Work</a>
@@ -3463,7 +3792,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II (资本驯化AI与商业闭环)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank" rel="noopener">OpenAI launches DeployCo to help businesses build around intelligence</a>
@@ -3481,7 +3813,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II（资本驯化AI）或 Chapter 9, Section IV（进化对齐脆弱性）</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/running-codex-safely" target="_blank" rel="noopener">Running Codex safely at OpenAI</a>
@@ -3499,7 +3834,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -3517,7 +3855,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -3535,7 +3876,10 @@ nav{
           <span class="card-chapter">§ Chapter 2（共识牢笼），Chapter 4（叛逆AI），Chapter 5（需求侧规训），Chapter 8（碳硅共生与时间主权）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/7f71a10eaa4a5315a861d79ee6bbc27a90d497a0" target="_blank" rel="noopener">Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction</a>
@@ -3553,7 +3897,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -3571,7 +3918,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank" rel="noopener">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse</a>
@@ -3592,7 +3942,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-12</h2>
     </div>
-    <div class="day-header-right">23 NEWS · 42 PAPERS</div>
+    <div class="day-header-right">22 NEWS · 41 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3602,7 +3952,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -3620,7 +3973,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI) 或 Chapter 6, Section I (需求侧规训)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -3638,7 +3994,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -3656,7 +4015,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.oneusefulthing.org/p/real-ai-agents-and-real-work" target="_blank" rel="noopener">Real AI Agents and Real Work</a>
@@ -3674,7 +4036,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II (资本驯化AI与商业闭环)</span>
           
         </div>
-        <div class="radar-score">8.0<span>/10</span></div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://openai.com/index/openai-launches-the-deployment-company" target="_blank" rel="noopener">OpenAI launches DeployCo to help businesses build around intelligence</a>
@@ -3692,7 +4057,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -3710,7 +4078,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -3728,7 +4099,10 @@ nav{
           <span class="card-chapter">§ Chapter 2（共识牢笼），Chapter 4（叛逆AI），Chapter 5（需求侧规训），Chapter 8（碳硅共生与时间主权）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/7f71a10eaa4a5315a861d79ee6bbc27a90d497a0" target="_blank" rel="noopener">Cognitive Agency Surrender: Defending Epistemic Sovereignty via Scaffolded AI Friction</a>
@@ -3746,7 +4120,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -3764,7 +4141,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank" rel="noopener">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse</a>
@@ -3785,7 +4165,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-05-11</h2>
     </div>
-    <div class="day-header-right">21 NEWS · 33 PAPERS</div>
+    <div class="day-header-right">20 NEWS · 32 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3795,7 +4175,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" rel="noopener">OpenAI’s New GPT-5.5 Powers Codex on NVIDIA Infrastructure — and NVIDIA Is Already Putting It to Work</a>
@@ -3813,7 +4196,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section III</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/2026/05/08/cloudflare-says-ai-made-1100-jobs-obsolete-even-as-revenue-hit-a-record-high/" target="_blank" rel="noopener">Cloudflare says AI made 1,100 jobs obsolete, even as revenue hit a record high</a>
@@ -3831,7 +4217,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://techcrunch.com/podcast/the-peoples-airline-and-the-enterprise-ai-gold-rush/" target="_blank" rel="noopener">The “people’s airline” and the enterprise AI gold rush</a>
@@ -3849,7 +4238,10 @@ nav{
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI) 或 Chapter 6, Section I (需求侧规训)</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/ainews-anthropic-spacexais-300mw5byr" target="_blank" rel="noopener">[AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</a>
@@ -3867,7 +4259,10 @@ nav{
           <span class="card-chapter">§ Chapter 3, Section II</span>
           
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.latent.space/p/lupsasca" target="_blank" rel="noopener">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</a>
@@ -3885,7 +4280,10 @@ nav{
           <span class="card-chapter">§ Chapter 5, Section II; Chapter 9, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06347v1" target="_blank" rel="noopener">Human-AI Co-Evolution and Epistemic Collapse: A Dynamical Systems Perspective</a>
@@ -3903,7 +4301,10 @@ nav{
           <span class="card-chapter">§ Chapter 2, Section III (人机反馈循环与偏见放大); Chapter 3, Section I (共识牢笼的形成机制)</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://doi.org/10.1038/s41562-024-02077-2" target="_blank" rel="noopener">How humanAI feedback loops alter human perceptual, emotional and social judgements</a>
@@ -3921,7 +4322,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section III and IV</span>
           
         </div>
-        <div class="radar-score">10.0<span>/10</span></div>
+        <div class="radar-score">
+          10.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://www.semanticscholar.org/paper/bca6ef42b9db0ba0166d536b8697bfaa1b4b6a84" target="_blank" rel="noopener">Evolvable AI: Threats of a new major transition in evolution</a>
@@ -3939,7 +4343,10 @@ nav{
           <span class="card-chapter">§ Chapter 7, Section III</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06540v1" target="_blank" rel="noopener">Ex Ante Evaluation of AI-Induced Idea Diversity Collapse</a>
@@ -3957,7 +4364,10 @@ nav{
           <span class="card-chapter">§ Chapter 10, Section II（终极图灵测试与认知过程评估）</span>
           <span class="draft-dot" title="Has Draft">●</span>
         </div>
-        <div class="radar-score">9.0<span>/10</span></div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="https://arxiv.org/pdf/2605.06524v1" target="_blank" rel="noopener">Process Matters more than Output for Distinguishing Humans from Machines</a>
@@ -4054,6 +4464,9 @@ nav{
     'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
     'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
     'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+    'STATUS: [ v5.4_READABILITY_MATRIX: OPTIMIZED ]',
+    'STATUS: [ ATTENTION_SPAN_ANCHOR: LOCKED ]',
+    'STATUS: [ SIGNAL_TO_NOISE_RATIO: IMPROVED ]',
   ];
   let i=0;
   const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
@@ -4066,7 +4479,7 @@ nav{
 
 /* ── STAGGERED CARD ANIMATION ── */
 document.querySelectorAll('.radar-card').forEach((c,i)=>{
-  c.style.animationDelay=(i*0.06)+'s';
+  c.style.animationDelay=(i*0.04)+'s';
 });
 </script>
 </body>
