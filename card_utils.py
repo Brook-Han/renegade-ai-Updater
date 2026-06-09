@@ -36,7 +36,8 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
         print(f"   ⚠️ 解析失败 {html_path.name}: {e}")
         return []
 
-    card_elements = tree.xpath("//*[contains(concat(' ', @class, ' '), ' card ')]")
+    # 支持两种卡片类名：card (旧) 和 radar-card (新 v5.4)
+    card_elements = tree.xpath("//*[contains(concat(' ', @class, ' '), ' card ')] | //*[contains(concat(' ', @class, ' '), ' radar-card ')]")
     if card_elements:
         print(f"   🔍 {html_path.name}: 找到 {len(card_elements)} 个卡片区块")
 
@@ -44,12 +45,14 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
     for card_el in card_elements:
         card = {"type": report_type}
 
-        title_els = card_el.xpath(".//*[contains(@class, 'card-title')]")
+        # 支持 card-title 和 radar-card-title
+        title_els = card_el.xpath(".//*[contains(@class, 'card-title')] | .//*[contains(@class, 'radar-card-title')]")
         if not title_els:
             continue
         card["title"] = title_els[0].text_content().strip()
 
-        score_els = card_el.xpath(".//div[@class='card-score']")
+        # 支持 card-score 和 radar-score
+        score_els = card_el.xpath(".//*[contains(@class, 'card-score')] | .//*[contains(@class, 'radar-score')]")
         if score_els:
             score_text = score_els[0].text_content().strip()
             score_m = re.search(r"([\d.]+)", score_text)
@@ -66,15 +69,18 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
                     card["link"] = href
                 break
 
-        body_els = card_el.xpath(".//div[@class='card-body']")
+        # 支持 card-body 和 radar-card-body
+        body_els = card_el.xpath(".//*[contains(@class, 'card-body')] | .//*[contains(@class, 'radar-card-body')]")
         if body_els:
             card["summary"] = body_els[0].text_content().strip()
         else:
             card["summary"] = ""
 
-        card["has_draft"] = bool(card_el.xpath(".//div[@class='card-draft']"))
+        # 支持 card-draft 和 radar-card-draft
+        card["has_draft"] = bool(card_el.xpath(".//*[contains(@class, 'card-draft')] | .//*[contains(@class, 'radar-card-draft')]"))
 
-        meta_els = card_el.xpath(".//div[@class='card-meta']")
+        # 支持 card-meta 和 radar-card-meta
+        meta_els = card_el.xpath(".//*[contains(@class, 'card-meta')] | .//*[contains(@class, 'radar-card-meta')]")
         if meta_els:
             meta_text = meta_els[0].text_content()
             chapter_m = re.search(r"📍\s*(.+?)(?:\n|$)", meta_text)
@@ -95,8 +101,9 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
         return []
 
     cards = []
+    # 支持两种卡片类名：card (旧) 和 radar-card (新 v5.4)
     card_blocks = re.findall(
-        r'<(?:div|article) class="card">(.*?)</(?:div|article)>\s*(?=<(?:div|article) class="card">|</main>|</body>|$)',
+        r'<(?:div|article) class="(?:card|radar-card)">(.*?)</(?:div|article)>\s*(?=<(?:div|article) class="(?:card|radar-card)">|</main>|</body>|$)',
         content,
         re.DOTALL,
     )
@@ -106,22 +113,26 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
     for block in card_blocks:
         card = {"type": report_type}
 
-        title_m = re.search(r'<(?:div|h2) class="card-title">(.*?)</(?:div|h2)>', block, re.DOTALL)
+        # 支持 card-title 和 radar-card-title
+        title_m = re.search(r'<(?:div|h2) class="(?:card|radar-card)-title">(.*?)</(?:div|h2)>', block, re.DOTALL)
         if title_m:
             card["title"] = re.sub(r"<[^>]+>", "", title_m.group(1)).strip()
 
-        score_m = re.search(r'<div class="card-score">([\d.]+)\s*<span>/10</span>', block)
+        # 支持 card-score 和 radar-score
+        score_m = re.search(r'<(?:div|span) class="(?:card|radar)-score">([\d.]+)\s*(?:<span>)?/10', block)
         card["score"] = score_m.group(1) if score_m else "5.0"
 
         link_m = re.search(r'<a href="([^"]+)" target="_blank"[^>]*>↗\s*(?:原文|PDF/原文)</a>', block)
         if link_m:
             card["link"] = link_m.group(1)
 
-        summary_m = re.search(r'<div class="card-body">(.*?)</div>', block, re.DOTALL)
+        # 支持 card-body 和 radar-card-body
+        summary_m = re.search(r'<(?:div|p) class="(?:card|radar-card)-body">(.*?)</(?:div|p)>', block, re.DOTALL)
         if summary_m:
             card["summary"] = re.sub(r"<[^>]+>", "", summary_m.group(1)).strip()
 
-        card["has_draft"] = '<div class="card-draft">' in block
+        # 支持 card-draft 和 radar-card-draft
+        card["has_draft"] = ('class="card-draft"' in block) or ('class="radar-card-draft"' in block)
 
         chapter_m = re.search(r"📍\s*([^<\s][^<]*?)(?:</span>|<|&nbsp;|$)", block)
         if chapter_m:
