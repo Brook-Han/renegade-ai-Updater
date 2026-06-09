@@ -704,7 +704,6 @@ def generate_news_html(data: dict, output_path: str):
   </nav>
 
   <main class="main">
-    <a href="index.html" class="back-link">← BACK TO INDEX</a>
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">{data['date']} · Model: {data['model']}</p>
