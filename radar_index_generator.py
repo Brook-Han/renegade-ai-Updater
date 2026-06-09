@@ -595,6 +595,19 @@ nav{
   .nav-pill,.theme-btn,.filter-btn,.controls-bar .list-link{
     min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
   }
+  .controls-bar{padding:0 8px;height:44px}
+  .search-wrap{min-width:80px;padding:0 10px}
+  .search-wrap::before{display:none}
+  .filter-btn{padding:0 10px;font-size:.68rem}
+  .controls-bar .list-link{padding:0 10px;font-size:.68rem}
+}
+@media(max-width:480px){
+  .controls-bar{padding:0 4px;height:40px;gap:0;overflow-x:auto;-webkit-overflow-scrolling:touch}
+  .search-wrap{min-width:60px;flex:0 0 auto;padding:0 8px}
+  .search-wrap input{width:60px}
+  .filter-btn{padding:0 8px;font-size:.65rem;letter-spacing:1px}
+  .controls-bar .list-link{padding:0 8px;font-size:.65rem;letter-spacing:1px}
+  .controls-bar .list-link:last-child{border-right:none}
 }
 
 /* ── RESPONSIVE ── */
