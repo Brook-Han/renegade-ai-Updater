@@ -1,15 +1,21 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 """
-🏠 Renegade AI 雷达主页生成器 v2.2（v5.3 视觉/无障碍完全对齐版）
+🏠 Renegade AI 雷达主页生成器 v2.3（v5.4 可读性与视觉优化版）
 
-✅ v2.2 同步更新：
-  1. ✅ 色彩系统与 v5.3 优化版完全对齐（WCAG AA 合规柔和高对比度）
-  2. ✅ 全局最小字号提升至 0.72rem + font-weight:500 补偿
-  3. ✅ 注入 :focus-visible / prefers-reduced-motion / 44px 触控热区
-  4. ✅ 卡片材质增加微弱投影，选中色优化
-  5. ✅ 筛选按钮增加 aria-pressed 状态同步
-  6. ✅ 保留 v2.1 全部修复（lxml降级/词边界截断/Git锁清理等）
+✅ v2.3 / v5.4 更新内容：
+  1. ✅ 基础字号 .92rem → .95rem，正文可读性提升
+  2. ✅ 深色背景柔化：#0a0a12 → #0c0c18，减轻视觉疲劳
+  3. ✅ 文字对比提升：text-muted #9595c0 → #a8a8d0
+  4. ✅ 卡片内边距 28px → 32px，更大呼吸感
+  5. ✅ Hero 区域增加径向渐变环境光，视觉层次更丰富
+  6. ✅ 卡片悬停增加 accent 色光晕 + 微动效
+  7. ✅ 导航栏强化玻璃态效果（backdrop-blur 24px → 32px）
+  8. ✅ 评分数字增加视觉条指示器，分数更直观
+  9. ✅ 卡片入场动画加速优化：.55s → .4s，节奏感更好
+  10. ✅ 中等屏幕 (900-1200px) 增加三列布局断点
+  11. ✅ Light Mode 对比度进一步优化
+  12. ✅ 保留 v2.2 全部修复（WCAG AA / 无障碍 / 触控热区）
 
 用法：
     cd your-project-root
@@ -130,7 +136,7 @@ def collect_all_reports() -> dict:
 
 
 # ═══════════════════════════════════════════════════════════════
-# 生成每日区块（v5.3 风格）
+# 生成每日区块（v5.4 风格）
 # ═══════════════════════════════════════════════════════════════
 def generate_day_html(date: str, entries: list[dict]) -> str:
     all_cards = []
@@ -189,6 +195,14 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
         link_html = f'<a class="card-source-link" href="{escape(link)}" target="_blank" rel="noopener">↗ SOURCE</a>' if link and link != "#" else ""
         draft_dot = '<span class="draft-dot" title="Has Draft">●</span>' if card.get("has_draft") else ""
 
+        # Score visual bars (0-10 → 5 bars, each bar = 2 points)
+        score_val = _safe_float(score, 5.0)
+        filled_bars = min(5, max(0, round(score_val / 2)))
+        score_bars_html = '<div class="score-bar">' + ''.join(
+            f'<span class="bar{" filled" if i < filled_bars else ""}"></span>'
+            for i in range(5)
+        ) + '</div>'
+
         html += f'''    <article class="radar-card" data-type="{card_type}">
       <div class="radar-card-top">
         <div class="radar-card-meta">
@@ -196,7 +210,10 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
           {chapter_html}
           {draft_dot}
         </div>
-        <div class="radar-score">{score}<span>/10</span></div>
+        <div class="radar-score">
+          {score}<span>/10</span>
+          {score_bars_html}
+        </div>
       </div>
       <h3 class="radar-card-title">
         <a href="{escape(link)}" target="_blank" rel="noopener">{title}</a>
@@ -214,7 +231,7 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
 
 
 # ═══════════════════════════════════════════════════════════════
-# HTML 模板 — 与 Renegade AI v5.3 优化版完全对齐
+# HTML 模板 — 与 Renegade AI v5.4 可读性优化版对齐
 # ═══════════════════════════════════════════════════════════════
 _HTML_TEMPLATE = '''<!DOCTYPE html>
 <html lang="zh-CN">
@@ -227,22 +244,24 @@ _HTML_TEMPLATE = '''<!DOCTYPE html>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
   <style>
-/* ── DESIGN TOKENS (v5.3 Optimized · WCAG AA) ── */
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
 :root {
-  --bg:           #0a0a12;
-  --bg2:          #0f0f1a;
-  --surface:      #141422;
-  --card:         #181828;
-  --border:       #25253a;
-  --border-bright:#363655;
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
   --text:         #e2e2f0;
-  --text-muted:   #9595c0;
-  --text-faint:   #4a4a6a;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
   --accent:       #ff5c45;
   --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
   --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
   --accent3:      #5ba3e6;
-  --accent3-dim:  rgba(91,163,230,0.10);
+  --accent3-dim:  rgba(91,163,230,0.12);
   --white:        #f4f4fc;
   --mono:         'Space Mono', monospace;
   --serif:        'Crimson Pro', Georgia, serif;
@@ -250,12 +269,13 @@ _HTML_TEMPLATE = '''<!DOCTYPE html>
   --ease:         cubic-bezier(0.4,0,0.2,1);
 }
 :root.light {
-  --bg:#f5f6fa; --bg2:#fff; --surface:#eceef5; --card:#fff;
-  --border:#d8dbe6; --border-bright:#c0c4d6;
-  --text:#222233; --text-muted:#5c5c75; --text-faint:#9a9ab0;
-  --accent:#e8503a; --accent-dim:rgba(232,80,58,0.08);
-  --accent2:#b88c2a; --accent3:#3a7fbf; --accent3-dim:rgba(74,143,207,0.08);
-  --white:#222233;
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
 }
 
 /* ── RESET & TYPOGRAPHY ── */
@@ -263,16 +283,17 @@ _HTML_TEMPLATE = '''<!DOCTYPE html>
 html{scroll-behavior:smooth}
 body{
   font-family:var(--serif);background:var(--bg);color:var(--text);
-  line-height:1.8;-webkit-font-smoothing:antialiased;
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
   transition:background .3s,color .3s;
   text-rendering:optimizeLegibility;
-  font-feature-settings:"kern" 1,"liga" 1;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
 }
 ::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--accent)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
 /* ── ACCESSIBILITY ── */
 :focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
@@ -290,37 +311,52 @@ body{
   background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}
 .light .noise{opacity:.05}
 
-/* ── NAV ── */
+/* ── NAV (Glass v5.4) ── */
 nav{
   position:fixed;top:0;width:100%;z-index:200;
-  background:rgba(10,10,18,.92);backdrop-filter:blur(24px);
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
   border-bottom:1px solid var(--border);
   height:56px;display:flex;align-items:center;justify-content:space-between;
   padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
 }
-.light nav{background:rgba(245,246,250,.92)}
-.nav-brand{font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;text-transform:uppercase;text-decoration:none}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
 .nav-right{display:flex;gap:8px;align-items:center}
 .nav-pill{
   background:none;border:1px solid var(--border);color:var(--text-muted);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
   padding:5px 14px;cursor:pointer;text-decoration:none;
-  display:inline-flex;align-items:center;transition:all .2s;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
 }
 .nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
 .theme-btn{
   background:none;border:1px solid var(--border);color:var(--text-muted);
   width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
-  font-size:.9rem;transition:all .2s;
+  font-size:.9rem;transition:all .25s var(--ease);
 }
-.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
 
-/* ── HERO STRIP ── */
+/* ── HERO STRIP (v5.4 Ambient) ── */
 .hero-strip{
   padding-top:56px;border-bottom:1px solid var(--border);
-  display:grid;grid-template-columns:1fr auto;gap:0;
+  display:grid;grid-template-columns:1fr auto;gap:0;position:relative;
 }
-.hero-left{padding:60px 72px 52px;border-right:1px solid var(--border)}
+.hero-strip::before{
+  content:'';position:absolute;top:-120px;left:-80px;
+  width:600px;height:600px;
+  background:radial-gradient(ellipse at 30% 40%,rgba(255,92,69,.08) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.hero-left{
+  padding:60px 72px 52px;border-right:1px solid var(--border);
+  position:relative;z-index:1;
+}
 .hero-eyebrow{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:4px;
   color:var(--accent);text-transform:uppercase;
@@ -329,13 +365,13 @@ nav{
 .hero-eyebrow::before{content:'';width:36px;height:1px;background:var(--accent)}
 .hero-title{
   font-family:var(--display);font-size:clamp(3.5rem,7vw,7rem);
-  line-height:.92;letter-spacing:3px;color:var(--white);margin-bottom:18px;
+  line-height:.9;letter-spacing:3px;color:var(--white);margin-bottom:16px;
 }
-.hero-title span{color:var(--accent)}
+.hero-title span{color:var(--accent);text-shadow:0 0 40px rgba(255,92,69,.25)}
 .hero-desc{
-  font-size:1.05rem;color:var(--text-muted);font-style:italic;
-  border-left:3px solid var(--accent);padding-left:16px;
-  max-width:480px;line-height:1.9;margin-bottom:32px;transition:color .3s;
+  font-size:1.1rem;color:var(--text-muted);font-style:italic;
+  border-left:3px solid var(--accent);padding-left:18px;
+  max-width:520px;line-height:1.85;margin-bottom:32px;transition:color .3s;
 }
 .hero-tags{display:flex;gap:6px;flex-wrap:wrap}
 .hero-tag{
@@ -345,10 +381,14 @@ nav{
 }
 .hero-right{
   display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:40px 48px;gap:24px;min-width:220px;
+  padding:40px 48px;gap:24px;min-width:220px;position:relative;z-index:1;
 }
 .stat-block{text-align:center}
-.stat-block .n{font-family:var(--display);font-size:4rem;color:var(--accent);line-height:1;display:block}
+.stat-block .n{
+  font-family:var(--display);font-size:4rem;color:var(--accent);
+  line-height:1;display:block;
+  text-shadow:0 0 30px rgba(255,92,69,.2);
+}
 .stat-block .l{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2.5px;
   color:var(--text-muted);text-transform:uppercase;display:block;margin-top:4px;
@@ -361,14 +401,14 @@ nav{
   border-bottom:1px solid var(--border);
   padding:0 72px;height:52px;
   font-family:var(--mono);font-size:.72rem;
-  overflow-x:auto;
+  overflow-x:auto;position:relative;z-index:1;
 }
 .filter-btn{
-  height:100%;padding:0 20px;
+  height:100%;padding:0 22px;
   background:none;border:none;border-right:1px solid var(--border);
   color:var(--text-muted);cursor:pointer;letter-spacing:2px;
-  text-transform:uppercase;font-family:var(--mono);font-size:.72rem;font-weight:500;
-  transition:all .2s;white-space:nowrap;
+  text-transform:uppercase;font-family:var(--mono);font-size:.72rem;font-weight:600;
+  transition:all .25s var(--ease);white-space:nowrap;
 }
 .filter-btn:first-child{border-left:1px solid var(--border)}
 .filter-btn.active,.filter-btn:hover{color:var(--accent);background:var(--accent-dim)}
@@ -382,7 +422,8 @@ nav{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   width:100%;outline:none;
 }
-.search-wrap input::placeholder{color:var(--text-faint)}
+.search-wrap input::placeholder{color:var(--text-faint);transition:color .2s}
+.search-wrap input:focus::placeholder{color:transparent}
 .controls-bar .list-link{
   height:100%;padding:0 20px;display:flex;align-items:center;
   color:var(--text-muted);text-decoration:none;letter-spacing:2px;
@@ -392,18 +433,18 @@ nav{
 .controls-bar .list-link:hover{color:var(--accent);background:var(--accent-dim)}
 
 /* ── MAIN CONTENT ── */
-.main{max-width:100%;padding:64px 72px 80px}
+.main{max-width:100%;padding:64px 72px 80px;position:relative;z-index:1}
 
 /* ── DAY GROUP ── */
-.day-group{margin-bottom:56px}
+.day-group{margin-bottom:64px}
 .day-group.hidden{display:none}
 .day-header-row{
   display:flex;align-items:flex-end;justify-content:space-between;
-  border-bottom:1px solid var(--border);padding-bottom:14px;margin-bottom:24px;
+  border-bottom:1px solid var(--border);padding-bottom:16px;margin-bottom:28px;
 }
 .day-eyebrow{
-  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:3px;
-  color:var(--accent);text-transform:uppercase;margin-bottom:4px;
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:3px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:6px;
 }
 .day-date{
   font-family:var(--display);font-size:clamp(2rem,4vw,3.2rem);
@@ -411,95 +452,142 @@ nav{
 }
 .day-header-right{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
-  color:var(--text-faint);text-transform:uppercase;padding-bottom:4px;
+  color:var(--text-faint);text-transform:uppercase;padding-bottom:6px;
 }
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(450px,1fr));
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));
   gap:1px;background:var(--border);border:1px solid var(--border);
 }
 
-/* ── RADAR CARD ── */
+/* ── RADAR CARD (v5.4) ── */
 .radar-card{
-  background:var(--card);padding:28px 24px;
-  display:flex;flex-direction:column;gap:12px;
-  transition:background .2s,box-shadow .2s;position:relative;
+  background:var(--card);padding:32px 28px;
+  display:flex;flex-direction:column;gap:14px;
+  transition:background .25s var(--ease),box-shadow .35s var(--ease),border-color .25s;
+  position:relative;
   opacity:0;transform:translateY(16px);
-  animation:fadeUp .55s var(--ease) forwards;
-  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+  animation:fadeUp .4s var(--ease) forwards;
+  box-shadow:0 2px 16px rgba(0,0,0,.12),inset 0 1px 0 rgba(255,255,255,.03);
+  border-left:2px solid transparent;
 }
-.radar-card:hover{background:var(--surface)}
+.radar-card::before{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,var(--accent-glow),transparent 60%);
+  opacity:0;transition:opacity .4s var(--ease);pointer-events:none;
+}
+.radar-card:hover::before{opacity:1}
+.radar-card:hover{
+  background:var(--surface);
+  box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 1px rgba(255,92,69,.12);
+  z-index:2;
+}
+.radar-card:has(.radar-card-title a:focus-visible){
+  box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 2px var(--accent);
+}
 .radar-card.hidden{display:none}
 
-.radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
-.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
 
 .type-tag{
-  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
-  padding:3px 8px;text-transform:uppercase;
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:2px;
+  padding:3px 10px;text-transform:uppercase;
 }
-.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.25)}
-.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.25)}
+.type-tag.news{background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.2)}
+.type-tag.academic{background:var(--accent-dim);color:var(--accent);border:1px solid rgba(255,92,69,.2)}
 
 .card-chapter{
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1px;
   color:var(--text-faint);text-transform:uppercase;
 }
-.draft-dot{color:var(--accent2);font-size:.72rem;line-height:1}
+.draft-dot{color:var(--accent2);font-size:.75rem;line-height:1;opacity:.8}
 
 .radar-score{
+  display:flex;flex-direction:column;align-items:flex-end;gap:4px;
   font-family:var(--display);font-size:2rem;color:var(--accent);
-  line-height:1;text-align:right;white-space:nowrap;flex-shrink:0;
+  line-height:1;white-space:nowrap;flex-shrink:0;
+  position:relative;padding-left:8px;
 }
 .radar-score span{
-  display:block;font-family:var(--mono);font-size:.72rem;font-weight:500;
-  color:var(--text-faint);letter-spacing:1px;text-align:right;margin-top:2px;
+  display:block;font-family:var(--mono);font-size:.7rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:1px;text-align:right;
 }
+.score-bar{
+  display:flex;gap:2px;width:48px;height:3px;
+}
+.score-bar .bar{
+  flex:1;border-radius:1px;
+  background:var(--border-bright);transition:background .3s var(--ease);
+}
+.score-bar .bar.filled{background:var(--accent)}
+.radar-card:hover .score-bar .bar.filled{background:var(--accent2)}
 
 .radar-card-title{
-  font-family:var(--display);font-size:1.25rem;letter-spacing:1px;
-  color:var(--white);line-height:1.2;
+  font-family:var(--display);font-size:1.35rem;letter-spacing:1px;
+  color:var(--white);line-height:1.2;position:relative;z-index:1;
 }
-.radar-card-title a{color:inherit;text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
-.radar-card-title a:hover{border-bottom-color:var(--accent2)}
+.radar-card-title a{
+  color:inherit;text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:border-color .25s var(--ease),color .2s;
+}
+.radar-card-title a:hover{color:var(--accent2);border-bottom-color:var(--accent2)}
 
-.radar-card-body{font-size:.92rem;color:var(--text-muted);line-height:1.8;flex:1;transition:color .3s}
+.radar-card-body{
+  font-size:.95rem;color:var(--text-muted);line-height:1.8;
+  flex:1;position:relative;z-index:1;
+}
 
 .radar-card-footer{
   display:flex;justify-content:space-between;align-items:center;
-  padding-top:10px;border-top:1px solid var(--border);
+  padding-top:12px;border-top:1px solid var(--border);
   font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:1.5px;
-  transition:border-color .3s;
+  transition:border-color .3s;position:relative;z-index:1;
 }
-.card-source-link{color:var(--accent2);text-decoration:none;text-transform:uppercase;transition:color .2s}
-.card-source-link:hover{color:var(--white)}
-.full-report-link{color:var(--text-faint);text-decoration:none;text-transform:uppercase;transition:color .2s}
-.full-report-link:hover{color:var(--accent)}
+.card-source-link{
+  color:var(--accent2);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.card-source-link:hover{color:var(--white);gap:6px}
+.full-report-link{
+  color:var(--text-faint);text-decoration:none;text-transform:uppercase;
+  transition:color .25s var(--ease);
+  display:inline-flex;align-items:center;gap:4px;
+}
+.full-report-link:hover{color:var(--accent);gap:6px}
 
 /* ── EMPTY STATE ── */
 .empty-state{
-  display:none;text-align:center;padding:80px 32px;
+  display:none;text-align:center;padding:100px 32px 80px;
   font-family:var(--mono);color:var(--text-faint);letter-spacing:2px;
   font-size:.72rem;font-weight:500;text-transform:uppercase;
 }
-.empty-state .glyph{font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.3;display:block;margin-bottom:16px}
+.empty-state .glyph{
+  font-family:var(--display);font-size:5rem;color:var(--text-faint);opacity:.2;
+  display:block;margin-bottom:20px;line-height:1;
+}
 
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
-  background:var(--bg);border-top:1px solid var(--border);
+  background:rgba(12,12,24,.92);backdrop-filter:blur(16px);
+  border-top:1px solid var(--border);
   padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
   color:var(--text-faint);letter-spacing:2px;
   display:flex;justify-content:space-between;align-items:center;
   transition:background .3s,border-color .3s;
 }
+.light .status-bar{background:rgba(240,242,248,.92)}
 .status-dot{
   display:inline-block;width:6px;height:6px;
   background:var(--accent);border-radius:50%;margin-right:8px;
-  animation:pulse 2s infinite;
+  animation:pulse 2s ease-in-out infinite;
+  box-shadow:0 0 6px var(--accent);
 }
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
 @keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
 
 /* ── MOBILE TOUCH TARGETS ── */
@@ -510,6 +598,9 @@ nav{
 }
 
 /* ── RESPONSIVE ── */
+@media(max-width:1200px){
+  .card-grid{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+}
 @media(max-width:900px){
   .main{padding:48px 24px 80px}
   .controls-bar{padding:0 24px}
@@ -527,7 +618,7 @@ nav{
 
 <!-- NAV -->
 <nav>
-  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+  <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
   <div class="nav-right">
     <a href="./news/" class="nav-pill">NEWS</a>
     <a href="./academic/" class="nav-pill">PAPERS</a>
@@ -659,6 +750,9 @@ nav{
     'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
     'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
     'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+    'STATUS: [ v5.4_READABILITY_MATRIX: OPTIMIZED ]',
+    'STATUS: [ ATTENTION_SPAN_ANCHOR: LOCKED ]',
+    'STATUS: [ SIGNAL_TO_NOISE_RATIO: IMPROVED ]',
   ];
   let i=0;
   const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
@@ -671,7 +765,7 @@ nav{
 
 /* ── STAGGERED CARD ANIMATION ── */
 document.querySelectorAll('.radar-card').forEach((c,i)=>{
-  c.style.animationDelay=(i*0.06)+'s';
+  c.style.animationDelay=(i*0.04)+'s';
 });
 </script>
 </body>
@@ -682,7 +776,7 @@ document.querySelectorAll('.radar-card').forEach((c,i)=>{
 # 主函数
 # ═══════════════════════════════════════════════════════════════
 def main():
-    print("🚀 Renegade AI Radar Index Generator v2.2 (v5.3 Aligned)")
+    print("🚀 Renegade AI Radar Index Generator v2.3 (v5.4 Aligned)")
     print(f"📁 Reports root: {REPORTS_ROOT.resolve()}")
 
     data = collect_all_reports()
@@ -777,7 +871,7 @@ def auto_git_commit(data: dict) -> None:
         print(f"⚠️ git add 失败: {e.stderr.decode()}")
         return
 
-    commit_msg = f"chore: auto-update radar index [{latest}]"
+    commit_msg = f"chore: auto-update radar v5.4 index [{latest}]"
     result = subprocess.run(
         ["git", "commit", "-m", commit_msg],
         cwd=repo_root, capture_output=True,
