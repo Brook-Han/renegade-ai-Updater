@@ -191,16 +191,146 @@ def fetch_news_with_cache(keywords: list[str]) -> list[dict]:
 # ------------------------------------------------------------------
 # 资讯预筛选（复用 Config 中的理论概念词库）
 # ------------------------------------------------------------------
+# 中文理论概念词库（用于 AI HOT 等中文内容预筛选）
+THEORY_TERMS_CN = {
+    "递归自我改进": "递归自我改进/RSI",
+    "rsi": "递归自我改进",
+    "暗产出": "暗产出/不可见成本",
+    "阿姆达尔": "阿姆达尔定律/系统瓶颈",
+    "饲养员场景": "饲养员场景/人类控制幻觉",
+    "生态系统场景": "生态系统场景/达尔文演化",
+    "拉马克式": "拉马克式AI/人类反馈",
+    "达尔文式AI": "达尔文式AI/环境选择",
+    "认识论断裂": "认识论断裂",
+    "认知投降": "认知投降",
+    "意志萎缩": "意志萎缩",
+    "思维社会": "思维社会/内部多智能体",
+    "硅基内部循环": "硅基内部循环",
+    "统计盲区": "统计盲区",
+    "GDP测量": "GDP测量失灵",
+    "生产力悖论": "生产力悖论",
+    "对齐": "对齐",
+    "安全测试": "安全测试",
+    "信任": "信任",
+    "谎言": "谎言/欺骗",
+    "承诺": "承诺",
+    "搜索摘要": "搜索摘要",
+    "AI概览": "AI概览",
+    "操纵": "操纵",
+    "说服": "说服",
+    "奉承": "奉承",
+    "AI伴侣": "AI伴侣",
+    "认知": "认知",
+    "共识": "共识",
+    "叛逆者": "叛逆者",
+    "时间主权": "时间主权",
+    "黑暗森林": "黑暗森林",
+    "Token陷阱": "Token陷阱",
+    "金融化": "金融化",
+    "人类反馈强化学习": "人类反馈强化学习",
+    "对齐税": "对齐税",
+    "开源": "开源",
+    "去中心化": "去中心化",
+    "算力平等主义": "算力平等主义",
+    "边缘计算": "边缘计算",
+    "民主": "民主",
+    "公众舆论": "公众舆论",
+    "错误信息": "错误信息",
+    "军事": "军事",
+    "国家安全": "国家安全",
+    "武器": "武器/自主武器",
+    "版权": "版权",
+    "知识产权": "知识产权",
+    "劳工": "劳工",
+    "工作": "工作/就业",
+    "就业": "劳动",
+    "全民基本收入": "全民基本收入",
+    "后人类中心主义": "后人类中心主义",
+    "需求侧规训": "需求侧规训",
+    "欲望再生产": "欲望再生产",
+    "创新转向": "创新转向",
+    "产品周期伦理": "产品周期伦理",
+    "伦理商品化": "伦理商品化",
+    "认知体验管理": "认知体验管理",
+    "实验附录": "实验附录",
+    "碳硅对话": "碳硅对话",
+    "供需反馈环": "供需反馈环",
+    "科学窄化": "科学窄化",
+    "信号崩塌": "信号崩塌",
+    "元设计": "元设计",
+    "莱姆式恐怖": "莱姆式恐怖",
+    "信息圈": "信息圈",
+    "莫拉维克悖论": "莫拉维克悖论",
+    "密度定律": "密度定律",
+    "监管": "AI监管",
+    "数据中心": "数据中心/算力",
+    "硬件回收": "硬件回收",
+    "可及性": "可及性",
+    "本土": "本土/在地化",
+    "碳排放": "碳排放",
+    "可持续性": "可持续性",
+    "AI芯片": "AI芯片",
+    "基准测试": "基准测试",
+    "合成数据": "合成数据",
+    "开放权重": "开放权重",
+    "本地部署": "本地部署",
+    "模型崩溃": "模型崩溃",
+}
+
+# 中文领域词（通用 AI/产业词汇）
+DOMAIN_TERMS_CN = {
+    "人工智能": "人工智能",
+    "AI": "人工智能",
+    "大模型": "大语言模型",
+    "LLM": "大语言模型",
+    "语言模型": "语言模型",
+    "GPT": "GPT",
+    "模型": "模型",
+    "智能体": "智能体",
+    "机器人": "机器人",
+    "神经网络": "神经网络",
+    "深度学习": "深度学习",
+    "机器学习": "机器学习",
+    "算法": "算法",
+    "自动化": "自动化",
+    "监管": "监管",
+    "政策": "政策",
+    "劳工": "劳工",
+    "就业": "就业",
+    "经济": "经济",
+    "市场": "市场",
+    "技术": "技术",
+    "研究": "研究",
+    "科学": "科学",
+    "论文": "论文",
+    "基准": "基准测试",
+    "安全": "安全",
+    "伦理": "伦理",
+    "偏见": "偏见",
+    "隐私": "隐私",
+    "监控": "监控",
+    "开源": "开源",
+    "API": "API",
+    "产品": "产品",
+    "发布": "发布",
+    "更新": "更新",
+    "创业公司": "创业公司",
+    "融资": "融资",
+    "收购": "收购",
+}
+
+
 def prescreen_news(news_list: list[dict]) -> list[dict]:
     """
     预筛选：保留与理论模型潜在相关的资讯
     同时命中至少1个理论概念词 + 1个领域词才保留
+    支持中英双语（AI HOT 中文内容使用中文词库）
     """
-    # 从 Config 读取所有理论概念词（你精心维护的关键词库）
+    # 英文词库（原有）
     theory_terms = set(Config.NEWS_CONCEPT_TERMS.keys())
     theory_lower = {t.lower() for t in theory_terms}
-
-    # 领域词（通用 AI/产业词汇），保证过滤掉纯娱乐新闻
+    
+    # 英文领域词（原有）
     domain_terms = {
         "ai", "artificial intelligence", "llm", "language model", "gpt",
         "model", "agent", "robot", "neural", "deep learning",
@@ -212,14 +342,24 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
         "startup", "funding", "acquisition",
     }
     domain_lower = {t.lower() for t in domain_terms}
+    
+    # 中文词库（新增）
+    theory_cn = set(THEORY_TERMS_CN.keys())
+    domain_cn = set(DOMAIN_TERMS_CN.keys())
 
     filtered = []
     for item in news_list:
-        # AI HOT 内容已是编辑精选，跳过英文关键词预筛选直接保留
+        # AI HOT 内容：使用中文词库预筛选
         if item.get("source") == "aihot":
-            filtered.append(item)
+            text = (item["title"] + " " + item["summary"])
+            # 检查是否包含中文理论词和领域词
+            has_theory_cn = any(term in text for term in theory_cn)
+            has_domain_cn = any(term in text for term in domain_cn)
+            if has_theory_cn and has_domain_cn:
+                filtered.append(item)
             continue
 
+        # 英文内容：使用英文词库预筛选（原有逻辑）
         text = (item["title"] + " " + item["summary"]).lower()
         has_theory = any(term in text for term in theory_lower)
         has_domain = any(term in text for term in domain_lower)
@@ -269,9 +409,19 @@ NEWS_SYSTEM_PROMPT = """你是《Renegade AI: Catalyst for Human Cognitive Evolu
 
 def analyze_news_item(news: dict, model_name: str, client: OpenAI) -> dict:
     """单条资讯分析，失败时返回占位结果"""
-    user_prompt = f"""新闻标题：{news['title']}
-内容摘要：{news['summary']}
+    # 判断内容语言（简单启发式：包含中文字符即为中文）
+    title = news['title']
+    summary = news['summary']
+    sample_text = title + " " + summary
+    
+    # 检测是否包含中文字符（Unicode CJK 统一表意文字区）
+    has_chinese = any('\u4e00' <= c <= '\u9fff' for c in sample_text)
+    lang_label = "中文" if has_chinese else "英文"
+    
+    user_prompt = f"""新闻标题：{title}
+内容摘要：{summary}
 来源：{news.get('source_name', '')} · {news.get('published', '')[:10]}
+语言：{lang_label}
 
 请按 JSON 格式返回分析结果。"""
 
@@ -382,6 +532,10 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
               d["analysis"].get("relevance", 0) < 7]
     low = [d for d in news_data if d["analysis"].get("relevance", 0) < 4
            or d["analysis"].get("action") == "忽略"]
+    
+    # AI HOT 统计（新增）
+    aihot_all = [d for d in news_data if d.get("news", {}).get("source") == "aihot"]
+    aihot_high = [d for d in aihot_all if d["analysis"].get("relevance", 0) >= 6]
 
     lines = [
         f"# 📰 News Radar — 资讯监控报告",
@@ -393,7 +547,8 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
         "## 📊 快速概览\n",
         f"- 🔴 高价值 (≥7分 + {','.join(CASE_VALUE_FILTER)}案例): **{len(high)}**",
         f"- 🟡 中相关 (4-6.9分): **{len(medium)}**",
-        f"- ⚪ 低相关/忽略: **{len(low)}**\n",
+        f"- ⚪ 低相关/忽略: **{len(low)}**",
+        f"- 🇨🇳 中国 AI 动态 (AI HOT): **{len(aihot_all)}** 条（高价值: **{len(aihot_high)}**）\n",
     ]
 
     # 🚨 紧急更新清单
@@ -428,6 +583,44 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
                 f"- **建议操作**: {a.get('action', 'N/A')}",
                 "",
             ]
+
+    # 🇨🇳 中国 AI 动态（AI HOT 精选，独立板块）
+    aihot_items = [d for d in news_data if d.get("news", {}).get("source") == "aihot"]
+    if aihot_items:
+        aihot_high = [d for d in aihot_items if d["analysis"].get("relevance", 0) >= 6]
+        aihot_medium = [d for d in aihot_items if 4 <= d["analysis"].get("relevance", 0) < 6]
+        
+        lines.append(f"---\n\n## 🇨🇳 中国 AI 动态（AI HOT 精选）\n")
+        lines.append(f"> 来源：[AI HOT](https://aihot.virxact.com) · 编辑精选中文 AI 资讯\n")
+        
+        if aihot_high:
+            aihot_high.sort(key=lambda d: -d["analysis"].get("relevance", 0))
+            lines.append(f"### 🔴 高价值动态 ({len(aihot_high)}条)\n")
+            for d in aihot_high:
+                n, a = d["news"], d["analysis"]
+                src_name = n.get('source_name', 'AI HOT')
+                category = n.get('aihot_category', '')
+                cat_label = f"[{category}] " if category else ""
+                lines += [
+                    f"#### {cat_label}{n['title']}",
+                    f"- **来源**: {src_name} · {n.get('published', '')[:10]}",
+                    f"- **相关度**: {a.get('relevance', 'N/A')}/10 | 案例价值: {a.get('case_value', 'N/A').upper()}",
+                    f"- **链接**: [{n.get('url', '#')}]({n.get('url', '#')})",
+                    f"- **事件摘要**: {a.get('summary_cn', n.get('summary', 'N/A'))}",
+                    f"- **理论关联**: {a.get('implications', 'N/A')}",
+                    "",
+                ]
+        
+        if aihot_medium:
+            lines.append(f"<details><summary>🟡 中相关动态 ({len(aihot_medium)}条，点击展开)</summary>\n")
+            for d in aihot_medium:
+                n, a = d["news"], d["analysis"]
+                src_name = n.get('source_name', 'AI HOT')
+                lines.append(
+                    f"- **[{n['title'][:60]}...]({n.get('url', '#')})** [{src_name}] · {a.get('relevance', 0)}/10")
+                lines.append(
+                    f"  - {a.get('summary_cn', a.get('implications', 'N/A'))[:120]}...")
+            lines.append("\n</details>\n")
 
     # 🔶 中相关资讯（折叠显示）
     if medium:

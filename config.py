@@ -133,7 +133,7 @@ class Config:
     # -------------------------------------------------------------------------
     #  AI HOT 中文AI资讯源（Phase 1 轻量融合）
     # -------------------------------------------------------------------------
-    ENABLE_AIHOT: bool = _parse_bool_env("ENABLE_AIHOT", False)  # 默认关闭，需手动启用
+    ENABLE_AIHOT: bool = _parse_bool_env("ENABLE_AIHOT", True)  # Phase 2 完成后默认开启
     AIHOT_DAYS_BACK: int = int(os.getenv("AIHOT_DAYS_BACK", "7"))   # 与 NEWS_DAYS_BACK 对齐
     AIHOT_TAKE: int = int(os.getenv("AIHOT_TAKE", "50"))           # 每次抓取条数（≤100）
 
