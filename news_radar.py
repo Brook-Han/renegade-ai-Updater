@@ -215,6 +215,11 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
 
     filtered = []
     for item in news_list:
+        # AI HOT 内容已是编辑精选，跳过英文关键词预筛选直接保留
+        if item.get("source") == "aihot":
+            filtered.append(item)
+            continue
+
         text = (item["title"] + " " + item["summary"]).lower()
         has_theory = any(term in text for term in theory_lower)
         has_domain = any(term in text for term in domain_lower)

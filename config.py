@@ -131,6 +131,13 @@ class Config:
     ACADEMIC_DAYS_BACK: int = int(os.getenv("ACADEMIC_DAYS_BACK", "7"))  # arXiv 仅保留最近一周论文
 
     # -------------------------------------------------------------------------
+    #  AI HOT 中文AI资讯源（Phase 1 轻量融合）
+    # -------------------------------------------------------------------------
+    ENABLE_AIHOT: bool = _parse_bool_env("ENABLE_AIHOT", False)  # 默认关闭，需手动启用
+    AIHOT_DAYS_BACK: int = int(os.getenv("AIHOT_DAYS_BACK", "7"))   # 与 NEWS_DAYS_BACK 对齐
+    AIHOT_TAKE: int = int(os.getenv("AIHOT_TAKE", "50"))           # 每次抓取条数（≤100）
+
+    # -------------------------------------------------------------------------
     #  新闻分析筛选阈值（与 news_radar.py 联动）
     # -------------------------------------------------------------------------
     NEWS_RELEVANCE_THRESHOLD: int = int(os.getenv("NEWS_RELEVANCE_THRESHOLD", "5"))

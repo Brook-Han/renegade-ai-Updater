@@ -280,6 +280,102 @@ def fetch_rss_feeds(max_entries_per_feed: int = 12) -> List[Dict]:
 
 
 # =============================================================================
+# AI HOT 抓取器（中文AI资讯，Phase 1 轻量融合）
+# =============================================================================
+
+def fetch_aihot(days_back: int = 7, take: int = 50) -> List[Dict]:
+    """
+    从 aihot.virxact.com 获取精选中文 AI 资讯
+    - 无需认证，但必须带浏览器 User-Agent（防 403）
+    - 支持 since 时间窗口（服务端限最近 7 天）
+    - 返回标准 News Radar 格式，source="aihot"
+    """
+    if not getattr(Config, "ENABLE_AIHOT", False):
+        logger.info("⏭️  [AI HOT] 未启用，跳过")
+        return []
+
+    base_url = "https://aihot.virxact.com/api/public/items"
+    ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    headers = {"User-Agent": ua, "Accept": "application/json"}
+
+    # 计算 since 时间（ISO 8601，UTC）
+    since_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days_back)
+    since_str = since_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+
+    params = {
+        "mode": "selected",   # 精选模式（默认）
+        "since": since_str,
+        "take": min(take, 100),  # API 上限 100
+    }
+
+    articles: List[Dict] = []
+    next_cursor: Optional[str] = None
+
+    try:
+        logger.info(f"🔍 [AI HOT] 抓取精选资讯（since={since_str}, take={take}）")
+
+        # 分页抓取（cursor 机制）
+        for page in range(3):  # 最多 3 页（300 条），防止死循环
+            if next_cursor:
+                params["cursor"] = next_cursor
+            else:
+                params.pop("cursor", None)
+
+            resp = requests.get(base_url, params=params, headers=headers, timeout=15)
+            resp.raise_for_status()
+            data = resp.json()
+
+            items = data.get("items", [])
+            if not items:
+                break
+
+            for item in items:
+                # 格式转换：AI HOT → News Radar 标准格式
+                url = item.get("url", "")
+                title = item.get("title", "").strip()
+                summary = (item.get("summary") or "").strip()[:500]
+
+                if not title or not url:
+                    continue
+
+                url_hash = hashlib.sha256(url.encode()).hexdigest()[:16]
+
+                articles.append({
+                    "id": f"news_{url_hash}",
+                    "title": title,
+                    "summary": summary,
+                    "published": item.get("publishedAt", "N/A"),
+                    "url": url,
+                    "authors": [],  # AI HOT 不提供结构化作者
+                    "source": "aihot",
+                    "source_name": item.get("source", "AI HOT"),
+                    # 保留 AI HOT 特有字段
+                    "aihot_category": item.get("category"),
+                    "aihot_score": item.get("score"),
+                    "title_en": item.get("title_en"),
+                })
+
+            # 检查是否有下一页
+            if not data.get("hasNext", False):
+                break
+            next_cursor = data.get("nextCursor")
+            if not next_cursor:
+                break
+
+            # 重置 params 去掉 cursor（下一页会加回来）
+            params["take"] = min(take, 100)
+
+        logger.info(f"   ✅ [AI HOT] 获取 {len(articles)} 条精选资讯")
+
+    except requests.exceptions.RequestException as e:
+        logger.error(f"❌ [AI HOT] 请求失败: {str(e)[:100]}")
+    except Exception as e:
+        logger.error(f"❌ [AI HOT] 解析失败: {str(e)[:100]}")
+
+    return articles
+
+
+# =============================================================================
 # 统一聚合入口
 # =============================================================================
 
@@ -295,8 +391,14 @@ def fetch_all_news(keywords: List[str]) -> List[Dict]:
     if getattr(Config, "ENABLE_RSS_FEEDS", True):
         all_articles.extend(fetch_rss_feeds())
 
+    # 启用 AI HOT（中文AI资讯，Phase 1 新增）
+    if getattr(Config, "ENABLE_AIHOT", False):
+        days = getattr(Config, "AIHOT_DAYS_BACK", 7)
+        take = getattr(Config, "AIHOT_TAKE", 50)
+        all_articles.extend(fetch_aihot(days_back=days, take=take))
+
     logger.info(f"📰 资讯抓取完成：总计 {len(all_articles)} 条")
     return all_articles
 
 
-__all__ = ["fetch_all_news", "fetch_newsapi", "fetch_rss_feeds"]
+__all__ = ["fetch_all_news", "fetch_newsapi", "fetch_rss_feeds", "fetch_aihot"]
