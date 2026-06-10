@@ -19,6 +19,7 @@ import random
 import datetime
 import hashlib
 import argparse
+import subprocess
 from pathlib import Path
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from typing import Optional
@@ -789,16 +790,127 @@ def generate_academic_report(papers_data: list[dict], keywords: list[str]) -> Op
 
 
 # ------------------------------------------------------------------
+# WorkBuddy 集成：--no-llm 模式 → 抓取+预筛选，保存JSON供WorkBuddy分析
+# ------------------------------------------------------------------
+def _save_papers_for_workbuddy(all_papers: list[dict], keywords: list[str]) -> None:
+    """保存预筛选后的论文到JSON，供WorkBuddy内置模型分析"""
+    today = datetime.date.today().isoformat()
+    papers_path = OUTPUT_DIR / f"academic_papers_{today}.json"
+
+    papers = []
+    for paper in all_papers:
+        fp = get_paper_cache_key(paper)
+        papers.append({
+            "_cache_key": fp,
+            "title": paper.get("title", "")[:300],
+            "summary": paper.get("summary", "")[:1000],
+            "published": paper.get("published", ""),
+            "url": paper.get("url", ""),
+            "source": paper.get("source", "unknown"),
+            "authors": paper.get("authors", [])[:10],
+        })
+
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
+    with open(papers_path, "w", encoding="utf-8") as f:
+        json.dump(papers, f, ensure_ascii=False, indent=2)
+
+    logger.info(f"📦 预筛选论文已保存: {papers_path} ({len(papers)} 篇)")
+    print(f"\n✅ 数据采集完成！")
+    print(f"📄 论文文件: {papers_path}")
+    print(f"📊 共 {len(papers)} 篇预筛选论文，等待 WorkBuddy 分析。")
+    print(f"💡 下一步: 让 WorkBuddy 读取此文件，逐条分析后将结果写入缓存文件:")
+    print(f"   {CACHE_FILE}")
+    print(f"   分析完成后调用: python3 academic_radar.py --report-from-cache {papers_path}")
+
+
+# ------------------------------------------------------------------
+# WorkBuddy 集成：--report-from-cache 模式 → 从缓存重建报告
+# ------------------------------------------------------------------
+def _generate_academic_report_from_cache(papers_path: str) -> None:
+    """从论文JSON + 缓存重建 papers_data 并生成报告"""
+    papers_file = Path(papers_path)
+    if not papers_file.exists():
+        logger.error(f"❌ 论文文件不存在: {papers_path}")
+        sys.exit(1)
+
+    with open(papers_file, "r", encoding="utf-8") as f:
+        papers = json.load(f)
+
+    cache = load_academic_cache()
+
+    papers_data: list[dict] = []
+    hit_count = 0
+    miss_count = 0
+    for paper in papers:
+        ck = paper.get("_cache_key", "")
+        if ck in cache and "analysis" in cache[ck]:
+            papers_data.append({
+                "paper": {
+                    "id": ck,
+                    "title": paper["title"],
+                    "summary": paper.get("summary", ""),
+                    "published": paper.get("published", ""),
+                    "url": paper.get("url", ""),
+                    "authors": paper.get("authors", []),
+                    "source": paper.get("source", "unknown"),
+                },
+                "merged": cache[ck]["analysis"],
+                "draft": cache[ck].get("draft_paragraph"),
+                "cached_at": cache[ck].get("cached_at", ""),
+            })
+            hit_count += 1
+        else:
+            logger.warning(f"⚠️ 缓存未命中（尚未分析）: {paper['title'][:50]}...")
+            miss_count += 1
+
+    if hit_count > 0:
+        logger.info(f"📦 缓存命中: {hit_count} 篇" + (f"，未命中: {miss_count} 篇" if miss_count else ""))
+
+    if not papers_data:
+        logger.error("❌ 没有可用的分析结果。请先让 WorkBuddy 完成分析并写入缓存。")
+        sys.exit(1)
+
+    logger.info(f"📊 有效分析: {len(papers_data)} 篇")
+
+    # 加载关键词
+    keywords = load_keywords(Config.KEYWORDS_FILE)
+
+    # 生成报告
+    report_path = generate_academic_report(papers_data, keywords)
+    if report_path:
+        # 自动转 HTML
+        try:
+            subprocess.run(["python3", "academic_md_to_html.py",
+                           str(report_path)], check=True)
+            logger.info(f"🌐 HTML 已生成")
+        except Exception as e:
+            logger.warning(f"HTML 转换失败（可手工执行）: {e}")
+    else:
+        logger.info("🔄 报告内容无变化或跳过（无新增论文）。")
+
+    logger.info("✅ 报告生成完成。")
+
+
+# ------------------------------------------------------------------
 # 主函数
 # ------------------------------------------------------------------
 def main() -> None:
     parser = argparse.ArgumentParser(description="Academic Radar — 学术论文监控")
     parser.add_argument("--limit", type=int, default=30, help="每次运行最大分析论文数")
     parser.add_argument("--keywords", type=str, help="临时关键词文件路径")
+    parser.add_argument("--no-llm", action="store_true",
+                        help="仅抓取+预筛选，跳过LLM分析，输出JSON供WorkBuddy内置模型分析")
+    parser.add_argument("--report-from-cache", type=str, metavar="PAPERS_JSON",
+                        help="从指定论文JSON + 缓存重建报告（供WorkBuddy完成分析后调用）")
     args = parser.parse_args()
 
     logger.info("🚀 Academic Radar 启动")
-    
+
+    # ── 模式：从缓存+论文JSON生成报告（WorkBuddy完成分析后调用）──
+    if args.report_from_cache:
+        _generate_academic_report_from_cache(args.report_from_cache)
+        return
+
     keywords = load_keywords(args.keywords if args.keywords else Config.KEYWORDS_FILE)
     logger.info(f"📋 加载 {len(keywords)} 个关键词")
 
@@ -815,6 +927,15 @@ def main() -> None:
 
     if not all_papers:
         logger.info("✨ 没有找到新论文，退出。")
+        return
+
+    # ── 模式：仅数据采集（--no-llm），输出JSON供WorkBuddy分析 ──
+    if args.no_llm:
+        prescreened = prescreen_academic_papers(all_papers)
+        if not prescreened:
+            logger.info("🔍 预筛选后无相关论文，退出。")
+            return
+        _save_papers_for_workbuddy(prescreened, keywords)
         return
 
     # 分析缓存匹配
