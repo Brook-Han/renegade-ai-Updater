@@ -56,10 +56,6 @@ if _missing_deps:
 from config import Config
 from logger import logger
 from cache import (
-    load_cache,
-    is_paper_cached,
-    mark_paper_cached,
-    save_draft,
     get_search_cache,
     set_search_cache,
 )
@@ -200,7 +196,16 @@ def exponential_backoff(attempt: int, base_delay: float = 30.0, max_delay: float
 # 学术源抓取 (arXiv + Semantic Scholar)
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
+    """
+    v1.1: 新增日期过滤（Config.ACADEMIC_DAYS_BACK，默认 90 天）。
+    arXiv 虽有 sort_by=SubmittedDate，但对极低频关键词（如 "Darwinian digital evolution"）
+    仍可能返回数月前的论文，日期过滤作为防御性措施。
+    """
     all_papers: dict[str, dict] = {}
+    days_back = getattr(Config, "ACADEMIC_DAYS_BACK", 90)
+    date_cutoff = (datetime.datetime.now() - datetime.timedelta(days=days_back)).strftime("%Y%m%d")
+    date_query = f"submittedDate:[{date_cutoff}000000 TO 99991231235959]"
+
     for keyword in keywords:
         # 搜索缓存
         cached = get_search_cache("arxiv", keyword, "papers")
@@ -212,14 +217,16 @@ def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_
                     all_papers[pid] = p
             continue
 
-        logger.info(f"🔍 [arXiv] 正在搜索: {keyword}")
+        logger.info(f"🔍 [arXiv] 正在搜索: {keyword} (截断于 {date_cutoff[:6]} 月)")
         papers_from_kw = []
         # 初试 + N 次重试（使用指数退避 + 随机抖动）
         max_retries = Config.ARXIV_MAX_RETRIES
         for attempt in range(max_retries + 1):
             try:
+                # 将日期过滤作为 AND 条件嵌入查询
+                query_with_date = f"({keyword}) AND {date_query}"
                 search = arxiv.Search(
-                    query=keyword,
+                    query=query_with_date,
                     max_results=max_results,
                     sort_by=arxiv.SortCriterion.SubmittedDate
                 )
@@ -303,9 +310,17 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
     - 没有 API Key 时，S2 匿名额度极低，大概率持续 429
     - 连续 3 个关键词全部 429 → 判定 S2 不可用 → 全局跳过剩余所有关键词
     - 这样 31 个关键词最多浪费 ~20 分钟，而非 ~4 小时
+
+    v1.1: 新增年份过滤（最近 2 年）——S2 默认按相关性排序，不加年份限制
+    会导致「RLHF」「alignment」等高频词的榜首永远是 2022-2023 的经典论文。
     """
     API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
     headers = {"x-api-key": API_KEY} if API_KEY else {}
+
+    # ── 年份窗口：只检索最近 2 年的论文 ──
+    current_year = datetime.datetime.now().year
+    year_min = current_year - 2
+    year_filter = f"{year_min}-{current_year}"
 
     all_papers = []
     seen_ids = set()
@@ -335,7 +350,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
             consecutive_429_count = 0
             continue
 
-        logger.info(f"🔍 [S2] 正在检索: {keyword}")
+        logger.info(f"🔍 [S2] 正在检索: {keyword} (截断于 {year_min} 年)")
         papers_from_kw = []
         keyword_failed_429 = False  # 本关键词是否因 429 彻底失败
 
@@ -344,6 +359,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
                 params = {
                     "query": keyword,
                     "limit": limit,
+                    "year": year_filter,
                     "fields": "paperId,title,abstract,authors,year,externalIds,openAccessPdf"
                 }
                 r = requests.get(api_url, params=params, headers=headers, timeout=30)
@@ -808,17 +824,18 @@ def main() -> None:
 
     # 分析缓存匹配
     papers_data: list[dict] = []
+    hit_count = 0
     for paper in all_papers:
         fp = get_paper_cache_key(paper)
         if fp in cache and "analysis" in cache[fp]:
             cached_entry = cache[fp]
-            logger.info(f"♻️ 缓存命中: {paper['title'][:50]}...")
             papers_data.append({
                 "paper": paper,
                 "merged": cached_entry["analysis"],
                 "draft": cached_entry.get("draft_paragraph"),
                 "cached_at": cache[fp].get("cached_at", ""),
             })
+            hit_count += 1
         else:
             papers_data.append({
                 "paper": paper,
@@ -827,7 +844,7 @@ def main() -> None:
             })
 
     need_analysis = [d for d in papers_data if d["merged"] is None]
-    logger.info(f"🆕 待分析: {len(need_analysis)} 篇")
+    logger.info(f"📦 缓存命中: {hit_count} 篇, 🆕 待分析: {len(need_analysis)} 篇")
 
     if need_analysis:
         to_analyze = prescreen_academic_papers([d["paper"] for d in need_analysis])
@@ -854,7 +871,7 @@ def main() -> None:
                     "urgency": merged.get("urgency", "background"),
                     "model_scores": merged.get("model_scores", {}),
                 }
-                save_academic_cache(cache)
+                # 批量写盘已移至 analysis 循环之外
                 time.sleep(2)
 
     # 过滤有效结果
@@ -878,8 +895,11 @@ def main() -> None:
                 fp = get_paper_cache_key(d["paper"])
                 if fp in cache:
                     cache[fp]["draft_paragraph"] = draft
-                    save_academic_cache(cache)
+                    # 批量写盘已移至草稿循环之外
             time.sleep(3)
+
+    # ── 一次性批量写缓存（v1.1: 从 per-paper 改为最终一次写入，减少 IO 30-50 倍）──
+    save_academic_cache(cache)
 
     # 生成报告
     report_path = generate_academic_report(papers_data, keywords)

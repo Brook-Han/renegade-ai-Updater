@@ -128,6 +128,7 @@ class Config:
     ENABLE_NEWS_API: bool = _parse_bool_env("ENABLE_NEWS_API", False)
     ENABLE_RSS_FEEDS: bool = _parse_bool_env("ENABLE_RSS_FEEDS", True)
     NEWS_DAYS_BACK: int = int(os.getenv("NEWS_DAYS_BACK", "7"))
+    ACADEMIC_DAYS_BACK: int = int(os.getenv("ACADEMIC_DAYS_BACK", "90"))  # 学术论文发布周期较慢，默认 90 天
 
     # -------------------------------------------------------------------------
     #  新闻分析筛选阈值（与 news_radar.py 联动）

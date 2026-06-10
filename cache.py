@@ -1,5 +1,7 @@
 # cache.py
-# 版本：v2.0 加入搜索缓存、完整分析缓存、草稿缓存
+# 版本：v2.1 清理死代码——paper_cache.json 已废弃，academic_radar.py 和 news_radar.py
+#         各有独立缓存系统（academic_cache.json / news_cache.json）。
+#         本文件仅保留 get_search_cache / set_search_cache（搜索结果缓存）。
 
 import json
 import os                       # 修复原有 NameError
@@ -19,10 +21,14 @@ def get_paper_fingerprint(paper):
     return hashlib.md5(content).hexdigest()
 
 # ------------------------------------------------------------
-# 核心分析缓存（已有的 CACHE_FILE）
+# 以下函数已废弃（dead code）
+# paper_cache.json 已重命名为 paper_cache.json.bak (2026-06-10)
+# academic_radar.py 使用自己的 CACHE_FILE = academic_cache.json
+# news_radar.py 使用自己的 CACHE_FILE = news_cache.json
+# 这些函数保留仅为向后兼容，不再被任何脚本调用。
 # ------------------------------------------------------------
 
-def load_cache():
+def load_cache():  # DEPRECATED —— 不再使用
     """加载主缓存文件"""
     cache_file = Config.CACHE_FILE
     if Path(cache_file).exists():
@@ -30,12 +36,12 @@ def load_cache():
             return json.load(f)
     return {}
 
-def is_paper_cached(paper, cache):
+def is_paper_cached(paper, cache):  # DEPRECATED
     """检查论文是否已经缓存"""
     fp = get_paper_fingerprint(paper)
     return fp in cache
 
-def mark_paper_cached(paper, analysis_result, cache):
+def mark_paper_cached(paper, analysis_result, cache):  # DEPRECATED
     """
     将分析结果存入缓存。
     现在会保存完整的 analysis_result，包括 summary_cn、implications 等。
