@@ -197,9 +197,7 @@ def exponential_backoff(attempt: int, base_delay: float = 30.0, max_delay: float
 # ------------------------------------------------------------------
 def search_arxiv(keywords: list[str], max_results: int = Config.MAX_RESULTS_PER_KEYWORD) -> list[dict]:
     """
-    v1.1: 新增日期过滤（Config.ACADEMIC_DAYS_BACK，默认 90 天）。
-    arXiv 虽有 sort_by=SubmittedDate，但对极低频关键词（如 "Darwinian digital evolution"）
-    仍可能返回数月前的论文，日期过滤作为防御性措施。
+    v1.2: 日期过滤窗口收紧为 Config.ACADEMIC_DAYS_BACK（默认 7 天）。
     """
     all_papers: dict[str, dict] = {}
     days_back = getattr(Config, "ACADEMIC_DAYS_BACK", 90)
@@ -311,16 +309,13 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
     - 连续 3 个关键词全部 429 → 判定 S2 不可用 → 全局跳过剩余所有关键词
     - 这样 31 个关键词最多浪费 ~20 分钟，而非 ~4 小时
 
-    v1.1: 新增年份过滤（最近 2 年）——S2 默认按相关性排序，不加年份限制
-    会导致「RLHF」「alignment」等高频词的榜首永远是 2022-2023 的经典论文。
+    v1.2: 年份过滤收紧为仅当年——S2 仅支持年份级过滤，最接近"最近1个月"的近似。
     """
     API_KEY = Config.SEMANTIC_SCHOLAR_API_KEY
     headers = {"x-api-key": API_KEY} if API_KEY else {}
 
-    # ── 年份窗口：只检索最近 2 年的论文 ──
-    current_year = datetime.datetime.now().year
-    year_min = current_year - 2
-    year_filter = f"{year_min}-{current_year}"
+    # ── 年份窗口：仅当年（S2 仅支持年份过滤，最接近"最近1个月"的近似）──
+    year_filter = str(datetime.datetime.now().year)
 
     all_papers = []
     seen_ids = set()
@@ -350,7 +345,7 @@ def search_semantic_scholar(keywords: list[str], limit: int = 5) -> list[dict]:
             consecutive_429_count = 0
             continue
 
-        logger.info(f"🔍 [S2] 正在检索: {keyword} (截断于 {year_min} 年)")
+        logger.info(f"🔍 [S2] 正在检索: {keyword} (仅限 {year_filter} 年)")
         papers_from_kw = []
         keyword_failed_429 = False  # 本关键词是否因 429 彻底失败
 
