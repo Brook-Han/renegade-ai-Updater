@@ -472,13 +472,28 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
 # WorkBuddy 集成：--no-llm 模式 → 保存文章供 WorkBuddy 分析
 # ------------------------------------------------------------------
 def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str]) -> None:
-    """保存预筛选后的文章到JSON，供WorkBuddy内置模型分析"""
+    """保存预筛选后的文章到JSON，供WorkBuddy内置模型分析
+    v1.1: 添加日期过滤，仅保存最近 NEWS_DAYS_BACK 天内的文章"""
     today = datetime.date.today().isoformat()
     articles_path = OUTPUT_DIR / f"news_articles_{today}.json"
+
+    # 日期窗口过滤
+    days_back = getattr(Config, "NEWS_DAYS_BACK", 7)
+    cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days_back)
+    date_filtered = 0
 
     articles = []
     for item in filtered_news:
         fp = get_news_cache_key(item)
+        pub_str = item.get("published", "")
+        if pub_str and pub_str != "N/A":
+            try:
+                pub_dt = datetime.datetime.fromisoformat(pub_str)
+                if pub_dt < cutoff_date:
+                    date_filtered += 1
+                    continue
+            except (ValueError, TypeError):
+                pass  # 无法解析日期，保留
         articles.append({
             "_cache_key": fp,
             "title": item.get("title", "")[:200],
@@ -488,6 +503,9 @@ def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str])
             "source": item.get("source", "rss"),
             "source_name": item.get("source_name", "Unknown"),
         })
+
+    if date_filtered > 0:
+        logger.info(f"📅 日期过滤：跳过 {date_filtered} 篇（超出 {days_back} 天窗口，共 {len(filtered_news)} → {len(articles)}）")
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     with open(articles_path, "w", encoding="utf-8") as f:
@@ -519,6 +537,8 @@ def _generate_report_from_cache(articles_path: str) -> None:
     cache = load_news_cache()
 
     news_data: list[dict] = []
+    hit_count = 0
+    miss_count = 0
     for art in articles:
         ck = art.get("_cache_key", "")
         if ck in cache and "analysis" in cache[ck]:
@@ -534,9 +554,13 @@ def _generate_report_from_cache(articles_path: str) -> None:
                 "analysis": cache[ck]["analysis"],
                 "cached_at": cache[ck].get("cached_at", ""),
             })
-            logger.info(f"✅ 缓存命中: {art['title'][:40]}...")
+            hit_count += 1
         else:
             logger.warning(f"⚠️ 缓存未命中（尚未分析）: {art['title'][:40]}...")
+            miss_count += 1
+
+    if hit_count > 0:
+        logger.info(f"📦 缓存命中: {hit_count} 条" + (f"，未命中: {miss_count} 条" if miss_count else ""))
 
     if not news_data:
         logger.error("❌ 没有可用的分析结果。请先让 WorkBuddy 完成分析并写入缓存。")

@@ -224,13 +224,20 @@ def fetch_newsapi(keywords: List[str], days_back: int = 3, max_retries: int = 2)
 # =============================================================================
 
 def fetch_rss_feeds(max_entries_per_feed: int = 12) -> List[Dict]:
-    """解析 RSS 源，无限流、无限制、稳定可靠"""
+    """解析 RSS 源，无限流、无限制、稳定可靠
+    v1.3: 新增日期过滤——只保留最近 NEWS_DAYS_BACK 天内的文章，避免旧文重复刷入"""
     feeds: Dict[str, str] = getattr(Config, "RSS_FEEDS", {})
     if not feeds:
         logger.warning("⏭️  [RSS] 未配置订阅源，跳过")
         return []
 
+    # 日期窗口：只保留最近 N 天
+    days_back = getattr(Config, "NEWS_DAYS_BACK", 7)
+    cutoff_date = datetime.datetime.now() - datetime.timedelta(days=days_back)
+
     articles: List[Dict] = []
+    total_parsed = 0
+    total_filtered = 0
     for feed_name, url in feeds.items():
         logger.info(f"📡 [RSS] 解析: {feed_name}")
         try:
@@ -239,11 +246,22 @@ def fetch_rss_feeds(max_entries_per_feed: int = 12) -> List[Dict]:
             for entry in feed.entries[:max_entries_per_feed]:
                 if not entry.get("title") or not entry.get("link"):
                     continue
+                pub_str = normalize_rss_date(entry)
+                total_parsed += 1
+                # 日期过滤：有有效日期且超出窗口的跳过
+                if pub_str != "N/A":
+                    try:
+                        pub_dt = datetime.datetime.fromisoformat(pub_str)
+                        if pub_dt < cutoff_date:
+                            total_filtered += 1
+                            continue
+                    except (ValueError, TypeError):
+                        pass  # 解析失败保留（宁可多抓不少漏）
                 articles.append({
                     "id": generate_article_id("rss", entry.get("link", ""), entry.get("title", "")),
                     "title": entry.title.strip(),
                     "summary": (entry.get("summary") or entry.get("description") or "").strip()[:500],
-                    "published": normalize_rss_date(entry),
+                    "published": pub_str,
                     "url": entry.get("link", ""),
                     "authors": [a.get("name", "") for a in entry.get("authors", [])],
                     "source": "rss",
@@ -254,6 +272,9 @@ def fetch_rss_feeds(max_entries_per_feed: int = 12) -> List[Dict]:
         except Exception as e:
             logger.error(f"❌ [RSS] 失败: {str(e)[:50]}")
         time.sleep(1.5)
+
+    if total_filtered > 0:
+        logger.info(f"📅 RSS 日期过滤：跳过 {total_filtered}/{total_parsed} 篇（超出 {days_back} 天窗口）")
 
     return articles
 
