@@ -1,6 +1,12 @@
 import os
 from pathlib import Path
-from dotenv import load_dotenv
+
+try:
+    from dotenv import load_dotenv
+except ImportError:
+    # 如果 python-dotenv 未安装，提供一个空函数
+    def load_dotenv(dotenv_path=None):
+        pass
 
 # 加载 .env 文件（使用 __file__ 显式指定路径，避免 CWD 依赖）
 _env_path = Path(__file__).parent / ".env"

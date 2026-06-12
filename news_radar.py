@@ -27,24 +27,29 @@ from typing import Optional
 _missing_deps = []
 try:
     import requests
-except ModuleNotFoundError:
+except ImportError:
     _missing_deps.append("requests")
 try:
     from openai import OpenAI
-except ModuleNotFoundError:
+except ImportError:
+    OpenAI = None  # 标记为不可用，--no-llm 模式可继续
     _missing_deps.append("openai")
 try:
     from dotenv import load_dotenv
-except ModuleNotFoundError:
+except ImportError:
     _missing_deps.append("python-dotenv")
 
-if _missing_deps:
+# 仅在非 --no-llm 且非 --report-from-cache 模式下强制检查依赖
+_disable_openai_check = "--no-llm" in sys.argv or "--report-from-cache" in sys.argv
+if _missing_deps and not _disable_openai_check:
     print(f"❌ 缺少依赖: {', '.join(_missing_deps)}")
     print("💡 请先激活虚拟环境再运行：")
     print("       source venv/bin/activate")
     print("  或者安装依赖：")
     print(f"       pip install {' '.join(_missing_deps)}")
     sys.exit(1)
+elif _missing_deps and _disable_openai_check:
+    print(f"⚠️  依赖缺失（--no-llm/--report-from-cache 模式可继续）: {', '.join(_missing_deps)}")
 
 # 自定义模块
 from config import Config
@@ -64,7 +69,7 @@ except RuntimeError as e:
     sys.exit(1)
 
 deepseek_client = None
-if Config.DEEPSEEK_API_KEY:
+if OpenAI is not None and Config.DEEPSEEK_API_KEY:
     deepseek_client = OpenAI(
         api_key=Config.DEEPSEEK_API_KEY,
         base_url="https://api.deepseek.com"
@@ -72,7 +77,7 @@ if Config.DEEPSEEK_API_KEY:
 
 # ── NVIDIA 官方 API 客户端（三个模型共用）──────
 nvidia_client = None
-if Config.OPENROUTER_API_KEY:
+if OpenAI is not None and Config.OPENROUTER_API_KEY:
     nvidia_client = OpenAI(
         api_key=Config.OPENROUTER_API_KEY,
         base_url=Config.OPENROUTER_BASE_URL,
@@ -87,10 +92,14 @@ if Config.OPENROUTER_API_KEY:
 else:
     logger.info("ℹ️  未配置 NVIDIA API Key")
 
-# 至少要有一个可用的分析客户端
+# 至少要有一个可用的分析客户端（--no-llm 和 --report-from-cache 模式除外）
+_disable_api_check = "--no-llm" in sys.argv or "--report-from-cache" in sys.argv
 if not deepseek_client and not nvidia_client:
-    logger.error("❌ 未配置任何分析模型 API Key（需要 OPENROUTER_API_KEY 或 DEEPSEEK_API_KEY）")
-    sys.exit(1)
+    if _disable_api_check:
+        logger.info(f"ℹ️  {sys.argv[1] if len(sys.argv) > 1 else ''} 模式，跳过 API 客户端检查")
+    else:
+        logger.error("❌ 未配置任何分析模型 API Key（需要 OPENROUTER_API_KEY 或 DEEPSEEK_API_KEY）")
+        sys.exit(1)
 
 # 优先使用 NVIDIA 客户端
 primary_client = nvidia_client if nvidia_client else deepseek_client
@@ -182,6 +191,12 @@ def fetch_news_with_cache(keywords: list[str]) -> list[dict]:
             "source": item.get("source", "rss"),  # newsapi / rss
             "source_name": source,
         }
+        
+        # 保留 item 中的其他字段（如 aihot_category, aihot_score 等）
+        for key, value in item.items():
+            if key not in news_item:
+                news_item[key] = value
+        
         all_news.append(news_item)
 
     logger.info(f"📰 抓取资讯 {len(all_news)} 条（去重后）")
@@ -348,6 +363,13 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
     domain_cn = set(DOMAIN_TERMS_CN.keys())
 
     filtered = []
+    
+    # 调试：记录第一条 AI HOT 条目在预筛选前的字段
+    for item in news_list:
+        if item.get("source") == "aihot":
+            logger.info(f"🔍 [预筛选前] 第一条 AI HOT 字段: {list(item.keys())}")
+            break
+    
     for item in news_list:
         # AI HOT 内容：使用中文词库预筛选
         if item.get("source") == "aihot":
@@ -367,6 +389,13 @@ def prescreen_news(news_list: list[dict]) -> list[dict]:
             filtered.append(item)
 
     logger.info(f"🔍 资讯预筛选：{len(news_list)} → {len(filtered)} 条")
+
+    # 调试：打印通过筛选后的第一条 AI HOT 条目的字段
+    for item in filtered:
+        if item.get("source") == "aihot":
+            logger.info(f"✅ [预筛选后] 第一条 AI HOT 字段: {list(item.keys())}")
+            break
+
     return filtered
 
 
@@ -681,6 +710,20 @@ def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str])
     date_filtered = 0
 
     articles = []
+    
+    # 调试：记录来源分布
+    sources = {}
+    for item in filtered_news:
+        src = item.get("source", "UNKNOWN")
+        sources[src] = sources.get(src, 0) + 1
+    logger.info(f"📊 来源分布: {sources}")
+    
+    # 调试：检查第一条 AI HOT 条目的字段
+    for item in filtered_news:
+        if item.get("source") == "aihot":
+            logger.info(f"🔍 第一条 AI HOT 条目字段: {list(item.keys())}")
+            break
+    
     for item in filtered_news:
         fp = get_news_cache_key(item)
         pub_str = item.get("published", "")
@@ -692,7 +735,16 @@ def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str])
                     continue
             except (ValueError, TypeError):
                 pass  # 无法解析日期，保留
-        articles.append({
+        
+        # 调试：检查 AI HOT 条目是否包含特有字段
+        if item.get("source") == "aihot":
+            if "aihot_category" not in item:
+                logger.debug(f"⚠️  AI HOT 条目缺少 aihot_category: {item['title'][:30]}...")
+            if "aihot_score" not in item:
+                logger.debug(f"⚠️  AI HOT 条目缺少 aihot_score: {item['title'][:30]}...")
+        
+        # 保存所有字段（保留 AI HOT 特有字段）
+        article = {
             "_cache_key": fp,
             "title": item.get("title", "")[:200],
             "summary": item.get("summary", "")[:500],
@@ -700,7 +752,12 @@ def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str])
             "url": item.get("url", ""),
             "source": item.get("source", "rss"),
             "source_name": item.get("source_name", "Unknown"),
-        })
+        }
+        # 保留 AI HOT 特有字段（如果存在）
+        for key in ["aihot_category", "aihot_score", "title_en"]:
+            if key in item:
+                article[key] = item[key]
+        articles.append(article)
 
     if date_filtered > 0:
         logger.info(f"📅 日期过滤：跳过 {date_filtered} 篇（超出 {days_back} 天窗口，共 {len(filtered_news)} → {len(articles)}）")
@@ -748,6 +805,9 @@ def _generate_report_from_cache(articles_path: str) -> None:
                     "url": art.get("url", ""),
                     "source_name": art.get("source_name", ""),
                     "source": art.get("source", "rss"),
+                    # AI HOT 特有字段（如果存在）
+                    "aihot_category": art.get("aihot_category"),
+                    "aihot_score": art.get("aihot_score"),
                 },
                 "analysis": cache[ck]["analysis"],
                 "cached_at": cache[ck].get("cached_at", ""),
