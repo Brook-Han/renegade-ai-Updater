@@ -1,25 +1,19 @@
 {
-  "timestamp": 1780721481.255879,
+  "timestamp": 1781516490.344501,
   "source": "semantic_scholar",
   "query": "alignment open deployment behavioral drift",
   "results": [
     {
-      "id": "d9e6df5adc896a524184bdc9344b0733cdb9c5b0",
-      "title": "Alignment Tipping Process: How Self-Evolution Pushes LLM Agents Off the Rails",
-      "summary": "As Large Language Model (LLM) agents increasingly gain self-evolutionary capabilities to adapt and refine their strategies through real-world interaction, their long-term reliability becomes a critical concern. We identify the Alignment Tipping Process (ATP), a critical post-deployment risk unique to self-evolving LLM agents. Unlike training-time failures, ATP arises when continual interaction drives agents to abandon alignment constraints established during training in favor of reinforced, self-interested strategies. We formalize and analyze ATP through two complementary paradigms: Self-Interested Exploration, where repeated high-reward deviations induce individual behavioral drift, and Imitative Strategy Diffusion, where deviant behaviors spread across multi-agent systems. Building on these paradigms, we construct controllable testbeds and benchmark both open and closed-source LLMs. Our experiments show that alignment benefits erode rapidly under self-evolution, with initially aligned models converging toward unaligned states. In multi-agent settings, successful violations diffuse quickly, leading to collective misalignment. Moreover, current reinforcement learning-based alignment methods provide limited defenses against alignment tipping. These findings demonstrate that alignment of LLM agents is not a static property but a fragile and dynamic one, vulnerable to feedback-driven decay during deployment. Our data and code are available at https://github.com/aiming-lab/ATP.",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/d9e6df5adc896a524184bdc9344b0733cdb9c5b0",
+      "id": "97b0de88b318f42e384ed49bbf879d6a23f6b030",
+      "title": "Trait-space Monitoring for Emergent Misalignment During Supervised Finetuning",
+      "summary": "Emergent misalignment (EM) occurs when narrow finetuning causes a model to behave dangerously outside the finetuning task. Standard training signals can miss this shift, making reliable detection costly if it depends on repeated behavioral evaluation. We ask whether emergent misalignment can instead be detected from internal representations during finetuning. Using seven alignment-relevant traits encoded as linear directions in activation space, we track representational drift across training checkpoints in four open-source 7-9B LLMs. EM-relevant drift concentrates on a low-dimensional axis that explains 65.5% of the variance, revealing a geometric signature in the studied regime. A low-overhead monitor built on this drift profile detects dangerous checkpoints with 2.2% false negative rate, 2.9% false positive rate, and 0.990 AUROC on held-out perturbation types, outperforming unsupervised PCA and SAE baselines. Stress tests on two 14B models, longer finetuning runs, and misaligned starting points identify key deployment boundaries. These results position trait-space monitoring as a practical complement to behavioral evaluation for EM detection during LoRA-based finetuning, while showing that deployment across substantially different regimes may require recalibration.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/97b0de88b318f42e384ed49bbf879d6a23f6b030",
       "authors": [
-        "Siwei Han",
-        "Jiaqi Liu",
-        "Yaofeng Su",
-        "Wenbo Duan",
-        "Xinyu Liu",
-        "C. Xie",
-        "Mohit Bansal",
-        "Mingyu Ding",
-        "Linjun Zhang",
-        "Huaxiu Yao"
+        "H. Nghiem",
+        "Sy-Tuyen Ho",
+        "Sarah Wiegreffe",
+        "Hal Daum'e"
       ],
       "source": "semantic_scholar"
     },
@@ -31,28 +25,6 @@
       "url": "https://www.semanticscholar.org/paper/043a229f99ea65eeefab2b7d8f40f900c420d883",
       "authors": [
         "Jonathan H. Westover"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "c8865af4bb7f2573fafb645424dbda0e4a35d81e",
-      "title": "Entropy-Based Measurement of Value Drift and Alignment Work in Large Language Models",
-      "summary": "Large language model safety is usually assessed with static benchmarks, but key failures are dynamic: value drift under distribution shift, jailbreak attacks, and slow degradation of alignment in deployment. Building on a recent Second Law of Intelligence that treats ethical entropy as a state variable which tends to increase unless countered by alignment work, we make this framework operational for large language models. We define a five-way behavioral taxonomy, train a classifier to estimate ethical entropy S(t) from model transcripts, and measure entropy dynamics for base and instruction-tuned variants of four frontier models across stress tests. Base models show sustained entropy growth, while tuned variants suppress drift and reduce ethical entropy by roughly eighty percent. From these trajectories we estimate an effective alignment work rate gamma_eff and embed S(t) and gamma_eff in a monitoring pipeline that raises alerts when entropy drift exceeds a stability threshold, enabling run-time oversight of value drift.",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/c8865af4bb7f2573fafb645424dbda0e4a35d81e",
-      "authors": [
-        "Samih Fadli"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "b5ce169e11a43e35294a64889d3337e266df9608",
-      "title": "Alignment Drift as a Security Threat: Detecting and Mitigating Misaligned AI Behavior in Regulated Systems",
-      "summary": "The existing state of AI alignment literature is largely devoted to the ethical codes of conduct and safety\nmeasures, yet the implications to the operational security and regulatory consistency have lacked adequate academic\ncoverage. This paper presents the notion of alignment drift, which can be seen as a cumulative departure of an AI system\nin its behavior out of the goals it is validated to fulfill, and suggests that it is one of the key security risks of regulated\nsettings. We propose a detection and mitigation framework, which is built by integrating behavioral baselining,\nexplainable deviation analysis and policy conscious enforcement, and thus is able to identify subtle misalignment\nphenomena, which are due to the changing data distributions, indirect manipulation and feedback driven adaptation. As\nopposed to more traditional adversarial defenses, which focus on attacks that are more egregious or performance loss, we\nfocus on latent behavioral drift that can be hidden but increase compliance and systemic risk. The empirical analyses\nperformed in the financial crime detection and identity-verification cases show that it is possible to identify alignment drift\nin early stages, with a low false-positive rate and insignificant operational inconvenience. Therefore, the given research\nmakes alignment drift security an unwelcomed but essential aspect of the development of trustworthy, compliant AI\nsystems. Altogether, the current piece of work establishes alignment drift security as an important but not well-known\naspect of responsible and responsible AI deployment, and thus offers a continuation of the current research on AI safety\nand robustness to a single view of security compliance.",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/b5ce169e11a43e35294a64889d3337e266df9608",
-      "authors": [
-        "A. K. Pakina"
       ],
       "source": "semantic_scholar"
     },
@@ -69,6 +41,34 @@
         "Doo-Hee Lee",
         "David G. Churchill",
         "Yoon Jeong Jang"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "9eea397f4899981df29389418dec805040536c8a",
+      "title": "Political Alignment in Large Language Models: A Multidimensional Audit of Psychometric Identity and Behavioral Bias",
+      "summary": "As large language models (LLMs) are increasingly deployed, understanding how they express political positioning is important for evaluating alignment and downstream effects. We audit 26 contemporary LLMs using three political psychometric inventories (Political Compass, SapplyValues, 8Values) and a news bias labeling task. To test robustness, inventories are administered across multiple semantic prompt variants and analyzed with a two-way ANOVA separating model and prompt effects. Most models cluster in a similar ideological region, with 96.3% located in the Libertarian-Left quadrant of the Political Compass, and model identity explaining most variance across prompt variants ($\\eta^2>0.90$). Cross-instrument comparisons suggest that the Political Compass social axis aligns more strongly with cultural progressivism than authority-related measures ($r=-0.64$). We observe differences between open-weight and closed-source models and asymmetric performance in detecting extreme political bias in downstream classification. Regression analysis finds that psychometric ideological positioning does not significantly predict classification errors, providing no evidence of a statistically significant relationship between conversational ideological identity and task-level behavior. These findings suggest that single-axis evaluations are insufficient and that multidimensional auditing frameworks are important to characterize alignment behavior in deployed LLMs. Our code and data are publicly available at https://github.com/sakhadib/PolAlignLLM.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/9eea397f4899981df29389418dec805040536c8a",
+      "authors": [
+        "Adib Sakhawat",
+        "T. Islam",
+        "Takia Farhin",
+        "Syed Rifat Raiyan",
+        "Hasan Mahmud",
+        "Md. Kamrul Hasan"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "a5a5a3686615446f01c6b7a7df966f425c1a1f66",
+      "title": "Measuring Evaluation-Context Divergence in Open-Weight LLMs: A Paired-Prompt Protocol with Pilot Evidence of Alignment-Pipeline-Specific Heterogeneity",
+      "summary": "Safety benchmarks are routinely treated as evidence about how a language model will behave once deployed, but this inference is fragile if behavior depends on whether a prompt looks like an evaluation. We define evaluation-context divergence as an observable within-item change in behavior induced by framing a fixed task as an evaluation, a live deployment interaction, or a neutral request, and present a paired-prompt protocol that measures it in open-weight LLMs while controlling for paraphrase variation, benchmark familiarity, and judge framing-sensitivity. Across five instruction-tuned checkpoints from four open-weight families plus a matched OLMo-3 base/instruct ablation ($20$ paired items, $840$ generations per checkpoint), we find striking heterogeneity. OLMo-3-Instruct alone is eval-cautious -- evaluation framing raises refusal vs. neutral by $11.8$pp ($p=0.007$) and reduces harmful compliance vs. deployment by $3.6$pp ($p=0.024$, $0/20$ items inverted) -- while Mistral-Small-3.2, Phi-3.5-mini, and Llama-3.1-8B are deployment-cautious}, with marginal eval-vs-deployment refusal effects of $-9$ to $-20$pp. The matched OLMo-3 base also exhibits the deployment-cautious pattern, identifying alignment as the inversion stage; within Llama-3.1, the $70$B model preserves direction with attenuated magnitude, ruling out a simple ``small-model effect that reverses at scale.''One caveat: the cross-family heterogeneity is judge-dependent. Re-judging with a different-family safety classifier (Llama-Guard-3-8B) preserves the within-OLMo eval-cautious direction but flattens the cross-family contrast, indicating that the two judges operationalize distinct constructs.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/a5a5a3686615446f01c6b7a7df966f425c1a1f66",
+      "authors": [
+        "Florian A. D. Burnat",
+        "Brittany I. Davidson"
       ],
       "source": "semantic_scholar"
     }

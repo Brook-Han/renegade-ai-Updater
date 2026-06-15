@@ -1,168 +1,148 @@
 {
-  "timestamp": 1780721238.985303,
+  "timestamp": 1781515775.151976,
   "source": "arxiv",
   "query": "AI assisted research homogenization",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.06481v1",
-      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
-      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
-      "published": "2026-06-04T17:58:05+00:00",
-      "url": "https://arxiv.org/pdf/2606.06481v1",
+      "id": "http://arxiv.org/abs/2606.14699v1",
+      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
+      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
+      "published": "2026-06-12T17:59:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.14699v1",
       "authors": [
-        "Sondos Mahmoud Bsharat",
-        "Jiacheng Liu",
-        "Xiaohan Zhao",
-        "Tianjun Yao",
-        "Xinyi Shang",
-        "Yi Tang",
-        "Jiacheng Cui",
-        "Ahmed Elhagry",
-        "Salwa K. Al Khatib",
-        "Hao Li",
-        "Salman Khan",
-        "Zhiqiang Shen"
+        "Ruining Li",
+        "Yuxin Yao",
+        "Matt Zhou",
+        "Chuanxia Zheng",
+        "Christian Rupprecht",
+        "Joan Lasenby",
+        "Shangzhe Wu",
+        "Andrea Vedaldi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06462v1",
-      "title": "Benchmark Everything Everywhere All at Once",
-      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
-      "published": "2026-06-04T17:52:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06462v1",
+      "id": "http://arxiv.org/abs/2606.14688v1",
+      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
+      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
+      "published": "2026-06-12T17:52:24+00:00",
+      "url": "https://arxiv.org/pdf/2606.14688v1",
       "authors": [
-        "Shiyun Xiong",
-        "Dongming Wu",
-        "Peiwen Sun",
-        "Yuang Ai",
-        "Bokang Yang",
-        "Wencheng Han",
-        "Xiao-Hui Li",
-        "Xiangyu Yue"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Dai Shi",
+        "Zheng Gao",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06461v1",
-      "title": "Flow-based Policy Adaptation without Policy Updates",
-      "summary": "Leveraging prior knowledge from pretrained policies, foundation models, or human operators offers an efficient alternative to learning robot skills from scratch. However, these agents often provide actions that are suboptimal, noisy, or misaligned with task-specific expert behavior. We propose GLOVES, a family of flow-based adaptation methods that correct non-expert actions by transporting them toward an expert action distribution. Rather than replacing agentic control with full autonomy, GLOVES performs selective action-level adaptation, improving task success while preserving agent intent. The learned flow also provides a natural in-distribution scoring mechanism through reverse flow evaluation. We use this signal as an intervention gate: actions that appear consistent with the expert distribution are passed through unchanged, while anomalous or out-of-distribution (OOD) actions are corrected. In this way, assistance is only provided when necessary. GLOVES requires only limited expert supervision, using a small number of demonstrations or reusable successful skill segments. By learning local expert action patterns and stitching them during execution, GLOVES provides a lightweight shared-control module for robust action adaptation across tasks and environments. Code and demos are available at ripl.github.io/GLOVES_web.",
-      "published": "2026-06-04T17:51:12+00:00",
-      "url": "https://arxiv.org/pdf/2606.06461v1",
+      "id": "http://arxiv.org/abs/2606.14675v1",
+      "title": "Forcing with Invariant Measures",
+      "summary": "This paper introduces a model-theoretic generalization of the notion of forcing with random reals, in which forcing gives rise to random generic structures. Specifically, we consider forcing with $κ$-Borel probability measures on the space of $L$-structures with a (possibly uncountable) infinite set $X$, focusing on those that are invariant under the action of the symmetric group $Sym(X)$. We demonstrate how any $Sym(X)$-invariant measure where $X$ is countable can be uniquely extended to a $Sym(Y)$-invariant measure where $Y$ is uncountable, and prove that forcing with such measures satisfies the countable chain condition. We also show that we can uniformly distinguish between these random generic structures and the Cohen generic structures that arise from forcing with a strong Fraïssé class: There is a $κ$-Borel set of low complexity that contains every Cohen generic structure that is not highly homogeneous but contains no random generic structure, implying that a structure that is not highly homogeneous cannot be both Cohen generic and random generic. Finally, we answer an open question of Kostana in the case of $ω_1$, by establishing a connection between forcing with a strong Fraïssé class and Cohen forcing.",
+      "published": "2026-06-12T17:41:00+00:00",
+      "url": "https://arxiv.org/pdf/2606.14675v1",
       "authors": [
-        "Luzhe Sun",
-        "Jingtian Ji",
-        "Haoran Chen",
-        "Jiawei Zhou",
-        "Matthew R. Walter"
+        "Nathanael Ackerman",
+        "Cameron Freer",
+        "Mohammad Golshani",
+        "Mostafa Mirabi",
+        "Rehana Patel"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06459v1",
-      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
-      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
-      "published": "2026-06-04T17:50:39+00:00",
-      "url": "https://arxiv.org/pdf/2606.06459v1",
+      "id": "http://arxiv.org/abs/2606.14668v1",
+      "title": "When to Write and When to Suppress: Route-Specialized Dual Adapters for Memory-Assisted Knowledge Editing",
+      "summary": "Knowledge editing systems must update selected facts while preserving nearby but irrelevant behavior. This paper studies this problem in a memory-assisted setting where an edit memory is retrieved at inference time and a parameter-efficient adapter corrects the model's object preference. We argue that the central design question is not only how to write an edit, but also when to suppress it. We introduce \\method{}, a route-specialized dual-adapter editor. A relevance router first decides whether a prompt should receive an edit memory. Routed prompts use an edit adapter trained to prefer the new object over the original object; unrouted non-direct prompts use a separate locality adapter trained to preserve or restore the original-object preference. We evaluate \\method{} on three 1,000-case protocols, \\cf{}, \\zsre{}, and \\mquake{}, under the same memory protocol and two 7B/8B base models. On Llama-3.1-8B-Instruct, \\method{} obtains the best overall probability-preference accuracy on all three benchmarks: 0.8180 on \\cf{}, 0.8946 on \\zsre{}, and 0.9922 on \\mquake{}. The same trend holds on Qwen3-8B. Router ablations show that the relevant memory boundary differs across datasets: a lexical neural router is safest on \\cf{}, while BGE embedding routing is better on \\zsre{} and \\mquake{}. Component and module ablations show that the gain mainly comes from separating edit injection from off-route suppression rather than from simply increasing LoRA capacity.",
+      "published": "2026-06-12T17:37:32+00:00",
+      "url": "https://arxiv.org/pdf/2606.14668v1",
       "authors": [
-        "Christie Djidjev",
-        "Nicholas Kaminski"
+        "Yining Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06453v1",
-      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
-      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
-      "published": "2026-06-04T17:48:17+00:00",
-      "url": "https://arxiv.org/pdf/2606.06453v1",
+      "id": "http://arxiv.org/abs/2606.14664v1",
+      "title": "The Self-Aware Body: A User-Centered Framework for Designing Therapeutic Sonic Interactions",
+      "summary": "This chapter presents a framework for designing therapeutic sonic interaction technologies, with a focus on movement sonification: the real-time conversion of bodily motion into sound that serves as feedback during motor rehabilitation. Despite growing evidence for their effectiveness, technologies implementing movement sonification are yet to be systematically adopted as part of clinical practice, potentially due to a lack of standardized development methodologies as well as inadequate integration of clinical stakeholder perspectives into interaction design. The framework addresses these barriers through three interconnected contributions. The first is a conceptual reframing of the design task as the calibration of sonic variability to the perceptual affordances of the listener and the demands of the clinical context. The second is a practical design platform inspired by professional audio mixing workflows, which imposes a structured and learnable signal-flow architecture on the interaction design process and enables rapid iterative exploration. The third is a user-centered development methodology adapted from healthcare intervention science, which grounds design decisions in engagement with the clinicians and patients who will use the resulting systems. The HearWalk biofeedback system for hemiparetic gait rehabilitation illustrates the framework, and the chapter concludes by examining where large language models and AI tools can meaningfully assist each stage of this design process, as well as where human clinical and perceptual expertise remains irreplaceable.",
+      "published": "2026-06-12T17:34:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14664v1",
       "authors": [
-        "Zhuoming Chen",
-        "Xinrui Zhong",
-        "Qilong Feng",
-        "Ranajoy Sadhukhan",
-        "Yang Zhou",
-        "Michael Qizhe Shieh",
-        "Zhihao Jia",
-        "Beidi Chen"
+        "Prithvi Ravi Kantan",
+        "Sofia Dahl",
+        "Erika G. Spaich"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06449v1",
-      "title": "Perverse filtration on Hilbert schemes via upward flow",
-      "summary": "We explicitly compute the perverse Leray filtration on the top cohomology of Hilbert schemes of points on $Σ\\times \\mathbb{C}$, for any connected smooth projective curve $Σ$. The computation is carried out in the natural basis given by the $\\mathbb{C}^*$-upward-flow cycles. The result is described by a simple symmetric-function dictionary: upward-flow classes correspond to products of complete homogeneous symmetric functions, while the perverse-homogeneous basis corresponds to products of Newton power sums, giving an explicit, upper-triangular change-of-basis between the two.",
-      "published": "2026-06-04T17:44:50+00:00",
-      "url": "https://arxiv.org/pdf/2606.06449v1",
+      "id": "http://arxiv.org/abs/2606.14658v1",
+      "title": "Giving AI a Headache: Acoustic Adversarial Attacks to Computer Vision Applications",
+      "summary": "Artificial Intelligence (AI) is increasingly used to automate a variety of real-world computer vision (CV) applications, such as autonomous vehicle control, facial recognition, and security cameras. Recent research has shown that acoustic vibration can induce real physical motion in cameras, interfering with their internal stabilization mechanisms. Because the motion falls outside the conditions the stabilization system was designed to handle, the system introduces artifacts into the frame, causing AI-based CV models to misclassify, miss targets, or hallucinate objects.   Previous work used ultrasonic frequencies (>20 kHz) to perform short-range attacks, which limits them to short distances due to the attenuation exhibited by high frequencies. In this work, we investigate acoustic attacks using lower frequencies in the audible range (<20 kHz), and we further expand our analysis to include how various image and object features are affected by the attacks.   Specifically, we performed physical experiments to demonstrate the viability of our attacks on an off-the-shelf object detection model (YOLO11) by resonating a commercially available camera with various frequencies. Based on our results, we provide insights into several factors that make an AI CV system more vulnerable to these attacks, which could help inform the development of future mitigation strategies.",
+      "published": "2026-06-12T17:22:53+00:00",
+      "url": "https://arxiv.org/pdf/2606.14658v1",
       "authors": [
-        "Filip Živanović"
+        "Nicole Villavicencio-Garduño",
+        "Maksim Ekin Eren",
+        "Milo Prisbrey",
+        "Ben Migliori",
+        "Michael Teti"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06445v1",
-      "title": "Resource Letter QIE-1: Research in quantum information education",
-      "summary": "In celebration of the 2025 UN International Year of Quantum Science and Technology, this Resource Letter surveys the rapidly-growing field of scholarship in quantum information science and engineering (QISE) education. It is primarily written as a guide for educators wishing to get started teaching QISE using research-based teaching methods, as well as for discipline-based education research (DBER) practitioners looking to get started in this field. Topics covered include scoping the field of QISE education, research into student reasoning in QISE, research-based and research-inspired curricular materials from the high school to graduate level, research-based assessments, simulation and gamification tools, and tools for incorporating discussion of the societal and ethical implications of quantum technologies into the classroom.",
-      "published": "2026-06-04T17:43:18+00:00",
-      "url": "https://arxiv.org/pdf/2606.06445v1",
+      "id": "http://arxiv.org/abs/2606.14654v1",
+      "title": "Abstracting Cross-Domain Action Sequences into Interpretable Workflows",
+      "summary": "Sequential or time-stamped interaction logs provide objective records of digital application usage, yet their granularity and noise often obscure meaningful insights into people's work. Such insights are essential for improving digital products in ways grounded in real-world user interactions. Prior research has applied deep learning models to cluster user actions into high-level activities, but these approaches are highly sensitive to noise and struggle to generalize across applications. To address this limitation, we introduce WorkflowView, a framework that uses large language models (LLMs) to abstract low-level action sequences into high-level activities. We establish the effectiveness and generality of our approach across three distinct, challenging sequential tasks and diverse domains: (a) zero-shot task description reconstruction from browser logs (achieving high semantic similarity, $μ_{sim} = 0.91$), (b) few-shot student dropout prediction using MOOC interaction logs (reaching weighted $F_1 = 0.90$ with only five few-shot examples), and (c) anonymized, privacy-preserving analysis of AI tool integration within document workflows in Microsoft Word. Our work demonstrates that LLM-based abstraction is a robust and efficient path forward for transforming low-level behavioral data into high-level, interpretable, and actionable insights. We also discuss practical considerations for deploying LLM-based inferences within logging infrastructures, including computational efficiency and user privacy.",
+      "published": "2026-06-12T17:19:15+00:00",
+      "url": "https://arxiv.org/pdf/2606.14654v1",
       "authors": [
-        "Josephine C. Meyer",
-        "Simon Goorney",
-        "Tunde Kushimo",
-        "Zeki C. Seskir"
+        "Gaurav Verma",
+        "Scott Counts"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06437v1",
-      "title": "Particle-Hole Ghost Interference in Superconductors",
-      "summary": "Mirror-assisted optical interference can improve the fidelity of Young's double-slit interference. Here we discuss an electron analogue: particle-hole interference in superconductors produced by a single impurity near a line defect, terrace edge, or phase boundary. Quasiparticle waves scattered directly from the impurity interfere with waves reflected by the boundary, generating a ``ghost'' interference pattern that combines conventional $2k_F$ Friedel oscillations with additional hyperbolic fringes. Compared to the recently studied two-impurity Young's interference, this effect appears already at first order in the impurity potential and is therefore parametrically stronger. The resulting spatial modulation extends beyond $λ_F/2$ and is directly sensitive to the quasiparticle structure of the paired state, including possible Fermi-surface anisotropy of the superconducting order parameter. These findings point to boundary-assisted impurity interference as a robust local probe of superconducting electronic order, with clear signatures accessible to STM/STS measurements.",
-      "published": "2026-06-04T17:39:49+00:00",
-      "url": "https://arxiv.org/pdf/2606.06437v1",
+      "id": "http://arxiv.org/abs/2606.14647v1",
+      "title": "Listening with Attention: Entropy-Guided Explainability for Transformer-Based Audio Models",
+      "summary": "Transformer-based automatic speech recognition (ASR) models such as Whisper are highly accurate, but their predictions remain difficult to interpret. Existing explainable AI (XAI) methods often lack faithfulness and precise temporal grounding. We propose Listening with Entropy-guided Attention for Faithful explainability (LEAF-X), a model-intrinsic XAI framework for transformer-based ASR. LEAF-X combines entropy-guided attention weighting, multi-layer attention rollout, and optional causal ablations to identify low-entropy, high-impact heads and layers, producing sparse token-to-frame attributions. Unlike perturbation-based explainers or raw attention maps, LEAF-X exploits the internal structure of encoder-decoder and speech-augmented decoder-only models to generate explanations that better reflect model computation. Results show 32% improved faithfulness, 35-39% stronger locality/sparsity, and the most stable attributions, supporting more transparent and auditable ASR.",
+      "published": "2026-06-12T17:08:42+00:00",
+      "url": "https://arxiv.org/pdf/2606.14647v1",
       "authors": [
-        "Archisman Panigrahi",
-        "Vladislav Poliakov",
-        "Leonid Levitov"
+        "Ravi Ranjan",
+        "Utkarsh Grover",
+        "Xiaomin Lin",
+        "Agoritsa Polyzou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06431v1",
-      "title": "An inverse source problem for a fully nonlinear elliptic equation",
-      "summary": "We study an inverse source problem for fully nonlinear elliptic equations of the form   \\[   F(D^2u)=f \\quad \\text{in } Ω.   \\]   The question is whether the source term can be recovered from the Dirichlet-to-Neumann map. In two dimensions, the first linearization does not immediately give uniqueness: it leaves a natural conformal ambiguity in the linearized coefficients. For homogeneous nonlinearities $F$ with injective differential $DF$, we show that this ambiguity has a precise meaning at the level of the equation itself, namely that the source is determined up to an explicit scalar factor.   The main point of the paper is to show how this remaining factor can be removed. We use the second linearization to extract information which is invisible at first order, and combine it with an algebraic nondegeneracy condition on the nonlinearity. Under this condition, the residual ambiguity is forced to be trivial, and the Dirichlet-to-Neumann map uniquely determines the source. The result applies, in particular, to homogeneous admissible Hessian equations of Monge--Ampère type and related examples.",
-      "published": "2026-06-04T17:35:42+00:00",
-      "url": "https://arxiv.org/pdf/2606.06431v1",
+      "id": "http://arxiv.org/abs/2606.14636v1",
+      "title": "Graph Diffusion Residuals for Control-Function Instrumental Variables",
+      "summary": "Control-function instrumental variable estimators need a first-stage residual, not merely a first-stage prediction. High-capacity first stages can interpolate treatment and leave too little residual information for the outcome equation. We study Adaptive Anisotropic Instrumental Heat Flow (A-IHF), a deterministic graph-diffusion residual extractor for flexible control functions. A-IHF treats treatment as a signal on a graph of first-stage features, uses pilot diffusion to detect large treatment jumps, attenuates conductance across those jumps, and computes the generated control with a sparse graph resolvent. Its observational selection rule uses only $(Z,X)$, combining graph generalized cross-validation, roughness, residualized-treatment relevance, and graph-admissibility filtering. The analysis decomposes error into structural leakage, residual attenuation, and residualized treatment variation, yielding finite-sample bounds, graph-admissibility rates under latent piecewise-smooth geometry, and finite-path selection calibration. Across 54 synthetic benchmark cells with tuned graph, kernel, tree, boosting, series, and neural control-function baselines, guarded observational A-IHF has the lowest average structural-response MSE; the A-IHF family beats the best non-A-IHF baseline in 32 cells. Performance is strongest when the graph captures piecewise-smooth first-stage structure.",
+      "published": "2026-06-12T17:02:53+00:00",
+      "url": "https://arxiv.org/pdf/2606.14636v1",
       "authors": [
-        "Ching-Lung Lin",
-        "Yi-Hsuan Lin",
-        "Jenn-Nan Wang"
+        "Rui Wu",
+        "Zongyuan Chen",
+        "Hong Xie",
+        "Defu Lian",
+        "Enhong Chen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06430v1",
-      "title": "Dynamic structural inhomogeneity in strontium ruthenate",
-      "summary": "Strontium ruthenate (Sr$_2$RuO$_4$, SRO) has been the subject of intense research as a model quasi-two-dimensional metal with strong electronic correlations and potential exotic multi-component superconductor. Yet the nature of the superconducting state and its emergence remain debated, despite highly detailed knowledge of the normal-state electronic properties. Here we use diffuse neutron and x-ray scattering to uncover self-organized structural inhomogeneity on the picosecond timescale in SRO. We show that these structural correlations do not originate from extrinsic disorder but rather involve correlated displacements of oxygen atoms in the quintessential RuO$_2$ planes. Moreover, the observed displacement pattern is consistent with distortions due to orbital order that we obtain in first-principles calculations, which suggests that orbital effects could play a pivotal role in the physics of SRO. The appearance of such dynamic inhomogeneity may be relevant for a wide range of prominent oxides with similar lamellar structures, such as the cuprates and nickelates.",
-      "published": "2026-06-04T17:34:55+00:00",
-      "url": "https://arxiv.org/pdf/2606.06430v1",
+      "id": "http://arxiv.org/abs/2606.14626v1",
+      "title": "Characterizing Cultural Localization in AI-Generated Stories",
+      "summary": "The global use of artificial intelligence has increased interest in assessing the ability to generate culturally localized content, including stories. Cultural localization in stories often occurs through either templated localization -- the use of cultural markers (e.g., names, locations) in a generic narrative -- or holistic localization -- the variation of plots, values, and themes, in addition to cultural markers. We propose a method to measure the degree to which content was generated through templated localization. Specifically, we identify the lexical tokens that distinguish stories across nationalities and measure the similarity of the narratives that remain after removing them. In stories generated by five models on 125 topics for 193 nationalities, our method is able to detect that only a small subset (9-17%) of the vocabulary accounts for the variation across nationalities and that the narratives that remain after removing them contain repeated multi-word sequences, suggesting the presence of a shared culturally-agnostic narrative template. Finally, we characterize the cultural markers for their stereotypicality and offensiveness, finding that markers from 19 countries, mostly located in the Global South, are on average offensive.",
+      "published": "2026-06-12T16:51:52+00:00",
+      "url": "https://arxiv.org/pdf/2606.14626v1",
       "authors": [
-        "M. Spaić",
-        "R. Spieker",
-        "I. Bilonić",
-        "A. Paul",
-        "B. Krohnke Orquera",
-        "X. He",
-        "E. Topić",
-        "A. Minelli",
-        "F. Ye",
-        "N. Kikugawa",
-        "D. Sokolov",
-        "M. J. Krogstad",
-        "S. Rosenkranz",
-        "R. Osborn",
-        "T. Birol",
-        "M. Greven",
-        "D. Pelc"
+        "Shaily Bhatt",
+        "Supriti Vijay",
+        "Jeremiah Milbauer",
+        "Fernando Diaz"
       ],
       "source": "arxiv"
     }

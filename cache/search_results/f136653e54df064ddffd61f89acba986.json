@@ -1,164 +1,143 @@
 {
-  "timestamp": 1780721252.870021,
+  "timestamp": 1781515787.968252,
   "source": "arxiv",
   "query": "companion AI emotional dependence",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.06492v1",
-      "title": "Code2LoRA: Hypernetwork-Generated Adapters for Code Language Models under Software Evolution",
-      "summary": "Code language models need repository-level context to resolve imports, APIs, and project conventions. Existing methods inject this knowledge as long inputs (retrieved through RAG or dependency analysis) or through per-repository fine-tuning and LoRA -- costly at repository scale and brittle to evolving codebases. We introduce Code2LoRA, a hypernetwork framework that generates repository-specific LoRA adapters, effectively injecting repository knowledge with zero inference-time token overhead. Code2LoRA supports two usage scenarios: Code2LoRA-Static converts a single repository snapshot into an adapter, suitable for comprehension of stable codebases; while Code2LoRA-Evo maintains an adapter backed by a GRU hidden state updated per code diff, suitable for active development of evolving codebases. To evaluate Code2LoRA against parameter-efficient fine-tuning baselines, we build RepoPeftBench, a benchmark of 604 Python repositories with two tracks: a static track with 40K training and 12K test assertion-completion tasks, and an evolution track with 215K commit-derived training and 87K commit-derived test tasks. On the static track, Code2LoRA-Static achieves 63.8% cross-repo and 66.2% in-repo exact match, matching the per-repository LoRA upper bound; on the evolution track, Code2LoRA-Evo achieves 60.3% cross-repo exact match (+5.2 pp over a single shared LoRA). Code2LoRA's code can be found at https://anonymous.4open.science/r/code2lora-6857; the model checkpoints and RepoPeftBench datasets can be found at https://huggingface.co/code2lora.",
-      "published": "2026-06-04T17:59:46+00:00",
-      "url": "https://arxiv.org/pdf/2606.06492v1",
+      "id": "http://arxiv.org/abs/2606.14704v1",
+      "title": "The Edges of Planetary Systems: Falling Off the Kuiper Cliff in a Dissipating Gas Disk",
+      "summary": "Probably the last planetesimals to have formed from dust in the solar nebula are Cold Classical Kuiper belt objects (CCKBOs). To the extent that they are isolated and unchanged since birth, CCKBOs offer direct insights into nebular processes. Their population density drops abruptly beyond a heliocentric radius of $\\sim$47 au, a feature known as the \"Kuiper Cliff\". We show with global, 1D (radial), time-dependent models how gaseous protoplanetary disks that disperse from magnetic and photoevaporative winds leave behind planetesimal disks with Cliff-like outer edges. The gas disperses from the inside out, creating transitional disks whose inner cavities expand from $\\lesssim$ 1 au to $\\gtrsim$ 100 au. Gas at the cavity boundary presents a pressure maximum toward which dust particles drift, triggering the streaming instability which clumps dust into planetesimals massive enough to decouple from gas. The receding cavity wall thus paves a disk of planetesimals which truncates when dust and gas are spent. With no fine-tuning, we show how a generic gas disk clearing from the inside out reproduces the Kuiper Cliff and the CCKB surface density. Connecting these global 1D results with published local 3D simulations of dust and gas, we see how many properties of the CCKB -- its radial extent, total mass, individual object sizes, and binary statistics -- follow from the streaming instability at work in a late-stage transition disk.",
+      "published": "2026-06-12T17:59:58+00:00",
+      "url": "https://arxiv.org/pdf/2606.14704v1",
       "authors": [
-        "Liliana Hotsko",
-        "Yinxi Li",
-        "Yuntian Deng",
-        "Pengyu Nie"
+        "Rixin Li",
+        "Eugene Chiang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06481v1",
-      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
-      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
-      "published": "2026-06-04T17:58:05+00:00",
-      "url": "https://arxiv.org/pdf/2606.06481v1",
+      "id": "http://arxiv.org/abs/2606.14699v1",
+      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
+      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
+      "published": "2026-06-12T17:59:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.14699v1",
       "authors": [
-        "Sondos Mahmoud Bsharat",
-        "Jiacheng Liu",
-        "Xiaohan Zhao",
-        "Tianjun Yao",
-        "Xinyi Shang",
-        "Yi Tang",
-        "Jiacheng Cui",
-        "Ahmed Elhagry",
-        "Salwa K. Al Khatib",
-        "Hao Li",
-        "Salman Khan",
-        "Zhiqiang Shen"
+        "Ruining Li",
+        "Yuxin Yao",
+        "Matt Zhou",
+        "Chuanxia Zheng",
+        "Christian Rupprecht",
+        "Joan Lasenby",
+        "Shangzhe Wu",
+        "Andrea Vedaldi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06479v1",
-      "title": "Pretraining Recurrent Networks without Recurrence",
-      "summary": "Training recurrent neural networks (RNNs) requires assigning credit across long sequences of computations. Standard backpropagation through time (BPTT) addresses this problem poorly: it is sequential in time, limiting parallelism, and suffers from vanishing or exploding gradients, making long-range associations difficult to learn. We propose Supervised Memory Training (SMT), a method for training nonlinear RNNs that sidesteps recurrent credit propagation entirely by reducing RNN training to supervised learning on one-step memory transition labels $(m_t, x_{t+1}) \\rightarrow m_{t+1}$. SMT acquires these memory labels by training a Transformer-based encoder on a predictive state objective--retaining only information from the past necessary to predict the future. By decoupling what to remember from how to update memory, SMT enables time-parallel RNN training with a stable $O(1)$ length gradient path between any two tokens--without ever unrolling the RNN. We find that SMT outperforms BPTT when pretraining various RNN architectures on tasks like language modeling and pixel sequence modeling. SMT enables nonlinear RNNs to better capture long-range dependencies and train in parallel, potentially unlocking the scaling of models that build temporal abstractions of past experience.",
-      "published": "2026-06-04T17:57:33+00:00",
-      "url": "https://arxiv.org/pdf/2606.06479v1",
+      "id": "http://arxiv.org/abs/2606.14696v1",
+      "title": "Scalar dissipation anomaly and scalar-gradient scaling in turbulence: A joint velocity-scalar multifractal view",
+      "summary": "We revisit the problem of scalar dissipation anomaly and scaling of scalar gradients in passive scalar turbulence using theory and data from well-resolved direct numerical simulations (DNS) on grid sizes of up to $8192^3$, spanning Taylor-scale Reynolds numbers $Re_λ=140-1000$ and Schmidt numbers $Sc = 1-512$. The theory is based on a joint multifractal description of longitudinal velocity increments and scalar increments, constrained by Yaglom's law and extended to gradients via a fluctuating Batchelor cutoff scale. The DNS data show that the normalized mean scalar dissipation approaches a single asymptotic value as both $Re_λ$ and $Sc$ increase, although larger $Sc$ requires larger $\\re$ to reach this state. In the multifractal framework, this corresponds to an effective scalar Hölder exponent tending to zero, associated with sharp cliff-like scalar fronts, and saturation of inertial-range scaling scalar structure-function exponents. The joint velocity-scalar fractal dimension of the dissipative structures is inferred to approach $7/3$, indicating a non-space-filling support. The framework further predicts that for fixed $Re_λ$, higher-order central moments of scalar gradients are independent of $Sc$. This prediction is confirmed by DNS data and by the collapse of standardized probability distributions of scalar-gradient across Schmidt numbers. These results suggest that the $Sc$-scaling of scalar gradients is dictated solely by scalar dissipation anomaly. In contrast, their $Re_λ$-dependence reflects strong intermittency, which can be directly related to mixed velocity-scalar structure function exponents.",
+      "published": "2026-06-12T17:58:34+00:00",
+      "url": "https://arxiv.org/pdf/2606.14696v1",
       "authors": [
-        "Akarsh Kumar",
-        "Phillip Isola"
+        "Dhawal Buaria"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06472v1",
-      "title": "When positive and negative pairs differ in femtoscopy: residual Coulomb and isospin effects",
-      "summary": "We study charge-dependent modifications of identical-pion and identical-kaon femtoscopic correlation functions from two sources: the residual Coulomb field of the charged source and isospin-related hadronic dynamics. The residual Coulomb effect is modeled with a modified Retiere--Lisa blast-wave source, where the same emitted particles are propagated with positive and negative charge signs through an effective residual field. The residual Coulomb field produces a small but systematic positive-to-negative splitting of the correlation functions, strongest at low $k_T$ and sensitive to the effective charge, spatial width, and expansion velocity of the residual source. It also modifies the height and shape of the correlation function, complicating interpretation of the fitted radii. UrQMD 3.4 cascade calculations for Au+Au collisions at $\\sqrt{s_{NN}}=7.7~\\mathrm{GeV}$ show that charge-dependent splittings can also appear even without a residual Coulomb field. For pions, this difference is mainly driven by the initial isospin composition, while for kaons it is strongly affected by different $K^+$ and $K^-$ production mechanisms and subsequent hadronic evolution. These results show that residual Coulomb and isospin-related effects can compete, and neither can be interpreted reliably without constraining the other within the same model framework.",
-      "published": "2026-06-04T17:55:52+00:00",
-      "url": "https://arxiv.org/pdf/2606.06472v1",
+      "id": "http://arxiv.org/abs/2606.14690v1",
+      "title": "A Complexity Measure for Active Learning in Multi-group Mean Estimation",
+      "summary": "We study a \\emph{max-risk} objective for active learning in a multi-group mean estimation $d$-armed bandits: a learner adaptively allocates a budget of $T$ samples across $d$ groups to minimize the worst-case uncertainty index $\\max_{k\\in[d]}σ_k^2/n_k$, where $σ_k$ is the standard deviation of the distribution of arm $d$, and $n_k$ is the number of times arm $d$ is sampled. We develop a local minimax framework and prove the first general lower bound for this objective, valid for any finite-variance hypothesis class. The bound separates difficulty into three orthogonal factors: a \\emph{budget} term, a \\emph{heteroscedasticity} index measuring how unevenly the uncertainty is spread across arms, and a model-dependent complexity measure, the \\emph{Variance Local Curvature} ($\\mathrm{VLC}$), which captures how much information a local change of variance creates inside the hypothesis class. For smooth classes, the $\\mathrm{VLC}$ is a reparametrization of a variance--Fisher information, with closed-form values for common families. Benchmarking against the strongest available upper bound shows near-optimality up to logarithmic factors in broad regimes, and pinpoints a systematic gap in highly heterogeneous instances. Our proof introduces two key ingredients: a loss-induced $\\ell_1$ geometry on the decision space, and a representation-based instance generator that reduces hard-instance construction to an explicit random matrix calculation.",
+      "published": "2026-06-12T17:54:26+00:00",
+      "url": "https://arxiv.org/pdf/2606.14690v1",
       "authors": [
-        "Yevheniia Khyzhniak",
-        "Michael Annan Lisa"
+        "Abdellah Aznag",
+        "Rachel Cummings",
+        "Adam N. Elmachtoub"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06471v1",
-      "title": "Analytic insight into the physics of SASI II. Spiral instability of the prograde mode in a rotating stellar core",
-      "summary": "During the core-collapse of a rotating massive star, the standing accretion shock instability (SASI) favours the development of non-axisymmetric motions which can imprint specific frequency signatures on the neutrino and gravitational wave signals.This study establishes analytical approximations for the eigenfrequencies of the dominant SASI modes. It also explains the physical mechanism responsible for the further destabilization of prograde SASI modes by differential rotation. A perturbative analysis is used to calculate the eigenfrequencies of a stalled accretion shock in spherical geometry, taking into account the rotation of the collapsing stellar core. The formulation of the perturbative equations as a self-forced oscillator is extended to include differential rotation and interpret the results physically. The oscillation frequency of the dominant mode weakly depends on the detailed formulation of neutrino emission if the shock radius exceeds ~1.5 times the radius r_nabla of maximum deceleration. Analytical expressions are obtained for the one and two-armed spiral modes with a 10% accuracy in this regime. The effect of differential rotation is explained by the role of phase mixing between the advective forcing and the acoustic structure. The radial wavelength of vorticity perturbations associated with the prograde mode is increased by differential rotation, leading to a better phase match with the large radial scale of the acoustic structure. Even when rotation is too modest to involve a corotation radius, its adverse effect on phase mixing can be significant at small radius due to the steep inward increase of the rotation frequency ~1/r^2 in the region of stationary accretion. In the regime of stronger rotation involving a corotation radius, the stationary phase approximation sheds light on the dominant advective-acoustic coupling, located between the corotation zone and the shock.",
-      "published": "2026-06-04T17:55:27+00:00",
-      "url": "https://arxiv.org/pdf/2606.06471v1",
+      "id": "http://arxiv.org/abs/2606.14688v1",
+      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
+      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
+      "published": "2026-06-12T17:52:24+00:00",
+      "url": "https://arxiv.org/pdf/2606.14688v1",
       "authors": [
-        "T. Foglizzo"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Dai Shi",
+        "Zheng Gao",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06468v1",
-      "title": "Goedel-Architect: Streamlining Formal Theorem Proving with Blueprint Generation and Refinement",
-      "summary": "We introduce Goedel-Architect, an agentic framework for formal theorem proving in Lean 4 centered on blueprint generation and refinement. A blueprint is a dependency graph of definitions and lemmas that builds up to the main theorem. First, Goedel-Architect generates a blueprint of formally stated definitions and lemmas, along with declared dependencies. This blueprint is optionally guided by a natural language proof. Then, a tool-equipped Lean prover component closes each open lemma node in parallel using relevant dependencies. Failed lemmas in turn drive refinement of the global blueprint. This strategy contrasts with other mainstream approaches which use recursive lemma decomposition, and can inefficiently loop on dead-end strategies. Using the open-weight DeepSeek-V4-Flash (284B-A13B) as the backbone, Goedel-Architect attains 99.2% pass@1 on MiniF2F-test and 75.6% pass@1 on PutnamBench. With an optional natural-language proof seeding the initial blueprint on the harder problems, we additionally close the remaining two MiniF2F-test problems (reaching 100%), lift PutnamBench to 88.8% (597/672), and solve 4/6 on IMO 2025, 11/12 on Putnam 2025, and 3/6 on USAMO 2026. This represents state-of-the-art performance for an open-source pipeline at a price point up to 500x less than comparable open-source pipelines.",
-      "published": "2026-06-04T17:54:44+00:00",
-      "url": "https://arxiv.org/pdf/2606.06468v1",
+      "id": "http://arxiv.org/abs/2606.14686v1",
+      "title": "CottonLeafVision: An Explainable and Robust Deep Learning Framework for Cotton Leaf Disease Classification",
+      "summary": "Globally, cotton is a highly economically beneficial crop, as the textile industry heavily depends on it. So, the precise identification and detection of cotton leaf disease is crucial for economic stability. The development goal of \"CottonLeafVision\" is to accurately classify and detect cotton leaf disease. With this goal, we have evaluated multiple pretrained Deep Convolutional Neural Networks, including DenseNet201, InceptionV3, and VGG19 on a publicly available cotton leaf disease image dataset. This image dataset includes seven classes, six disease classes, and one healthy class, collected under various field conditions reflecting real-world challenges. Among these pretrained models, with DenseNet201, we have achieved the highest classification accuracy of 98%. To enhance the model reliability and interpretability, we have implemented different techniques and methods such as Gradient-weighted Class Activation Mapping (Grad-CAM), occlusion sensitivity analysis and adversarial training to increase the noise resistance of the model. Finally, we have developed a prototype in order to utilize the model's capabilities on real life agriculture. This paper shows the deep learning model's capabilities to classify the disease in real-life cotton disease management situations.",
+      "published": "2026-06-12T17:50:23+00:00",
+      "url": "https://arxiv.org/pdf/2606.14686v1",
       "authors": [
-        "Jui-Hui Chung",
-        "Ziyang Cai",
-        "Zihao Li",
-        "Qishuo Yin",
-        "Rohit Agarwal",
-        "Simon Park",
-        "Rodrigo Porto",
-        "Narutatsu Ri",
-        "Ziran Yang",
-        "Shange Tang",
-        "Xingyu Dang",
-        "Hongzhou Lin",
-        "Mengdi Wang",
-        "Danqi Chen",
-        "Chi Jin",
-        "Liam H Fowl",
-        "Sanjeev Arora"
+        "Rafi Ahamed",
+        "Md. Abir Rahman",
+        "Tasnia Tarannum Roza",
+        "Munaia Jannat Easha",
+        "Md. Asif Khan",
+        "Sudeepta Mandal"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06462v1",
-      "title": "Benchmark Everything Everywhere All at Once",
-      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
-      "published": "2026-06-04T17:52:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06462v1",
+      "id": "http://arxiv.org/abs/2606.14680v1",
+      "title": "Sum of parts in overpartitions and partitions without repeated odd parts",
+      "summary": "In this paper, we obtain several Ramanujan-type congruences modulo 5 and 7 for sum of certain non-overlined parts in overpartitions classified by parity and sum of certain parts in partitions without repeated odd parts classified by parity. Our proofs for the congruences are elementary, depending only on classical theta function identities.",
+      "published": "2026-06-12T17:46:02+00:00",
+      "url": "https://arxiv.org/pdf/2606.14680v1",
       "authors": [
-        "Shiyun Xiong",
-        "Dongming Wu",
-        "Peiwen Sun",
-        "Yuang Ai",
-        "Bokang Yang",
-        "Wencheng Han",
-        "Xiao-Hui Li",
-        "Xiangyu Yue"
+        "Frank Garvan",
+        "Rishabh Sarma"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06459v1",
-      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
-      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
-      "published": "2026-06-04T17:50:39+00:00",
-      "url": "https://arxiv.org/pdf/2606.06459v1",
+      "id": "http://arxiv.org/abs/2606.14679v1",
+      "title": "Optimal Hidden-Target Learning for Online Inventory Optimization on General Convex Sets",
+      "summary": "Online inventory optimization (OIO) is online convex optimization with physical memory: inventory carryover makes the feasible action set depend on the past. A natural principle, used in stochastic inventory learning and recently in OIO under a single linear capacity constraint, is to maintain a hidden target chosen by an online learner and implement its projection onto the currently feasible order-up-to set. We prove that this simple principle is optimal for OIO on arbitrary bounded convex capacity sets. With online gradient descent as the base learner, the method improves the best known regret guarantee for OIO on general convex sets from inverse to inverse-square-root dependence on the common-demand probability, and we prove a matching lower bound. The same principle gives the first polylogarithmic regret guarantee for strongly convex losses and the first dynamic regret guarantee adapting to Euclidean path variation on general convex capacity sets.   The analysis introduces a norm alignment principle: the right state variable is the distance from the hidden target to the feasible set, measured in the same norm as the projection. Under norm alignment, this distance evolves pathwise as a scalar queue, with target movement as arrival and common demand as service. This reduction to one-dimensional queue control resolves the state dependence and extends the guarantees to general convex capacity sets, beyond the reach of prior productwise approaches. Experiments on synthetic and real-world inventory data corroborate the theory.",
+      "published": "2026-06-12T17:45:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14679v1",
       "authors": [
-        "Christie Djidjev",
-        "Nicholas Kaminski"
+        "Anthony Pineci",
+        "Yunzong Xu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06453v1",
-      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
-      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
-      "published": "2026-06-04T17:48:17+00:00",
-      "url": "https://arxiv.org/pdf/2606.06453v1",
+      "id": "http://arxiv.org/abs/2606.14664v1",
+      "title": "The Self-Aware Body: A User-Centered Framework for Designing Therapeutic Sonic Interactions",
+      "summary": "This chapter presents a framework for designing therapeutic sonic interaction technologies, with a focus on movement sonification: the real-time conversion of bodily motion into sound that serves as feedback during motor rehabilitation. Despite growing evidence for their effectiveness, technologies implementing movement sonification are yet to be systematically adopted as part of clinical practice, potentially due to a lack of standardized development methodologies as well as inadequate integration of clinical stakeholder perspectives into interaction design. The framework addresses these barriers through three interconnected contributions. The first is a conceptual reframing of the design task as the calibration of sonic variability to the perceptual affordances of the listener and the demands of the clinical context. The second is a practical design platform inspired by professional audio mixing workflows, which imposes a structured and learnable signal-flow architecture on the interaction design process and enables rapid iterative exploration. The third is a user-centered development methodology adapted from healthcare intervention science, which grounds design decisions in engagement with the clinicians and patients who will use the resulting systems. The HearWalk biofeedback system for hemiparetic gait rehabilitation illustrates the framework, and the chapter concludes by examining where large language models and AI tools can meaningfully assist each stage of this design process, as well as where human clinical and perceptual expertise remains irreplaceable.",
+      "published": "2026-06-12T17:34:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14664v1",
       "authors": [
-        "Zhuoming Chen",
-        "Xinrui Zhong",
-        "Qilong Feng",
-        "Ranajoy Sadhukhan",
-        "Yang Zhou",
-        "Michael Qizhe Shieh",
-        "Zhihao Jia",
-        "Beidi Chen"
+        "Prithvi Ravi Kantan",
+        "Sofia Dahl",
+        "Erika G. Spaich"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06446v1",
-      "title": "Method to study $CP$ violation in $B_s^0\\to K_S K^\\pm π^\\mp$ decays",
-      "summary": "The $B_s^0\\to K_S K^\\pm π^\\mp$ decays are of interest to test the Standard Model and search for new sources of $CP$ violation. A full study of these decays requires a tagged decay-time-dependent Dalitz-plot analysis performed simultaneously in the two final states. Such an analysis has never previously been performed. The method to carry out such an analysis, relating the amplitudes for decays to resonances in the two final-states to each other, is set out and its feasibility is demonstrated using pseudoexperiments. The sensitivity to the weak phase difference, $φ_s^{\\rm eff}$, between $B_s^0 \\to K_S K^*(892)^0$ decays with and without $B_s^0$-$\\bar{B}_s^0$ mixing is studied. Good precision on $φ_s^{\\rm eff}$ is found to be achievable with a dataset corresponding to LHCb Runs 1-3, with further improvement expected with datasets to be collected in future. The method is implemented in the Laura++ Dalitz-plot analysis package, and can be applied to other multibody decays with multiple final states.",
-      "published": "2026-06-04T17:44:01+00:00",
-      "url": "https://arxiv.org/pdf/2606.06446v1",
+      "id": "http://arxiv.org/abs/2606.14658v1",
+      "title": "Giving AI a Headache: Acoustic Adversarial Attacks to Computer Vision Applications",
+      "summary": "Artificial Intelligence (AI) is increasingly used to automate a variety of real-world computer vision (CV) applications, such as autonomous vehicle control, facial recognition, and security cameras. Recent research has shown that acoustic vibration can induce real physical motion in cameras, interfering with their internal stabilization mechanisms. Because the motion falls outside the conditions the stabilization system was designed to handle, the system introduces artifacts into the frame, causing AI-based CV models to misclassify, miss targets, or hallucinate objects.   Previous work used ultrasonic frequencies (>20 kHz) to perform short-range attacks, which limits them to short distances due to the attenuation exhibited by high frequencies. In this work, we investigate acoustic attacks using lower frequencies in the audible range (<20 kHz), and we further expand our analysis to include how various image and object features are affected by the attacks.   Specifically, we performed physical experiments to demonstrate the viability of our attacks on an off-the-shelf object detection model (YOLO11) by resonating a commercially available camera with various frequencies. Based on our results, we provide insights into several factors that make an AI CV system more vulnerable to these attacks, which could help inform the development of future mitigation strategies.",
+      "published": "2026-06-12T17:22:53+00:00",
+      "url": "https://arxiv.org/pdf/2606.14658v1",
       "authors": [
-        "Chen Chen",
-        "Tim Gershon",
-        "Thomas Latham"
+        "Nicole Villavicencio-Garduño",
+        "Maksim Ekin Eren",
+        "Milo Prisbrey",
+        "Ben Migliori",
+        "Michael Teti"
       ],
       "source": "arxiv"
     }

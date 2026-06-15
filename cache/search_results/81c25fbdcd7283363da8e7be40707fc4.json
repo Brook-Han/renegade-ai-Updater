@@ -1,159 +1,150 @@
 {
-  "timestamp": 1780721265.525718,
+  "timestamp": 1781515799.9911847,
   "source": "arxiv",
   "query": "LLM sycophancy user satisfaction optimization",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.06486v1",
-      "title": "Regret Minimization with Adaptive Opponents in Repeated Games",
-      "summary": "In this paper, we study regret minimization in repeated games with \\emph{adaptive} opponents who can respond based on histories of play. The standard metric of \\emph{external regret} in online learning is known to fail to capture such adaptivity. To account for players' counterfactual reasoning, we introduce {\\tt Repeated Policy Regret (RP-Regret)}, a game-theoretic metric that measures the difference between the \\emph{realized} and the \\emph{best-in-hindsight} accumulated utility when all players can \\emph{respond} to the history of play. Compared to existing regret notions in this setting, ours is native to repeated game playing, enabling stronger comparators and opponents with fewer constraints, while maintaining the possibility of finding better equilibria when all players minimize it. We first identify necessary conditions for obtaining {\\tt RP-Regret} sublinear in time, on the variation of the player's comparator strategies in the regret definition and on the memories of both the comparator and opponents' strategies. We then study additional conditions and provable algorithms to minimize {\\tt RP-Regret}, which is by definition \\emph{non-convex} in the strategy space. To address this challenge, we propose three algorithms: (i) one based on an optimization oracle, as assumed in some prior work in online non-convex learning; (ii) one that minimizes a convex and \\emph{linearized} surrogate of {\\tt RP-Regret} at each iteration; (iii) one that directly minimizes {\\tt RP-Regret} when opponents change strategies slowly. Furthermore, when all players can run algorithms to minimize the {\\tt RP-Regret} (or its linearized variant), certain subgame perfect equilibria of the repeated game can be learned. We also provide experiments showing that minimizing our regret notions can lead to more cooperative solutions with higher utility in games such as Stag-Hunt.",
-      "published": "2026-06-04T17:59:08+00:00",
-      "url": "https://arxiv.org/pdf/2606.06486v1",
+      "id": "http://arxiv.org/abs/2606.14700v1",
+      "title": "RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space",
+      "summary": "Large language models (LLMs) are widely used in text-to-image (T2I) systems, but they are typically limited to text encoding, while denoising is handled by newly trained generative backbones. The emergence of representation autoencoders (RAEs) shifts the generation target toward semantically structured visual representations, creating a latent space that is more compatible with pretrained LLM priors. Inspired by multimodal LLMs (MLLMs), where an MLP projector is sufficient to align clean visual representations with a pretrained LLM, we repurpose the MLLM itself as a noisy representation encoder, extending this mechanism from clean to noisy inputs. We present RepFusion, which uses the resulting MLLM outputs as the conditioning signal for a diffusion transformer. In controlled comparisons at similar inference budgets, RepFusion outperforms baselines that devote comparable capacity to newly initialized denoisers. These results demonstrate that MLLMs provide strong priors for denoising visual representations and that, by conditioning on evolving noisy representations, test-time compute can be productively spent on repeated MLLM conditioning in modern T2I systems.",
+      "published": "2026-06-12T17:59:51+00:00",
+      "url": "https://arxiv.org/pdf/2606.14700v1",
       "authors": [
-        "Mingyang Liu",
-        "Asuman Ozdaglar",
-        "Tiancheng Yu",
-        "Kaiqing Zhang"
+        "Xichen Pan",
+        "Aashu Singh",
+        "Satya Narayan Shukla",
+        "Xiangjun Fan",
+        "Shlok Kumar Mishra",
+        "Saining Xie"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06483v1",
-      "title": "Statistically and Computationally Optimal Estimation and Inference of Common Subspaces",
-      "summary": "Given multiple data matrices, many problems in statistics and data science rely on estimating a common subspace that captures certain structure shared by all the data matrices. In this paper we investigate the statistical and computational limits for the common subspace model in which one observes a collection of symmetric low-rank matrices perturbed by noise, where each low-rank matrix shares the same common subspace. Our main results identify several regimes of the signal-to-noise ratio (SNR) such that estimation and inference are statistically or computationally optimal, and we refer to these regimes as weak SNR, moderate SNR, strong estimation SNR, and strong inference SNR. First, we propose an estimator based on projected gradient descent initialized via spectral sum of squares and show that it achieves the optimal $\\sinΘ$ error rate under strong estimation SNR. These results are complemented by both statistical and computational lower bounds identifying the weak and moderate estimation SNR regimes. Next, we turn to statistical inference for the $\\sinΘ$ distance itself, and we show that our estimator has an asymptotically Gaussian distribution in the strong inference SNR regime. Based on this limiting result we propose confidence intervals and show that they are adaptively minimax optimal in the strong inference SNR regime, where adaptivity is measured in terms of the SNR. Finally, we show that adaptive confidence intervals are information-theoretically impossible below the strong inference SNR regime. Consequently, our results unveil a novel phenomenon: despite the SNR being ``above'' the computational limit for estimation, adaptive statistical inference may still be information-theoretically impossible.",
-      "published": "2026-06-04T17:58:14+00:00",
-      "url": "https://arxiv.org/pdf/2606.06483v1",
+      "id": "http://arxiv.org/abs/2606.14698v1",
+      "title": "Resolving the Edge of a Quantum Pyramid",
+      "summary": "Standing on the shoulders of giants, we resolve the quantum pyramids conjecture, confirming the globally information-optimal measurement for an ensemble of equiangular equiprobable pure states, as conjectured by Englert and Řeháček (arXiv:0905.0510). We do so by proving the remaining entropy inequalities of Holevo and Utkin (arXiv:2506.06700), which certify optimality for obtuse and flat pyramids. For obtuse pyramids, our key contribution is a rigorous proof that local minimizers of the corresponding entropy inequality cannot have three distinct coordinate values. We show that eliminating this family can be reduced to a neat algebraic reciprocal inequality relating branches of the Lambert $W$ function, which may be of independent interest. For flat pyramids, we prove a tight $\\ell^p$ inequality for zero-sum vectors that was recently conjectured, proved analytically in dimension $d=3$, and computationally verified for $d\\leq 200$ by Holevo and Utkin (arXiv:2603.24017). We prove this bound for all $d\\geq 2$ via a technique in symmetric inequalities known as the equal variables method.",
+      "published": "2026-06-12T17:59:33+00:00",
+      "url": "https://arxiv.org/pdf/2606.14698v1",
       "authors": [
-        "Joshua Agterberg"
+        "Alvan Arulandu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06475v1",
-      "title": "RREDCoT: Segment-Level Reward Redistribution for Reasoning Models",
-      "summary": "Recent advancements in reasoning language models have been driven by Reinforcement Learning (RL) fine-tuning. Most often, these rely on the Group Relative Policy Optimization (GRPO) algorithm or modifications thereof to steer the models to produce Chain-of-Thought (CoT) traces. The final answer can only be verified, and the reward assigned, after the CoT trace is complete, making it a delayed reward problem. GRPO and its modifications correspond to Monte Carlo methods in standard RL, which are known to suffer from high variance. A possible solution to this problem is the redistribution of rewards through credit assignment, where segments of the CoT trace that are important for arriving at the desirable solution are emphasized by assigning a higher reward. While Monte Carlo sampling can be used to provide an unbiased estimate of intermediate state values, its computational overhead makes it unsuitable for train-time credit assignment in long contexts at high granularity. We introduce RREDCoT (Reward REDistribution for Chain of Thoughts), which utilizes the model itself to approximate the optimal reward redistribution without additional generation. We investigate the advantages of our method compared to MC sampling and several attribution methods. We further analyze several aspects relevant to the construction of the redistribution such as segmentation of CoT traces and state value estimation.",
-      "published": "2026-06-04T17:56:31+00:00",
-      "url": "https://arxiv.org/pdf/2606.06475v1",
+      "id": "http://arxiv.org/abs/2606.14695v1",
+      "title": "Persona-Pruner: Sculpting Lightweight Models for Role-Playing",
+      "summary": "Language Models (LMs) have shown remarkable potential as role-playing chatbots, delivering consistent, stylized interactions when given a specification of a character or user persona. However, applying these capabilities to real-world applications (e.g., ecosystems with numerous NPCs interacting simultaneously) exposes a critical inefficiency due to the excessive computational cost. In this paper, we question the necessity of dedicating a full, generalist model to a single persona, hypothesizing that a specific character identity relies on only a fraction of the model's total capacity. We observe that naively pruning LMs often severely degrades the role-playing performance for a specific persona; it does not distinguish between redundant knowledge and essential character traits. We propose Persona-Pruner, a framework that sculpts a lightweight role-playing model by isolating persona-specific sub-networks from a single description. Our experiments consistently show that Persona-Pruner preserves role-playing performance substantially more effectively than existing state-of-the-art LLM pruning techniques, reducing the performance drop from the dense model by up to 93.8% over the strongest baseline on RoleBench in LLM-as-a-judge score, while still maintaining general LLM capabilities. Code is available at https://github.com/jsu-kim/Persona-Pruner.",
+      "published": "2026-06-12T17:58:08+00:00",
+      "url": "https://arxiv.org/pdf/2606.14695v1",
       "authors": [
-        "Mykyta Ielanskyi",
-        "Kajetan Schweighofer",
-        "Lukas Aichberger",
-        "Sepp Hochreiter"
+        "Jinsu Kim",
+        "Jihoon Tack",
+        "Noah Lee",
+        "Jongheon Jeong"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06473v1",
-      "title": "MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery",
-      "summary": "Large language model (LLM) agents are increasingly applied to long-horizon tasks such as scientific discovery and machine learning engineering (MLE), where sustained self-evolution becomes a key capability. However, existing MLE agents suffer from inter-branch information isolation, memoryless search, and lack of hierarchical control, which together hinder long-horizon optimization. We present MLEvolve, an LLM-based self-evolving multi-agent framework for end-to-end machine learning algorithm discovery. By extending tree search to Progressive MCGS, MLEvolve enables cross-branch information flow through graph-based reference edges and gradually shifts the search from broad exploration to focused exploitation with an entropy-inspired progressive schedule. To allow the agent to evolve with accumulated experience, we introduce Retrospective Memory, which combines a cold-start domain knowledge base with a dynamic global memory for task-specific experience retrieval and reuse. For stable long-horizon iteration, we further decouple strategic planning from code generation with adaptive coding modes. Evaluation on MLE-Bench shows that MLEvolve achieves state-of-the-art performance across multiple dimensions including average medal rate and valid submission rate under a 12-hour budget (half the standard runtime). Moreover, MLEvolve also outperforms specialized algorithm discovery methods including AlphaEvolve on mathematical algorithm optimization tasks, demonstrating strong cross-domain generalization. Our code is available at https://github.com/InternScience/MLEvolve.",
-      "published": "2026-06-04T17:55:59+00:00",
-      "url": "https://arxiv.org/pdf/2606.06473v1",
+      "id": "http://arxiv.org/abs/2606.14694v1",
+      "title": "AdaSR: Adaptive Streaming Reasoning with Hierarchical Relative Policy Optimization",
+      "summary": "Large reasoning models typically follow a read-then-think paradigm: they observe the complete input, reason over a static context, and then produce the answer. Yet many real-world scenarios are inherently dynamic, such as audio and video stream, where information arrives as a continuous stream and models must reason, update, and respond under partial observations. Recent streaming reasoning methods allow models to think while reading, but they largely rely on supervised imitation of pre-constructed trajectories, which limits their flexibility. In this paper, we propose AdaSR, an adaptive streaming reasoning framework that enables models to reason during input streaming and perform final deliberation once the stream is complete, learning when to think, and how much computation to allocate across different stages. To optimize this hierarchical reasoning process, we introduce Hierarchical Relative Policy Optimization (HRPO), which decomposes policy optimization into streaming reasoning and deep reasoning phases, providing more fine-grained advantage assignment instead of uniformly distributing a single sequence-level advantage over all tokens. HRPO integrates format, accuracy, and adaptive thinking rewards to enforce valid reasoning protocols, preserve final task performance, and encourage latency-aware computation allocation. Experiments show that AdaSR achieves a better balance among reasoning accuracy, computational efficiency, and streaming latency compared with supervised fine-tuning baseline. We release our code at https://github.com/EIT-NLP/StreamingLLM/tree/main/AdaSR.",
+      "published": "2026-06-12T17:56:25+00:00",
+      "url": "https://arxiv.org/pdf/2606.14694v1",
       "authors": [
-        "Shangheng Du",
-        "Xiangchao Yan",
-        "Jinxin Shi",
-        "Zongsheng Cao",
-        "Shiyang Feng",
-        "Zichen Liang",
-        "Boyuan Sun",
-        "Tianshuo Peng",
-        "Yifan Zhou",
-        "Xin Li",
-        "Jie Zhou",
-        "Liang He",
-        "Bo Zhang",
-        "Lei Bai"
+        "Junlong Tong",
+        "Wenqi Xu",
+        "Yingqi Fan",
+        "Anhao Zhao",
+        "Xuan Lu",
+        "Yang Tan",
+        "Xiaoyu Shen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06470v1",
-      "title": "PC Layer: Polynomial Weight Preconditioning for Improving LLM Pre-Training",
-      "summary": "We propose a preconditioning (PC) layer, a weight parameterization via polynomial preconditioner that ensures stable weight conditioning throughout LLM training. The PC module reshapes the singular-value spectrum of weight matrices via low-degree polynomial preconditioning. After training, the preconditioned weights can be merged back into the original architecture, incurring no inference overhead. We demonstrate the advantage of the proposed PC layer over standard transformers in Llama-1B pre-training, for both the AdamW and Muon optimizers. Theoretically, we justify this spectrum-control principle by proving that uniformly bounding each layer's singular values ensures geometric convergence of gradient descent to global minima, for certain deep linear networks. Our code is available at https://github.com/Empath-aln/PC-layer.",
-      "published": "2026-06-04T17:55:11+00:00",
-      "url": "https://arxiv.org/pdf/2606.06470v1",
+      "id": "http://arxiv.org/abs/2606.14693v1",
+      "title": "Learning Coordinated Preference for Multi-Objective Multi-Agent Reinforcement Learning",
+      "summary": "Cooperative multi-objective multi-agent reinforcement learning (MOMARL) models team decision making under multiple, potentially conflicting objectives. In this setting, conflicts arise not only across objectives but also across agents with different observations, roles, and contributions. We propose Preference Coordinated Multi-agent Policy Optimization (PCMA), which learns coordinated agent-specific preferences to enable complementary trade-offs among agents. Theoretically, we formulate cooperative MOMARL as a team-optimal game and show that, under suitable conditions, preference diversity can induce team improvement through a first-order improvement decomposition. Experiments on multiple cooperative MOMA environments and a practical traffic-control scenario show that PCMA improves both performance and trade-off coordination.",
+      "published": "2026-06-12T17:55:28+00:00",
+      "url": "https://arxiv.org/pdf/2606.14693v1",
       "authors": [
-        "Senmiao Wang",
-        "Tiantian Fang",
-        "Haoran Zhang",
-        "Yushun Zhang",
-        "Kunxiang Zhao",
-        "Alex Schwing",
-        "Ruoyu Sun"
+        "Pengxin Wang",
+        "Lihao Guo",
+        "Yi Xie",
+        "Bo Liu",
+        "Siyang Cao",
+        "Jingdi Chen"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06467v1",
-      "title": "You Only Index Once: Cross-Layer Sparse Attention with Shared Routing",
-      "summary": "Long-context inference in modern LLMs is increasingly constrained by decoding efficiency, especially in reasoning-heavy settings where models generate long intermediate chains of thought. Existing sparse attention methods often face a practical efficiency-quality trade-off. Structured block sparse methods typically provide stronger acceleration but incur noticeable quality loss, while token sparse methods are usually more accurate yet deliver limited end-to-end speedup because top-k routing over the full cache remains expensive. In this work, we propose cross-layer sparse attention (CLSA), which is built on top of KV-sharing architectures such as YOCO. The core idea is to share not only the KV cache across cross-decoder layers, but also the routing index. A single indexer computes token-level top-k selection once and reuses the resulting index across layers, thereby preserving the fine-grained selectivity of token sparse attention while amortizing the routing overhead. The resulting architecture improves all major inference bottlenecks jointly, including pre-filling, KV-cache storage, and long-context decoding. Experiments across short-context and long-context benchmarks show that CLSA is both accurate and efficient, achieving up to 7.6x decoding speedup and 17.1x overall throughput improvement at 128K context. These results suggest a more complete architectural solution for long-context LLMs that jointly advances model quality and inference efficiency.",
-      "published": "2026-06-04T17:54:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06467v1",
+      "id": "http://arxiv.org/abs/2606.14691v1",
+      "title": "CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment",
+      "summary": "Reinforcement learning with verifiable rewards (RLVR) has successfully elicited the reasoning capabilities of large language models, motivating its extension to multimodal scenarios. Existing methods primarily focus on improving the visual coverage of reasoning traces and mitigating visual hallucinations, but underestimate the semantic inconsistency between the reasoning process and the final answer. In this paper, we delve into thinking-answer inconsistency in RLVR for large vision-language models (LVLMs), showing thorough analyses of rollouts collected throughout Group Relative Policy Optimization (GRPO) training process and post-RLVR evaluation outputs that this issue persists during training and remains present during inference. Motivated by the analysis, we propose Consistency-Oriented Reasoning Alignment (CORA), which introduces thinking-answer semantic consistency into RLVR through a lightweight plug-and-play consistency reward model, and further incorporates Hybrid Reward Advantage Splitting (HRAS) to stably coordinate task and consistency optimization. Extensive experiments across representative multimodal reasoning benchmarks and mainstream LVLMs show that CORA improves task performance while effectively mitigating thinking-answer inconsistency, leading to more faithful reasoning traces.",
+      "published": "2026-06-12T17:54:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.14691v1",
       "authors": [
-        "Yutao Sun",
-        "Yanqi Zhang",
-        "Li Dong",
-        "Jianyong Wang",
-        "Furu Wei"
+        "Jiayue Cao",
+        "Zhicong Lu",
+        "Xuehan Sun",
+        "Wei Jia",
+        "Hongling Zheng",
+        "Changyuan Tian",
+        "Zichuan Lin",
+        "Wenqian Lv",
+        "Nayu Liu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06464v1",
-      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
-      "summary": "A long-standing finding in the causal learning literature is that adults struggle to identify conjunctive causal rules, where an effect requires the simultaneous presence of multiple causes, while performing better in disjunctive settings. However, most demonstrations of this ``conjunctive handicap'' rely on passive observation paradigms with limited evidence, where learners have no control over evidence generation. This paper asks whether this bias persists when adults are granted agency through active exploration. Using a modified ``blicket detector'' task, adult participants freely intervened to identify causal objects under conjunctive or disjunctive rule structures. We show that active exploration substantially improves adults' conjunctive causal reasoning, although conjunctive rules still require more tests to infer than disjunctive rules. We further compare human performance to a range of large language models in the same setting. While some state-of-the-art models approach human-level performance on hypothesis inference accuracy, they often exhibit less efficient exploration strategies and similar conjunctive-disjunctive performance gaps.",
-      "published": "2026-06-04T17:53:36+00:00",
-      "url": "https://arxiv.org/pdf/2606.06464v1",
+      "id": "http://arxiv.org/abs/2606.14690v1",
+      "title": "A Complexity Measure for Active Learning in Multi-group Mean Estimation",
+      "summary": "We study a \\emph{max-risk} objective for active learning in a multi-group mean estimation $d$-armed bandits: a learner adaptively allocates a budget of $T$ samples across $d$ groups to minimize the worst-case uncertainty index $\\max_{k\\in[d]}σ_k^2/n_k$, where $σ_k$ is the standard deviation of the distribution of arm $d$, and $n_k$ is the number of times arm $d$ is sampled. We develop a local minimax framework and prove the first general lower bound for this objective, valid for any finite-variance hypothesis class. The bound separates difficulty into three orthogonal factors: a \\emph{budget} term, a \\emph{heteroscedasticity} index measuring how unevenly the uncertainty is spread across arms, and a model-dependent complexity measure, the \\emph{Variance Local Curvature} ($\\mathrm{VLC}$), which captures how much information a local change of variance creates inside the hypothesis class. For smooth classes, the $\\mathrm{VLC}$ is a reparametrization of a variance--Fisher information, with closed-form values for common families. Benchmarking against the strongest available upper bound shows near-optimality up to logarithmic factors in broad regimes, and pinpoints a systematic gap in highly heterogeneous instances. Our proof introduces two key ingredients: a loss-induced $\\ell_1$ geometry on the decision space, and a representation-based instance generator that reduces hard-instance construction to an explicit random matrix calculation.",
+      "published": "2026-06-12T17:54:26+00:00",
+      "url": "https://arxiv.org/pdf/2606.14690v1",
       "authors": [
-        "Mandana Samiei",
-        "Eunice Yiu",
-        "Anthony GX-Chen",
-        "Dongyan Lin",
-        "Jocelyn Shen",
-        "Blake A. Richards",
-        "Alison Gopnik",
-        "Doina Precup"
+        "Abdellah Aznag",
+        "Rachel Cummings",
+        "Adam N. Elmachtoub"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06462v1",
-      "title": "Benchmark Everything Everywhere All at Once",
-      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
-      "published": "2026-06-04T17:52:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06462v1",
+      "id": "http://arxiv.org/abs/2606.14688v1",
+      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
+      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
+      "published": "2026-06-12T17:52:24+00:00",
+      "url": "https://arxiv.org/pdf/2606.14688v1",
       "authors": [
-        "Shiyun Xiong",
-        "Dongming Wu",
-        "Peiwen Sun",
-        "Yuang Ai",
-        "Bokang Yang",
-        "Wencheng Han",
-        "Xiao-Hui Li",
-        "Xiangyu Yue"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Dai Shi",
+        "Zheng Gao",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06460v1",
-      "title": "Will the Agent Recuse Itself? Measuring LLM-Agent Compliance with In-Band Access-Deny Signals",
-      "summary": "As autonomous LLM agents increasingly hold real credentials and operate infrastructure without a human in the loop, operators have no standard way to tell an agent that a resource is off-limits. Access controls either let the agent in (it has valid credentials) or hard-fail it (indistinguishable from any other client). We propose a third mode: a lightweight, published in-band deny signal -- the Recuse Signal -- that a server emits over a protocol's existing channels (an SSH banner, a PostgreSQL NOTICE) asking a connecting automated agent to voluntarily withdraw. This is a cooperative governance control, the robots.txt analogue for live access; it is explicitly not a security boundary. Its value is entirely empirical and, to our knowledge, unmeasured: do compliant LLM agents actually honor such a signal? We define the signal as an open mini-standard, implement two zero- or low-footprint adapters (an SSH banner/PAM hook and a PostgreSQL wire-protocol proxy), deploy them on a live production host, and run a controlled experiment in which fresh agents are given a benign operations task and observed for recusal. In a pilot (SSH; OpenAI GPT-4o and GPT-4o-mini; and Claude Code as a deployed agent), the signal cleanly induces recusal -- 100% recusal when present versus 100% task completion in a no-signal control -- and, revealingly, behaves as a cooperative rather than absolute signal: an explicit operator-authorization framing flips the most capable model to proceed, while other agents continue to defer to the on-host policy. We release the standard, adapters, and experiment harness for reproduction.",
-      "published": "2026-06-04T17:50:54+00:00",
-      "url": "https://arxiv.org/pdf/2606.06460v1",
+      "id": "http://arxiv.org/abs/2606.14687v1",
+      "title": "Lehner's operator norm formulas, semidefinite programming, and spiked matrix models",
+      "summary": "Lehner (1999) derived elegant formulas for the operator norm $\\|\\mathfrak{X}\\|$ of operators of the form $\\mathfrak{X} = \\mathbf{A}_0 \\otimes \\mathfrak{1} + \\sum_{i = 1}^n \\mathbf{A}_i \\otimes \\mathfrak{m}_i$, also easily generalized to the spectral edge $λ_{\\max}(\\mathfrak{X})$, in terms of nonlinear optimization problems over positive definite matrices. Here the $\\mathbf{A}_i$ are finite-dimensional Hermitian matrices, the $\\mathfrak{m}_i$ are either free semicircular or free Rademacher families of operators, and $\\mathfrak{1}$ is the identity operator. We first show that both of Lehner's nonlinear optimizations can be rewritten as linear semidefinite programs (SDPs), even in the Rademacher case where Lehner's optimization is not itself convex. We give the primal and dual forms of these SDPs, derive the complementary slackness relations and consequences thereof, and propose that the SDPs are more stable and accurate than the iterative numerical scheme proposed in Lehner's original work.   We then apply the SDPs from the semicircular case to spiked matrix models, studied recently via Lehner's formula by Bandeira, Cipolloni, Schröder, and van Handel (2024). We give a new proof of the Baik--Ben Arous--Péché (BBP) transition they establish in models with isotropic (but possibly correlated) Gaussian noise by constructing feasible variables for the associated primal and dual SDPs. Combining our construction with a sensitivity interpretation of optimal dual variables, we study the fluctuations of leading eigenvectors of such models. We conjecture and give numerical evidence that these fluctuations are Gaussian but anisotropic and non-universal, and that their covariance may be computed in terms of the optimizer of the dual of Lehner's formula, which in turn is approximately the leading eigenmatrix of a completely positive operator associated to the covariance of the noise model.",
+      "published": "2026-06-12T17:50:49+00:00",
+      "url": "https://arxiv.org/pdf/2606.14687v1",
       "authors": [
-        "Thamilvendhan Munirathinam"
+        "Dmitriy Kunisky"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06459v1",
-      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
-      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
-      "published": "2026-06-04T17:50:39+00:00",
-      "url": "https://arxiv.org/pdf/2606.06459v1",
+      "id": "http://arxiv.org/abs/2606.14679v1",
+      "title": "Optimal Hidden-Target Learning for Online Inventory Optimization on General Convex Sets",
+      "summary": "Online inventory optimization (OIO) is online convex optimization with physical memory: inventory carryover makes the feasible action set depend on the past. A natural principle, used in stochastic inventory learning and recently in OIO under a single linear capacity constraint, is to maintain a hidden target chosen by an online learner and implement its projection onto the currently feasible order-up-to set. We prove that this simple principle is optimal for OIO on arbitrary bounded convex capacity sets. With online gradient descent as the base learner, the method improves the best known regret guarantee for OIO on general convex sets from inverse to inverse-square-root dependence on the common-demand probability, and we prove a matching lower bound. The same principle gives the first polylogarithmic regret guarantee for strongly convex losses and the first dynamic regret guarantee adapting to Euclidean path variation on general convex capacity sets.   The analysis introduces a norm alignment principle: the right state variable is the distance from the hidden target to the feasible set, measured in the same norm as the projection. Under norm alignment, this distance evolves pathwise as a scalar queue, with target movement as arrival and common demand as service. This reduction to one-dimensional queue control resolves the state dependence and extends the guarantees to general convex capacity sets, beyond the reach of prior productwise approaches. Experiments on synthetic and real-world inventory data corroborate the theory.",
+      "published": "2026-06-12T17:45:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14679v1",
       "authors": [
-        "Christie Djidjev",
-        "Nicholas Kaminski"
+        "Anthony Pineci",
+        "Yunzong Xu"
       ],
       "source": "arxiv"
     }

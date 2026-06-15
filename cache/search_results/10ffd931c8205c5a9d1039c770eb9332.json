@@ -1,30 +1,8 @@
 {
-  "timestamp": 1780721485.250751,
+  "timestamp": 1781516492.5827444,
   "source": "semantic_scholar",
   "query": "evolutionary alignment AI open deployment",
   "results": [
-    {
-      "id": "28cda62a597537d11b0c8df83d7d4a3ed8752781",
-      "title": "Open Opportunities in AI Safety, Alignment, and Ethics (AI SAE)",
-      "summary": "",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/28cda62a597537d11b0c8df83d7d4a3ed8752781",
-      "authors": [
-        "Dylan Waldner"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "376024d3e3c1ba9d7a9fc9b99541bbc696a389ac",
-      "title": "An Evolutionary Perspective on AI Alignment (Student Abstract)",
-      "summary": "Attempting to align AI capabilities and value structures by means of value elicitation from humans, such as through Reinforcement Learning from Human Feedback (RLHF), is a computational challenge that raises both psychological and philosophical questions. Adopting an evolutionary perspective on the emergence of value structures in humans and machine learning systems can offer a bridge between qualitative and quantitative aspects of alignment. Here, evolutionary dynamics are applied to a game-theoretic model of RLHF. This allows for formal reasoning about the process and capabilities that result from alignment training, even where quantitative benchmarks cannot be clearly defined. A simple parametrized game model of RLHF, subject to replicator dynamics, shows how the success of the training method is sensitive to bias in human judgments. Under ideal conditions, RHLF training leads to aligned behavior. If the choice pattern of the human judge is biased, the training instead incentivizes misalignment. This application shows that evolutionary analyses can contribute to improving the prospects for safety and support successful cooperation between humans and AI systems in deployment.",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/376024d3e3c1ba9d7a9fc9b99541bbc696a389ac",
-      "authors": [
-        "Ida Mattsson"
-      ],
-      "source": "semantic_scholar"
-    },
     {
       "id": "27d50468f1016b18c07283b56ea5dc0f5479b980",
       "title": "AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security",
@@ -98,13 +76,47 @@
       "source": "semantic_scholar"
     },
     {
-      "id": "daa5df014ad89aebc0dfcec507eccbbf3934224e",
-      "title": "Decolonial AI Alignment: Openness, Visesa-Dharma, and Including Excluded Knowledges",
-      "summary": "Prior work has explicated the coloniality of artificial intelligence (AI) development and deployment through mechanisms such as extractivism, automation, sociological essentialism, surveillance, and containment. However, that work has not engaged much with alignment: teaching behaviors to a large language model (LLM) in line with desired values, and has not considered a mechanism that arises within that process: moral absolutism---a part of the coloniality of knowledge. Colonialism has a history of altering the beliefs and values of colonized peoples; in this paper, I argue that this history is recapitulated in current LLM alignment practices and technologies. Furthermore, I suggest that AI alignment be decolonialized using three forms of openness: openness of models, openness to society, and openness to excluded knowledges. This suggested approach to decolonial AI alignment uses ideas from the argumentative moral philosophical tradition of Hinduism, which has been described as an open-source religion. One concept used is viśeṣa-dharma, or particular context-specific notions of right and wrong. At the end of the paper, I provide a suggested reference architecture to work toward the proposed framework.",
-      "published": "2023",
-      "url": "https://www.semanticscholar.org/paper/daa5df014ad89aebc0dfcec507eccbbf3934224e",
+      "id": "83e162c426c81c66993574f77de1b791a6799dad",
+      "title": "Deployment-Aligned Low-Precision Neural Architecture Search for Spaceborne Edge AI",
+      "summary": "Designing deep networks that meet strict latency and accuracy constraints on edge accelerators increasingly relies on hardware-aware optimization, including neural architecture search (NAS) guided by device-level metrics. Yet most hardware-aware NAS pipelines still optimize architectures under full-precision assumptions and apply low-precision adaptation only after the search, leading to a mismatch between optimization-time behavior and deployment-time execution on low-precision hardware that can substantially degrade accuracy. We address this limitation by integrating deployment-aligned low-precision training directly into hardware-aware NAS. Candidate architectures are exposed to FP16 numerical constraints during fine-tuning and evaluation, enabling joint optimization of architectural efficiency and numerical robustness without modifying the search space or evolutionary strategy. We evaluate the proposed framework on vessel segmentation for spaceborne maritime monitoring, targeting the Intel Movidius Myriad X Visual Processing Unit (VPU). While post-training precision conversion reduces on-device performance from 0.85 to 0.78 mIoU, deployment-aligned low-precision training achieves 0.826 mIoU on-device for the same architecture (95,791 parameters), recovering approximately two-thirds of deployment-induced accuracy gap without increasing model complexity. These results demonstrate that incorporating deployment-consistent numerical constraints into hardware-aware NAS substantially improves robustness and alignment between optimization and deployment for resource-constrained edge Artificial Intelligence (AI).",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/83e162c426c81c66993574f77de1b791a6799dad",
       "authors": [
-        "Kush R. Varshney"
+        "P. Thind",
+        "Vaibhav Katturu",
+        "Giacomo Zema",
+        "Roberto Del Prete"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "4d058fd71f00986cf8cfa1b705c6c187aaea4b13",
+      "title": "AI Alignment Challenges in Large Language Models: Technical Limitations, Risks, and Future Directions",
+      "summary": "Large language models (LLMs) have demonstrated unprecedented natural language capabilities, achieving strong performance across a broad spectrum of tasks including code generation, reasoning, summarization, and question answering. The rapid scaling of these systems—from hundreds of millions to hundreds of billions of parameters—has accelerated their deployment in high-stakes, real-world environments, raising fundamental concerns about their safety, reliability, and alignment with human values. AI alignment, broadly defined as the problem of ensuring that AI systems behave in accordance with the intentions and values of their designers and end users, has emerged as one of the most technically complex and consequential challenges in contemporary machine learning research.\n\nThis paper provides a technically grounded survey of the principal alignment challenges in modern LLMs. We examine core problems including objective misalignment, hallucination and factual unreliability, adversarial jailbreaks and prompt injection vulnerabilities, social bias and harmful output generation, the opacity of transformer-based reasoning, scalability failures of current alignment techniques, and the theoretically critical but empirically underexplored problem of deceptive alignment and goal misgeneralization. We critically analyze existing alignment methods—including reinforcement learning from human feedback (RLHF) [1], Constitutional AI [2], red teaming, safety fine-tuning, and human oversight—identifying their substantive limitations and unsolved failure modes. We further discuss ethical and societal implications, enumerate open research problems, and propose directions for future investigation including mechanis-tic interpretability, scalable oversight, and alignment-specific benchmarking. Our analysis concludes that current alignment techniques represent necessary but insufficient safeguards, and that the field requires coordinated, technically rigorous research investment commensurate with the accelerating",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/4d058fd71f00986cf8cfa1b705c6c187aaea4b13",
+      "authors": [
+        "Vansh Deol"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "13b7fa23a00472e21041aa57f58562241ac2faab",
+      "title": "How well are open sourced AI-generated image detection models out-of-the-box: A comprehensive benchmark study",
+      "summary": "As AI-generated images proliferate across digital platforms, reliable detection methods have become critical for combating misinformation and maintaining content authenticity. While numerous deepfake detection methods have been proposed, existing benchmarks predominantly evaluate fine-tuned models, leaving a critical gap in understanding out-of-the-box performance -- the most common deployment scenario for practitioners. We present the first comprehensive zero-shot evaluation of 16 state-of-the-art detection methods, comprising 23 pretrained detector variants (due to multiple released versions of certain detectors), across 12 diverse datasets, comprising 2.6~million image samples spanning 291 unique generators including modern diffusion models. Our systematic analysis reveals striking findings: (1)~no universal winner exists, with detector rankings exhibiting substantial instability (Spearman~$\\rho$: 0.01 -- 0.87 across dataset pairs); (2)~a 37~percentage-point performance gap separates the best detector (75.0\\% mean accuracy) from the worst (37.5\\%); (3)~training data alignment critically impacts generalization, causing up to 20--60\\% performance variance within architecturally identical detector families; (4)~modern commercial generators (Flux~Dev, Firefly~v4, Midjourney~v7) defeat most detectors, achieving only 18--30\\% average accuracy; and (5)~we identify three systematic failure patterns affecting cross-dataset generalization. Statistical analysis confirms significant performance differences between detectors (Friedman test: $\\chi^2$=121.01, $p<10^{-16}$, Kendall~$W$=0.524). Our findings challenge the ``one-size-fits-all''detector paradigm and provide actionable deployment guidelines, demonstrating that practitioners must carefully select detectors based on their specific threat landscape rather than relying on published benchmark performance.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/13b7fa23a00472e21041aa57f58562241ac2faab",
+      "authors": [
+        "Simiao Ren",
+        "Yucheng Zhou",
+        "Xingyu Shen",
+        "Kidus Zewde",
+        "T. Duong",
+        "George Q. Huang",
+        "Hatsanai Tiangratanakul",
+        "T. Ng",
+        "En Wei",
+        "Jiayu Xue"
       ],
       "source": "semantic_scholar"
     }

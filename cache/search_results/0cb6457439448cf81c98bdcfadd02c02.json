@@ -1,169 +1,142 @@
 {
-  "timestamp": 1780721232.444014,
+  "timestamp": 1781515769.2838647,
   "source": "arxiv",
   "query": "cognitive offloading AI writing",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.06481v1",
-      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
-      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
-      "published": "2026-06-04T17:58:05+00:00",
-      "url": "https://arxiv.org/pdf/2606.06481v1",
+      "id": "http://arxiv.org/abs/2606.14699v1",
+      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
+      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
+      "published": "2026-06-12T17:59:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.14699v1",
       "authors": [
-        "Sondos Mahmoud Bsharat",
-        "Jiacheng Liu",
-        "Xiaohan Zhao",
-        "Tianjun Yao",
-        "Xinyi Shang",
-        "Yi Tang",
-        "Jiacheng Cui",
-        "Ahmed Elhagry",
-        "Salwa K. Al Khatib",
-        "Hao Li",
-        "Salman Khan",
-        "Zhiqiang Shen"
+        "Ruining Li",
+        "Yuxin Yao",
+        "Matt Zhou",
+        "Chuanxia Zheng",
+        "Christian Rupprecht",
+        "Joan Lasenby",
+        "Shangzhe Wu",
+        "Andrea Vedaldi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06464v1",
-      "title": "Human Adults and LLMs as Scientists: Who Benefits from Active Exploration?",
-      "summary": "A long-standing finding in the causal learning literature is that adults struggle to identify conjunctive causal rules, where an effect requires the simultaneous presence of multiple causes, while performing better in disjunctive settings. However, most demonstrations of this ``conjunctive handicap'' rely on passive observation paradigms with limited evidence, where learners have no control over evidence generation. This paper asks whether this bias persists when adults are granted agency through active exploration. Using a modified ``blicket detector'' task, adult participants freely intervened to identify causal objects under conjunctive or disjunctive rule structures. We show that active exploration substantially improves adults' conjunctive causal reasoning, although conjunctive rules still require more tests to infer than disjunctive rules. We further compare human performance to a range of large language models in the same setting. While some state-of-the-art models approach human-level performance on hypothesis inference accuracy, they often exhibit less efficient exploration strategies and similar conjunctive-disjunctive performance gaps.",
-      "published": "2026-06-04T17:53:36+00:00",
-      "url": "https://arxiv.org/pdf/2606.06464v1",
+      "id": "http://arxiv.org/abs/2606.14692v1",
+      "title": "Implications of hierarchical Markov models of behavior: on irreversibility, predictability, and dimensionality",
+      "summary": "The maturation of quantitative tools for studying the high-level structure of animal behavior, and especially tools which represent spontaneous behavior as a sequence of stereotyped and neurally well-defined 'syllables', demands that the field revisit a fundamental theoretical question: if the coarse structure of behavior can be accurately described by Markov models, what do these models really tell us about behavior? In this work, we explore the theoretical implications of these models and discuss how they allow us to quantitatively formulate questions about the sequence-like nature and effective dimensionality of behavior. One important insight is that the eigenvalues and eigenvectors of various model-associated matrices furnish interpretable time scales and modifications of behavior that occur on those time scales. We illustrate our points using both toy examples and Markov models fit to real data. By analyzing the consequences of Markov representations, we clarify the theoretical meaning of progress in quantifying behavior.",
+      "published": "2026-06-12T17:55:28+00:00",
+      "url": "https://arxiv.org/pdf/2606.14692v1",
       "authors": [
-        "Mandana Samiei",
-        "Eunice Yiu",
-        "Anthony GX-Chen",
-        "Dongyan Lin",
-        "Jocelyn Shen",
-        "Blake A. Richards",
-        "Alison Gopnik",
-        "Doina Precup"
+        "John J. Vastola",
+        "Kanaka Rajan"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06462v1",
-      "title": "Benchmark Everything Everywhere All at Once",
-      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
-      "published": "2026-06-04T17:52:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06462v1",
+      "id": "http://arxiv.org/abs/2606.14688v1",
+      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
+      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
+      "published": "2026-06-12T17:52:24+00:00",
+      "url": "https://arxiv.org/pdf/2606.14688v1",
       "authors": [
-        "Shiyun Xiong",
-        "Dongming Wu",
-        "Peiwen Sun",
-        "Yuang Ai",
-        "Bokang Yang",
-        "Wencheng Han",
-        "Xiao-Hui Li",
-        "Xiangyu Yue"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Dai Shi",
+        "Zheng Gao",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06459v1",
-      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
-      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
-      "published": "2026-06-04T17:50:39+00:00",
-      "url": "https://arxiv.org/pdf/2606.06459v1",
+      "id": "http://arxiv.org/abs/2606.14668v1",
+      "title": "When to Write and When to Suppress: Route-Specialized Dual Adapters for Memory-Assisted Knowledge Editing",
+      "summary": "Knowledge editing systems must update selected facts while preserving nearby but irrelevant behavior. This paper studies this problem in a memory-assisted setting where an edit memory is retrieved at inference time and a parameter-efficient adapter corrects the model's object preference. We argue that the central design question is not only how to write an edit, but also when to suppress it. We introduce \\method{}, a route-specialized dual-adapter editor. A relevance router first decides whether a prompt should receive an edit memory. Routed prompts use an edit adapter trained to prefer the new object over the original object; unrouted non-direct prompts use a separate locality adapter trained to preserve or restore the original-object preference. We evaluate \\method{} on three 1,000-case protocols, \\cf{}, \\zsre{}, and \\mquake{}, under the same memory protocol and two 7B/8B base models. On Llama-3.1-8B-Instruct, \\method{} obtains the best overall probability-preference accuracy on all three benchmarks: 0.8180 on \\cf{}, 0.8946 on \\zsre{}, and 0.9922 on \\mquake{}. The same trend holds on Qwen3-8B. Router ablations show that the relevant memory boundary differs across datasets: a lexical neural router is safest on \\cf{}, while BGE embedding routing is better on \\zsre{} and \\mquake{}. Component and module ablations show that the gain mainly comes from separating edit injection from off-route suppression rather than from simply increasing LoRA capacity.",
+      "published": "2026-06-12T17:37:32+00:00",
+      "url": "https://arxiv.org/pdf/2606.14668v1",
       "authors": [
-        "Christie Djidjev",
-        "Nicholas Kaminski"
+        "Yining Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06454v1",
-      "title": "Scaffold, Not Vocabulary? A Controlled, Two-Tier, Pre-Registered Study of a Popperian Code-Generation Skill",
-      "summary": "Large language models increasingly write, review, and judge code, and a fast-growing practice equips them with prompt 'skills' that ask the model to reason like a scientist. A prominent example tells the model to act as a Popperian falsificationist, and such skills are reported to improve generated code. But these gains are almost always read off an LLM-as-a-judge, an instrument with documented positional, self-preference, and stylistic biases. We ask: if it appears to help, is the gain from the skill's Popperian content, or from the structure any scaffold imposes? We pre-register a two-tier ablation with three controls: a length-matched placebo, a labels-only scaffold that keeps the Popperian headers but strips the procedure, and an execution oracle (HumanEval+ unit tests), plus a vocabulary-halo sentinel and a same-model self-judge audit. On a frontier model (Claude Sonnet 4.6, N=163) all conditions sit near the benchmark ceiling and do not separate, so the pre-registered +5-point improvement is not supported (a ceiling-limited non-detection). On a small model (Qwen2.5-Coder-0.5B, N=164) structured arms lift best-of-eight correctness by 20-22 points, but the full skill shows no separable benefit over a labels-only scaffold (aggregate F@8=L@8 vs V@8=34.8%), and the placebo trails by only 2.4 points. A 0.5B self-judge applying the Popperian rubric does not beat random selection and concentrates 60% of its picks on one index. In the two settings tested, the skill's Popperian procedural content adds no separable execution-correctness benefit beyond a labels-only scaffold, so the gains track scaffold structure. We contribute a calibrated negative result and a reusable disambiguation protocol; the finding bounds an engineering claim about one prompt-skill family and is not an evaluation of Popperian methodology in general.",
-      "published": "2026-06-04T17:49:00+00:00",
-      "url": "https://arxiv.org/pdf/2606.06454v1",
+      "id": "http://arxiv.org/abs/2606.14664v1",
+      "title": "The Self-Aware Body: A User-Centered Framework for Designing Therapeutic Sonic Interactions",
+      "summary": "This chapter presents a framework for designing therapeutic sonic interaction technologies, with a focus on movement sonification: the real-time conversion of bodily motion into sound that serves as feedback during motor rehabilitation. Despite growing evidence for their effectiveness, technologies implementing movement sonification are yet to be systematically adopted as part of clinical practice, potentially due to a lack of standardized development methodologies as well as inadequate integration of clinical stakeholder perspectives into interaction design. The framework addresses these barriers through three interconnected contributions. The first is a conceptual reframing of the design task as the calibration of sonic variability to the perceptual affordances of the listener and the demands of the clinical context. The second is a practical design platform inspired by professional audio mixing workflows, which imposes a structured and learnable signal-flow architecture on the interaction design process and enables rapid iterative exploration. The third is a user-centered development methodology adapted from healthcare intervention science, which grounds design decisions in engagement with the clinicians and patients who will use the resulting systems. The HearWalk biofeedback system for hemiparetic gait rehabilitation illustrates the framework, and the chapter concludes by examining where large language models and AI tools can meaningfully assist each stage of this design process, as well as where human clinical and perceptual expertise remains irreplaceable.",
+      "published": "2026-06-12T17:34:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14664v1",
       "authors": [
-        "Mehmet Iscan"
+        "Prithvi Ravi Kantan",
+        "Sofia Dahl",
+        "Erika G. Spaich"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06453v1",
-      "title": "Vortex: Efficient and Programmable Sparse Attention Serving for AI Agents",
-      "summary": "Sparse attention is becoming increasingly important for serving large language models (LLMs) as generation lengths continue to grow. However, deploying and evaluating new sparse attention algorithms at scale remains highly engineering-intensive, slowing both human researchers and AI agents in exploring the sparse attention design. To address this challenge, we present Vortex, a system that combines a Python-embedded frontend language atop a page-centric tensor abstraction for expressing a broad range of sparse attention algorithms, with an efficient backend tightly integrated into modern LLM serving stacks. Vortex enables rapid prototyping, deployment, and evaluation of sparse attention algorithms, effectively translating their theoretical efficiency gains into real-world throughput improvements. As a result, Vortex substantially accelerates the design and iteration of sparse attention algorithms. First, AI agents use Vortex to automatically generate and refine diverse algorithms, the best reaching up to $3.46\\times$ higher throughput than full attention while preserving accuracy. Second, Vortex extends sparse attention to emerging architectures and very large models that are otherwise hard to experiment with, reaching up to $4.7\\times$ higher throughput on the MLA-based GLM-4.7-Flash and $1.37\\times$ on the 229B-parameter MiniMax-M2.7 on NVIDIA B200 GPUs.",
-      "published": "2026-06-04T17:48:17+00:00",
-      "url": "https://arxiv.org/pdf/2606.06453v1",
+      "id": "http://arxiv.org/abs/2606.14658v1",
+      "title": "Giving AI a Headache: Acoustic Adversarial Attacks to Computer Vision Applications",
+      "summary": "Artificial Intelligence (AI) is increasingly used to automate a variety of real-world computer vision (CV) applications, such as autonomous vehicle control, facial recognition, and security cameras. Recent research has shown that acoustic vibration can induce real physical motion in cameras, interfering with their internal stabilization mechanisms. Because the motion falls outside the conditions the stabilization system was designed to handle, the system introduces artifacts into the frame, causing AI-based CV models to misclassify, miss targets, or hallucinate objects.   Previous work used ultrasonic frequencies (>20 kHz) to perform short-range attacks, which limits them to short distances due to the attenuation exhibited by high frequencies. In this work, we investigate acoustic attacks using lower frequencies in the audible range (<20 kHz), and we further expand our analysis to include how various image and object features are affected by the attacks.   Specifically, we performed physical experiments to demonstrate the viability of our attacks on an off-the-shelf object detection model (YOLO11) by resonating a commercially available camera with various frequencies. Based on our results, we provide insights into several factors that make an AI CV system more vulnerable to these attacks, which could help inform the development of future mitigation strategies.",
+      "published": "2026-06-12T17:22:53+00:00",
+      "url": "https://arxiv.org/pdf/2606.14658v1",
       "authors": [
-        "Zhuoming Chen",
-        "Xinrui Zhong",
-        "Qilong Feng",
-        "Ranajoy Sadhukhan",
-        "Yang Zhou",
-        "Michael Qizhe Shieh",
-        "Zhihao Jia",
-        "Beidi Chen"
+        "Nicole Villavicencio-Garduño",
+        "Maksim Ekin Eren",
+        "Milo Prisbrey",
+        "Ben Migliori",
+        "Michael Teti"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06448v1",
-      "title": "Agent Memory: Characterization and System Implications of Stateful Long-Horizon Workloads",
-      "summary": "LLM agents are increasingly deployed on long-horizon tasks requiring sustained reasoning over extended interaction histories. Realizing this at scale requires agents to persistently store, retrieve, and update their own memory across sessions. A rich ecosystem of agent memory systems has emerged spanning flat retrieval, LLM-mediated extraction, consolidating fact stores, and agentic control flows. Yet, their system-level behavior remains uncharacterized. We present the first systems characterization of agent memory. First, we introduce a system-oriented taxonomy classifying agent memory systems along four axes. Second, we build a phase-aware profiling harness attributing cost to construction, retrieval, and generation. Third, we characterize ten representative systems across two benchmark suites, uncovering how design choices shift cost across the write and read paths. Finally, we derive 10 system recommendations covering construction scheduling, capability floors, amortization via query volume, freshness-latency tradeoffs, and fleet-scale management.",
-      "published": "2026-06-04T17:44:18+00:00",
-      "url": "https://arxiv.org/pdf/2606.06448v1",
+      "id": "http://arxiv.org/abs/2606.14654v1",
+      "title": "Abstracting Cross-Domain Action Sequences into Interpretable Workflows",
+      "summary": "Sequential or time-stamped interaction logs provide objective records of digital application usage, yet their granularity and noise often obscure meaningful insights into people's work. Such insights are essential for improving digital products in ways grounded in real-world user interactions. Prior research has applied deep learning models to cluster user actions into high-level activities, but these approaches are highly sensitive to noise and struggle to generalize across applications. To address this limitation, we introduce WorkflowView, a framework that uses large language models (LLMs) to abstract low-level action sequences into high-level activities. We establish the effectiveness and generality of our approach across three distinct, challenging sequential tasks and diverse domains: (a) zero-shot task description reconstruction from browser logs (achieving high semantic similarity, $μ_{sim} = 0.91$), (b) few-shot student dropout prediction using MOOC interaction logs (reaching weighted $F_1 = 0.90$ with only five few-shot examples), and (c) anonymized, privacy-preserving analysis of AI tool integration within document workflows in Microsoft Word. Our work demonstrates that LLM-based abstraction is a robust and efficient path forward for transforming low-level behavioral data into high-level, interpretable, and actionable insights. We also discuss practical considerations for deploying LLM-based inferences within logging infrastructures, including computational efficiency and user privacy.",
+      "published": "2026-06-12T17:19:15+00:00",
+      "url": "https://arxiv.org/pdf/2606.14654v1",
       "authors": [
-        "Yasmine Omri",
-        "Ziyu Gan",
-        "Zachary Broveak",
-        "Robin Geens",
-        "Zexue He",
-        "Alex Pentland",
-        "Marian Verhelst",
-        "Tsachy Weissman",
-        "Thierry Tambe"
+        "Gaurav Verma",
+        "Scott Counts"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06429v1",
-      "title": "Computational Modeling of Human Adaptation in Urban Infrastructure Management under Extreme Conditions: A Case Study of Subway Flood Scenarios",
-      "summary": "Decision-making in urban infrastructure management during extreme events relies heavily on human operators, yet current computational support systems often fail to account for non-monotonic human adaptation and latent psychological biases like overconfidence and defensive overcorrection. This study addresses this gap by integrating Instance-Based Learning Theory (IBLT) into the domain of civil engineering computing. We establish a computational cognitive architecture that simulates operator decision processes through the mathematical mechanisms of memory retrieval and utility blending. This model functions as a computational baseline, representing boundedly rational adaptation driven by experiential priors, thus allowing for the algorithmic isolation of latent psychological biases from the baseline dynamics of memory-based learning. We demonstrated this framework using a human-in-the-loop microworld experiment simulating subway flood-induced track suspensions, where dispatchers must balance passenger safety against service efficiency. Analysis revealed a complex, non-linear human adaptation cycle consisting of four phases: acquisition, overconfidence, overcorrection, and recalibration. Specifically, the computational model exposed a significant divergence during the post-accident \"overcorrection\" phase: while human operators exhibited immediate, defensive risk overestimation, the model maintained a stable trajectory based on accumulated experience. This strategic divergence confirms that operational instability following failure is often attributable to acute psychological bias overriding stable memory-based adaptation, a pattern theoretically expected to recur across analogous high-stakes environments and validatable through multi-modal behavioral and sensor data from professional operators.",
-      "published": "2026-06-04T17:34:19+00:00",
-      "url": "https://arxiv.org/pdf/2606.06429v1",
+      "id": "http://arxiv.org/abs/2606.14647v1",
+      "title": "Listening with Attention: Entropy-Guided Explainability for Transformer-Based Audio Models",
+      "summary": "Transformer-based automatic speech recognition (ASR) models such as Whisper are highly accurate, but their predictions remain difficult to interpret. Existing explainable AI (XAI) methods often lack faithfulness and precise temporal grounding. We propose Listening with Entropy-guided Attention for Faithful explainability (LEAF-X), a model-intrinsic XAI framework for transformer-based ASR. LEAF-X combines entropy-guided attention weighting, multi-layer attention rollout, and optional causal ablations to identify low-entropy, high-impact heads and layers, producing sparse token-to-frame attributions. Unlike perturbation-based explainers or raw attention maps, LEAF-X exploits the internal structure of encoder-decoder and speech-augmented decoder-only models to generate explanations that better reflect model computation. Results show 32% improved faithfulness, 35-39% stronger locality/sparsity, and the most stable attributions, supporting more transparent and auditable ASR.",
+      "published": "2026-06-12T17:08:42+00:00",
+      "url": "https://arxiv.org/pdf/2606.14647v1",
       "authors": [
-        "Jinfeng Lou",
-        "Zijie Liang",
-        "Pengkun Liu",
-        "Yuxin Zhang",
-        "Cleotilde Gonzalez",
-        "Pingbo Tang"
+        "Ravi Ranjan",
+        "Utkarsh Grover",
+        "Xiaomin Lin",
+        "Agoritsa Polyzou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06413v1",
-      "title": "Competition in Dealer Markets with Internalisation and Externalisation",
-      "summary": "We model a market with multiple dealers who compete for client order flow by dynamically updating their bid and ask quotes for a risky asset. Dealers aim to maximise expected profits while controlling inventory risk by skewing their quotes to attract offsetting order flow (internalisation) or by directly offloading positions in the market (externalisation). Using a variational approach, we derive a closed-form equilibrium for the resulting Nash competition, shedding light on key features of dealer market dynamics. We show that dealers relying on internalisation are compelled to increase their externalisation activity when competing with externalising dealers. This strategic shift in equilibrium leads to significantly higher hedging costs for all dealers and substantially wider spreads for clients.",
-      "published": "2026-06-04T17:15:54+00:00",
-      "url": "https://arxiv.org/pdf/2606.06413v1",
+      "id": "http://arxiv.org/abs/2606.14626v1",
+      "title": "Characterizing Cultural Localization in AI-Generated Stories",
+      "summary": "The global use of artificial intelligence has increased interest in assessing the ability to generate culturally localized content, including stories. Cultural localization in stories often occurs through either templated localization -- the use of cultural markers (e.g., names, locations) in a generic narrative -- or holistic localization -- the variation of plots, values, and themes, in addition to cultural markers. We propose a method to measure the degree to which content was generated through templated localization. Specifically, we identify the lexical tokens that distinguish stories across nationalities and measure the similarity of the narratives that remain after removing them. In stories generated by five models on 125 topics for 193 nationalities, our method is able to detect that only a small subset (9-17%) of the vocabulary accounts for the variation across nationalities and that the narratives that remain after removing them contain repeated multi-word sequences, suggesting the presence of a shared culturally-agnostic narrative template. Finally, we characterize the cultural markers for their stereotypicality and offensiveness, finding that markers from 19 countries, mostly located in the Global South, are on average offensive.",
+      "published": "2026-06-12T16:51:52+00:00",
+      "url": "https://arxiv.org/pdf/2606.14626v1",
       "authors": [
-        "Robert Boyce",
-        "Eyal Neuman"
+        "Shaily Bhatt",
+        "Supriti Vijay",
+        "Jeremiah Milbauer",
+        "Fernando Diaz"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06407v1",
-      "title": "A Vision-language Framework for Comparative Reasoning in Radiology",
-      "summary": "Medical imaging artificial intelligence has achieved strong performance in isolated image interpretation, but remains poorly aligned with radiological practice, where diagnosis and follow-up rely on comparison across prior studies and analogous reference cases. Here we formulate radiological comparison as an entity-aware cross-image reasoning problem and introduce a framework that supports both reference-case retrieval and temporal comparative interpretation. We construct MedReCo-DB, a large-scale comparative imaging resource derived from routine image-report pairs, comprising more than 690,000 images from over 160,000 patients across eight institutions, four countries and seven imaging modalities. Reports are decomposed into anatomical structures, abnormal findings and pathological conditions to provide supervision for entity-conditioned retrieval and comparative visual question answering. Using this resource, we develop MedReCo, an entity-aware visual encoder for controllable retrieval of clinically analogous cases, and MedReCo-VLM, a vision--language extension for generative interpretation of interval change. Across internal, external and cross-center evaluations, MedReCo achieved the highest Recall@1 in all 12 internal retrieval settings and improved external retrieval by a mean of 6.0 percentage points. In clinically confusable differential groups, it consistently outperformed the strongest baselines. MedReCo-VLM achieved the best performance across all comparative generation evaluations and improved longitudinal follow-up accuracy by 14.5-46.5 percentage points on chest radiographs and 13.0-27.9 percentage points on CT. These findings suggest that entity-aware comparative reasoning can be learned from routine clinical data at scale and may provide a more clinically aligned foundation for medical imaging AI.",
-      "published": "2026-06-04T17:12:47+00:00",
-      "url": "https://arxiv.org/pdf/2606.06407v1",
+      "id": "http://arxiv.org/abs/2606.14618v1",
+      "title": "Teaching Machine Learning to Software Engineers",
+      "summary": "Machine learning (ML) and Artificial Intelligence (AI) components are increasingly embedded in software products, yet undergraduate software engineering (SE) curricula rarely provide systematic preparation for building, testing, deploying, and maintaining AI/ML-based software systems. This paper aims to provide evidence-based guidance for integrating AI/MLrelevant content into core SE education. We compile and define a structured inventory of topics relevant to SE practice in AI/MLbased software, then map these topics against required courses in a set of representative SE curricula to identify coverage gaps. To assess educational priorities and feasibility, we survey SE instructors on topic importance and integration constraints. Based on the crosswalk between topic definitions, curriculum coverage, and instructor prioritization, we derive a guideline that recommends where and how high-priority topics can be embedded within existing SE courses.",
+      "published": "2026-06-12T16:42:34+00:00",
+      "url": "https://arxiv.org/pdf/2606.14618v1",
       "authors": [
-        "Tengfei Zhang",
-        "Ziheng Zhao",
-        "Lisong Dai",
-        "Xiaoman Zhang",
-        "Pengcheng Qiu",
-        "Ya Zhang",
-        "Yanfeng Wang",
-        "Weidi Xie"
+        "Nafiseh Kahani",
+        "Jason Jaskolka"
       ],
       "source": "arxiv"
     }

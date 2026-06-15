@@ -1,5 +1,5 @@
 {
-  "timestamp": 1780721538.192779,
+  "timestamp": 1781516630.594266,
   "source": "semantic_scholar",
   "query": "token pricing AI inference cost",
   "results": [
@@ -27,32 +27,6 @@
       "source": "semantic_scholar"
     },
     {
-      "id": "618601af0c389cb4228f0ad442d93281adc2d6eb",
-      "title": "Incentivizing Quality Text Generation via Statistical Contracts",
-      "summary": "While the success of large language models (LLMs) increases demand for machine-generated text, current pay-per-token pricing schemes create a misalignment of incentives known in economics as moral hazard: Text-generating agents have strong incentive to cut costs by preferring a cheaper model over the cutting-edge one, and this can be done\"behind the scenes\"since the agent performs inference internally. In this work, we approach this issue from an economic perspective, by proposing a pay-for-performance, contract-based framework for incentivizing quality. We study a principal-agent game where the agent generates text using costly inference, and the contract determines the principal's payment for the text according to an automated quality evaluation. Since standard contract theory is inapplicable when internal inference costs are unknown, we introduce cost-robust contracts. As our main theoretical contribution, we characterize optimal cost-robust contracts through a direct correspondence to optimal composite hypothesis tests from statistics, generalizing a result of Saig et al. (NeurIPS'23). We evaluate our framework empirically by deriving contracts for a range of objectives and LLM evaluation benchmarks, and find that cost-robust contracts sacrifice only a marginal increase in objective value compared to their cost-aware counterparts.",
-      "published": "2024",
-      "url": "https://www.semanticscholar.org/paper/618601af0c389cb4228f0ad442d93281adc2d6eb",
-      "authors": [
-        "Eden Saig",
-        "Ohad Einav",
-        "Inbal Talgam-Cohen"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "0dde6585acb2bbc202b9f8e9276e70a91826d033",
-      "title": "Benchmarking GPT-5 for biomedical natural language processing",
-      "summary": "Biomedical literature and clinical narratives pose multifaceted challenges for natural language understanding, from precise entity extraction and document synthesis to multi-step diagnostic reasoning. This study extends a unified benchmark to evaluate GPT-5 and GPT-4o under zero-, one-, and five-shot prompting across five core biomedical NLP tasks: named entity recognition, relation extraction, multi-label document classification, summarization, and simplification, and nine expanded biomedical QA datasets covering factual knowledge, clinical reasoning, and multimodal visual understanding. Using standardized prompts, fixed decoding parameters, and consistent inference pipelines, we assessed model performance, latency, and token-normalized cost under official pricing. GPT-5 consistently outperformed GPT-4o, with the largest gains on reasoning-intensive datasets such as MedXpertQA and DiagnosisArena and stable improvements in multimodal QA. In core tasks, GPT-5 achieved better chemical NER and ChemProt scores but remained below domain-tuned baselines for disease NER and summarization. Despite producing longer outputs, GPT-5 showed comparable latency and 30 to 50 percent lower effective cost per correct prediction. Fine-grained analyses revealed improvements in diagnosis, treatment, and reasoning subtypes, whereas boundary-sensitive extraction and evidence-dense summarization remain challenging. Overall, GPT-5 approaches deployment-ready performance for biomedical QA while offering a favorable balance of accuracy, interpretability, and economic efficiency. The results support a tiered prompting strategy: direct prompting for large-scale or cost-sensitive applications, and chain-of-thought scaffolds for analytically complex or high-stakes scenarios, highlighting the continued need for hybrid solutions where precision and factual fidelity are critical.",
-      "published": "2025",
-      "url": "https://www.semanticscholar.org/paper/0dde6585acb2bbc202b9f8e9276e70a91826d033",
-      "authors": [
-        "Yu Hou",
-        "Zaifu Zhan",
-        "Rui Zhang"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
       "id": "f9a9dd25aa7a6dbabb593dac964cb089996921ee",
       "title": "Token Management in Multi-Tenant AI Inference Platforms",
       "summary": "Multi-tenant AI inference platforms must balance resource utilization against service-level guarantees under variable demand. Conventional approaches fail to achieve this balance: dedicated endpoints strand capacity on idle models, while rate limits ignore the heterogeneous cost of inference requests. We introduce \\emph{token pools}, a control-plane abstraction that represents inference capacity as explicit entitlements expressed in inference-native units (token throughput, KV cache, concurrency). Unlike rate limits, which govern request admission without regard to execution cost, token pools authorize both admission and autoscaling from the same capacity model, ensuring consistency between what is promised and what is provisioned. The abstraction captures burst modes across multiple dimensions invisible to conventional throttling. Dynamic per-entitlement limits on each burst dimension enable fine-grained control over resource consumption while permitting work-conserving backfill by low-priority traffic. The design supports priority-aware allocation, service tiers with differentiated guarantees, and debt-based fairness mechanisms, all without modifying the underlying inference runtime or cluster scheduler. In experiments on a Kubernetes cluster with vLLM backends, token pools maintain a bounded P99 latency for guaranteed workloads during overload by selectively throttling spot traffic, while a baseline without admission control experiences unbounded latency degradation across all workloads. A second experiment demonstrates debt-based fair-share convergence among elastic workloads with heterogeneous SLO requirements during capacity scarcity.",
@@ -60,6 +34,30 @@
       "url": "https://www.semanticscholar.org/paper/f9a9dd25aa7a6dbabb593dac964cb089996921ee",
       "authors": [
         "W. Cunningham"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "dbdf593bf37cfefe34ae3e991cb67b3953ce263d",
+      "title": "Token Arena: A Continuous Benchmark Unifying Energy and Cognition in AI Inference",
+      "summary": "Public inference benchmarks compare AI systems at the model and provider level, but the unit at which deployment decisions are actually made is the endpoint: the (provider, model, stock-keeping-unit) tuple at which a specific quantization, decoding strategy, region, and serving stack is exposed. We introduce TokenArena, a continuous benchmark that measures inference at endpoint granularity along five core axes (output speed, time to first token, workload-blended price, effective context, and quality on the live endpoint) and synthesizes them, together with a modeled energy estimate, into three headline composites: joules per correct answer, dollars per correct answer, and endpoint fidelity (output-distribution similarity to a first-party reference). The framework's novelty is empirical and methodological. Across 78 endpoints serving 12 model families, the same model on different endpoints differs in mean accuracy by up to 12.5 points on math and code, in fingerprint similarity to first party by up to 12 points, in tail latency by an order of magnitude, and in modeled joules per correct answer by a factor of 6.2. We further show that workload-aware blended pricing reorders the leaderboard substantially: 7 of 10 top-ranked endpoints under the chat preset (3:1 input:output) fall out of the top 10 under the retrieval-augmented preset (20:1), and the reasoning preset (1:5) elevates frontier closed models that the chat preset penalizes on price. We release the framework, schema, probe and eval harness, and a v1.0 leaderboard snapshot under CC BY 4.0. TokenArena is a methodology, not a single ranking; we publish full provenance and limitations and welcome external replication.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/dbdf593bf37cfefe34ae3e991cb67b3953ce263d",
+      "authors": [
+        "Yuxuan Gao",
+        "Megan Wang",
+        "Yixu Yu"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "09f12ced5ce69e7f87acd10b078d90e057c5a9ac",
+      "title": "Consumption-Based Pricing in AI: Credit and Token Models for Scalable Monetization",
+      "summary": "Artificial intelligence service delivery has undergone a substantial transformation away from rigid licensing arrangements toward flexible consumption-driven monetization structures. Conventional flat-rate pricing schemes inadequately reflect the dynamic nature of AI computational demands. Resource requirements vary considerably based on model sophistication, inference intensity, and data handling complexity. Credit and token mechanisms function as standardized abstraction units. Such units separate billing processes from underlying infrastructure technicalities. Customers benefit from adaptable budget management capabilities through these monetization structures. Combined pricing models integrating committed spending with prepaid credit reserves enable greater operational flexibility. Overflow consumption calculations provide additional adaptability for variable demand scenarios. Implementation difficulties persist concerning pricing clarity and consumption unpredictability. Maintaining customer confidence remains a paramount consideration for service providers. The architectural underpinnings of consumption-oriented AI pricing receive thorough examination within the present article. Calibration techniques converting usage metrics into pricing units warrant detailed attention. Operational hurdles and ethical dimensions are addressed alongside supervisory frameworks, ensuring responsible deployment. The central contribution involves integrating technical pricing structures with transparency safeguards. Such integration facilitates responsible AI adoption scaling across varied implementation scenarios while preserving economic sustainability and stakeholder trust throughout the monetization lifecycle.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/09f12ced5ce69e7f87acd10b078d90e057c5a9ac",
+      "authors": [
+        "Ankit Khandelwal"
       ],
       "source": "semantic_scholar"
     }

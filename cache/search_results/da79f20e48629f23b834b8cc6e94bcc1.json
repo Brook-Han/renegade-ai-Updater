@@ -1,152 +1,172 @@
 {
-  "timestamp": 1780721297.87621,
+  "timestamp": 1781515830.3474321,
   "source": "arxiv",
   "query": "power concentration AI governance monopoly",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.06493v1",
-      "title": "HANDOFF: Humanoid Agentic Task-Space Whole-Body Control via Distilled Complementary Teachers",
-      "summary": "For a humanoid robot to be deployed in the real world, the choice of command space (i.e., the interface between task planning and whole-body control) is crucial. Existing whole-body controllers typically demand dense kinematic or spatial references that planners struggle to synthesize from task semantics. We instead propose a compact, explicit interface that is intuitive, general, modular, and expressive enough for diverse manipulation skills. To this end, we introduce HANDOFF, a single humanoid whole-body controller that follows this interface and is distilled via multi-teacher KL distillation under a context-conditioned gating scheme into a mixture-of-experts student from three complementary specialists: whole-body motion tracking with safety-filtered data, locomotion, and fall-recovery. On the Unitree G1, HANDOFF matches state-of-the-art velocity tracking and offers one of the largest robust manipulation workspaces. We further demonstrate hardware feasibility through multiple natural-language-driven task roll-outs, powered by a VLM-driven agentic planner with no task-specific data or controller fine-tuning.",
-      "published": "2026-06-04T17:59:50+00:00",
-      "url": "https://arxiv.org/pdf/2606.06493v1",
+      "id": "http://arxiv.org/abs/2606.14699v1",
+      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
+      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
+      "published": "2026-06-12T17:59:36+00:00",
+      "url": "https://arxiv.org/pdf/2606.14699v1",
       "authors": [
-        "Lizhi Yang",
-        "Junheng Li",
-        "Nehar Poddar",
-        "Yiling Hou",
-        "Gio Huh",
-        "Robert Griffin",
-        "Georgia Gkioxari",
-        "Aaron Ames"
+        "Ruining Li",
+        "Yuxin Yao",
+        "Matt Zhou",
+        "Chuanxia Zheng",
+        "Christian Rupprecht",
+        "Joan Lasenby",
+        "Shangzhe Wu",
+        "Andrea Vedaldi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06491v1",
-      "title": "TempoVLA: Learning Speed-Controllable Vision-Language-Action Policies",
-      "summary": "Robot manipulation alternates between low-risk transit phases that call for fast execution and high-risk contact stages that demand slow, precise motion. Yet existing Vision-Language-Action models (VLAs) only inherit a single fixed speed from training demonstrations. Prior efforts to accelerate VLAs through model compression, KV-cache reuse, or reinforcement learning only shift the policy from one fixed speed to another, and leave deceleration almost unexplored. We observe that the magnitude of each predicted action already governs how fast the robot moves, opening a direct route to controllable execution speed. We turn this observation into TempoVLA, a single VLA whose execution speed is controlled by an explicit condition. TempoVLA combines two coupled components. (1) A data-side Variable-Speed Trajectory Augmentation (VSTA) that re-times demonstration to any target speed by merging or splitting actions while preserving its motion semantics. (2) A model-side conditioning mechanism that feeds the speed to the policy. Statistics show that VSTA reaches the requested speed with negligible motion error. Experiments in simulation and on real-world tasks demonstrate that TempoVLA achieves flexible speed control in both directions, while VSTA additionally boosts the default $1\\times$ performance via better data utilization. Furthermore, by cooperating with a large multimodal model, TempoVLA realizes dynamic speed control, accelerating through low-risk phases and decelerating for high-risk ones.",
-      "published": "2026-06-04T17:59:40+00:00",
-      "url": "https://arxiv.org/pdf/2606.06491v1",
+      "id": "http://arxiv.org/abs/2606.14688v1",
+      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
+      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
+      "published": "2026-06-12T17:52:24+00:00",
+      "url": "https://arxiv.org/pdf/2606.14688v1",
       "authors": [
-        "Dong Jing",
-        "Jingchen Nie",
-        "Tianqi Zhang",
-        "Jiaqi Liu",
-        "Huaxiu Yao",
-        "Zhiwu Lu",
-        "Mingyu Ding"
+        "Xiaoyu Li",
+        "Andi Han",
+        "Dai Shi",
+        "Zheng Gao",
+        "Jiaojiao Jiang",
+        "Junbin Gao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06482v1",
-      "title": "Two-Sample Hypothesis Testing for Subspace Equality in Network Data",
-      "summary": "In many settings one is often interested in determining whether two networks share some joint structural connectivity patterns such as communities. However, while communities may be shared across networks, edge probabilities may differ significantly. Therefore, in this paper we consider testing a general null hypothesis that two networks have the same underlying subspace, which in particular includes the setting that communities are the same for either stochastic blockmodels or mixed-membership stochastic blockmodels (even if edge probabilities are different). We propose a test statistic based on the Frobenius norm of the difference of the leading subspace projection matrices, and we prove that our test statistic, after appropriate centering and scaling, converges in distribution to a Gaussian random variable as long as the average expected degree grows at least logarithmically in the number of vertices. We then provide estimators for the asymptotic mean and variance and show consistency under a stronger signal condition, and we give the local power of our test when the networks are sufficiently dense. Our theoretical results are based on a limit theorem for the projection difference of empirical and true eigenvectors which can also be viewed as the one-sample version of our test statistic, and this result may be of independent interest. We demonstrate our results through numerical simulations and an application to US Flight data.",
-      "published": "2026-06-04T17:58:07+00:00",
-      "url": "https://arxiv.org/pdf/2606.06482v1",
+      "id": "http://arxiv.org/abs/2606.14682v1",
+      "title": "Impact of 21-cm foreground mitigation strategies on reionization power spectrum constraints",
+      "summary": "The 21-cm signal probes the intergalactic medium during the Epoch of Reionization (EoR) but is overwhelmed by astrophysical foregrounds orders of magnitude stronger than the cosmological signal. We evaluate two mitigation strategies: (i) Foreground Avoidance, restricting analysis to the EoR window in Fourier space, and (ii) Foreground Removal via Gaussian Process Regression, which exploits spectral smoothness to statistically separate contaminants and reclaim modes within the contaminated wedge. Both introduce systematic biases of up to $\\approx$1$σ$ in astrophysical parameters such as the minimum star-forming halo mass and ionising escape fraction, with avoidance posteriors consistently broader than removal owing to its restricted visibility coverage. The global reionization history is recovered within the 95% credible interval, though the neutral fraction at late reionization epochs shows a persistent bias reflecting the difficulty of its inference from the power spectrum alone. Multi-redshift inference is susceptible to contamination from poorly mitigated bins. Excluding such bins significantly reduces parameter biases, but identifying them requires independent quality metrics. When restricted to identical length scales, both strategies recover similar power spectra, yielding posteriors in similar regions.",
+      "published": "2026-06-12T17:47:06+00:00",
+      "url": "https://arxiv.org/pdf/2606.14682v1",
       "authors": [
-        "Rajdeep Brahma",
-        "Joshua Agterberg",
-        "Yuguo Chen"
+        "Sambit K. Giri",
+        "Florent Mertens"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06481v1",
-      "title": "Operation-Guided Progressive Human-to-AI Text Transformation Benchmark for Multi-Granularity AI-Text Detection",
-      "summary": "As AI writing assistants become increasingly integrated into real-world drafting and revision workflows, many documents are no longer purely human-written or AI-generated, but instead result from progressive human-AI co-editing. However, existing AI-text detection benchmarks largely focus on final outputs and provide limited understanding of how AI authorship signals emerge, accumulate, or disappear throughout the revision process. We introduce OpAI-Bench, an operation-guided benchmark for studying progressive human-to-AI text transformation across document, sentence, token, and span granularities. Starting from human-written documents, OpAI-Bench constructs nine sequentially revised versions for each sample under predefined AI coverage levels and five representative AI edit operations, covering four domains while preserving complete authorship provenance at multiple granularities. The benchmark supports comprehensive evaluation with 8 document-level detectors, 7 sentence-level detectors, and 2 fine-grained token/span-level detectors. Experiments reveal that AI-text detectability is governed not only by the proportion of AI-edited content, but also by edit operation, domain, and cumulative revision history. Interestingly, we notice that mixed-authorship intermediate versions are often harder to detect than both fully human and heavily AI-edited endpoints, exposing non-monotonic detection patterns missed by existing benchmarks. OpAI-Bench provides a controlled testbed for analyzing whether, when, and how AI-assisted writing becomes detectable under realistic progressive editing scenarios. Our code and benchmark are available at https://github.com/VILA-Lab/OpAI-Bench.",
-      "published": "2026-06-04T17:58:05+00:00",
-      "url": "https://arxiv.org/pdf/2606.06481v1",
+      "id": "http://arxiv.org/abs/2606.14678v1",
+      "title": "Interfacial mass transfer resistance at fluid-fluid interfaces",
+      "summary": "Complex chemistry in nano- and microscale compartments is often governed by how quickly reagents transit a fluid-fluid interface. Mass transport across interfaces is commonly modeled by assuming local equilibrium, enforcing continuity of chemical potential across the interface. While adequate at large scales, this approximation may break down at the microscale, where interfacial processes can become rate-limiting. Here, we extend linear irreversible thermodynamics to describe nonequilibrium interfacial mass transport. We identify an interface-limited regime, in which transport is governed by interfacial resistance and exhibits exponential relaxation. Combining microfluidic and spectroscopic techniques, we introduce an experimental technique that explores this regime and provides a direct measurement of the interfacial mass transfer coefficient. For a model system consisting of acetonitrile transport across a surfactant-stabilized water-oil interface, we obtain an interfacial transport coefficient ${M \\sim 7\\,{\\rm nm/s}}$. These results establish interfacial mass transfer resistance as a governing mechanism in microscale transport and provide a framework to predict, control and measure mass transport in multiphase systems at microscale.",
+      "published": "2026-06-12T17:43:07+00:00",
+      "url": "https://arxiv.org/pdf/2606.14678v1",
       "authors": [
-        "Sondos Mahmoud Bsharat",
-        "Jiacheng Liu",
-        "Xiaohan Zhao",
-        "Tianjun Yao",
-        "Xinyi Shang",
-        "Yi Tang",
-        "Jiacheng Cui",
-        "Ahmed Elhagry",
-        "Salwa K. Al Khatib",
-        "Hao Li",
-        "Salman Khan",
-        "Zhiqiang Shen"
+        "Hyeongjoo Row",
+        "Brandon J. Wallace",
+        "Joshua B. Fernandes",
+        "Kevin R. Wilson",
+        "Kranthi K. Mandadapu"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06469v1",
-      "title": "How abundant are good interpolators?",
-      "summary": "Let $S$ be the set of unit norm linear classifiers $θ\\in \\mathbb{R}^d$ which correctly classify every point of a labeled dataset $(X_i,y_i)_{i=1}^n$, $X_i \\in \\mathbb{R}^d$, $y_i \\in \\{-1,+1\\}$, with a possibly negative margin $κ$ fixed in advance. Under two natural data-generating distributions of the $(X,y)$ pairs -- a Gaussian mixture model and a logistic model with Gaussian features -- and in the proportional regime $n/d \\to α$ with small enough $α$, we establish a large deviation principle on the event that a point $θ$ chosen uniformly at random from $S$ achieves a given generalization error, with high probability over the choice of the data. The associated large deviation rate function is deterministic and describes the proportion, at the exponential scale in $d$, of interpolating classifiers having a given desired performance. As a consequence, we establish the following concentration phenomenon: all but an exponentially small fraction of interpolating classifiers have approximately the same generalization performance given by the unique maximizer of this rate function.   We numerically compare this maximizer to the performance of empirical risk minimization by gradient descent and to the performance of a natural linear program, both finding a point in $S$, and deduce that in the overparametrized regime of small $α$, these efficient procedures outperform the vast majority of interpolators, pointing to their nontrivial benign overfitting in this setting.",
-      "published": "2026-06-04T17:55:10+00:00",
-      "url": "https://arxiv.org/pdf/2606.06469v1",
+      "id": "http://arxiv.org/abs/2606.14674v1",
+      "title": "AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition",
+      "summary": "LLM agents are increasingly built not as single model calls, but as scaffolded systems that combine reasoning, memory, reflection, action execution, and learning. While such scaffolds often improve performance, they are often embedded in tightly coupled pipelines, making it difficult to isolate component contributions, compare alternative designs, or understand how module interactions shape agent behavior. We introduce AgentSpec, a modular specification framework that represents embodied agents as typed compositions of reusable policy components with standardized interfaces. AgentSpec standardizes the interfaces among perception, memory, reasoning, reflection, action, and optional learning, enabling components to be swapped and recombined under controlled conditions. We instantiate this framework across DeliveryBench, ALFRED, MiniGrid, and RoboTHOR, and analyze reasoning, memory, reflection, and reinforcement-learning modules across model backbones. Our results show that agent performance is governed by scaffold compatibility and interaction effects rather than isolated module strength. In particular, structured multi-granularity memory improves long-horizon state tracking, reasoning and memory interact non-uniformly across environments, reflection trades off correction and cost, and RL-trained policies compose best when optimized with deployment-time scaffold structure. AgentSpec provides a controlled foundation for studying, comparing, and designing composable LLM agents. Our code, baselines and interactive playground are publicly available at https://agentspec-embodied.github.io.",
+      "published": "2026-06-12T17:39:49+00:00",
+      "url": "https://arxiv.org/pdf/2606.14674v1",
       "authors": [
-        "August Y. Chen",
-        "Ahmed El Alaoui"
+        "Jixuan Chen",
+        "Jianzhi Shen",
+        "Haoqiang Kang",
+        "Zhi Hong",
+        "Qingyi Jiang",
+        "Soham Bose",
+        "Yiming Zhang",
+        "Leon Leng",
+        "Amit Vyas",
+        "Lingjun Mao",
+        "Siru Ouyang",
+        "Kun Zhou",
+        "Lianhui Qin"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06463v1",
-      "title": "Large data scattering for the defocusing $k$-dispersion generalized Benjamin-Ono equation in the energy space",
-      "summary": "We study the defocusing $k$-dispersion generalized Benjamin-Ono equation. For every even integer $k\\geq 4$, we prove that solutions with initial data in the energy space $H^{\\fracα{2}}$ are global in time and scatter. The proof combines the concentration-compactness-rigidity method of Kenig and Merle with techniques based on the Caffarelli-Silvestre extension and Tao's monotonicity formula adapted to the fractional dispersion setting.",
-      "published": "2026-06-04T17:53:09+00:00",
-      "url": "https://arxiv.org/pdf/2606.06463v1",
+      "id": "http://arxiv.org/abs/2606.14673v1",
+      "title": "Compressed Computation is (probably) not Computation in Superposition",
+      "summary": "We study whether the Compressed Computation (CC) toy model (Braun et al., 2025) is an instance of computation in superposition. The CC model appears to compute 100 ReLU functions with just 50 neurons, achieving a better loss than expected from only representing 50 ReLU functions. We show that the model mixes inputs via its noisy residual stream, corresponding to an unintended mixing matrix in the labels. Splitting the training objective into the ReLU term and the mixing term, we find that performance gains scale with the magnitude of the mixing matrix and vanish when the matrix is removed. The learned neuron directions concentrate in the subspace associated with the top 50 eigenvalues of the mixing matrix, suggesting that the mixing term governs the solution. Finally, a semi-non-negative matrix factorization (SNMF) baseline derived solely from the mixing matrix reproduces the qualitative loss profile and improves on prior baselines, though it does not match the trained model. These results suggest CC is not a suitable toy model of computation in superposition.",
+      "published": "2026-06-12T17:39:31+00:00",
+      "url": "https://arxiv.org/pdf/2606.14673v1",
       "authors": [
-        "Luccas Campos",
-        "Felipe Linares",
-        "Thyago S. R. Santos"
+        "Jai Bhagat",
+        "Sara Molas-Medina",
+        "Giorgi Giglemiani",
+        "Stefan Heimersheim"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06462v1",
-      "title": "Benchmark Everything Everywhere All at Once",
-      "summary": "Benchmarks are fundamental for evaluating and advancing LLMs and MLLMs by providing standardized and explicit measures of performance. However, their construction is labor-intensive and hard to reuse, raising concerns about sustainability and scalability. Moreover, existing benchmarks often quickly reach performance saturation after their release, resulting in insufficient discrimination among state-of-the-art models. To address these challenges, we introduce Benchmark Agent, a fully autonomous agentic system designed for benchmark building. Our framework orchestrates the complete benchmark construction pipeline, from user query analysis and subtask design to data annotation and quality control. To assess Benchmark Agent, we implement it to produce 15 representative benchmarks, spanning diverse evaluation scenarios, including text understanding, multimodal understanding, and domain-specific reasoning. Extensive experiments, including human evaluation, LLM-as-a-judge assessment, and consistency checks, demonstrate Benchmark Agent can generate high-quality benchmark samples with minimal human involvement. More importantly, through continual evaluation, we observe several insightful findings, including that current models struggle with certain domain-specific reasoning tasks. We believe that rapidly evolving benchmarks can contribute significantly to the research community. The preview and code will be publicly available at the demo page and code repository.",
-      "published": "2026-06-04T17:52:04+00:00",
-      "url": "https://arxiv.org/pdf/2606.06462v1",
+      "id": "http://arxiv.org/abs/2606.14671v1",
+      "title": "From THESAN-ZOOM to JWST: Predicting ionizing photon escape and the rise of UV-bright reionization sources",
+      "summary": "Understanding the sources and evolution of cosmic reionization remains a central challenge in astrophysics, with the escape of ionizing Lyman-continuum (LyC) photons from early galaxies representing a major uncertainty. In this work, we use more than 35,000 galaxy realisations from the THESAN-ZOOM cosmological radiation-hydrodynamic simulations to identify indirect diagnostics of the LyC photon escape fraction ($f_\\mathrm{esc}$) and the LyC photon escape rate ($\\dot{N}_\\mathrm{ion,esc}$) across the redshift range $z=3-16$. We train random forest regression models using these diagnostics to predict both quantities. We present four models: two trained with the full set of simulation-derived indicators to predict $f_\\mathrm{esc}$ and $\\dot{N}_\\mathrm{ion,esc}$, and two restricted to observables accessible to JWST photometric surveys. We find the 10-to-100$\\,$Myr star-formation rate ratio ($\\mathrm{SFR}_{10} / \\mathrm{SFR}_{100}$) and the gas-to-stellar mass ratio ($M_\\mathrm{gas} / M_*$) to be the strongest diagnostics of $f_\\mathrm{esc}$, suggesting a strong relationship between ionizing photon escape and gas clearing through bursty star formation. In contrast, rest-frame UV ($1500 \\, Å$) absolute magnitude ($M_\\mathrm{UV}$) dominates $\\dot{N}_\\mathrm{ion,esc}$ prediction. Motivated by the strong predictive power of $M_\\mathrm{UV}$, we combine observed UV luminosity functions with derived $\\dot{N}_\\mathrm{ion,esc} - M_\\mathrm{UV}$ relations to construct histories of reionization. These are consistent with observational constraints, avoiding the recently reported crisis in the ionizing photon budget. Our analysis suggests that the bulk of reionization occurred rapidly after $z \\approx 8$, driven by UV-bright galaxies, with the $M_\\mathrm{UV} < -17$ populations providing the dominant contribution.",
+      "published": "2026-06-12T17:38:48+00:00",
+      "url": "https://arxiv.org/pdf/2606.14671v1",
       "authors": [
-        "Shiyun Xiong",
-        "Dongming Wu",
-        "Peiwen Sun",
-        "Yuang Ai",
-        "Bokang Yang",
-        "Wencheng Han",
-        "Xiao-Hui Li",
-        "Xiangyu Yue"
+        "Zebedee Summerfield",
+        "William McClymont",
+        "Sandro Tacchella",
+        "Aaron Smith",
+        "Rahul Kannan",
+        "Enrico Garaldi",
+        "Ewald Puchwein",
+        "Xuejian Shen",
+        "Josh Borrow",
+        "A. Lola Danhaive",
+        "Laura Keating",
+        "Gabriel Maheson",
+        "Parth Mehrotra",
+        "Charlotte Simmonds",
+        "Amanda Stoffers",
+        "Mark Vogelsberger",
+        "Oliver Zier"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06460v1",
-      "title": "Will the Agent Recuse Itself? Measuring LLM-Agent Compliance with In-Band Access-Deny Signals",
-      "summary": "As autonomous LLM agents increasingly hold real credentials and operate infrastructure without a human in the loop, operators have no standard way to tell an agent that a resource is off-limits. Access controls either let the agent in (it has valid credentials) or hard-fail it (indistinguishable from any other client). We propose a third mode: a lightweight, published in-band deny signal -- the Recuse Signal -- that a server emits over a protocol's existing channels (an SSH banner, a PostgreSQL NOTICE) asking a connecting automated agent to voluntarily withdraw. This is a cooperative governance control, the robots.txt analogue for live access; it is explicitly not a security boundary. Its value is entirely empirical and, to our knowledge, unmeasured: do compliant LLM agents actually honor such a signal? We define the signal as an open mini-standard, implement two zero- or low-footprint adapters (an SSH banner/PAM hook and a PostgreSQL wire-protocol proxy), deploy them on a live production host, and run a controlled experiment in which fresh agents are given a benign operations task and observed for recusal. In a pilot (SSH; OpenAI GPT-4o and GPT-4o-mini; and Claude Code as a deployed agent), the signal cleanly induces recusal -- 100% recusal when present versus 100% task completion in a no-signal control -- and, revealingly, behaves as a cooperative rather than absolute signal: an explicit operator-authorization framing flips the most capable model to proceed, while other agents continue to defer to the on-host policy. We release the standard, adapters, and experiment harness for reproduction.",
-      "published": "2026-06-04T17:50:54+00:00",
-      "url": "https://arxiv.org/pdf/2606.06460v1",
+      "id": "http://arxiv.org/abs/2606.14664v1",
+      "title": "The Self-Aware Body: A User-Centered Framework for Designing Therapeutic Sonic Interactions",
+      "summary": "This chapter presents a framework for designing therapeutic sonic interaction technologies, with a focus on movement sonification: the real-time conversion of bodily motion into sound that serves as feedback during motor rehabilitation. Despite growing evidence for their effectiveness, technologies implementing movement sonification are yet to be systematically adopted as part of clinical practice, potentially due to a lack of standardized development methodologies as well as inadequate integration of clinical stakeholder perspectives into interaction design. The framework addresses these barriers through three interconnected contributions. The first is a conceptual reframing of the design task as the calibration of sonic variability to the perceptual affordances of the listener and the demands of the clinical context. The second is a practical design platform inspired by professional audio mixing workflows, which imposes a structured and learnable signal-flow architecture on the interaction design process and enables rapid iterative exploration. The third is a user-centered development methodology adapted from healthcare intervention science, which grounds design decisions in engagement with the clinicians and patients who will use the resulting systems. The HearWalk biofeedback system for hemiparetic gait rehabilitation illustrates the framework, and the chapter concludes by examining where large language models and AI tools can meaningfully assist each stage of this design process, as well as where human clinical and perceptual expertise remains irreplaceable.",
+      "published": "2026-06-12T17:34:29+00:00",
+      "url": "https://arxiv.org/pdf/2606.14664v1",
       "authors": [
-        "Thamilvendhan Munirathinam"
+        "Prithvi Ravi Kantan",
+        "Sofia Dahl",
+        "Erika G. Spaich"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06459v1",
-      "title": "Event Detection for Parameter-to-KPI Dependency Learning for AI-RAN",
-      "summary": "Next-generation wireless networks are expected to rely on multiple concurrent AI-driven control functions that optimize different network objectives simultaneously, particularly in AI-integrated and open radio access network architectures such as AI Radio Access Network (AI-RAN) and Open Radio Access Network (O-RAN). When these functions interact, they can interfere with one another in ways that are difficult to detect from raw network data alone. A key missing piece for managing such interactions is a reliable, interpretable dependency structure that captures which control parameters are actively influencing which network performance outcomes at any given time. This paper focuses on the event-detection step needed to support such dependency learning by converting noisy continuous telemetry into binary indicators of parameter activity and KPI response. The central difficulty is that not every fluctuation in the data reflects a genuine control interaction, so the method must distinguish real parameter-outcome relationships from background variation. Because real AI-RAN traffic traces with known parameter-KPI ground truth are difficult to obtain, we introduce a synthetic closed-loop traffic generator with planted latent dependencies. We use this controlled telemetry to evaluate a machine-learning-based dependency recovery pipeline that formulates the conversion of continuous traces into binary event indicators as a significance-detection problem. Experimental evaluation shows that the proposed pipeline reliably recovers the latent dependency structure from noisy continuous traces when the signal is sufficiently separated from background variation, while highlighting threshold calibration as the key factor controlling event-detection quality. These results constitute a foundational step toward interpretable dependency learning for adaptive AI-RAN control systems.",
-      "published": "2026-06-04T17:50:39+00:00",
-      "url": "https://arxiv.org/pdf/2606.06459v1",
+      "id": "http://arxiv.org/abs/2606.14661v1",
+      "title": "Percolation of a rod-like particle in a static bed of spheres: trapping and passing",
+      "summary": "We numerically investigate percolation of independent frictionless glued-sphere rod-like particles under gravity through a disordered static bed of larger spheres. We identify two distinct regimes: a \\emph{trapping} regime, where rods stop after percolating a limited distance in the bed and a \\emph{passing} regime, where rods percolate continuously with constant mean velocity. The transition between these regimes is governed by the length of the rod and the geometrical trapping threshold for spherical particles based on the rod diameter and the minimum pore throat diameter defined by three touching large spheres. The percolation velocity for all rod geometries, including the single sphere limit, collapses onto a single curve when scaled with the gravitational acceleration and the bed sphere diameter. The results also demonstrate that short rods percolate nearly twice as fast as long rods due to the geometric constraints associated with the disordered pore structure of the static bed. Consequently, long rods are more susceptible to trapping via specific contact configurations with the bed spheres, which differ from those for short rods. These results reveal how shape anisotropy introduces dynamical constraints and thresholds in granular percolation, with implications for predicting segregation in mixtures of non-spherical particles.",
+      "published": "2026-06-12T17:29:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.14661v1",
       "authors": [
-        "Christie Djidjev",
-        "Nicholas Kaminski"
+        "Juan C. Petit",
+        "Julio M. Ottino",
+        "Richard M. Lueptow",
+        "Paul B. Umbanhowar"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.06454v1",
-      "title": "Scaffold, Not Vocabulary? A Controlled, Two-Tier, Pre-Registered Study of a Popperian Code-Generation Skill",
-      "summary": "Large language models increasingly write, review, and judge code, and a fast-growing practice equips them with prompt 'skills' that ask the model to reason like a scientist. A prominent example tells the model to act as a Popperian falsificationist, and such skills are reported to improve generated code. But these gains are almost always read off an LLM-as-a-judge, an instrument with documented positional, self-preference, and stylistic biases. We ask: if it appears to help, is the gain from the skill's Popperian content, or from the structure any scaffold imposes? We pre-register a two-tier ablation with three controls: a length-matched placebo, a labels-only scaffold that keeps the Popperian headers but strips the procedure, and an execution oracle (HumanEval+ unit tests), plus a vocabulary-halo sentinel and a same-model self-judge audit. On a frontier model (Claude Sonnet 4.6, N=163) all conditions sit near the benchmark ceiling and do not separate, so the pre-registered +5-point improvement is not supported (a ceiling-limited non-detection). On a small model (Qwen2.5-Coder-0.5B, N=164) structured arms lift best-of-eight correctness by 20-22 points, but the full skill shows no separable benefit over a labels-only scaffold (aggregate F@8=L@8 vs V@8=34.8%), and the placebo trails by only 2.4 points. A 0.5B self-judge applying the Popperian rubric does not beat random selection and concentrates 60% of its picks on one index. In the two settings tested, the skill's Popperian procedural content adds no separable execution-correctness benefit beyond a labels-only scaffold, so the gains track scaffold structure. We contribute a calibrated negative result and a reusable disambiguation protocol; the finding bounds an engineering claim about one prompt-skill family and is not an evaluation of Popperian methodology in general.",
-      "published": "2026-06-04T17:49:00+00:00",
-      "url": "https://arxiv.org/pdf/2606.06454v1",
+      "id": "http://arxiv.org/abs/2606.14658v1",
+      "title": "Giving AI a Headache: Acoustic Adversarial Attacks to Computer Vision Applications",
+      "summary": "Artificial Intelligence (AI) is increasingly used to automate a variety of real-world computer vision (CV) applications, such as autonomous vehicle control, facial recognition, and security cameras. Recent research has shown that acoustic vibration can induce real physical motion in cameras, interfering with their internal stabilization mechanisms. Because the motion falls outside the conditions the stabilization system was designed to handle, the system introduces artifacts into the frame, causing AI-based CV models to misclassify, miss targets, or hallucinate objects.   Previous work used ultrasonic frequencies (>20 kHz) to perform short-range attacks, which limits them to short distances due to the attenuation exhibited by high frequencies. In this work, we investigate acoustic attacks using lower frequencies in the audible range (<20 kHz), and we further expand our analysis to include how various image and object features are affected by the attacks.   Specifically, we performed physical experiments to demonstrate the viability of our attacks on an off-the-shelf object detection model (YOLO11) by resonating a commercially available camera with various frequencies. Based on our results, we provide insights into several factors that make an AI CV system more vulnerable to these attacks, which could help inform the development of future mitigation strategies.",
+      "published": "2026-06-12T17:22:53+00:00",
+      "url": "https://arxiv.org/pdf/2606.14658v1",
       "authors": [
-        "Mehmet Iscan"
+        "Nicole Villavicencio-Garduño",
+        "Maksim Ekin Eren",
+        "Milo Prisbrey",
+        "Ben Migliori",
+        "Michael Teti"
       ],
       "source": "arxiv"
     }
