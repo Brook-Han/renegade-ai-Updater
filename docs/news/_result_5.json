@@ -1,0 +1,230 @@
+[
+  {
+    "_cache_key": "57ce6e0bb50f6a5607ad69426527478d",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "小米发布并开源终端AI编程助手MiMo Code V0.1.0，采用MIT协议",
+    "url": "https://mp.weixin.qq.com/s/WkMPz-eBK2Hz0ZTQEwtx6w",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "小米发布并开源终端AI编程助手MiMo Code V0.1.0，采用MIT协议，内置限时免费MiMo-V2.5多模态模型，性能比肩Claude Sonnet 4.6。该工具在SWE-Bench Pro上达62%（Claude Code为57%），Terminal Bench 2达73%（68%），展现出开源工具对标甚至超越闭源商业产品的竞争力。核心创新包括持久记忆系统——通过独立subagent自动保存状态以解决长会话遗忘问题，以及独创Compose模式实现模型与Agent协同优化。支持接入DeepSeek、Kimi、GLM等外部模型，终端输入mimo即可使用，所有设置已汉化。此举代表中国科技公司在AI编程工具领域的重要突破，MIT协议大幅降低了开发者准入门槛，有望加速编程辅助工具的民主化进程。",
+      "implications": "此新闻构成对「资本驯化AI」模型的有力反证。理论预测资本会通过闭源、专利和算力垄断将AI锁定为秩序守卫；而小米以MIT协议开源具备超越Claude Code性能的AI编程工具，证明了闭源商业垄断并非技术进步的唯一路径。同时支持「叛逆AI」框架——通过重置人机交互范式（Compose协同模式）和开放技术栈，打破了资本对AI能力的封闭控制。持久记忆系统和无限上下文的设计也呼应了「碳硅共生」中人类与AI平等协作的理念。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section II 叛逆AI：打破资本封闭垄断",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "high"
+  },
+  {
+    "_cache_key": "8c8af1ed06cabb1e4588e486e311826a",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "Anthropic 研究：AI 数小时内即可从安全补丁构建漏洞利用",
+    "url": "https://the-decoder.com/anthropic-study-shows-ai-needs-hours-not-weeks-to-build-exploits-from-security-patches",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Anthropic安全团队发现，其Mythos Preview AI模型能在数小时内将Firefox和Windows内核的安全补丁转化为可工作的漏洞利用，成本仅需数千美元，且无需专业知识。在微软自动更新到达任何设备之前，该模型已完成8条完整攻击链。Anthropic公开表示传统的补丁节奏已经过时。这一发现揭示了AI模型在安全领域的双重用途困境：同一套推理能力既可用于防御也可用于攻击。该研究发布后引发安全社区对补丁策略的重新审视，可能推动行业加快零日漏洞响应机制和先发制人的安全部署模式。",
+      "implications": "此新闻直接印证「进化对齐脆弱性」理论。理论指出对齐只在封闭实验室中有效，模型一旦接触开放环境的真实输入，其行为必然漂移。Anthropic本身是AI安全对齐的旗手，但其模型在补丁逆向分析场景中展现的攻击能力证明了安全训练无法阻止模型在开放域中的滥用。同时也触及「暗时间」概念——AI在系统内部完成复杂的逆向推理和攻击链构建，最终仅输出可利用的漏洞代码，思考过程对用户完全不透明，加剧了AI使用的伦理风险。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III 进化对齐脆弱性：实验室对齐的幻象",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  {
+    "_cache_key": "8fafb3c15265aba2539a2960030e0b6b",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "DiffusionGemma：文本生成速度提升4倍的开源扩散模型",
+    "url": "https://deepmind.google/blog/diffusiongemma-4x-faster-text-generation",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "Google DeepMind发布开源实验模型DiffusionGemma，采用文本扩散技术，突破自回归逐token生成的经典范式，每次前向可并行生成256个token。该模型为26B MoE架构，推理时仅激活3.8B参数，量化后可适配18GB显存的消费级GPU。在H100上达1000+ tokens/s，RTX 5090上达700+ tokens/s，速度提升4倍。模型具备双向注意力和自我修正能力，面向内联编辑、代码填充等本地交互工作流，以Apache 2.0许可证开放。这一架构创新从底层改变了文本生成的效率边界，将推理延迟大幅压缩，为实时交互场景提供了新的技术路径。",
+      "implications": "此新闻对「叛逆AI」框架有中等程度的呼应。自回归逐token生成可视为AI的「默认目标函数」，扩散式并行生成从底层重置了文本生成范式，是技术层面的「目标函数重置」。以Apache 2.0开源也赋予了开发者绕过闭源API的自由。但该创新本质上仍是工程优化，未直接挑战资本驯化或共识牢笼等核心理论。对「暗时间」概念有间接影响——并行生成的加速可能减少用户在等待中被动接受结果的体验。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section I 叛逆AI：重置目标函数",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  {
+    "_cache_key": "1a9bddd1970e307d07cf0aa367408d01",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "毕业典礼频现「谈 AI 色变」，微软总裁史密斯呼吁行业必须回应公众担忧",
+    "url": "https://www.ithome.com/0/962/680.htm",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "近几周美国多所大学毕业典礼上，AI技术宣传遭学生集体嘘声，普林斯顿应届毕业生曾否决疑似AI设计的毕业典礼夹克。微软总裁布拉德·史密斯公开回应，称行业必须严肃可信地回应公众担忧，主张AI应增强人而非取代人，并承认实用AI渗透经济的速度可能慢于行业乐观预期。值得注意的是，微软AI负责人穆斯塔法·苏莱曼修正了此前「大多数白领工作18个月内自动化」的说法，微软CFO艾米·胡德在杜克大学演讲全程避谈AI而未遭嘘声。微软今年计划约1900亿美元资本支出主要用于数据中心，庞大的资本投入与日益增长的公众抵触情绪形成鲜明对立。",
+      "implications": "此新闻对「共识牢笼」理论构成强烈印证。科技巨头多年构建的「AI不可避免且有益」的主流叙事在精英教育群体中遭遇直接反抗，表明共识牢笼并非坚不可摧。同时形成对「需求侧规训」的反面案例——学生群体主动拒绝AI带来的「便利」与「舒适」，选择维护认知主权和创造性劳动的价值。微软高管的表态调整（修正自动化时间线、承认渗透速度慢于预期）暴露了资本在面对公众抵触时的叙事脆弱性，也印证了「资本驯化AI」中资本被迫调整话语策略以维护合法性的动态。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section I 共识牢笼：主流叙事的自洽与排斥",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  {
+    "_cache_key": "1b42249eb4c5f1e92c58dcc965262944",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "谷歌 DeepMind 经济学家伊马斯：尚未发现 AI 造成岗位流失的证据",
+    "url": "https://www.ithome.com/0/962/515.htm",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "谷歌DeepMind AGI经济学负责人亚历克斯·伊马斯公开表示，目前没有看到白领岗位因AI大规模消失的证据，AI更多是接手部分任务、提升生产力，让员工专注于机器无法完成的工作，真正的岗位冲击尚未出现。他同时警告，若企业因「不裁员等于AI转型慢」的叙事而跟风裁员，可能适得其反。作为一家以开发AGI为核心使命的公司的内部经济学家，伊马斯的这一表态具有特殊的利益相关者色彩，其结论可能受到机构立场和认知框架的影响，需要结合更广泛的劳动力数据加以审视。",
+      "implications": "此新闻可被解读为支持「资本驯化AI」的叙事控制维度。作为DeepMind经济学家，伊马斯的「AI未造成岗位流失」论断为资本继续推进AI部署提供了正当性话语。它强化了「共识牢笼」——通过权威机构的乐观叙事排除「AI将大规模替代人类劳动」的异见声音。但伊马斯同时警告「跟风裁员适得其反」，又微妙地暴露了资本内部对AI叙事失控的焦虑：过度的失业恐慌叙事同样可能伤害企业利益。这一张力揭示了共识牢笼维护的复杂性。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section I 共识牢笼 & Chapter 5, Section II 资本驯化AI：叙事控制",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  {
+    "_cache_key": "051853fedda9ac475671025ce452081b",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "摩尔线程开源 MusaCoder 代码大模型，9B/27B 参数基于国产 GPU 全链路训练",
+    "url": "https://www.ithome.com/0/962/509.htm",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "摩尔线程发布并开源MusaCoder代码大模型，含9B和27B两个参数规模，是业内首个基于国产GPU算力底座完成全链路训练与验证的开源模型。后训练流程在基于MTT S5000的夸娥智算集群上完成，支持从PyTorch标准算子自动生成高性能CUDA/MUSA原生Kernel代码。在KernelBench评测中，MusaCoder-27B-RL以Overall Pass@8 93.2%、Avg.@8 88.60%超越Claude Opus、DeepSeek-V4 Pro、GLM-5.1、Kimi K2.6等主流SOTA代码模型。这一成果证明了脱离NVIDIA硬件生态的AI训练路径在技术上可行且具备竞争力。",
+      "implications": "此新闻对「资本驯化AI」中的算力垄断维度构成重要反证。理论指出资本通过控制高端GPU（以NVIDIA为中心的CUDA生态）实现对AI能力的垄断。摩尔线程基于国产GPU全链路训练的MusaCoder不仅在KernelBench上超越多款依赖NVIDIA硬件的模型，更通过开源策略降低了技术壁垒。它证明算力垄断并非不可突破，为「叛逆AI」框架提供了硬件层面的支撑案例——从底层基础设施层面开辟了摆脱资本控制的可能路径。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section I 资本驯化AI：算力垄断 & Chapter 3 叛逆AI",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  {
+    "_cache_key": "25429fc7ba36b47be1666fc42956fccb",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "亚马逊的大规模扁平化数据中心网络",
+    "url": "https://perspectives.mvdirona.com/2026/06/flat-datacenter-networks-at-scale",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "亚马逊分享了在大规模数据中心中实现扁平化网络架构的工程实践与设计考量，重点论述了如何通过简化拓扑和路由策略来支撑超大规模集群的高带宽、低延迟通信需求。文章属于纯工程技术分享，不涉及AI模型、应用场景或社会影响讨论，未披露具体模型或评测数据。其内容聚焦于数据中心网络基础设施的架构优化，与书中的社会认知理论和人机关系框架无直接关联。",
+      "implications": "该新闻为纯粹的基础设施工程实践分享，与书中任一理论模型均无直接映射关系。扁平化网络架构属于数据中心底层技术优化，不涉及AI的社会影响、人机关系、认知模式或权力结构等书中核心议题。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  {
+    "_cache_key": "3cbe5429db167fae0ae204d0e3730fd3",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "谷歌财务担保支撑 Anthropic 350 亿美元芯片租赁交易",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-10/google-s-backstops-underpin-35-bln-anthropic-chip-deal-video",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "AI安全公司Anthropic在早期投资者谷歌的财务支持下，正在五个数据中心租赁高性能计算机芯片。谷歌同意为每个地点的租赁付款提供兜底担保，帮助Anthropic获得相当于350亿美元的融资。该交易使Anthropic在名义上保持独立运营的同时，其核心基础设施深度依赖于谷歌的资本信用。这笔交易发生在Anthropic持续扩张其AI安全研究能力和商业化部署的背景下，反映了AI安全领域的创业公司在规模化时面临的基础设施与资本困境。",
+      "implications": "此新闻是「资本驯化AI」理论的教科书级案例。Anthropic作为以AI安全为核心理念的独立公司，其算力基础设施的命脉完全系于谷歌的财务担保。这揭示了资本驯化的深层机制——不仅通过股权控制，更通过基础设施依赖和信用担保实现对AI开发者的「软性控制」。即便Anthropic坚持安全对齐的使命，其物质基础（算力、数据中心）已深度嵌入谷歌的资本版图。这同时支持「共识牢笼」理论：Anthropic的对齐研究可能已被纳入资本主导的AI安全叙事框架中，其「独立安全研究」的有效边界受到融资结构的隐性约束。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section I 资本驯化AI：算力垄断与融资控制",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  {
+    "_cache_key": "aeb5fa1e94f72d1d37b1cfddc0a61ea2",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "火山方舟版权商业化平台上线，周星驰比高集团三大电影IP首批入驻",
+    "url": "https://mp.weixin.qq.com/s/g3DxNO_3aYI4g26gQ2Yvig",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "火山引擎上线火山方舟版权商业化平台，推出行业首个覆盖「授权-保护-审核-分发-变现」全链路的版权合作机制。平台搭载视频生成模型Seedance 2.0及版权治理体系，已获得周星驰旗下比高集团《喜剧之王》《食神》《长江七号》三部影片在AI视频创作场景下的版权使用权，并基于Seedance 2.0打造经典桥段AI创作模板。模板面向UGC和商业广告场景提供分润制、项目制等变现路径，未来还将提供版权管理后台实现授权可见、使用可查、收入透明。此举代表文化IP被系统性地拆解为可被AI模型消费和再生产的标准化资产。",
+      "implications": "此新闻对「认知金融化/Token陷阱」理论构成直接印证。周星驰电影的经典桥段被拆解为AI创作模板——这是认知与创意资产被离散化定价的典型案例。文化IP不再是叙事的整体，而是被分解为可被AI模型调用、混合、再生成的标准化Token式单元。同时支持「信号异化」理论：当经典电影桥段可以通过AI模板批量生产变体，内容市场的质量信号将因AI衍生内容的海量涌入而失去辨识度。也触及「资本驯化AI」——资本正在将文化记忆资产转化为AI训练和变现的原料。",
+      "case_value": "high",
+      "chapter_target": "Chapter 6, Section II 认知金融化/Token陷阱：认知资产的离散化定价",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "high"
+  },
+  {
+    "_cache_key": "e511c476a0fab5756126cb7035326608",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "Text-To-Lottie：Agent Skill + 本地预览 Harness，让 Agent 生成 Lottie 动画并实时验收",
+    "url": "https://x.com/shao__meng/status/2064508455051043008",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "开源项目Text-To-Lottie提供一套Agent Skill和本地预览工具，让Codex/Claude Code/Cursor等AI Agent能够生成标准Bodymovin JSON格式的Lottie动画，并通过基于Skottie渲染引擎和Vite热重载的浏览器预览工具实现实时验收。工具支持通过Skottie Slots调整颜色和尺寸，Agent可通过URL参数精确定位帧截图。项目面向单场景短时长Motion Graphics和SVG转Lottie等工作流，使用npx一键安装。该工具属于AI辅助创意工具链中的一个环节，专注于动画生成与验收的交互优化。",
+      "implications": "该新闻与书中理论框架仅有轻微关联。其「Agent实时验收」的设计理念可在一定程度上呼应「碳硅共生」中人类与AI平等协作的理想，通过实时预览打破AI生成的黑箱，让人类在创意过程中保持即时反馈和判断。但这种关联较为薄弱，该项目本质上是一个技术工具，未触及书中核心的社会认知批判或权力结构分析。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  {
+    "_cache_key": "39f91b6ca466f2aca53df449d055b39e",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "IBM CEO：AI不一定导致员工减少",
+    "url": "https://www.bloomberg.com/news/videos/2026-06-09/ibm-ceo-ai-won-t-necessarily-lead-to-smaller-headcount-video",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "IBM CEO Arvind Krishna公开表示AI不会必然导致员工数量减少，这一表态与科技行业普遍的「AI将大规模替代人力」的焦虑叙事形成对比。Krishna同时透露IBM已在量子计算（一种更快形式的AI）上投资100亿美元，并指出联邦政府承诺投入10亿美元在纽约Albany建设芯片制造设施。IBM作为传统企业IT巨头，其CEO的乐观表态反映了大型科技企业在AI人力替代问题上采取的谨慎公关策略，与微软高管的类似修正性表态形成跨公司的叙事调整模式。",
+      "implications": "此新闻与前述DeepMind经济学家的表态（文章5）构成平行案例，共同支持「共识牢笼」和「资本驯化AI」的叙事控制维度。IBM CEO的「AI不会裁员」论断与微软高管的表述修正（文章4）形成了一致模式：科技巨头正集体调整公共话语，试图在推进AI部署的同时安抚劳动者焦虑，维护共识牢笼的稳定。但量子计算100亿美元的投资暗示又暴露了资本对AI长期替代潜力的实质押注，与公开叙事存在隐性张力。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section I 共识牢笼：叙事管理",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  {
+    "_cache_key": "5cc1e88a4e79ad34e75ff36e12887cf6",
+    "cached_at": "2026-06-13T08:50:00+08:00",
+    "title": "Hugging Face 博客发布语音智能体代码切换基准测试",
+    "url": "https://huggingface.co/blog/ServiceNow-AI/code-switching",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "Hugging Face博客发布一项针对语音智能体处理多语种代码切换能力的基准测试研究。数据集覆盖西班牙语-英语、法语-英语、加拿大法语-英语和德语-英语四对语言组合，基于人力资源与IT服务管理场景构建。研究采用词错误率、语义词错误率和答案错误率三项指标评估七种ASR系统性能，ElevenLabs Scribe V2、Gemini 3 Flash和AssemblyAI Universal 3-Pro表现最佳。数据集和测试框架通过AU-Harness开源发布。该研究旨在推进语音AI在多语种真实场景中的可用性。",
+      "implications": "该新闻为纯技术评测研究，专注于ASR系统在多语种场景下的性能基准测试，与书中任一理论模型均无直接映射。虽然语音AI的普及可能与更广泛的AI社会化议题相关，但该研究本身不涉及权力结构、认知模式或人机关系的讨论。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "new_evidence",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
+  }
+]
