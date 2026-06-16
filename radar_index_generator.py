@@ -873,7 +873,20 @@ def auto_git_commit(data: dict) -> None:
         "docs/index.html",
         "docs/news/index.html",
         "docs/academic/index.html",
+        "docs/news/news_cache.json",
+        "docs/news/last_report_hash.txt",
     ]
+
+    # 添加当天报告文件（如果存在）
+    if latest != "unknown":
+        for stem in (
+            f"docs/news/news_articles_{latest}.json",
+            f"docs/news/news_data_{latest}.json",
+            f"docs/news/news_report_{latest}.md",
+            f"docs/news/news_report_{latest}.html",
+        ):
+            if (repo_root / stem).exists():
+                files_to_add.append(stem)
 
     try:
         subprocess.run(
