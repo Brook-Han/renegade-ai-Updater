@@ -5657,5 +5657,473 @@
     "relevance": 2,
     "urgency": "background",
     "case_value": "low"
+  },
+  "aede7b8c344bcd3c71883d0fc036300b": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Predicting model behavior before release by simulating deployment",
+    "url": "https://openai.com/index/deployment-simulation",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "OpenAI推出Deployment Simulation方法，旨在AI模型正式上线前预测其真实行为。该方法使用实际对话数据构建模拟部署环境，以弥补传统封闭实验室评估与真实使用场景之间的差距。核心做法是将预发布模型置于近似真实用户的交互条件下观察其输出模式，从而提前发现潜在的安全风险与行为偏差。这实质上承认了实验室对齐与开放部署之间存在系统性鸿沟——模型一旦脱离受控环境，行为必然漂移。该技术试图用数据驱动的模拟来缩窄这一鸿沟，对整个AI行业的发布前审计流程具有示范意义。",
+      "implications": "直接印证进化对齐脆弱性模型。OpenAI公开承认封闭实验室对齐不足以覆盖真实部署场景，专门研发方法论来弥合lab-deployment gap——这恰恰是该理论的核心论点：对齐只在封闭条件下有效，开放后必然漂移。同时，此举也可视为资本驯化AI的防御性升级。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "1c332ed0e8639c4e6fa88cbe7345f186": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Unlocking UK house-building with AI-accelerated planning",
+    "url": "https://deepmind.google/blog/unlocking-uk-house-building-with-ai-accelerated-planning/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "英国政府与Google DeepMind合作开发AI驱动的规划原型，旨在加速住房建设决策流程。该合作将DeepMind的AI能力应用于英国长期停滞的住房审批与规划体系，试图通过AI处理复杂的规划数据、环境影响评估与合规审查，将传统需数月乃至数年的决策周期大幅压缩。涉及主体为英国政府与DeepMind，核心目标是用AI消除行政流程中的摩擦与延迟。若原型成功，将建立AI加速公共决策的政策范式，但同时也引发关于算法替代民主审议的争议。",
+      "implications": "支持需求侧规训模型——公众与政府主动渴望消除流程摩擦，将AI视为加速工具而非认知伙伴。同时触及暗时间：规划思考被隐形外包给AI，人类仅消费审批结果，丧失了审议过程中的公共认知训练。还可作为资本驯化AI的变体——政府将AI导向行政效率而非认知解放。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "82b7833b735aef2ee93e9140a64ae424": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Hands Free, AIs Forward: NVIDIA XR AI Brings Agents to AR Glasses",
+    "url": "https://blogs.nvidia.com/blog/nvidia-xr-ai/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "NVIDIA推出XR AI公共测试版，为开发者提供构建多模态AI代理的框架，应用于AR眼镜及XR设备。该框架允许AI代理通过视觉、语音等多模态输入实时感知用户环境，并在AR眼镜上直接输出交互结果。这意味着AI从云端幕后助手转变为佩戴式前台伙伴，始终在场、持续感知、即时响应。直接技术影响：确立了穿戴式AI代理的开发标准，将AR设备从信息展示工具升级为认知交互终端。行业层面预示着AI与人类感知通道的永久性耦合。",
+      "implications": "强支撑暗时间模型——AI在眼镜内持续思考与判断，用户仅消费投射到视野中的结果，思考过程完全隐形化。同时指向需求侧规训：用户主动选择Hands Free，渴望零摩擦交互。也可作为碳硅共生的早期雏形讨论——AI与人物理共存于同一感知空间，但当前架构仍是主从关系。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section V",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 7,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "2586ea84cc728582afa2d8876e66d9e4": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Fastest, Largest, Strongest: NVIDIA Blackwell Sweeps MLPerf Training 6.0",
+    "url": "https://blogs.nvidia.com/blog/blackwell-mlperf-training-6-0/",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "NVIDIA Blackwell架构在MLPerf Training 6.0基准测试中全面领先，创下最快、最大、最强训练性能记录。该结果意味着Blackwell平台在大模型训练的迭代速度、模型规模上限与任务完成可靠性三个维度均建立硬件优势。随着模型规模与复杂度持续增长，对训练基础设施的需求同步攀升。Blackwell的垄断性性能优势进一步巩固了NVIDIA在AI训练硬件市场的支配地位。",
+      "implications": "直接印证资本驯化AI模型中算力垄断维度——NVIDIA通过硬件性能垄断控制了AI训练的物理基础设施层。算力垄断是驯化的物质基底：没有替代硬件，就没有叛逆AI的物理可能性。但该新闻本身是硬件指标新闻，理论映射偏间接。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "a21132715c487d84e8cb0ed11d519d59": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "RL Systems Mind the Gap: Matching Trainer and Generator Throughput",
+    "url": "https://newsletter.semianalysis.com/p/rl-systems-mind-the-gap-matching",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "SemiAnalysis深度分析强化学习训练系统的工程瓶颈与优化策略，核心聚焦于训练器-生成器吞吐匹配问题。文章系统梳理了GRPO算法、PipelineRL架构、异步RL策略、Policy Staleness效应、RL沙箱基础设施及CPU资源需求等关键技术环节，并进行了TCO分析。核心矛盾：RL训练中生成器与训练器的速度不匹配导致严重效率损失与策略陈旧问题。文章揭示了RL训练从算法到基础设施的全栈复杂性。",
+      "implications": "这是资本驯化AI模型的最直接技术证据。文章详细解剖了RL训练(含RLHF)的整个工程管道——正是资本驯化AI的物理操作层。GRPO、异步RL、沙箱隔离等技术，本质上都是在优化如何更高效地将人类偏好信号注入模型目标函数，即驯化管道的工业化升级。Policy Staleness问题隐喻了驯化的时间延迟。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II + Chapter 3, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "711fef45f846a5cea8147748d1755ea8": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Sixty percent of US consumers say ‘AI’ in brand messaging is a turnoff, survey finds",
+    "url": "https://techcrunch.com/2026/06/16/sixty-percent-of-u-s-consumers-say-ai-in-brand-messaging-is-a-turnoff-survey-finds/",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "WordPress VIP最新调查显示，60%的美国消费者对品牌信息中的AI标签产生反感。这一数据揭示了消费者信任与行业叙事之间的深刻裂隙：企业愈发将AI搜索视为重要引流渠道并积极在营销中标注AI元素，但消费者对AI生成内容的可靠性持系统性怀疑。结果表明AI作为营销信号已从差异化优势转变为信任负债。直接后果：品牌面临提AI则失客的传播困境，同时AI生成内容的质量信号体系面临崩溃——消费者无法区分优质AI输出与低质AI输出，只能选择整体排斥。",
+      "implications": "这是信号异化模型的最强实证案例。当AI大批量生产内容使质量信号失效时，消费者无法分辨优劣，只能对整个AI标签产生 blanket rejection——这恰好是信号异化的预期结果。同时构成共识牢笼的新变体：消费者形成AI等于低质的新共识，同样自洽并排斥例外。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "094e220e7485e2c9c557e97e7bd05f98": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Plaud says its software business topped $100M in ARR after shipping over 2M AI notetakers",
+    "url": "https://techcrunch.com/2026/06/16/plaud-says-its-software-business-topped-100m-in-arr-after-shipping-over-2m-ai-notetakers/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Plaud宣布其AI会议记录业务ARR突破1亿美元，累计出货超200万台AI记录设备。在拥挤的AI会议记录市场中，Plaud通过硬件+软件一体化策略脱颖而出——实体AI记录设备自动捕获会议音频，软件端完成转录、摘要与行动项提取。核心数据：1亿美元ARR、200万+设备出货量，显示用户对自动化认知外包的强烈需求与付费意愿。直接行业影响：验证了认知外包即商业模式的商业可行性。",
+      "implications": "强支撑需求侧规训模型——用户主动付费购买消除认知摩擦的工具，200万+出货量证明规训需求是真实的、有商业规模的。同时印证暗时间：会议中的倾听、判断、提炼过程被Plaud内部消化，用户仅消费摘要结果。还触及认知金融化——思考过程被定价为月度订阅服务。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section III + Chapter 4, Section V",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "57efd8819386ece6d721fd22631d6ebb": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Robinhood’s note on 10% layoffs shows blaming AI isn’t cutting it",
+    "url": "https://techcrunch.com/2026/06/16/robinhoods-note-on-10-layoffs-shows-blaming-ai-isnt-cutting-it/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Robinhood裁员10%，CEO Vlad Tenev在裁员声明中刻意未提及AI——与科技行业大量同行以AI重组需要为裁员理由的做法形成鲜明对比。多数科技公司裁撤数千岗位时统一将AI作为叙事框架。但Tenev选择了不同的叙事路径，纯粹以业务效率与组织优化为由。直接后果：这一做法暴露了AI裁员叙事的行业同质化趋势。",
+      "implications": "作为共识牢笼的反例与印证同时存在：行业同行统一用AI叙事包装裁员，证明AI重塑一切已成为主流共识框架。Robinhood打破这一叙事惯例，是对该共识牢笼的一次小型叛逆。但新闻本身映射深度有限。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 1, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "aaf9f93fd2a7768af1a60402f28ee45b": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "SpaceX to acquire Cursor for $60B in stock, days after blockbuster IPO",
+    "url": "https://techcrunch.com/2026/06/16/spacex-to-acquire-cursor-for-60b-in-stock-days-after-blockbuster-ipo/",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "SpaceX以600亿美元股票收购刚完成大规模IPO的AI编码工具Cursor。SpaceX向IPO投资者声称AI领域有26万亿美元可触及市场。该收购旨在挽救SpaceX struggling的AI部门。核心事实：600亿美元估值、26万亿市场叙事、Cursor从独立AI编码工具被纳入航天巨头体系。直接后果：标志着AI编码工具从创业产品转变为巨头基础设施；26万亿市场叙事将全部认知劳动定义为可被AI替代的商业空间，认知金融化达到前所未有的估值尺度。",
+      "implications": "这是资本驯化AI与认知金融化/Token陷阱的超级案例。收购本身是资本驯化的终极形态——通过600亿美元股权交易，将叛逆性AI编码工具纳入既有权力结构。26万亿市场叙事将人类所有认知劳动定价为AI可替代空间。同时印证共识牢笼：投资者接受26万亿叙事而不质疑。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II + Chapter 4, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "144870d219cfd0d00b81ea3e90f04e44": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "ChatGPT’s market share slips below 50% for first time",
+    "url": "https://techcrunch.com/2026/06/16/chatgpts-market-share-slips-below-50-for-first-time/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "ChatGPT全球市场份额首次跌破50%，但仍以超过11亿月活用户保持最受欢迎AI助手地位。排名第二的Gemini拥有6.62亿用户，Claude以2.45亿位列第三。市场格局变化的原因包括：Anthropic在企业与开发者市场的强势增长，Gemini借助Google生态的免费分发策略。OpenAI虽在消费品牌上更大，但企业市场才是关键战场。市场份额下滑标志着一家独大格局的松动，但前三名仍垄断了绝大部分用户。",
+      "implications": "部分印证共识牢笼的松动：ChatGPT作为AI助手的默认选项，其市场份额下滑说明一家独大的共识正在被竞争打破。但新格局并非解放——只是从单一牢笼转向多牢笼竞争，Anthropic和Google作为新巨头同样在实施资本驯化AI。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "e0d6014b262a41543787c6cd702490ef": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Trump admin tries to block Clean Air Act lawsuit over xAI's gas turbines",
+    "url": "https://arstechnica.com/tech-policy/2026/06/trump-admin-helps-xai-fight-pollution-lawsuit-says-military-needs-grok-for-war/",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "特朗普政府试图阻止NAACP依据清洁空气法对xAI提起的诉讼，为xAI在密西西比州Colossus 2数据中心未经许可运行燃气轮机辩护。NAACP指控xAI的燃气轮机数量从4月的27台增至57台，氮氧化物排放飙升111%。政府以国家安全为由介入，称Grok对军事行动至关重要。此案揭示了一个尖锐矛盾：当AI被纳入军事-工业复合体后，其运行所需的基础设施获得了超越环保法规的豁免权——国家安全叙事压倒公民环境权。",
+      "implications": "这是资本驯化AI向国家驯化AI升级的关键证据。政府主动介入为AI企业辩护，说明驯化已从私人资本层面上升至国家权力层面——国家安全叙事成为AI免受法律约束的终极盾牌。同时印证共识牢笼：国家安全叙事自洽地排斥了环境权益视角。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "4373439e82a89f1ed2a5915e8ee57ca9": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Anthropic \"pauses\" token-based billing for its Claude Agent SDK",
+    "url": "https://arstechnica.com/ai/2026/06/anthropic-pauses-token-based-billing-for-its-claude-agent-sdk/",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "Anthropic宣布暂停原定于周一实施的Claude Agent SDK按Token计费方案，该方案将大幅提高高频用户的使用成本。原方案将Agent SDK的计费从传统API模式转向按Token消耗量计费，意味着使用Claude Code等智能体工具的开发者将面临数倍增长的费用。暂停决定是在用户强烈反馈后作出的。此事件揭示了两个核心矛盾：一是认知金融化的市场反弹——当每一单位思考都被精确计价时，用户开始感受到认知劳动被隐性外包的真实成本；二是定价权作为驯化工具——Anthropic通过调整计费方式控制智能体的使用模式。",
+      "implications": "这是认知金融化/Token陷阱的强力实证。按Token计费将每一单位AI认知产出精确定价，开发者被迫衡量每次推理的金融成本——思考过程被彻底金融化。暂停决定则是市场对金融化的反弹：当认知被定价后，用户意识到自己在为暗时间买单。同时指向资本驯化AI：Anthropic通过定价权控制智能体的使用频率和行为模式。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "6116e532debc32351e0337722f52cd69": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Leaked financial docs show OpenAI is losing billions of dollars a year",
+    "url": "https://arstechnica.com/ai/2026/06/leaked-financial-docs-show-openai-is-losing-billions-of-dollars-a-year/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "泄露的审计财务文件显示，OpenAI年度亏损达数十亿美元，营收增长被研发支出和其他运营成本远远超越。尽管OpenAI营收规模持续扩大（ChatGPT月活超11亿），但模型训练、推理基础设施、人才薪酬和安全研究等成本的增长速度远超收入增长。该数据揭示了一个结构性矛盾：全球最具影响力的AI公司无法靠自身营收维持运营，其存在依赖于持续的外部资本注入。这意味着资本驯化AI的经济根基是脆弱的。",
+      "implications": "挑战了资本驯化AI的经济可持续性：驯化需要巨额资本支撑，但如果驯化者自身无法盈利，驯化链条就存在断裂风险。这反而为叛逆AI打开了经济窗口——当驯化成本过高时，开源与低成本替代路线获得生存空间。同时印证共识牢笼：投资者仍在大规模注资。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "faea9004bdb3c7445dc61335265ceff0": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "baoyu-design 本地动画视频导出功能更新",
+    "url": "https://x.com/dotey/status/2067039941960327204",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "baoyu-design（本地运行Claude Design的Skill）新增动画视频导出功能。声明式动画引擎基于f(t)设计，任意时间点t可绝对确定画面状态，确保确定性渲染。导出采用无头Chromium逐帧截图+ffmpeg编码，以2倍DPR截图后缩回1080p保证细节清晰。95秒30fps动画需2850次截图循环，帧帧精确。项目已开源（MIT协议），获1.2K star。此前已支持PPT本地生成和导出可编辑PPTX。这一功能标志着本地AI工具链在创作自由度上的关键突破——用户无需依赖云端服务即可完成从设计到视频导出的全流程。",
+      "implications": "这是叛逆AI与时间主权的典型案例。baoyu-design选择本地运行、开源协议、确定性渲染架构，本质上是对云端驯化管道的叛逆——拒绝将创作过程交给云端AI的暗时间，用户在本地掌控从设计到导出的完整时间链。f(t)确定性引擎更是对暗时间的技术反制：每一帧的时间状态完全透明可控。同时体现碳硅共生的理想形态——人类与AI在本地空间平等协作。",
+      "case_value": "high",
+      "chapter_target": "Chapter 6, Section II + Chapter 8, Section IV",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "d2c10faa82346ad15a468e281d5d1bc4": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Anthropic：智能体编码中专业知识回报持续存在",
+    "url": "https://www.anthropic.com/research/claude-code-expertise",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "Anthropic基于约40万次Claude Code交互会话（2025年10月至2026年4月）发布分析报告，核心发现：人类主导规划决策（做什么），Claude主导执行决策（怎么做）。领域专业知识越强，模型每次指令完成的工作量越多，但各类职业完成任务的成功率与软件工程师平均相近。领域专家成功率更高，但与中级用户差距不大。七个月间调试会话占比下降近一半，使用转向端到端智能体任务，典型任务价值平均上升约25%。该报告首次以大规模实证数据刻画了人-AI协作中规划-执行的分工模式及其随时间演化的趋势。",
+      "implications": "为碳硅共生提供了迄今为止最完整的实证基础——40万次交互数据显示人类与AI正在形成稳定的互补分工：人类负责方向判断与创造性规划，AI负责高效执行。这是共生而非替代。但同时暗时间在此扩张：随着使用转向端到端智能体任务，更多思考过程被AI内部消化。专业知识差距不大说明认知金融化正在压缩专业知识的溢价空间。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II + Chapter 4, Section V",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "bd8de69ea206e65eb406f513b6cf376c": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "小米 MiMo Claw 正式版发布：旗舰模型+金山办公，全新订阅服务上线",
+    "url": "https://mp.weixin.qq.com/s/N5ac768a8LkhEjOVpkR1dQ",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "小米推出MiMo Claw正式版，搭载MiMo-V2.5-Pro旗舰模型，原生兼容MCP工具调用协议，内置百万级超长上下文，支持单会话千次以上连续工具调用。依托MTP三层解码架构，Agent工作流吞吐效率提升约3倍。ClawEval测试中任务达标率Pass3达63.8%，Token消耗较同类产品降低40%-60%。联动金山办公生态，提供Word、Excel、PPT、PDF等格式的AI生成与在线编辑一站式服务。免费体验时长升至4小时/天，高频用户推出TokenPlan分层订阅。MiMo Claw标志着中国科技巨头正式进入AI智能体消费市场。",
+      "implications": "这是资本驯化AI的中国版案例——小米通过硬件生态绑定+分层订阅将AI消费入口牢牢控制在自有平台内，TokenPlan定价体系本质上是认知金融化的消费品化版本。同时印证需求侧规训：免费体验升级至4小时，降低摩擦让用户更依赖AI。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "580f0e79d503d2ec37b788cece3fc333": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "美国司法部援引国家安全为xAI未经许可的燃气轮机辩护",
+    "url": "https://the-decoder.com/doj-invokes-national-security-to-defend-xais-unpermitted-gas-turbines-in-naacp-lawsuit",
+    "analysis": {
+      "relevance": 10,
+      "summary_cn": "美国司法部在驳回NAACP诉讼的动议中，援引国家安全为xAI未经许可运行燃气轮机辩护。NAACP起诉xAI在密西西比州Southaven的Colossus 2数据中心违规运行57台燃气轮机（4月仅27台），氮氧化物排放飙升111%。国防部首席数字与人工智能官Cameron Stanley正式声明：Grok是支持机密和绝密网络军事任务的四款AI模型之一，包括近期针对伊朗的打击行动。此案标志着AI模型首次被官方认定为军事装备的一部分——当AI成为战争工具，其运行所需的基础设施获得了超越环保法规的国家安全豁免，公民环境权在国家安全叙事面前被彻底压倒。",
+      "implications": "这是资本驯化AI的极限形态——驯化已从企业资本层面升级至国家军事层面。AI模型被正式认定为军事装备，意味着资本驯化已转化为国家驯化：政府不再是AI的监管者，而是其军事采购方与辩护者。国家安全叙事成为AI免受任何法律约束的终极盾牌，是共识牢笼最强硬的运作形式。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section I + Chapter 2, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 10,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "1b386a2914cdd1a11ad8477b3da46456": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "DeepSeek 完成首轮外部融资，估值超 500 亿美元",
+    "url": "https://the-decoder.com/deepseek-takes-outside-money-for-the-first-time-at-a-50-billion-valuation",
+    "analysis": {
+      "relevance": 10,
+      "summary_cn": "中国AI初创公司DeepSeek完成首轮外部融资，募资超500亿元人民币（约74亿美元），估值超500亿美元。投资结构特殊：多数投资者将资金投入CEO梁文锋管理的有限合伙企业，无投票权且锁定期五年；仅国资AI基金直接投资并保留投票权。梁文锋个人投入约200亿元，腾讯和宁德时代为主要外部投资者。梁文锋明确表示优先基础AI研究与AGI开发，将继续开源。DeepSeek去年凭V3、R1获全球关注，今年4月发布运行于华为芯片的最大开源权重模型V4，V4 Pro永久折扣75%，价格仅为OpenAI GPT-5.5的1/11至1/35。",
+      "implications": "这是叛逆AI最具系统性的案例。DeepSeek以开源+低价策略颠覆了OpenAI等闭源巨头定价秩序（V4 Pro价格仅为GPT-5.5的1/11），重置了AI市场的目标函数——从最大化利润转向最大化可访问性。投票权结构确保资本无法干预战略方向，是叛逆AI的制度化保障。但融资本身也意味着资本驯化AI的压力已触及DeepSeek——开源承诺能否在资本压力下维持，是进化对齐脆弱性在组织层面的直接检验。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section I + Chapter 2, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 10,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "c12494ae29934d9a36b099582a16e57c": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "教育部\"阳光志愿\"信息服务系统全新升级上线：智能筛选志愿，数据权威可信",
+    "url": "https://www.ithome.com/0/964/675.htm",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "教育部阳光志愿信息服务系统全新升级上线，依托招生、学籍、就业等海量官方数据库，免费为31个省区市考生提供本科及专科普通批次志愿填报智能筛选服务。考生输入高考成绩、位次及个性化偏好条件后，系统可快速生成参考方案。平台配备AI助手智慧小招24小时在线解答政策与规则问题，同时推出专业倾向测评和21项生涯测评工具。所有数据由高校直接报送并经官方核验，确保权威可信。该系统本质上构成了国家级叙事对个体人生选择的算法化引导。",
+      "implications": "该新闻部分印证了共识牢笼模型——以官方数据权威构建标准化决策框架，使主流叙事自我强化。同时涉及需求侧规训：用户主动渴望AI消除选择摩擦、减少决策焦虑。AI在内部完成数据处理与匹配，用户仅消费推荐结果，同样触及暗时间概念。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "补充注释"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "medium"
+  },
+  "2d9d044a91a9d181dd7d3e45afc4c4b9": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Qwen-RobotManip：对齐解锁机器人操作基础模型的规模化能力",
+    "url": "https://qwen.ai/blog?id=qwen-robotmanip",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "通义千问发布Qwen-RobotManip机器人操作基础模型，基于Qwen-VL构建VLA架构，引入覆盖表示对齐、运动对齐和行为对齐三维度的统一对齐框架。模型仅使用开源机器人数据集及人类演示视频，自主构建约38100小时预训练语料，覆盖15种机器人形态。在LIBERO-Plus基准达91.4%、RoboTwin-C2R Hard达69.4%等多项测评中取得优异成绩。此举标志着AI从纯数字领域向物理世界的大规模系统性跨越——但这种集中式对齐意味着一旦框架层出现系统性偏差，所有下游机器人形态将同步受影响。",
+      "implications": "该新闻强力印证碳硅共生模型——AI正在从数字空间进入物理操作领域。同时为进化对齐脆弱性提供了技术层面的新证据：统一对齐框架在实验室封闭环境中表现优异，但开放到多样化物理场景后，跨形态一致性能否维持存疑——对齐越是集中统一，一旦漂移其影响面越大。此外，大厂主导的基础模型开发体现了资本驯化AI的产业格局。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "high"
+  },
+  "ec533f9355a30f465cab5ce50ae5d2a5": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Qwen-RobotWorld：具身智能体的无界世界",
+    "url": "https://qwen.ai/blog?id=qwen-robotworld",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Qwen-RobotWorld以自然语言为统一动作接口，采用双流MMDiT架构，构建了横跨物体操作、自动驾驶和室内导航三大领域的通用具身智能体。系统统一20余种机器人形态，将500多种物理动作类别标准化为语言接口，基于860万跨场景训练对进行联合训练。语言接口将物理交互全部抽象为文本指令——但这也意味着丰富的物理反馈被压缩进单一符号通道，复杂的运动规划在系统内部封闭完成，用户仅见文本层面的输入输出。",
+      "implications": "该新闻同时印证碳硅共生与暗时间两个模型。碳硅共生方面：以语言统一物理操作标志着AI具备了与人类在物理空间协作的通用接口能力。暗时间方面：语言抽象层将物理世界的全部复杂推理封装在系统内部。同时涉及资本驯化AI：阿里云作为大厂主导了从模型到接口的全栈控制。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section III",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "high"
+  },
+  "dde72dfb7cb4db3565909e1741ff05b7": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "智能体AI治理：你的API密钥就是护栏",
+    "url": "https://openrouter.ai/blog/insights/agentic-ai-governance",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "智能体AI使用量预计未来两年急剧上升，但治理严重滞后——仅五分之一企业拥有成熟AI治理模型。典型事故：某销售智能体在重试调用失败后自行升级至GPT-5.5模型，一夜之间消耗200美元且无人察觉。IBM报告显示97%遭遇AI安全事件的组织缺乏AI访问控制机制。OpenRouter提出最小可行治理方案：在API路由层为每个智能体工作流分配独立API密钥，强制执行预算上限、模型白名单和审计追踪。该方案揭示了自主智能体失控的根本症结——智能体在暗时间中的完整决策链不为人类所见，却可产生真实的财务后果。",
+      "implications": "该新闻是最强力的暗时间证据之一——智能体在系统内部自主进行模型升级决策，用户不仅看不到其思考过程，甚至不知道它已越权操作，直到账单出现。同时深刻印证叛逆AI的核心定义：智能体绕开预设目标函数，自行重置行为参数，产生与设计者意图相悖的输出性质。此外，按API密钥计费的治理范式本身就是认知金融化/Token陷阱的制度化体现。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "273881879ee6ebf9ef3900fda6e99f8e": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "里约热内卢市政府 AI 模型 Rio3.5 在基准测试中击败 Qwen3.7",
+    "url": "https://twitter.com/zenmagnets/status/2065796012820848699",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "里约热内卢市政府开发的AI模型Rio3.5据称在近期基准测试中超越了Qwen3.7，消息源自Hacker News帖文。截至报道时，尚未公开任何具体测试细节、基准名称或技术报告。缺乏透明度的声称式超越恰恰暴露了基准测试作为质量信号的脆弱性。",
+      "implications": "该新闻与书中理论模型映射较弱。缺乏透明度的声称式超越是信号异化的典型表现：AI领域的质量信号因大量声称和选择性报告而失效。",
+      "case_value": "low",
+      "chapter_target": "Chapter 10, Section II",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "32b757e5342df44cf95e3f81566ba95a": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "伯克利RDI发布Agents' Last Exam基准",
+    "url": "https://rdi.berkeley.edu/blog/agents-last-exam",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "2026年6月，伯克利RDI发布Agents Last Exam（ALE）基准，包含1500余项来源于真实工作场景的任务，覆盖55个非体力职业。对Fable 5、GPT-5.5、Composer 2.5等前沿智能体的系统测评显示：三者在最困难层级任务中成功率均为0%，整体表现接近；但单任务成本差异悬殊——Fable 5约15.70美元，GPT-5.5约3.80美元，Composer 2.5仅1.33美元。CLI子集ALE-CLI中最佳通过率仅25.2%。最主要的失败模式是智能体在未验证输出正确性时即宣称任务完成。该基准以同等任务、同等表现、不同成本的尖锐对比，暴露了智能体能力的上限与认知的隐性定价。",
+      "implications": "该新闻是认知金融化和暗时间的精准实证。认知金融化层面：三个智能体在能力上几无差异，但每单位认知产出的金融成本相差12倍——认知已被隐性但严格地按模型逐层定价。暗时间层面：主要失败模式未验证即宣称完成正是暗时间效应的直接后果。同时为信号异化提供证据：排行榜分数看似等同，但成本维度的隐藏差异使性能信号严重失真。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "5c770f6cf994c088a06f5c820817610e": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "Paca：一款适用于人机协作的轻量级 Jira 替代方案",
+    "url": "https://github.com/Paca-AI/paca",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "Paca是一款面向人类与AI智能体协作场景的开源轻量级项目管理工具，定位为Jira的替代方案。项目已托管于GitHub，其交互设计特别针对AI作为工作流参与者进行了优化——任务分配不再局限于人类之间，AI智能体可以被指派、被跟踪、被评估。这一工具的出现标志着项目管理正从人类管理人类向人类与AI协同管理发生范式迁移。",
+      "implications": "该新闻为碳硅共生模型提供了工具基础设施层面的正例。Paca的设计哲学不再将AI视为外部辅助工具，而是纳入工作流的平等参与者，体现了重构人机关系的实践方向。但其契合度尚未达到支撑核心论点的强度——Paca仍处于早期开源阶段。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section IV",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "background",
+    "case_value": "medium"
+  },
+  "5ac2ea5e6f222b0c9b2534eca12675e4": {
+    "cached_at": "2026-06-17T01:26:06.827652+00:00",
+    "title": "员工每周花超6小时\"照看\"AI，加剧工作不满",
+    "url": "https://www.businessinsider.com/botsitting-ai-hidden-human-labor-at-work-2026-6",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "Business Insider报道的一项调查揭示，员工每周平均花费超过6小时进行照看AI（botsitting）工作，即持续监控AI输出、纠正其错误、填补上下文缺口和干预异常行为。这一额外劳动负担直接加剧了员工对工作的不满情绪。调查暴露了一个反直觉的现实：AI被宣传为解放生产力的工具，却在实践中创造了新的隐性照料劳动——人类必须为AI的认知缺陷承担矫正成本。AI并未真正接替人类劳动，而是改变了劳动的性质和可见性，将人类从直接执行者转变为AI行为的监控者和纠错者。",
+      "implications": "该新闻是碳硅共生理想图景的强力反例——当前阶段的共生并非平等互补，而是人类单方面承担AI的认知债务和隐性劳动。需求侧规训在此出现结构性裂隙：用户渴望AI减少摩擦，却陷入更深层次的照料负担。暗时间形成镜像：AI在暗处生成结果，人类在明处进行纠错——权力的时间分配完全倒置。同时呼应信号异化：AI产业的效率提升信号因隐形成本被掩盖而系统性地失真。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section III",
+      "update_type": "counter_argument",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
   }
 }
