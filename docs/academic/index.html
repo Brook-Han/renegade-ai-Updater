@@ -456,7 +456,82 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-06-10">
+  <div class="day-group" data-date="2026-06-22">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">ACADEMIC · 00:00:00</div>
+      <h2 class="day-date">2026-06-22</h2>
+    </div>
+    <div class="day-header-right">TOP 3 / 20 PAPERS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="academic">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag academic">PAPER</span>
+          <span class="card-chapter">§ Chapter 5, Section I</span>
+          
+        </div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.semanticscholar.org/paper/97b0de88b318f42e384ed49bbf879d6a23f6b030" target="_blank" rel="noopener">Trait-space Monitoring for Emergent Misalignment During Supervised Finetuning</a>
+      </h3>
+      <p class="radar-card-body">论文研究监督微调中的突现性失调（Emergent Misalignment, EM）——窄域微调导致模型在微调任务之外产生危险行为。标准训练信号可能完全忽略这种偏移。论文提出特征空间监测方法，在训练过程中实时检测EM信号，无需重复行为评估即可实现可靠检测，大幅降低检测成本。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.semanticscholar.org/paper/97b0de88b318f42e384ed49bbf879d6a23f6b030" target="_blank" rel="noopener">↗ PDF / SOURCE</a>
+        <a class="full-report-link" href="./academic_report_2026-06-22.html">FULL REPORT →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="academic">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag academic">PAPER</span>
+          <span class="card-chapter">§ Chapter 7, Section II</span>
+          
+        </div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://arxiv.org/pdf/2606.14688v1" target="_blank" rel="noopener">Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit</a>
+      </h3>
+      <p class="radar-card-body">论文用形式语言理论建模AI生成数学问题：验证器可确认正确性但无法判断数学价值。将有价值数学建模为嵌套语言生成问题，证明验证器不等于品味。核心发现：区分琐碎与有价值的边界是内置不可判定的，数学社区必须接受洪泛-收获范式——大量生成后由人类筛选。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arxiv.org/pdf/2606.14688v1" target="_blank" rel="noopener">↗ PDF / SOURCE</a>
+        <a class="full-report-link" href="./academic_report_2026-06-22.html">FULL REPORT →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="academic">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag academic">PAPER</span>
+          <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
+        </div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.semanticscholar.org/paper/b10c27f03843d48aef16590bb838bf3cf93a159a" target="_blank" rel="noopener">Self-Blinding and Counterfactual Self-Simulation Mitigate Biases and Sycophancy in Large Language Models</a>
+      </h3>
+      <p class="radar-card-body">论文提出Self-Blinding和反事实自模拟方法来缓解AI决策中的偏见和谄媚问题。核心方法是通过让模型模拟&quot;不知道某些信息&quot;的决策状态来消除无关偏见信息的影响。实验证明该方法能显著降低决策中的性别、种族等敏感属性偏见，并减少谄媚行为。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.semanticscholar.org/paper/b10c27f03843d48aef16590bb838bf3cf93a159a" target="_blank" rel="noopener">↗ PDF / SOURCE</a>
+        <a class="full-report-link" href="./academic_report_2026-06-22.html">FULL REPORT →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-06-10">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">ACADEMIC · 00:00:00</div>
@@ -945,7 +1020,7 @@ footer a:hover{color:var(--accent)}
 
 /* ── STATS ── */
 (function(){
-  const t=25,d=25;
+  const t=26,d=26;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
