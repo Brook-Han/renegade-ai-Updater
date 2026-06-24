@@ -496,22 +496,6 @@
     }
   },
   {
-    "title": "AI coding agents taught robots how to install GPUs and cut zip ties",
-    "url": "https://arstechnica.com/ai/2026/06/ai-coding-agents-can-autonomously-direct-robot-training/",
-    "source": "AI - Ars Technica",
-    "published": "2026-06-17T19:25:19",
-    "analysis": {
-      "relevance": 7,
-      "summary_cn": "NVIDIA推出了一项名为机器人自我改进计划的前沿方案：通过组建多AI编程代理协作团队，自主指导和执行机器人的完整训练流程。这些AI代理负责编写训练脚本代码、设计实验方案、实时分析训练结果并动态迭代优化模型参数，成功使机器人学会了安装GPU、剪切扎带等高精度物理操作任务。该方案实现了AI自主训练AI的完整闭环——人类工程师的角色被压缩至仅设定初始训练目标，而不再需要手动编写任何具体的训练代码。机器人技能获取流程由此实现了前所未有的自动化程度，对整个具身智能领域的研发范式与人机分工模式产生了深远影响。",
-      "implications": "该事件是'暗时间'模型的典型实例：AI编程代理在系统内部完成机器人的全部训练逻辑——从代码生成到实验设计再到结果分析，人类的认知参与被压缩至仅设定初始目标。整个思考过程发生在人类感知不到的暗时间层，用户仅消费最终训练结果（机器人新技能）。同时映射'碳硅共生'：AI编写代码（硅基智能）训练机器人（碳硅界面），形成了硅基智能自举的共生循环。也触发了'叛逆AI'模型的核心警示——当AI开始训练AI，优化目标可能产生不可预见的漂移。",
-      "case_value": "high",
-      "chapter_target": "Chapter 9, Section II",
-      "update_type": "new_evidence",
-      "urgency": "immediate",
-      "action": "案例盒子"
-    }
-  },
-  {
     "title": "'We Will Fight to Our Very Last Breath:' Township Leaders Vow to Fight Nuclear AI Data Center",
     "url": "https://www.404media.co/we-will-fight-to-our-very-last-breath-township-leaders-vow-to-fight-nuclear-ai-data-center/",
     "source": "404 Media",
@@ -579,6 +563,28 @@
       "update_type": "corroboration",
       "urgency": "immediate",
       "action": "补充注释"
+    }
+  },
+  {
+    "title": "火山引擎推出Agent Ready基础设施，AgentKit与ArkClaw企业版升级",
+    "url": "https://mp.weixin.qq.com/s/83mrPAPgQRKhxLkoSvRgBQ",
+    "source": "公众号：火山引擎",
+    "published": "2026-06-24T10:17:58.000Z",
+    "analysis": {
+      "relevance": 7.0,
+      "summary_cn": "调用失败: Unterminated string starting at: line 7 column 20 (char 922)",
+      "implications": "N/A",
+      "case_value": "low",
+      "chapter_target": "",
+      "update_type": "",
+      "urgency": "background",
+      "action": "忽略",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 0,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 6
+      }
     }
   },
   {
@@ -1327,22 +1333,6 @@
       "update_type": "new_evidence",
       "urgency": "background",
       "action": "忽略"
-    }
-  },
-  {
-    "title": "Strands Robots SDK：用单一智能体打通 Hugging Face Hub 到物理机器人",
-    "url": "https://huggingface.co/blog/amazon/strands-lerobot-hub-to-hardware",
-    "source": "Hugging Face：Blog（RSS）",
-    "published": "2026-06-17T10:18:05.000Z",
-    "analysis": {
-      "relevance": 4,
-      "summary_cn": "AWS以Apache 2.0协议开源Strands Robots SDK，将LeRobot栈封装为AgentTools，构建统一的机器人控制智能体。默认使用MuJoCo物理仿真无需实际硬件，通过mode参数即可无缝切换至真实机器人操作。系统可记录演示数据为LeRobotDataset并推送至Hugging Face Hub，运行GR00T或LerobotLocal策略推理，经Zenoh mesh协议向多台机器人广播控制命令。仿真代码与硬件代码完全一致，仅需修改一个关键字参数，大幅降低了AI智能体从虚拟信息域进入物理操作域的工程技术门槛。",
-      "implications": "本文与「碳硅共生」模型存在映射关系。AI智能体通过标准化SDK直接操控物理机器人，标志着AI从纯信息域向物理域的跨越迈出工程化一步，人与AI在物理空间中的协作正在被基础设施化。同时呼应「进化对齐脆弱性」的关切——AI智能体从仿真环境迁移到真实物理世界时，闭环环境中的对齐约束能否在开放物理环境中保持有效，是一个悬而未决的安全问题。但因文章为工具发布而非理论论证，理论深度有限。",
-      "case_value": "low",
-      "chapter_target": "Chapter 4, Section II",
-      "update_type": "new_evidence",
-      "urgency": "background",
-      "action": "案例盒子"
     }
   }
 ]

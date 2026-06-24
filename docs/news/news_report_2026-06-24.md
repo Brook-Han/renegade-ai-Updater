@@ -1,7 +1,7 @@
 # 📰 News Radar — 资讯监控报告
 **生成日期**: 2026-06-24
 **分析模型**: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6
-**分析条目**: 48
+**分析条目**: 49
 **关键词**: sycophancy large language model, RLHF cognitive effects human, human AI feedback loop bias amplification, AI persuasion belief change experiment, automation bias high stakes decision, cognitive offloading AI writing, AI assisted research homogenization, AI writing cultural homogenization Western bias...
 ---
 
@@ -9,8 +9,8 @@
 
 - 🔴 高价值 (≥7分 + high案例): **16**
 - 🟡 中相关 (4-6.9分): **20**
-- ⚪ 低相关/忽略: **25**
-- 🇨🇳 中国 AI 动态 (AI HOT): **15** 条（高价值: **7**）
+- ⚪ 低相关/忽略: **26**
+- 🇨🇳 中国 AI 动态 (AI HOT): **16** 条（高价值: **8**）
 
 ## 🚨 紧急关注清单（建议24h内处理）
 
@@ -237,7 +237,7 @@
 
 > 来源：[AI HOT](https://aihot.virxact.com) · 编辑精选中文 AI 资讯
 
-### 🔴 高价值动态 (7条)
+### 🔴 高价值动态 (8条)
 
 #### [tip] Anthropic 工程负责人：Claude Code 让程序员更孤独
 - **来源**: IT之家（RSS） · 2026-06-22
@@ -266,6 +266,13 @@
 - **链接**: [https://arxiv.org/abs/2606.24530](https://arxiv.org/abs/2606.24530)
 - **事件摘要**: NatureBench 基准从 Nature 系列同行评审论文中提取 90 个跨学科任务，配合 NatureGym 容器化管线消除环境碎片化，在禁用网络搜索的严格协议下测试 10 种前沿编码智能体。结果显示：最强配置仅在 17.8% 任务上超过已发表 SOTA（g>0.1 阈值）；成功案例多为“方法论翻译”（将文本方法转为代码），失败主因是“方法选择错误”与“计算预算不足”。基准、管线与排行榜已全量开源。
 - **理论关联**: 【支持/补充】信号异化：基准将复杂科学发现压缩为单一标量分数（g>0.1），且主要奖励“翻译”而非“发明”，导致榜单信号与真实发现能力背离。【支持】认知金融化/Token陷阱：跨学科发现被离散化为 90 个标准化任务，思考过程（方法选择、假设生成）被隐性外包给人类设计基准者，智能体仅消费“暗时间”产出的结果。【支持】碳硅共生：实证表明智能体缺乏高层“方法选择”能力（人类优势），擅长低层“翻译实现”（硅基优势），印证互补而非替代。【挑战】叛逆AI：当前智能体无法重置目标函数实现自主发现，仍是共识牢笼内的高级翻译官。
+
+#### [ai-products] 火山引擎推出Agent Ready基础设施，AgentKit与ArkClaw企业版升级
+- **来源**: 公众号：火山引擎 · 2026-06-24
+- **相关度**: 7.0/10 | 案例价值: LOW
+- **链接**: [https://mp.weixin.qq.com/s/83mrPAPgQRKhxLkoSvRgBQ](https://mp.weixin.qq.com/s/83mrPAPgQRKhxLkoSvRgBQ)
+- **事件摘要**: 调用失败: Unterminated string starting at: line 7 column 20 (char 922)
+- **理论关联**: N/A
 
 #### [ai-models] Qwen-AgentWorld 开源：让 Agent 学会"先预测，再行动"
 - **来源**: 公众号：通义实验室（千问） · 2026-06-24
