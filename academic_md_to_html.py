@@ -107,7 +107,7 @@ def parse_academic_report(md_path: str) -> dict:
                         f'<span class="model-tag">{name.strip()}: {score.strip()}/10</span>'
                         for name, score in score_lines if '模型' not in name
                     )
-                    model_scores_html = f'<div class="card-model-scores">🧠 {scores_html}</div>'
+                    model_scores_html = f'<div class="radar-card-model-scores">🧠 {scores_html}</div>'
 
             papers.append({
                 'title': title,
@@ -165,39 +165,45 @@ CSS_TEMPLATE = """
          暗色主题是默认，当 <html> 加上 class="light" 时切换到亮色。
       */
       :root {
-        --bg:           #08080e;      /* 页面背景 */
+        --bg:           #0c0c18;      /* 页面背景 */
         --bg2:          #10101e;      /* 次级背景 */
         --surface:      #12121e;      /* 卡片悬浮时的背景 */
         --card:         #1a1a2e;      /* 卡片默认背景 */
         --border:       #282840;      /* 边框线 */
         --border-bright:#3a3a5a;      /* 亮一点的边框（悬浮时用） */
-        --text:         #cccce0;      /* 正文文字 */
-        --text-muted:   #6868a0;      /* 次要文字 */
-        --text-faint:   #3a3a5a;      /* 更淡的文字 */
-        --accent:       #e8503a;      /* 强调色（橙红） */
-        --accent-dim:   rgba(232,80,58,0.12);
-        --accent2:      #c9a040;      /* 第二种强调色（金） */
-        --accent3:      #4a8fcf;      /* 第三种强调色（蓝） */
-        --accent3-dim:  rgba(74,143,207,0.10);
-        --white:        #f0f0f8;      /* 最亮的文字（标题） */
+        --text:         #e2e2f0;      /* 正文文字 */
+        --text-muted:   #a8a8d0;      /* 次要文字 */
+        --text-faint:   #55557a;      /* 更淡的文字 */
+        --accent:       #ff5c45;      /* 强调色（橙红） */
+        --accent-dim:   rgba(255,92,69,0.12);
+        --accent2:      #d4af5c;      /* 第二种强调色（金） */
+        --accent2-dim:  rgba(212,175,92,0.10);
+        --accent3:      #5ba3e6;      /* 第三种强调色（蓝） */
+        --accent3-dim:  rgba(91,163,230,0.12);
+        --white:        #f4f4fc;      /* 最亮的文字（标题） */
         --mono:         'Space Mono', 'Courier New', monospace;
         --serif:        'Crimson Pro', Georgia, serif;
         --display:      'Bebas Neue', 'Arial Narrow', sans-serif;
         --ease:         cubic-bezier(0.4,0,0.2,1);  /* 平滑动画曲线 */
       }
       :root.light {
-        --bg:           #f8f9fc;
-        --bg2:          #ffffff;
-        --surface:      #f0f2f8;
+        --bg:           #f0f2f8;
+        --bg2:          #fafbff;
+        --surface:      #e8eaf2;
         --card:         #ffffff;
-        --border:       #e0e2ec;
-        --border-bright:#c0c2d0;
-        --text:         #2a2a40;
-        --text-muted:   #6a6a80;
-        --text-faint:   #a0a0b8;
-        --accent-dim:   rgba(232,80,58,0.08);
-        --accent3-dim:  rgba(74,143,207,0.08);
-        --white:        #2a2a40;
+        --border:       #d4d7e4;
+        --border-bright:#b8bcd0;
+        --text:         #1a1a2e;
+        --text-muted:   #4c4c6a;
+        --text-faint:   #8888a0;
+        --accent:       #d94934;
+        --accent-dim:   rgba(217,73,52,0.08);
+        --accent-glow:  rgba(217,73,52,0.04);
+        --accent2:      #a67c28;
+        --accent2-dim:  rgba(166,124,40,0.08);
+        --accent3:      #356ba8;
+        --accent3-dim:  rgba(53,107,168,0.08);
+        --white:        #1a1a2e;
       }
 
       * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -206,18 +212,27 @@ CSS_TEMPLATE = """
         font-family: var(--serif);
         background: var(--bg);
         color: var(--text);
+        font-size: 1rem;
         line-height: 1.8;
-        -webkit-font-smoothing: antialiased;  /* 让字体更清晰 */
-        transition: background-color 0.3s, color 0.3s;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: background 0.3s, color 0.3s;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern" 1, "liga" 1, "palt" 1;
       }
       /* 选中文字的颜色 */
-      ::selection { background: var(--accent); color: #000; }
+      ::selection { background: var(--accent); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
+      ::-webkit-scrollbar{width:4px}
+      ::-webkit-scrollbar-track{background:var(--bg)}
+      ::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+      ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
 
       /* ══════════════ 固定导航栏（和主页一模一样） ══════════════ */
       nav {
         position: fixed; top: 0; width: 100%; z-index: 200;
         /* 毛玻璃效果：背景半透明 + 模糊 */
-        background: rgba(8,8,14,0.92); backdrop-filter: blur(24px);
+        background: rgba(12,12,24,.88); backdrop-filter: blur(32px) saturate(1.2);
+        -webkit-backdrop-filter: blur(32px) saturate(1.2);
         border-bottom: 1px solid var(--border);
         height: 56px;
         display: flex; align-items: center; justify-content: space-between;
@@ -225,25 +240,27 @@ CSS_TEMPLATE = """
         font-family: var(--mono);
         transition: background 0.3s, border-color 0.3s;
       }
-      .light nav { background: rgba(248,249,252,0.92); }
+      .light nav { background: rgba(240,242,248,.88); }
       /* 左侧品牌文字 */
       .nav-brand {
         font-size: 0.75rem; font-weight: 700;
         color: var(--accent); letter-spacing: 3px;
         text-transform: uppercase; text-decoration: none;
+        transition: opacity .2s;
       }
-      .nav-brand:hover { color: var(--accent2); }
+      .nav-brand:hover { opacity: .85; }
       /* 右侧按钮组 */
       .nav-right { display: flex; gap: 8px; align-items: center; }
-      /* 返回 Radar 主页的按钮（也用在主页的导航中，这里样式完全一致） */
+      /* 返回 Radar 主页的按钮 */
       .nav-pill {
         background: none; border: 1px solid var(--border);
         color: var(--text-muted); font-family: var(--mono);
-        font-size: 0.62rem; letter-spacing: 2px; padding: 5px 14px;
+        font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; padding: 5px 14px;
         cursor: pointer; text-decoration: none; text-transform: uppercase;
-        transition: all 0.2s;
+        display: inline-flex; align-items: center;
+        transition: all 0.25s var(--ease);
       }
-      .nav-pill:hover {
+      .nav-pill:hover, .nav-pill.active {
         border-color: var(--accent); color: var(--accent);
         background: var(--accent-dim);
       }
@@ -252,11 +269,11 @@ CSS_TEMPLATE = """
         background: none; border: 1px solid var(--border);
         color: var(--text-muted); width: 36px; height: 36px;
         cursor: pointer; display: flex; align-items: center; justify-content: center;
-        font-size: 0.9rem; transition: all 0.2s;
+        font-size: 0.9rem; transition: all 0.25s var(--ease);
       }
-      .theme-btn:hover {
+      .theme-btn:hover, .theme-btn:focus-visible {
         border-color: var(--accent); color: var(--accent);
-        background: var(--accent-dim);
+        background: var(--accent-dim); transform: rotate(180deg);
       }
 
       /* ══════════════ 页面主体 ══════════════ */
@@ -307,71 +324,71 @@ CSS_TEMPLATE = """
       .urgent-item strong { color: var(--white); }
 
       /* ══════════════ 论文卡片（和主页的 radar-card 风格统一） ══════════════ */
-      .card {
+      .radar-card {
         background: var(--card); border: 1px solid var(--border);
         padding: 28px 24px; margin-bottom: 16px;
         transition: background 0.2s, border-color 0.2s;
         opacity: 0; transform: translateY(12px);
         animation: fadeUp 0.45s var(--ease) forwards;  /* 淡入上移动画 */
       }
-      .card:hover { background: var(--surface); border-color: var(--border-bright); }
-      .card-header {
+      .radar-card:hover { background: var(--surface); border-color: var(--border-bright); }
+      .radar-card-top {
         display: flex; justify-content: space-between; align-items: flex-start;
         margin-bottom: 12px; gap: 16px; flex-wrap: wrap;
       }
-      .card-title {
+      .radar-card-title {
         font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.5px;
         color: var(--white); line-height: 1.25; flex: 1;
       }
-      .card-score {
+      .radar-score {
         font-family: var(--display); font-size: 2rem; color: var(--accent);
         line-height: 1; white-space: nowrap; text-align: right;
         flex-shrink: 0;
       }
-      .card-score span {
+      .radar-score span {
         font-family: var(--mono); font-size: 0.5rem; color: var(--text-faint);
         display: block; letter-spacing: 1px; margin-top: 4px;
       }
-      .card-meta {
+      .radar-card-meta {
         font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint);
         letter-spacing: 0.5px; margin-bottom: 14px;
         display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
       }
-      .card-meta a { color: var(--accent2); text-decoration: none; }
-      .card-meta a:hover { text-decoration: underline; }
+      .radar-card-meta a { color: var(--accent2); text-decoration: none; }
+      .radar-card-meta a:hover { text-decoration: underline; }
       .card-authors { color: var(--text-muted); font-style: italic; }
       .card-pub { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
-      .card-body {
-        font-size: 0.88rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+      .radar-card-body {
+        font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
       }
-      .card-implications {
+      .radar-card-implications {
         font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
-        background: rgba(201,160,64,0.05); border-left: 2px solid var(--accent2);
+        background: rgba(212,175,92,0.05); border-left: 2px solid var(--accent2);
         padding: 10px 14px; margin-bottom: 12px;
       }
-      .card-model-scores {
+      .radar-card-model-scores {
         font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
         margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;
       }
       .model-tag { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
       /* 自动生成的草稿样式 */
-      .card-draft {
+      .radar-card-draft {
         background: var(--surface); border-left: 4px solid var(--accent);
         padding: 18px 22px; margin-top: 12px; font-size: 0.9rem;
         color: var(--text); line-height: 1.8; font-style: italic;
       }
-      .card-draft::before {
+      .radar-card-draft::before {
         content: '✍️ 自动生成书稿草稿';
         display: block; font-family: var(--mono); font-size: 0.55rem;
         letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
         font-style: normal; margin-bottom: 8px;
       }
-      .card-footer {
+      .radar-card-footer {
         display: flex; gap: 10px; flex-wrap: wrap;
         font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
         padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 12px;
       }
-      .card-footer .tag {
+      .radar-card-footer .tag {
         padding: 2px 6px; background: var(--surface); border-radius: 2px;
       }
 
@@ -397,15 +414,23 @@ CSS_TEMPLATE = """
         .stats-row { overflow-x: auto; padding-bottom: 4px; }
       }
 
-      /* ── STATUS BAR ── */
+      /* ── NOISE OVERLAY ── */
+      .noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
+        background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}
+      .light .noise{opacity:.05}
+
+      /* ── STATUS BAR (Glass v5.4) ── */
       .status-bar{
         position:fixed;bottom:0;width:100%;z-index:200;
-        background:var(--bg);border-top:1px solid var(--border);
+        background:rgba(12,12,24,.92);backdrop-filter:blur(16px);
+        -webkit-backdrop-filter:blur(16px);
+        border-top:1px solid var(--border);
         padding:10px 32px;font-family:var(--mono);font-size:.6rem;
         color:var(--text-faint);letter-spacing:2px;
         display:flex;justify-content:space-between;align-items:center;
         transition:background .3s,border-color .3s;
       }
+      .light .status-bar{background:rgba(240,242,248,.92)}
       .status-dot{
         display:inline-block;width:6px;height:6px;
         background:var(--accent);border-radius:50%;margin-right:8px;
@@ -515,6 +540,7 @@ def generate_academic_html(data: dict, output_path: str):
 {CSS_TEMPLATE}
 </head>
 <body>
+<div class="noise"></div>
   <!-- ══════════════ 头部导航栏（和主页一模一样） ══════════════ -->
   <nav>
     <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>

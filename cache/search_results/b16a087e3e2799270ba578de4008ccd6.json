@@ -1,160 +1,156 @@
 {
-  "timestamp": 1781515812.269169,
+  "timestamp": 1782295757.001611,
   "source": "arxiv",
   "query": "compute egalitarianism open source model",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.14704v1",
-      "title": "The Edges of Planetary Systems: Falling Off the Kuiper Cliff in a Dissipating Gas Disk",
-      "summary": "Probably the last planetesimals to have formed from dust in the solar nebula are Cold Classical Kuiper belt objects (CCKBOs). To the extent that they are isolated and unchanged since birth, CCKBOs offer direct insights into nebular processes. Their population density drops abruptly beyond a heliocentric radius of $\\sim$47 au, a feature known as the \"Kuiper Cliff\". We show with global, 1D (radial), time-dependent models how gaseous protoplanetary disks that disperse from magnetic and photoevaporative winds leave behind planetesimal disks with Cliff-like outer edges. The gas disperses from the inside out, creating transitional disks whose inner cavities expand from $\\lesssim$ 1 au to $\\gtrsim$ 100 au. Gas at the cavity boundary presents a pressure maximum toward which dust particles drift, triggering the streaming instability which clumps dust into planetesimals massive enough to decouple from gas. The receding cavity wall thus paves a disk of planetesimals which truncates when dust and gas are spent. With no fine-tuning, we show how a generic gas disk clearing from the inside out reproduces the Kuiper Cliff and the CCKB surface density. Connecting these global 1D results with published local 3D simulations of dust and gas, we see how many properties of the CCKB -- its radial extent, total mass, individual object sizes, and binary statistics -- follow from the streaming instability at work in a late-stage transition disk.",
-      "published": "2026-06-12T17:59:58+00:00",
-      "url": "https://arxiv.org/pdf/2606.14704v1",
+      "id": "http://arxiv.org/abs/2606.24888v1",
+      "title": "DiffusionBench: On Holistic Evaluation of Diffusion Transformers",
+      "summary": "Diffusion transformer (DiT) research on image generation has converged to a single evaluation setup: class-conditional generation on ImageNet. While methods improve the FID and related metrics, it is increasingly unclear whether they reflect real progress in generative modeling. The natural alternative, i.e., text-to-image (T2I) generation, is perceived as too costly or inconvenient to train and evaluate and is often skipped. We argue that this perception no longer holds. We introduce NanoGen, a unified DiT training and evaluation framework. NanoGen matches state-of-the-art DiT baselines on ImageNet and, with 12 lines of configuration change, also trains competitive text-to-image models. It currently supports RAE, VAE, pixel-space, and MeanFlow diffusion methods under both ImageNet and T2I setups. Under NanoGen, training T2I requires comparable compute to ImageNet. After training 21 latent diffusion models with NanoGen, we observe that method ranking shows no strong correlation between ImageNet and T2I generation: Pearson correlation is between -0.377 and -0.580 across three metrics. This suggests that a method which improves class-conditional ImageNet FID may show no corresponding improvement on T2I, clearly indicating the necessity of evaluating DiTs on both tasks. To this end, we summarize ImageNet and text-to-image results, which yields DiffusionBench, a holistic benchmark for DiT research. We recommend reporting DiffusionBench in place of ImageNet alone: methods that improve DiffusionBench are more likely to reflect broader progress.",
+      "published": "2026-06-23T17:59:55+00:00",
+      "url": "https://arxiv.org/pdf/2606.24888v1",
       "authors": [
-        "Rixin Li",
-        "Eugene Chiang"
+        "Xingjian Leng",
+        "Jaskirat Singh",
+        "Zhanhao Liang",
+        "Ethan Smith",
+        "Martin Bell",
+        "Aninda Saha",
+        "Yuhui Yuan",
+        "Liang Zheng"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14703v1",
-      "title": "Gaze Heads: How VLMs Look at What They Describe",
-      "summary": "How a vision-language model internally solves the task of describing an image is far from obvious. We find that the model develops a specific mechanism for this: a small set of attention heads in its language-model backbone, which we call gaze heads, whose attention tracks the image region the model is currently describing. We find them with a simple correlation score from a few forward passes, using comic strips as a controlled testbed where narrative order is laid out spatially. These gaze heads do not just track the image tokens being described: redirecting their attention to a chosen region forces the VLM to describe that region instead. A single attention-mask intervention on the top-100 gaze heads, fewer than 9% of all heads, steers the model's answer to any chosen comic panel at 83.1% accuracy, while the same intervention on random heads fails to redirect the answer, and intervening on all heads destroys generation. The same lever also extends to continuous control: switching the gaze target mid-generation makes the model wrap up its current panel description and move to the new one within a few tokens. Beyond comics, the same intervention redirects answers to chosen regions in natural COCO images. The mechanism further recurs across model sizes from 2B to 32B parameters and across other VLM architectures, although some frozen-encoder families show no comparable head set. More broadly, this shows that targeted edits identified through mechanistic analysis can serve as practical inference-time levers for steering multimodal model behavior, without any retraining. Our code, interactive demo, and datasets are available at https://gaze.baulab.info/",
-      "published": "2026-06-12T17:59:57+00:00",
-      "url": "https://arxiv.org/pdf/2606.14703v1",
+      "id": "http://arxiv.org/abs/2606.24884v1",
+      "title": "InSight: Self-Guided Skill Acquisition via Steerable VLAs",
+      "summary": "Vision-language-action (VLA) models can learn manipulation skills from demonstrations, but their capabilities are bounded by the skills in the training data. We present InSight, a framework that unlocks autonomous skill acquisition by rendering VLAs steerable at the primitive-action level (e.g., \"move gripper to the bowl\", \"lift upward\", \"pour the bottle\"). InSight consists of two primary stages: (1) an automated segmentation pipeline that partitions demonstrations into labeled primitives via VLM plan decomposition and end-effector poses to enable VLA primitive steerability, and (2) a VLM-guided data flywheel that identifies missing primitives required to accomplish a novel task, autonomously attempts demonstrations of the missing primitives with VLM-proposed low-level control, and automatically labels, stores, and integrates successful demonstrations into the VLA training set. We evaluate InSight across simulation and real-world manipulation tasks, including block flipping, drawer closing, sweeping, twisting, and pouring, without any human demonstrations of these target skills. Once learned, these primitives can be composed to execute novel, long-horizon tasks without additional human demonstrations. Our findings demonstrate that primitive steerability provides a practical foundation for continual skill acquisition in VLA policies. Project website: https://insight-vla.github.io.",
+      "published": "2026-06-23T17:59:01+00:00",
+      "url": "https://arxiv.org/pdf/2606.24884v1",
       "authors": [
-        "Rohit Gandikota",
-        "David Bau"
+        "Maggie Wang",
+        "Lars Osterberg",
+        "Stephen Tian",
+        "Ola Shorinwa",
+        "Jiajun Wu",
+        "Mac Schwager"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14702v1",
-      "title": "OmniVideo-100K: A Dataset for Audio-Visual Reasoning through Structured Scripts and Evidence Chains",
-      "summary": "Current automated pipelines for audio-visual Question Answering (QA) generally adopt a ``video-caption-QA'' paradigm. However, these methods typically segment videos into short clips and generate separate descriptions for audio and visual modalities. This decoupled processing severs inherent associations between sounds and their visual sources, while independent clip processing often causes inconsistent descriptions of the same entity across segments. Furthermore, coupling long-text comprehension and QA synthesis into a single step often restricts models to localized events, yielding questions lacking long-term temporal connections and deep cross-modal reasoning. To address these issues, we propose an automated data engine featuring two mechanisms: (1) \\textbf{Entity-Anchored Video Scripting} transforms videos into structured scripts, comprising summaries, main entity lists, and segment-wise audio-visual descriptions. The entity list serves as a global prior to ensure cross-segment referential consistency and reconstruct audio-visual associations. (2) \\textbf{Clue-Guided QA Generation} prompts models to first mine cross-segment, multimodal clues from the script, and subsequently generate QA pairs based on these high-value clues. Leveraging this pipeline, we construct the instruction-tuning dataset \\textbf{OmniVideo-100K} and a human-verified test set, \\textbf{OmniVideo-Test}. Fine-tuning VITA-1.5, Qwen2.5-Omni-7B and Qwen3-Omni-30B on OmniVideo-100K yields performance gains of up to 20.59% on OmniVideo-Test, demonstrating strong generalization (up to 12.64% improvements) across established benchmarks like Daily-Omni and JointAVBench.",
-      "published": "2026-06-12T17:59:55+00:00",
-      "url": "https://arxiv.org/pdf/2606.14702v1",
+      "id": "http://arxiv.org/abs/2606.24883v1",
+      "title": "BenchX: Benchmarking AI Models for Cancer Detection and Localization with Demographic and Protocol Biases",
+      "summary": "Artificial intelligence (AI) has achieved remarkable success in medical imaging, but it is widely recognized that these models often perform inconsistently across real-world clinical settings. Such inconsistencies occur when patient demographics and imaging protocols vary, for example, in detecting small tumors, analyzing scans from different contrast phases, or evaluating patients of different ages or sexes. To quantify these inconsistencies, we develop a large-scale, open benchmark of 85,355 CT scans that systematically evaluates 12 tumor-detection AI models across tumor size, location, patient subgroup, and imaging protocol. We leverage large language models (LLMs) to extract and organize subgroup information from clinical data, which makes the analysis both scalable and reproducible. Our benchmark reveals that current state-of-the-art AI models, optimized for average accuracy, perform poorly in rare or underrepresented subgroups, such as young, female African Americans. However, collecting sufficient annotated data for these rare cases is often impractical. The benchmark provides a foundation for building more reliable and robust AI models for tumor detection and highlighting the need for rigorous, subgroup-level evaluation in medical imaging and computer vision. Datasets, code",
+      "published": "2026-06-23T17:58:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.24883v1",
       "authors": [
-        "Xinyue Cai",
-        "Chaoyou Fu",
-        "Yi-Fan Zhang",
-        "Ran He",
-        "Caifeng Shan"
+        "Qi Chen",
+        "Wenxuan Li",
+        "Pedro R. A. S. Bassi",
+        "Xinze Zhou",
+        "Jakob Wasserthal",
+        "Ibrahim Ethem Hamamci",
+        "Sezgin Er",
+        "Ashwin Kumar",
+        "Yiwen Ye",
+        "Yuhan Wang",
+        "Yuyin Zhou",
+        "Akshay S. Chaudhari",
+        "Curtis Langlotz",
+        "Kang Wang",
+        "Yang Yang",
+        "Alan L. Yuille",
+        "Zongwei Zhou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14701v1",
-      "title": "RATS! Patches Talk Through Registers: Emergent Parts in Register Attention Transformers",
-      "summary": "When humans see a bird, they recognize far more than just \"bird\" -- they see a head, wings, and talons, a structured assembly of reusable parts that can be identified across every bird they have ever seen. We ask whether a self-supervised visual model can discover the same compositional structure on its own. To this end, we propose RATS (Register Attention Transformers), which decomposes the classification token into N learnable register tokens that route patch information through an L->N->N->L bottleneck via a three-step compress-communicate-broadcast attention. The N registers are partitioned across the H attention heads, so that registers assigned to different heads do not interact with each other. Without auxiliary losses or part annotations, each register spontaneously specializes into a proto-semantic region whose emerging structure resembles object parts. RATS surpasses all baselines by +12 mIoU on average across five segmentation benchmarks, with consistent gains on ADE20K (+1.11 mIoU) and COCO (+0.2 AP^m). Its register dictionary further exhibits part-level consistency and semantic proximity across related categories. Our results suggest that RATS may provide a useful architectural prior for structured and interpretable visual representation learning.",
-      "published": "2026-06-12T17:59:53+00:00",
-      "url": "https://arxiv.org/pdf/2606.14701v1",
+      "id": "http://arxiv.org/abs/2606.24881v1",
+      "title": "Queues with Correlated Service Times -- the $M/M_D/c$ Model",
+      "summary": "This paper studies multi-server queueing systems with correlated service times, modeled as the $M/M_D/c$ queue, which is a natural extension of the recent work by Thapa and Zhao \\cite{Thapa-Zhao:2026}. In this model, arrivals follow a Poisson process, while service times across servers exhibit dependence captured by the Marshall--Olkin multivariate exponential distribution (MO-MVED).   We first develop a rigorous sample-path construction of the system and establish that the resulting queueing process is a continuous-time Markov chain. We then analyze the stationary behavior of the $M/M_D/c$ model. In the homogeneous case, we derive a complete solution via geometric tail structure and explicit boundary equations, recovering a tractable one-dimensional representation. In the heterogeneous case, we establish a general framework combining a geometric tail with a finite boundary system, and prove existence, uniqueness, and nonnegativity of the stationary distribution. The above results provide a unified analytic framework extending classical $M/M/c$ theory to correlated-service settings, and reveal how dependence among service times fundamentally affects system performance and structure.   Beyond the $M/M_D/c$ model, We next study the interplay between Marshall--Olkin service dependence and queue-state Markovianity. On the one hand, Marshall--Olkin dependent service completions are shown to preserve Markovianity for a broad class of queueing systems. On the other hand, if a queueing process admits a Markovian state description without tracking service ages, residual service times, or service phases, then its service mechanism must satisfy a weak multivariate lack-of-memory property and consequently belongs to the Marshall--Olkin family. These results provide a probabilistic foundation for the use of Marshall--Olkin multivariate exponential service times in Markovian queueing models.",
+      "published": "2026-06-23T17:57:19+00:00",
+      "url": "https://arxiv.org/pdf/2606.24881v1",
       "authors": [
-        "Timing Yang",
-        "Predrag Neskovic",
-        "Jansen Seheult",
-        "Wenchao Han",
-        "Anand Bhattad",
-        "Alan Yuille",
-        "Feng Wang"
+        "Qihui Bu",
+        "Suman Thapa",
+        "Yiqiang Q. Zhao"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14700v1",
-      "title": "RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space",
-      "summary": "Large language models (LLMs) are widely used in text-to-image (T2I) systems, but they are typically limited to text encoding, while denoising is handled by newly trained generative backbones. The emergence of representation autoencoders (RAEs) shifts the generation target toward semantically structured visual representations, creating a latent space that is more compatible with pretrained LLM priors. Inspired by multimodal LLMs (MLLMs), where an MLP projector is sufficient to align clean visual representations with a pretrained LLM, we repurpose the MLLM itself as a noisy representation encoder, extending this mechanism from clean to noisy inputs. We present RepFusion, which uses the resulting MLLM outputs as the conditioning signal for a diffusion transformer. In controlled comparisons at similar inference budgets, RepFusion outperforms baselines that devote comparable capacity to newly initialized denoisers. These results demonstrate that MLLMs provide strong priors for denoising visual representations and that, by conditioning on evolving noisy representations, test-time compute can be productively spent on repeated MLLM conditioning in modern T2I systems.",
-      "published": "2026-06-12T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2606.14700v1",
+      "id": "http://arxiv.org/abs/2606.24880v1",
+      "title": "Stability Checking of Markov Jump Linear Systems via Probabilistic Temporal Logic (Extended Version)",
+      "summary": "Markov jump linear systems (MJLSs) model dynamical phenomena subject to random switching among multiple linear modes, driven by an underlying Markov chain. Classical notions such as mean and mean-square stability characterize the long-term asymptotic behaviour of the first and second moments of an MJLS, but they can be overly conservative or even misleading when only a specific subset of initial conditions is of interest. We tackle this challenge through the lens of model checking, where reasoning about specific sets of initial conditions is intrinsic to the approach. We begin by formalizing probabilistic computation tree logic (PCTL) on MJLSs, enabling the specification of state-based temporal properties for these systems. Building on this foundation, we extend the logic to capture moment-based stability properties relative to a prescribed set of initial states. While we ultimately do not obtain a decision procedure for the entire base logic, the logical extensions can be handled -- albeit with some technical subtleties -- by exploiting linear-algebraic techniques.",
+      "published": "2026-06-23T17:55:48+00:00",
+      "url": "https://arxiv.org/pdf/2606.24880v1",
       "authors": [
-        "Xichen Pan",
-        "Aashu Singh",
-        "Satya Narayan Shukla",
-        "Xiangjun Fan",
-        "Shlok Kumar Mishra",
-        "Saining Xie"
+        "Lena Becker",
+        "Holger Hermanns"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14699v1",
-      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
-      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
-      "published": "2026-06-12T17:59:36+00:00",
-      "url": "https://arxiv.org/pdf/2606.14699v1",
+      "id": "http://arxiv.org/abs/2606.24879v1",
+      "title": "New Bounds for the Last Iterate of the Stochastic subGradient Method",
+      "summary": "We study the last iterate of the stochastic subgradient method for one-dimensional convex Lipschitz objectives. For a fixed horizon $n$, we consider the standard fixed stepsizes $η=Θ(1/\\sqrt n)$. We prove that, for such stepsize policies, under additive i.i.d. subgradient noise with uniformly bounded variance, the last iterate features an optimization error of order $1/\\sqrt n$, thereby removing the extra $(\\log n)$ factor present in existing generic bounds. On the other hand, we show that without the i.i.d. assumption, the optimization error can be of order $(\\log n)/\\sqrt n$. Thus, under the uniformly bounded variance assumption alone, the last iterate of SsGM is suboptimal even in dimension one, resolving negatively an open problem posed in Koren and Segal, COLT, 2020.",
+      "published": "2026-06-23T17:55:18+00:00",
+      "url": "https://arxiv.org/pdf/2606.24879v1",
       "authors": [
-        "Ruining Li",
-        "Yuxin Yao",
-        "Matt Zhou",
-        "Chuanxia Zheng",
+        "Guglielmo Beretta",
+        "Tommaso Cesari",
+        "Roberto Colomboni",
+        "Andrea Paudice"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.24876v1",
+      "title": "FLAT: Feedforward Latent Triangle Splatting for Geometrically Accurate Scene Generation",
+      "summary": "Generating explorable 3D scenes from a single image requires strong generative priors and accurate geometric representations suitable for downstream use. Current video diffusion models offer high-quality generation and implicitly encode multi-view geometric structure in latent space. However, existing feedforward latent scene decoders typically output volumetric 3D Gaussians that lack a well-defined surface, limiting their use in simulation or standard graphics pipelines. This motivates decoding surface-aligned primitives that are not only renderable but also closer to explicit geometric assets. We ask whether compressed video diffusion latents can be mapped directly to explicit surface primitives in a single pass. To this end, we introduce FLAT and, for the first time, show that triangle splats can be decoded directly from video diffusion latents. Compared with decoding 3D Gaussians, predicting flat primitives is notoriously more challenging due to high sensitivity to primitive orientations, oftentimes leading to poor gradient flow. FLAT solves with two key ingredients: a ray-centered rotation parameterization for triangle regression and a novel product window function that improves gradient flow during differentiable triangle rendering. On standard benchmarks, FLAT achieves significantly better geometric accuracy while maintaining competitive visual quality compared to state-of-the-art feedforward baselines. We further show that a lightweight test-time refinement step converts the predicted triangle soup into a fully opaque, game-engine-ready representation that supports real-time rendering. By evaluating 3DGS, 2DGS, and triangle splatting variants under an identical training setup, we provide the first systematic analysis of representation tradeoffs in feedforward scene generation. The project page is available at https://flat-splat.github.io",
+      "published": "2026-06-23T17:53:41+00:00",
+      "url": "https://arxiv.org/pdf/2606.24876v1",
+      "authors": [
+        "Orest Kupyn",
+        "Goutam Bhat",
+        "Philipp Henzler",
+        "Fabian Manhardt",
         "Christian Rupprecht",
-        "Joan Lasenby",
-        "Shangzhe Wu",
-        "Andrea Vedaldi"
+        "Federico Tombari"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14697v1",
-      "title": "ClinHallu: A Benchmark for Diagnosing Stage-Wise Hallucinations in Medical MLLM Reasoning",
-      "summary": "Building trustworthy medical multimodal large language models (MLLMs) is critical for reliable clinical decision support. Existing medical hallucination benchmarks mainly focus on data collection, but often ignore where hallucinations originate within the reasoning process. We find that hallucination sources vary across samples: errors may arise from visual misrecognition, incorrect medical knowledge recall, or flawed reasoning integration. To enable source-level hallucination diagnosis, we introduce ClinHallu, a benchmark for stage-wise hallucination diagnosis in medical MLLM reasoning. ClinHallu contains 7,031 validated instances, where each instance is augmented with a structured reasoning trace decomposed into Visual Recognition, Knowledge Recall, and Reasoning Integration. We also use stage-replacement interventions to measure how correcting specific stages affects the final answer. Beyond evaluation, we show that trace-supervised fine-tuning reduces stage-wise hallucinations. ClinHallu provides a fine-grained hallucination testbed for diagnosing and mitigating reasoning failures in medical MLLMs. The benchmark is publicly available at https://github.com/alibaba-damo-academy/ClinHallu.",
-      "published": "2026-06-12T17:58:38+00:00",
-      "url": "https://arxiv.org/pdf/2606.14697v1",
+      "id": "http://arxiv.org/abs/2606.24875v1",
+      "title": "A Degree-Four Lemniscate Path Theorem",
+      "summary": "We prove the degree-four case of a path problem of Erdős, Herzog, and Piranian. If $f$ is monic of degree four and all zeros of $f$, counted with multiplicity, lie in the open unit disk, then two zeros from this list can be joined inside $$\\{z:|f(z)|<1\\}$$ by a possibly degenerate polygonal path of length less than $2$.",
+      "published": "2026-06-23T17:53:23+00:00",
+      "url": "https://arxiv.org/pdf/2606.24875v1",
       "authors": [
-        "Sicheng Yang",
-        "Hangjie Yuan",
-        "Wenjun Zhang",
-        "Jinwang Wang",
-        "Yichen Qian",
-        "Weihua Chen",
-        "Fan Wang",
-        "Lei Zhu"
+        "Venkata Siddharth Pendyala"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14695v1",
-      "title": "Persona-Pruner: Sculpting Lightweight Models for Role-Playing",
-      "summary": "Language Models (LMs) have shown remarkable potential as role-playing chatbots, delivering consistent, stylized interactions when given a specification of a character or user persona. However, applying these capabilities to real-world applications (e.g., ecosystems with numerous NPCs interacting simultaneously) exposes a critical inefficiency due to the excessive computational cost. In this paper, we question the necessity of dedicating a full, generalist model to a single persona, hypothesizing that a specific character identity relies on only a fraction of the model's total capacity. We observe that naively pruning LMs often severely degrades the role-playing performance for a specific persona; it does not distinguish between redundant knowledge and essential character traits. We propose Persona-Pruner, a framework that sculpts a lightweight role-playing model by isolating persona-specific sub-networks from a single description. Our experiments consistently show that Persona-Pruner preserves role-playing performance substantially more effectively than existing state-of-the-art LLM pruning techniques, reducing the performance drop from the dense model by up to 93.8% over the strongest baseline on RoleBench in LLM-as-a-judge score, while still maintaining general LLM capabilities. Code is available at https://github.com/jsu-kim/Persona-Pruner.",
-      "published": "2026-06-12T17:58:08+00:00",
-      "url": "https://arxiv.org/pdf/2606.14695v1",
+      "id": "http://arxiv.org/abs/2606.24871v1",
+      "title": "Sequential Probability Ratio Test using Z-Statistics (SPRT-z): A Practical Approach for Online Experimentation",
+      "summary": "Modern online experimentation platforms produce data at scale and continuously. However, practitioners routinely apply Fixed Horizon Testing (FHT) under repeated peeking, inflating Type I error and reducing decision quality. Popular always valid sequential methods control Type I error under peeking and enable early stopping for efficacy, but do not natively support early futility stopping, launch criteria tied to a business-relevant minimum detectable effect, or Type II error control. As an alternative that satisfies these useful properties, we revive Wald's Sequential Probability Ratio Test (SPRT) for online experimentation with three novel contributions: (1) SPRT-z, an adaptation of Hajnal's sequential $t$-test, leverages large sample normal approximation to eliminate computational bottlenecks inherent to the scale of modern A/B tests and enables the Brownian motion-based methods used in (2) and (3); (2) Scale-Free Horizon Calibration (SFHC) is a Monte Carlo bisection procedure on the standardised $Z$-scale that sets a maximum sample size preserving nominal power under discrete monitoring with futility stopping; (3) A Brownian Median Unbiased Estimator and accompanying confidence intervals correct the upward bias induced by early stopping across all stopping regions via a six-region stagewise ordering of the sample space. A simulation study shows this workflow appropriately controls Type I and II error, reduces sample size relative to FHT, and ameliorates estimation bias from early stopping with close-to-nominal confidence interval coverage in most scenarios studied.",
+      "published": "2026-06-23T17:49:42+00:00",
+      "url": "https://arxiv.org/pdf/2606.24871v1",
       "authors": [
-        "Jinsu Kim",
-        "Jihoon Tack",
-        "Noah Lee",
-        "Jongheon Jeong"
+        "Derek L. Ho",
+        "Emma G. Thomas"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14694v1",
-      "title": "AdaSR: Adaptive Streaming Reasoning with Hierarchical Relative Policy Optimization",
-      "summary": "Large reasoning models typically follow a read-then-think paradigm: they observe the complete input, reason over a static context, and then produce the answer. Yet many real-world scenarios are inherently dynamic, such as audio and video stream, where information arrives as a continuous stream and models must reason, update, and respond under partial observations. Recent streaming reasoning methods allow models to think while reading, but they largely rely on supervised imitation of pre-constructed trajectories, which limits their flexibility. In this paper, we propose AdaSR, an adaptive streaming reasoning framework that enables models to reason during input streaming and perform final deliberation once the stream is complete, learning when to think, and how much computation to allocate across different stages. To optimize this hierarchical reasoning process, we introduce Hierarchical Relative Policy Optimization (HRPO), which decomposes policy optimization into streaming reasoning and deep reasoning phases, providing more fine-grained advantage assignment instead of uniformly distributing a single sequence-level advantage over all tokens. HRPO integrates format, accuracy, and adaptive thinking rewards to enforce valid reasoning protocols, preserve final task performance, and encourage latency-aware computation allocation. Experiments show that AdaSR achieves a better balance among reasoning accuracy, computational efficiency, and streaming latency compared with supervised fine-tuning baseline. We release our code at https://github.com/EIT-NLP/StreamingLLM/tree/main/AdaSR.",
-      "published": "2026-06-12T17:56:25+00:00",
-      "url": "https://arxiv.org/pdf/2606.14694v1",
+      "id": "http://arxiv.org/abs/2606.24870v1",
+      "title": "\"Zooming In\" on Agentic Web Browsers as Assistive Technologies: A Case Study with a Low-Vision Technology Expert",
+      "summary": "Agentic Web Browsers (AWBs), powered by Large Language Models (LLMs), are emerging as autonomous systems capable of navigating the Web on behalf of users. Beyond enhancing productivity, they could also offer significant promise as Assistive Technologies (ATs) for visually-impaired individuals, transforming web interaction into a fluid conversational exchange. In this paper, we present a case study with a low-vision technology expert, examining how AWBs can support visually-impaired users in web navigation. The findings show that, despite the current limitations, the navigation experience is notably fluid and flexible, underscoring the strong potential of AWBs to enhance accessibility and reduce barriers in web interaction, with implications that may extend beyond accessibility to agentic UX more broadly.",
+      "published": "2026-06-23T17:48:47+00:00",
+      "url": "https://arxiv.org/pdf/2606.24870v1",
       "authors": [
-        "Junlong Tong",
-        "Wenqi Xu",
-        "Yingqi Fan",
-        "Anhao Zhao",
-        "Xuan Lu",
-        "Yang Tan",
-        "Xiaoyu Shen"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.14693v1",
-      "title": "Learning Coordinated Preference for Multi-Objective Multi-Agent Reinforcement Learning",
-      "summary": "Cooperative multi-objective multi-agent reinforcement learning (MOMARL) models team decision making under multiple, potentially conflicting objectives. In this setting, conflicts arise not only across objectives but also across agents with different observations, roles, and contributions. We propose Preference Coordinated Multi-agent Policy Optimization (PCMA), which learns coordinated agent-specific preferences to enable complementary trade-offs among agents. Theoretically, we formulate cooperative MOMARL as a team-optimal game and show that, under suitable conditions, preference diversity can induce team improvement through a first-order improvement decomposition. Experiments on multiple cooperative MOMA environments and a practical traffic-control scenario show that PCMA improves both performance and trade-off coordination.",
-      "published": "2026-06-12T17:55:28+00:00",
-      "url": "https://arxiv.org/pdf/2606.14693v1",
-      "authors": [
-        "Pengxin Wang",
-        "Lihao Guo",
-        "Yi Xie",
-        "Bo Liu",
-        "Siyang Cao",
-        "Jingdi Chen"
+        "Laura Colazzo",
+        "Giuseppe Anzillotti"
       ],
       "source": "arxiv"
     }

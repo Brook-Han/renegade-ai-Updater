@@ -8217,5 +8217,34 @@
       "deepseek-ai/deepseek-v4-flash": 8,
       "moonshotai/kimi-k2.6": 6
     }
+  },
+  "7987a2babfa58ea5a79561bea0953911": {
+    "cached_at": "2026-06-24T18:25:27.329966",
+    "title": "NatureBench：AI编码智能体能否匹配Nature系列论文已发表SOTA？",
+    "url": "https://arxiv.org/abs/2606.24530",
+    "analysis": {
+      "relevance": 7.3,
+      "summary_cn": "NatureBench 基准从 Nature 系列同行评审论文中提取 90 个跨学科任务，配合 NatureGym 容器化管线消除环境碎片化，在禁用网络搜索的严格协议下测试 10 种前沿编码智能体。结果显示：最强配置仅在 17.8% 任务上超过已发表 SOTA（g>0.1 阈值）；成功案例多为“方法论翻译”（将文本方法转为代码），失败主因是“方法选择错误”与“计算预算不足”。基准、管线与排行榜已全量开源。",
+      "implications": "【支持/补充】信号异化：基准将复杂科学发现压缩为单一标量分数（g>0.1），且主要奖励“翻译”而非“发明”，导致榜单信号与真实发现能力背离。【支持】认知金融化/Token陷阱：跨学科发现被离散化为 90 个标准化任务，思考过程（方法选择、假设生成）被隐性外包给人类设计基准者，智能体仅消费“暗时间”产出的结果。【支持】碳硅共生：实证表明智能体缺乏高层“方法选择”能力（人类优势），擅长低层“翻译实现”（硅基优势），印证互补而非替代。【挑战】叛逆AI：当前智能体无法重置目标函数实现自主发现，仍是共识牢笼内的高级翻译官。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II: The Illusion of Autonomous Discovery / Chapter 3, Section III: Benchmarking as Cognitive Financialization",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增案例盒子",
+      "_model": "nvidia/nemotron-3-ultra-550b-a55b",
+      "_model_scores": {
+        "nvidia/nemotron-3-ultra-550b-a55b": 8,
+        "deepseek-ai/deepseek-v4-flash": 8,
+        "moonshotai/kimi-k2.6": 6
+      }
+    },
+    "relevance": 7.3,
+    "urgency": "next_version",
+    "case_value": "high",
+    "model_scores": {
+      "nvidia/nemotron-3-ultra-550b-a55b": 8,
+      "deepseek-ai/deepseek-v4-flash": 8,
+      "moonshotai/kimi-k2.6": 6
+    }
   }
 }

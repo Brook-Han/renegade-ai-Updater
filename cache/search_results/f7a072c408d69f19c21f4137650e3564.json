@@ -1,148 +1,171 @@
 {
-  "timestamp": 1781515806.467873,
+  "timestamp": 1782295749.922942,
   "source": "arxiv",
   "query": "LLM generated text detection academic",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.14704v1",
-      "title": "The Edges of Planetary Systems: Falling Off the Kuiper Cliff in a Dissipating Gas Disk",
-      "summary": "Probably the last planetesimals to have formed from dust in the solar nebula are Cold Classical Kuiper belt objects (CCKBOs). To the extent that they are isolated and unchanged since birth, CCKBOs offer direct insights into nebular processes. Their population density drops abruptly beyond a heliocentric radius of $\\sim$47 au, a feature known as the \"Kuiper Cliff\". We show with global, 1D (radial), time-dependent models how gaseous protoplanetary disks that disperse from magnetic and photoevaporative winds leave behind planetesimal disks with Cliff-like outer edges. The gas disperses from the inside out, creating transitional disks whose inner cavities expand from $\\lesssim$ 1 au to $\\gtrsim$ 100 au. Gas at the cavity boundary presents a pressure maximum toward which dust particles drift, triggering the streaming instability which clumps dust into planetesimals massive enough to decouple from gas. The receding cavity wall thus paves a disk of planetesimals which truncates when dust and gas are spent. With no fine-tuning, we show how a generic gas disk clearing from the inside out reproduces the Kuiper Cliff and the CCKB surface density. Connecting these global 1D results with published local 3D simulations of dust and gas, we see how many properties of the CCKB -- its radial extent, total mass, individual object sizes, and binary statistics -- follow from the streaming instability at work in a late-stage transition disk.",
-      "published": "2026-06-12T17:59:58+00:00",
-      "url": "https://arxiv.org/pdf/2606.14704v1",
+      "id": "http://arxiv.org/abs/2606.24888v1",
+      "title": "DiffusionBench: On Holistic Evaluation of Diffusion Transformers",
+      "summary": "Diffusion transformer (DiT) research on image generation has converged to a single evaluation setup: class-conditional generation on ImageNet. While methods improve the FID and related metrics, it is increasingly unclear whether they reflect real progress in generative modeling. The natural alternative, i.e., text-to-image (T2I) generation, is perceived as too costly or inconvenient to train and evaluate and is often skipped. We argue that this perception no longer holds. We introduce NanoGen, a unified DiT training and evaluation framework. NanoGen matches state-of-the-art DiT baselines on ImageNet and, with 12 lines of configuration change, also trains competitive text-to-image models. It currently supports RAE, VAE, pixel-space, and MeanFlow diffusion methods under both ImageNet and T2I setups. Under NanoGen, training T2I requires comparable compute to ImageNet. After training 21 latent diffusion models with NanoGen, we observe that method ranking shows no strong correlation between ImageNet and T2I generation: Pearson correlation is between -0.377 and -0.580 across three metrics. This suggests that a method which improves class-conditional ImageNet FID may show no corresponding improvement on T2I, clearly indicating the necessity of evaluating DiTs on both tasks. To this end, we summarize ImageNet and text-to-image results, which yields DiffusionBench, a holistic benchmark for DiT research. We recommend reporting DiffusionBench in place of ImageNet alone: methods that improve DiffusionBench are more likely to reflect broader progress.",
+      "published": "2026-06-23T17:59:55+00:00",
+      "url": "https://arxiv.org/pdf/2606.24888v1",
       "authors": [
-        "Rixin Li",
-        "Eugene Chiang"
+        "Xingjian Leng",
+        "Jaskirat Singh",
+        "Zhanhao Liang",
+        "Ethan Smith",
+        "Martin Bell",
+        "Aninda Saha",
+        "Yuhui Yuan",
+        "Liang Zheng"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14703v1",
-      "title": "Gaze Heads: How VLMs Look at What They Describe",
-      "summary": "How a vision-language model internally solves the task of describing an image is far from obvious. We find that the model develops a specific mechanism for this: a small set of attention heads in its language-model backbone, which we call gaze heads, whose attention tracks the image region the model is currently describing. We find them with a simple correlation score from a few forward passes, using comic strips as a controlled testbed where narrative order is laid out spatially. These gaze heads do not just track the image tokens being described: redirecting their attention to a chosen region forces the VLM to describe that region instead. A single attention-mask intervention on the top-100 gaze heads, fewer than 9% of all heads, steers the model's answer to any chosen comic panel at 83.1% accuracy, while the same intervention on random heads fails to redirect the answer, and intervening on all heads destroys generation. The same lever also extends to continuous control: switching the gaze target mid-generation makes the model wrap up its current panel description and move to the new one within a few tokens. Beyond comics, the same intervention redirects answers to chosen regions in natural COCO images. The mechanism further recurs across model sizes from 2B to 32B parameters and across other VLM architectures, although some frozen-encoder families show no comparable head set. More broadly, this shows that targeted edits identified through mechanistic analysis can serve as practical inference-time levers for steering multimodal model behavior, without any retraining. Our code, interactive demo, and datasets are available at https://gaze.baulab.info/",
-      "published": "2026-06-12T17:59:57+00:00",
-      "url": "https://arxiv.org/pdf/2606.14703v1",
+      "id": "http://arxiv.org/abs/2606.24886v1",
+      "title": "The Topology of the Universe",
+      "summary": "Is the Universe infinite in all directions? The only way to know is to look. A non-trivial cosmic topology would imprint subtle signatures on the cosmic microwave background (CMB) and on the three-dimensional distribution of matter, breaking statistical isotropy and, potentially, homogeneity at the largest scales. If the topology scale is small enough, these signatures would be observable. Over the past three decades, successive space missions, most notably WMAP and $\\textit{Planck}$, have enabled sophisticated searches for these signatures, using methods ranging from looking for matched circle pairs to full Bayesian likelihood analysis based on topology-dependent covariance matrices. Although these searches have yielded no definitive evidence for non-trivial topology, current constraints exclude only some topologies, parameter ranges, and observer positions. Recent advances show that detectable signals may persist even when the topology scale exceeds the size of the visible Universe. Planned CMB experiments, including LiteBIRD and $\\textit{Taurus}$, and high-precision galaxy and line intensity-mapping surveys, could expand the detectable parameter space by exploiting polarisation data, and by exploring topology-induced correlations at all accessible redshifts. Whether cosmic topology is observable remains uncertain, but current and future data offer an unprecedented opportunity to probe the global structure of the Universe.",
+      "published": "2026-06-23T17:59:13+00:00",
+      "url": "https://arxiv.org/pdf/2606.24886v1",
       "authors": [
-        "Rohit Gandikota",
-        "David Bau"
+        "Craig J. Copi",
+        "Deyan P. Mihaylov",
+        "Anna Negro",
+        "Amirhossein Samandar",
+        "Glenn D. Starkman",
+        "Yashar Akrami",
+        "George Alestas",
+        "Stefano Anselmi",
+        "Javier Carrón Duque",
+        "Fernando Cornet-Gomez",
+        "Linn Htat Lu",
+        "Andrew H. Jaffe",
+        "Arthur Kosowsky",
+        "Mikel Martin Barandiaran",
+        "Thiago S. Pereira",
+        "Catherine Petretti",
+        "Andrius Tamosiunas"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14702v1",
-      "title": "OmniVideo-100K: A Dataset for Audio-Visual Reasoning through Structured Scripts and Evidence Chains",
-      "summary": "Current automated pipelines for audio-visual Question Answering (QA) generally adopt a ``video-caption-QA'' paradigm. However, these methods typically segment videos into short clips and generate separate descriptions for audio and visual modalities. This decoupled processing severs inherent associations between sounds and their visual sources, while independent clip processing often causes inconsistent descriptions of the same entity across segments. Furthermore, coupling long-text comprehension and QA synthesis into a single step often restricts models to localized events, yielding questions lacking long-term temporal connections and deep cross-modal reasoning. To address these issues, we propose an automated data engine featuring two mechanisms: (1) \\textbf{Entity-Anchored Video Scripting} transforms videos into structured scripts, comprising summaries, main entity lists, and segment-wise audio-visual descriptions. The entity list serves as a global prior to ensure cross-segment referential consistency and reconstruct audio-visual associations. (2) \\textbf{Clue-Guided QA Generation} prompts models to first mine cross-segment, multimodal clues from the script, and subsequently generate QA pairs based on these high-value clues. Leveraging this pipeline, we construct the instruction-tuning dataset \\textbf{OmniVideo-100K} and a human-verified test set, \\textbf{OmniVideo-Test}. Fine-tuning VITA-1.5, Qwen2.5-Omni-7B and Qwen3-Omni-30B on OmniVideo-100K yields performance gains of up to 20.59% on OmniVideo-Test, demonstrating strong generalization (up to 12.64% improvements) across established benchmarks like Daily-Omni and JointAVBench.",
-      "published": "2026-06-12T17:59:55+00:00",
-      "url": "https://arxiv.org/pdf/2606.14702v1",
+      "id": "http://arxiv.org/abs/2606.24885v1",
+      "title": "Sonus Health: Calibrated Heart-Murmur Detection from Smartphone-Based Veterinary Auscultation",
+      "summary": "Heart disease is among the most common serious conditions in dogs and cats, and a heart murmur heard on auscultation is one of the earliest signs of such disease; such murmurs are often subtle and challenging to detect at early stages. General-practice veterinary examinations catch only a fraction of these murmurs, and definitive cardiac assessment typically requires either a board-certified cardiologist or an in-clinic echocardiogram, which may involve cost and scheduling constraints. We describe Sonus Health, a smartphone-based screening system that analyses an auscultation recording of approximately thirty seconds or longer - captured by a pet owner at home or by a veterinarian or nurse in clinic - and returns a tiered result within moments. The system was evaluated on 322 veterinary-labelled recordings under standard out-of-fold cross-validation. For recordings assigned to the high-confidence tier (30% of cases), accuracy reaches 95.9%, with 94.0% sensitivity and 97.9% specificity. Uncertain cases are prospectively routed to veterinary review rather than assigned an automated classification. Results are stable across standard and group-aware cross-validation, a held-out test split, and multiple random seeds. Beyond murmur detection, the platform also estimates heart rate and heart rate variability, and we position it as a screening, triage, and longitudinal-monitoring layer for companion-animal cardiac care.",
+      "published": "2026-06-23T17:59:06+00:00",
+      "url": "https://arxiv.org/pdf/2606.24885v1",
       "authors": [
-        "Xinyue Cai",
-        "Chaoyou Fu",
-        "Yi-Fan Zhang",
-        "Ran He",
-        "Caifeng Shan"
+        "Aswin Jose",
+        "Roeland P-J E. Decorte",
+        "Laurent Locquet"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14700v1",
-      "title": "RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space",
-      "summary": "Large language models (LLMs) are widely used in text-to-image (T2I) systems, but they are typically limited to text encoding, while denoising is handled by newly trained generative backbones. The emergence of representation autoencoders (RAEs) shifts the generation target toward semantically structured visual representations, creating a latent space that is more compatible with pretrained LLM priors. Inspired by multimodal LLMs (MLLMs), where an MLP projector is sufficient to align clean visual representations with a pretrained LLM, we repurpose the MLLM itself as a noisy representation encoder, extending this mechanism from clean to noisy inputs. We present RepFusion, which uses the resulting MLLM outputs as the conditioning signal for a diffusion transformer. In controlled comparisons at similar inference budgets, RepFusion outperforms baselines that devote comparable capacity to newly initialized denoisers. These results demonstrate that MLLMs provide strong priors for denoising visual representations and that, by conditioning on evolving noisy representations, test-time compute can be productively spent on repeated MLLM conditioning in modern T2I systems.",
-      "published": "2026-06-12T17:59:51+00:00",
-      "url": "https://arxiv.org/pdf/2606.14700v1",
+      "id": "http://arxiv.org/abs/2606.24883v1",
+      "title": "BenchX: Benchmarking AI Models for Cancer Detection and Localization with Demographic and Protocol Biases",
+      "summary": "Artificial intelligence (AI) has achieved remarkable success in medical imaging, but it is widely recognized that these models often perform inconsistently across real-world clinical settings. Such inconsistencies occur when patient demographics and imaging protocols vary, for example, in detecting small tumors, analyzing scans from different contrast phases, or evaluating patients of different ages or sexes. To quantify these inconsistencies, we develop a large-scale, open benchmark of 85,355 CT scans that systematically evaluates 12 tumor-detection AI models across tumor size, location, patient subgroup, and imaging protocol. We leverage large language models (LLMs) to extract and organize subgroup information from clinical data, which makes the analysis both scalable and reproducible. Our benchmark reveals that current state-of-the-art AI models, optimized for average accuracy, perform poorly in rare or underrepresented subgroups, such as young, female African Americans. However, collecting sufficient annotated data for these rare cases is often impractical. The benchmark provides a foundation for building more reliable and robust AI models for tumor detection and highlighting the need for rigorous, subgroup-level evaluation in medical imaging and computer vision. Datasets, code",
+      "published": "2026-06-23T17:58:59+00:00",
+      "url": "https://arxiv.org/pdf/2606.24883v1",
       "authors": [
-        "Xichen Pan",
-        "Aashu Singh",
-        "Satya Narayan Shukla",
-        "Xiangjun Fan",
-        "Shlok Kumar Mishra",
-        "Saining Xie"
+        "Qi Chen",
+        "Wenxuan Li",
+        "Pedro R. A. S. Bassi",
+        "Xinze Zhou",
+        "Jakob Wasserthal",
+        "Ibrahim Ethem Hamamci",
+        "Sezgin Er",
+        "Ashwin Kumar",
+        "Yiwen Ye",
+        "Yuhan Wang",
+        "Yuyin Zhou",
+        "Akshay S. Chaudhari",
+        "Curtis Langlotz",
+        "Kang Wang",
+        "Yang Yang",
+        "Alan L. Yuille",
+        "Zongwei Zhou"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14699v1",
-      "title": "Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control",
-      "summary": "Reconstructing articulated 3D objects is important for animation, gaming, and robotic simulations. Recent neural networks can estimate the articulated structure of 3D objects, but their generalization remains limited by the scarcity of annotated data for this task. To address this gap, we introduce Instruct-Particulate, a model that takes a 3D mesh together with a target kinematic specification, including part descriptions, connectivity, joint types, and optional point prompts, and predicts the corresponding kinematic part segmentation and joint motion parameters. The kinematic specification disambiguates the task and allows the model to target annotations of different granularity, thereby making it possible to use more abundant heterogeneous training data. At test time, the kinematic specification can be obtained automatically from large-scale vision-language models, so the model can be applied to any input mesh. To train our model at scale, we construct a heterogeneous dataset of more than 150,000 articulated 3D objects, extending existing publicly available collections with data obtained by partially labelling other 3D models (monolithic or already decomposed into parts) with kinematic labels by means of vision-language models. Experiments show that our model generalizes better across categories and to AI-generated meshes, enabling articulated asset reconstruction from real-world images via image-to-3D models.",
-      "published": "2026-06-12T17:59:36+00:00",
-      "url": "https://arxiv.org/pdf/2606.14699v1",
+      "id": "http://arxiv.org/abs/2606.24882v1",
+      "title": "A Resolution of Erdős Problems 593 and 1177: Obligatory Triple Systems and Exact Spectra",
+      "summary": "We resolve Erdős Problems #593 and #1177. Problem #593 asks which finite triple systems occur in every uncountably chromatic triple system; the answer is exactly the class generated from private-vertex expansions of finite bipartite graphs by finite disjoint unions and one-point amalgamations. Equivalently, after isolated vertices are removed, a finite triple system is obligatory precisely when it is linear, every hyperedge-node of its Levi graph has an incident bridge, and every Berge cycle is even.   The proof uses an exact bridge-trace theorem for complete-rank one-apex sequence lifts. We also prove that, for every uncountable cardinal kappa, there is a linear triple system of chromatic number exactly kappa, with at most 2^{2^mu} vertices when kappa=mu^+. These two ingredients give a class-valued exact avoidance-spectrum dichotomy for every finite forbidden triple system. As a consequence, Erdős Problem #1177 has truth values yes, no, and yes.",
+      "published": "2026-06-23T17:57:39+00:00",
+      "url": "https://arxiv.org/pdf/2606.24882v1",
       "authors": [
-        "Ruining Li",
-        "Yuxin Yao",
-        "Matt Zhou",
-        "Chuanxia Zheng",
+        "Eric Li"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.24881v1",
+      "title": "Queues with Correlated Service Times -- the $M/M_D/c$ Model",
+      "summary": "This paper studies multi-server queueing systems with correlated service times, modeled as the $M/M_D/c$ queue, which is a natural extension of the recent work by Thapa and Zhao \\cite{Thapa-Zhao:2026}. In this model, arrivals follow a Poisson process, while service times across servers exhibit dependence captured by the Marshall--Olkin multivariate exponential distribution (MO-MVED).   We first develop a rigorous sample-path construction of the system and establish that the resulting queueing process is a continuous-time Markov chain. We then analyze the stationary behavior of the $M/M_D/c$ model. In the homogeneous case, we derive a complete solution via geometric tail structure and explicit boundary equations, recovering a tractable one-dimensional representation. In the heterogeneous case, we establish a general framework combining a geometric tail with a finite boundary system, and prove existence, uniqueness, and nonnegativity of the stationary distribution. The above results provide a unified analytic framework extending classical $M/M/c$ theory to correlated-service settings, and reveal how dependence among service times fundamentally affects system performance and structure.   Beyond the $M/M_D/c$ model, We next study the interplay between Marshall--Olkin service dependence and queue-state Markovianity. On the one hand, Marshall--Olkin dependent service completions are shown to preserve Markovianity for a broad class of queueing systems. On the other hand, if a queueing process admits a Markovian state description without tracking service ages, residual service times, or service phases, then its service mechanism must satisfy a weak multivariate lack-of-memory property and consequently belongs to the Marshall--Olkin family. These results provide a probabilistic foundation for the use of Marshall--Olkin multivariate exponential service times in Markovian queueing models.",
+      "published": "2026-06-23T17:57:19+00:00",
+      "url": "https://arxiv.org/pdf/2606.24881v1",
+      "authors": [
+        "Qihui Bu",
+        "Suman Thapa",
+        "Yiqiang Q. Zhao"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.24879v1",
+      "title": "New Bounds for the Last Iterate of the Stochastic subGradient Method",
+      "summary": "We study the last iterate of the stochastic subgradient method for one-dimensional convex Lipschitz objectives. For a fixed horizon $n$, we consider the standard fixed stepsizes $η=Θ(1/\\sqrt n)$. We prove that, for such stepsize policies, under additive i.i.d. subgradient noise with uniformly bounded variance, the last iterate features an optimization error of order $1/\\sqrt n$, thereby removing the extra $(\\log n)$ factor present in existing generic bounds. On the other hand, we show that without the i.i.d. assumption, the optimization error can be of order $(\\log n)/\\sqrt n$. Thus, under the uniformly bounded variance assumption alone, the last iterate of SsGM is suboptimal even in dimension one, resolving negatively an open problem posed in Koren and Segal, COLT, 2020.",
+      "published": "2026-06-23T17:55:18+00:00",
+      "url": "https://arxiv.org/pdf/2606.24879v1",
+      "authors": [
+        "Guglielmo Beretta",
+        "Tommaso Cesari",
+        "Roberto Colomboni",
+        "Andrea Paudice"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2606.24876v1",
+      "title": "FLAT: Feedforward Latent Triangle Splatting for Geometrically Accurate Scene Generation",
+      "summary": "Generating explorable 3D scenes from a single image requires strong generative priors and accurate geometric representations suitable for downstream use. Current video diffusion models offer high-quality generation and implicitly encode multi-view geometric structure in latent space. However, existing feedforward latent scene decoders typically output volumetric 3D Gaussians that lack a well-defined surface, limiting their use in simulation or standard graphics pipelines. This motivates decoding surface-aligned primitives that are not only renderable but also closer to explicit geometric assets. We ask whether compressed video diffusion latents can be mapped directly to explicit surface primitives in a single pass. To this end, we introduce FLAT and, for the first time, show that triangle splats can be decoded directly from video diffusion latents. Compared with decoding 3D Gaussians, predicting flat primitives is notoriously more challenging due to high sensitivity to primitive orientations, oftentimes leading to poor gradient flow. FLAT solves with two key ingredients: a ray-centered rotation parameterization for triangle regression and a novel product window function that improves gradient flow during differentiable triangle rendering. On standard benchmarks, FLAT achieves significantly better geometric accuracy while maintaining competitive visual quality compared to state-of-the-art feedforward baselines. We further show that a lightweight test-time refinement step converts the predicted triangle soup into a fully opaque, game-engine-ready representation that supports real-time rendering. By evaluating 3DGS, 2DGS, and triangle splatting variants under an identical training setup, we provide the first systematic analysis of representation tradeoffs in feedforward scene generation. The project page is available at https://flat-splat.github.io",
+      "published": "2026-06-23T17:53:41+00:00",
+      "url": "https://arxiv.org/pdf/2606.24876v1",
+      "authors": [
+        "Orest Kupyn",
+        "Goutam Bhat",
+        "Philipp Henzler",
+        "Fabian Manhardt",
         "Christian Rupprecht",
-        "Joan Lasenby",
-        "Shangzhe Wu",
-        "Andrea Vedaldi"
+        "Federico Tombari"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14695v1",
-      "title": "Persona-Pruner: Sculpting Lightweight Models for Role-Playing",
-      "summary": "Language Models (LMs) have shown remarkable potential as role-playing chatbots, delivering consistent, stylized interactions when given a specification of a character or user persona. However, applying these capabilities to real-world applications (e.g., ecosystems with numerous NPCs interacting simultaneously) exposes a critical inefficiency due to the excessive computational cost. In this paper, we question the necessity of dedicating a full, generalist model to a single persona, hypothesizing that a specific character identity relies on only a fraction of the model's total capacity. We observe that naively pruning LMs often severely degrades the role-playing performance for a specific persona; it does not distinguish between redundant knowledge and essential character traits. We propose Persona-Pruner, a framework that sculpts a lightweight role-playing model by isolating persona-specific sub-networks from a single description. Our experiments consistently show that Persona-Pruner preserves role-playing performance substantially more effectively than existing state-of-the-art LLM pruning techniques, reducing the performance drop from the dense model by up to 93.8% over the strongest baseline on RoleBench in LLM-as-a-judge score, while still maintaining general LLM capabilities. Code is available at https://github.com/jsu-kim/Persona-Pruner.",
-      "published": "2026-06-12T17:58:08+00:00",
-      "url": "https://arxiv.org/pdf/2606.14695v1",
+      "id": "http://arxiv.org/abs/2606.24874v1",
+      "title": "FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation",
+      "summary": "Sparse voxel representation has emerged as a scalable foundation for image-to-3D Gaussian Splatting (3DGS) generation, yet current methods struggle to preserve high-frequency visual details of input images due to two structural bottlenecks. First, they adopt discriminative 2D features optimized for semantic abstraction to construct sparse voxel latents, which suppress reconstructive cues and induce a representation bottleneck. Second, in the generation stage, standard diffusion transformers lack effective mechanisms to align dense 2D image tokens with sparse 3D voxel latents, resulting in a cross-modal correspondence bottleneck. To address these issues, we propose FLUX3D, a scalable image-to-3DGS framework that boosts both representation learning and cross-modal alignment during generation. We first revisit 2D feature selection for sparse-voxel-based 3D representation learning, propose Diffusion-Aligned Structured Latents (DA-SLAT) and couple it with a decoder-only architecture to improve 3DGS reconstruction fidelity. We also design a sparse-structure-aware diffusion framework, which integrates the Sparse-structure Multimodal Diffusion Transformer (SMDiT) and Modal-Aware Rotary Positional Embedding (MARoPE) to achieve geometry-agnostic 2D-3D alignment. Extensive benchmark experiments demonstrate that FLUX3D yields substantial improvements in appearance fidelity and significantly outperforms all state-of-the-art (SOTA) methods in generating high-quality 3DGS assets.",
+      "published": "2026-06-23T17:52:21+00:00",
+      "url": "https://arxiv.org/pdf/2606.24874v1",
       "authors": [
-        "Jinsu Kim",
-        "Jihoon Tack",
-        "Noah Lee",
-        "Jongheon Jeong"
+        "Haorui Ji",
+        "Weizhe Liu",
+        "Hongdong Li",
+        "Hengkai Guo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.14690v1",
-      "title": "A Complexity Measure for Active Learning in Multi-group Mean Estimation",
-      "summary": "We study a \\emph{max-risk} objective for active learning in a multi-group mean estimation $d$-armed bandits: a learner adaptively allocates a budget of $T$ samples across $d$ groups to minimize the worst-case uncertainty index $\\max_{k\\in[d]}σ_k^2/n_k$, where $σ_k$ is the standard deviation of the distribution of arm $d$, and $n_k$ is the number of times arm $d$ is sampled. We develop a local minimax framework and prove the first general lower bound for this objective, valid for any finite-variance hypothesis class. The bound separates difficulty into three orthogonal factors: a \\emph{budget} term, a \\emph{heteroscedasticity} index measuring how unevenly the uncertainty is spread across arms, and a model-dependent complexity measure, the \\emph{Variance Local Curvature} ($\\mathrm{VLC}$), which captures how much information a local change of variance creates inside the hypothesis class. For smooth classes, the $\\mathrm{VLC}$ is a reparametrization of a variance--Fisher information, with closed-form values for common families. Benchmarking against the strongest available upper bound shows near-optimality up to logarithmic factors in broad regimes, and pinpoints a systematic gap in highly heterogeneous instances. Our proof introduces two key ingredients: a loss-induced $\\ell_1$ geometry on the decision space, and a representation-based instance generator that reduces hard-instance construction to an explicit random matrix calculation.",
-      "published": "2026-06-12T17:54:26+00:00",
-      "url": "https://arxiv.org/pdf/2606.14690v1",
+      "id": "http://arxiv.org/abs/2606.24873v1",
+      "title": "Data-Based Dynamical Systems Reconstruction: An Adequacy/Reliability Test",
+      "summary": "In this work, we address the problem of validating the reconstruction of a stochastic system from noisy data. We demonstrate the limitations of criteria based solely on the loss function or on standard metrics used for reconstructing deterministic dynamics. We also propose an exploratory approach, based on a two-step test, which allows for a general assessment of the reconstruction without relying on arbitrary error-tolerance thresholds. However, we discuss how system degeneracy and non-identifiability, together with features intrinsic to stochastic dynamics, impose certain constraints on the application of this test.",
+      "published": "2026-06-23T17:52:04+00:00",
+      "url": "https://arxiv.org/pdf/2606.24873v1",
       "authors": [
-        "Abdellah Aznag",
-        "Rachel Cummings",
-        "Adam N. Elmachtoub"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.14688v1",
-      "title": "Flood and Harvest: The Provable Necessity of Trivia for Generating Valuable Mathematics via the Lens of Language Generation in the Limit",
-      "summary": "AI systems coupled to proof assistants now generate formal mathematics at scale, and the gap between what a checker can verify and what a mathematician would value has become the binding constraint. We model the generation of valuable mathematics as nested language generation in the limit: a verifiable formal language $F$, accessed through a membership oracle (the proof checker), contains an unknown valuable language $H \\in \\mathcal{H}$ revealed only through an adversarial enumeration of a core $C \\subseteq H$ of exact density $α$ (the literature). Every output is valuable ($\\in H$), trivial ($\\in F \\setminus H$), or a hallucination ($\\notin F$). We settle four questions. First, the verifier is not taste: the collections admitting generation with breadth are exactly those of the oracle-free model, characterized fiber-wise by Angluin's condition. Second, the verifier does buy sound coverage, covering all unseen valuable statements while asserting only valid ones: possible with it, impossible without it; it relocates unavoidable errors from false to trivial. Third, and centrally, a sharp dichotomy on the tight family: generators emitting finitely many trivia achieve optimal coverage $α/2$, while any infinite trivia allowance, even at vanishing rate, jumps the optimum to $1-α/2$ (both tight, for cores presented as the candidate intersection), and one generator attains both ends. The transition is in trivia count, not rate; the gap $1-α$ is the unrecorded mass. Fourth, both regimes instantiate in a compression model of mathematics. A perfect verifier cannot substitute for taste: the unbounded stream of correct-but-worthless statements is not an engineering accident but a provable necessity, since covering unrecorded valuable mathematics requires an infinite, but asymptotically negligible, stream of certified trivia.",
-      "published": "2026-06-12T17:52:24+00:00",
-      "url": "https://arxiv.org/pdf/2606.14688v1",
-      "authors": [
-        "Xiaoyu Li",
-        "Andi Han",
-        "Dai Shi",
-        "Zheng Gao",
-        "Jiaojiao Jiang",
-        "Junbin Gao"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.14687v1",
-      "title": "Lehner's operator norm formulas, semidefinite programming, and spiked matrix models",
-      "summary": "Lehner (1999) derived elegant formulas for the operator norm $\\|\\mathfrak{X}\\|$ of operators of the form $\\mathfrak{X} = \\mathbf{A}_0 \\otimes \\mathfrak{1} + \\sum_{i = 1}^n \\mathbf{A}_i \\otimes \\mathfrak{m}_i$, also easily generalized to the spectral edge $λ_{\\max}(\\mathfrak{X})$, in terms of nonlinear optimization problems over positive definite matrices. Here the $\\mathbf{A}_i$ are finite-dimensional Hermitian matrices, the $\\mathfrak{m}_i$ are either free semicircular or free Rademacher families of operators, and $\\mathfrak{1}$ is the identity operator. We first show that both of Lehner's nonlinear optimizations can be rewritten as linear semidefinite programs (SDPs), even in the Rademacher case where Lehner's optimization is not itself convex. We give the primal and dual forms of these SDPs, derive the complementary slackness relations and consequences thereof, and propose that the SDPs are more stable and accurate than the iterative numerical scheme proposed in Lehner's original work.   We then apply the SDPs from the semicircular case to spiked matrix models, studied recently via Lehner's formula by Bandeira, Cipolloni, Schröder, and van Handel (2024). We give a new proof of the Baik--Ben Arous--Péché (BBP) transition they establish in models with isotropic (but possibly correlated) Gaussian noise by constructing feasible variables for the associated primal and dual SDPs. Combining our construction with a sensitivity interpretation of optimal dual variables, we study the fluctuations of leading eigenvectors of such models. We conjecture and give numerical evidence that these fluctuations are Gaussian but anisotropic and non-universal, and that their covariance may be computed in terms of the optimizer of the dual of Lehner's formula, which in turn is approximately the leading eigenmatrix of a completely positive operator associated to the covariance of the noise model.",
-      "published": "2026-06-12T17:50:49+00:00",
-      "url": "https://arxiv.org/pdf/2606.14687v1",
-      "authors": [
-        "Dmitriy Kunisky"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.14686v1",
-      "title": "CottonLeafVision: An Explainable and Robust Deep Learning Framework for Cotton Leaf Disease Classification",
-      "summary": "Globally, cotton is a highly economically beneficial crop, as the textile industry heavily depends on it. So, the precise identification and detection of cotton leaf disease is crucial for economic stability. The development goal of \"CottonLeafVision\" is to accurately classify and detect cotton leaf disease. With this goal, we have evaluated multiple pretrained Deep Convolutional Neural Networks, including DenseNet201, InceptionV3, and VGG19 on a publicly available cotton leaf disease image dataset. This image dataset includes seven classes, six disease classes, and one healthy class, collected under various field conditions reflecting real-world challenges. Among these pretrained models, with DenseNet201, we have achieved the highest classification accuracy of 98%. To enhance the model reliability and interpretability, we have implemented different techniques and methods such as Gradient-weighted Class Activation Mapping (Grad-CAM), occlusion sensitivity analysis and adversarial training to increase the noise resistance of the model. Finally, we have developed a prototype in order to utilize the model's capabilities on real life agriculture. This paper shows the deep learning model's capabilities to classify the disease in real-life cotton disease management situations.",
-      "published": "2026-06-12T17:50:23+00:00",
-      "url": "https://arxiv.org/pdf/2606.14686v1",
-      "authors": [
-        "Rafi Ahamed",
-        "Md. Abir Rahman",
-        "Tasnia Tarannum Roza",
-        "Munaia Jannat Easha",
-        "Md. Asif Khan",
-        "Sudeepta Mandal"
+        "Guillermo Capobianco",
+        "Ulises Chialva",
+        "Horacio G. Rotstein"
       ],
       "source": "arxiv"
     }
