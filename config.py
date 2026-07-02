@@ -144,6 +144,12 @@ class Config:
     AIHOT_TAKE: int = int(os.getenv("AIHOT_TAKE", "50"))           # 每次抓取条数（≤100）
 
     # -------------------------------------------------------------------------
+    #  v5.5 新增资讯源
+    # -------------------------------------------------------------------------
+    ENABLE_TENCENT_NEWS: bool = _parse_bool_env("ENABLE_TENCENT_NEWS", True)   # 腾讯新闻 CLI
+    ENABLE_X_FEEDS: bool = _parse_bool_env("ENABLE_X_FEEDS", True)             # X/Twitter KOL 推文
+
+    # -------------------------------------------------------------------------
     #  新闻分析筛选阈值（与 news_radar.py 联动）
     # -------------------------------------------------------------------------
     NEWS_RELEVANCE_THRESHOLD: int = int(os.getenv("NEWS_RELEVANCE_THRESHOLD", "5"))
@@ -196,6 +202,15 @@ class Config:
 
         # ===================== 5. 独立博客 =====================
         "Simon Willison's Weblog": "https://simonwillison.net/feed/",
+
+        # ===================== 6. [v5.5 新增] 算力、劳动与开源生态 =====================
+        "Epoch AI (算力趋势)": "https://epochai.org/blog/feed",
+        "Margin Research (开源AI商业)": "https://buttondown.com/margin-research/rss",
+        "The New Atlantis (科技与社会)": "https://www.thenewatlantis.com/feed/",
+        "Schneier on Security (AI安全)": "https://www.schneier.com/feed/atom/",
+        # ⚠️ 以下中文源需要验证 RSS 是否可用
+        # "机器之心 Synced": "https://jiqizhixin.com/rss",
+        # "智源社区 BAAI": "https://hub.baai.ac.cn/rss",
     }
 
     # =========================================================================
@@ -329,6 +344,39 @@ class Config:
         "open weight": "开放权重",
         "local deployment": "本地部署",
         "model collapse": "模型崩溃",
+
+        # =========================================================================
+        #  [v5.5 新增] 核心理论概念词（覆盖新增章节主题）
+        # =========================================================================
+        "temporal sovereignty": "时间主权（Ch6）",
+        "demand-side discipline": "需求侧规训（Ch11）",
+        "manufactured desire": "制造欲望（Ch11）",
+        "desiring-machine": "欲望机器",
+        "attention economy": "注意力经济（Ch11）",
+        "federated learning": "联邦学习（Ch10）",
+        "edge ai": "边缘AI（Ch10）",
+        "decentralized compute": "去中心化算力（Ch10）",
+        "compute sovereignty": "算力主权（Ch4）",
+        "digital labor": "数字劳动（Ch6）",
+        "cognitive enhancement": "认知增强（Ch12）",
+        "planetary civilization": "行星文明（Ch12）",
+        "carbon-silicon": "碳硅共生（Ch12）",
+        "open weight": "开放权重（Ch10）",
+        "scarcity engineering": "稀缺性工程（Ch11）",
+        "ai nationalism": "AI民族主义",
+        "sovereign ai": "主权AI",
+        "neocolonialism": "新殖民主义（Ch3延伸）",
+        "accelerationism": "加速主义",
+        "nudge": "助推/行为设计（Ch11）",
+        "behavioral design": "行为设计（Ch11）",
+        "reinforcement learning human feedback": "人类反馈强化学习（Ch2）",
+        "constitutional ai": "宪法AI（Ch2）",
+        "consensus cage": "共识牢笼",
+        "dark forest": "黑暗森林（Ch9）",
+        "compute egalitarian": "算力平等主义（Ch4）",
+        "token trap": "Token陷阱（Ch7）",
+        "dark time": "暗时间（Ch8）",
+        "signal alienation": "信号异化（Ch8）",
     }
 
     # =========================================================================

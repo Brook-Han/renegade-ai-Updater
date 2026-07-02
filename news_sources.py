@@ -13,6 +13,9 @@ import hashlib
 import datetime
 import time
 import json
+import os
+import re
+import subprocess
 from pathlib import Path
 from typing import List, Dict, Optional
 
@@ -376,6 +379,216 @@ def fetch_aihot(days_back: int = 7, take: int = 50) -> List[Dict]:
 
 
 # =============================================================================
+# X/Twitter 抓取器（v5.5 新增 — 通过 nitter RSS 代理）
+# =============================================================================
+
+# AI 领域核心 KOL，按主题分组
+X_AI_ACCOUNTS: Dict[str, List[str]] = {
+    "前沿与安全": [
+        "ylecun",        # Yann LeCun (Meta AI Chief)
+        "kaboroflow",     # Kaboro (AI 安全/对齐)
+        "apolloda",       # Apollo (RLHF/对齐研究)
+        "roon",           # Roon (AI 产品/治理)
+    ],
+    "产业与投资": [
+        "bindureddy",    # Bindu Reddy (Abacus AI CEO)
+        "alexbraun",     # Alex (AI 创投)
+    ],
+    "开源生态": [
+        "teortaxtex",    # Teortaxes (开源LLM生态)
+        "jbarra",        # JBarra (AI 工具/智能体)
+    ],
+}
+
+# 代理服务列表（nitter 实例）
+X_PROXY_URLS = [
+    "https://nitter.net",
+    "https://nitter.poast.org",
+]
+
+
+def fetch_x_feeds(take: int = 20) -> List[Dict]:
+    """
+    v5.5: 通过 nitter RSS 代理抓取 X/Twitter AI 领域 KOL 推文
+    覆盖前沿讨论、产业信号、开源生态、AI 监管四象限
+    """
+    if not getattr(Config, "ENABLE_X_FEEDS", False):
+        logger.info("⏭️  [X/Twitter] 未启用（设置 ENABLE_X_FEEDS=true），跳过")
+        return []
+
+    articles: List[Dict] = []
+    total_fetched = 0
+    total_failed = 0
+
+    for group_name, accounts in X_AI_ACCOUNTS.items():
+        for account in accounts:
+            nitter_url = f"{X_PROXY_URLS[0]}/{account}/rss"
+            try:
+                resp = requests.get(nitter_url, timeout=15, headers={
+                    "User-Agent": "Mozilla/5.0 (compatible; RenegadeRadar/5.5)"
+                })
+                if resp.status_code != 200:
+                    total_failed += 1
+                    continue
+
+                feed = feedparser.parse(resp.content)
+                count = 0
+                for entry in feed.entries[:min(take, 5)]:  # 每位 KOL 取 5 条
+                    url = entry.get("link", "")
+                    title = (entry.get("title", "") or "")[:120].strip()
+                    summary = (entry.get("summary", "") or "")[:300].strip()
+
+                    if not title or not url:
+                        continue
+
+                    url_hash = hashlib.sha256(url.encode()).hexdigest()[:16]
+                    published = entry.get("published", "N/A")
+
+                    articles.append({
+                        "id": f"x_{url_hash}",
+                        "title": title,
+                        "summary": summary,
+                        "published": published,
+                        "url": url,
+                        "authors": [f"@{account}"],
+                        "source": "x_twitter",
+                        "source_name": f"X · @{account} ({group_name})",
+                    })
+                    count += 1
+
+                total_fetched += count
+                logger.info(f"   📡 [X] @{account}: {count} 条推文（{group_name}）")
+                time.sleep(0.8)  # 请求间延迟
+
+            except Exception as e:
+                total_failed += 1
+                logger.debug(f"   ⚠ [X] @{account} 失败: {str(e)[:60]}")
+
+    logger.info(f"   ✅ [X/Twitter] 获取 {total_fetched} 条推文（{len(X_AI_ACCOUNTS)} 个分组，{total_failed} 失败）")
+    return articles
+
+
+# =============================================================================
+# 腾讯新闻抓取器（v5.5 新增 — 中文 AI/科技/政策资讯）
+# =============================================================================
+
+TENCENT_NEWS_QUERIES = [
+    "人工智能",       # AI 通用
+    "大语言模型",     # LLM
+    "AI芯片",         # 算力/芯片
+    "AI监管政策",     # 监管
+    "数字劳动",       # 时间主权
+    "开源大模型",     # 算力平等
+]
+
+
+def fetch_tencent_news(take_per_query: int = 8) -> List[Dict]:
+    """
+    v5.5: 通过腾讯新闻 CLI 抓取中文 AI/科技/政策资讯
+    覆盖 AI 产业、芯片发展、监管政策、劳动就业、开源生态
+    """
+    if not getattr(Config, "ENABLE_TENCENT_NEWS", False):
+        logger.info("⏭️  [腾讯新闻] 未启用（设置 ENABLE_TENCENT_NEWS=true），跳过")
+        return []
+
+    # 检查 CLI 是否可用
+    cli_path = None
+    for candidate in [
+        os.path.expanduser("~/.tencent-news-cli/bin/tencent-news-cli"),
+        "tencent-news-cli",
+    ]:
+        try:
+            result = subprocess.run([candidate, "version"], capture_output=True, text=True, timeout=5)
+            if result.returncode == 0:
+                cli_path = candidate
+                break
+        except Exception:
+            continue
+
+    if not cli_path:
+        logger.warning("⚠️  [腾讯新闻] CLI 不可用，跳过")
+        return []
+
+    articles: List[Dict] = []
+    total_fetched = 0
+
+    for query in TENCENT_NEWS_QUERIES:
+        try:
+            result = subprocess.run(
+                [cli_path, "search", query, "--limit", str(take_per_query)],
+                capture_output=True, text=True, timeout=20
+            )
+            if result.returncode != 0:
+                logger.debug(f"   ⚠ [腾讯新闻] '{query}' 搜索失败: {result.stderr[:80]}")
+                continue
+
+            # 解析 CLI 输出（实际格式：标题: xxx \\n 摘要: xxx \\n 来源: xxx \\n 发布时间: xxx \\n 链接: xxx）
+            lines = result.stdout.strip().split("\n")
+            current = {}  # 当前条目字段
+
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+
+                # 匹配条目开始（格式：N. 标题：xxx）
+                title_match = re.match(r'^\d+\.\s*标题[：:]\s*(.+)', line)
+                if title_match:
+                    if current.get("title") and current.get("url"):
+                        url_hash = hashlib.sha256(current["url"].encode()).hexdigest()[:16]
+                        articles.append({
+                            "id": f"tx_{url_hash}",
+                            "title": current["title"],
+                            "summary": current.get("summary", "")[:400],
+                            "published": current.get("published", "N/A"),
+                            "url": current["url"],
+                            "authors": [],
+                            "source": "tencent_news",
+                            "source_name": current.get("source", "腾讯新闻"),
+                        })
+                        total_fetched += 1
+                    current = {"title": title_match.group(1)}
+
+                elif line.startswith("摘要") or line.startswith("摘要"):
+                    content = re.sub(r'^摘要[：:]\s*', '', line)
+                    current["summary"] = (current.get("summary", "") + content).strip()
+                elif line.startswith("来源") or line.startswith("来源"):
+                    current["source"] = re.sub(r'^来源[：:]\s*', '', line)
+                elif line.startswith("发布时间") or line.startswith("发布时间"):
+                    current["published"] = re.sub(r'^发布时间[：:]\s*', '', line)
+                elif line.startswith("链接") or line.startswith("链接"):
+                    current["url"] = re.sub(r'^链接[：:]\s*', '', line).strip()
+                elif current and current.get("title") and not any(line.startswith(p) for p in ["标题", "摘要", "来源", "发布时间", "链接", "共", "--"]):
+                    # 多行摘要追加
+                    if len(line) > 5:
+                        current["summary"] = (current.get("summary", "") + " " + line[:300]).strip()
+
+            # 保存最后一条
+            if current.get("title") and current.get("url"):
+                url_hash = hashlib.sha256(current["url"].encode()).hexdigest()[:16]
+                articles.append({
+                    "id": f"tx_{url_hash}",
+                    "title": current["title"],
+                    "summary": current.get("summary", "")[:400],
+                    "published": current.get("published", "N/A"),
+                    "url": current["url"],
+                    "source": "tencent_news",
+                    "source_name": current.get("source", "腾讯新闻"),
+                })
+                total_fetched += 1
+
+            time.sleep(0.5)  # 请求间延迟
+
+        except subprocess.TimeoutExpired:
+            logger.debug(f"   ⚠ [腾讯新闻] '{query}' 超时")
+        except Exception as e:
+            logger.debug(f"   ⚠ [腾讯新闻] '{query}' 异常: {str(e)[:80]}")
+
+    logger.info(f"   ✅ [腾讯新闻] 获取 {total_fetched} 条中文资讯")
+    return articles
+
+
+# =============================================================================
 # 统一聚合入口
 # =============================================================================
 
@@ -397,8 +610,17 @@ def fetch_all_news(keywords: List[str]) -> List[Dict]:
         take = getattr(Config, "AIHOT_TAKE", 50)
         all_articles.extend(fetch_aihot(days_back=days, take=take))
 
+    # ⭐ v5.5 新增：腾讯新闻（中文AI/科技/政策资讯）
+    if getattr(Config, "ENABLE_TENCENT_NEWS", False):
+        all_articles.extend(fetch_tencent_news())
+
+    # ⭐ v5.5 新增：X/Twitter AI KOL 推文抓取
+    if getattr(Config, "ENABLE_X_FEEDS", False):
+        all_articles.extend(fetch_x_feeds())
+
     logger.info(f"📰 资讯抓取完成：总计 {len(all_articles)} 条")
     return all_articles
 
 
-__all__ = ["fetch_all_news", "fetch_newsapi", "fetch_rss_feeds", "fetch_aihot"]
+__all__ = ["fetch_all_news", "fetch_newsapi", "fetch_rss_feeds", "fetch_aihot",
+           "fetch_tencent_news", "fetch_x_feeds"]

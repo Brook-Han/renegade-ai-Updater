@@ -290,6 +290,32 @@ THEORY_TERMS_CN = {
     "开放权重": "开放权重",
     "本地部署": "本地部署",
     "模型崩溃": "模型崩溃",
+
+    # [v5.5 新增] 中文理论概念词
+    "时间主权": "时间主权（Ch6）",
+    "需求侧规训": "需求侧规训（Ch11）",
+    "注意力经济": "注意力经济（Ch11）",
+    "制造欲望": "制造欲望（Ch11）",
+    "欲望机器": "欲望机器",
+    "联邦学习": "联邦学习（Ch10）",
+    "去中心化算力": "去中心化算力/边缘AI（Ch10）",
+    "边缘AI": "边缘AI/本地推理（Ch10）",
+    "算力主权": "算力主权（Ch4）",
+    "数字劳动": "数字劳动（Ch6）",
+    "认知增强": "认知增强（Ch12）",
+    "行星文明": "行星文明（Ch12）",
+    "碳硅共生": "碳硅共生（Ch12）",
+    "稀缺性工程": "稀缺性工程（Ch11）",
+    "AI民族主义": "AI民族主义/主权AI",
+    "主权AI": "主权AI",
+    "加速主义": "加速主义",
+    "行为设计": "行为设计/助推（Ch11）",
+    "共识牢笼": "共识牢笼",
+    "黑暗森林": "黑暗森林（Ch9）",
+    "算力平等主义": "算力平等主义（Ch4）",
+    "Token陷阱": "Token陷阱（Ch7）",
+    "暗时间": "暗时间（Ch8）",
+    "信号异化": "信号异化（Ch8）",
 }
 
 # 中文领域词（通用 AI/产业词汇）
@@ -696,11 +722,39 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
 
 
 # ------------------------------------------------------------------
+# 跨日去重辅助函数
+# ------------------------------------------------------------------
+def _dedup_articles_against_cache(articles: list[dict], cache: dict | None = None) -> list[dict]:
+    """过滤已在缓存中存在分析的文章（基于URL匹配），防止跨日重复"""
+    if cache is None:
+        try:
+            cache = load_news_cache()
+        except Exception:
+            return articles  # 无法加载缓存，返回原文
+
+    cached_urls = set()
+    for ck, entry in cache.items():
+        url = entry.get("url", "")
+        if url and "analysis" in entry:
+            cached_urls.add(url)
+
+    if not cached_urls:
+        return articles
+
+    before = len(articles)
+    deduped = [a for a in articles if a.get("url", "") not in cached_urls]
+    skipped = before - len(deduped)
+    if skipped > 0:
+        logger.info(f"♻️ 跨日去重：跳过 {skipped} 篇已缓存文章（{len(cached_urls)} 条已知URL）")
+    return deduped
+
+
+# ------------------------------------------------------------------
 # WorkBuddy 集成：--no-llm 模式 → 保存文章供 WorkBuddy 分析
 # ------------------------------------------------------------------
 def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str]) -> None:
     """保存预筛选后的文章到JSON，供WorkBuddy内置模型分析
-    v1.1: 添加日期过滤，仅保存最近 NEWS_DAYS_BACK 天内的文章"""
+    v1.2: 添加跨日URL去重，避免同一文章多日重复写入"""
     today = datetime.date.today().isoformat()
     articles_path = OUTPUT_DIR / f"news_articles_{today}.json"
 
@@ -761,6 +815,10 @@ def _save_articles_for_workbuddy(filtered_news: list[dict], keywords: list[str])
 
     if date_filtered > 0:
         logger.info(f"📅 日期过滤：跳过 {date_filtered} 篇（超出 {days_back} 天窗口，共 {len(filtered_news)} → {len(articles)}）")
+
+    # ⭐ v1.2: 跨日去重——过滤掉缓存中已分析的文章
+    if articles:
+        articles = _dedup_articles_against_cache(articles)
 
     OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
     with open(articles_path, "w", encoding="utf-8") as f:
@@ -907,6 +965,12 @@ def main() -> None:
     filtered_news = prescreen_news(all_news)
     if not filtered_news:
         logger.info("🔍 预筛选后无相关资讯，退出。")
+        return
+
+    # ⭐ 跨日去重：过滤掉缓存中已分析的文章
+    filtered_news = _dedup_articles_against_cache(filtered_news)
+    if not filtered_news:
+        logger.info("♻️ 跨日去重后无新资讯，退出。")
         return
 
     # ── 模式：仅数据采集（--no-llm），输出JSON供WorkBuddy分析 ──
