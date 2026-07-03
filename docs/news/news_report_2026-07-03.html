@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-07-03 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 9 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-07-03 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>31</span></div>
+      <div>🔴 高价值: <span>9</span></div>
+      <div>🟡 中相关: <span>6</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 9, Section I</strong> — Jersey Mike’s IPO illustrates how bad the AI hype has become <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section III</strong> — OpenAI proposed donating 5% of its equity to a US sovereign wealth fun <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section III</strong> — Trump gets OpenAI to offer US 5% stake, far lower than Sanders’ target <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 2, Section IV + Chapter 4, Section III</strong> — Anthropic与五角大楼控权之争：Claude军事用途护栏分歧 <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 7, Section II + Chapter 3, Section I</strong> — 花旗、Adobe等企业限制员工使用AI旗舰模型以控制成本 <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 9, Section IV</strong> — Senior SWE-Bench：评估AI智能体作为高级工程师的基准测试 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 9, Section III</strong> — RL微调VLM的鲁棒性与思维链一致性研究 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 1, Section III</strong> — 多智能体团队阻碍专家发挥 <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section IV</strong> — The US govt has kick started an era of AI regulatory capture The immed <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic与五角大楼控权之争：Claude军事用途护栏分歧</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X：Kim (@kimmonismus) · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://x.com/kimmonismus/status/2072718147279335507" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section IV + Chapter 4, Section III
+      </div>
+      <div class="card-body">华尔街日报法庭文件披露Anthropic与五角大楼之间的控制权之争。Anthropic CEO Dario Amodei与五角大楼副部长Emil Michael数月邮件往来，核心分歧在于Claude的军事用途护栏。Anthropic要求禁止全自主武器及某些监控用途，五角大楼则希望Claude可用于所有合法国家安全场景。Michael称若分歧太大不愿强行推动。随后五角大楼将Anthropic列为供应链风险，阻止合作伙伴在国防部项目中使用其模型。目前法官暂停部分措施，政府正在上诉。Michael透露原采用Anthropic的操作中已有三分之二切换至其他AI工具。</div>
+      <div class="card-implications">资本驯化AI与叛逆AI的巅峰对决。五角大楼（最高级别国家资本）试图将Claude纳入军事用途轨道是对AI的终极驯化；Anthropic坚持安全护栏是叛逆AI的主动抵抗。进化对齐脆弱性的实时案例——同一套安全对齐在军用场景下被完全重新定义。三方格局（Anthropic/五角大楼/替代供应商）完美展示了AI治理中权力博弈的复杂动态。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">RL微调VLM的鲁棒性与思维链一致性研究</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Apple Machine Learning Research（RSS） · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://machinelearning.apple.com/research/robustness-chain-thought-consistency" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 9, Section III
+      </div>
+      <div class="card-body">Apple Machine Learning Research发表论文研究强化学习（RL）微调视觉语言模型（VLM）的鲁棒性和思维链一致性。实验发现：误导性标题或错误思维链等简单文本扰动可显著降低模型鲁棒性和置信度，开源模型衰退更明显。进一步分析揭示准确性与忠实性的根本性权衡——RL微调提升基准准确率，但同时侵蚀CoT可靠性及对上下文变化的鲁棒性。对抗性增强可改善鲁棒性，却无法阻止忠实性漂移。引入忠实性感知奖励可恢复答案与推理的对齐，但与增强结合时训练易崩溃到捷径策略。</div>
+      <div class="card-implications">进化对齐脆弱性的顶级学术实证。RL微调过程中准确性与推理忠实性之间的根本性权衡直接印证了书中关于对齐在封闭实验室有效、开放后漂移的核心论点。对抗性增强无法阻止忠实性漂移，忠实性奖励在特定条件下崩溃——这些发现表明对齐技术面临系统性而非工程性的限制。准确性-忠实性权衡可能是AI对齐领域的一个基本约束。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">多智能体团队阻碍专家发挥</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Apple Machine Learning Research（RSS） · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://machinelearning.apple.com/research/multi-agent-teams-experts" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 1, Section III
+      </div>
+      <div class="card-body">Apple Machine Learning Research发表论文研究多智能体LLM系统中的团队协作效率。研究发现即使在明确告知团队各成员的专业身份后，多智能体系统的表现仍落后于最佳成员（专家智能体）独立能力，性能损失最高达41.1%。失败主因是未能有效利用专家意见，而非识别专家。对话分析揭示团队倾向于整合性妥协——平均化专家与非专家观点，随团队规模增大而加剧，且与表现负相关。这种寻求共识的行为同时提升了对抗恶意智能体的鲁棒性。</div>
+      <div class="card-implications">共识牢笼（Consensus Cage）在AI智能体层面的完美复现。多智能体系统自发产生的整合性妥协机制与书中描述的社会共识牢笼高度同构——系统在追求共识的过程中主动牺牲了最高质量的意见。更深刻的是，论文揭示了协同对齐与专业利用之间的根本性权衡，这正是共识牢笼的核心动力机制。对抗鲁棒性带来的副效应说明共识机制本身具有自我维持的免疫力。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">花旗、Adobe等企业限制员工使用AI旗舰模型以控制成本</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>IT之家（RSS） · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://www.ithome.com/0/971/937.htm" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section II + Chapter 3, Section I
+      </div>
+      <div class="card-body">404 Media获取的内部资料显示，Atlassian、Adobe、花旗银行、亚马逊等六家企业正限制员工使用旗舰AI模型以控制成本。花旗因GitHub改为按量计费，于6月24日禁用Claude Opus 4.6、4.7及GPT-5.5等旗舰模型。Adobe于6月30日终止Claude无限制使用协议。Atlassian数据显示其AI月支出从500万美元飙升至1500万美元，本财年预计超1.2亿美元。多家企业月度AI开销增至三倍，至少一家超1500万美元。GitHub计划改用开源模型并测试单人按量计费模式。</div>
+      <div class="card-implications">需求侧规训和认知金融化/Token陷阱的双重实证。认知金融化层面：AI认知服务被精确量化为Token计价，当账单飙升到千万美元级别时，企业被迫通过行政手段限制认知获取。需求侧规训层面：用户渴望无限制访问旗舰模型，但组织成本约束强制实施纪律。两者结合展示了Token经济中的认知配给机制。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">The US govt has kick started an era of AI regulatory capture The immediate impact of this move will be a HUGE rise in op</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X · @bindureddy (产业与投资) · Thu, 02 Ju</span>
+        <span>·</span>
+        <a href="https://nitter.net/bindureddy/status/2072737360048181393#m" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section IV
+      </div>
+      <div class="card-body">Bindureddy在X上发表分析：美国政府已开启AI监管俘获时代。这一举措的直接后果将是开源AI大规模爆发——任何国家都不会接受美国主导其AI未来（by dictating their AI future）。预计近期将出现数十个前沿开源AI模型。这反映了美国AI监管政策引发的全球性反应。</div>
+      <div class="card-implications">资本驯化AI的双向效应实证——美国政府试图通过监管俘获驯化AI产业，但适得其反催生了开源AI的大规模反抗。共识牢笼的宏观版——当美国主流叙事试图将AI监管嵌入自身地缘政治框架时，其他国家的抵抗反而打破了这种叙事垄断，形成了全球层面的共识牢笼破裂。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Jersey Mike’s IPO illustrates how bad the AI hype has become</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/07/02/jersey-mikes-ipo-illustrates-how-bad-the-ai-hype-has-become/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 9, Section I
+      </div>
+      <div class="card-body">TechCrunch评论文章揭露Jersey Mike's（一家三明治连锁店）在IPO文件中刻意提及AI技术，尽管其主营业务与AI毫无关联。作者以此案例说明AI炒作已渗透至非科技行业的公开募股文件，企业为迎合资本市场热点将AI术语植入业务描述，形成普遍性的信号通胀现象。</div>
+      <div class="card-implications">信号异化（Signal Alienation）的典型案例——当AI术语被无实质关联的企业用于IPO文件包装时，质量信号因批量生产而彻底失效。投资者无法区分真正具备AI能力的公司和蹭热点的公司，AI信号价值被系统性稀释。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI proposed donating 5% of its equity to a US sovereign wealth fund</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/07/02/openai-proposed-donating-5-of-its-equity-to-a-us-sovereign-wealth-fund/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III
+      </div>
+      <div class="card-body">TechCrunch报道OpenAI CEO Sam Altman提议将公司5%的股权捐赠给美国主权财富基金，重启关于让公众分享AI繁荣收益的讨论。这一提议是在特朗普政府施压下提出的，旨在缓解外界对AI利益集中于少数企业的担忧，是一场政治资本博弈中的战略让步。</div>
+      <div class="card-implications">资本驯化AI的典型实证——OpenAI通过主动让渡股权利益来换取政治生存空间，本质是资本（政府作为超级资本方）对AI公司进行驯化的过程。公司为规避监管打击和政治风险，自愿将未来收益置于国家控制之下。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Trump gets OpenAI to offer US 5% stake, far lower than Sanders’ target</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/tech-policy/2026/07/openai-floats-giving-us-5-stake-to-win-over-ai-haters/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III
+      </div>
+      <div class="card-body">Ars Technica报道特朗普政府正在与OpenAI的Sam Altman进行积极谈判，要求OpenAI向美国政府提供5%的股权。知情人士透露该比例远低于参议员Sanders此前推动的目标。这标志着美国政府通过行政权力直接介入AI公司股权结构，以政治筹码换取经济利益。</div>
+      <div class="card-implications">资本驯化AI的政府主导版本——与第5条形成互补证据链：一条从公司自愿让渡角度，本条从政府施压角度。行政权力直接介入AI公司的所有权结构，将AI置于国家利益管控框架之下。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Senior SWE-Bench：评估AI智能体作为高级工程师的基准测试</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Hacker News 热门（buzzing.cc 中文翻译） · 2026-07-02</span>
+        <span>·</span>
+        <a href="https://senior-swe-bench.snorkel.ai/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 9, Section IV
+      </div>
+      <div class="card-body">Snorkel AI发布Senior SWE-Bench开源基准测试，用于评估AI智能体完成高级软件工程师级别任务的能力。排行榜显示Claude Opus 4.8（Mini-SWE-Agent）通过率仅24.0%，Claude Sonnet 5为19.4%，GPT-5.5为16.0%。最强前沿模型在超过75%的任务中未能达到高级工程师级别的正确性与品味。每个功能任务平均涉及11个文件，最强智能体也需数百步完成。任务来源于真实仓库PR，由拥有数百次提交经验的工程师编写。</div>
+      <div class="card-implications">进化对齐脆弱性的基准实证——AI在受控基准测试场景中表现尚可，但面对真实世界的高级工程任务时对齐迅速崩溃。75%的失败率揭示了当前对齐技术仅在有限范围内有效，一旦任务复杂度、跨度和判断要求达到高级工程师水平，对齐效果急剧衰减。碳硅共生的反向论证——AI与人类专家在复杂工程任务上的差距仍然巨大。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
