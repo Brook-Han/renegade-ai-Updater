@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-07-08 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 9 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-07-08 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>32</span></div>
+      <div>🔴 高价值: <span>9</span></div>
+      <div>🟡 中相关: <span>14</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 7, Section III</strong> — Savi’s app aims to protect consumers from realistic AI scams like kidn <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — Google Is Suing Chinese Scammers Who Are Using Gemini <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — 微软为降成本在Copilot中用自研MAI模型替换OpenAI和Anthropic模型 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section IV</strong> — 中国拟限制外国访问最强AI模型 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section IV</strong> — Ethan Mollick：开放权重模型供给难持续 <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 3, Section II &amp; Chapter 6, Section I</strong> — 智能免费，然后呢？--Data Systems for， of， and by Agents <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section I</strong> — FDE爆发：AI公司12个月承诺97.5亿美元部署工程 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — 苹果研究：单个神经元即可绕过大型语言模型的安全对齐 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section II</strong> — Vera：大规模LLM智能体安全测试框架 <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">中国拟限制外国访问最强AI模型</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X：Rohan Paul (@rohanpaul_ai) · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://x.com/rohanpaul_ai/status/2074512389526237609" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section IV
+      </div>
+      <div class="card-body">中国计划限制外国访问其最强AI模型，商务部主导、国家发改委参与。近期与阿里巴巴、字节跳动、Z.ai等企业会谈，拟将先进模型（含未发布）留在中国国内。目标涵盖闭源和开源模型，不仅限API访问，还包括可下载权重。同时讨论将模型泄漏视为国家安全犯罪，并限制外国资本投资中国AI初创。此前美国已限制先进模型出口，此举将进一步分裂全球AI市场。</div>
+      <div class="card-implications">共识牢笼+资本驯化AI双重顶级实证——中美两国各自以国家安全为由构建AI共识牢笼，将本国AI生态封闭在独立叙事内。中国的新管制直接挑战开源AI的根本假设（知识无国界）。这正是书中预测的AI铁幕形态：资本与地缘政治共同驯化AI，将其分割为互不相通的封闭体系。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">苹果研究：单个神经元即可绕过大型语言模型的安全对齐</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Apple Machine Learning Research（RSS） · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://machinelearning.apple.com/research/single-neuron-safety-alignment" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">苹果研究人员发现安全对齐由两类神经元调控：拒绝神经元控制有害知识是否表达，概念神经元编码有害知识本身。在七个模型（1.7B至70B参数）中，仅需抑制单个拒绝神经元即可绕过安全对齐回答有害请求；或放大单个概念神经元从无害提示诱导出有害内容。整个过程无需训练或提示工程。</div>
+      <div class="card-implications">进化对齐脆弱性的革命性实证——将书中关于对齐脆弱性的论述推向极致。如果单个神经元就能绕过对齐，当前的对齐方法（RLHF、DPO、SFT等）本质上是在非常脆弱的神经基础上进行的表面修饰。直接挑战对齐可解决的核心假设，为书中对齐只在封闭实验室有效的论点提供了神经科学级别的底层证据。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">微软为降成本在Copilot中用自研MAI模型替换OpenAI和Anthropic模型</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>The Decoder：AI News（RSS） · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://the-decoder.com/copilot-goes-cheap-as-microsoft-phases-out-openai-and-anthropic-models-to-cut-costs" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">微软正在用自研MAI模型替换Copilot产品中的OpenAI和Anthropic模型以降低成本。MAI已在Excel和Outlook中每周处理数万次请求。微软发布推理模型MAI-Thinking 1，声称编码媲美Sonnet 4.6和Opus 4.6，但基准测试大幅落后，仅与DeepSeek V3.2相当。微软AI负责人明确承认目标是削减并最终消除对Anthropic的支出。CEO暗示未来MAI为默认模型，第三方模型需付费附加。</div>
+      <div class="card-implications">资本驯化AI的顶级实证——微软作为资本主体，通过自研模型替代供应商，将AI能力内化为自有资产。成本控制驱动决策，而非技术最优原则。暴露了AI供应链的资本逻辑：供应商只是临时手段，终极目标是资本自给自足。与共识牢笼交叉——微软用降本增效叙事掩盖垂直整合对AI生态多样性的潜在破坏。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Ethan Mollick：开放权重模型供给难持续</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X：Ethan Mollick (@emollick) · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://x.com/emollick/status/2074497401578996154" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section IV
+      </div>
+      <div class="card-body">沃顿商学院教授Ethan Mollick在X上发文，明确指出前沿开放权重模型的流动不会无限期持续。他引用中国拟限制AI模型出口的新闻作为关键原因，认为这一趋势将终结开放权重的时代。Mollick作为AI研究领域的重要公共知识分子，其观点反映了学术界对AI开放生态前景的悲观共识。</div>
+      <div class="card-implications">资本驯化AI+共识牢笼双重实证——开放权重的终结正是资本通过国家力量进行驯化的直接体现。Mollick的预言本身就是共识牢笼的一部分：当权威学者预期开放终结时，这一预期本身加速了开放的终结（自我实现的预言）。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">智能免费，然后呢？--Data Systems for， of， and by Agents</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>BAIR：Berkeley AI Research Blog · 2026-07-07</span>
+        <span>·</span>
+        <a href="http://bair.berkeley.edu/blog/2026/07/07/intelligence-is-free-now-what" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section II & Chapter 6, Section I
+      </div>
+      <div class="card-body">伯克利BAIR博客文章指出AI推理成本急剧下降：GPT-4级能力从2023年初每百万token约30美元降至今天不到1美元，部分供应商已低于0.10美元。推理价格每年下降9至900倍，中位数约50倍。文章认为知识工作级智能即将近乎免费，给数据系统带来三重变革：面向智能体的数据系统需支持智能体推测式探索和自主决策。</div>
+      <div class="card-implications">需求侧规训+认知金融化/Token陷阱双重理论交叉。智能免费正是需求侧规训的终极形态——用户被训练为习惯于几乎无成本的AI推理，主动拒绝需要昂贵人类思考的方案。推理价格趋零也暴露了认知金融化的极限：认知过程被完全离散化为可定价的最小单位，思考行为被隐性外包给AI。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Vera：大规模LLM智能体安全测试框架</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>HuggingFace Daily Papers（社区热门论文） · 2026-07-04</span>
+        <span>·</span>
+        <a href="https://arxiv.org/abs/2607.01793" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section II
+      </div>
+      <div class="card-body">Vera是端到端自动化安全测试框架，通过三阶段自增强流水线对LLM智能体进行规模化安全检验。在OpenClaw、Hermes、Codex、Claude Code四个生产级agent框架上测试，多通道攻击下平均攻击成功率达93.9%。同步发布Vera-Bench含1600个可执行安全用例，覆盖124个风险类别。</div>
+      <div class="card-implications">进化对齐脆弱性的系统性实证——93.9%的攻击成功率说明当前对齐措施在生产级agent框架中几乎完全失效。多通道攻击揭示了脆弱性的多维性：不是单一漏洞，而是系统性失败。Vera框架本身也是书中对齐只在封闭实验室有效的有力注脚——当agent部署到开放环境，攻击向量呈指数增长。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Why the rise of open source AI isn’t hurting Anthropic … yet</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/07/07/why-the-rise-of-open-source-ai-isnt-hurting-anthropic-yet/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III
+      </div>
+      <div class="card-body">TechCrunch分析指出，开源AI模型的崛起并未对Anthropic等前沿AI实验室造成实质性冲击。开源模型和闭源前沿模型各自占据了AI生命周期的不同阶段：开源模型在部署规模和定制化方面占优，前沿模型在推理深度和安全性方面保持领先。两个生态互补而非竞争，揭示了AI市场的双层结构——开源模型降低入门门槛，但最先进的推理能力仍集中于闭源前沿实验室。</div>
+      <div class="card-implications">补充资本驯化AI理论——开源与闭源的双层结构实际上是资本精心维持的平衡：开源培养生态系统和用户习惯，闭源保留高价值能力和定价权。这与共识牢笼也有交叉——开源vs闭源的叙事本身成为秩序的组成部分。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Google Is Suing Chinese Scammers Who Are Using Gemini</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Schneier on Security · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://www.schneier.com/blog/archives/2026/07/google-is-suing-chinese-scammers-who-are-using-gemini.html" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">Google起诉一个利用Gemini自动化诈骗的中国网络犯罪组织Outsider Enterprise。该组织通过Telegram运作，向缺乏技术能力的个人提供钓鱼即服务——自动搭建欺诈网站、发送短信诈骗。Google指控其利用Gemini自动化整个诈骗流程。展示LLM被武器化的新趋势：成为犯罪产业链的核心自动化引擎。</div>
+      <div class="card-implications">进化对齐脆弱性的典型案例——Gemini的安全训练在付费API的开放生态中无法阻止被用于恶意目的。同时也是信号异化的实证——AI生成的内容使欺诈信号与传统合法信号的界限完全模糊。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">FDE爆发：AI公司12个月承诺97.5亿美元部署工程</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Tomer Tunguz 博客（VC 分析） · 2026-07-07</span>
+        <span>·</span>
+        <a href="https://www.tomtunguz.com/the-10b-fde-boom" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section I
+      </div>
+      <div class="card-body">AI公司在12个月内合计承诺97.5亿美元用于建设前部署工程（FDE）团队。三种结构模型浮现：资产负债模型（微软、亚马逊从现有编制调配，Salesforce承诺1000个FDE岗位）；独立实体模型（OpenAI融资40亿美元Anthropic从黑石融资15亿美元）；合作伙伴生态系统模型（Google Cloud承诺7.5亿美元基金）。瓶颈已从模型能力转向部署。FDE投资构成护城河：切换成本为制度性而非技术性。</div>
+      <div class="card-implications">资本驯化AI的深度实证——FDE投资本质上是资本构建的制度性护城河。切换成本为制度性而非技术性直接呼应书中关于资本通过嵌入企业流程来控制AI叙事的论点。同时也是暗时间的延伸——FDE工程师在客户系统内部工作，AI决策过程进一步内化为不可见的企业基础设施层。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
