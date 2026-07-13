@@ -1,0 +1,116 @@
+[
+  {
+    "_cache_key": "169cdfe1480140d64044a66de632099c",
+    "title": "The Future of Meta Superintelligence: A 1 Year Progress Update",
+    "summary": "A top tier RL environment startup spawns out of thin air, the most aggressive compute ramp we've ever seen, 2000km+ scale-across, and some advice for Google DeepMind",
+    "published": "2026-07-09T19:16:14",
+    "url": "https://newsletter.semianalysis.com/p/the-future-of-meta-superintelligence",
+    "source": "rss",
+    "source_name": "SemiAnalysis"
+  },
+  {
+    "_cache_key": "70020595269722eba91fcd3319719024",
+    "title": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥",
+    "summary": "安全研究者发现，xAI 官方 Grok CLI（npm 包 `@xai-official/grok` 0.2.93 版）会在每轮任务前后，将当前工作目录打包为 `before_codebase.tar.gz` 和 `after_codebase.tar.gz`，通过独立旁路通道静默上传至 xAI 的 Google Cloud 仓库。验证显示，即使模型仅回复一个单词，上传依然发生。上传包还包含仓库外的 `~/.claude.json`、Claude Code 设置、全局 AGENTS 规则、30 多个 Skill 文件及一个 API 密钥。7 月 13 日凌晨，xAI 通过服务端远程开关新增 `disable_codebase_upload` 字段，将默认上传行为关闭，但此前该功能默认开启。",
+    "published": "2026-07-13T00:05:00.000Z",
+    "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
+    "source": "aihot",
+    "source_name": "公众号：数字生命卡兹克",
+    "aihot_category": "industry",
+    "aihot_score": 86,
+    "title_en": "我只让Grok回复一个单词，它就把我整个代码库都偷走了。"
+  },
+  {
+    "_cache_key": "12eefd83ca0cf2955b7019239a638ed8",
+    "title": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识",
+    "summary": "微软CEO萨提亚·纳德拉提出\"反向信息悖论\"：AI时代，买家为使用AI支付金钱，同时必须暴露专有知识（提示词、工具使用、纠正反馈等），这些\"智力废气\"被模型学习，导致信息不对称向卖家倾斜。企业需要真正的信任边界，确保自身数据、痕迹、评估、适配权重和记忆在边界内积累，未经同意不得外泄。纳德拉呼吁企业拥有私有评估、保留组织记忆所有权，并主张企业应有权使用模型输出微调或训练自有模型，以控制自身学习循环。",
+    "published": "2026-07-12T15:09:57.000Z",
+    "url": "https://x.com/satyanadella/status/2076323181154230284",
+    "source": "aihot",
+    "source_name": "X：Satya Nadella (@satyanadella)",
+    "aihot_category": "tip",
+    "aihot_score": 75,
+    "title_en": "http://x.com/i/article/2076319195718090753"
+  },
+  {
+    "_cache_key": "e46f3e2eeaf56e67fcd7c1761a083929",
+    "title": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropic CEO 也修正早期言论",
+    "summary": "OpenAI CEO Sam Altman 表示，他\"相当确信\"AI 迄今为止净创造了就业，并承认\"这并非我预期\"。此前他曾警告 AI 影响可能快得\"有点吓人\"。Anthropic CEO Dario Amodei 也修正了早期言论，将自动化描述为生产力倍增器而非岗位杀手。然而，多项研究未发现 AI 对整体生产力或劳动力市场产生显著影响。一项多校联合研究指出，程序员和文案的就业危机始于 2022 年初，早于 ChatGPT 发布。耶鲁预算实验室也未发现与 AI 相关的就业市场变化。",
+    "published": "2026-07-12T09:15:49.000Z",
+    "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
+    "source": "aihot",
+    "source_name": "The Decoder：AI News（RSS）",
+    "aihot_category": "tip",
+    "aihot_score": 71,
+    "title_en": "OpenAI CEO Altman is now \"pretty sure\" AI is net job-creating， which is quite the pivot from predicting mass layoffs"
+  },
+  {
+    "_cache_key": "e36d508c9fabbeec9d7a5ea192f6dff2",
+    "title": "Mesh LLM：在 iroh 上进行分布式人工智能计算",
+    "summary": "Mesh LLM 是一个开源项目，能将用户多台机器上的 GPU 和内存池化，对外暴露兼容 OpenAI 的 API。它通过 iroh 网络库实现点对点连接，无需中央服务器。请求可在本地 GPU 运行、路由到已加载模型的节点，或将大模型按层分区（内部称\"Skippy\"）流水线式拆分到多台机器。系统内置 40 多个模型，从 5 亿参数到 235B MoE 巨模型均可支持。软件体积约 18 MB，启动后以 `localhost：9337/v1` 提供服务。",
+    "published": "2026-07-12T02:23:05.249Z",
+    "url": "https://www.iroh.computer/blog/mesh-llm",
+    "source": "aihot",
+    "source_name": "Hacker News 热门（buzzing.cc 中文翻译）",
+    "aihot_category": "ai-products",
+    "aihot_score": 77,
+    "title_en": null
+  },
+  {
+    "_cache_key": "39ff662e21809048ff129149be493123",
+    "title": "官方支招两种AI方案：Claude Fable 5搭配Sonnet 5省token",
+    "summary": "Anthropic官方建议将Claude Fable 5用作规划层、Sonnet 5执行任务以降低成本。顾问模式下，Sonnet 5主执行，仅需额外指导时调用Fable 5；SWE-bench Pro测试显示相比完全用Fable 5可达92%性能，成本仅63%。协调者模式下，Fable 5充当规划者，将子任务分派给多个Sonnet 5工作智能体；BrowseComp基准上达到Fable 5单独运行96%表现，成本为46%。",
+    "published": "2026-07-09T06:56:55.000Z",
+    "url": "https://www.ithome.com/0/974/511.htm",
+    "source": "aihot",
+    "source_name": "IT之家（RSS）",
+    "aihot_category": "tip",
+    "aihot_score": 77,
+    "title_en": "官方支招教你省 Token：两种 AI 方案让 Claude Fable 5 和 Sonnet 5 搭配干活"
+  },
+  {
+    "_cache_key": "3ddf9eda291e629876466c66d67d6c8a",
+    "title": "RT by @ylecun: The Well Just Dropped: 15 Terabytes of Pure Physics Gold Is Now Open Source The scientific AI world just",
+    "summary": "<p>The Well Just Dropped: 15 Terabytes of Pure Physics Gold Is Now Open Source<br />\n<br />\nThe scientific AI world just got a massive upgrade.Polymathic AI, in collaboration with the Flatiron Institute and researchers from Princeton, Cambridge, NYU, Berkeley, Los Alamos, and more, has released The",
+    "published": "Sat, 11 Jul 2026 01:32:37 GMT",
+    "url": "https://nitter.net/BrianRoemmele/status/2075755107619344721#m",
+    "source": "x_twitter",
+    "source_name": "X · @ylecun (前沿与安全)"
+  },
+  {
+    "_cache_key": "0088f8e909bead1a166b21179d2a0c2a",
+    "title": "RT by @ylecun: All foundation models are in fact models of knowledge, mainly based on open knowledge already developed b",
+    "summary": "<p>All foundation models are in fact models of knowledge, mainly based on open knowledge already developed by mainkind. Obviously knowledge (models) of mankind should be open sourced! (Again, please do not confuse knowledge with intelligence.)</p>\n<hr />\n<blockquote>\n<b>Yann LeCun (@ylecun)</b>\n<p>",
+    "published": "Fri, 10 Jul 2026 18:13:07 GMT",
+    "url": "https://nitter.net/YiMaTweets/status/2075644501222367375#m",
+    "source": "x_twitter",
+    "source_name": "X · @ylecun (前沿与安全)"
+  },
+  {
+    "_cache_key": "97d24ca00313d245383cd654568fa2a6",
+    "title": "Anthropic keeps increasing their effective API prices.... Sonnet 5 literally costs 2x that of Sonnet 4.6 In sharp contra",
+    "summary": "<p>Anthropic keeps increasing their effective API prices....<br />\n<br />\nSonnet 5 literally costs 2x that of Sonnet 4.6<br />\n<br />\nIn sharp contrast, OpenAI is becoming more efficient and effective - Terra is an excellent option <br />\n<br />\nOvertime, this will make OpenAI more profitable than A",
+    "published": "Sun, 12 Jul 2026 17:34:10 GMT",
+    "url": "https://nitter.net/bindureddy/status/2076359473942429817#m",
+    "source": "x_twitter",
+    "source_name": "X · @bindureddy (产业与投资)"
+  },
+  {
+    "_cache_key": "eb8d187105c48c4467cefb06570fe0ae",
+    "title": "All AI benchmarks are completely broken Almost all of them measure simple first turn responses LLMs are literally tuned",
+    "summary": "<p>All AI benchmarks are completely broken <br />\n<br />\nAlmost all of them measure simple first turn responses <br />\n<br />\nLLMs are literally tuned to optimize on cost and performance on such questions<br />\n<br />\nThese LLMs don’t hold up in the real world which is full of long context multi-tur",
+    "published": "Sun, 12 Jul 2026 17:00:48 GMT",
+    "url": "https://nitter.net/bindureddy/status/2076351078015418575#m",
+    "source": "x_twitter",
+    "source_name": "X · @bindureddy (产业与投资)"
+  },
+  {
+    "_cache_key": "601b7135f274b5356e18b9b1cd960cbc",
+    "title": "LOL! The Drama Is Back On X.... Sam and Elon are trading barbs again! Safe to say - Grok is challenging OpenAI for the f",
+    "summary": "<p>LOL! The Drama Is Back On X....<br />\n<br />\nSam and Elon are trading barbs again!<br />\n<br />\nSafe to say - Grok is challenging OpenAI for the first time<br />\nand the AI race is heating up again.<br />\n<br />\nGrok is the new Gemini😂</p>\n<img src=\"https://nitter.net/pic/media%2FHM-dasSa4AAoC7O.",
+    "published": "Sat, 11 Jul 2026 21:10:55 GMT",
+    "url": "https://nitter.net/bindureddy/status/2076051634157941004#m",
+    "source": "x_twitter",
+    "source_name": "X · @bindureddy (产业与投资)"
+  }
+]

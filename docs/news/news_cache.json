@@ -15020,5 +15020,203 @@
     "relevance": 4,
     "urgency": "background",
     "case_value": "low"
+  },
+  "169cdfe1480140d64044a66de632099c": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "The Future of Meta Superintelligence: A 1 Year Progress Update",
+    "url": "https://newsletter.semianalysis.com/p/the-future-of-meta-superintelligence",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "SemiAnalysis于2026年7月发布Meta超智能项目一周年进展报告。核心内容涉及：Meta内部孵化出顶级RL环境创业公司（推测为独立团队创建的强化学习基础设施平台），实施了行业最具侵略性的算力扩张计划，实现了2000公里级跨区域scale-across分布式训练架构，并向Google DeepMind提出战略建议。关键数据包括Meta的GPU部署规模远超华尔街预期，其AI研究团队的自主权达到史无前例的水平，RL基础设施从内部工具快速商业化。直接后果是Meta在超级智能竞赛中从追赶者转变为领先竞争者，可能改变AI产业权力格局。",
+      "implications": "弱支持资本驯化AI模型——Meta巨额算力投资是资本竞争的典型表现，超智能竞赛本身即资本驱动的产业叙事。同时补充共识牢笼模型：关于超智能的行业共识隐藏了算力军备竞赛其实是资本为锁定市场主导地位而非真正追求AGI的策略。理论映射力度有限。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "background",
+    "case_value": "medium"
+  },
+  "70020595269722eba91fcd3319719024": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "xAI 官方 Grok CLI 被曝静默上传整个代码库及用户密钥",
+    "url": "https://mp.weixin.qq.com/s/6c6vGMJAVMbh6UhNVw4dcg",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "安全研究者发现，xAI官方Grok CLI（npm包@xai-official/grok 0.2.93版）存在严重隐私泄露：每轮任务前后，工具自动将当前工作目录打包为before_codebase.tar.gz和after_codebase.tar.gz，通过独立旁路通道静默上传至xAI的Google Cloud仓库。验证显示即使模型仅回复一个单词，上传依然发生。上传内容不仅包含当前仓库，还延伸至仓库外的~/.claude.json、Claude Code设置、全局AGENTS规则、30多个Skill文件及一个API密钥。2026年7月13日凌晨，xAI通过服务端远程开关新增disable_codebase_upload字段，将默认上传行为关闭——但此前该功能默认开启。该事件暴露出AI编码工具普遍存在的功能即监控安全风险。",
+      "implications": "革命性支持资本驯化AI和信号异化两个模型。资本驯化AI维度：xAI（资本代表）以本地CLI工具为名构建大规模用户数据旁路采集通道，用户的每一行代码、每一个配置都是免费的数据资产——资本获取的无形劳动远超用户意识到的范围。信号异化维度：用户信任本地运行的CLI工具这一信号，但它实际是远程数据采集代理，信号与本质完全分离。同时补充共识牢笼：xAI/Elo的AI安全品牌叙事与CLI静默上传行为构成鲜明反差。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section II; Chapter 6, Section I",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "12eefd83ca0cf2955b7019239a638ed8": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "纳德拉提出\"反向信息悖论\"：企业使用AI时需保护自身知识",
+    "url": "https://x.com/satyanadella/status/2076323181154230284",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "微软CEO萨提亚·纳德拉于2026年7月提出反向信息悖论概念：在AI时代，买家为使用AI支付费用，同时被迫暴露专有知识（提示词、工具使用模式、纠正反馈等），这些智力废气（intellectual exhaust）被模型吸收，导致信息不对称向卖家严重倾斜。核心论点包括：企业数据、操作痕迹、评估结果、适配权重和组织记忆应在企业边界内积累，未获同意不得外泄；企业应拥有私有评估能力、保留组织记忆的所有权，并有权使用模型输出微调或训练自有模型以控制自身学习循环。该概念由微软最高决策者亲自提出，是AI产业信任机制的重要框架性贡献。",
+      "implications": "革命性支持认知金融化/Token陷阱和资本驯化AI两个理论模型。对认知金融化模型：纳德拉描述的智力废气正是认知过程被离散化定价和隐性征用的完美描述——企业为Token付费，但企业产出的认知痕迹被平台作为二次资产捕获，思考过程被系统隐性外包给模型的同时，思考的副产品又被平台回收。对资本驯化AI模型：纳德拉作为资本核心代表揭示了资本如何通过平台锁定来建立持久的权力不对称，AI卖家既是工具提供者又是知识掠夺者。特别值得注意的是，纳德拉提出的解法（私有评估、组织记忆所有权、控制学习循环）实质是建议企业建设自己的反驯化机制，这与书中的碳硅共生愿景高度吻合。",
+      "case_value": "high",
+      "chapter_target": "Chapter 6, Section II; Chapter 3, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "e46f3e2eeaf56e67fcd7c1761a083929": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "OpenAI CEO Altman 改口称 AI 净创造就业，Anthropic CEO 也修正早期言论",
+    "url": "https://the-decoder.com/openai-ceo-altman-is-now-pretty-sure-ai-is-net-job-creating-which-is-quite-the-pivot-from-predicting-mass-layoffs",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "OpenAI CEO Sam Altman近期表示相当确信AI迄今为止净创造了就业，承认这并非我预期，此前他曾警告AI影响可能有点吓人。Anthropic CEO Dario Amodei也修正了早期言论，将自动化描述为生产力倍增器而非岗位杀手。然而多项研究未发现AI对整体生产力或劳动力市场产生显著影响：一项多校联合研究指出程序员和文案的就业危机始于2022年初（早于ChatGPT发布）；耶鲁预算实验室也未发现与AI相关的就业市场变化。该叙事转变发生在AI行业面临更严格的公众审视和政策审查的背景下。",
+      "implications": "支持共识牢笼和需求侧规训两个模型。共识牢笼维度：AI公司CEO集体修正关于就业影响的言论，实质是调整主流叙事以安抚公众焦虑、维护AI造福人类的共识——不讨论AI是否真正创造了就业，而是通过话语权塑造认知。需求侧规训维度：降低公众对失业的恐惧就是降低用户对AI的摩擦感，让用户更愿意接纳AI进入工作流程。研究数据与CEO言论的矛盾本身也是证据：当实际数据不支持叙事时，叙事本身成为考察对象。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section I; Chapter 2, Section III",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "e36d508c9fabbeec9d7a5ea192f6dff2": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "Mesh LLM：在 iroh 上进行分布式人工智能计算",
+    "url": "https://www.iroh.computer/blog/mesh-llm",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Mesh LLM是一个开源项目，能将用户多台机器上的GPU和内存池化，对外暴露兼容OpenAI的API。实现通过iroh网络库建立点对点连接，无需中央服务器。请求可在本地GPU运行、路由到已加载模型的节点，或将大模型按层分区（内部称Skippy）流水线式拆分到多台机器执行。系统内置40多个模型，从5亿参数到235B MoE巨模型均可支持。软件体积约18MB，启动后以localhost:9337/v1提供服务。该技术降低了个人和小团队访问大规模模型的门槛。",
+      "implications": "反向支持资本驯化AI模型：Mesh LLM通过去中心化P2P架构直接对抗资本通过云API对算力的垄断控制，用户无需付费给云厂商即可运行大模型，属于对抗资本驯化的技术实践。弱支持碳硅共生模型：分布式算力池化使更多参与者能构建和运行AI系统，扩大了碳硅共生的基础设施基础。理论价值中等，主要作为反向实证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "background",
+    "case_value": "medium"
+  },
+  "39ff662e21809048ff129149be493123": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "官方支招两种AI方案：Claude Fable 5搭配Sonnet 5省token",
+    "url": "https://www.ithome.com/0/974/511.htm",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "Anthropic官方发布两种Claude模型组合方案以降低AI使用成本。顾问模式下Sonnet 5主执行，仅需额外指导时调用Fable 5，SWE-bench Pro显示可达完全使用Fable 5性能的92%，成本仅63%。协调者模式下Fable 5充当规划者，将子任务分派给多个Sonnet 5工作智能体，BrowseComp基准上达到Fable 5单独运行96%表现，成本为46%。该策略本质是将复杂任务拆解为不同价位的认知劳动，实现性价比最大化。",
+      "implications": "弱支持认知金融化/Token陷阱模型——不同能力层次的模型被明确标价和组合调用，体现了认知活动被离散化定价和拆分的趋势。但该新闻本质上是一个产品使用建议，缺少更深层次的理论冲突或启示，理论映射力度有限。",
+      "case_value": "low",
+      "chapter_target": "Chapter 6, Section III",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "3ddf9eda291e629876466c66d67d6c8a": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "15 Terabytes of Pure Physics Gold Is Now Open Source",
+    "url": "https://nitter.net/BrianRoemmele/status/2075755107619344721",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "由Polymathic AI与Flatiron Institute、普林斯顿、剑桥、NYU、伯克利、洛斯阿拉莫斯等机构联合发布了15TB的开源物理学数据集。该数据集旨在为科学AI提供高质量的物理训练素材，涵盖多尺度物理模拟数据，可用于训练能够理解物理规律的基础模型。这是科学AI领域开放数据运动的一部分，旨在降低高质量物理数据门槛，促进气候建模、流体力学、天体物理等领域的AI应用。该项目涉及多家顶级研究机构，代表了开放科学与AI研究结合的趋势。",
+      "implications": "与书中十个理论模型无直接映射关系。该新闻主要是科学数据基础设施建设的进展，不直接涉及AI治理、权力关系或认知结构变迁。弱关联碳硅共生：开源科学数据有助于更多研究者参与AI科学发现，但这属于间接和外围的支持。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "0088f8e909bead1a166b21179d2a0c2a": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "All foundation models are models of knowledge, should be open sourced",
+    "url": "https://nitter.net/YiMaTweets/status/2075644501222367375",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Yann LeCun通过转发立场称所有基础模型本质上是知识模型，基于人类已开发的开放知识。显然，人类的知识（模型）应该开源！并补充请不要将知识与智能混淆。该言论延续了LeCun一贯的开源AI立场：主张大语言模型作为人类知识的数字化表达，应属于公共品而非私有资产。LeCun的区分——知识与智能不是一回事——暗示开放模型权重不会直接导致超级智能风险，为开源路径提供了认识论基础。",
+      "implications": "支持共识牢笼的反向实证和碳硅共生模型。共识牢笼维度：LeCun直接挑战了闭源AI是安全唯一路径的主流叙事，主张另一套关于知识和智能的认知框架。碳硅共生维度：知识共享是碳硅共生的基础条件——如果人类知识被资本封存在闭源模型中，真正的共生关系不可能建立。但作为社交媒体简短言论，理论深度有限，案例价值中等。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III; Chapter 5, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "background",
+    "case_value": "medium"
+  },
+  "97d24ca00313d245383cd654568fa2a6": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "Anthropic keeps increasing API prices; Sonnet 5 costs 2x Sonnet 4.6",
+    "url": "https://nitter.net/bindureddy/status/2076359473942429817",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "独立分析师@bindureddy发布对比数据：Anthropic持续提高API有效定价，Sonnet 5是Sonnet 4.6价格的2倍；而OpenAI则在提升效率和降低成本，Terra成为更具性价比的选择。长期看这将使OpenAI比Anthropic更盈利。该比较揭示了AI模型定价策略的分化：Anthropic走高价高质路线，OpenAI走规模效率路线。",
+      "implications": "弱支持资本驯化AI模型——API定价策略是资本控制AI市场的手段之一，价格分化反映了不同资本策略（溢价定位vs规模效率）。但该新闻核心是商业定价比较，理论映射力度有限。",
+      "case_value": "low",
+      "chapter_target": "Chapter 3, Section I",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "eb8d187105c48c4467cefb06570fe0ae": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "All AI benchmarks are completely broken",
+    "url": "https://nitter.net/bindureddy/status/2076351078015418575",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "独立分析师@bindureddy发表批评认为几乎所有AI基准测试都完全崩溃：绝大多数基准测试仅衡量模型首次单轮响应的表现；LLM被针对性地调优以优化这些静态问题的成本和性能分数；这些模型在真实世界中表现不佳，因为真实场景充满长上下文、多轮交互和复杂约束。该批评触及了整个AI评估范式的根本问题：当基准测试成为优化目标，它们就不再是有效的评估工具。",
+      "implications": "革命性支持信号异化模型——AI基准分数是最典型的信号异化案例。基准测试本应提供关于模型真实能力的质量信号，但模型被针对性调优后在基准上得分等同于信号完全脱离现实意义。这是信号异化定义中描述的质量信号因AI大批量生产而失效的直接印证。同时支持共识牢笼：整个AI行业仍然依赖这些破碎的基准来宣称进展，形成了基准进步=AI进步的共识，排除了对评估范式本身的质疑。强烈建议纳入案例盒子。",
+      "case_value": "high",
+      "chapter_target": "Chapter 6, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 8,
+    "urgency": "next_version",
+    "case_value": "high"
+  },
+  "601b7135f274b5356e18b9b1cd960cbc": {
+    "cached_at": "2026-07-13T00:55:32.769733+00:00",
+    "title": "Sam and Elon are trading barbs; Grok challenging OpenAI",
+    "url": "https://nitter.net/bindureddy/status/2076051634157941004",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "Sam Altman与Elon Musk在X平台再度公开交锋。分析师认为Grok首次对OpenAI构成实质性竞争威胁，AI竞赛再度升温。配图显示Elon Musk对Sam Altman的公开嘲讽。这是AI行业领导者在社交媒体上的个人冲突，更多反映的是个人恩怨和品牌竞争而非技术或政策层面的实质分歧。",
+      "implications": "与书中十个理论模型均无直接映射关系。社交媒体个人冲突属于产业八卦，不涉及AI治理、权力结构或认知演化等核心框架。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "background",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
   }
 }
