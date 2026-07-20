@@ -170,8 +170,8 @@ class Config:
         # ❌ Anthropic Blog 已于 2025 年底改版为 Webflow，完全移除了 RSS feed
         #    替代渠道：Hacker News AI、Import AI、Interconnects 等都会覆盖 Anthropic 的重要发布
         # [新增] Anthropic 的深层研究与经济/安全团队动态（通过 Import AI 等渠道捕获）
-        "Google AI Blog": "https://ai.googleblog.com/feeds/posts/default",
-        "DeepMind Blog": "https://deepmind.com/blog/feed/basic",
+        # "Google AI Blog": "https://ai.googleblog.com/feeds/posts/default",  # ❌ 域名不可达
+        # "DeepMind Blog": "https://deepmind.com/blog/feed/basic",  # ❌ 域名重定向超时
         "Meta Engineering Blog": "https://engineering.fb.com/feed/",
         "NVIDIA Blog": "https://blogs.nvidia.com/feed/",
 
@@ -204,7 +204,7 @@ class Config:
         "Simon Willison's Weblog": "https://simonwillison.net/feed/",
 
         # ===================== 6. [v5.5 新增] 算力、劳动与开源生态 =====================
-        "Epoch AI (算力趋势)": "https://epochai.org/blog/feed",
+        # "Epoch AI (算力趋势)": "https://epochai.org/blog/feed",  # ❌ 网站已改为 Astro 构建，无 RSS feed
         "Margin Research (开源AI商业)": "https://buttondown.com/margin-research/rss",
         "The New Atlantis (科技与社会)": "https://www.thenewatlantis.com/feed/",
         "Schneier on Security (AI安全)": "https://www.schneier.com/feed/atom/",
