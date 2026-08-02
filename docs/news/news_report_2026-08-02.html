@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-08-02 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 4 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-08-02 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>10</span></div>
+      <div>🔴 高价值: <span>4</span></div>
+      <div>🟡 中相关: <span>5</span></div>
+    </div>
+    
+    
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">As Reddit stock falls, CEO questions value of Google's AI Overviews</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-08-01</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/08/reddit-ceo-on-ai-overviews-were-still-looking-for-that-win-win/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section IV
+      </div>
+      <div class="card-body">Reddit 股价近期持续下跌，其 CEO 于2026年8月1日公开质疑与 Google 的 AI Overviews 授权合作价值，表示“仍在寻找双赢方案”，并暗示可能考虑终止与 Google 的许可协议。此前 Reddit 与 Google 达成内容授权协议：Google 将 Reddit 帖子用于训练模型并在 AI Overviews 中引用，Reddit 则每年获得数千万美元收入。但 AI Overviews 直接在搜索结果中生成答案、减少用户点击外跳，使 Reddit 的流量与社区价值不断被稀释，广告收入承压，市场因此下调其估值。直接后果是：内容平台与 AI 聚合方之间的价值分配矛盾公开化，Reddit 案例可能鼓励更多内容方重新谈判或切断与 AI 公司的授权。行业影响上，这是信号异化的经济学实证：当 AI 大批量重写与聚合原创内容时，原创者的流量信号与商业价值同步失效，平台经济的基础面临系统性重构。</div>
+      <div class="card-implications">支持“信号异化”的最强经济学实证：AI Overviews 批量重写聚合内容，使原创内容流量信号与商业价值同步失效，内容方开始反噬授权合作。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">德国法院裁定AI音乐生成器Suno侵犯版权，驳回合理使用抗辩</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>The Decoder：AI News（RSS） · 2026-08-01</span>
+        <span>·</span>
+        <a href="https://the-decoder.com/german-court-rules-ai-music-generator-suno-violated-copyrights-rejects-fair-use-defense" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section III
+      </div>
+      <div class="card-body">德国慕尼黑法院于2026年8月1日裁定，AI 音乐生成器 Suno 在模型训练过程及输出结果中均侵犯版权，并驳回其合理使用抗辩。法院认定 Suno 3.5 和 4 版本模型能够复现六首知名歌曲的原创元素，构成“记忆化”侵权，且责任归属 Suno 公司而非使用工具的用户；同时裁定美国版权法下的合理使用原则不适用于此案。判决尚未最终生效，Suno 仍可上诉。直接后果是：欧洲司法体系在 AI 训练数据版权问题上采取显著严于美国的立场，音乐产业获得明确法律武器，其他 AI 生成内容的版权诉讼可能参照此判例。行业影响上，“记忆化”概念的司法确认意味着模型能力越强、复现训练数据的能力越强，法律风险越高——AI 公司面临性能与合规的深层矛盾。从书中视角看，这是信号异化的极端形态：AI 大规模再生产不仅稀释原创信号，更在记忆化场景下直接复制原创元素，原创者的价值与权利被系统性抽空。</div>
+      <div class="card-implications">支持“信号异化”的极端司法实证：“记忆化”= AI 直接复制原创元素，原创信号在训练中被吸收；同时为“资本驯化AI”提供法律驯化维度。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek-V4-Flash API公测上线，Agent能力大幅升级</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X：DeepSeek (@deepseek_ai) · 2026-07-31</span>
+        <span>·</span>
+        <a href="https://x.com/deepseek_ai/status/2083084415157022911" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section V
+      </div>
+      <div class="card-body">DeepSeek 于2026年7月31日通过官方 X 账号宣布，DeepSeek-V4-Flash 的官方 API 已上线公测，并大幅升级其 Agent 能力：官方宣称基准测试分数已远超 V4-Pro-Preview，同时原生支持 Responses API 格式并完全适配 Codex 工具链。V4-Flash 延续 DeepSeek 开源路线，7月底刚以 MIT 许可开源 284B 总参（激活13B）的模型权重，如今 API 落地使开发者可低成本调用其 Agent 能力。直接后果是：开源阵营在 Agent 基础设施层面对闭源厂商形成直接竞争，开发者可基于 Responses API 快速构建代理应用而无需依赖 OpenAI 生态。行业影响上，“低价+开源+Agent 能力”的组合进一步压缩智能服务价格，强化了此前 GPT 降价引发的智能成本下行趋势。从书中视角看，这是叛逆AI的标志性延续：开源模型持续挑战闭源范式，同时 Agent 能力的开放也意味着对齐控制更难维持，为进化对齐脆弱性提供了新的实验场。</div>
+      <div class="card-implications">支持“叛逆AI”：开源 Agent 能力落地挑战闭源范式；同时 Agent 开放放大“进化对齐脆弱性”——开放后对齐必然漂移。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">🚨 Announcing AutoBots - Recursively Self-Improving Agents (RSI) Super excited to launch our multi-LLM-based recursively</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X · @bindureddy (产业与投资) · Sat, 01 Au</span>
+        <span>·</span>
+        <a href="https://nitter.net/bindureddy/status/2083414040035103179#m" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 6, Section IV
+      </div>
+      <div class="card-body">@bindureddy 于2026年8月1日宣布推出 AutoBots——基于多 LLM 的递归自改进代理系统（RSI）。该系统使用 DeepSeek Flash 4 处理简单任务、Fable 5 处理超高难度任务，代理随时间推移不断学习，变得更高效、更强，形成递归改进闭环。该发布与8月1日稍早的 AUTOBOTS 递归自改进工作流消息属同一产品线，今日为正式发布推文，两者互为印证。直接后果是：递归自改进从实验室概念进入可部署产品阶段，“代理自我进化”成为可交付能力。行业影响上，RSI 产品化将加速“无需人在回路”的自动化深度，系统在运行中持续改写自身行为与策略，人类监督窗口进一步收窄。从书中视角看，这是暗时间与进化对齐脆弱性的复合实证：思考与改进完全在系统内部循环，人类仅消费结果；而自我改进正是对齐漂移的放大器，其开放部署直接挑战“封闭实验室对齐”的可靠性假设。</div>
+      <div class="card-implications">支持“暗时间”+“进化对齐脆弱性”复合：递归自改进产品化，思考完全在系统内部循环，对齐在开放部署中必然漂移。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
