@@ -126,6 +126,58 @@ def parse_academic_report(md_path: str) -> dict:
                 'model_scores': model_scores_html,
             })
 
+    # ── 2.5 回退：高相关论文为空时，解析"中相关论文"简略区块 ──
+    # 中相关区块格式（academic_radar.py 生成）：
+    #   - **[title](url)** [SOURCE] — score/10
+    #     - summary_cn[:120]...
+    if not papers:
+        med_section = re.search(
+            r'## 🔶 中相关论文.*?\n(.*?)(?=\n## |\Z)',
+            text,
+            re.DOTALL
+        )
+        if med_section:
+            content = med_section.group(1).strip()
+            # 每篇论文以 "- **[" 开头
+            blocks = re.split(r'\n-\s*\*\*\[', '\n' + content)
+            for block in blocks[1:]:
+                block = block.strip()
+                if not block:
+                    continue
+                # 提取标题和链接: **[title](url)**
+                title_link = re.search(r'(.+?)\]\((https?://[^\s)]+)\)', block)
+                if not title_link:
+                    continue
+                title = title_link.group(1).strip()
+                link_url = title_link.group(2).strip()
+                # 提取分数: [SOURCE] — 5/10
+                score_m = re.search(r'\]\s*—\s*([\d.]+)/10', block)
+                score = score_m.group(1) if score_m else ''
+                # 提取来源: [ARXIV] 或 [SEMANTIC_SCHOLAR]
+                src_m = re.search(r'\]\s*\[([^\]]+)\]', block)
+                source = src_m.group(1) if src_m else ''
+                # 提取摘要（缩进的 - 行）
+                summary_m = re.search(r'\n\s+-\s*(.+?)(?=\n\s+-\s*|\Z)', block, re.DOTALL)
+                summary = summary_m.group(1).strip() if summary_m else ''
+                papers.append({
+                    'title': title,
+                    'source': source,
+                    'authors': '',
+                    'published': '',
+                    'score': score,
+                    'urgency': '',
+                    'update_type': '',
+                    'chapter': '',
+                    'link': link_url,
+                    'summary': summary,
+                    'implications': '',
+                    'action': '',
+                    'draft': '',
+                    'model_scores': '',
+                })
+        if papers:
+            med_n = str(len(papers))
+
     # ── 3. 提取“立即更新清单” ──
     urgent_items = []
     urgent_section = re.search(

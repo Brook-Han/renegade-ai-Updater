@@ -1,8 +1,19 @@
 {
-  "timestamp": 1782295959.957633,
+  "timestamp": 1786323731.164261,
   "source": "semantic_scholar",
   "query": "open source LLM decentralization compute access",
   "results": [
+    {
+      "id": "bd3386c39058715866737cb81c6052ed6088f3fe",
+      "title": "MindRouter: Open-Source LLM Inference Gateway for Institutional AI Sovereignty",
+      "summary": "As large language models become more integrated into research, teaching, and administration, universities must decide which AI workloads belong in the cloud and which require stronger institutional control. This is not an either-or choice: an effective AI strategy combines cloud and on-premises systems to preserve AI sovereignty where it matters most. In this context, AI sovereignty means retaining control over infrastructure, data, models, access policies, guardrails, monitoring, and governance so that sensitive or strategic workloads remain aligned with institutional requirements while enabling transparent energy accounting and lower costs at scale. This paper presents MindRouter, an open-source LLM inference gateway designed to help universities operate self-hosted AI services on institutional GPU infrastructure as part of a balanced AI strategy. MindRouter is designed to support sensitive workloads involving FERPA-regulated student data, controlled unclassified information (CUI), export-controlled data, and institutionally managed intellectual property (IP). The system provides a unified API layer that translates among OpenAI, Ollama, and Anthropic client protocols, routes requests across heterogeneous GPU backends using a Weighted Deficit Round Robin (WDRR) fair-share scheduler, and incorporates role-based access control, audit logging, configurable guardrails, and operational observability through real-time GPU telemetry and system-level monitoring. Deployed in production at the University of Idaho on a cluster of 40 GPUs serving more than 64 open-weight models, MindRouter shows that mid-sized institutions can operate institutionally managed AI services while retaining direct control over data, infrastructure, and operational policy. MindRouter is released under the Apache 2.0 license and is available at MindRouter.ai",
+      "published": "2026",
+      "url": "https://doi.org/10.1145/3785462.3815861",
+      "authors": [
+        "Lucas Sheneman"
+      ],
+      "source": "semantic_scholar"
+    },
     {
       "id": "3ace8aced2401762c05c3926517fdd9bbca18015",
       "title": "Rising Fast, Prone to Risk: A Comprehensive Study of Security Risks in Open-Source LLM-Powered Applications",
@@ -50,29 +61,20 @@
       "source": "semantic_scholar"
     },
     {
-      "id": "81f5a534673dcd97405d1ef00ff369542d7c2bf7",
-      "title": "VulGD: A LLM-Powered Dynamic Open-Access Vulnerability Graph Database",
-      "summary": "Software vulnerabilities continue to pose significant threats to modern information systems, requiring a timely and accurate risk assessment. Public repositories, such as the National Vulnerability Database and CVE details, are regularly updated, but predominantly utilize relational data models that lack native support for representing complex, interconnected structures. To address this, recent research has proposed graph-based vulnerability models. However, these systems often require complex setup procedures, lack real-time multi-source integration, and offer limited accessibility for direct data retrieval and analysis. We present VulGD, a dynamic open-access vulnerability graph database that continuously aggregates cybersecurity data from authoritative repositories. Designed for both expert and non-expert users, VulGD provides a unified web interface and a public API for interactive graph exploration and automated data access. Additionally, VulGD integrates embeddings from large language models (LLMs) to enrich vulnerability description representations, facilitating more accurate vulnerability risk assessment and threat prioritization. VulGD represents a practical and extensible platform for cybersecurity research and decision-making. The live system is publicly accessible at http://34.129.186.158/.",
+      "id": "8ee26a64912bc0ae3e8dc1433850ffb31eb44506",
+      "title": "595 PRS-GPT Version1.0: Design and Implementation of a Open Access Specialty-Specific LLM",
+      "summary": "\n \n \n Plastic surgery trainees and clinicians face a vast, fragmented knowledge base spanning thousands of papers, guidelines, and educational resources. General-purpose large language models (LLMs) such as ChatGPT lack specialty grounding, offer no source attribution, and are prone to hallucination. Retrieval-Augmented Generation (RAG) offers a potential solution by linking LLM outputs to verified literature. This study describes the development and early testing of PRS-GPT, the first open-access, retrieval-augmented LLM built specifically for plastic surgery.\n \n \n \n A corpus of over 60,000 open-access plastic surgery documents was curated from PubMed Central. Texts were cleaned, segmented, and embedded using OpenAI’s embedding model, then indexed within a Pinecone vector database. A RAG pipeline was constructed using GPT-4 to generate citation-linked responses grounded in the retrieved literature. A web-based interface was deployed to allow real-time querying. Preliminary system testing was performed using 30 representative prompts across subspecialties to assess retrieval behaviour, citation inclusion, citation–claim fidelity, clarity, and safety guardrail performance.\n \n \n \n PRS-GPT produced structured, on-topic, citation-linked responses across all subspecialties. In preliminary testing, 87% of outputs contained at least one literature citation, and 80% demonstrated correct citation–claim fidelity on manual review. All patient-specific clinical questions triggered appropriate safety disclaimers. Latency remained acceptable for real-time use (median 3–5 seconds).\n \n \n \n PRS-GPT demonstrates the feasibility of a scalable, specialty-specific RAG system for plastic surgery. This open-access platform provides traceable, literature-grounded responses and represents a promising tool for surgical education and training. A full validation study involving blinded expert scoring is underway.\n",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/81f5a534673dcd97405d1ef00ff369542d7c2bf7",
+      "url": "https://www.semanticscholar.org/paper/8ee26a64912bc0ae3e8dc1433850ffb31eb44506",
       "authors": [
-        "Luat Do",
-        "Jiao Yin",
-        "Jinli Cao",
-        "Hua Wang"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "14f99c7aacc909b962562f0c4ea167be2956f6bb",
-      "title": "Iterative Reranking as a Compute-Scaling Method for LLM-Based Rankers",
-      "summary": "",
-      "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/14f99c7aacc909b962562f0c4ea167be2956f6bb",
-      "authors": [
-        "Tamara Czinczoll",
-        "Dong Liu",
-        "Filippo Betello"
+        "K. Daneshi",
+        "Y. Neocleous",
+        "S. Manjur",
+        "W. Allami",
+        "H. Liu",
+        "L. Takeuchi",
+        "J. Goldstein",
+        "F. Egro"
       ],
       "source": "semantic_scholar"
     }

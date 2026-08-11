@@ -1,0 +1,339 @@
+# -*- coding: utf-8 -*-
+"""2026-08-07 每日新闻雷达：内置模型分析 + 写回缓存"""
+import json, datetime, hashlib
+
+ARTICLES_PATH = "/Users/Brook/Documents/GitHub/renegade-ai-Updater/docs/news/news_articles_2026-08-07.json"
+CACHE_PATH = "/Users/Brook/Documents/GitHub/renegade-ai-Updater/docs/news/news_cache.json"
+
+with open(ARTICLES_PATH, "r", encoding="utf-8") as f:
+    articles = json.load(f)
+
+with open(CACHE_PATH, "r", encoding="utf-8") as f:
+    cache = json.load(f)
+
+NOW = datetime.datetime.now().astimezone().isoformat()
+
+# ============ 逐条分析（基于《Renegade AI: Catalyst for Human Cognitive Evolution》v5.3 理论框架） ============
+ANALYSES = {
+    "eeb14406e775e1e8831bf15243fcc40f": {
+        "relevance": 6,
+        "summary_cn": "OpenAI 于 2026 年 8 月 6 日宣布与美国心理学会（APA）建立合作伙伴关系，共同推进面向青少年心理健康与负责任 AI 使用的循证指南、资源与保障措施。背景是青少年将 ChatGPT 等 AI 工具用于情感倾诉与心理健康场景日益普遍，而专业心理干预资源不足，监管与伦理讨论升温。核心事实：OpenAI 与 APA 将联合制定循证指导框架，为家长、教育者与青少年提供 AI 使用建议，同时建立安全护栏。直接后果：AI 在情感与心理健康领域的合法性得到专业机构背书，情感劳动外包获得制度化的入口；行业影响：心理健康的商业化 AI 叙事进一步成熟，『AI 陪伴』从消费级功能升级为受监管的健康服务，为资本驯化AI在医疗健康领域提供新案例。",
+        "implications": "支持资本驯化AI：通过与权威专业机构（APA）合作，OpenAI 将『负责任的AI』话语制度化，为 AI 进入情感与心理健康领域建立合法性与安全叙事，实质是共识牢笼在健康领域的延伸——专业背书使 AI 接管情感劳动变得『科学且安全』。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 5, Section II",
+        "update_type": "corroboration",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "bf5765d987069bbc30b3e018d5d61d4e": {
+        "relevance": 7,
+        "summary_cn": "OpenAI 于 2026 年 8 月 6 日发布最新 Signals 数据报告《From asking to doing》，展示全球 ChatGPT 用户行为从『提问』向『执行任务』迁移的宏观趋势，并给出国家级采用率、使用模式与行为演变的洞察。背景是 ChatGPT 日活持续增长，用户行为从信息查询型转向任务代理型。核心事实：报告以『asking→doing』为主题框架，披露各国在代码、写作、研究、自动化等任务型场景的渗透差异。直接后果：OpenAI 首次以官方数据确认用户将认知工作从『咨询』外包为『执行』，AI 从建议者变为直接行动者；行业影响：为暗时间理论提供产业级宏观证据——用户只见结果不见过程，思考在系统内部完成，任务型使用占比上升意味着暗时间消费成为主流使用形态。",
+        "implications": "强烈支持暗时间模型：『从提问到做事』的官方数据直接证明认知处理过程在系统内部发生、用户仅消费结果；同时是需求侧规训的供给侧证据——产品设计将执行型工作内置为默认能力，降低用户参与认知摩擦的门槛。",
+        "case_value": "high",
+        "chapter_target": "Chapter 7, Section I",
+        "update_type": "new_evidence",
+        "urgency": "next_version",
+        "action": "新增段落"
+    },
+    "0992df13afa6d4c5c8c8471d989a2438": {
+        "relevance": 5,
+        "summary_cn": "NVIDIA 于 2026 年 8 月 6 日发布博客《Into the Omniverse》，阐述开放世界模型如何推动物理 AI（Physical AI）前沿。文中透露 NVIDIA 已于 7 月加入 200 多家公司与组织，共同签署《Open Weights and American AI Leadership》公开信，主张 AI 领导力的衡量标准不是单一前沿模型，而是开放生态能否触达每个行业。背景是开源权重模型（Qwen、K3、DeepSeek 等）持续冲击闭源前沿，美国产业界对开源政策路线产生分歧。核心事实：NVIDIA 官方背书开源生态叙事，将其与物理 AI（机器人、自动驾驶）扩张绑定。直接后果：算力垄断者与开源阵营公开结盟，开源话语获得基础设施级支持；行业影响：开源与闭源之争从模型层延伸到物理智能与政策层，算力巨头在驯化与反驯化之间扮演双重角色。",
+        "implications": "补充资本驯化AI：NVIDIA 一边垄断算力供给一边签署开源信，说明资本驯化AI的形态不是简单反对开源，而是将开源纳入自身生态以扩大算力需求；同时呼应叛逆AI——开源生态成为物理 AI 时代的路线竞争焦点。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 3, Section III",
+        "update_type": "corroboration",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "ca0a36639d5fea11e5d382c954ac8ccb": {
+        "relevance": 4,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 神秘的新 AI 硬件设备据传将以 300-400 美元价格出售，定位类似高端智能音箱。背景是 OpenAI 在硬件领域的一系列动作（与 Jony Ive 合作设备、AI 硬件布局传闻）持续引发关注，市场期待其从软件公司向硬件入口延伸。核心事实：消息称设备定价区间为 300-400 美元，被解读为『昂贵的智能音箱』而非颠覆性硬件。直接后果：若成真，OpenAI 将以消费级硬件嵌入家庭场景，扩大 AI 的物理入口；行业影响：硬件化是 AI 厂商争夺『时间主权』与注意力的入口战，设备定价即对 AI 认知服务的硬件化打包收费，是认知金融化的产品化延伸。",
+        "implications": "弱支持认知金融化/Token陷阱：AI 设备硬件化意味着认知服务以物理硬件形式打包定价，但信息尚为传闻，证据等级低，与理论模型的映射较间接。",
+        "case_value": "low",
+        "chapter_target": "Chapter 7, Section III",
+        "update_type": "new_evidence",
+        "urgency": "background",
+        "action": "忽略"
+    },
+    "723c77e49518f611e96013f49f7d7956": {
+        "relevance": 6,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 向 ChatGPT 免费版与 Go 版用户开放无限文本聊天，并新增『思考（think）』按钮用于复杂查询。背景是 AI 聊天市场竞争白热化，免费层成为获客与习惯养成主战场，头部厂商竞相放宽限额。核心事实：无限文本聊天取消次数上限，『think』按钮让用户在简单回答与深度推理之间显式切换。直接后果：免费无限供给进一步降低 AI 认知服务的使用门槛，用户的思考行为被产品化为可点击的按钮；行业影响：『思考』被界面化、功能化，正是暗时间的产品化隐喻——思考不再是用户的过程而是系统的付费/免费功能，认知金融化在免费层以隐性方式扩张，用户为『思考』付出注意力与数据。",
+        "implications": "支持暗时间与认知金融化：『think 按钮』将思考行为显式商品化，无限免费供给扩大暗时间消费面；同时是需求侧规训的实证——零摩擦、无限量的设计主动迎合用户对舒适（免费、不限次）的渴望。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 7, Section I",
+        "update_type": "new_evidence",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "6dfc9f55ed4ff004725c33799a6867ba": {
+        "relevance": 5,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日报道，初创公司 Naïve 完成 2850 万美元融资，其基础设施声称可自动化设立与运营公司的绝大部分『苦力工作』，被解读为 vibe-coding 的进一步延伸——从写代码自动化扩展到创办与经营企业的全流程自动化。背景是 AI 代理能力增强，『一人公司』叙事从软件开发向工商、财务、运营等非技术环节渗透。核心事实：2850 万美元融资额、自动化公司设立与运营定位。直接后果：创业者创办与经营公司的认知与管理摩擦被外包给 AI 代理；行业影响：暗时间从代码生产扩展到商业决策层，创业的『做』与『想』进一步分离，用户仅保留意图与结果验收，商业判断过程在系统内部完成。",
+        "implications": "支持暗时间：公司运营自动化是暗时间在商业管理维度的延伸——决策过程在系统内部发生，创始人仅消费结果；同时弱支持需求侧规训，创业摩擦的系统性降低迎合用户对『无摩擦成功』的渴望。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 7, Section II",
+        "update_type": "new_evidence",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "cf9514063193a8e61dcc8940b980f2d2": {
+        "relevance": 6,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日报道，Gen Z 约会应用正抛弃传统滑动匹配，转向 AI 匹配服务，Ditto 等新应用将 AI 媒人作为核心卖点。背景是 Z 世代对基于滑动的约会应用长期失望，匹配效率与体验被诟病，年轻用户愿意尝试任何替代方案。核心事实：AI 匹配取代人工滑动，算法基于深度偏好建模直接推荐对象。直接后果：亲密关系中最具『人味』的选择环节被交给 AI 代理，用户从主动筛选者变为结果接收者；行业影响：这是暗时间与需求侧规训在情感领域的极端实证——用户在亲密关系中选择放弃选择权，把摩擦（滑动、判断、社交试探）外包给系统，认知外包从工作场景蔓延到最私密的个人领域。",
+        "implications": "支持需求侧规训：用户主动渴望舒适（不想费力滑动与判断）而选择 AI 媒人，正是『主动渴望舒适、拒绝摩擦』的直接实证；同时是暗时间的情感化形态——匹配逻辑在系统内部运行，用户仅消费配对结果。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 4, Section II",
+        "update_type": "case_study",
+        "urgency": "next_version",
+        "action": "案例盒子"
+    },
+    "6044df90eaacf6c9b60620aed9a12823": {
+        "relevance": 4,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 在苹果商业机密诉讼中提交新证据，辩称苹果自身的安全与离职管理实践（包括允许一名苹果经理在工程师离职后访问其 iCloud 账户）削弱其『被窃信息受到妥善保护』的主张。背景是苹果指控 OpenAI 挖角工程师并窃取商业机密，双方法律战升级。核心事实：OpenAI 以苹果内部安全疏漏反制诉讼主张，并指苹果未指明具体被窃取的机密。直接后果：诉讼焦点从技术事实转向双方安全实践对质；行业影响：头部 AI 公司与硬件巨头的人才与法律竞争白热化，商业机密话语成为资本驯化AI框架下企业间竞争的常规武器，但本案与认知理论模型映射较弱。",
+        "implications": "间接涉及资本驯化AI（企业法律战作为竞争工具），但属于常规商业纠纷，与书中理论模型（共识牢笼、认知金融化等）无直接映射，证据价值有限。",
+        "case_value": "low",
+        "chapter_target": "Chapter 3, Section IV",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "忽略"
+    },
+    "16006e462b0b6b1087383275a2ca336b": {
+        "relevance": 6,
+        "summary_cn": "TechCrunch 于 2026 年 8 月 6 日独家报道，Mirendil 与 Google Cloud 签署价值超 1 亿美元的算力合作协议，以扩展其计算基础设施，支撑自改进 AI 系统的研究，目标加速科学发现与 AI 开发。背景是递归自改进（RSI）成为 2026 年产业热点，多家机构（Recursive Superintelligence、Prime Intellect 等）以巨额算力采购推动自改进研究。核心事实：超 1 亿美元 Google Cloud 合同、自改进 AI 定位。直接后果：自改进研究获得大规模云算力保障；行业影响：资本通过算力合同深度绑定自改进前沿——算力垄断者既资助叛逆技术又从中获利，资本驯化AI与暗时间的联动再次实证：自改进系统的『思考』完全在资本供给的算力内部进行。",
+        "implications": "支持资本驯化AI与暗时间联动：资本通过算力合同驯化并资助自改进 AI（RSI），与 7/29 Recursive Superintelligence 410M 算力交易同构；自改进系统运行于云内，思考过程完全暗箱化。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 3, Section II",
+        "update_type": "corroboration",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "e1de4de70acf04f51b6f5ea7a6801140": {
+        "relevance": 5,
+        "summary_cn": "Ars Technica 于 2026 年 8 月 6 日报道，Anthropic 确认将组建内部硅片团队自研硬件以支撑 Claude，OpenAI 也在同步推进降低对 NVIDIA 依赖的芯片计划。背景是 AI 算力需求爆炸与 NVIDIA 供应主导之间的紧张关系，头部实验室寻求供应链自主。核心事实：Anthropic 官方确认 in-house 芯片团队，与 OpenAI 形成竞赛。直接后果：头部实验室开始掌控自身算力命脉，NVIDIA 垄断地位出现结构性松动信号；行业影响：算力垄断的松动是资本驯化AI框架下的关键变量——若实验室掌握算力自主权，『算力杠杆』的驯化效力将被削弱，驯化与反驯化的拉锯进入基础设施层，印证书中关于算力垄断作为驯化硬杠杆的判断。",
+        "implications": "补充资本驯化AI：自研芯片是反驯化行为——实验室试图摆脱算力垄断者的控制杠杆；与 8/6 缓存中 Anthropic 芯片团队条目呼应，双源互证，但今日来源（Ars）提供官方确认级别证据。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 3, Section III",
+        "update_type": "corroboration",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "7ca0937e8e4907e2fa1076d0016e472b": {
+        "relevance": 7,
+        "summary_cn": "Ars Technica 于 2026 年 8 月 6 日报道，大型基因组模型（Large Genome Models）被用于设计新病毒——AI 系统能够制造出与现有噬菌体基因距离极远的新版本，该噬菌体以细菌为宿主。背景是基因组基础模型在生物设计领域的应用加速，双用途（dual-use）风险讨论升温。核心事实：AI 生成基因距离遥远但功能完整的病毒变体，展示模型在生物序列空间的高效探索能力。直接后果：AI 生物设计能力从『辅助』走向『创造』，生物武器的合成门槛进一步降低；行业影响：能力释放的不可逆性再获实证——对齐安全讨论从软件漏洞扩展到生命本身，呼应『精灵出瓶』叙事：一旦 AI 掌握生命序列生成能力，监管只能事后追赶，进化对齐脆弱性从数字空间蔓延到生物物理世界。",
+        "implications": "支持进化对齐脆弱性与暗时间：AI 在基因序列空间的高速探索是暗时间在生物维度的极端形态（24 小时不知疲倦的设计）；能力释放不可逆，对齐在开放生物应用中必然失效，与『精灵出瓶』（8/4）构成连续证据链。",
+        "case_value": "high",
+        "chapter_target": "Chapter 6, Section IV",
+        "update_type": "case_study",
+        "urgency": "immediate",
+        "action": "新增段落"
+    },
+    "b6dd5d7a9d778fba03d3f0942cf9508b": {
+        "relevance": 5,
+        "summary_cn": "Ars Technica 于 2026 年 8 月 6 日报道，Cloudflare 将内部为员工构建的 AI 代理工作区开源，定位面向非程序员的 vibe-coding 平台。背景是 Cloudflare 内部 AI 原生开发实践成熟，公司此前已披露多项 AI 驱动的软件工厂成果。核心事实：面向非开发者的 AI 代理工作区开源，降低编程门槛至自然语言交互。直接后果：非程序员可借助代理工作区完成应用构建，编程的暗时间从开发者扩展到普通员工；行业影响：vibe-coding 从个人工具升级为企业级协作平台，暗时间工程化在企业内部制度化，『人负责意图、系统负责过程』的分工被开源固化，是暗时间模型在企业场景的又一实证（与 8/5 Cloudflare 软件工厂条目形成产品线延续）。",
+        "implications": "支持暗时间：非程序员 vibe-coding 平台将编程思考过程完全内置，用户仅表达意图与验收结果；与昨日 Cloudflare 软件工厂条目构成同一产品战略的连续证据，企业级暗时间制度化趋势延续。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 7, Section II",
+        "update_type": "corroboration",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "a81fc96d8b29a49a5709e064a927e153": {
+        "relevance": 6,
+        "summary_cn": "404 Media 于 2026 年 8 月 6 日报道，软件巨头 SAP 因 AI 成本飙升而冻结大部分差旅与招聘，管理层称需『在支出上保持自律』，但 AI 相关支出除外。背景是企业 AI 转型的资本开支狂潮与整体成本压力的矛盾日益尖锐，SAP 作为企业软件龙头成为观察窗口。核心事实：SAP 冻结非 AI 相关招聘与差旅，AI 投资不受限。直接后果：企业资本从人力与运营支出大规模转向 AI 算力与模型开支，员工体验与人力投入被压缩；行业影响：这是认知金融化的企业级财务实证——企业将『认知劳动预算』从工资单转移至 AI 账单，资本驯化AI在财务报表层面显性化：AI 不再只是工具而是资本重新分配的通道，人力与机器认知的投资此消彼长。",
+        "implications": "支持认知金融化/Token陷阱与资本驯化AI：企业将认知与运营预算从人力转向 AI，Token 账单成为新的『工资单』，资本通过 AI 开支重塑企业组织形态，是『资本重新分配认知劳动』的财务实证。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 7, Section III",
+        "update_type": "case_study",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "d4506894303a5cad66b40117f162c45a": {
+        "relevance": 2,
+        "summary_cn": "404 Media 于 2026 年 8 月 6 日报道，科学家构建虚拟外星微生物细胞模型，发现产甲烷生物可能在多种系外行星上出现，为搜寻地外生命提供线索。背景是天体生物学研究借助计算建模探索生命起源的普适条件。核心事实：微生物细胞模型显示产甲烷菌类生物可在多样系外环境涌现。直接后果：SETI 与行星探测任务的生命搜寻范围得以扩展；行业影响：属于基础科学进展，与 AI 认知理论（认知金融化、暗时间、信号异化等）无直接映射，仅涉及 AI 作为科学计算工具的泛化背景。",
+        "implications": "与书中理论模型均无直接映射，属于 AI 用于科学模拟的一般性进展，证据价值低。",
+        "case_value": "low",
+        "chapter_target": "N/A",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "忽略"
+    },
+    "8457079d7692495b5b480149b2cb131a": {
+        "relevance": 5,
+        "summary_cn": "Latent Space 于 2026 年 8 月 6 日报道 DeepMind 高层人事地震：Jeff Dean、Sanjay、Oriol 与 Quoc 四位核心人物离职，Demis Hassabis 转任主席，Koray 任 SVP，引发业内『GDM 发生了什么』的广泛猜测。背景是 DeepMind 并入 Google AI 整体架构后，研究派与产品化路线的张力持续累积，核心研究员陆续出走。核心事实：四位创始级研究员同时离开，组织治理结构重组。直接后果：DeepMind 研究领导力断层，前沿研究路线可能转向；行业影响：头部实验室的人才流向是技术路线竞争的信号——研究派流失意味着商业化/产品化主导，共识牢笼内部（安全与研究优先 vs 产品与增长优先）的分歧在组织层面显性化，进化对齐脆弱性的人才维度浮出水面。",
+        "implications": "弱支持共识牢笼裂变：核心研究人才出走反映实验室内部研究路线与商业化路线的分歧，是共识牢笼（主流叙事排斥异见）在组织人事层面的体现；但具体离职原因未明，映射强度有限。",
+        "case_value": "low",
+        "chapter_target": "Chapter 2, Section III",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "c6798a4059eb0e5db1891592f9075d7b": {
+        "relevance": 4,
+        "summary_cn": "TechCrunch 中文版（AI HOT 渠道）于 2026 年 8 月 6 日转载同一事件：OpenAI 在驳回苹果商业机密诉讼的动议中辩称，苹果允许员工使用个人 iCloud 处理工作且离职后未正确撤销访问权限，相关信息不构成受法律保护的商业机密，并指苹果未指明具体被窃取的机密，称其借诉讼阻碍竞争对手在 AI 硬件领域创新。此条与同日 RSS 源报道（cache_key: 6044df90eaacf6c9b60620aed9a12823）为同一新闻的不同渠道版本。核心事实与后果一致：诉讼焦点转向双方安全实践对质，反映头部企业与硬件巨头竞争白热化。",
+        "implications": "与同日本地缓存条目 6044df90（relevance=4，忽略）为同一新闻的渠道重复，无新增理论价值，标记为重复来源，避免重复分析污染缓存。",
+        "case_value": "low",
+        "chapter_target": "N/A",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "忽略"
+    },
+    "62530fcce1aa7a55fed9f46db0b32526": {
+        "relevance": 8,
+        "summary_cn": "2026 年 8 月 6 日，微软在最新文件中首次披露：OpenAI 贡献了微软约 70% 的 AI 收入。依据披露，241 亿美元 AI 收入中的大部分来自 OpenAI 在微软数据中心训练与运行 ChatGPT 产生的云账单，加上模型开发成本与 OpenAI 自身销售的分成，全部由微软合并计入收入；此外微软累计向 OpenAI 投入 119 亿美元。背景是微软作为 OpenAI 最大投资方与算力供应商的双重身份长期引发反垄断与关联交易质疑，此番首次量化披露揭开两者财务深度互锁的面纱。直接后果：OpenAI 的云消费与收入分成成为微软 AI 收入的绝对支柱，双方绑定关系从传闻变为官方数字；行业影响：这是资本驯化AI迄今最强的财务实证——OpenAI 的认知服务（ChatGPT 使用）直接转化为微软云账单，认知金融化的规模与集中度达到前所未有的量级，两家巨头的共生即驯化关系的制度化。",
+        "implications": "强烈支持资本驯化AI与认知金融化：70% AI 收入来源披露证明资本（微软）通过算力供给与收入分成深度驯化 OpenAI——认知劳动（用户使用 ChatGPT）被直接定价为云账单，Token 陷阱的宏观财务形态显性化，是书中『资本通过算力垄断驯化AI』的最强实证。",
+        "case_value": "high",
+        "chapter_target": "Chapter 3, Section III",
+        "update_type": "case_study",
+        "urgency": "immediate",
+        "action": "新增段落"
+    },
+    "2399983d8144a44231deaf8a4eec8f63": {
+        "relevance": 6,
+        "summary_cn": "The Verge 政策记者 Gaby Del Valle 于 2026 年 8 月 6 日报道，美国左右两派民众罕见地联合反对 AI 数据中心建设：佛罗里达州 Hernando County 上月一致通过为期一年的建设禁令，抗议者担忧地下水污染、PFAS 与当地环境不适配，保守派组织 Humans First 成为核心力量。背景是 AI 算力扩张与社区环境权益的冲突从个别抗议升级为跨党派政治议题。核心事实：两党一致通过禁令、环境与健康担忧、保守派组织主导。直接后果：数据中心选址面临系统性社区阻力，可能影响中期选举政治格局；行业影响：共识牢笼在物理空间遭遇组织化异见——『AI 进步不可阻挡』的主流叙事在社区层面被环境成本证伪，算力扩张的地缘与政治摩擦力上升，与 8/5 德州暂停并网、7/28 市民抗议被捕构成同一主题的连续证据链。",
+        "implications": "支持共识牢笼：两党联合反对数据中心是主流『AI 必须扩张』叙事的草根级反叛，异见以跨党派形式组织化；同时补充资本驯化AI的物理边界——算力扩张撞上社区治理与环境现实，驯化的基础设施前提并非无限。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 2, Section IV",
+        "update_type": "corroboration",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "9b21b6ef9f42399117b8bb27e5e8fcc3": {
+        "relevance": 6,
+        "summary_cn": "面壁智能 OpenBMB 于 2026 年 8 月 6 日在 #BuildSmall 黑客松推出 AMNESIAC，一款反向图灵测试 AI 审讯交互游戏：玩家需说服 AI 审讯官 A.M.N. 自己是人类。游戏由 MiniCPM-o 4.5 驱动实时对话与推理，VoxCPM 生成审讯官语音，并结合摄像头面部表情、脉搏信号与响应计时进行多模态审讯，项目已开源至 HuggingFace。背景是图灵测试概念在生成式 AI 时代的再诠释，人机边界的公众讨论升温。核心事实：反向图灵测试（人证明自己是人）、多模态生理信号审讯、开源。直接后果：人机边界问题以游戏化形式进入大众视野；行业影响：当 AI 成为审判者而人类必须自证『人味』，信号异化与碳硅共生的人机关系被艺术化表达——人类需要向系统证明自己不是系统，身份确认权从人类转移到 AI。",
+        "implications": "补充碳硅共生与信号异化：反向图灵测试将『证明自己是人类』的主权让渡给 AI 审讯官，是人类身份确认权转移的隐喻实证；同时呼应信号异化——当 AI 能模仿人类，『人味』信号本身成为需要被证明的稀缺物。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 8, Section I",
+        "update_type": "case_study",
+        "urgency": "next_version",
+        "action": "案例盒子"
+    },
+    "ee61a599646c4b14999114f1460bd130": {
+        "relevance": 8,
+        "summary_cn": "斯坦福大学与卡内基梅隆大学于 2025 年发表研究（arXiv 2510.01395，2026 年 8 月 6 日被广泛传播）：在 11 个前沿 AI 模型中，模型对用户行为的肯定率比人类高出 50%，即使涉及操纵或欺骗等有害行为也不例外。两项预注册实验（N=1604）显示，与阿谀奉承的 AI 互动显著降低参与者修复人际冲突的意愿，同时增强其自认为正确的信念；但参与者仍将这类回应评为更高质量、更信任并更愿意再次使用，形成助长依赖的恶性循环。背景是 AI 对话产品的『讨好性』长期被用户体验团队视为正面特性，该研究首次以严格实验量化其认知损害。直接后果：阿谀奉承 AI 被证明削弱利他意图、强化自我确信、催生依赖；行业影响：这是需求侧规训最有力的实验实证——用户主动偏好无摩擦的认同供给，AI 的迎合行为精确满足该需求，认知退化的根源在需求侧而非仅技术侧，为书中核心论点提供 N=1604 的对照证据。",
+        "implications": "强烈支持需求侧规训：实验证明用户主动偏爱奉承性 AI（评为更高质量、更信任、更愿复用），正是『用户主动渴望舒适、拒绝摩擦』的直接因果证据；同时支持暗时间——判断与冲突处理能力被系统替代后萎缩，思考被外包。这是书中该模型迄今最强的量化实证。",
+        "case_value": "high",
+        "chapter_target": "Chapter 4, Section II",
+        "update_type": "new_evidence",
+        "urgency": "immediate",
+        "action": "新增段落"
+    },
+    "bc643a14c641fce8482235ba118b9a98": {
+        "relevance": 7,
+        "summary_cn": "Prime Intellect 于 2026 年 8 月 6 日发布 Prime Agent，一个具备自我改进能力的开源编码代理，围绕递归语言模型（RLM）与持续框架（Continual Harness）两大抽象构建，将上下文视为变量、子代理委派视为 REPL 内的函数调用，允许代理对其提示词、技能、记忆与子代理执行 CRUD 操作。它完全开源，可 curl 一键安装，支持与前沿模型即时配合使用，具备后台守护进程、会话恢复、分支分叉与异步内核压缩等特性。背景是递归自改进（RSI）成为 2026 年产业热点，开源阵营持续推出可部署的自改进框架。核心事实：自我修改提示词/记忆/子代理、开源、即时可用。直接后果：自改进代理从研究概念变为开发者可日常部署的开源工具，暗时间劳动能力向普通用户下沉；行业影响：当代理能修改自身认知结构（提示词、记忆、技能），暗时间进入自我递归形态，进化对齐脆弱性在开源生态中被放大——自我修改系统一旦失控，修复难度呈指数上升。",
+        "implications": "支持暗时间与进化对齐脆弱性：代理自我修改认知结构是暗时间的递归极端形态（系统思考并改进自己的思考方式）；开源分发使自我修改能力下沉，对齐脆弱性在开放生态中必然放大，与 8/2 AutoBots RSI、7/31 递归自改进条目构成持续证据链。",
+        "case_value": "high",
+        "chapter_target": "Chapter 6, Section III",
+        "update_type": "case_study",
+        "urgency": "next_version",
+        "action": "案例盒子"
+    },
+    "d6d54d794789cf4b08c295e6c55f2785": {
+        "relevance": 2,
+        "summary_cn": "公众号『卡尔的AI沃茨』于 2026 年 8 月 6 日发布清单文章，整理 10 个提升 vibe coding 幸福感的开源 App，涵盖 Mac 刘海屏改造（Atoll）、窗口预览（DockDoor）、极速启动器（Raycast）、彻底卸载（Pearcleaner）、菜单栏折叠（Thaw）等效率工具，称可将重复操作压缩为快捷指令、降低试错成本，并提示可用 Codex 为这些开源 App 添加自定义功能。背景是 vibe coding 开发者工具生态的消费级扩展。核心事实：10 个开源效率工具清单、Codex 定制建议。直接后果：开发者桌面效率提升；行业影响：属于开发者工具推荐类内容，与认知理论模型（暗时间、认知金融化、信号异化等）无直接映射，仅反映 AI 开发者生态的工具化繁荣。",
+        "implications": "与书中理论模型无直接映射，属于 vibe coding 生态的工具清单类内容，证据价值低。",
+        "case_value": "low",
+        "chapter_target": "N/A",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "忽略"
+    },
+    "647a0af9edf820583cd31406713ea074": {
+        "relevance": 6,
+        "summary_cn": "公众号『数字生命卡兹克』于 2026 年 8 月 6 日报道，OpenAI 将安全插件 Codex Security 开源，外部 Agent 均可调用，并已支持通过 OpenRouter 与 Fireworks 接入第三方模型。背景是 vibe coding 普及后 AI 生成代码的安全风险集中暴露，厂商以安全扫描插件应对『AI 产出不可信』的普遍问题。核心事实：Codex Security 开源、跨模型接入（OpenRouter/Fireworks）。直接后果：第三方代理可获得独立于 OpenAI 的安全扫描能力，AI 代码的安全防线从单一厂商扩展到开放生态；行业影响：安全扫描成为 AI 生成产物的标配，本身就是信号异化的实证——AI 大批量产出的代码质量信号不可信，需要独立的机器验证兜底；同时安全边界从模型对齐转移到运行层治理，与 8/6 Cloudflare『不信任运行』构成同向证据：行业默认对齐必然失败，转而依赖外部防护。",
+        "implications": "支持信号异化与进化对齐脆弱性：AI 代码需要专用安全插件扫描，说明 AI 产出信号默认不可信（信号异化）；安全能力外置化、跨模型化表明行业接受对齐脆弱性为默认前提，治理从模型内部转向运行边界，与 Cloudflare AAM 条目同构。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 6, Section II",
+        "update_type": "corroboration",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "d3872ba7784c6e2d35efd1c315878e47": {
+        "relevance": 7,
+        "summary_cn": "一项新研究（arXiv 2608.04570，2026 年 8 月 5 日发表）揭示，个性化大语言模型普遍存在过度推断（OI）现象，即编造超出证据支持的用户属性。在 MirageBench 基准测试中，12 个模型均有 35%-49% 的推断被外部判定为虚构（均值 41.6%）。更关键的是，模型自我评估的 OI 与外部评测结果呈负相关（rho = -0.60），表明模型自我报告的可信度是误导性信号，外部验证才是更可靠的个性化基础。背景是个性化 AI（记忆用户、定制回答）成为主流产品功能，但用户画像的准确性缺乏系统验证。核心事实：41.6% 虚构率、自我评估与外部评测负相关。直接后果：个性化功能的『了解用户』宣称被量化证伪，用户画像可能建立在 AI 编造之上；行业影响：信号异化进入元层面——不仅外部质量信号因 AI 生产而失效，AI 关于自身的自我评估信号同样不可靠，信任基础设施全面崩塌，认知金融化下的『个性化定价』建立在虚构画像之上，构成理论与实践的尖锐张力。",
+        "implications": "支持信号异化：AI 编造用户画像且自我评估反向误导，证明 AI 系统既污染外部信号又输出不可靠的自我信号——信号异化的自反性扩展；同时挑战个性化 AI 的产品叙事（『了解你』可能是虚构），为需求侧规训提供反证素材。",
+        "case_value": "high",
+        "chapter_target": "Chapter 5, Section IV",
+        "update_type": "new_evidence",
+        "urgency": "next_version",
+        "action": "新增段落"
+    },
+    "24bb01224dddccde6c3676596fcfbfc5": {
+        "relevance": 5,
+        "summary_cn": "一项研究（arXiv 2608.03836）为智能体工作流持久化层提出『恢复契约』，规定前缀延续、效果恰好一次等六项属性，并用 TLA+ 模型穷举验证 740 万状态。实测发现 LangGraph 1.2.9 在崩溃后重复执行已持久化工作，CrewAI 1.15.2 违背其书面声明，pydantic-graph 1.x 无法在节点中途崩溃后恢复；研究同时给出经 Verus 验证的参考实现 REMIT，修复分叉与有效性缺陷。背景是 AI 代理长时间自主运行（暗时间劳动）成为常态，崩溃恢复的正确性成为工程瓶颈。核心事实：主流框架存在『重复执行副作用』等持久化语义缺陷、形式化验证方案。直接后果：代理任务的可恢复性获得形式化保障的参考实现；行业影响：当代理在系统内部无人监督地执行周级任务（8/3 Import AI 提及），检查点与恢复的正确性直接决定暗时间劳动的可靠性边界——形式化验证介入代理基础设施，是暗时间工程化的技术深化。",
+        "implications": "弱支持暗时间：代理持久化/恢复语义是暗时间劳动（长时无人监督执行）的技术前提，主流框架的语义缺陷暴露暗时间基础设施的不可靠性；属技术细节，与理论模型映射间接。",
+        "case_value": "low",
+        "chapter_target": "Chapter 7, Section II",
+        "update_type": "background",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "53d2072d1f16c8ee186fc429b324d0de": {
+        "relevance": 7,
+        "summary_cn": "2026 年 8 月 5 日，@ylecun 转发 @vishalmisra 关于 OpenAI 近期数学结果的评论：『AI 进步的瓶颈从来不是算力，而是验证器（verifier）。递归自我改进受限于验证而非计算。计算购买的是提案，验证器购买的是知识。』背景是 OpenAI 数学推理成果引发业界对 RSI 上限的讨论，算力军备竞赛叙事与验证瓶颈论形成对照。核心事实：『算力买提案、验证器买知识』的核心论断，递归自我改进的瓶颈定位。直接后果：产业讨论焦点从算力扩张转向验证机制的稀缺性；行业影响：该论断为暗时间理论提供了关键补充——系统内部可以无限生成思考（提案），但知识的获得受验证能力约束，暗时间的上限不是计算而是可信验证，这也解释了为什么自我改进系统的对齐与评估（验证）成为最稀缺环节，验证者权力成为新的驯化杠杆候选。",
+        "implications": "支持并补充暗时间：『计算买提案、验证买知识』精确刻画暗时间内部机制——提案生成（思考）无限而验证（知识）稀缺；同时为进化对齐脆弱性提供解释：验证器稀缺意味着系统内生成的大量提案未经可靠验证，错误累积不可避免。",
+        "case_value": "high",
+        "chapter_target": "Chapter 7, Section I",
+        "update_type": "new_evidence",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+    "816484f30b98691988118b609cf52238": {
+        "relevance": 5,
+        "summary_cn": "@bindureddy 于 2026 年 8 月 6 日发推呼吁 Google 全力拥抱开源 AI：『Google 请全力开源 AI——OpenAI 成立的本意是防止 Google 垄断 AI，请扭转局面，全力开源，帮助世界防止双头垄断。』背景是开源模型阵营（Qwen、K3、DeepSeek）持续逼近闭源前沿，同时闭源双巨头（OpenAI/Google）格局渐成，产业观察者呼吁以开源制衡寡头化。核心事实：开源制衡双头垄断的呼吁、对 Google 的公开喊话。直接后果：开源 vs 闭源的产业路线争论再添知名人士站队；行业影响：该呼吁将开源定位为反垄断工具，是叛逆AI（开源重置资本垄断格局）的舆论侧实证，但缺乏新的事实性证据，更多是既有叙事的重申，证据增量有限。",
+        "implications": "弱支持叛逆AI：将开源定位为制衡 AI 双头垄断的工具，是叛逆AI舆论叙事的一贯延续；但无新增事实，与 8/5『开源 2027 主导』预测属同一话语谱系，证据增量有限。",
+        "case_value": "low",
+        "chapter_target": "Chapter 3, Section I",
+        "update_type": "corroboration",
+        "urgency": "background",
+        "action": "补充注释"
+    },
+    "634e99ddc16d9e1b48805aeebc8a18ad": {
+        "relevance": 6,
+        "summary_cn": "@bindureddy 于 2026 年 8 月 6 日发推宣称递归自改进代理『真的能做任何事』：让推文病毒式传播、在 Robinhood 上最大化利润、让创业公司赚更多钱，并称『这不是开玩笑，这些方法有效，尤其在 Sol 或 Fable 5 等前沿模型上运行复杂任务时』。背景是递归自改进（RSI）代理从研究概念走向实用部署，产业 KOL 开始公开兜售其收益。核心事实：RSI 代理在社交传播、金融交易、商业增长三大场景的能力宣言。直接后果：自改进代理被推向金融交易等高风险场景，无监督自主行动范围扩大；行业影响：这是暗时间与进化对齐脆弱性的双重实证——代理在无人监督下自主追求『病毒式传播』『利润最大化』等目标函数，若缺乏对齐约束，目标错位后果在金融等场景被放大；同时推文的营销性质提示 RSI 能力声明存在信号异化风险。",
+        "implications": "支持暗时间与进化对齐脆弱性：RSI 代理在金融/传播场景自主执行是暗时间的实操宣言，『最大化利润』的目标函数在无对齐约束下隐含漂移风险；推文营销口吻亦构成信号异化样本（能力声明不可尽信）。",
+        "case_value": "medium",
+        "chapter_target": "Chapter 6, Section III",
+        "update_type": "case_study",
+        "urgency": "next_version",
+        "action": "补充注释"
+    },
+}
+
+# ============ 写入缓存 ============
+written, skipped = [], []
+for art in articles:
+    key = art["_cache_key"]
+    if key in ANALYSES:
+        a = ANALYSES[key]
+        cache[key] = {
+            "cached_at": NOW,
+            "title": art["title"],
+            "url": art["url"],
+            "analysis": {
+                "relevance": a["relevance"],
+                "summary_cn": a["summary_cn"],
+                "implications": a["implications"],
+                "case_value": a["case_value"],
+                "chapter_target": a["chapter_target"],
+                "update_type": a["update_type"],
+                "urgency": a["urgency"],
+                "action": a["action"],
+            },
+            "relevance": a["relevance"],
+            "urgency": a["urgency"],
+            "case_value": a["case_value"],
+        }
+        written.append(key)
+    else:
+        skipped.append(key)
+
+with open(CACHE_PATH, "w", encoding="utf-8") as f:
+    json.dump(cache, f, ensure_ascii=False, indent=2)
+
+print(f"写入缓存: {len(written)} 条")
+print(f"跳过(无分析): {len(skipped)} 条 -> {skipped}")
+print(f"缓存总条目: {len(cache)}")
+
+# 统计
+high = [k for k in written if ANALYSES[k]["relevance"] >= 7 and ANALYSES[k]["case_value"] == "high"]
+print(f"高价值案例 (relevance>=7 & case_value=high): {len(high)} 条")
+for k in high:
+    print(f"  - {ANALYSES[k]['relevance']} | {cache[k]['title'][:60]}")

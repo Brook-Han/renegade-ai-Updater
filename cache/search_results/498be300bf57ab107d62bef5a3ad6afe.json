@@ -1,5 +1,5 @@
 {
-  "timestamp": 1782089726.915636,
+  "timestamp": 1786324155.419554,
   "source": "semantic_scholar",
   "query": "recursive self-improvement AI risk",
   "results": [
@@ -18,62 +18,81 @@
       "source": "semantic_scholar"
     },
     {
-      "id": "e9de741e7b2d971b70d3b3a3fd00d58ed805c6f6",
-      "title": "From 0-to-1 to 1-to-N: Reproducible Engineering Evidence for MetaAI Recursive Self-Design",
-      "summary": "Recursive self-design refers to AI-assisted modification of the mechanisms by which an AI system is built, evaluated, and improved. This paper treats MetaAI not as a mature paradigm, but as a working term for a human-seeded, AI-expanded development pattern in which the design space itself becomes a target of modification. We propose an operational evidence framework with four criteria: inspectable target system, meta-level modifier, feedback-directed selection, and recursive continuation. We then map public systems, including Darwin Goedel Machine (DGM), STOP, Goedel Agent, and ShinkaEvolve, against these criteria. DGM provides the most direct currently reported evidence: its published results show improvement from 20% to 50% on SWE-bench Verified and from 14.2% to 30.7% on full Polyglot after 80 iterations, with ablations suggesting that both open-ended exploration and self-improvement contribute. Finally, we provide MetaAI-Mini, a reproducible HumanEval-based protocol and codebase. Because no completed model run is included in this build, MetaAI-Mini is reported as a protocol rather than as an experimental result.",
+      "id": "58868100128e2fb1d0ee642b5f20bc01bda86b1e",
+      "title": "Frontis-MA1: Training an AI4AI Model towards Recursive Self-Improvement in Machine Learning Engineering",
+      "summary": "Recursive self-improvement (RSI) requires AI systems that improve the process of building AI (i.e., AI4AI); machine learning engineering (MLE) offers a concrete, executable testbed for studying this capability. We introduce OpenMLE, an open full-stack system for RSI research in MLE, spanning verifiable task environments with execution feedback (OpenMLE-Gym), operator learning (OpenMLE-RL), and long-horizon search (OpenMLE-Evo). On this stack we post-train Frontis-MA1 (35B) as a meta-evolution agent for MLE, aligning post-training and inference around four atomic program-evolution operators (Draft, Improve, Debug, Crossover): the same operators are trained via execution-grounded SFT and RL on data deduplicated against all evaluation benchmarks, then composed into long-horizon search, coupling learning and evolution in a single loop. On MLE-Bench Lite under a 12-hour per-task budget on one RTX 4090 capped at 12 GB VRAM, Frontis-MA1 (35B) improves Medal Average from 39.39% to 60.61% over its base model with OpenMLE-Evo, and reaches 71.21% with OpenMLE-Evo-Max (benchmark-independent experience priors and asynchronous search), exceeding GPT-5.5 + Codex and approaching GPT-5.6 Sol and the 2.8T Kimi K3. On held-out NatureBench Lite, both components transfer: with the framework fixed, swapping in the trained model raises Match-SOTA from 50% to 70%; with the model fixed, swapping in OpenMLE-Evo raises it from 20% to 50%. We release the model weights and the full OpenMLE stack to enable reproducible research on executable AI4AI toward RSI. Code: https://github.com/FrontisAI/OpenRSI",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/e9de741e7b2d971b70d3b3a3fd00d58ed805c6f6",
+      "url": "https://www.semanticscholar.org/paper/58868100128e2fb1d0ee642b5f20bc01bda86b1e",
       "authors": [
-        "Dun Li",
-        "Jiatao Li",
-        "Hongzhi Li"
+        "Junlin Yang",
+        "Che Jiang",
+        "Yu Fu",
+        "Tian-Yuan Luo",
+        "Can Ren",
+        "Weizhi Wang",
+        "Kaikai Zhao",
+        "Hongyi Liu",
+        "Yuxin Zuo",
+        "Yuru Wang",
+        "Yuchen Fan",
+        "Kai Tian",
+        "Zhenzhao Yuan",
+        "Xiaojian Lin",
+        "Li Sheng",
+        "Rushi Qiang",
+        "Guoli Jia",
+        "Xingtai Lv",
+        "Ermo Hua",
+        "Dianqiao Lei",
+        "Youbang Sun",
+        "Ning Ding",
+        "Bowen Zhou",
+        "Kaiyan Zhang"
       ],
       "source": "semantic_scholar"
     },
     {
-      "id": "08e6070f363d31d690c9f6f9ad460ae0a66a8012",
-      "title": "The effectiveness of multilingual AI-based simulator for suicide risk assessment training in improving self-efficacy among young psychiatrists: a pilot study across twenty languages",
-      "summary": "Suicide represents a major public health concern. Suicide risk assessment, considered one of the most complex clinical situations in psychiatry, is crucial for prevention. However, mental health clinicians report low self-efficacy and willingness to conduct these assessments. Current training processes are predominantly theoretical, limiting opportunities to practice asking challenging questions. Furthermore, there are global challenges in achieving international standardization of training while maintaining linguistic and cultural appropriateness. The study evaluated the SEE THE PAIN system, a Generative AI (GenAI) simulator providing skills-based suicide risk assessment training across 20 languages. Twenty-seven psychiatrists attending the European Psychiatric Association Summer School participated. Participants conducted a risk assessment of a virtual character via the simulator and completed measures of self-efficacy and willingness to treat at pre- and post-intervention points. Analysis demonstrated significant improvements in self-efficacy (from M = 6.7/10 to M = 7.6/10, p = .001) and willingness to treat (from M = 6.5/10 to M = 7.59/10, p < .001) following the intervention. User experience ratings were notably positive, with mean scores of 7.19/10 (SD = 1.73) for future utility and 7.81/10 (SD = 1.69) for feedback quality. Improvements in self-efficacy showed a significant negative correlation with years of clinical experience (r = -.54, p = .01), suggesting particular effectiveness for early-career practitioners. GenAI based multilingual simulation training effectively addresses the complex challenges in suicide risk assessment training by enhancing both self-efficacy and willingness to conduct assessments. The system bridges the gap between theoretical knowledge and practical skills while providing standardized, culturally adapted training across language barriers. These findings suggest promising potential for improving global psychiatric training standards in this critical clinical skill. Not applicable.",
+      "id": "4dbd7c771c35c58a1ee1a22dee5334f7498a6b18",
+      "title": "Recursive Self-Improvement in AI: From Bounded Self-Refinement to Autonomous Research Loops",
+      "summary": "AI systems increasingly participate in their own improvement: revising their outputs, adapting their own harnesses during deployment, training on data they generate, and, increasingly, conducting AI research itself. This literature is described under a vocabulary (\"self-refine,\"\"self-reward,\"\"self-play,\"\"self-evolve\") that conflates fundamentally different ambitions. We survey 1,250 arXiv papers (2024-2026) along two axes: what the system improves -- its behavior in deployment, its policy through training, its evaluator, or the research process itself -- and the degree of loop closure (human-in-the-loop to fully closed). The taxonomy separates bounded self-refinement -- convergent, evaluable, and already industrial practice -- from open-ended recursive self-improvement (RSI), which remains bounded by grounding requirements, collapse dynamics, and compute constraints on every measured axis. Its distinctive feature is a dedicated category for self-evaluation: every improvement loop is a claim that some signal can substitute for human judgment. We survey the evaluator design space -- judges, process reward models, verifiers, rubrics, meta-evaluation -- order the signals into a verification hierarchy from formal verifiers (strongest) to intrinsic self-assessment (weakest), and observe that demonstrated self-improvement strength tracks this hierarchy, that its failure modes (self-confirming loops, model collapse, diversity collapse) follow from its violations, and that the\"research direction-setting\"bottleneck keeping humans in the loop sits at the top of that hierarchy. We connect the technical literature to the theory of RSI limits and to the safety and governance questions raised by frontier-lab accounts of closing the loop, and identify governance-grade measurement of self-improvement as the field's most underpopulated niche.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/08e6070f363d31d690c9f6f9ad460ae0a66a8012",
+      "url": "https://www.semanticscholar.org/paper/4dbd7c771c35c58a1ee1a22dee5334f7498a6b18",
       "authors": [
-        "Zohar Elyoseph",
-        "Y. Levi-Belz",
-        "I. Levkovich",
-        "Yuval Haber",
-        "C. Gramaglia",
-        "J. L. Castroman",
-        "Hanon Cecile",
-        "E. Olié"
+        "Mingguang Chen",
+        "Licheng Wang",
+        "Bo Qu"
       ],
       "source": "semantic_scholar"
     },
     {
-      "id": "4be057f36ffaf9c6897f46435f875ce8bbd7d5c0",
-      "title": "Self-Certification of High-Risk AI Systems: The Example of AI-based Facial Emotion Recognition",
-      "summary": "The European Union's Artificial Intelligence Act establishes comprehensive requirements for high-risk AI systems, yet the harmonized standards necessary for demonstrating compliance remain not fully developed. In this paper, we investigate the practical application of the Fraunhofer AI assessment catalogue as a certification framework through a complete self-certification cycle of an AI-based facial emotion recognition system. Beginning with a baseline model that has deficiencies, including inadequate demographic representation and prediction uncertainty, we document an enhancement process guided by AI certification requirements. The enhanced system achieves higher accuracy with improved reliability metrics and comprehensive fairness across demographic groups. We focused our assessment on two of the six Fraunhofer catalogue dimensions, reliability and fairness, the enhanced system successfully satisfies the certification criteria for these examined dimensions. We find that the certification framework provides value as a proactive development tool, driving concrete technical improvements and generating documentation naturally through integration into the development process. However, fundamental gaps separate structured self-certification from legal compliance: harmonized European standards are not fully available, and AI assessment frameworks and catalogues cannot substitute for them on their own. These findings establish the Fraunhofer AI assessment catalogue as a valuable preparatory tool that complements rather than replaces formal compliance requirements at this time.",
+      "id": "86174fa6cbc829c87d1dae781e1282a751e9f6b5",
+      "title": "PAST-Bench: Benchmarking the Foundations of Recursive Self-Improvement in Personal Agents",
+      "summary": "Recursive self-improvement requires agents to turn accumulated experience into better future behavior. Personal AI agents offer a concrete setting for studying this capability because they retain preferences, task histories, tool routines, and learned skills across sessions. Yet whether retained experience actually improves them over time has not been systematically tested. We introduce PAST-Bench, a benchmark designed to isolate this question. Each agent runs through ordered sequences of fresh-session tasks under matched conditions that turn retained experience on and off. It spans 26 scenarios and 204 episodes across memory, procedural reuse, information gathering, and update. We report both later-task gains and whether those gains follow the intended save, retrieve, and update pathway. Across seven base models and four agent frameworks, improvement is real but uneven across capabilities. Agents with the same headline gain can differ markedly in whether that gain is supported by evidence of the intended pathway. Guided by these findings, we develop Hermes+, which extends Hermes with five targeted interventions across stages of the agent loop. Hermes+ raises the average gain from retained experience and provides clearer pathway evidence, with its strongest improvement on tasks requiring outdated state to be replaced, although the effect remains capability- and model-dependent. Together, PAST-Bench and Hermes+ provide an evaluation and diagnostic foundation for studying how persistent agents can progress from retaining experience to systematically improving through it. Code: https://github.com/Gen-Verse/PAST-Bench",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/4be057f36ffaf9c6897f46435f875ce8bbd7d5c0",
+      "url": "https://www.semanticscholar.org/paper/86174fa6cbc829c87d1dae781e1282a751e9f6b5",
       "authors": [
-        "Gregor Autischer",
-        "Kerstin Waxnegger",
-        "Dominik Kowald"
+        "Shuhan Xue",
+        "Zixin Ding",
+        "Yichen Shen",
+        "Yinjie Wang",
+        "Zhenfei Yin",
+        "Yingcheng Wu",
+        "Yuxin Chen",
+        "Mengdi Wang",
+        "Ling Yang"
       ],
       "source": "semantic_scholar"
     },
     {
-      "id": "818838be34e8480e4e140d2c3e57d462cf596e54",
-      "title": "ClinicalReTrial: A Self-Evolving AI Agent for Clinical Trial Protocol Optimization",
-      "summary": "",
+      "id": "88ddd8b4dc580441a456192cd96968a676e3d8bc",
+      "title": "Self-Reference in Large Language Models: The Introspection Threshold for Recursive Self-Improvement",
+      "summary": "The pursuit of self-evolving AI raises a critical question: when is autonomous self-improvement sustainable rather than degenerative? Drawing an analogy to von Neumann's complexity threshold for self-reproducing automata, we argue that sustainable recursive self-improvement in Large Language Models (LLMs) requires a functional analogue: introspection -- the system's capacity to simulate its own operations and target modifications. Grounded in Kleene's Second Recursion Theorem, we demonstrate the theoretical existence of such introspective programs. However, an empirical review reveals that while current LLMs exhibit quasi-introspection (e.g., partial metacognition), they fall short of true introspection due to structural bottlenecks: a lack of complete self-access, the feedforward nature of the Transformer, and computational class constraints that prevent fixed-point iteration. We conclude by outlining architectural paths to cross this complexity threshold and discussing the associated safety implications.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/818838be34e8480e4e140d2c3e57d462cf596e54",
+      "url": "https://www.semanticscholar.org/paper/88ddd8b4dc580441a456192cd96968a676e3d8bc",
       "authors": [
-        "Sixue Xing",
-        "Xuanye Xia",
-        "Kerui Wu",
-        "M. Jiang",
-        "Jintai Chen",
-        "Tianfan Fu"
+        "Jiang Zhang",
+        "Bing Yuan",
+        "Qian Zhang"
       ],
       "source": "semantic_scholar"
     }

@@ -1,5 +1,5 @@
 {
-  "timestamp": 1782089717.7619479,
+  "timestamp": 1786323817.381951,
   "source": "semantic_scholar",
   "query": "AI alignment robustness deployment",
   "results": [
@@ -8,7 +8,7 @@
       "title": "The Double Readiness Gap in Machine Learning for Building Energy Management: A Scoping Review of Deployment Maturity, Trustworthy AI, and EU AI Act Alignment",
       "summary": "Reducing building energy consumption is central to EU climate-neutrality targets and to sustainable development goals: buildings account for around 40% of EU final energy consumption, placing Building Energy Management Systems (BEMS) at the intersection of the European Green Deal and the EU Artificial Intelligence Act. A scoping review following PRISMA-ScR guidelines charted 61 Machine Learning (ML) for BEMS papers (2020–2026) across three sub-domains (load forecasting and energy monitoring, HVAC control, and demand response), using a nine-point Technology Readiness Level (TRL) rubric and three Trustworthy AI (TAI) dimensions (Privacy & Data Governance, Robustness, and Transparency). The review finds that 90.2% of papers remain at the development stage (TRL 4–6), with no multi-site production deployment documented. TAI coverage is heterogeneous at publication level: transparency is addressed in only 3 of 61 papers (4.9%), and privacy provisions (the best-covered ALTAI dimension) are concentrated in demand-response papers (9 of 17, 52.9%), largely via Federated Learning (6 of 9 privacy-tagged papers). A three-level EU AI Act risk classification identifies 23 borderline-candidacy papers (37.7%), predominantly Reinforcement Learning-based HVAC control systems, whose high-risk proximity cannot be resolved at abstract level; explicit compliance engagement is absent from all 61 mapped sources, including the 22 papers published after the Act entered into force in August 2024. The findings document adouble readiness gap: a TRL ceiling co-located with limited documented engagement with TAI obligations and EU AI Act compliance at publication level. Closing this gap is necessary before AI-driven building energy management can be deployed at scale under EU governance requirements.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/294454c9906dff8057244feb0dcc7f83a8619373",
+      "url": "https://www.mdpi.com/2071-1050/18/12/6107/pdf?version=1781419118",
       "authors": [
         "M. Malvoni"
       ],
@@ -19,7 +19,7 @@
       "title": "Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security",
       "summary": "Agentic AI systems -- Large Language Models (LLMs) augmented with planning, tool use, memory, and long-horizon interactions -- can execute complex tasks autonomously, but their multi-step trajectories introduce new failure modes that challenge trustworthiness. This survey provides a focused examination of trustworthy agentic AI through two core dimensions that are critical for high-risk deployments: Safety and Robustness, and Privacy and System Security. For each dimension, we clarify key concepts, identify where risks emerge along the agent workflow, and summarize stage-targeted mitigation strategies. Other trustworthiness aspects (value alignment, transparency, fairness, and accountability) are discussed as relevant context rather than parallel chapters. To support consistent comparison and deployment decisions, we consolidate evaluation into a unified metrics-and-benchmarks hub, emphasizing both outcome and process signals (e.g., constraint violations, trace completeness, and adversarial success rates) and offering scenario-to-metric guidance for release gating. We conclude by outlining open challenges such as self-evolving agents, runtime monitoring and verification, privacy-preserving personalization, and the trust-utility trade-off, and present a case study of real-world security failures in open-source agentic systems. Our goal is to serve as a practical reference for researchers and practitioners building trustworthy agentic systems in high-stakes environments.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/e7ce3289d680295e57dc66ad0563924e2006cd3a",
+      "url": "https://www.academia.edu/3071-0286/2/2/10.20935/AcadAI8260/pdf",
       "authors": [
         "Jinhu Qi",
         "Muzhi Li",
@@ -33,6 +33,17 @@
         "Ruoxi Jiang",
         "Irwin King",
         "Zenglin Xu"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "34a9fdb4aa125c5e805e419ec3e428bf5a65be10",
+      "title": "Commentary: Qi, J. et al. Towards trustworthy agentic AI: a comprehensive survey of safety, robustness, privacy, and system security. Acad. AI Appl. 2026, 2, 8260",
+      "summary": "This survey offers a rigorous and welcome map of agentic artificial intelligence (AI) trustworthiness, organised around two dimensions the authors identify as critical for high-risk deployment: safety and robustness, and privacy and system security. By design, the survey treats value alignment, transparency, fairness, and accountability as relevant contexts rather than as core dimensions. This commentary advances a friendly amendment: accountability is not a peripheral dimension that can be deferred, but the binding constraint on agentic-AI trustworthiness. The reason it resists the survey’s stage-targeted, technical treatment is structural and temporal. Accountability mechanisms are deliberative and operate at human, institutional speed; agentic systems act autonomously, continuously, and at scale. This asymmetry—a governance lag—means that even a fully implemented suite of technical mitigations leaves a residual gap that only governance can close, while prevailing governance instruments remain calibrated to human-paced oversight. A complete trustworthiness agenda must therefore foreground accountability as a first-order design and governance problem.",
+      "published": "2026",
+      "url": "https://www.academia.edu/3071-0286/2/3/10.20935/AcadAI8435/pdf",
+      "authors": [
+        "Anastasios Stavropoulos"
       ],
       "source": "semantic_scholar"
     },
@@ -63,20 +74,6 @@
         "Zhouwei Zhai",
         "Meng Chen",
         "An Zhang"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "219312bb62e9dd536bc645c3693fa7eb64193ef9",
-      "title": "$k$NNProxy: Efficient Training-Free Proxy Alignment for Black-Box Zero-Shot LLM-Generated Text Detection",
-      "summary": "LLM-generated text (LGT) detection is essential for reliable forensic analysis and for mitigating LLM misuse. Existing LGT detectors can generally be categorized into two broad classes: learning-based approaches and zero-shot methods. Compared with learning-based detectors, zero-shot methods are particularly promising because they eliminate the need to train task-specific classifiers. However, the reliability of zero-shot methods fundamentally relies on the assumption that an off-the-shelf proxy LLM is well aligned with the often unknown source LLM, a premise that rarely holds in real-world black-box scenarios. To address this discrepancy, existing proxy alignment methods typically rely on supervised fine-tuning of the proxy or repeated interactions with commercial APIs, thereby increasing deployment costs, exposing detectors to silent API changes, and limiting robustness under domain shift. Motivated by these limitations, we propose the $k$-nearest neighbor proxy ($k$NNProxy), a training-free and query-efficient proxy alignment framework that repurposes the $k$NN language model ($k$NN-LM) retrieval mechanism as a domain adapter for a fixed proxy LLM. Specifically, a lightweight datastore is constructed once from a target-reflective LGT corpus, either via fixed-budget querying or from existing datasets. During inference, nearest-neighbor evidence induces a token-level predictive distribution that is interpolated with the proxy output, yielding an aligned prediction without proxy fine-tuning or per-token API outputs. To improve robustness under domain shift, we extend $k$NNProxy into a mixture of proxies (MoP) that routes each input to a domain-specific datastore for domain-consistent retrieval. Extensive experiments demonstrate strong detection performance of our method.",
-      "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/219312bb62e9dd536bc645c3693fa7eb64193ef9",
-      "authors": [
-        "Kahim Wong",
-        "Kemou Li",
-        "Haiwei Wu",
-        "Jiantao Zhou"
       ],
       "source": "semantic_scholar"
     }

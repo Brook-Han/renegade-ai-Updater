@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Academic Radar · 2026-08-03 | Renegade AI</title>
+  <meta name="description" content="学术论文监控报告 · 0 高相关论文">
+  <!-- 加载 Google 字体（和主页完全一样） -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+
+    <style>
+      /* ══════════════ 全局颜色变量（Design Tokens） ══════════════
+         这些变量控制整个页面的颜色，和主页共用同一套。
+         暗色主题是默认，当 <html> 加上 class="light" 时切换到亮色。
+      */
+      :root {
+        --bg:           #0c0c18;      /* 页面背景 */
+        --bg2:          #10101e;      /* 次级背景 */
+        --surface:      #12121e;      /* 卡片悬浮时的背景 */
+        --card:         #1a1a2e;      /* 卡片默认背景 */
+        --border:       #282840;      /* 边框线 */
+        --border-bright:#3a3a5a;      /* 亮一点的边框（悬浮时用） */
+        --text:         #e2e2f0;      /* 正文文字 */
+        --text-muted:   #a8a8d0;      /* 次要文字 */
+        --text-faint:   #55557a;      /* 更淡的文字 */
+        --accent:       #ff5c45;      /* 强调色（橙红） */
+        --accent-dim:   rgba(255,92,69,0.12);
+        --accent2:      #d4af5c;      /* 第二种强调色（金） */
+        --accent2-dim:  rgba(212,175,92,0.10);
+        --accent3:      #5ba3e6;      /* 第三种强调色（蓝） */
+        --accent3-dim:  rgba(91,163,230,0.12);
+        --white:        #f4f4fc;      /* 最亮的文字（标题） */
+        --mono:         'Space Mono', 'Courier New', monospace;
+        --serif:        'Crimson Pro', Georgia, serif;
+        --display:      'Bebas Neue', 'Arial Narrow', sans-serif;
+        --ease:         cubic-bezier(0.4,0,0.2,1);  /* 平滑动画曲线 */
+      }
+      :root.light {
+        --bg:           #f0f2f8;
+        --bg2:          #fafbff;
+        --surface:      #e8eaf2;
+        --card:         #ffffff;
+        --border:       #d4d7e4;
+        --border-bright:#b8bcd0;
+        --text:         #1a1a2e;
+        --text-muted:   #4c4c6a;
+        --text-faint:   #8888a0;
+        --accent:       #d94934;
+        --accent-dim:   rgba(217,73,52,0.08);
+        --accent-glow:  rgba(217,73,52,0.04);
+        --accent2:      #a67c28;
+        --accent2-dim:  rgba(166,124,40,0.08);
+        --accent3:      #356ba8;
+        --accent3-dim:  rgba(53,107,168,0.08);
+        --white:        #1a1a2e;
+      }
+
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      html { scroll-behavior: smooth; }
+      body {
+        font-family: var(--serif);
+        background: var(--bg);
+        color: var(--text);
+        font-size: 1rem;
+        line-height: 1.8;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+        transition: background 0.3s, color 0.3s;
+        text-rendering: optimizeLegibility;
+        font-feature-settings: "kern" 1, "liga" 1, "palt" 1;
+      }
+      /* 选中文字的颜色 */
+      ::selection { background: var(--accent); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
+      ::-webkit-scrollbar{width:4px}
+      ::-webkit-scrollbar-track{background:var(--bg)}
+      ::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+      ::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+      /* ══════════════ 固定导航栏（和主页一模一样） ══════════════ */
+      nav {
+        position: fixed; top: 0; width: 100%; z-index: 200;
+        /* 毛玻璃效果：背景半透明 + 模糊 */
+        background: rgba(12,12,24,.88); backdrop-filter: blur(32px) saturate(1.2);
+        -webkit-backdrop-filter: blur(32px) saturate(1.2);
+        border-bottom: 1px solid var(--border);
+        height: 56px;
+        display: flex; align-items: center; justify-content: space-between;
+        padding: 0 32px;
+        font-family: var(--mono);
+        transition: background 0.3s, border-color 0.3s;
+      }
+      .light nav { background: rgba(240,242,248,.88); }
+      /* 左侧品牌文字 */
+      .nav-brand {
+        font-size: 0.75rem; font-weight: 700;
+        color: var(--accent); letter-spacing: 3px;
+        text-transform: uppercase; text-decoration: none;
+        transition: opacity .2s;
+      }
+      .nav-brand:hover { opacity: .85; }
+      /* 右侧按钮组 */
+      .nav-right { display: flex; gap: 8px; align-items: center; }
+      /* 返回 Radar 主页的按钮 */
+      .nav-pill {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); font-family: var(--mono);
+        font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; padding: 5px 14px;
+        cursor: pointer; text-decoration: none; text-transform: uppercase;
+        display: inline-flex; align-items: center;
+        transition: all 0.25s var(--ease);
+      }
+      .nav-pill:hover, .nav-pill.active {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim);
+      }
+      /* 主题切换按钮 ◐ */
+      .theme-btn {
+        background: none; border: 1px solid var(--border);
+        color: var(--text-muted); width: 36px; height: 36px;
+        cursor: pointer; display: flex; align-items: center; justify-content: center;
+        font-size: 0.9rem; transition: all 0.25s var(--ease);
+      }
+      .theme-btn:hover, .theme-btn:focus-visible {
+        border-color: var(--accent); color: var(--accent);
+        background: var(--accent-dim); transform: rotate(180deg);
+      }
+
+      /* ══════════════ 页面主体 ══════════════ */
+      .main {
+        max-width: 900px; margin: 0 auto;
+        padding: 80px 32px 80px;  /* 上面留出导航栏的空间 */
+      }
+
+      /* 顶部装饰线 */
+      .page-eyebrow {
+        font-family: var(--mono); font-size: 0.62rem; letter-spacing: 4px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+        display: flex; align-items: center; gap: 10px;
+      }
+      .page-eyebrow::before {
+        content: ''; width: 28px; height: 1px; background: var(--accent);
+      }
+      .page-title {
+        font-family: var(--display);
+        font-size: clamp(2.5rem, 6vw, 4rem);
+        letter-spacing: 2px; color: var(--white); margin-bottom: 8px;
+        line-height: 1;
+      }
+      .page-sub {
+        font-family: var(--mono); font-size: 0.65rem; color: var(--text-muted);
+        letter-spacing: 1.5px; margin-bottom: 28px;
+      }
+      .stats-row {
+        display: flex; gap: 20px; margin-bottom: 24px;
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        flex-wrap: wrap;
+      }
+      .stats-row span { color: var(--accent); font-weight: 700; }
+
+      /* ══════════════ 紧急清单区块 ══════════════ */
+      .urgent-box {
+        background: var(--accent-dim); border: 1px solid var(--accent);
+        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
+      }
+      .urgent-title {
+        font-family: var(--mono); font-size: 0.6rem; letter-spacing: 2px;
+        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
+      }
+      .urgent-item {
+        font-size: 0.75rem; margin-bottom: 6px; padding-left: 16px;
+        border-left: 2px solid var(--border-bright); color: var(--text);
+      }
+      .urgent-item strong { color: var(--white); }
+
+      /* ══════════════ 论文卡片（和主页的 radar-card 风格统一） ══════════════ */
+      .radar-card {
+        background: var(--card); border: 1px solid var(--border);
+        padding: 28px 24px; margin-bottom: 16px;
+        transition: background 0.2s, border-color 0.2s;
+        opacity: 0; transform: translateY(12px);
+        animation: fadeUp 0.45s var(--ease) forwards;  /* 淡入上移动画 */
+      }
+      .radar-card:hover { background: var(--surface); border-color: var(--border-bright); }
+      .radar-card-top {
+        display: flex; justify-content: space-between; align-items: flex-start;
+        margin-bottom: 12px; gap: 16px; flex-wrap: wrap;
+      }
+      .radar-card-title {
+        font-family: var(--display); font-size: 1.35rem; letter-spacing: 0.5px;
+        color: var(--white); line-height: 1.25; flex: 1;
+      }
+      .radar-score {
+        font-family: var(--display); font-size: 2rem; color: var(--accent);
+        line-height: 1; white-space: nowrap; text-align: right;
+        flex-shrink: 0;
+      }
+      .radar-score span {
+        font-family: var(--mono); font-size: 0.5rem; color: var(--text-faint);
+        display: block; letter-spacing: 1px; margin-top: 4px;
+      }
+      .radar-card-meta {
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-faint);
+        letter-spacing: 0.5px; margin-bottom: 14px;
+        display: flex; gap: 12px; flex-wrap: wrap; align-items: center;
+      }
+      .radar-card-meta a { color: var(--accent2); text-decoration: none; }
+      .radar-card-meta a:hover { text-decoration: underline; }
+      .card-authors { color: var(--text-muted); font-style: italic; }
+      .card-pub { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      .radar-card-body {
+        font-size: 0.85rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 12px;
+      }
+      .radar-card-implications {
+        font-family: var(--mono); font-size: 0.7rem; color: var(--accent2);
+        background: rgba(212,175,92,0.05); border-left: 2px solid var(--accent2);
+        padding: 10px 14px; margin-bottom: 12px;
+      }
+      .radar-card-model-scores {
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        margin-bottom: 12px; display: flex; gap: 8px; flex-wrap: wrap;
+      }
+      .model-tag { background: var(--surface); padding: 2px 6px; border-radius: 2px; }
+      /* 自动生成的草稿样式 */
+      .radar-card-draft {
+        background: var(--surface); border-left: 4px solid var(--accent);
+        padding: 18px 22px; margin-top: 12px; font-size: 0.9rem;
+        color: var(--text); line-height: 1.8; font-style: italic;
+      }
+      .radar-card-draft::before {
+        content: '✍️ 自动生成书稿草稿';
+        display: block; font-family: var(--mono); font-size: 0.55rem;
+        letter-spacing: 2px; color: var(--accent); text-transform: uppercase;
+        font-style: normal; margin-bottom: 8px;
+      }
+      .radar-card-footer {
+        display: flex; gap: 10px; flex-wrap: wrap;
+        font-family: var(--mono); font-size: 0.58rem; color: var(--text-faint);
+        padding-top: 12px; border-top: 1px dashed var(--border); margin-top: 12px;
+      }
+      .radar-card-footer .tag {
+        padding: 2px 6px; background: var(--surface); border-radius: 2px;
+      }
+
+      /* ══════════════ 页脚（和主页底部的状态栏风格一致） ══════════════ */
+      footer {
+        margin-top: 48px; padding-top: 24px;
+        border-top: 1px solid var(--border);
+        font-family: var(--mono); font-size: 0.6rem; color: var(--text-muted);
+        letter-spacing: 1px;
+        display: flex; justify-content: space-between;
+        flex-wrap: wrap; gap: 8px;
+      }
+      footer a { color: var(--text-muted); text-decoration: none; }
+      footer a:hover { color: var(--accent); }
+
+      /* ══════════════ 动画 ══════════════ */
+      @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+      /* ══════════════ 手机适配 ══════════════ */
+      @media (max-width: 600px) {
+        .main { padding: 80px 16px 60px; }
+        .page-title { font-size: 2.2rem; }
+        .stats-row { overflow-x: auto; padding-bottom: 4px; }
+      }
+
+      /* ── NOISE OVERLAY ── */
+      .noise{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.025;
+        background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)'/%3E%3C/svg%3E")}
+      .light .noise{opacity:.05}
+
+      /* ── STATUS BAR (Glass v5.4) ── */
+      .status-bar{
+        position:fixed;bottom:0;width:100%;z-index:200;
+        background:rgba(12,12,24,.92);backdrop-filter:blur(16px);
+        -webkit-backdrop-filter:blur(16px);
+        border-top:1px solid var(--border);
+        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
+        color:var(--text-faint);letter-spacing:2px;
+        display:flex;justify-content:space-between;align-items:center;
+        transition:background .3s,border-color .3s;
+      }
+      .light .status-bar{background:rgba(240,242,248,.92)}
+      .status-dot{
+        display:inline-block;width:6px;height:6px;
+        background:var(--accent);border-radius:50%;margin-right:8px;
+        animation:pulse 2s infinite;
+      }
+      @keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+    </style>
+
+</head>
+<body>
+<div class="noise"></div>
+  <!-- ══════════════ 头部导航栏（和主页一模一样） ══════════════ -->
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="../news/index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ Academic Radar</div>
+    <h1 class="page-title">LITERATURE SCAN</h1>
+    <p class="page-sub">2026-08-03 · 分析: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6 · 草稿: deepseek-ai/deepseek-v4-flash</p>
+
+    <div class="stats-row">
+      <div>📊 总条目: <span>53</span></div>
+      <div>⭐ 高相关: <span>0</span></div>
+      <div>🔶 中相关: <span>13</span></div>
+    </div>
+
+    
+    
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Surprisal Theory is Tautological (without Rational Grounding)</div>
+        <div class="radar-score">5.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21574v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">该论文对心理语言学中占支配地位的意外性理论(surprisal theory)提出认识论批判。该理论主张：人类对语境中语言单位的处理难度是某语言模型下意外性的仿射函数。作者论证，若无附加约束，这一主张是重言式——对任何语境中的非负难度度量，...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">OpenForgeRL: Train Harness-native Agents in Any Environment</div>
+        <div class="radar-score">4.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21557v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">现代AI Agent依赖Claude Code、Codex等复杂推理harness驱动多轮推理、工具使用与外部系统访问，但这些harness难以用开放基础设施端到端训练，因其SFT/RL栈无法原生表达有状态的多进程harness推理。论文提...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Seeking Help in the Digital Age: A Cross-Platform Analysis of Online Support Systems for Technology-Facilitated Abuse Victims</div>
+        <div class="radar-score">4.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21549v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">技术辅助虐待(TFA)受害者转向在线渠道求助，不同渠道的回应会塑造其风险评估、对虐待的解读与保护行动选择。论文基于r/Stalking十年受害者叙事，用定性编码与监督分类器构建覆盖11类技术滥用的TFA查询数据集，跨三个渠道（网络搜索、同伴...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Benchmarking Agents for Proving Theorems in Quantum Algorithms and Quantum Information</div>
+        <div class="radar-score">3.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21533v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">形式验证对量子计算日益实用，但AI agent在量子算法与量子信息领域构建机器可验证证明的能力未被测量。论文引入Lean-QuantumAlg-Bench与Lean-QIT-Bench两个Lean 4基准（36与40个定理补全任务），所有任...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Thinkink: 2D Spatial Ink-native Interaction with LLMs</div>
+        <div class="radar-score">3.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21468v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">人们常用手写笔记与草图外部化想法以辅助构思。论文提出Thinkink，将LLM集成到手写实践：提示可为手写文本或手绘草图，LLM生成的响应以墨迹风格文本与草图形式空间化集成到共享画布；语义树流线化墨迹解释，轻量UI以状态机提供显式控制。三阶...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">MIRROR: Learning from the Other View for Multi-Modal Reasoning</div>
+        <div class="radar-score">3.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://arxiv.org/pdf/2607.21552v1" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">与LLM的强推理能力不同，视觉语言模型(VLM)在视觉推理上表现挣扎，即使对可等价呈现为文本、图表与图文组合三种视图的几何问题。论文显示这些视图常引发不同行为：模型可能从文本解出问题却无法处理对应图表，或反之，暴露不同视图的互补推理路径与失...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Quantum Superposition of Media Messages: Assessing Sustenance and Collapse Trigger of Contradictory Beliefs Across Climate Change, Political Narratives, and AI Discourses in Nigeria</div>
+        <div class="radar-score">6.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://journal.uny.ac.id/index.php/informasi/article/download/90624/25748" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">论文将量子认知框架应用于媒介信念研究：800名尼日利亚成年人完成量子信念量表(QBS)，测量其对气候变化、政治叙事与AI话语中矛盾陈述的概率化同意程度（信念'叠加'状态）；实验采用混合设计准实验，干预组接受领域特定刺激（IPCC报告、OEC...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">“Robotic answers”: Participatory Identification of Risks in AI-Assisted Interview Training by Job Seekers</div>
+        <div class="radar-score">6.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://doi.org/10.1145/3805689.3812234" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">AI辅助面试培训与招聘系统日益普及，但现有研究多强调模型中心危害，忽视受影响用户自身的风险感知。论文采用参与式方法：20名求职者通过工作坊对拟议的AI驱动反馈设计进行集体反思与同行评审，对评估反馈做归纳主题分析，识别出四类心理风险——沟通同...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">595 PRS-GPT Version1.0: Design and Implementation of a Open Access Specialty-Specific LLM</div>
+        <div class="radar-score">3.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://www.semanticscholar.org/paper/8ee26a64912bc0ae3e8dc1433850ffb31eb44506" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">整形外科医生面临庞大碎片化知识库，通用LLM（如ChatGPT）缺乏专科锚定、无来源归因且易幻觉。论文描述PRS-GPT的开发与早期测试：从PubMed Central整理超6万篇开放获取整形外科文献，经清洗、切分、嵌入后索引至Pineco...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Ascend to Science: Exploration of AI Chips for Scientific Computing</div>
+        <div class="radar-score">3.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://www.semanticscholar.org/paper/00e8ae74ac069e28cd679345e78892651fe4c198" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">AI导向加速器将计算体系重塑为低精度张量引擎，HPC社区需回答：此类硬件在何种条件下可支撑要求数值鲁棒性、不规则访存与可扩展性的科学负载。论文以昇腾910 NPU系列为代表，刻画精度、执行与内存层级三大瓶颈，并在五个应用研究（HPL-MxP...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Avatar beyond replication: digital human thought twins as co-creators through AI mind design in Eastern and Western thought</div>
+        <div class="radar-score">6.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://www.semanticscholar.org/paper/1b24d796fdd2603a00c162c2bc568e36bdbce0f4" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">论文从东方与西方思想传统出发，探讨'数字人类思维孪生'(digital human thought twins)作为共同创造者(co-creators)的概念——超越简单的复制(replication)，通过AI心智设计(AI mind d...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">Frontis-MA1: Training an AI4AI Model towards Recursive Self-Improvement in Machine Learning Engineering</div>
+        <div class="radar-score">6.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://www.semanticscholar.org/paper/58868100128e2fb1d0ee642b5f20bc01bda86b1e" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">递归自我改进(RSI)要求AI系统改进构建AI的过程(AI4AI)，机器学习工程(MLE)提供了可执行的测试床。论文介绍OpenMLE开放全栈系统：含可验证任务环境(OpenMLE-Gym，带执行反馈)、算子学习(OpenMLE-RL)与长...</div>
+      
+      
+      
+      
+    </div>
+    <div class="radar-card">
+      <div class="radar-card-top">
+        <div class="radar-card-title">RSIBench-Data: Benchmarking Data-Centric Research for Recursive Self-Improvement</div>
+        <div class="radar-score">5.0<span>/10</span></div>
+      </div>
+      <div class="radar-card-meta">
+        
+        
+        <a href="https://www.semanticscholar.org/paper/a9b0531a7b0732fdd2a762db51e976b4bff6209a" target="_blank" rel="noopener">↗ PDF/原文</a>
+        
+        
+      </div>
+      <div class="radar-card-body">递归自我改进要求将模型失败证据转化为更好的模型，数据中心后期训练研究涵盖诊断能力缺口、设计并验证训练数据策略、从检查点反馈学习。论文提出RSIBench-Data：以固定后期训练栈受控评测LLM agent作为数据中心研究者的能力——age...</div>
+      
+      
+      
+      
+    </div>
+  </main>
+
+  <!-- ══════════════ 页脚（和主页底部栏视觉统一） ══════════════ -->
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Academic Radar</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ ACADEMIC_PIPELINE · NOMINAL ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+    /* ══════════════ 主题切换（使用和主页同一个 localStorage 键） ══════════════ */
+    (function() {
+      const html = document.documentElement;
+      const btn = document.getElementById('themeBtn');
+      const KEY = 'renegade-theme';   // 和主页保持一致，切换一次全局生效
+
+      // 应用主题：light 或 dark
+      function apply(theme) {
+        html.classList.toggle('light', theme === 'light');
+        localStorage.setItem(KEY, theme);
+      }
+
+      // 优先读取本地存储，否则跟随系统偏好
+      const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      const saved = localStorage.getItem(KEY) || (systemDark ? 'dark' : 'light');
+      apply(saved);
+
+      // 点击按钮切换
+      btn.onclick = function() {
+        const current = html.classList.contains('light') ? 'dark' : 'light';
+        apply(current);
+      };
+    })();
+
+    /* ══════════════ 卡片逐个淡入 ══════════════ */
+    document.querySelectorAll('.card').forEach(function(card, index) {
+      card.style.animationDelay = (index * 0.05) + 's';
+    });
+
+    /* ══════════════ 状态栏轮播 ══════════════ */
+    (function(){
+      const msgs=[
+        'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+        'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+        'STATUS: [ ACADEMIC_PIPELINE: NOMINAL ]',
+        'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+        'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+        'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+        'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+      ];
+      let i=0;
+      const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+      function tick(){
+        st.textContent=msgs[i%msgs.length];i++;
+        tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+      }
+      tick();setInterval(tick,5000);
+    })();
+  </script>
+</body>
+</html>

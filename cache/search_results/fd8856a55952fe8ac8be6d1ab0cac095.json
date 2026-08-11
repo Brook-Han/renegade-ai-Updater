@@ -1,221 +1,134 @@
 {
-  "timestamp": 1782295882.3362849,
+  "timestamp": 1786323262.24604,
   "source": "arxiv",
   "query": "recursive self-improvement AI risk",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.24883v1",
-      "title": "BenchX: Benchmarking AI Models for Cancer Detection and Localization with Demographic and Protocol Biases",
-      "summary": "Artificial intelligence (AI) has achieved remarkable success in medical imaging, but it is widely recognized that these models often perform inconsistently across real-world clinical settings. Such inconsistencies occur when patient demographics and imaging protocols vary, for example, in detecting small tumors, analyzing scans from different contrast phases, or evaluating patients of different ages or sexes. To quantify these inconsistencies, we develop a large-scale, open benchmark of 85,355 CT scans that systematically evaluates 12 tumor-detection AI models across tumor size, location, patient subgroup, and imaging protocol. We leverage large language models (LLMs) to extract and organize subgroup information from clinical data, which makes the analysis both scalable and reproducible. Our benchmark reveals that current state-of-the-art AI models, optimized for average accuracy, perform poorly in rare or underrepresented subgroups, such as young, female African Americans. However, collecting sufficient annotated data for these rare cases is often impractical. The benchmark provides a foundation for building more reliable and robust AI models for tumor detection and highlighting the need for rigorous, subgroup-level evaluation in medical imaging and computer vision. Datasets, code",
-      "published": "2026-06-23T17:58:59+00:00",
-      "url": "https://arxiv.org/pdf/2606.24883v1",
+      "id": "http://arxiv.org/abs/2608.06366v1",
+      "title": "Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering",
+      "summary": "Electronic health record (EHR) feature engineering is a major bottleneck in clinical research and AI, accounting for 39-45% of data scientists' workload. This is especially pronounced in heart failure, which affects an estimated 6.7 million U.S. adults and requires integrating fragmented EHR data with disease-specific, guideline-based clinical reasoning. Existing rule-based and large language model (LLM)-based approaches offer only partial automation with limited maintainability and evidence traceability. We developed the Nimblemind Multi-Agent System (nMAS), an evidence-linked, rubric-grounded pipeline for automated heart-failure feature engineering, and evaluated it on 500 dummy patient records from nine EHR source tables. nMAS generated 132 structured and 70 rubric-scored aggregated features, verified for structural integrity, rubric compliance, and provenance, and audited by a restricted LLM. Adding the aggregated features improved held-out AUROC from 0.895 to 0.963 for HFrEF and 0.870 to 0.910 for HFpEF phenotyping, and an independent LLM-based rubric assessment of evidence support and methodological soundness scored the features at 81.5% of maximum points. These results demonstrate the feasibility of automated, auditable feature engineering for complex cardiovascular EHR data, though evaluation was limited to a single-institution cohort and external validation is needed.",
+      "published": "2026-08-06T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2608.06366v1",
       "authors": [
-        "Qi Chen",
-        "Wenxuan Li",
-        "Pedro R. A. S. Bassi",
-        "Xinze Zhou",
-        "Jakob Wasserthal",
-        "Ibrahim Ethem Hamamci",
-        "Sezgin Er",
-        "Ashwin Kumar",
-        "Yiwen Ye",
-        "Yuhan Wang",
-        "Yuyin Zhou",
-        "Akshay S. Chaudhari",
-        "Curtis Langlotz",
-        "Kang Wang",
-        "Yang Yang",
-        "Alan L. Yuille",
-        "Zongwei Zhou"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24861v1",
-      "title": "First-Order Recoverability Collapse in Self-Referential Information Decoders",
-      "summary": "We study adaptive systems coupling inference to irreversible action under sustained nonequilibrium driving. Treating information processing as a thermodynamic load, we model them as finite-capacity decoders whose irreversible commitments eliminate counterfactual options, and characterize recoverable operation by a feasibility margin and a stability diagnostic fixing when irreversible action is admissible. Under sustained overload -- induced flux exceeding effective integrative capacity -- loss of recoverability and divergence of the diagnostic arise as structural consequences of capacity saturation, independent of optimization objective, control policy, or substrate. Added capacity alone does not restore recoverability: absent certification or gating, higher throughput accelerates non-recoverable loss, with high-throughput AI a concrete application. Making the feedback explicit -- each uncertified commitment spawning on average alpha new candidates -- turns the continuous transition first-order: lucid and collapsed states coexist in a cusp-organized bistable region with closed-form spinodals, collapse pre-empts the continuous divergence at finite stability ratio, recovery is hysteretic, and for alpha >= 1 load reduction alone cannot restore operation. Cascade sizes are bounded by the grounded fraction of input: a genealogy-times-congestion factorization sets a cutoff that grows as grounding shrinks, with the mean-field exponent tau = 3/2 recovered away from the boundary and each cascade carrying a Landauer-priced burst of synthetic entropy; event-driven simulations confirm the cutoff law and phase structure. This supplies the statistical mechanics of the metastable failures seen in distributed systems. The analysis is constraint-based and substrate-agnostic, establishing recoverable dissipation as a necessary criterion for decoder stability in high-flux regimes.",
-      "published": "2026-06-23T17:43:41+00:00",
-      "url": "https://arxiv.org/pdf/2606.24861v1",
-      "authors": [
-        "Pieter van Rooyen"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24855v1",
-      "title": "OpenThoughts-Agent: Data Recipes for Agentic Models",
-      "summary": "Agentic language models dramatically expand the applications of AI yet little is publicly known about how to curate training data for broadly capable agents. Existing open efforts such as SWE-Smith, SERA, and Nemotron-Terminal typically target a single benchmark, leaving open the question of how to train models that generalize across diverse agentic tasks. The OpenThoughts-Agent (OT-Agent) project addresses this gap with a fully open data curation pipeline for training agentic models. We conduct more than 100 controlled ablation experiments to systematically investigate each stage of the pipeline, yielding insights on the importance of task sources and diversity. We then assemble a training set of 100K examples from our pipeline and fine-tune Qwen3-32B on this dataset, which yields an average accuracy of 44.8% across seven agentic benchmarks and a 3.9 percentage point improvement over the strongest existing open data agentic model (Nemotron-Terminal-32B, 40.9%). Moreover, our training data exhibits strong scaling properties, outperforming alternative open datasets at every training set size in compute-controlled comparisons. We publicly release our training sets, data pipeline, experimental data, and models at openthoughts.ai to support future open research on agentic model training.",
-      "published": "2026-06-23T17:34:29+00:00",
-      "url": "https://arxiv.org/pdf/2606.24855v1",
-      "authors": [
-        "Negin Raoof",
-        "Richard Zhuang",
-        "Marianna Nezhurina",
-        "Etash Guha",
-        "Atula Tejaswi",
-        "Ryan Marten",
-        "Charlie F. Ruan",
-        "Tyler Griggs",
-        "Alexander Glenn Shaw",
-        "Hritik Bansal",
-        "E. Kelly Buchanan",
-        "Artem Gazizov",
-        "Reinhard Heckel",
-        "Chinmay Hegde",
-        "Sankalp Jajee",
-        "Daanish Khazi",
-        "Emmanouil Koukoumidis",
-        "Xiangyi Li",
-        "Hange Liu",
-        "Shlok Natarajan",
-        "Harsh Raj",
-        "Nicholas Roberts",
-        "Ethan Shen",
-        "Nishad Singhi",
-        "Michael Siu",
-        "Ashima Suvarna",
-        "Hanwen Xing",
-        "Patrick Yubeaton",
-        "Robert Zhang",
-        "Leon Liangyu Chen",
-        "Xiaokun Chen",
-        "Steven Dillmann",
-        "Saadia Gabriel",
-        "Xunyi Jiang",
-        "Anurag Kashyap",
-        "Boxuan Li",
-        "Yein Park",
-        "Minh Pham",
-        "Sujay Sanghavi",
-        "Lin Shi",
-        "Ke Sun",
-        "Yixin Wang",
-        "Zhiwei Xu",
-        "Erica Zhang",
-        "Siyan Zhao",
-        "Wanjia Zhao",
-        "Jenia Jitsev",
-        "Alex Dimakis",
-        "Benjamin Feuer",
-        "Ludwig Schmidt"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24854v1",
-      "title": "It's Complicated: On the Design and Evaluation of AI-Powered AAC Interfaces",
-      "summary": "Artificial intelligence (AI) can enhance what people who use augmentative and alternative communication (AAC) are able to do with their systems. However, evaluating AI-powered AAC interfaces can be difficult. People are intersectional beings and current evaluation metrics can struggle to capture the multifaceted and nuanced desires people may have for their AAC. We explore the complicated nature of six AAC problem spaces, explore how AI might be used in these spaces, and suggest more robust methods of evaluation that take the intersectional nuances of people into account. We also discuss broader issues that arise across these problem spaces and how they could be addressed using our proposed evaluation methods.",
-      "published": "2026-06-23T17:34:18+00:00",
-      "url": "https://arxiv.org/pdf/2606.24854v1",
-      "authors": [
-        "Blade Frisch",
-        "Will Wade",
-        "Dylan Gaines",
-        "Michelle Kinsella",
-        "Betts Peters",
-        "Tamara Broderick",
-        "Keith Vertanen"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24839v1",
-      "title": "Grading the Grader: Lessons from Evaluating an Agentic Data Analysis System",
-      "summary": "Agentic data analysis systems produce rich outputs, including code, numerical results, and verbal diagnostics. This makes them more challenging to evaluate than single-turn LLM responses. It is therefore necessary to distinguish genuine disagreement between an agent's output and a ground-truth answer from grading artifacts. We investigate how reliably automated graders assess such a system and what strategies improve grading quality by applying LAMBDA, a multi-agent data-analysis system, on 153 numerical QRData tasks from DSGym. We develop and evaluate a three-layer human-AI grading cascade: strict regex matching, LLM-based lenient grading, and snippet-based human inspection, which combines non-GenAI and GenAI strategies with different failure profiles. Both automated graders achieve 100% observed precision (0/70 false positives). The lenient grader's recall is 97% against human labels. A keyword-anchored extraction pipeline raises the strict grader's recall by 60 percentage points over a last-number heuristic; the lenient grader is architecturally parser-independent. An iterative nudge mechanism raises grading run success from 36% to 97% and lenient-pass rates from 16% to 46%; comparing nudging with and without original-question re-injection shows that re-injection offers no benefit, confirming the nudge as an answer template cue. We further observe in this case study that variable type is the task metadata field most consistently associated with grading pipeline dynamics and observed outcome grades.",
-      "published": "2026-06-23T17:18:28+00:00",
-      "url": "https://arxiv.org/pdf/2606.24839v1",
-      "authors": [
-        "Tian Zheng",
-        "Kai-Tai Hsu"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24826v1",
-      "title": "Virtual Simulation for Mental Health",
-      "summary": "Poorly designed interventions or those deployed without adequate safeguards can harm the communities they aim to serve, thus exacerbating existing vulnerabilities and leaving individuals unsupported. This is especially the case for the mental health context, where there is a growing trend of relying on technological interventions due to their accessibility and ability to deliver large-scale support. However, the mental health context is also particularly sensitive to change and risks of failure are dire; at their worst, failures in mental health interventions can result in lasting negative outcomes for individuals and tragic losses as people fall through the cracks. Thus, enabling safe ways to experiment in the mental health context is vital to allow both individuals and communities to engage with new interventions without risk of their real-world consequences. Virtual simulation, which uses virtual environments to replicate real-world interactions, processes, and behaviors, offers a promising opportunity for enabling safe, controlled experimentation with its ability to accurately replicate social situations, fears, stressors, and the potential outcomes of specific interactions. This work explores how simulation approaches can support emerging mental health processes through (1) evaluating community-level outcomes using agent-based modeling and (2) individual training in the mental health context through embodied, controlled spaces. I demonstrate this use of virtual simulation systems through a grounded human-centered approach, where system design is guided by empirical understanding of current real-world needs and challenges. By leveraging simulation to create environments where mental health strategies can be safely tested and practiced, this work aims to open new possibilities for designing scalable, user-centered systems that are effective and safe.",
-      "published": "2026-06-23T17:11:09+00:00",
-      "url": "https://arxiv.org/pdf/2606.24826v1",
-      "authors": [
-        "Anna Fang"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24805v1",
-      "title": "DDStereo: Efficient Dual Decoder Transformers for Stereo 3D Road Anomaly Detection",
-      "summary": "Stereo-based 3D object detection still faces two critical safety challenges: real-time performance and open-set generalization. Existing stereo 3D methods typically achieve twice the accuracy of monocular methods but suffer from significantly lower inference speeds, making them unsuitable for real-time applications. Meanwhile, recent advances in open-world detection have introduced open-set and open-vocabulary algorithms in monocular 2D and 3D settings, yet stereo-based open-set detection remains largely unexplored. To bridge this gap, we propose DDStereo, a novel Dual-Decoder Stereo Transformer for real-time open-set 3D object detection. DDStereo features two lightweight decoder branches: one for open-set foreground 2D detection and the other for 3D attribute regression. These decoders share object-level queries to achieve unified target-level alignment. To enhance inference efficiency, we designed a compact disparity feature extractor and a streamlined decoder architecture. Experiments on public stereo 3D benchmarks demonstrate that DDStereo achieves state-of-the-art accuracy under both closed-set and open-set protocols. Notably, our method surpasses existing stereo 3D detectors in inference speed and, for the first time, achieves real-time performance comparable to monocular approaches.",
-      "published": "2026-06-23T16:54:11+00:00",
-      "url": "https://arxiv.org/pdf/2606.24805v1",
-      "authors": [
-        "Shiyi Mu",
-        "Zichong Gu",
-        "Zhiqi Ai",
-        "Yilin Gao",
-        "Shugong Xu"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24781v1",
-      "title": "Assessing Distribution Shift in Human Activity Recognition for Domain Generalization",
-      "summary": "While the field of Human Activity Recognition (HAR) continues to draw interest from researchers and advance in important ways, some key challenges remain. One of the most difficult aspects of building HAR models that show good performance in real-world settings is dealing with data diversity from device and sensor heterogeneity, and contextual changes that are intrinsic to real-world applications. While data diversity in HAR has been well-acknowledged in the literature, there remains a gap in understanding the effect of various types of distribution shifts on HAR models and the domain generalization problem that arises. Towards that end, this paper systematically evaluates 4 different types of distribution shifts, including variations in device type, sensor placement, sampling rate, and user behavior. Quantifying their effects, we illustrate that diversity shifts predominantly define all types of shifts, indicating the existence of unique features that are not shared across different domains. We then introduce a uniform HAR-based distribution shift benchmarks and conduct a comprehensive evaluation of up to 28 domain generalization methods. Our analysis exposes the limitations of current domain generalization algorithms in achieving model generalizability, marginally outperforming the empirical risk minimization baseline. This work represents the first systematic exploration of domain generalization and adaptation concerning specific distribution shifts in sensor-based HAR, offering an open-source benchmark platform and datasets to spur further research.",
-      "published": "2026-06-23T16:40:05+00:00",
-      "url": "https://arxiv.org/pdf/2606.24781v1",
-      "authors": [
-        "Rebecca Adaimi",
-        "Edison Thomaz"
-      ],
-      "source": "arxiv"
-    },
-    {
-      "id": "http://arxiv.org/abs/2606.24780v1",
-      "title": "BluTrain: A C++/CUDA Framework for AI Systems",
-      "summary": "Progress in deep learning is, at scale, more a matter of systems engineering than of modelling: the behaviour of a model in training (its throughput, its memory footprint, and the numerical fidelity of the result) is determined less by the architecture itself than by how that architecture is expressed on the hardware. To achieve absolute control over this hardware expression while abstracting away systems complexity to make modelling seamless and eliminating the need for repetitive orchestration logic, BluTrain was architected from first principles as a robust, lightweight, and architecture-general training framework in standard C++ and the core CUDA programming model. Every layer is implemented natively: a typed tensor module with reverse-mode autograd, a linear-algebra library, a caching allocator, a multi-mode distributed-execution module, and an MLIR-based deep-learning compiler. In formal evaluations training a 124M-parameter GPT-2 baseline in FP32 on an 8-GPU 6000 Ada system, BluTrain outperforms industry-standard baselines in both throughput (sustaining an average of 407K tokens/s versus PyTorch's 395K tokens/s) and memory efficiency (achieving up to a 22% footprint reduction), while strictly preserving numerical fidelity and converging to a marginally lower final validation loss. With every layer explicitly open to native tuning, the performance ceiling is the framework's own to raise.",
-      "published": "2026-06-23T16:39:25+00:00",
-      "url": "https://arxiv.org/pdf/2606.24780v1",
-      "authors": [
-        "Adhitya Charan",
-        "Adwaid Suresh",
-        "Anuj Kumar",
-        "Aparna A",
-        "Dhanakumar K",
-        "Dharun M S",
-        "Dinesh G",
-        "Goutham Kumar Reddy K",
-        "Harshini V M",
-        "Jenifa D",
-        "Jona Delcy C A",
-        "Kathirvel S",
-        "Killi Uma Maheswara Rao",
-        "Kiruthik Kanna M",
-        "Kurra Vishnu Sai",
-        "Madhumithaa G K",
+        "Soorya Ram Shimgekar",
+        "Michelle Hu",
+        "Dorisa Shehi",
+        "Daniel Kang",
+        "Roy Ka-Wei Lee",
+        "Koustuv Saha",
+        "Christian Poellabauer",
+        "Christopher Lee",
+        "Sajeev Singh",
+        "Piyum Zonooz",
         "Navin Kumar",
-        "Ram Charan Golla",
-        "Revathi T",
-        "Rishikkanth R",
-        "Sanjay Krishna M",
-        "Surendra Vendra"
+        "Zeeshan Ahmed",
+        "Priyadarshini Kachroo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24773v1",
-      "title": "Posterior Refinement: Fast Language Generation via Any-Order Flow Maps",
-      "summary": "Non-autoregressive generation offers a powerful paradigm for iterative refinement, allowing models to recursively critique, erase and regenerate arbitrary subsets of tokens. However, existing non-autoregressive models fail to realize this potential. Masked Diffusion Models (MDMs) suffer from factorization error, causing sample quality to collapse when generating multiple tokens simultaneously. Flow Map Language Models (FMLMs) circumvent this bottleneck via joint sequence transport for excellent few-step generation, but sacrifice the inference-time flexibility of MDMs. We introduce FMLM+, a framework that bridges this gap by equipping FMLM with masking-style noise schedules. While generating the full sequence in a single step, FMLM+ simultaneously scores the global consistency of each token a posteriori. We leverage this to introduce Posterior Refinement, a novel inference-time refinement strategy that enables the model to adaptively self-correct its outputs, matching the performance of discrete baselines with 32x fewer NFEs. Across diverse benchmarks, we demonstrate that FMLM+ with Posterior Refinement improves the speed--quality tradeoff over both MDM and FMLM families, providing a scalable foundation for high-fidelity language modeling.",
-      "published": "2026-06-23T16:33:13+00:00",
-      "url": "https://arxiv.org/pdf/2606.24773v1",
+      "id": "http://arxiv.org/abs/2608.06364v1",
+      "title": "Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria",
+      "summary": "The use of e-commerce mobile applications is expanding in Nigeria, creating both opportunities and risks, including fraud and reduced user control over digital technologies, raising concerns about digital sovereignty. This research examines how Artificial Intelligence (AI) in Nigerian mobile applications affects digital sovereignty, examined through platform transparency as a key indicator of user awareness and control. Using an interpretive approach, the research combines the forensic analysis of selected Android applications with contextual document analysis to identify AI features and evaluate disclosure practices. The findings show that AI is widely implemented in the applications, yet transparency about its use remains limited. A socio-economic analysis of Nigeria further shows an increasing dependence on consumer digital platforms, moderate AI awareness, and uneven patterns of interaction. By providing empirical evidence on AI transparency and platform practices, this study advances understanding of individual digital sovereignty and highlights challenges for protecting user control in AI-driven digital environments.",
+      "published": "2026-08-06T17:57:28+00:00",
+      "url": "https://arxiv.org/pdf/2608.06364v1",
       "authors": [
-        "Manan Agarwal",
-        "Sheel Shah",
-        "Chanhyuk Lee",
-        "Jaehoon Yoo",
-        "Jerry Huang",
-        "Seunghoon Hong",
-        "Aditi Raghunathan",
-        "Jinwoo Kim",
-        "Nicholas M. Boffi"
+        "George Grispos",
+        "Sajda Qureshi"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06363v1",
+      "title": "An Optimal Agnostic PAC Algorithm",
+      "summary": "Let $H\\subseteq\\{-1,+1\\}^X$ be a class of finite VC dimension $d\\ge1$. Writing $L$ for the binary risk and $L^*=\\min_{h\\in H}L(h)$, we construct a learner achieving the statistically optimal risk bound: from an i.i.d.\\ sample of size $n$, for every $0<δ\\le 1/2$, with probability at least $1-δ$, \\[   L(\\widehat h)   \\le L^*+ 7\\cdot10^8\\left(   \\sqrt{\\frac{L^*(d+\\log(1/δ))}{n}}   +\\frac{d+\\log(1/δ)}{n}   \\right). \\] This settles the sample complexity of agnostic PAC learning up to universal constants at every fixed $L^*$, matching the lower bounds of Devroye, Györfi, and Lugosi [A Probabilistic Theory of Pattern Recognition, Springer, 1996].",
+      "published": "2026-08-06T17:57:25+00:00",
+      "url": "https://arxiv.org/pdf/2608.06363v1",
+      "authors": [
+        "Markus Engelund Mathiasen",
+        "Jian Qian",
+        "Nikita Zhivotovskiy"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06353v1",
+      "title": "Resourced Authority A Mechanism-Design Model for Participatory Governance of Deployed AI Agents",
+      "summary": "We give a formal mechanism design model for the continuous participatory governance of a deployed AI agent. The mechanism is built on the principle that governance should control an AI agent through resource allocation so as to make authorization self enforcing via compute budgets. The mechanism seeks to establish the Safe AI paradigm that compute is an effective governance lever. We situate our work as a compliance or commons overlay on a deployer. One governance period is an extensive form game in which verified human stakeholders arrive sequentially and contribute, on a provision or a rejection market, in a governance currency that is deliberately distinct from the agents compute. A funding aggregator turns raw contributions into breadth weighted effective supports - a two threshold gate with hysteresis converts net support into a binary authorization that, through a coupling map bounded by an exogenously certified safety ceiling, releases a metered compute budget - realized in hardware as a signed compute license so that the decision is self-enforcing. We characterize the class of agents the mechanism can govern and isolate manipulation of the governing electorate by the governed agent as the central open problem. We also introduce several challenges addressing manipulation of governing electorate by the governed agents.",
+      "published": "2026-08-06T17:53:24+00:00",
+      "url": "https://arxiv.org/pdf/2608.06353v1",
+      "authors": [
+        "Praphul Chandra",
+        "Sujit Gujar",
+        "Ganesh Ghalme"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06351v1",
+      "title": "Challenges in Evaluating Explanation Methods for Static and Evolving Data",
+      "summary": "This paper addresses the limitations of Explainable Artificial Intelligence (XAI) with respect to insufficient evaluation. They are illustrated through the DetoxAI image recognition system for bias detection and concept unlearning. Then, an example of a human-grounded evaluation of methods for explaining image classification is presented. The paper further explores methods for adapting explanations to evolving data streams with concept drift. Experiences with adapting counterfactuals for this problem are discussed. Finally it is related to the challenges of tracking the co-evolution of data, models, and explanations.\\footnote{This paper has been accepted for a publication in J.Nalepa (ed) Explainable AI in Space. Proceedings of EASi 2026 Workshop at IJCAI-ECAI 2026 Bremen, Springer CCIS vol 3107 (2016).}",
+      "published": "2026-08-06T17:53:10+00:00",
+      "url": "https://arxiv.org/pdf/2608.06351v1",
+      "authors": [
+        "Jerzy Stefanowski"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06348v1",
+      "title": "Width Laws and Spectral Geometry",
+      "summary": "We develop a common framework for random width laws, spectral populations, and geometric reconstruction. For a $d$-dimensional orthotope, we prove an exact parity law for the maximal $π^{-1}$-grade of every spherical width cumulant, including noncancellation and sign in all dimensions and orders. The first $d$ scalar width moments recover the unordered side vector, and $d-1$ moments are generically insufficient. Each Laplace mode generates an auxiliary width law whose upper endpoint satisfies $M_{n,a} = λ_n(a)^{1/2}/π$. At high energy the modal coordinate partitions converge to a universal Dirichlet law, while an unsmoothed measure-valued cutoff expansion retains the first geometric memory at face scale. Its simplex moment determines, up to an explicit nonzero factor and a separate off-diagonal argument, a basis-independent projector-gradient Weyl tensor that reconstructs the orthotope. Genuine edge-scale jumps obstruct a third coefficient for the total raw cutoff; exact mixed-boundary Mobius inversion isolates every coordinate stratum and restores a recursive bulk-boundary expansion with a smaller remainder. Beyond orthotopes, we prove direction-labelled identifiability for a canonical linear-quadratic class and finite recovery from direction-sensitive ridge moments under a generator bound. In dimension three, a global great-circle incidence calculus gives the exact step, fold, endpoint-fold, and corner coefficients of reduced zonotopal width densities, including an explicit non-simple corner cancellation. The results distinguish universal aggregation, recoverable geometric memory, and the remaining scalar inverse problem.",
+      "published": "2026-08-06T17:52:19+00:00",
+      "url": "https://arxiv.org/pdf/2608.06348v1",
+      "authors": [
+        "Omri Abas"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06337v1",
+      "title": "Optimal Rates for Learning with Monotone Adversaries",
+      "summary": "A monotone adversary observes an i.i.d. labeled sample and appends a finite number of further examples of its choice, every one of them labeled correctly by the target hypothesis. The learner sees a uniform shuffle of the combined sample and is scored on the original distribution. Every example is correctly labeled, but the insertions depend on the clean sample, so the combined sample is not exchangeable. Larsen, Pabbaraju, and Shetty, who introduced this model, showed that empirical risk minimization attains expected error $O((d/n)\\log(n/d))$ for classes of VC dimension $d$, and that every known optimal learner can be pushed away from the $Θ(d/n)$ rate, optimal for PAC learning. They asked whether the extra logarithm is an artifact of those particular algorithms or an inherent consequence of the lack of exchangeability.   We show that this additional cost is inherent beyond VC dimension one. In the worst case over classes of VC dimension $d$ and over known finite insertion budgets, the minimax expected error is $Θ(1/n)$ at $d=1$ and $Θ((d/n)\\log(n/d))$ for $d\\geq 2$. The same rates hold with Littlestone dimension $d_{\\mathrm L}$ in place of $d$, so the clean online-to-batch rate $O(d_{\\mathrm L}/n)$ is unattainable as well. Thus, somewhat counterintuitively, adding correctly labeled examples can make learning harder by a logarithmic factor, even for classes that admit finite mistake bounds in online learning. The dimension-one upper bound is achieved by a simple improper learner whose analysis adapts the leave-one-out argument underlying the one-inclusion graph. All of our lower bounds are elementary and come from a single construction: an explicit class and prior on which two target hypothesis, which differ a point of nonnegligible mass, produce the same sample.",
+      "published": "2026-08-06T17:45:32+00:00",
+      "url": "https://arxiv.org/pdf/2608.06337v1",
+      "authors": [
+        "Anay Mehrotra"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06334v1",
+      "title": "A Regression-Based Framework for the ACF, PACF, Durbin-Levinson Recursion, and One-Step-Ahead Prediction",
+      "summary": "The autocorrelation function (ACF) and partial autocorrelation function (PACF) are foundational tools for identifying autoregressive moving-average (ARMA) models, yet they are often introduced to students as computational recipes disconnected from the regression framework students already know. This note develops a unified, regression-based instructional framework for the ACF, the PACF, the Durbin-Levinson recursion, and one-step-ahead prediction in stationary time series. We show that the ACF is precisely the coefficient from a simple linear regression of a stationary process on one of its own lags, that the PACF is the coefficient on the newest lag in an expanding multiple regression model, and that the Durbin-Levinson recursion is nothing more than a sequence of partial regressions, each expressible using ordinary least-squares identities from a first course in regression. Worked examples for the MA(1) and AR(1) processes illustrate how the tailing-off and cutting-off behavior of the ACF and PACF emerge directly from this viewpoint. We argue that this framing lowers the conceptual barrier between regression courses and time series courses and provide classroom-oriented suggestions for instruction.",
+      "published": "2026-08-06T17:40:59+00:00",
+      "url": "https://arxiv.org/pdf/2608.06334v1",
+      "authors": [
+        "Kellen Gong",
+        "Fang Li"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06322v1",
+      "title": "From Precision Medicine to Precision Education: A Vision for AI-Powered Student Digital Twins, Preventive Student Success, and Career-Aligned Academic Pathways",
+      "summary": "Higher education remains largely reactive in its approach to student success. Institutions frequently identify academic problems only after students have failed courses, fallen behind in degree progression, accumulated excessive debt, or departed without a credential. Healthcare faced a similar challenge decades ago. It responded by shifting from reactive treatment to preventive care powered by predictive models, risk stratification, electronic health records, and artificial intelligence (AI). This paper argues that higher education stands at an analogous inflection point. Drawing on advances in learning analytics, educational data mining, machine learning, workforce analytics, and digital twin technologies, we propose a paradigm we call Precision Education. Under this framework, AI continuously analyzes academic, behavioral, financial, and career data to identify emerging risks, recommend personalized interventions, optimize educational pathways, and align academic decisions with long-term career success. Central to the model is the Student Digital Twin, a continuously updated representation of a learner that can simulate multiple educational futures and intervention scenarios. We ground the vision in evidence from early deployments such as Course Signals at Purdue and GPS Advising at Georgia State University. We also argue that prediction alone is insufficient. The central methodological challenge is the move from prediction to causal, actionable intervention. The paper presents a conceptual framework, examines enabling technologies, reviews the empirical record and its limits, analyzes ethical and governance implications, and outlines a research agenda for the next decade of AI-enabled higher education.",
+      "published": "2026-08-06T17:36:56+00:00",
+      "url": "https://arxiv.org/pdf/2608.06322v1",
+      "authors": [
+        "Kaushik Dutta"
+      ],
+      "source": "arxiv"
+    },
+    {
+      "id": "http://arxiv.org/abs/2608.06317v1",
+      "title": "Sharp Tail Bounds Beyond Twice the Mean",
+      "summary": "Consider $n$ independent, non-negative, mean at most one random variables, $X_1,X_2,\\ldots$. We show the following bound on the probability of their sum exceeding a threshold $t$:   \\[   \\mathbb{P}\\left[\\sum_{i=1}^n X_i\\ge t\\right] \\leq 1-\\left(1-\\frac{1}{t}\\right)^n \\text{ for all } t\\ge 2n+1 \\,.   \\] To prove this, we consider a relaxed optimization problem over a set of sequences of ordered, but non-independent random variables. This allows us to reformulate it recursively as dynamic programming problem. The bound becomes an equality for the binary i.i.d.~random variables satisfying $\\mathbb{P}\\left[X_i=0\\right]= 1-\\frac{1}{t}$ and $\\mathbb{P}\\left[X_i=t\\right]=\\frac{1}{t}$, which remains the maximizer in the relaxed problem.",
+      "published": "2026-08-06T17:31:10+00:00",
+      "url": "https://arxiv.org/pdf/2608.06317v1",
+      "authors": [
+        "Philipp Strack",
+        "Jannik M. Westermann"
       ],
       "source": "arxiv"
     }

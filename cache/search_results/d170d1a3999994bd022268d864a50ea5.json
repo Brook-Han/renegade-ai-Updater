@@ -1,5 +1,5 @@
 {
-  "timestamp": 1782295945.416137,
+  "timestamp": 1786323532.351232,
   "source": "semantic_scholar",
   "query": "LLM sycophancy user satisfaction optimization",
   "results": [
@@ -8,11 +8,25 @@
       "title": "LLM-Enhanced Reinforcement Learning for Long-Term User Satisfaction in Interactive Recommendation",
       "summary": "Interactive recommender systems can dynamically adapt to user feedback, but often suffer from content homogeneity and filter bubble effects due to overfitting short-term user preferences. While recent efforts aim to improve content diversity, they predominantly operate in static or one-shot settings, neglecting the long-term evolution of user interests. Reinforcement learning provides a principled framework for optimizing long-term user satisfaction by modeling sequential decision-making processes. However, its application in recommendation is hindered by sparse, long-tailed user-item interactions and limited semantic planning capabilities. In this work, we propose LLM-Enhanced Reinforcement Learning (LERL), a novel hierarchical recommendation framework that integrates the semantic planning power of LLM with the fine-grained adaptability of RL. LERL consists of a high-level LLM-based planner that selects semantically diverse content categories, and a low-level RL policy that recommends personalized items within the selected semantic space. This hierarchical design narrows the action space, enhances planning efficiency, and mitigates overexposure to redundant content. Extensive experiments on real-world datasets demonstrate that LERL significantly improves long-term user satisfaction when compared with state-of-the-art baselines. The implementation of LERL is available at https://github.com/1163710212/LERL.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/b4a0c55d51b9aaa690ed86775cf33bbb9181d86d",
+      "url": "https://arxiv.org/pdf/2601.19585",
       "authors": [
         "Chongjun Xia",
         "Yanchun Peng",
         "Xianzhi Wang"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
+      "id": "c26d697b5acfa09f4483ebd061a2d31780d34348",
+      "title": "G-CoS: An Interpretable Gain-Cost Framework for User Satisfaction Estimation in Generative Information Retrieval",
+      "summary": "User satisfaction serves as a key indicator of search experience in Generative Information Retrieval (GenIR) systems, and its accurate estimation is essential for system optimization. Extensive research in traditional IR has established interaction signals (e.g., dwell time, clicks, query reformulations) as reliable indicators of user satisfaction. However, prevailing approaches for satisfaction estimation in GenIR (e.g., LLM-as-a-judge) primarily rely on textual content and fail to account for user interactions during the search process. In this work, empirical analysis of real-world data shows that user satisfaction correlates negatively with interaction signals reflecting interaction cost, and positively with response quality. Building on these findings, we propose the Gain-aware Cost-sensitive Satisfaction estimator (G-CoS), an interpretable gain-cost framework for user satisfaction estimation in GenIR. G-CoS models user satisfaction as a dynamic trade-off between Response Quality and multidimensional Interaction Cost. Experimental results demonstrate that G-CoS outperforms LLM-as-a-judge methods, interaction sequence models, as well as machine learning models using the same gain and cost features. Moreover, the learned parameters reveal interpretable associations between gain-cost dynamics and user satisfaction. This work contributes an interpretable framework for user satisfaction estimation and offers insights for GenIR system optimization.",
+      "published": "2026",
+      "url": "https://doi.org/10.1145/3805712.3809934",
+      "authors": [
+        "Jia-Ling Shi",
+        "Zhijing Wu",
+        "Yidong Liang",
+        "Xian-Ling Mao"
       ],
       "source": "semantic_scholar"
     },
@@ -28,6 +42,18 @@
       "source": "semantic_scholar"
     },
     {
+      "id": "8074cf7d5557cb567242f8536273e8ac0d6ad495",
+      "title": "LLM-Enabled User Semantic Driven Coordinated Scheduling Framework for PV–Storage–Charging Microgrids",
+      "summary": "The complex multi-objective coupling characteristics inherent to photovoltaic (PV)-storage-charging microgrids present unprecedented challenges for dynamic energy scheduling. Existing reinforcement learning methods often exhibit limitations in modeling subjective user heterogeneity and algorithm adaptivity. This paper proposes a Large Language Model (LLM)-enhanced Proximal Policy Optimization (LLM-PPO) framework to address the aforementioned issues. The proposed method integrates the semantic parsing capability of LLMs with the continuous control capability of PPO. Specifically, the LLM-driven module transcribes qualitative user requirements into structured multi-dimensional semantic vectors, while a dynamic reward engine adaptively modulates penalty coefficients based on these individual semantic features— greatly enhancing the policy's preference-awareness and multi-objective coordination. Simulation results demonstrate that LLM-PPO improves the convergence reward plateau by 20%, enhances electric vehicle (EV) satisfaction by 27%, and simultaneously decreases grid security penalties by 9%. Furthermore, the proposed framework also exhibits superior peak-shaving efficacy and scheduling robustness against daily operational stochasticity.",
+      "published": "2026",
+      "url": "https://www.semanticscholar.org/paper/8074cf7d5557cb567242f8536273e8ac0d6ad495",
+      "authors": [
+        "Zhao Yang",
+        "Chengjie Dai"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
       "id": "9bc381c569f53d87d03a8fd0c3f893958cf1a3eb",
       "title": "Development of a Human–Computer Interaction System and Machine Learning-based User Satisfaction Prediction",
       "summary": "Human–Computer Interaction (HCI) has become an important research area in modern society. However, traditional interaction platforms often face problems such as limited adaptability, low interactivity, and lack of personalized responses, which reduce user engagement and learning efficiency. With the rapid development of artificial intelligence and large language models (LLMs), it is now possible to design more intelligent and responsive digital systems. This study presents the development of an intelligent HCI system that integrates LLM-based dialogue generation and digital human technologies for interactive learning. The system enables real-time conversation, scene-based teaching, and automatic evaluation to improve communication. To assess its effectiveness, a questionnaire survey was conducted in more than ten primary schools, and the collected data were analyzed using six machine learning models to predict user satisfaction. Among them, the Support Vector Machine (SVM) achieved the highest accuracy (0.8108) and F1-score (0.8111). The results indicate that combining intelligent dialogue systems with machine learning-based satisfaction prediction can effectively enhance user experience and optimize adaptive interactions.",
@@ -36,39 +62,6 @@
       "authors": [
         "Siyuan Zhang",
         "Ying Tang"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "72d05cb6336a6fd66bb65456aaddf460d1174511",
-      "title": "SafeCRS: Personalized Safety Alignment for LLM-Based Conversational Recommender Systems",
-      "summary": "Current LLM-based conversational recommender systems (CRS) primarily optimize recommendation accuracy and user satisfaction. We identify an underexplored vulnerability in which recommendation outputs may negatively impact users by violating personalized safety constraints, when individualized safety sensitivities -- such as trauma triggers, self-harm history, or phobias -- are implicitly inferred from the conversation but not respected during recommendation. We formalize this challenge as personalized CRS safety and introduce SafeRec, a new benchmark dataset designed to systematically evaluate safety risks in LLM-based CRS under user-specific constraints. To further address this problem, we propose SafeCRS, a safety-aware training framework that integrates Safe Supervised Fine-Tuning (Safe-SFT) with Safe Group reward-Decoupled Normalization Policy Optimization (Safe-GDPO) to jointly optimize recommendation quality and personalized safety alignment. Extensive experiments on SafeRec demonstrate that SafeCRS reduces safety violation rates by up to 96.5% relative to the strongest recommendation-quality baseline while maintaining competitive recommendation quality. Warning: This paper contains potentially harmful and offensive content.",
-      "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/72d05cb6336a6fd66bb65456aaddf460d1174511",
-      "authors": [
-        "Haochang Hao",
-        "Yifan Xu",
-        "Xinzhuo Li",
-        "Yingqiang Ge",
-        "Lu Cheng"
-      ],
-      "source": "semantic_scholar"
-    },
-    {
-      "id": "41aec873b8af8696838c7d6a6b9ad94ed1159c6a",
-      "title": "InteriorAgent: LLM Agent for Interior Design-Aware 3D Layout Generation",
-      "summary": "Creating interior layout designs has numerous applications, including virtual reality, architectural visualization and real estate planning. Generating realistic and functional indoor scenes requires a nuanced understanding of spatial configurations and human-centered design principles. We propose InteriorAgent, an LLM-agent-driven framework for text-to-3D indoor scene generation that produces scenes with visual quality and functional utility that significantly surpass prior works. We achieve this through several key advantages of InteriorAgent: (1) encoding of interior design principles with a novel scene description language, (2) aesthetics and functionality through synthesis tools that satisfy design principles, (3) realism and prompt adherence with optimization tools that ensure ergonomics and iterative constraint satisfaction, (4) extensibility with a framework that allows incorporating even mature, complex tools like diffusion models, LLMs and 3D generation repositories. We evaluate InteriorAgent through a user study, where participants strongly favor its generated scenes over prior state-of-the-art methods. Additionally, we demonstrate novel applications uniquely enabled by InteriorAgent, including language-based scene editing and seamless tool integration for new tasks. Code and data will be publicly released.",
-      "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/41aec873b8af8696838c7d6a6b9ad94ed1159c6a",
-      "authors": [
-        "Kunal Gupta",
-        "Ishit Mehta",
-        "Kun-Chi Wang",
-        "Nicholas Chua",
-        "Abhimanyu Krishna",
-        "Yanjie Deng",
-        "Ravi Ramamoorthi",
-        "M. Chandraker"
       ],
       "source": "semantic_scholar"
     }

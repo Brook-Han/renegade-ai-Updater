@@ -1,152 +1,152 @@
 {
-  "timestamp": 1782295742.276248,
+  "timestamp": 1786323128.597038,
   "source": "arxiv",
   "query": "LLM sycophancy user satisfaction optimization",
   "results": [
     {
-      "id": "http://arxiv.org/abs/2606.24883v1",
-      "title": "BenchX: Benchmarking AI Models for Cancer Detection and Localization with Demographic and Protocol Biases",
-      "summary": "Artificial intelligence (AI) has achieved remarkable success in medical imaging, but it is widely recognized that these models often perform inconsistently across real-world clinical settings. Such inconsistencies occur when patient demographics and imaging protocols vary, for example, in detecting small tumors, analyzing scans from different contrast phases, or evaluating patients of different ages or sexes. To quantify these inconsistencies, we develop a large-scale, open benchmark of 85,355 CT scans that systematically evaluates 12 tumor-detection AI models across tumor size, location, patient subgroup, and imaging protocol. We leverage large language models (LLMs) to extract and organize subgroup information from clinical data, which makes the analysis both scalable and reproducible. Our benchmark reveals that current state-of-the-art AI models, optimized for average accuracy, perform poorly in rare or underrepresented subgroups, such as young, female African Americans. However, collecting sufficient annotated data for these rare cases is often impractical. The benchmark provides a foundation for building more reliable and robust AI models for tumor detection and highlighting the need for rigorous, subgroup-level evaluation in medical imaging and computer vision. Datasets, code",
-      "published": "2026-06-23T17:58:59+00:00",
-      "url": "https://arxiv.org/pdf/2606.24883v1",
+      "id": "http://arxiv.org/abs/2608.06377v1",
+      "title": "Learning When to Trust via Selective Context Preference Optimization",
+      "summary": "Language models increasingly condition their answers on external signals, and a single misleading one can turn a correct answer wrong. The obvious remedy, training models to resist such signals, hides a failure mode: a model that ignores all context looks robust yet is useless when the context is worth trusting. We recast the problem as selective trust and introduce MIST, a human-annotated benchmark that renders each reasoning item under four matched conditions (clean, misleading, correct-context, and irrelevant-context), together with SC2W, a paired metric counting how often a misleading signal flips a clean-correct answer to wrong. Across a comprehensive benchmark study, we observe that such a susceptibility is universal. We then propose SCOPE, which mines clean-correct/misleading-wrong failures and optimizes a standard Direct Preference Optimization (DPO) objective over matched preference pairs balanced equally across all four conditions, rather than over misleading items alone. Our approach substantially reduces SC2W on popular open-sourced models while preserving accuracy when the added context is clean, correct, or irrelevant. With this work, we argue that models should be judged on selective trust, not on resistance alone.",
+      "published": "2026-08-06T17:59:58+00:00",
+      "url": "https://arxiv.org/pdf/2608.06377v1",
       "authors": [
-        "Qi Chen",
-        "Wenxuan Li",
-        "Pedro R. A. S. Bassi",
-        "Xinze Zhou",
-        "Jakob Wasserthal",
-        "Ibrahim Ethem Hamamci",
-        "Sezgin Er",
-        "Ashwin Kumar",
-        "Yiwen Ye",
-        "Yuhan Wang",
-        "Yuyin Zhou",
-        "Akshay S. Chaudhari",
-        "Curtis Langlotz",
-        "Kang Wang",
-        "Yang Yang",
-        "Alan L. Yuille",
-        "Zongwei Zhou"
+        "Xian Sun",
+        "Wei Chow",
+        "Yingshuo Wang",
+        "Junhao Liu",
+        "Wei Gao",
+        "Qing Wu",
+        "Lingdong Kong"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24879v1",
-      "title": "New Bounds for the Last Iterate of the Stochastic subGradient Method",
-      "summary": "We study the last iterate of the stochastic subgradient method for one-dimensional convex Lipschitz objectives. For a fixed horizon $n$, we consider the standard fixed stepsizes $η=Θ(1/\\sqrt n)$. We prove that, for such stepsize policies, under additive i.i.d. subgradient noise with uniformly bounded variance, the last iterate features an optimization error of order $1/\\sqrt n$, thereby removing the extra $(\\log n)$ factor present in existing generic bounds. On the other hand, we show that without the i.i.d. assumption, the optimization error can be of order $(\\log n)/\\sqrt n$. Thus, under the uniformly bounded variance assumption alone, the last iterate of SsGM is suboptimal even in dimension one, resolving negatively an open problem posed in Koren and Segal, COLT, 2020.",
-      "published": "2026-06-23T17:55:18+00:00",
-      "url": "https://arxiv.org/pdf/2606.24879v1",
+      "id": "http://arxiv.org/abs/2608.06370v1",
+      "title": "The Bitter Lesson of Tool Calling",
+      "summary": "Tool use transforms LLMs into agents that act beyond their training data, and for code-capable models, programmatic tool calling extends this further by replacing rigid JSON calls with scripts that chain and parallelize naturally. However, a systematic evaluation of tools as code on an established benchmark across current and prior model generations under real-world task conditions has not been conducted. In this work, we empirically compare programmatic tool calling (PTC) to native JSON tool calling across 14 language models on BFCL v4. In the programmatic tool calling paradigm, tools are exposed as typed Python stubs that the model invokes through code, with execution and results handled in a single agent turn. Programmatic tool calling matches or exceeds native JSON tool calling in 11 of 14 models on BFCL v4, with the GPT-5.6 family achieving a 10.6% improvement over the JSON tool calling baseline. Further, it matches or outperforms baseline in 13 of 14 models under parallel fan-out, and holds stable under context rot conditions where baseline degrades 2.3% on average. Our results demonstrate that programmatic tool calling is a viable and robust alternative to JSON tool calling, with performance tracking model capability across release generations.",
+      "published": "2026-08-06T17:58:32+00:00",
+      "url": "https://arxiv.org/pdf/2608.06370v1",
       "authors": [
-        "Guglielmo Beretta",
-        "Tommaso Cesari",
-        "Roberto Colomboni",
-        "Andrea Paudice"
+        "Ishan Patel",
+        "Sahil Sen",
+        "Elias Lumer",
+        "Vamse Kumar Subbiah"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24874v1",
-      "title": "FLUX3D: High-Fidelity 3D Gaussian Generation with Diffusion-Aligned Sparse Representation",
-      "summary": "Sparse voxel representation has emerged as a scalable foundation for image-to-3D Gaussian Splatting (3DGS) generation, yet current methods struggle to preserve high-frequency visual details of input images due to two structural bottlenecks. First, they adopt discriminative 2D features optimized for semantic abstraction to construct sparse voxel latents, which suppress reconstructive cues and induce a representation bottleneck. Second, in the generation stage, standard diffusion transformers lack effective mechanisms to align dense 2D image tokens with sparse 3D voxel latents, resulting in a cross-modal correspondence bottleneck. To address these issues, we propose FLUX3D, a scalable image-to-3DGS framework that boosts both representation learning and cross-modal alignment during generation. We first revisit 2D feature selection for sparse-voxel-based 3D representation learning, propose Diffusion-Aligned Structured Latents (DA-SLAT) and couple it with a decoder-only architecture to improve 3DGS reconstruction fidelity. We also design a sparse-structure-aware diffusion framework, which integrates the Sparse-structure Multimodal Diffusion Transformer (SMDiT) and Modal-Aware Rotary Positional Embedding (MARoPE) to achieve geometry-agnostic 2D-3D alignment. Extensive benchmark experiments demonstrate that FLUX3D yields substantial improvements in appearance fidelity and significantly outperforms all state-of-the-art (SOTA) methods in generating high-quality 3DGS assets.",
-      "published": "2026-06-23T17:52:21+00:00",
-      "url": "https://arxiv.org/pdf/2606.24874v1",
+      "id": "http://arxiv.org/abs/2608.06366v1",
+      "title": "Tracing the Heart: An Evidence-Linked Pipeline for Heart-Failure Feature Engineering",
+      "summary": "Electronic health record (EHR) feature engineering is a major bottleneck in clinical research and AI, accounting for 39-45% of data scientists' workload. This is especially pronounced in heart failure, which affects an estimated 6.7 million U.S. adults and requires integrating fragmented EHR data with disease-specific, guideline-based clinical reasoning. Existing rule-based and large language model (LLM)-based approaches offer only partial automation with limited maintainability and evidence traceability. We developed the Nimblemind Multi-Agent System (nMAS), an evidence-linked, rubric-grounded pipeline for automated heart-failure feature engineering, and evaluated it on 500 dummy patient records from nine EHR source tables. nMAS generated 132 structured and 70 rubric-scored aggregated features, verified for structural integrity, rubric compliance, and provenance, and audited by a restricted LLM. Adding the aggregated features improved held-out AUROC from 0.895 to 0.963 for HFrEF and 0.870 to 0.910 for HFpEF phenotyping, and an independent LLM-based rubric assessment of evidence support and methodological soundness scored the features at 81.5% of maximum points. These results demonstrate the feasibility of automated, auditable feature engineering for complex cardiovascular EHR data, though evaluation was limited to a single-institution cohort and external validation is needed.",
+      "published": "2026-08-06T17:57:37+00:00",
+      "url": "https://arxiv.org/pdf/2608.06366v1",
       "authors": [
-        "Haorui Ji",
-        "Weizhe Liu",
-        "Hongdong Li",
-        "Hengkai Guo"
+        "Soorya Ram Shimgekar",
+        "Michelle Hu",
+        "Dorisa Shehi",
+        "Daniel Kang",
+        "Roy Ka-Wei Lee",
+        "Koustuv Saha",
+        "Christian Poellabauer",
+        "Christopher Lee",
+        "Sajeev Singh",
+        "Piyum Zonooz",
+        "Navin Kumar",
+        "Zeeshan Ahmed",
+        "Priyadarshini Kachroo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24870v1",
-      "title": "\"Zooming In\" on Agentic Web Browsers as Assistive Technologies: A Case Study with a Low-Vision Technology Expert",
-      "summary": "Agentic Web Browsers (AWBs), powered by Large Language Models (LLMs), are emerging as autonomous systems capable of navigating the Web on behalf of users. Beyond enhancing productivity, they could also offer significant promise as Assistive Technologies (ATs) for visually-impaired individuals, transforming web interaction into a fluid conversational exchange. In this paper, we present a case study with a low-vision technology expert, examining how AWBs can support visually-impaired users in web navigation. The findings show that, despite the current limitations, the navigation experience is notably fluid and flexible, underscoring the strong potential of AWBs to enhance accessibility and reduce barriers in web interaction, with implications that may extend beyond accessibility to agentic UX more broadly.",
-      "published": "2026-06-23T17:48:47+00:00",
-      "url": "https://arxiv.org/pdf/2606.24870v1",
+      "id": "http://arxiv.org/abs/2608.06364v1",
+      "title": "Investigating Artificial Intelligence Digital Sovereignty in Mobile Shopping Apps: A Case Study of Nigeria",
+      "summary": "The use of e-commerce mobile applications is expanding in Nigeria, creating both opportunities and risks, including fraud and reduced user control over digital technologies, raising concerns about digital sovereignty. This research examines how Artificial Intelligence (AI) in Nigerian mobile applications affects digital sovereignty, examined through platform transparency as a key indicator of user awareness and control. Using an interpretive approach, the research combines the forensic analysis of selected Android applications with contextual document analysis to identify AI features and evaluate disclosure practices. The findings show that AI is widely implemented in the applications, yet transparency about its use remains limited. A socio-economic analysis of Nigeria further shows an increasing dependence on consumer digital platforms, moderate AI awareness, and uneven patterns of interaction. By providing empirical evidence on AI transparency and platform practices, this study advances understanding of individual digital sovereignty and highlights challenges for protecting user control in AI-driven digital environments.",
+      "published": "2026-08-06T17:57:28+00:00",
+      "url": "https://arxiv.org/pdf/2608.06364v1",
       "authors": [
-        "Laura Colazzo",
-        "Giuseppe Anzillotti"
+        "George Grispos",
+        "Sajda Qureshi"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24869v1",
-      "title": "Rapid Cavity-Based Mid-Circuit Measurement and Feedforward in a Neutral Atom Array",
-      "summary": "Measuring part of a quantum system in the midst of its evolution and acting on the result in real time is essential for numerous quantum information protocols. Neutral-atom arrays are a leading platform for quantum information processing, but their mid-circuit measurement-and-feedforward cycle times have remained slow, typically exceeding 1 ms. Here we demonstrate fast mid-circuit measurement and real-time feedforward in an array of atomic qubits coupled to a high-finesse optical cavity. Local light shifts tune individual data qubits out of resonance with the cavity, shielding their coherence, while a near-resonant probe drives a selected qubit whose emission is collected with Purcell enhancement. Mid-circuit measurements of four qubits with sub percent infidelity reduce the coherence of a fifth unmeasured data qubit by less than 2%. We implement real-time feedforward to correct measurement-induced phase shifts and to realize an adaptive circuit for optimal quantum state discrimination and conditional state preparation. Our approach reduces the measurement-and-feedforward cycle time to below 100 $μ$s and establishes optical cavities as a route to fast control of neutral-atom quantum systems.",
-      "published": "2026-06-23T17:48:08+00:00",
-      "url": "https://arxiv.org/pdf/2606.24869v1",
+      "id": "http://arxiv.org/abs/2608.06363v1",
+      "title": "An Optimal Agnostic PAC Algorithm",
+      "summary": "Let $H\\subseteq\\{-1,+1\\}^X$ be a class of finite VC dimension $d\\ge1$. Writing $L$ for the binary risk and $L^*=\\min_{h\\in H}L(h)$, we construct a learner achieving the statistically optimal risk bound: from an i.i.d.\\ sample of size $n$, for every $0<δ\\le 1/2$, with probability at least $1-δ$, \\[   L(\\widehat h)   \\le L^*+ 7\\cdot10^8\\left(   \\sqrt{\\frac{L^*(d+\\log(1/δ))}{n}}   +\\frac{d+\\log(1/δ)}{n}   \\right). \\] This settles the sample complexity of agnostic PAC learning up to universal constants at every fixed $L^*$, matching the lower bounds of Devroye, Györfi, and Lugosi [A Probabilistic Theory of Pattern Recognition, Springer, 1996].",
+      "published": "2026-08-06T17:57:25+00:00",
+      "url": "https://arxiv.org/pdf/2608.06363v1",
       "authors": [
-        "Tsai-Chen Lee",
-        "Jacquelyn Ho",
-        "Yue-Hui Lu",
-        "Tai Xiang",
-        "Nathaniel B. Vilas",
-        "Zhenjie Yan",
-        "Dan M. Stamper-Kurn"
+        "Markus Engelund Mathiasen",
+        "Jian Qian",
+        "Nikita Zhivotovskiy"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24861v1",
-      "title": "First-Order Recoverability Collapse in Self-Referential Information Decoders",
-      "summary": "We study adaptive systems coupling inference to irreversible action under sustained nonequilibrium driving. Treating information processing as a thermodynamic load, we model them as finite-capacity decoders whose irreversible commitments eliminate counterfactual options, and characterize recoverable operation by a feasibility margin and a stability diagnostic fixing when irreversible action is admissible. Under sustained overload -- induced flux exceeding effective integrative capacity -- loss of recoverability and divergence of the diagnostic arise as structural consequences of capacity saturation, independent of optimization objective, control policy, or substrate. Added capacity alone does not restore recoverability: absent certification or gating, higher throughput accelerates non-recoverable loss, with high-throughput AI a concrete application. Making the feedback explicit -- each uncertified commitment spawning on average alpha new candidates -- turns the continuous transition first-order: lucid and collapsed states coexist in a cusp-organized bistable region with closed-form spinodals, collapse pre-empts the continuous divergence at finite stability ratio, recovery is hysteretic, and for alpha >= 1 load reduction alone cannot restore operation. Cascade sizes are bounded by the grounded fraction of input: a genealogy-times-congestion factorization sets a cutoff that grows as grounding shrinks, with the mean-field exponent tau = 3/2 recovered away from the boundary and each cascade carrying a Landauer-priced burst of synthetic entropy; event-driven simulations confirm the cutoff law and phase structure. This supplies the statistical mechanics of the metastable failures seen in distributed systems. The analysis is constraint-based and substrate-agnostic, establishing recoverable dissipation as a necessary criterion for decoder stability in high-flux regimes.",
-      "published": "2026-06-23T17:43:41+00:00",
-      "url": "https://arxiv.org/pdf/2606.24861v1",
+      "id": "http://arxiv.org/abs/2608.06362v1",
+      "title": "AV-AIVAT: 74x Cheaper Agent Evaluation with Certified Anytime-Valid Stopping in Imperfect-Information Games",
+      "summary": "Deciding which of two agents is stronger means playing games until skill outweighs luck, and every game costs money, model inference, or expert time. Since the number of games needed is unknown, fixed-budget evaluations either keep paying after the result is settled or stop before the agents can be told apart, while naive optional stopping with an ordinary confidence interval invalidates the stated level. We make such an evaluation stop as soon as its evidence suffices, with the guarantee intact. The Action-Informed Value Assessment Tool (AIVAT) reduces variance in imperfect-information games through conditional mean-zero corrections, by a median $54\\times$ across 15 LLM agent configurations spanning 71,439 paired Heads-Up No-Limit Hold'em (HUNL) hands, but does not say when to stop. We combine AIVAT with continuously monitored Confidence Sequences (CSs) into anytime-valid AIVAT (AV-AIVAT), whose online value model learns only from past games so that no game scores its own correction. At the nominal 95\\% level and a target precision of $\\pm1$ Big Blind, raw outcomes need a median $74\\times$ as many hands as AIVAT-corrected outcomes to stop under the Asymptotic CS (AsympCS). Exact finite-sample certification uses the Empirical-Bernstein CS (EB-CS), which needs an independently justified bound on corrected payoffs. We establish such a bound structurally for Leduc hold'em and characterize a width floor set by the CS's bet cap and that bound, which governs how much of a variance gain becomes earlier stopping; the descriptive HUNL EB-CS runs show a median $1.37\\times$ stopping-time ratio. AV-AIVAT turns variance reduction into efficient, auditable early stopping while separating asymptotic screening from exact certification, so an evaluation can stop the moment its evidence suffices and hand a third party everything needed to recheck the verdict at that very stopping time.",
+      "published": "2026-08-06T17:57:11+00:00",
+      "url": "https://arxiv.org/pdf/2608.06362v1",
       "authors": [
-        "Pieter van Rooyen"
+        "Boning Li",
+        "Yu Chen",
+        "Longbo Huang"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24845v1",
-      "title": "A Near-Optimal Parallel Algorithm for Finding Matroid Bases",
-      "summary": "We settle the classic question of the parallel complexity of computing a matroid basis, as first posed in the seminal work of Karp, Upfal, and Wigderson (FOCS 1985, JCSS 1988). Our algorithm runs in $O(n^{1/3}\\log^{1/3}n)$ rounds, matching the lower bound of KUW up to a $\\log^{2/3}(n)$ factor.",
-      "published": "2026-06-23T17:24:37+00:00",
-      "url": "https://arxiv.org/pdf/2606.24845v1",
+      "id": "http://arxiv.org/abs/2608.06360v1",
+      "title": "PyOMES: an open-source framework for biochemical process modelling",
+      "summary": "PyOMES is a Python-based, Open-source Modelling Environment for (bio)chemical process Simulation that aims to simplify the modelling of dynamic (including steady state) processes. This is done in a generalied, modular way to facilitate modelling a broad range of biological, chemical, and biochemical systems under a single modelling framework. PyOMES has been built to be accessible to a broad range of users - ranging from those with little modelling experience, such as experimentalists and students, through to more experienced power-users. Here, an introduction is provided to the PyOMES software including a summary of the design, architecture and vision. Use cases are then provided to demonstrate applicability of PyOMES to a number of (bio)chemical process modelling scenarios. Comparisons of predictions against existing benchmark software (i.e. PHREEQC) demonstrate the robustness of the package. Finally, a summary is provided of future directions for the PyOMES package - highlighting its establishment as a unified modelling framework and its potential for community-driven improvement as future developments.",
+      "published": "2026-08-06T17:56:40+00:00",
+      "url": "https://arxiv.org/pdf/2608.06360v1",
       "authors": [
-        "Sanjeev Khanna",
-        "Aaron Putterman",
-        "Junkai Song"
+        "Ethan Errington",
+        "Tom Vinestock",
+        "Jaewook Lee",
+        "Miao Guo"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24844v1",
-      "title": "Bridging the Manifold Gap: Riemannian Residual Line Search for One-Step Image Editing",
-      "summary": "One-step diffusion editors are fast because they avoid inversion and iterative optimization, but a single transport update must be aggressive enough to realize the target prompt and conservative enough to preserve the source image--and no fixed update strength satisfies both demands across edit types. We treat this tension as a post-hoc candidate-selection problem on top of energy-field transport rather than as a new editing model. Our proposed method, Riemannian Residual Line Search, first builds a stronger edit by estimating the local time curvature of the prompt-delta field and projecting the corrected direction back onto the update norm of the original first-order energy-field transport estimation. It then forms a small residual path from the source image to this strong edit, retains the original first-order output as one candidate, and picks the final image by maximizing target-prompt CLIP alignment. On a 700-sample PIE-Bench++ evaluation across 10 edit type IDs, our method achieves state-of-the-art (SOTA) performance among current one-step update algorithms.",
-      "published": "2026-06-23T17:23:53+00:00",
-      "url": "https://arxiv.org/pdf/2606.24844v1",
+      "id": "http://arxiv.org/abs/2608.06358v1",
+      "title": "Universality in random graphs via optimal linking systems: trees and beyond",
+      "summary": "We develop a framework for proving universality results in sparse random graphs. As a first application, we show that there exists an absolute constant $C>1$ such that, with high probability, for every fixed constant $Δ$, the binomial random graph $G(n,C\\ln n/n)$ contains every $n$-vertex tree with maximum degree at most $Δ$. This answers a question of Montgomery (Advances in Mathematics, 2019). We also determine, for every $p$ satisfying $C\\ln n/n\\leq p=n^{-1+o(1)}$, the minimum girth $\\ell$ (up to an absolute multiplicative constant) for which with high probability $G(n,p)$ contains all cycle factors of girth at least $Ω(\\ell)$. In particular, with high probability $G(n,C\\ln n/n)$ contains all cycle factors of girth at least $100\\ln n/\\ln\\ln n$, which is optimal up to a constant factor. This extends an earlier result of Ferber, Kronenberg, and Luh (Transaction of the American Mathematical Society, 2019) and significantly improves a corollary of a deep result of Kahn, Lubetzky, and Wormald (Communications on Pure and Applied Mathematics, 2017). One of the key ingredients in the proofs is establishing the optimal depth of linking systems in sparse random graphs.",
+      "published": "2026-08-06T17:55:25+00:00",
+      "url": "https://arxiv.org/pdf/2608.06358v1",
       "authors": [
-        "Hongzhu Yi",
-        "Zhongtian Luo",
-        "Tong Li",
-        "Yiyan Fan",
-        "Jungang Xu"
+        "Asaf Cohen Antonir",
+        "Lyuben Lichev",
+        "Maksim Zhukovskii"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24841v1",
-      "title": "Matching Tasks to Objectives: Fine-Tuning and Prompt-Tuning Strategies for Encoder-Decoder Pre-trained Language Models",
-      "summary": "Prompt-based learning has emerged as a dominant paradigm in natural language processing. This study explores the impact of diverse pre-training objectives on the performance of encoder-decoder pre-trained language models across generation and question answering tasks, with a focus on commonsense knowledge retrieval and completion. We highlight the benefits of incorporating multiple objectives during both pre-training and fine-tuning stages. We introduce the Match Task to Objective (MTO) framework and methods for determining the appropriate objective for a given task. This framework offers automated methods to prepare task-related data for adaptation through unsupervised training, based on the identified objective. In the fine-tuning stage, we design novel templates that align with the objectives of the pre-training and adaptation stages. When aligned with task requirements, these strategies can achieve a performance gain of over 120\\% compared to conventional methods in few-shot settings. They significantly outperform related works in few-shot settings and exceed the baseline even in full-dataset scenarios. Furthermore, we extend this approach to include prompt-tuning methodologies, providing guidance for more effective soft prompt engineering and optimization. Our strategies significantly enhance prompt-tuning performance as well. These insights hold substantial value, precisely guiding the selection and optimization of models customized for specific tasks. Code is available at https://github.com/puraminy/MTO/",
-      "published": "2026-06-23T17:21:03+00:00",
-      "url": "https://arxiv.org/pdf/2606.24841v1",
+      "id": "http://arxiv.org/abs/2608.06349v1",
+      "title": "The Benefits of an Integrated Approach for Stability-Constrained Power System Planning",
+      "summary": "Increasing penetration of inverter-based resources in today's power systems requires substitution of the contribution from synchronous generators to dynamic voltage stability and inertial response. However, established approaches for power system planning are sequential, as stabilising measures are only considered at a later stage of the planning process. We investigate the advantages of an integrated approach for power system planning, where stabilising measures are considered simultaneously with the expansion of generation, transmission, and storage systems via simplified stability constraints on inertia and voltage stability. We find that system costs are reduced with the integrated approach and that the dual-use option of grid-forming battery energy storage systems is favoured over other stabilising measures like static synchronous compensators.",
+      "published": "2026-08-06T17:52:51+00:00",
+      "url": "https://arxiv.org/pdf/2608.06349v1",
       "authors": [
-        "Ahmad Pouramini",
-        "Hesham Faili"
+        "Gereon Recht",
+        "Benedikt Jahn",
+        "Oussama Alaya",
+        "Karl-Kiên Cao",
+        "Hendrik Lens"
       ],
       "source": "arxiv"
     },
     {
-      "id": "http://arxiv.org/abs/2606.24839v1",
-      "title": "Grading the Grader: Lessons from Evaluating an Agentic Data Analysis System",
-      "summary": "Agentic data analysis systems produce rich outputs, including code, numerical results, and verbal diagnostics. This makes them more challenging to evaluate than single-turn LLM responses. It is therefore necessary to distinguish genuine disagreement between an agent's output and a ground-truth answer from grading artifacts. We investigate how reliably automated graders assess such a system and what strategies improve grading quality by applying LAMBDA, a multi-agent data-analysis system, on 153 numerical QRData tasks from DSGym. We develop and evaluate a three-layer human-AI grading cascade: strict regex matching, LLM-based lenient grading, and snippet-based human inspection, which combines non-GenAI and GenAI strategies with different failure profiles. Both automated graders achieve 100% observed precision (0/70 false positives). The lenient grader's recall is 97% against human labels. A keyword-anchored extraction pipeline raises the strict grader's recall by 60 percentage points over a last-number heuristic; the lenient grader is architecturally parser-independent. An iterative nudge mechanism raises grading run success from 36% to 97% and lenient-pass rates from 16% to 46%; comparing nudging with and without original-question re-injection shows that re-injection offers no benefit, confirming the nudge as an answer template cue. We further observe in this case study that variable type is the task metadata field most consistently associated with grading pipeline dynamics and observed outcome grades.",
-      "published": "2026-06-23T17:18:28+00:00",
-      "url": "https://arxiv.org/pdf/2606.24839v1",
+      "id": "http://arxiv.org/abs/2608.06347v1",
+      "title": "RP-OPSD: Reasoning-Pivot-Guided On-Policy Self-Distillation for Multilingual Reasoning Transfer",
+      "summary": "Multilingual reasoning transfer is crucial for extending reasoning capabilities of large language models (LLMs) beyond high-resource languages. On-policy self-distillation (OPSD) and its variants have emerged as a promising paradigm, providing dense token-level supervision on student-generated rollouts, yet their objectives do not explicitly prioritize reasoning signals most critical to cross-lingual transfer. We characterize that target-language reasoning comprises the generation of both surface text and reasoning pivots, which are decisions that advance or redirect the reasoning process and shape subsequent inference. This motivates concentrating privileged distillation around such pivots. We therefore propose RP-OPSD, Reasoning-Pivot-guided On-Policy Self-Distillation, using the distributional shift between matched teacher views with and without an English reference solution as an operational proxy to guide privileged distillation and reference anchoring. Experiments on mathematical reasoning benchmarks covering 17 languages and multiple difficulty levels show that our method outperforms strong multilingual reasoning baselines and OPSD variants. Further analysis reveals that RP-OPSD concentrates privileged distillation on reasoning-control and problem-condistioned state-update tokens, while downweighting it for tokens that mainly support surface realization. Our code is available at https://github.com/NJUNLP/RP-OPSD.",
+      "published": "2026-08-06T17:52:06+00:00",
+      "url": "https://arxiv.org/pdf/2608.06347v1",
       "authors": [
-        "Tian Zheng",
-        "Kai-Tai Hsu"
+        "Xinye Wang",
+        "Junxiao Liu",
+        "Shujian Huang"
       ],
       "source": "arxiv"
     }

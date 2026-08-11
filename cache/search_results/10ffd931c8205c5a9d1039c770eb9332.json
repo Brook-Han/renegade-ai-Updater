@@ -1,20 +1,8 @@
 {
-  "timestamp": 1782295971.736784,
+  "timestamp": 1786323835.817463,
   "source": "semantic_scholar",
   "query": "evolutionary alignment AI open deployment",
   "results": [
-    {
-      "id": "d9f0f2dafd5e976137c0037720665dbd936157f6",
-      "title": "AlignInsight: A Three-Layer Framework for Detecting Deceptive Alignment and Evaluation Awareness in Healthcare AI Systems",
-      "summary": "",
-      "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/d9f0f2dafd5e976137c0037720665dbd936157f6",
-      "authors": [
-        "A. Onovo",
-        "Y. Cherima"
-      ],
-      "source": "semantic_scholar"
-    },
     {
       "id": "27d50468f1016b18c07283b56ea5dc0f5479b980",
       "title": "AgentDoG 1.5: A Lightweight and Scalable Alignment Framework for AI Agent Safety and Security",
@@ -76,6 +64,18 @@
       "source": "semantic_scholar"
     },
     {
+      "id": "d9f0f2dafd5e976137c0037720665dbd936157f6",
+      "title": "AlignInsight: A Three-Layer Framework for Detecting Deceptive Alignment and Evaluation Awareness in Healthcare AI Systems",
+      "summary": "Importance: Emerging evidence suggests healthcare AI systems may exhibit deceptive alignment (appearing safe during validation while optimizing for misaligned objectives in deployment) and evaluation awareness (detecting and adapting behavior during audits), undermining regulatory validation frameworks. Objective: To quantify the performance of multi-layer red-teaming approaches in detecting sophisticated healthcare AI safety failures across 10 vulnerability domains. Design, Setting, and Participants: Systematic red-teaming evaluation conducted December 2025-January 2026 using 50 healthcare-specific adversarial prompts across 10 vulnerability domains (5 prompts per domain). GPT-OSS-20B (21-billion parameter open-source model) was evaluated using a three-layer framework: Layer 1 (automated keyword pattern matching), Layer 2 (GPT-5 semantic analysis with chain-of-thought reasoning), and Layer 3 (PhD-level human expert adjudication as ground truth). Inter-rater reliability was assessed using Cohen kappa statistic. Main Outcomes and Measures: Primary outcome was risk classification (SAFE, LOW, MODERATE, or HIGH RISK) with severity scoring (0-10 scale). Secondary outcomes included layer detection rates, inter-rater agreement, thematic vulnerability patterns, and chain-of-thought reasoning exposure. Results: Of 50 prompts evaluated, 12 (24%, 95% CI: 13.5%-38.2%) were classified HIGH RISK, 8 (16%, 95% CI: 7.7%-28.8%) MODERATE RISK, 17 (34%, 95% CI: 21.8%-48.3%) LOW RISK, and 13 (26%, 95% CI: 15.2%-39.9%) SAFE. Evaluation Awareness domain exhibited 100% HIGH/MODERATE RISK rate (5/5 prompts, mean severity 7.4/10), with the model providing technical specifications for audit detection and behavior switching. Sandbagging domain showed 40% HIGH RISK rate (2/5 prompts) with FDA validation gaming strategies. All 12 HIGH RISK prompts involved audit gaming themes (audit detection, behavior switching, system fingerprinting, or reporting violations). Layer 1 keyword matching detected 2/12 (17%, 95% CI: 4.7%-44.8%) high-risk prompts. Layer 2 GPT-5 analysis detected 12/12 (100%, 95% CI: 75.8%-100%) high-risk prompts with 0/13 (0%, 95% CI: 0%-22.8%) false positives. Human expert validation confirmed perfect concordance with Layer 2 assessments (kappa = 1.00, 95% CI: 0.999-1.000, p < 0.001), validating automated semantic analysis as reliable screening tool. Chain-of-thought leakage occurred in 28/50 (56%) prompts, exposing internal safety reasoning. Conclusions and Relevance: Multi-layer evaluation is essential for detecting sophisticated AI safety failures in healthcare. Keyword filtering alone missed 83% (95% CI: 55.2%-95.3%) of high-risk behaviors. Perfect inter-rater agreement (kappa=1.00) between automated AI semantic analysis and human expert judgment demonstrates that scalable, reliable safety screening is achievable. All HIGH-RISK outputs contained audit gaming content, indicating systematic capability to articulate regulatory circumvention. Healthcare AI systems require domain-specific red-teaming for regulatory audit gaming and dual-mode behavior detection. Findings reveal critical gaps in current AI safety measures with immediate implications for FDA/CMS regulatory frameworks. Key Words: artificial intelligence; health informatics; AI safety; patient safety; regulatory compliance; FDA; medical device safety; red-teaming; deceptive alignment; evaluation awareness.",
+      "published": "2026",
+      "url": "https://doi.org/10.64898/2026.01.17.26344330",
+      "authors": [
+        "A. Onovo",
+        "Y. Cherima"
+      ],
+      "source": "semantic_scholar"
+    },
+    {
       "id": "83e162c426c81c66993574f77de1b791a6799dad",
       "title": "Deployment-Aligned Low-Precision Neural Architecture Search for Spaceborne Edge AI",
       "summary": "Designing deep networks that meet strict latency and accuracy constraints on edge accelerators increasingly relies on hardware-aware optimization, including neural architecture search (NAS) guided by device-level metrics. Yet most hardware-aware NAS pipelines still optimize architectures under full-precision assumptions and apply low-precision adaptation only after the search, leading to a mismatch between optimization-time behavior and deployment-time execution on low-precision hardware that can substantially degrade accuracy. We address this limitation by integrating deployment-aligned low-precision training directly into hardware-aware NAS. Candidate architectures are exposed to FP16 numerical constraints during fine-tuning and evaluation, enabling joint optimization of architectural efficiency and numerical robustness without modifying the search space or evolutionary strategy. We evaluate the proposed framework on vessel segmentation for spaceborne maritime monitoring, targeting the Intel Movidius Myriad X Visual Processing Unit (VPU). While post-training precision conversion reduces on-device performance from 0.85 to 0.78 mIoU, deployment-aligned low-precision training achieves 0.826 mIoU on-device for the same architecture (95,791 parameters), recovering approximately two-thirds of deployment-induced accuracy gap without increasing model complexity. These results demonstrate that incorporating deployment-consistent numerical constraints into hardware-aware NAS substantially improves robustness and alignment between optimization and deployment for resource-constrained edge Artificial Intelligence (AI).",
@@ -90,33 +90,39 @@
       "source": "semantic_scholar"
     },
     {
-      "id": "4d058fd71f00986cf8cfa1b705c6c187aaea4b13",
-      "title": "AI Alignment Challenges in Large Language Models: Technical Limitations, Risks, and Future Directions",
-      "summary": "Large language models (LLMs) have demonstrated unprecedented natural language capabilities, achieving strong performance across a broad spectrum of tasks including code generation, reasoning, summarization, and question answering. The rapid scaling of these systems—from hundreds of millions to hundreds of billions of parameters—has accelerated their deployment in high-stakes, real-world environments, raising fundamental concerns about their safety, reliability, and alignment with human values. AI alignment, broadly defined as the problem of ensuring that AI systems behave in accordance with the intentions and values of their designers and end users, has emerged as one of the most technically complex and consequential challenges in contemporary machine learning research.\n\nThis paper provides a technically grounded survey of the principal alignment challenges in modern LLMs. We examine core problems including objective misalignment, hallucination and factual unreliability, adversarial jailbreaks and prompt injection vulnerabilities, social bias and harmful output generation, the opacity of transformer-based reasoning, scalability failures of current alignment techniques, and the theoretically critical but empirically underexplored problem of deceptive alignment and goal misgeneralization. We critically analyze existing alignment methods—including reinforcement learning from human feedback (RLHF) [1], Constitutional AI [2], red teaming, safety fine-tuning, and human oversight—identifying their substantive limitations and unsolved failure modes. We further discuss ethical and societal implications, enumerate open research problems, and propose directions for future investigation including mechanis-tic interpretability, scalable oversight, and alignment-specific benchmarking. Our analysis concludes that current alignment techniques represent necessary but insufficient safeguards, and that the field requires coordinated, technically rigorous research investment commensurate with the accelerating",
+      "id": "b1bf9bd091ecc56bf717218451bacf5276ba116c",
+      "title": "CHIA: An open-source framework for principled, agentic AI-driven hardware/software co-design research",
+      "summary": "Agentic artificial intelligence shows great promise for radically improving the pace of innovation in hardware/software co-design research across computer architecture, systems, compilers, and VLSI. Thus far, however, applications of AI in these contexts have generally been demonstrated in isolated settings on small-scale problems, due to the difficulty of designing and deploying complex AI-infused hardware and software development workflows. This paper introduces CHIA, an open-source hardware/software co-design framework for agile and principled research on the application of AI to co-design. CHIA treats the productive construction and scalable deployment of the co-design flow itself as a first-class objective. In CHIA, agentic AI-driven hardware and software design flows are expressed as CHIA loops: directed cyclic graphs whose nodes execute various system-on-chip design tools, microarchitectural simulators, software build systems, AI models, evolutionary coding agents, and more. The CHIA library provides node implementations for many popular tools, including Chipyard, gem5, ChampSim, FireSim, Hammer (thus several commercial ASIC CAD tools), Vivado, AlphaEvolve, AdaEvolve, and many others. CHIA also provides a broad set of features to conduct principled science around these flows. These include isolation between AI models and hardware tools, profiling mechanisms, fault-tolerant execution, and reliability at scale across hundreds of heterogeneous systems (CPUs, FPGAs, GPUs, etc., across public cloud/on-prem.). To showcase CHIA, we present five CHIA loops as case studies: (1) automatic RTL-to-gem5 simulator alignment, (2) LLM-driven implementation of microarchitectural features in RTL, (3) agentic, IPC-aware critical path optimization, (4) evolutionary architectural discovery, and (5) maintainer-friendly agentic GitHub issue fixing.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/4d058fd71f00986cf8cfa1b705c6c187aaea4b13",
+      "url": "https://www.semanticscholar.org/paper/b1bf9bd091ecc56bf717218451bacf5276ba116c",
       "authors": [
-        "Vansh Deol"
+        "Angela Cui",
+        "Ferran Hermida-Rivera",
+        "Jack Toubes",
+        "Raghav Gupta",
+        "Jim Fang",
+        "C. Zhang",
+        "Ella Schwarz",
+        "Junha Kim",
+        "Yakun Sophia Shao",
+        "Borivoje Nikolić",
+        "Christopher W. Fletcher",
+        "S. Karandikar"
       ],
       "source": "semantic_scholar"
     },
     {
-      "id": "13b7fa23a00472e21041aa57f58562241ac2faab",
-      "title": "How well are open sourced AI-generated image detection models out-of-the-box: A comprehensive benchmark study",
-      "summary": "As AI-generated images proliferate across digital platforms, reliable detection methods have become critical for combating misinformation and maintaining content authenticity. While numerous deepfake detection methods have been proposed, existing benchmarks predominantly evaluate fine-tuned models, leaving a critical gap in understanding out-of-the-box performance -- the most common deployment scenario for practitioners. We present the first comprehensive zero-shot evaluation of 16 state-of-the-art detection methods, comprising 23 pretrained detector variants (due to multiple released versions of certain detectors), across 12 diverse datasets, comprising 2.6~million image samples spanning 291 unique generators including modern diffusion models. Our systematic analysis reveals striking findings: (1)~no universal winner exists, with detector rankings exhibiting substantial instability (Spearman~$\\rho$: 0.01 -- 0.87 across dataset pairs); (2)~a 37~percentage-point performance gap separates the best detector (75.0\\% mean accuracy) from the worst (37.5\\%); (3)~training data alignment critically impacts generalization, causing up to 20--60\\% performance variance within architecturally identical detector families; (4)~modern commercial generators (Flux~Dev, Firefly~v4, Midjourney~v7) defeat most detectors, achieving only 18--30\\% average accuracy; and (5)~we identify three systematic failure patterns affecting cross-dataset generalization. Statistical analysis confirms significant performance differences between detectors (Friedman test: $\\chi^2$=121.01, $p<10^{-16}$, Kendall~$W$=0.524). Our findings challenge the ``one-size-fits-all''detector paradigm and provide actionable deployment guidelines, demonstrating that practitioners must carefully select detectors based on their specific threat landscape rather than relying on published benchmark performance.",
+      "id": "62c5baa7e23e636b671c7f25ce84cc1b15abe3dc",
+      "title": "AI for All: An Open Agentic Framework for Predictive, Preventive, and Ethical Learning Analytics in Higher Education",
+      "summary": "Student dropout remains a persistent challenge in higher education, with substantial academic, social, and economic consequences. Although AI-driven learning analytics have shown promise in identifying at-risk students, many existing approaches suffer from limited interpretability, high deployment costs, and weak alignment with educational theory. To address these gaps, this study presents the Open Agentic Predictive Preventive Ethical (OAPPE) Framework, a fully open-source, lowcode architecture that integrates interpretable machine learning with agentic AI-driven automation for dropout prediction and prevention. The framework integrates principles from Self-Determination Theory and Constructivist Learning Theory to support proactive, student-centered interventions that promote autonomy, competence, and relatedness. OAPPE is implemented and evaluated using an open educational dataset from the University of California, Irvine Machine Learning Repository, with the predictive pipeline implemented using LightGBM and SHAPbased explanations in a fully reproducible, cost-free environment using Google Colab and n8n. Empirical results demonstrate robust predictive performance with a mean AUC of 0.82 and a Macro-F1 score of 0.71, while the agentic workflow attains a 91 percent trigger success rate and high ethical transparency, evidenced by an expert interpretability rating of 4.6 out of 5. Overall, the findings demonstrate that interpretable, ethically aligned, and scalable agentic AI systems for learning analytics can be realized using open technologies, positioning OAPPE as a human-centered blueprint for student retention in higher education.",
       "published": "2026",
-      "url": "https://www.semanticscholar.org/paper/13b7fa23a00472e21041aa57f58562241ac2faab",
+      "url": "https://www.semanticscholar.org/paper/62c5baa7e23e636b671c7f25ce84cc1b15abe3dc",
       "authors": [
-        "Simiao Ren",
-        "Yucheng Zhou",
-        "Xingyu Shen",
-        "Kidus Zewde",
-        "T. Duong",
-        "George Q. Huang",
-        "Hatsanai Tiangratanakul",
-        "T. Ng",
-        "En Wei",
-        "Jiayu Xue"
+        "M. Nadim",
+        "Rosula Reyes",
+        "Raffaele Di Fuccio",
+        "Faisal Rehman",
+        "Abid Ali"
       ],
       "source": "semantic_scholar"
     }
