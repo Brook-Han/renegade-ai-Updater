@@ -451,7 +451,7 @@ nav{
       <div class="day-eyebrow">DIGEST · 00:00:00</div>
       <h2 class="day-date">2026-08-17</h2>
     </div>
-    <div class="day-header-right">1 NEWS · 0 PAPERS</div>
+    <div class="day-header-right">1 NEWS · 2 PAPERS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -473,6 +473,48 @@ nav{
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://techcrunch.com/2026/08/16/stripe-will-reportedly-acquire-ai-gateway-startup-openrouter-for-7b/" target="_blank" rel="noopener">↗ SOURCE</a>
         <a class="full-report-link" href="./news/news_report_2026-08-17.html">FULL REPORT →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="academic">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag academic">PAPER</span>
+          <span class="card-chapter">§ Chapter 2 (资本驯化), Chapter 9 (进化对齐脆弱性)</span>
+          
+        </div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://arxiv.org/pdf/2608.13482v1" target="_blank" rel="noopener">Synthetic Persona Pretraining: Alignment from Token Zero</a>
+      </h3>
+      <p class="radar-card-body">本文提出合成人格预训练（Synthetic Persona Pretraining, SPP）范式：将期望的助手人格从预训练的第一个token起就植入模型，而非在预训练之后作为薄覆盖层叠加。具体方法是用规范性价值宪法为预训练文档标注第一人称价值反思，然后在标准交叉熵损失下同时训练原始文档与反思文本，最后通过后训练将人格绑定到助手身份…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arxiv.org/pdf/2608.13482v1" target="_blank" rel="noopener">↗ SOURCE</a>
+        <a class="full-report-link" href="./academic/academic_report_2026-08-17.html">FULL REPORT →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="academic">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag academic">PAPER</span>
+          <span class="card-chapter">§ Chapter 3 (共识牢笼), Chapter 10 (信号异化)</span>
+          
+        </div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.semanticscholar.org/paper/335852d1d40965c2d24242b51e13a22358a694ac" target="_blank" rel="noopener">Studying People to Study AI: Expert Perspectives on the Epistemic Fit and Barriers of Human Research in AI Safety&amp;Ethics</a>
+      </h3>
+      <p class="radar-card-body">本研究调查AI安全与伦理（AISE）领域对&#x27;人类研究&#x27;的边缘化现象。研究者对93名AISE专家进行问卷、对17名专家进行访谈，专家横跨技术、社会技术、治理与规范四类背景。核心发现：尽管存在共识认为人类研究能为AISE提供关键证据，但其采纳与接受度受感知效度问题、资源壁垒、方法论的认知与个人偏好、以及研究共同体的基础设施约束所限。尤其值得注意的是，技术背景研究者对人类研究的价值评价显著更低、跨学科合作更少…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.semanticscholar.org/paper/335852d1d40965c2d24242b51e13a22358a694ac" target="_blank" rel="noopener">↗ SOURCE</a>
+        <a class="full-report-link" href="./academic/academic_report_2026-08-17.html">FULL REPORT →</a>
       </div>
     </article>
   </div>
@@ -11436,7 +11478,7 @@ nav{
 
 /* ── STATS ── */
 (function(){
-  const t=123,n=91,a=32,d=91,l='2026-08-17';
+  const t=124,n=91,a=33,d=91,l='2026-08-17';
   document.getElementById('statNews').textContent=n;
   document.getElementById('statAcad').textContent=a;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
