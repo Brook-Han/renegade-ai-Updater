@@ -454,7 +454,39 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-08-23">
+  <div class="day-group" data-date="2026-08-24">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-08-24</h2>
+    </div>
+    <div class="day-header-right">1 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 6, Section III</span>
+        </div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://newsletter.semianalysis.com/p/agentx-inferencexv3-does-cuda-moat" target="_blank" rel="noopener">AgentX - InferenceXv3: Does CUDA Moat Hold up in Agentic Inferencing?</a>
+      </h3>
+      <p class="radar-card-body">SemiAnalysis 于 8 月 24 日发布深度分析，追问智能体推理（agentic inferencing）时代 CUDA 护城河是否仍然成立。背景是推理负载取代训练成为算力需求主导：长上下文（100 万+ token）、多轮对话、子代理并行调用使工作负载转向 KV Cache 密集型，AgentX 数据集（耗资 300 万美元）已开源，子代理场景下 KV Cache 命中率实测达 95%+。文章对比 NVIDIA GB300 NVL72、B200 与 AMD MI3…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://newsletter.semianalysis.com/p/agentx-inferencexv3-does-cuda-moat" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-08-24.html">查看 2026-08-24 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-08-23">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
@@ -3425,7 +3457,7 @@ footer a:hover{color:var(--accent)}
 
 /* ── STATS ── */
 (function(){
-  const t=97,d=97;
+  const t=98,d=98;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
