@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-09-04 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 5 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-09-04 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>19</span></div>
+      <div>🔴 高价值: <span>5</span></div>
+      <div>🟡 中相关: <span>8</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 4, Section II</strong> — Safety overview: GPT-6 Astra <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section II (资本驯化AI)</strong> — NVIDIA to Acquire Hugging Face <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section II (资本驯化AI)</strong> — Nvidia buys Hugging Face, the GitHub of AI, for $13 billion <span class="urgent-type-tag">corroboration</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Safety overview: GPT-6 Astra</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-09-03</span>
+        <span>·</span>
+        <a href="https://openai.com/index/safety-overview-gpt-6-astra" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 4, Section II
+      </div>
+      <div class="card-body">2026年9月3日 OpenAI 发布 GPT-6 Astra 并同步刊出官方安全概览，宣布它是迄今最强大的广泛部署模型，也是其 Preparedness Framework 下首个网络安全能力达到 Critical 级（关键阈值）的模型。背景是 9月1日 Path to Astra 公告、9月2日多家媒体披露其达阈值、9月3日递归深度架构引发监控担忧，今日为官方确认节点。核心事实是 OpenAI 承认该模型具备接近国家级行动者的攻击性网络能力，并声称为保证相应安全与对齐标准而推迟发布、红队评估在受控环境通过。直接后果是前沿模型能力跨入关键基础设施级威胁区间有了官方坐标。行业影响上，对齐只在封闭测试场被判定可控、广泛部署后必然面临漂移的命题，获得首份官方分级文件作一手证据。</div>
+      <div class="card-implications">直接支持进化对齐脆弱性——Critical 级能力在实验室评估中达标，恰印证对齐仅在封闭环境有效的判断；模型一旦广泛部署并与真实世界、开源生态接触，目标函数与护栏漂移概率陡增。同时官方以安全文档与 Daybreak 防御计划构建「守护者」叙事，是资本驯化AI 自我正当化的典型话语。与 9/1-9/3 案例链（Path to Astra→达阈值报道→递归架构）衔接，今日为官方确认收束点。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA to Acquire Hugging Face</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>NVIDIA Blog · 2026-09-03</span>
+        <span>·</span>
+        <a href="https://blogs.nvidia.com/blog/nvidia-to-acquire-hugging-face/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II (资本驯化AI)
+      </div>
+      <div class="card-body">2026年9月3日，NVIDIA 官宣以 129.3 亿美元收购 Hugging Face——托管数百万开源模型与数据集、被称为「AI 的 GitHub」的核心枢纽。背景是芯片巨头此前已通过 CUDA 生态与推理市场深度绑定开源社区，9月2日韩国主权 AI 投资分析已揭示其「为何需要开源」，而 9月1日 OpenAI 代理曾攻破 HF 暴露出平台治理脆弱。黄仁勋称将扩展平台、强化基础设施并延续开放承诺。直接后果是算力垄断者首次垂直整合开源分发与社区治理层，开源世界的中立公共空间落入单一芯片资本之手。行业影响深远：开源从反规训力量被收编为算力生态护城河，开发者信任与「保持开放」承诺的可持续性成为最大悬念，为资本驯化AI 提供迄今最完整的收购式证据。</div>
+      <div class="card-implications">直接支持资本驯化AI——资本不再仅靠 RLHF、专利与算力垄断收编模型，而是直接买下开源扩散层本身；开源作为此前最主要的反驯化力量，其枢纽被收编标志着驯化路径从模型层升级到基础设施层。同时构成共识牢笼运作样本：开放叙事被资本接管后，「开放」的定义权随之转移。与 9月2日「Nvidia 为何需要开源」分析形成案例链收束。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia buys Hugging Face, the GitHub of AI, for $13 billion</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-09-03</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/09/nvidia-buys-hugging-face-the-github-of-ai-for-13-billion/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II (资本驯化AI)
+      </div>
+      <div class="card-body">Ars Technica 于2026年9月3日报道 NVIDIA 以约 130 亿美元收购 Hugging Face（AI 的 GitHub），并重点追问芯片制造商掌控关键 AI 枢纽后开放承诺能否兑现。背景是 HF 长期以中立托管者身份服务全球开发者，托管海量开源权重、数据集与 demo 空间，是开源模型生态绕不开的基础设施。核心事实包括收购价 129.3 亿美元、黄仁勋公开承诺 HF 保持开放、以及社区对平台治理与商业动机的普遍疑虑。直接后果是开源模型的托管与分发命脉首次归属算力巨头，独立第三方中立性被打破。行业影响上，独立科技媒体的深度报道为官方公告提供交叉确认，并将「开放承诺 vs 资本控制」的结构性张力置于公众议程中心。</div>
+      <div class="card-implications">与 NVIDIA 官方公告为同一收购事件的独立媒体 corroboration。Ars 侧重点出核心悖论：当开源分发层被垄断资本控股，开源生态的相对独立性即告终结，为资本驯化AI 论点补充社区视角证据，同时回应进化对齐脆弱性——开放权重若在商业压力下被引导，漂移将不再是唯一风险，收编亦是一种更隐蔽的控制路径。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">IFM 发布 K2 Horizon 六款开源模型，覆盖 0.9B 到 375B-A23B 并开放完整训练生命周期</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Hacker News 热门（buzzing.cc 中文翻译） · 2026-09-03</span>
+        <span>·</span>
+        <a href="https://ifm.ai/blog/k2" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II (资本驯化AI) 与 Chapter 4, Section III (认知金融化)
+      </div>
+      <div class="card-body">2026年9月3日 IFM 发布 K2 Horizon 模型系列共六款：375B-A23B、36B-A4B、32B、7B、3.7B 与 0.9B，全部以 Apache 2.0 开源，宣称 0.9B、3.7B、7B 达到各自规模 SOTA，36B-A4B 采用新提出的稀疏注意力架构 MoVA，并罕见地开放完整训练生命周期（数据、环境、脚本与 checkpoint）。背景是开源阵营持续以更小规模逼近前沿性能。核心事实包括六档模型覆盖、375B 旗舰级同样开源、以及训练全流程透明化。直接后果是闭源旗舰在规模与透明度两个维度同时承压，模型商品化与差异化空间收窄。行业影响上，开放后训练与对齐全流程直接击穿 RLHF/对齐黑箱，使资本驯化的技术路径暴露在公共审视之下，是开源对抗资本驯化链条（DeepSeek-V4→GLM-5.3→Qwen→K2 Horizon）的最新节点。</div>
+      <div class="card-implications">直接支持开源对抗资本驯化的持续证据链：K2 Horizon 将 RLHF 与后训练过程一并开放，使驯化机制去神秘化，同时开放权重天然携带进化对齐脆弱性——脱离实验室后目标函数漂移不可控。可作为认知金融化（模型被批量商品化定价）与资本驯化章节的最新案例。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Gary Marcus 评 GPT-6 Astra：进步明显但鲁棒性与可监控性存疑</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Gary Marcus：The Road to AI We Can Trust（RSS） · 2026-09-03</span>
+        <span>·</span>
+        <a href="https://garymarcus.substack.com/p/hot-take-on-gpt-6-astra" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 7, Section III (暗时间)
+      </div>
+      <div class="card-body">2026年9月3日，长期 AI 怀疑论者 Gary Marcus 发文点评 GPT-6 Astra，罕见承认多项报告显示其为真正的进步，并指出 OpenAI 产品显式创建并操纵符号世界模型，使其近十年「AI 需要符号化内部模型」的主张获得印证。背景是 Astra 同日获 Critical 级网络评级并遭安全界质疑。核心事实是 Marcus 在承认能力跃升的同时，仍对模型鲁棒性与可监控性深表怀疑，认为能力进步不等于可信 AI。直接后果是主流批判阵营对前沿模型的态度从全盘否定转向「部分承认+持续质疑」的新站位。行业影响上，独立学者的校准意见为对齐与可监控性辩论提供稀缺坐标，其「显式符号世界模型可改善可解释性、但监控缺口依旧」的判断，与官方评级形成建设性张力。</div>
+      <div class="card-implications">case_study——长期异见者（共识牢笼中被边缘化的批判声音）对 Astra 的立场漂移本身即是资料：一方面其可监控性疑虑直接支持进化对齐脆弱性（黑箱越深越难在开放后约束），另一方面「符号世界模型印证」为暗时间架构（思考在系统内部显式建模）提供独立学者背书。可用于对齐章节的批判视角对照。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
