@@ -454,7 +454,59 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-09-08">
+  <div class="day-group" data-date="2026-09-09">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-09-09</h2>
+    </div>
+    <div class="day-header-right">2 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section III</span>
+        </div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.schneier.com/blog/archives/2026/09/stealing-ai-reasoning-traces.html" target="_blank" rel="noopener">Stealing AI Reasoning Traces</a>
+      </h3>
+      <p class="radar-card-body">2026年9月8日，安全学者 Bruce Schneier 转载 arXiv 论文《Stealing Reasoning Traces from Proprietary LLM APIs》（arXiv 2608.09867）。研究揭示主流大模型厂商为保护知识产权与限制信息泄漏，已不在服务端存储模型的逐步推理过程（chain-of-thought），而是将推理痕迹以加密文本块形式返回客户端，由客户端在后续对话轮次原样回传；论文进一步表明这类加密痕迹存在可被窃取与破解的攻击面。背…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.schneier.com/blog/archives/2026/09/stealing-ai-reasoning-traces.html" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-09.html">查看 2026-09-09 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 6, Section II（开源反规训案例链）</span>
+        </div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://x.com/Meituan_LongCat/status/2094996391387111865" target="_blank" rel="noopener">美团 LongCat-2.0 上线 Cline 免费试用</a>
+      </h3>
+      <p class="radar-card-body">2026年9月2日，美团 LongCat 官方账号宣布 LongCat-2.0 在 Cline 中免费开放试用：这是一款 1.6T 参数开源权重 MoE 模型，支持 1M 上下文，综合得分接近 Claude Opus 4.7 与 Gemini 3.1 Pro。背景是中国大厂开源旗舰模型密集发布，形成DeepSeek-V4、GLM-5.3、Qwen、IFM K2 Horizon 至 LongCat-2.0 的开源链条，且普遍采取「开放权重+工具链直插」的分发策略（经由 Clin…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://x.com/Meituan_LongCat/status/2094996391387111865" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-09.html">查看 2026-09-09 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-09-08">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
@@ -3937,7 +3989,7 @@ footer a:hover{color:var(--accent)}
 
 /* ── STATS ── */
 (function(){
-  const t=113,d=113;
+  const t=114,d=114;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
