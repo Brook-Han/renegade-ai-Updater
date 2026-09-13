@@ -888,6 +888,15 @@ def auto_git_commit(data: dict) -> None:
             if (repo_root / stem).exists():
                 files_to_add.append(stem)
 
+        # 学术雷达产物（此前遗漏，导致 index 里的学术报告链接在 GitHub Pages 上 404）
+        for stem in (
+            f"docs/academic/academic_papers_{latest}.json",
+            f"docs/academic/academic_report_{latest}.md",
+            f"docs/academic/academic_report_{latest}.html",
+        ):
+            if (repo_root / stem).exists():
+                files_to_add.append(stem)
+
     try:
         subprocess.run(
             ["git", "add"] + files_to_add,
