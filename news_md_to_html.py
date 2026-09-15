@@ -139,9 +139,33 @@ def parse_news_report(md_path: str) -> dict:
                 title_m = re.search(r'📌\s*(.+?)(?:\.{3}|$)', stripped)
                 current['title'] = title_m.group(1).strip() if title_m else ''
     
+    # ── 4️⃣ 提取"中相关资讯"折叠区块 ──
+    # 旧实现只解析"高价值案例"，导致中相关条目在网页版报告中完全缺失
+    # （页头统计有数字、正文却没有任何条目）。此处补齐解析。
+    medium_items = []
+    med_section = re.search(
+        r'<details><summary>🔶 中相关资讯.*?</summary>\s*(.*?)</details>',
+        text, re.DOTALL
+    )
+    if med_section:
+        for line in med_section.group(1).split('\n'):
+            stripped = line.strip()
+            m = re.match(
+                r'-\s*\*\*\[(.+?)\]\((https?://.+?)\)\*\*\s*\[(.+?)\]\s*·\s*(\d+(?:\.\d+)?)/10',
+                stripped
+            )
+            if m:
+                medium_items.append({
+                    'title': m.group(1).rstrip('.'),
+                    'url': m.group(2),
+                    'source': m.group(3),
+                    'score': m.group(4),
+                })
+
     return {
         'date': date, 'model': model, 'total': total_count,
-        'high_n': high_n, 'med_n': med_n, 'items': items, 'urgent': urgent_items,
+        'high_n': high_n, 'med_n': med_n, 'items': items,
+        'urgent': urgent_items, 'medium_items': medium_items,
     }
 
 
@@ -335,6 +359,29 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -447,6 +494,21 @@ def generate_news_html(data: dict, output_path: str):
       {f'<div class="card-footer">{tags_html}</div>' if tags_html else ''}
     </article>'''
     
+    # ── 2.5️⃣ 生成"中相关资讯"列表 ──
+    medium_html = ''
+    med_items = data.get('medium_items') or []
+    if med_items:
+        rows = ''.join(
+            f'<li><a href="{escape(m["url"])}" target="_blank" rel="noopener">{escape(m["title"])}</a>'
+            f'<span class="med-meta">{escape(m["source"])} · {m["score"]}/10</span></li>'
+            for m in med_items
+        )
+        medium_html = f'''
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 ({len(med_items)}条)</div>
+      <ul class="med-list">{rows}</ul>
+    </section>'''
+
     # ── 3️⃣ 拼接完整 HTML 文档 ──
     # 注意：JS 代码中的花括号必须使用 {{ 和 }} 进行转义，因为它们位于 f-string 内部
     html = f'''<!DOCTYPE html>
@@ -486,6 +548,7 @@ def generate_news_html(data: dict, output_path: str):
     
     {urgent_html}
     {items_html}
+    {medium_html}
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
