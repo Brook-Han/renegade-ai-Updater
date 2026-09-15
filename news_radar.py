@@ -581,12 +581,18 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
         return None
 
     # 分类统计
+    # 注意：三个分档必须构成「完整划分」。旧实现把 medium 限定为 4<=rel<7，
+    # 导致 relevance>=7 但 case_value 不是 high 的条目（如 rel 7 medium）
+    # 三个档位都进不去、被静默丢弃。改为 high/low 先行，medium 兜住其余条目。
     high = [d for d in news_data if d["analysis"].get("relevance", 0) >= 7
             and d["analysis"].get("case_value") in CASE_VALUE_FILTER]
-    medium = [d for d in news_data if 4 <=
-              d["analysis"].get("relevance", 0) < 7]
     low = [d for d in news_data if d["analysis"].get("relevance", 0) < 4
            or d["analysis"].get("action") == "忽略"]
+    _high_ids = {id(d) for d in high}
+    _low_ids = {id(d) for d in low}
+    medium = [d for d in news_data
+              if id(d) not in _high_ids and id(d) not in _low_ids]
+    medium.sort(key=lambda d: -d["analysis"].get("relevance", 0))
     
     # AI HOT 统计（新增）
     aihot_all = [d for d in news_data if d.get("news", {}).get("source") == "aihot"]
@@ -601,7 +607,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
         "---\n",
         "## 📊 快速概览\n",
         f"- 🔴 高价值 (≥7分 + {','.join(CASE_VALUE_FILTER)}案例): **{len(high)}**",
-        f"- 🟡 中相关 (4-6.9分): **{len(medium)}**",
+        f"- 🟡 中相关 (其余有效条目): **{len(medium)}**",
         f"- ⚪ 低相关/忽略: **{len(low)}**",
         f"- 🇨🇳 中国 AI 动态 (AI HOT): **{len(aihot_all)}** 条（高价值: **{len(aihot_high)}**）\n",
     ]
