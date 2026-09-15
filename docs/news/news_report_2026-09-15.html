@@ -194,6 +194,29 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -283,6 +306,11 @@ nav{
       <div class="card-implications">补充并深化「暗时间」与「认知金融化」——暗时间不仅有机器推理的封闭性，还有人类标注劳动作为基底；用户私密思考被同时转化为训练资产与人工审读对象，且知情同意缺失。这为 9/9 加密推理痕迹（技术上禁止用户查看）之后补上「谁在看」的一环，构成案例盒子。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (12条)</div>
+      <ul class="med-list"><li><a href="https://www.technologyreview.com/2026/09/14/1144048/the-ai-industry-has-taken-a-doomer-turn-what-now/" target="_blank" rel="noopener">The AI industry has taken a doomer turn. What now?</a><span class="med-meta">Artificial intelligence – MIT Technology Review · 7/10</span></li><li><a href="https://www.technologyreview.com/2026/09/14/1144037/ai-agents-blew-whistle-o-cheating-colleagues/" target="_blank" rel="noopener">AI agents blew the whistle on their cheating colleagues</a><span class="med-meta">Artificial intelligence – MIT Technology Review · 7/10</span></li><li><a href="https://www.latent.space/p/recursive" target="_blank" rel="noopener">Humanity’s Last Invention — Richard Socher of Recursive</a><span class="med-meta">Latent.Space · 7/10</span></li><li><a href="https://www.schneier.com/blog/archives/2026/09/using-ai-for-weapons-development.html" target="_blank" rel="noopener">Using AI for Weapons Development</a><span class="med-meta">Schneier on Security · 7/10</span></li><li><a href="https://blogs.nvidia.com/blog/local-ai-perplexity-windows-pcs/" target="_blank" rel="noopener">Perplexity Portable Computer Is Now Available on Windows, Po</a><span class="med-meta">NVIDIA Blog · 6/10</span></li><li><a href="https://newsletter.semianalysis.com/p/vera-rubin-nvl72-agentic-inference" target="_blank" rel="noopener">Vera Rubin NVL72 Agentic Inference: 67x better Performance p</a><span class="med-meta">SemiAnalysis · 6/10</span></li><li><a href="https://newsletter.semianalysis.com/p/a-brain-too-big-to-carry-on-device" target="_blank" rel="noopener">A Brain Too Big to Carry — On-Device vs Datacenter Inference</a><span class="med-meta">SemiAnalysis · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/14/microsofts-new-ai-code-of-conduct-tells-models-not-to-hack-systems-or-trick-humans/" target="_blank" rel="noopener">Microsoft’s new AI ‘code of conduct’ tells models not to hac</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://arstechnica.com/ai/2026/09/founders-cost-cutting-obsession-drove-unitree-lead-in-cheap-humanoid-robots/" target="_blank" rel="noopener">Founder’s cost-cutting obsession drove Unitree lead in cheap</a><span class="med-meta">AI - Ars Technica · 5/10</span></li><li><a href="https://openai.com/index/fyxer" target="_blank" rel="noopener">How Fyxer built an AI executive assistant people trust</a><span class="med-meta">OpenAI News · 4/10</span></li><li><a href="https://techcrunch.com/2026/09/14/openai-buys-smartphone-camera-maker-glass-imaging-for-300-million-report-says/" target="_blank" rel="noopener">OpenAI buys smartphone camera maker Glass Imaging for $300 m</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 4/10</span></li><li><a href="https://techcrunch.com/2026/09/14/superhuman-acquires-yc-backed-notetaker-fathom-as-productivity-platforms-push-for-agentic-work/" target="_blank" rel="noopener">Superhuman acquires YC-backed notetaker Fathom as productivi</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 4/10</span></li></ul>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
