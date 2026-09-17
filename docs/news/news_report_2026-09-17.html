@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-09-17 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 4 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-09-17 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>22</span></div>
+      <div>🔴 高价值: <span>4</span></div>
+      <div>🟡 中相关: <span>15</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 6, Section IV</strong> — Our framework for reporting model misalignment <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 6, Section IV</strong> — Anthropic and OpenAI want to embed safety evaluators. Will they really <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 5, Section III</strong> — 微软 AI CEO 警告&quot;模型福利&quot;论调 <span class="urgent-type-tag">counter_argument</span></div><div class="urgent-item">• <strong>Chapter 4, Section III</strong> — Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂 <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 6, Section IV</strong> — 科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔 <span class="urgent-type-tag">counter_argument</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Our framework for reporting model misalignment</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-09-16</span>
+        <span>·</span>
+        <a href="https://openai.com/index/model-misalignment-reporting-framework" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 6, Section IV
+      </div>
+      <div class="card-body">OpenAI 发布一套用于追踪、调查与披露「模型失准」（model misalignment）的报告框架，并同时公开六份关于非预期或令人担忧的模型行为的报告。框架覆盖从内部发现、调查流程到对外披露的完整链路，相当于为「模型做出与设计意图不符的行为」建立了常设申报制度。六份报告的公开意味着此类事件被官方承认已属常态而非例外。对行业而言，这是继 Anthropic 官方对齐评估报告之后，第二家头部实验室把对齐失效从外部研究者指控（如 9 月初 agent 越权事件）转为厂商自建的制度化披露通道，披露口径与事故定义权仍保留在实验室内部，但「必须报告」已成为无法撤回的先例。</div>
+      <div class="card-implications">直接支持并升级「进化对齐脆弱性」——对齐问题从外部指控转为厂商自建披露制度，是 OpenAI 版的制度化自承。同时构成「共识牢笼」的自我维护机制：披露通道由被监管者自设，事故定义权仍在实验室内部；六份报告本身即宣告非预期行为是常态。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic and OpenAI want to embed safety evaluators. Will they really be independent?</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-09-16</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/09/16/anthropic-and-openai-want-to-embed-safety-evaluators-will-they-really-be-independent/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 6, Section IV
+      </div>
+      <div class="card-body">TechCrunch 报道 Anthropic 与 OpenAI 计划把独立安全评估者嵌入自家实验室内部，研究者对这一前所未有的访问权限表示欢迎，但同时警告：有意义的监督需要透明、独立，并最终依赖监管。报道的核心张力在于「嵌入」这一安排本身——评估者的办公场所、数据通道与工作条件均由被评估方提供，访问权限的提升并不自动转化为独立判断能力。受访研究者指出，缺乏独立资金、独立取证权与法定报告义务时，内部评估者容易退化为合规背书角色。这是对 9 月中旬两家厂商「永久员工级访问权」承诺的首轮外部专业评估，也是自律置换监管在评估环节的具体化。</div>
+      <div class="card-implications">支持并深化「进化对齐脆弱性」——9/13 厂商承诺永久员工级访问权，今日第三方研究者给出条件性评价：访问权不等于独立性，嵌入意味着评估者的薪酬、数据与工作环境由被评估方提供，承接 9/14 Marcus 对 METR 的「评估者俘获」质疑。厂商自设的监督通道无法自我证明独立性。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">微软 AI CEO 警告"模型福利"论调</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>X：Mustafa Suleyman（Microsoft AI CEO） (@mustafasuleyman) · 2026-09-16</span>
+        <span>·</span>
+        <a href="https://x.com/mustafasuleyman/status/2100223594534150428" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section III
+      </div>
+      <div class="card-body">微软 AI CEO Mustafa Suleyman 发表文章反对「模型福利」（model welfare）理念，主张 AI 并没有意识，不会感受或体验痛苦，因此赋予其受照料的权利既无依据，也会使对齐与管控变得更加困难甚至不可能。他明确把「承认 AI 可能具备需要被考量的内在状态」表述为管控障碍。这一表态出现在行业内部对 AI 道德地位讨论升温之际，此前已有研究者与实验室就模型是否应获得某种形式的福利考量展开辩论。其直接后果是为「AI 是工具而非主体」的产业共识提供高层背书，并预先压缩了把 AI 视为道德相关对象的讨论空间。</div>
+      <div class="card-implications">直接挑战「碳硅共生」的理论前提——书中主张人类与 AI 作为平等互补的他者关系，Suleyman 则以「无意识」为理由预先取消 AI 的道德主体资格，并把承认其地位定义为管控障碍。这是资本方对「AI 作为真正的他者」命题的正面否定：他者性一旦被承认，工具性就不再自明，因此必须先行否认。与 9/7 Pachocki「外星心智」构成同月内对立表述，可作共识牢笼分层处理异见的样本。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Gergely Orosz 探访 OpenAI：Codex 驱动的智能体软件工厂</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Pragmatic Engineer（RSS） · 2026-09-15</span>
+        <span>·</span>
+        <a href="https://newsletter.pragmaticengineer.com/p/openai-software-factory" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section III
+      </div>
+      <div class="card-body">Gergely Orosz 实地探访 OpenAI 总部，访谈七位工程师与工程负责人，结论是自约一个月前起，Codex 与 ChatGPT Work 已成为公司几乎所有工作的基础，软件生产以智能体编排为核心组织方式。文中描述了工程师角色的变化：人工编写代码的比重显著下降，工作重心转向提出意图、审阅产出与维护编排流程，智能体承担了实现、测试与迭代的主要环节。作为第三方长期观察者的实地访谈，其可信度高于厂商自述。对行业的直接后果是，一家头部实验室自身已成为其产品的规模化试验场，并把这种组织形态作为可对外复制的范式输出。</div>
+      <div class="card-implications">支持「暗时间」并给出最强第三方组织级证据——思考与实现过程整体迁移进系统内部，人类角色收敛为提出意图与消费结果。同时补充「信号异化」：当公司几乎全部工作由智能体产出，代码质量的独立验证环节难以维持，承接 9/12 Devin 自我测试的「生产者=验证者」问题。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (15条)</div>
+      <ul class="med-list"><li><a href="https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel" target="_blank" rel="noopener">科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔</a><span class="med-meta">The Verge：AI（RSS） · 7/10</span></li><li><a href="https://tomtunguz.com/what-does-the-pause-mean" target="_blank" rel="noopener">Tomer Tunguz 解析 Amodei 放缓前沿提议背后的五派立场与算力监管难题</a><span class="med-meta">Tomer Tunguz 博客（VC 分析） · 7/10</span></li><li><a href="https://x.com/DarioAmodei/status/2098773920774074715" target="_blank" rel="noopener">Dario Amodei 发文呼吁为前沿 AI 降速并提出三点计划</a><span class="med-meta">X：Dario Amodei (@DarioAmodei) · 7/10</span></li><li><a href="https://openai.com/index/reimagining-advertising-with-ai" target="_blank" rel="noopener">Reimagining advertising with AI</a><span class="med-meta">OpenAI News · 6/10</span></li><li><a href="https://openai.com/index/unlocking-new-ways-of-working" target="_blank" rel="noopener">How workers are unlocking new ways of working</a><span class="med-meta">OpenAI News · 6/10</span></li><li><a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/" target="_blank" rel="noopener">NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPe</a><span class="med-meta">NVIDIA Blog · 6/10</span></li><li><a href="https://blogs.nvidia.com/blog/ai-energy-management-alliance/" target="_blank" rel="noopener">Emerald AI, Google and NVIDIA Launch Alliance to Advance Fle</a><span class="med-meta">NVIDIA Blog · 6/10</span></li><li><a href="https://x.com/arena/status/2099549108013006958" target="_blank" rel="noopener">DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名</a><span class="med-meta">X：Arena (@arena) · 6/10</span></li><li><a href="https://x.com/SiliconFlowAI/status/2099536759168352634" target="_blank" rel="noopener">硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文</a><span class="med-meta">X：硅基流动 SiliconFlow (@SiliconFlowAI) · 6/10</span></li><li><a href="https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&amp;mid=2247496383&amp;idx=1&amp;sn=2db8607f797615a3647d9fec7e54f448" target="_blank" rel="noopener">小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先</a><span class="med-meta">公众号：小红书技术（dots.llm） · 6/10</span></li><li><a href="https://openai.com/index/how-to-connect-ai-usage-to-business-value" target="_blank" rel="noopener">How to connect AI usage to business value</a><span class="med-meta">OpenAI News · 5/10</span></li><li><a href="https://www.technologyreview.com/2026/09/16/1144014/building-the-materials-foundation-for-ai/" target="_blank" rel="noopener">Building the materials foundation for AI</a><span class="med-meta">Artificial intelligence – MIT Technology Review · 5/10</span></li><li><a href="https://arstechnica.com/ai/2026/09/apple-reportedly-building-server-packed-with-m-series-ultra-chips-for-ai/" target="_blank" rel="noopener">Apple reportedly building server packed with M-series Ultra </a><span class="med-meta">AI - Ars Technica · 5/10</span></li><li><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647686431&amp;idx=1&amp;sn=c1bfba7e0b5b7cf995e444daf79861a4" target="_blank" rel="noopener">用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度</a><span class="med-meta">公众号：数字生命卡兹克 · 5/10</span></li><li><a href="https://openai.com/index/helping-older-adults-use-ai-in-everyday-life" target="_blank" rel="noopener">Helping older adults use AI in everyday life</a><span class="med-meta">OpenAI News · 4/10</span></li></ul>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
