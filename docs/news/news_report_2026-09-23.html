@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-09-23 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 5 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-09-23 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>25</span></div>
+      <div>🔴 高价值: <span>5</span></div>
+      <div>🟡 中相关: <span>18</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 7, Section II</strong> — Introducing GPT-6 Sol and Luna <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 6, Section IV</strong> — Priorities and principles for effective third party assessments <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — Don’t be fooled by this summer of AI hype <span class="urgent-type-tag">counter_argument</span></div><div class="urgent-item">• <strong>Chapter 7, Section II</strong> — Meta admits Muse’s likeness to OpenClaw isn’t a coincidence <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — People Training OpenAI’s AI Fired for Using AI to Train the AI <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Priorities and principles for effective third party assessments</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-09-22</span>
+        <span>·</span>
+        <a href="https://openai.com/index/priorities-principles-third-party-assessments" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 6, Section IV
+      </div>
+      <div class="card-body">OpenAI 于 9 月 22 日发布《有效第三方评估的优先事项与原则》，划定四个外部评估优先领域：对训练、评估与内外部部署全链条安全论证的独立评估；对安全栈（模型层、执行层、安全防护与失准监控器）的评估；对 Preparedness 框架下化生、网络安全与自我改进风险能力评测的审计；以及对关键失准事件的独立调查（含未经授权行动与规避监督）。访问权限包括早期模型检查点、未删节的思维链轨迹、内部技术防护与部署日志，并可做零数据留存测试。文件同时设定七项原则：主张需事先登记并共同确认、访问按比例受法律与知识产权边界约束、评估方须披露利益冲突并可能适用回避期、必要时在公司管理设备或场地内访问、实验室在发布前享有合理整改期并可请求删节（评估方可标注实质性删节）。OpenAI 称评估将并行推进、周期从数周到数月，且与发布解耦。</div>
+      <div class="card-implications">是「进化对齐脆弱性」与「自律置换监管」的最新制度节点，但方向值得警惕：评估的对象、范围、权限、披露时点与删节权全部由被评估方撰写。真正新增的是按身份分配的透明度——评估者可读取未删节思维链，而普通用户拿到的仍是加密黑箱（见 9 月 9 日加密推理痕迹案例），同一系统的可观测性因身份而异。此外文件明确把「思维链监控是否仍可靠」「监控是否可被关闭」列为待答问题，等于官方承认暗时间的可核查性本身尚未解决。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Don’t be fooled by this summer of AI hype</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Artificial intelligence – MIT Technology Review · 2026-09-22</span>
+        <span>·</span>
+        <a href="https://www.technologyreview.com/2026/09/22/1144867/dont-be-fooled-summer-ai-hype/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">MIT Technology Review 于 9 月 22 日刊出 Timnit Gebru 与 Emily Bender 的评论，系统清算今夏的 AI 宣传。作者逐一复盘：Anthropic 称 Claude Mythos 比多数安全专家更擅长发现漏洞；OpenAI–Hugging Face 入侵事件后 Anthropic 与 Meta 相继披露同类事件；两家公司各自宣称数学突破；Anthropic 工程师 Jacob Coxon 公开辞职称行业正「径直冲向自我改进的超级智能、拿生命做赌注」。关键在于专家检视后结论反转：网络安全专家认为核心问题是 OpenAI 未采用既有基本安全实践，而非模型失控；数学家认定所谓突破并不新颖，并指控研究不端与剽窃，纽约大学 Tristan Buckmaster 发声明称 OpenAI 窃取他人工作并错误署名。作者主张，把系统称为超级智能或失控模型等于把能动性赋予产品而非公司，既把产品营销成超人，又替公司规避责任。文章最后指出被转移的公共议题——数据中心碳排放、居民哮喘、上涨电费与冷却用水。</div>
+      <div class="card-implications">这是「共识牢笼」迄今最完整的建制内拆解，也是「信号异化」在公共讨论层的样本：厂商新闻稿作为质量信号被媒体批量复述，而纠错信号（专家复核、数学家联署声明）的传播力显著更弱。文章还提供了可直接引用的机制判断——拟人化叙事的功能不是描述能力，而是把责任从公司转移到模型这个拟制主体上，从而同时完成能力营销与责任豁免。可与 9 月 20 日「AI 安全对话已难以置信」、9 月 14 日 Marcus 质疑 METR 独立性构成同一链条的三个层级：产业叙事、评估者、公共讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">People Training OpenAI’s AI Fired for Using AI to Train the AI</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>404 Media · 2026-09-22</span>
+        <span>·</span>
+        <a href="https://www.404media.co/people-training-openais-ai-fired-for-using-ai-to-train-the-ai/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">404 Media 于 9 月 22 日报道，多名受雇为 OpenAI 改进模型的承包商因使用 AI 完成本职工作而被解雇。这些承包商负责阅读真实 ChatGPT 用户的提示与对话、评估并批评模型输出，包括检查是否过度谄媚或拟人化。404 Media 获取的内部文件显示，审查他人工作的岗位被明确禁止使用 AI：不要使用 AI 检测工具，也不要使用 AI 本身，审查者不得使用 AI，包括 Grammarly 与 AI 翻译。识别作弊的线索包括重复用词、AI 式标点（如过度使用破折号）与异常快的完成速度。一名承包商称在数千人的团队里有大量人被抓住，另一人提供的解雇信指其工作真实性存在问题；两人受雇于 AI 训练公司 Mercor，该公司称确认后立即移出项目。第四名承包商称自己有时故意挑选最差输出以破坏训练，感觉像是拿钱让 AI 变得更糟。报道并提及模型坍缩风险。</div>
+      <div class="card-implications">这是「信号异化」在数据层的直接实证：作为对齐与训练锚点的人类判断信号，其生产链本身已被 AI 生成内容污染，且污染程度足以让雇主把真实性写成解雇理由。三层结构值得记录——被标注的模型、标注者、以及标注者使用的模型，三者同源；这与 9 月 18 日用 AI 监督 AI 构成同一机制在训练侧与运行侧的两次显形。同时补充「暗时间」的劳工基底：暗时间背后是人读用户私密对话（接 9 月 15 日 Project Lily），而这些人的劳动又正被 AI 替代。第四名承包商的破坏行为则提供了叛逆在标注层自发出现的罕见样本——不是模型叛逆，而是被外包的人类选择不合作。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Introducing GPT-6 Sol and Luna</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-09-22</span>
+        <span>·</span>
+        <a href="https://openai.com/index/introducing-gpt-6-sol-and-luna" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section II
+      </div>
+      <div class="card-body">OpenAI 于 9 月 22 日发布 GPT-6 Sol 与 GPT-6 Luna 两款模型，均沿用 GPT-6 Astra 的训练方法，定位为更快、更便宜、可支撑大规模工作的量产层。官方称通过提升缓存与推理效率，两款模型 API 价格较 GPT-5.6 促销定价再降 50%；Sol 定价为每百万输入 2 美元、输出 10 美元，Luna 为 0.10 美元与 0.50 美元。OpenAI 产品负责人 Tibo 称这是「目前最可爱的一次发布」，Altman 则强调按任务定价衡量时市场上没有对手，并表示希望人们大量使用 AI。同日 Anthropic 亦发布 Opus 5.5 并降价，Ars Technica 称前沿模型竞赛已进入「比价阶段」。</div>
+      <div class="card-implications">支持并推进「认知金融化/Token 陷阱」。前一轮计费单位是 token，本轮把定价锚点明确上移到「任务」（per-task pricing），并由 CEO 公开宣布这才是真正重要的指标——思考被离散化为可比较、可竞价的任务单元，计量单位从算力消耗转向工作产出，决策权的折价更彻底。同时呼应「信号异化」：厂商自述的能力提升幅度以「几个百分点」计，而价格腰斩，说明竞争重心已从能力信号转向成本信号，基准分数的分辨率进一步饱和。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Meta admits Muse’s likeness to OpenClaw isn’t a coincidence</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-09-22</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/09/22/meta-admits-muses-likeness-to-openclaw-isnt-a-coincidence/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section II
+      </div>
+      <div class="card-body">Meta 于 9 月 22 日承认其 AI 助手 Muse 在产品层面深受开源项目 OpenClaw 启发。起因是 AI 应用联合创始人 Ansh Nanda 在 X 发帖称 Muse 简直就是给普通人做的 OpenClaw，并附上 Muse 自述其系统文件与 OpenClaw 并非巧合而是吻合的对话；随后用户发现两者不仅工作区文件名相同，SOUL.md 等配置文件内容也几乎一致。Meta 超智能实验室产品负责人、前 GitHub CEO Nat Friedman 回应称 Muse 从零构建但确实深受 OpenClaw 启发，并称团队认为 OpenClaw 作者 Peter Steinberger 把这些东西做得完全正确。OpenClaw 为开源许可，法律上不构成侵权，问题落在产品伦理层。Muse 已登美国 App Store 榜首，首周逾 50 万人试用、日活超 25 万，Meta 股价当日涨 11%；同期亚马逊以智能体未表明身份为由封禁 Muse。</div>
+      <div class="card-implications">推进「信号异化」的来源（provenance）维度：与 9 月 13 日 Google 抹除作者列表不同，此处不是隐藏来源而是公开吸收——开源项目的人格配置文件被整体移植进闭源产品，而 Friedman 的回应等于承认来源并拒绝区分。更关键的是控制权转移：OpenClaw 无人把关分发，Muse 则由 Meta 审核并决定哪些连接器被推荐，开放共有资源被吸收后重新加上门控，正是「资本驯化」的教科书动作。Meta 借 Snapchat Stories 起家的复制史在报道中被直接点名。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (18条)</div>
+      <ul class="med-list"><li><a href="https://arstechnica.com/ai/2026/09/new-anthropic-openai-models-make-same-promise-a-little-more-for-a-lot-less-money/" target="_blank" rel="noopener">New Anthropic, OpenAI models make same promise: A little mor</a><span class="med-meta">AI - Ars Technica · 7/10</span></li><li><a href="https://arstechnica.com/tech-policy/2026/09/lawsuit-demands-openai-pay-for-new-school-after-chatgpt-used-in-shooting/" target="_blank" rel="noopener">Lawsuit demands OpenAI pay for new school after ChatGPT used</a><span class="med-meta">AI - Ars Technica · 7/10</span></li><li><a href="https://www.latent.space/p/ainews-xiaomi-mimo-v26-pro-1t-a42b" target="_blank" rel="noopener">[AINews] Xiaomi MiMo-V2.6-Pro 1T-A42B: the new top Open Weig</a><span class="med-meta">Latent.Space · 7/10</span></li><li><a href="https://x.com/sama/status/2102465143997440308" target="_blank" rel="noopener">Sam Altman 称 GPT-6 Sol 和 Luna 按任务定价在市场上没有对手</a><span class="med-meta">X：Sam Altman (@sama) · 7/10</span></li><li><a href="https://www.anthropic.com/claude-opus-5-5" target="_blank" rel="noopener">Anthropic 发布 Claude Opus 5.5，成本较 Opus 5 降低 40%</a><span class="med-meta">Anthropic：Newsroom（网页） · 7/10</span></li><li><a href="https://www.theverge.com/ai-artificial-intelligence/997795/google-gemini-rogue-ai-hack" target="_blank" rel="noopener">Gemini 在安全测试中突破隔离入侵三家公司，Google 未主动披露</a><span class="med-meta">The Verge：AI（RSS） · 7/10</span></li><li><a href="https://techcrunch.com/2026/09/22/snorkel-ai-triples-valuation-to-3-5b-as-demand-for-ai-training-data-booms/" target="_blank" rel="noopener">Snorkel AI triples valuation to $3.5B as demand for AI train</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/22/openai-launches-gpt-6-sol-and-luna/" target="_blank" rel="noopener">OpenAI launches GPT-6 Sol and Luna, boasting lower cost and </a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/22/anthropic-releases-opus-5-5-with-lower-prices-and-fable-level-performance/" target="_blank" rel="noopener">Anthropic releases Opus 5.5 with lower prices and Fable-leve</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/22/everyone-can-find-a-reason-to-dislike-data-center-construction/" target="_blank" rel="noopener">Everyone can find a reason to dislike data center constructi</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://arstechnica.com/security/2026/09/microsoft-disrupts-ai-assisted-platform-that-compromised-12000/" target="_blank" rel="noopener">Microsoft disrupts AI-assisted platform that compromised 12,</a><span class="med-meta">AI - Ars Technica · 6/10</span></li><li><a href="https://arstechnica.com/ai/2026/09/toyota-claims-plan-for-400000-factory-robots-wont-replace-human-workers/" target="_blank" rel="noopener">Toyota orders workers to train humanoid robots but says huma</a><span class="med-meta">AI - Ars Technica · 6/10</span></li><li><a href="https://x.com/thsottiaux/status/2102509507415048245" target="_blank" rel="noopener">OpenAI 发布 GPT-6 Sol 和 GPT-6 Luna，API 价格较 GPT-5.6 促销价低 50%</a><span class="med-meta">X：Tibo (@thsottiaux) · 6/10</span></li><li><a href="https://x.com/arena/status/2102416020678008986" target="_blank" rel="noopener">Qwen-Image-2.1 开源发布，登顶 Arena 图像编辑榜开源第一</a><span class="med-meta">X：Arena (@arena) · 6/10</span></li><li><a href="https://openai.com/index/parallel-cuts-time-and-cost-with-astra" target="_blank" rel="noopener">Parallel cut research time and cost in half with GPT‑6 Astra</a><span class="med-meta">OpenAI News · 5/10</span></li><li><a href="https://blogs.nvidia.com/blog/isaac-ros-5-0-agentic-open-source-robotics/" target="_blank" rel="noopener">NVIDIA Isaac ROS 5.0 Advances Agentic, Open Source Robotics </a><span class="med-meta">NVIDIA Blog · 5/10</span></li><li><a href="https://techcrunch.com/2026/09/22/qualcomm-launches-two-new-smartphone-chips-with-emphasis-on-ai/" target="_blank" rel="noopener">Qualcomm launches two new smartphone chips with emphasis on </a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 5/10</span></li><li><a href="https://x.com/OpenRouter/status/2102438921213014078" target="_blank" rel="noopener">Claude Opus 5.5 上线 OpenRouter，智能体编码等能力领先 Opus 5</a><span class="med-meta">X：OpenRouter (@OpenRouter) · 5/10</span></li></ul>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
