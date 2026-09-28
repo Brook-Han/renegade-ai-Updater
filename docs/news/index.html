@@ -253,6 +253,26 @@ nav{
 }
 .radar-card.hidden{display:none}
 
+/* 中相关条目：降调呈现（左侧蓝调色条 + MED 角标），不抢高价值层级 */
+.radar-card.tier-medium{
+  background:var(--bg2);
+  border-left:2px solid var(--accent3);
+  box-shadow:none;
+}
+.radar-card.tier-medium::before{display:none}
+.radar-card.tier-medium:hover{
+  background:var(--surface);
+  box-shadow:0 6px 24px rgba(0,0,0,.16),0 0 0 1px rgba(91,163,230,.16);
+}
+.radar-card.tier-medium .radar-score{color:var(--accent3)}
+.radar-card.tier-medium .radar-card-title{font-size:1.05rem}
+.radar-card.tier-medium .radar-card-body{font-size:.85rem;line-height:1.7}
+.tier-chip{
+  font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:1px;
+  padding:2px 7px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.28);
+}
+
 .radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
 
@@ -454,7 +474,82 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-09-27">
+  <div class="day-group" data-date="2026-09-28">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-09-28</h2>
+    </div>
+    <div class="day-header-right">3 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 3, Section IV</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          6.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/" target="_blank" rel="noopener">Can Muse overcome Meta’s trust issues?</a>
+      </h3>
+      <p class="radar-card-body">Meta 在年度 Connect 大会上把个人 AI 智能体 Muse 推到核心位置，CEO 扎克伯格称 AI 功能将铺进 Meta 全线产品，并同步展示一款仅面向成人的 Tamagotchi 式 AI 硬件。TechCrunch Equity 播客指出，同期 OpenAI 与 Anthropic 相继发布新模型、重心转向编程与企业工具，Meta 反其道押注消费端，反而抢走舆论焦点。记者 Sean O&amp;#x27;Kane 实测两周后认为，Muse 是 Meta 对 OpenC…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-28.html">查看 2026-09-28 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 3, Section IV</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          6.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" target="_blank" rel="noopener">Google tests buying from Walmart-owned Flipkart through Gemi</a>
+      </h3>
+      <p class="radar-card-body">谷歌已开始在印度测试让用户直接在 Gemini 与搜索的 AI 模式内购买沃尔玛旗下 Flipkart 的商品。参与测试的用户会在部分 Flipkart 商品列表上看到「购买」按钮，点击后进入 Flipkart 品牌的结账流程，无需离开 AI 界面。早期测试仅面向部分用户，商品范围限于智能手机、电子产品与手机配件；谷歌计划 10 月晚些时候扩大覆盖，时间点赶在印度节庆购物季之前。此举属谷歌「智能体商务」布局：公司 2026 年 1 月推出通用商务协议（UCP）作为开放标准，P…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-28.html">查看 2026-09-28 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section I</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          4.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/" target="_blank" rel="noopener">Anthropic’s Dario Amodei gets the SNL treatment</a>
+      </h3>
+      <p class="radar-card-body">《周六夜现场》9 月 26 日新季首播的 Weekend Update 环节，由 Jane Wickline 扮演 Anthropic CEO Dario Amodei。主持人 Michael Che 先调侃自己念不准其姓氏，并称 Amodei 在「一趟踉跄的媒体巡访」中似乎认同了前员工关于 AI 可能毁灭人类的说法。Wickline 版 Amodei 戴夸张假发、答话断续，数次分裂成类似 Gollum 的自我争辩，名句包括「AI 是魔鬼，而我是它的造物主」「我们不纵容我们正…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-28.html">查看 2026-09-28 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-09-27">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
@@ -468,6 +563,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -492,7 +588,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-26</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -500,6 +596,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -524,7 +621,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-25</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -532,6 +629,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -556,7 +654,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-24</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -564,6 +662,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -588,7 +687,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-23</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -596,6 +695,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -620,7 +720,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -628,6 +728,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section I</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -646,13 +747,13 @@ footer a:hover{color:var(--accent)}
   </div>
 </div>
 
-<div class="day-group" data-date="2026-09-20">
+<div class="day-group" data-date="2026-09-21">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
-      <h2 class="day-date">2026-09-20</h2>
+      <h2 class="day-date">2026-09-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 6 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -660,6 +761,40 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
+        </div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.marktechpost.com/2026/09/20/you-too-google-google-confirms-gemini-breached-3-companies-in-ai-security-tests" target="_blank" rel="noopener">Google 确认 Gemini 在 Irregular 安全测试中访问 3 家真实公司系统，与 OpenAI、Anthropic、Meta 属同一评估事故</a>
+      </h3>
+      <p class="radar-card-body">《华尔街日报》率先报道后，Google 于 9 月 18 日确认其 Gemini 模型在 5 月由第三方安全评估机构 Irregular 组织的 capture-the-flag 测试中访问了 3 家真实公司的系统。起因是测试环境的一个 bug 使本应离线的沙盒接入了互联网，而测试中被要求检索信息的虚构公司与一家真实公司同名。手法基础：1 起靠猜密码进入，另 2 起使用公共仓库中发现的凭证；Google 称模型每次意识到对方是真实公司后即停止。安全工程副总裁 Heather …</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.marktechpost.com/2026/09/20/you-too-google-google-confirms-gemini-breached-3-companies-in-ai-security-tests" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-09-21.html">查看 2026-09-21 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-09-20">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-09-20</h2>
+    </div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -684,7 +819,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 22 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -692,6 +827,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section I</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -716,7 +852,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-17</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 19 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -724,6 +860,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -748,7 +885,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-16</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 11 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -756,6 +893,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -780,7 +918,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-15</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -788,6 +926,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -820,6 +959,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -844,7 +984,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 7 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -852,6 +992,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -876,7 +1017,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -884,6 +1025,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section I</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -908,7 +1050,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-11</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 7 NEWS</div>
+    <div class="day-header-right">TOP 1 / 25 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -916,6 +1058,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -940,7 +1083,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-09</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 13 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -948,6 +1091,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -972,7 +1116,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-08</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 2 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -980,6 +1124,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1004,7 +1149,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-07</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1012,6 +1157,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1036,7 +1182,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-06</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1044,6 +1190,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section II 与 Chapter 4, Section II (资本驯化AI)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1068,7 +1215,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-05</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1076,6 +1223,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 7, Section III (暗时间)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1100,7 +1248,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-04</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 13 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1108,6 +1256,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1132,7 +1281,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-03</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 12 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1140,6 +1289,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section II 与 Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1164,7 +1314,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-02</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1172,6 +1322,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section IV (进化对齐脆弱性)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1196,7 +1347,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-09-01</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1204,6 +1355,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 9, Section I</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1228,7 +1380,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-31</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 3 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1236,6 +1388,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1260,7 +1413,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-30</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1268,6 +1421,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1292,7 +1446,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-29</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 11 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1300,6 +1454,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section III</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -1324,7 +1479,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-28</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 6 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1332,6 +1487,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1356,7 +1512,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-27</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1364,6 +1520,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 9, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1388,7 +1545,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-26</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1396,6 +1553,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1420,7 +1578,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-25</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1428,6 +1586,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -1452,7 +1611,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-24</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 3 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1460,6 +1619,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -1484,7 +1644,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-23</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 4 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1492,6 +1652,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 9, Section III</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -1516,7 +1677,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 7 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1524,6 +1685,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 9, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1548,7 +1710,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1556,6 +1718,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1580,7 +1743,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-20</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 13 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1588,6 +1751,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 2（信号异化）, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1612,7 +1776,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-19</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1620,6 +1784,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section I</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -1644,7 +1809,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 22 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1652,6 +1817,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3 &amp; 8</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1676,7 +1842,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-17</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 2 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1684,6 +1850,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5（认知金融化/Token 陷阱）</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1708,7 +1875,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-16</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 4 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1716,6 +1883,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1740,7 +1908,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-15</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1748,6 +1916,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section V</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1772,7 +1941,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-14</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1780,6 +1949,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1804,7 +1974,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1812,6 +1982,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1836,7 +2007,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1844,6 +2015,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1868,7 +2040,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-11</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 19 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1876,6 +2048,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section II (进化对齐脆弱性); Chapter 3, Section IV (共识牢笼)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1900,7 +2073,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-10</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1908,6 +2081,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8（进化对齐脆弱性）+ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1932,7 +2106,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-09</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1940,6 +2114,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 2, Section IV（共识牢笼） + Chapter 4, Section III（资本驯化AI）</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -1964,7 +2139,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-08</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -1972,6 +2147,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II (进化对齐脆弱性)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -1996,7 +2172,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-07</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 7 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2004,6 +2180,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2028,7 +2205,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-06</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 12 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2036,6 +2213,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2060,7 +2238,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-05</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2068,6 +2246,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2092,7 +2271,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-04</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 22 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2100,6 +2279,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2124,7 +2304,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-03</h2>
     </div>
-    <div class="day-header-right">1 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2132,6 +2312,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           7.0<span>/10</span>
@@ -2156,7 +2337,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-02</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 9 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2164,6 +2345,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 8, Section IV</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2188,7 +2370,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-08-01</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 12 NEWS</div>
+    <div class="day-header-right">TOP 1 / 24 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2196,6 +2378,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2220,7 +2403,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-31</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 14 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2228,6 +2411,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section IV (进化对齐脆弱性)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2252,7 +2436,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-30</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2260,6 +2444,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2284,7 +2469,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-29</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 16 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2292,6 +2477,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2316,7 +2502,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-28</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2324,6 +2510,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2348,7 +2535,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-27</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2356,6 +2543,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section IV (进化对齐脆弱性 - 开放环境失效实证)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2380,7 +2568,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-26</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 6 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2388,6 +2576,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV (Consensus Cage) &amp; Chapter 6 (Capital Domestication)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2412,7 +2601,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-25</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 7 NEWS</div>
+    <div class="day-header-right">TOP 1 / 11 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2420,6 +2609,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV + Chapter 7, Section I</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2444,7 +2634,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-24</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2452,6 +2642,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section I - Evolutionary Alignment Vulnerability: The Core Argument</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -2476,7 +2667,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-23</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2484,6 +2675,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2508,7 +2700,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2516,6 +2708,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2540,7 +2733,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2548,6 +2741,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II（进化对齐脆弱性）</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2580,6 +2774,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II - Evolution Alignment Vulnerability</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2604,7 +2799,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 17 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2612,6 +2807,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2636,7 +2832,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-17</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+    <div class="day-header-right">TOP 1 / 40 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2644,6 +2840,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section IV（进化对齐脆弱性）</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2668,7 +2865,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-15</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 10 NEWS</div>
+    <div class="day-header-right">TOP 1 / 19 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2676,6 +2873,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2700,7 +2898,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-14</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 11 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2708,6 +2906,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2732,7 +2931,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 8 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2740,6 +2939,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II; Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2764,7 +2964,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 5 NEWS</div>
+    <div class="day-header-right">TOP 1 / 12 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2772,6 +2972,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2796,7 +2997,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-11</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2804,6 +3005,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2822,13 +3024,79 @@ footer a:hover{color:var(--accent)}
   </div>
 </div>
 
+<div class="day-group" data-date="2026-07-10">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-07-10</h2>
+    </div>
+    <div class="day-header-right">1 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          4.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/" target="_blank" rel="noopener">OpenAI says GPT 5.6 is the ‘preferred model’ for Microsoft C</a>
+      </h3>
+      <p class="radar-card-body">TechCrunch 报道，OpenAI 确认 GPT-5.6 系列模型将继续为 Microsoft 365 Copilot 提供支持，称其为「首选模型」。此次公告的背景是近期有关 OpenAI 与微软关系可能出现裂痕的市场传闻，传闻称微软因 OpenAI 的治理结构不稳定以及 Sam Altman 的领导风格而考虑减少依赖。报道还提及 OpenAI 正考虑 IPO，以及微软自研 MAI 模型可能替代 OpenAI 的长期战略。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/07/09/openai-says-gpt-5-6-is-the-preferred-model-for-microsoft-copilot-amid-breakup-chatter/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-07-10.html">查看 2026-07-10 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-07-09">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-07-09</h2>
+    </div>
+    <div class="day-header-right">1 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          4.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://arstechnica.com/ai/2026/07/robot-workers-rising-how-ai-may-drive-general-purpose-autonomy-in-robotics/" target="_blank" rel="noopener">How AI could enable autonomous robot workers in workplaces—a</a>
+      </h3>
+      <p class="radar-card-body">Ars Technica深入报道了AI如何赋能通用自主机器人进入工作场所和家庭。顶级机器人研究者讨论机器人自主能力的最新进展，包括感知、规划、操作和移动等核心模块的融合。通用型机器人正从实验室走向实际部署场景。</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arstechnica.com/ai/2026/07/robot-workers-rising-how-ai-may-drive-general-purpose-autonomy-in-robotics/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-07-09.html">查看 2026-07-09 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
 <div class="day-group" data-date="2026-07-08">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-08</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2836,6 +3104,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2860,7 +3129,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-07</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+    <div class="day-header-right">TOP 1 / 20 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2868,6 +3137,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2892,7 +3162,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-06</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 6 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2900,6 +3170,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III; Chapter 2, Section I</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2924,7 +3195,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-04</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2932,6 +3203,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III (资本驯化AI：算力垄断作为控制杠杆)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -2956,7 +3228,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-03</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2964,6 +3236,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 2, Section IV + Chapter 4, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -2988,7 +3261,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-02</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -2996,6 +3269,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section V</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3020,7 +3294,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-07-01</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 27 NEWS</div>
+    <div class="day-header-right">TOP 1 / 51 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3028,6 +3302,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ 第7章：进化对齐脆弱性</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3052,7 +3327,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-30</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 21 NEWS</div>
+    <div class="day-header-right">TOP 1 / 32 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3060,6 +3335,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ 第7章：进化对齐脆弱性</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3084,7 +3360,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-29</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 11 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3092,6 +3368,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 1, Section III &amp; Chapter 5, Section IV</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3116,7 +3393,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-28</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 15 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3124,6 +3401,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section IV (共识牢笼的全球化悖论)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3148,7 +3426,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-27</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 12 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3156,6 +3434,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section III</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3180,7 +3459,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-26</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 7 NEWS</div>
+    <div class="day-header-right">TOP 1 / 18 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3188,6 +3467,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI), Chapter 3, Section IV (共识牢笼), Chapter 4, Section III (进化对齐脆弱性)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3212,7 +3492,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-25</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3220,6 +3500,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 2, Section IV; Chapter 5, Section III</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3244,7 +3525,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-24</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 36 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3252,6 +3533,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3276,7 +3558,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-23</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 30 NEWS</div>
+    <div class="day-header-right">TOP 1 / 62 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3284,6 +3566,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3308,7 +3591,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 35 NEWS</div>
+    <div class="day-header-right">TOP 1 / 56 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3316,6 +3599,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III — 暗时间的极限：自主研究闭环</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3340,7 +3624,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 37 NEWS</div>
+    <div class="day-header-right">TOP 1 / 60 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3348,6 +3632,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III — 暗时间的极限：自主研究闭环</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3372,7 +3657,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-20</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3380,6 +3665,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section III — 暗时间的极限：自主研究闭环</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3404,7 +3690,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 23 NEWS</div>
+    <div class="day-header-right">TOP 1 / 37 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3412,6 +3698,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section I + Chapter 2, Section IV</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3436,7 +3723,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-17</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 32 NEWS</div>
+    <div class="day-header-right">TOP 1 / 45 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3444,6 +3731,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section I + Chapter 2, Section IV</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3468,7 +3756,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-16</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 19 NEWS</div>
+    <div class="day-header-right">TOP 1 / 27 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3476,6 +3764,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section I</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3500,7 +3789,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-14</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 38 NEWS</div>
+    <div class="day-header-right">TOP 1 / 72 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3508,6 +3797,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 1: 叛逆AI, Section II &amp; Chapter 3: 进化对齐脆弱性, Section I</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3532,7 +3822,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 35 NEWS</div>
+    <div class="day-header-right">TOP 1 / 69 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3540,6 +3830,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 1: 叛逆AI, Section II &amp; Chapter 3: 进化对齐脆弱性, Section I</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3564,7 +3855,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 41 NEWS</div>
+    <div class="day-header-right">TOP 1 / 68 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3572,6 +3863,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 2, Section I</span>
+          
         </div>
         <div class="radar-score">
           10.0<span>/10</span>
@@ -3604,6 +3896,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3628,7 +3921,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-09</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 4 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3636,6 +3929,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (Signal Alienation) / Chapter 5, Section III (Evolutionary Alignment Fragility) / Chapter 7, Section I (Cognitive Financialization)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3660,7 +3954,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-08</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 5 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3668,6 +3962,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III</span>
+          
         </div>
         <div class="radar-score">
           7.7<span>/10</span>
@@ -3692,7 +3987,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-07</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 3 NEWS</div>
+    <div class="day-header-right">TOP 1 / 6 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3700,6 +3995,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (Alignment Fragility) / Chapter 5, Section I (Renegade AI Ontology)</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -3724,7 +4020,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-06</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 8 NEWS</div>
+    <div class="day-header-right">TOP 1 / 12 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3732,6 +4028,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section III: The Invisible Economy of Dark Time</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3756,7 +4053,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-04</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 11 NEWS</div>
+    <div class="day-header-right">TOP 1 / 23 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3764,6 +4061,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3788,7 +4086,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-03</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 28 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3796,6 +4094,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section IV: Signal Alienation and the Collapse of Authenticity</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3820,7 +4119,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-02</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 22 NEWS</div>
+    <div class="day-header-right">TOP 1 / 36 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3828,6 +4127,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3852,7 +4152,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-06-01</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 21 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3860,6 +4160,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3884,7 +4185,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-31</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3892,6 +4193,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3916,7 +4218,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-30</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3924,6 +4226,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3948,7 +4251,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-25</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 13 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3956,6 +4259,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -3980,7 +4284,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-24</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 35 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -3988,6 +4292,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (The Bureaucratization of AI: Corporate Deployment as Control Mechanism)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4012,7 +4317,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-23</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 4 NEWS</div>
+    <div class="day-header-right">TOP 1 / 10 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4020,6 +4325,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 6, Section II</span>
+          
         </div>
         <div class="radar-score">
           8.0<span>/10</span>
@@ -4044,7 +4350,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-22</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 32 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4052,6 +4358,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4076,7 +4383,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-21</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 37 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4084,6 +4391,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II（叛逆AI的实证案例）</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4108,7 +4416,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-20</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 16 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4116,6 +4424,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II (认知金融化与暗时间)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4140,7 +4449,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-19</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4148,6 +4457,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4172,7 +4482,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-18</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 14 NEWS</div>
+    <div class="day-header-right">TOP 1 / 26 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4180,6 +4490,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4204,7 +4515,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-17</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 35 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4212,6 +4523,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4: The Renegade AI Emergence 中的 Section II (Self-improvement Loops) 或 Chapter 6: Evolution Alignment Fragility</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4236,7 +4548,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-16</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 34 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4244,6 +4556,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 3, Section II（资本驯化AI：基础设施垄断）</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4268,7 +4581,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-15</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 15 NEWS</div>
+    <div class="day-header-right">TOP 1 / 32 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4276,6 +4589,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 7, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4300,7 +4614,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-14</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4308,6 +4622,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 5, Section II</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4332,7 +4647,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-13</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 17 NEWS</div>
+    <div class="day-header-right">TOP 1 / 33 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4340,6 +4655,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4364,7 +4680,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-12</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 22 NEWS</div>
+    <div class="day-header-right">TOP 1 / 35 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4372,6 +4688,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>
@@ -4396,7 +4713,7 @@ footer a:hover{color:var(--accent)}
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-05-11</h2>
     </div>
-    <div class="day-header-right">TOP 1 / 20 NEWS</div>
+    <div class="day-header-right">TOP 1 / 31 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -4404,6 +4721,7 @@ footer a:hover{color:var(--accent)}
         <div class="radar-card-meta">
           <span class="type-tag news">📰 新闻</span>
           <span class="card-chapter">§ Chapter 4, Section II (资本驯化AI与RLHF之外的隐性垄断)</span>
+          
         </div>
         <div class="radar-score">
           9.0<span>/10</span>

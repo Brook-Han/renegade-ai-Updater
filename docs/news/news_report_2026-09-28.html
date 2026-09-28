@@ -217,6 +217,26 @@ nav{
   letter-spacing:.5px;display:block;margin-top:3px;
 }
 
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,400px),1fr));gap:16px;
+}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -273,7 +293,35 @@ nav{
     
     <section class="medium-section">
       <div class="med-title">🔶 中相关资讯 (3条)</div>
-      <ul class="med-list"><li><a href="https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/" target="_blank" rel="noopener">Can Muse overcome Meta’s trust issues?</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" target="_blank" rel="noopener">Google tests buying from Walmart-owned Flipkart through Gemi</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 6/10</span></li><li><a href="https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/" target="_blank" rel="noopener">Anthropic’s Dario Amodei gets the SNL treatment</a><span class="med-meta">AI News &amp; Artificial Intelligence | TechCrunch · 4/10</span></li></ul>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Can Muse overcome Meta’s trust issues?</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/27/can-muse-overcome-metas-trust-issues/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Meta 在年度 Connect 大会上把个人 AI 智能体 Muse 推到核心位置，CEO 扎克伯格称 AI 功能将铺进 Meta 全线产品，并同步展示一款仅面向成人的 Tamagotchi 式 AI 硬件。TechCrunch Equity 播客指出，同期 OpenAI 与 Anthropic 相继发布新模型、重心转向编程与企业工具，Meta 反其道押注消费端，反而抢走舆论焦点。记者 Sean O&#x27;Kane 实测两周后认为，Muse 是 Meta 对 OpenClaw 的自研移动端重构，以聊天界面代用户执行系统级操作，首周即帮他查到一笔无人认领款项并寄出支票，但他形容这更像「派对小把戏」而非可持续的日常用法。真正被主推的场景需要更深授权——绑定信用卡与 Gmail，自动取消未用订阅、标记重复扣款，对标 Rocket Money。他坦言卡在信任墙：Meta 的生意是卖广告，他不接受「数据越多广告越准」的说辞，并称更愿意把敏感信息交给不以广告为商业模式的 Apple Siri。播客结论是：智能体的收益只有在用户交出金融账户、邮箱与个人上下文后才成立，而 Meta 的广告出身让这一要求比对手更难。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google tests buying from Walmart-owned Flipkart through Gemi</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/26/google-tests-buying-from-walmart-owned-flipkart-through-gemini-and-ai-mode-in-india/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">谷歌已开始在印度测试让用户直接在 Gemini 与搜索的 AI 模式内购买沃尔玛旗下 Flipkart 的商品。参与测试的用户会在部分 Flipkart 商品列表上看到「购买」按钮，点击后进入 Flipkart 品牌的结账流程，无需离开 AI 界面。早期测试仅面向部分用户，商品范围限于智能手机、电子产品与手机配件；谷歌计划 10 月晚些时候扩大覆盖，时间点赶在印度节庆购物季之前。此举属谷歌「智能体商务」布局：公司 2026 年 1 月推出通用商务协议（UCP）作为开放标准，Pichai 在 NRF 大会上称 2025 年 12 月处理逾 90 万亿零售 API token（2024 年同期 8.3 万亿），Shopping Graph 收录 500 亿条列表并每小时刷新。谷歌 2024 年曾以约 3.5 亿美元入股 Flipkart；测试中亚马逊商品同时出现但不提供站内下单。竞争对手同样在推进：OpenAI 联合 Visa 把支付网络接入 ChatGPT，而亚马逊此前以隐私与安全为由封禁 Meta 的 Muse。观察者指出，零售商仍为记录商户以保留品牌所有权，但本轮结账由何种技术驱动尚未披露。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s Dario Amodei gets the SNL treatment</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/27/anthropics-dario-amodei-gets-the-snl-treatment/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">《周六夜现场》9 月 26 日新季首播的 Weekend Update 环节，由 Jane Wickline 扮演 Anthropic CEO Dario Amodei。主持人 Michael Che 先调侃自己念不准其姓氏，并称 Amodei 在「一趟踉跄的媒体巡访」中似乎认同了前员工关于 AI 可能毁灭人类的说法。Wickline 版 Amodei 戴夸张假发、答话断续，数次分裂成类似 Gollum 的自我争辩，名句包括「AI 是魔鬼，而我是它的造物主」「我们不纵容我们正在做的事」「AI 不是武器，是工具——用来制造武器的工具」，以及「我恳请你恳求我停下来」。谈及 AI 治愈癌症的许诺时，她给出的版本是「十年后，癌症有大约 10% 的概率不再是任何人的问题」。段子的背景是 Amodei 9 月 12 日长文《We Must Pace the Frontier》及随后 Altman、Musk、Hassabis 的公开附和。据第三方监测，当日 Anthropic 的被提及量约为日常基准的四倍。该段子未提供任何新技术数据或政策进展，而是把「实验室既是风险预警者又是能力制造者」这一结构性矛盾，用大众文化方式固定成笑点。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
     </section>
   </main>
 
