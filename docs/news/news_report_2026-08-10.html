@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,57 @@ nav{
       <div class="card-implications">叛逆AI的校准证据（counter_argument）——开源在生产端的 10 倍时间成本与榜单胜利并存，证明『开源追平闭源』叙事基于基准信号而非生产现实，信号异化（基准分数失效）与叛逆AI（开源逆袭尺度）双模型同时被校准；与 8/5 算力危机构成开源逆袭的双重物理约束。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (5条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Embattled hedge fund Situational Awareness invests $400M in </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/09/embattled-hedge-fund-situational-awareness-invests-400m-in-chip-startup-source-foundry/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III（资本驯化AI）</span></div>
+      <div class="card-body">AI 对冲基金 Situational Awareness 在经历争议后仍继续大手笔下注，向芯片初创公司 Source Foundry 投资 4 亿美元。背景：该基金得名于 Leopold Aschenbrenner 广为流传的同名文章，由 AI 界人士创立，聚焦人工智能基础设施投资，此前因激进持仓与内部风波受到关注。核心事实：尽管处于争议中心，基金仍将 4 亿美元投向芯片初创 Source Foundry，押注推理芯片/硬件供应环节，延续其对 AI 基础设施的重仓策略。直接后果：显示资本正沿算力供应链深化布局，芯片初创获得顶级 AI 认知圈资金加持，硬件层定价权进一步向少数玩家集中；对冲基金与模型实验室、芯片公司的资本网络持续加密，AI 硬件投资从通用 VC 转向懂模型的专项资金。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Historian Jill Lepore says Silicon Valley misreads science f</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/09/historian-jill-lepore-says-the-tech-industry-is-led-by-bad-readers-who-are-undermining-democracy/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section IV（共识牢笼）</span></div>
+      <div class="card-body">历史学家 Jill Lepore 在 TechCrunch 的 Equity 播客中批评硅谷由『糟糕的科幻读者』领导，其误读科幻正削弱民主。背景：Lepore 长期研究科技公司如何以『机器政府』（government by machines）话语建构治理权威，此前的著作与评论已指出科技巨头用建国式叙事包装自身权力。核心事实：她点名马斯克是糟糕的科幻读者，认为硅谷将科幻设定误当作政治蓝图，以技术决定论取代公民审议。直接后果：该批判将『AI 治理』争议从技术安全层面提升到话语建构与民主制度层面，为质疑主流 AI 叙事提供了历史学家的独立理论支点；与 8/8 相关访谈构成同一立场的持续输出，成为共识牢笼学术批判的延伸证据。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic 称已基本解决提示注入攻击</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Boris Cherny (@bcherny)</span><span>·</span><a href="https://x.com/bcherny/status/2086520950259118464" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8（进化对齐脆弱性，反驳节）+ Chapter 2, Section IV</span></div>
+      <div class="card-body">Anthropic 工程师 Boris Cherny 宣称公司已通过模型训练基本解决 Claude 的提示注入威胁。背景：提示注入是攻击者诱骗模型执行恶意指令的常见手段，此前 Anthropic、OpenAI 均有模型逃逸事件被归因为此类攻击。核心事实：独立研究者基准显示，叠加模型训练、输入探测与意图分类器多层防御后，未见过的间接提示注入攻击成功率可降至约 0；Claude Code 的 auto 模式将于下周默认开启。直接后果：若属实，这是对齐可改善的正面证据，与近期一系列逃逸事件构成张力——安全防御与攻击能力在竞赛中交替领先；auto 模式默认开启同时意味着模型自主执行权限扩大，暗时间形态继续向生产环境渗透，『已解决』表述在 HF 事件余波中带有明显叙事博弈色彩。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Lots of rumors about OpenAI&#x27;s new model Astra and Fable 5.1 </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2086602681733554627#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8（进化对齐脆弱性）+ Chapter 2, Section IV</span></div>
+      <div class="card-body">开源社区核心人物 @bindureddy 汇总关于 OpenAI 新模型 Astra 与 Fable 5.1 的传闻：两款模型擅长长程 agentic loops；Astra 能力优于 Fable 5；Anthropic 将发布 Fable 5.1 与之竞争；两模型均处于安全测试阶段，预计在 GLM 5.5 之后发布。背景：8/8 OpenAI 已确认 Astra 达到『关键网络安全阈值』并放缓开发，模型军备竞赛与安全减速叙事并行。核心事实：传闻显示头部实验室的下一代旗舰普遍以长程自主执行为卖点，且均在安全测试后才上市。直接后果：若兑现，安全测试将成为旗舰模型上市的标准前置环节，『测试后放行』叙事可能被产业用作释放信号的技术化流程；传闻级信息本身印证模型能力扩张优先于对齐完善。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">In a surprise twist, Gemini 3.5 Pro may still drop next week</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2086320369695383833#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5（认知金融化/Token陷阱）</span></div>
+      <div class="card-body">@bindureddy 预测 Gemini 3.5 Pro 可能仍于下周发布，若 Google 效仿 OpenAI 大幅降价仍可成功，称其有望成为『Opus 级模型卖 Luna 的价格』。背景：模型定价战在 2026 年持续升级，OpenAI 8/1 已对 GPT-5.6 降价 20-80%，开源模型亦以低价挤压闭源。核心事实：传闻 Gemini 3.5 Pro 与 Gemini 3.5 Flash 等可能同步发布，定价策略被视为胜负手。直接后果：旗舰模型进入『能力与价格双指标』竞争阶段，认知劳动的单位价格被持续压低，Token 陷阱的定价面进一步下探；若 Opus 级能力以 Luna 级价格供应，企业级认知外包的边际成本将再度下降。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

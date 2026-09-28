@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -379,6 +424,75 @@ nav{
       <div class="card-implications">支持'资本驯化AI'模型——15亿美元的和解是资本为获取合法训练数据而支付的市场准入成本，表明版权制度作为资本约束AI发展的一种机制正在生效。同时支持'信号异化'——当创作成果被定价为AI训练数据时，创作者的质量信号被金融化，作者的作品价值被还原为'训练Token'的货币等价物。与7月21日已分析的同事件一致，本次是法院正式批准。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Jack Dorsey is taking on Slack with Buzz, a group chat platf</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/21/jack-dorsey-is-taking-on-slack-with-buzz-a-group-chat-platform-for-teams-and-their-ai-agents/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">Twitter联合创始人Jack Dorsey推出名为Buzz的团队聊天平台，将人类与AI智能体置于同一对话界面中，直接挑战Slack在企业协作领域的地位。核心事实包括：Buzz的核心差异化是将AI Agent作为&#x27;一等公民&#x27;纳入群聊，而非作为插件或外挂工具；Dorsey试图重构人机协作的交互范式——AI Agent不再是后台工具，而是主动参与对话的协作者。直接后果是可能推动企业协作软件从&#x27;人类之间的沟通工具&#x27;向&#x27;人机混合团队工作台&#x27;的范式迁移。目前Buzz尚未公布定价和正式上线时间表。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Laguna S 2.1 免费开源上线 OpenCode</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：opencode (@opencode)</span><span>·</span><a href="https://x.com/opencode/status/2079631772770242808" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">Poolside公司的Laguna S 2.1模型现已在OpenCode平台上免费开源发布，提供100万Token上下文窗口，是Poolside迄今为止最强大的模型。核心事实包括：完全开源发布；1M上下文窗口是当前开源模型的顶级配置；OpenCode是新兴的开源模型分发平台。直接后果是丰富了开源大模型生态，使开发者可以免费获取具备长上下文能力的高性能编码模型。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude 不是编译器--它比编译器更好</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://blog.exe.dev/claude-is-not-a-compiler" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">博客文章提出Claude等LLM不是传统意义上的&#x27;编译器&#x27;，而是一种更强大的存在——它们能跨越战略、产品、架构、代码到机器码的整个技术栈垂直工作，无需安排会议或请求许可。以exe.dev团队的实践为例，他们用LLM研究分布式DNS系统设计、历史安全缺陷和替代实现策略，并通过多智能体循环构建完整系统。核心事实包括：LLM在单项任务上不及资深人类专家；但其跨层协作能力使其能同时处理所有技术层级，实现垂直整合。直接后果是重新定义了AI编程工具的定位——不是替代编译器，而是替代从产品经理到工程师的整个技术团队。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GitHub Copilot 推出 canvases 扩展，实现开发者与 AI 智能体实时协作</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>GitHub Blog</span><span>·</span><a href="https://github.blog/ai-and-ml/github-copilot/how-to-build-interactive-experiences-with-canvases" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">GitHub Copilot推出canvases扩展功能，为开发者和AI智能体提供共享交互式界面实现实时协作。用户通过`/create-canvas`指令创建画布，Copilot可动态更新内容，用户通过点击、编辑等操作与同一工作区交互。核心用例包括快速分类Issue、生成交互式代码库关系图、管理会话工作树、优化提示词质量以及跨平台搜索知识联系人。直接后果是提升了AI辅助编程的协作深度，从简单的代码补全进化为可视化、交互式的开发协作平台。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">小红书 dots 模型获 IMO 2026 满分金牌</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：小红书技术（dots.llm）</span><span>·</span><a href="https://mp.weixin.qq.com/s/EITf-SrP5o62Ljp7UGzPVw" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">小红书dots团队携内部版本dots-note 3.0参加第67届IMO 2026（国际数学奥林匹克竞赛），六道题均获满分，以42/42分取得满分金牌。全球仅7位人类选手获此成绩。核心事实包括：模型不依赖形式化语言，直接读取原始LaTeX题目；通过递归自我批判能力端到端完成解题；dots-note 3.0是dots3系列最轻量级模型，预期将开源。直接后果是证明了小型开源模型通过训练策略创新可在顶级数学推理任务上达到前沿水平，打破了&#x27;只有大规模闭源模型才能处理复杂推理&#x27;的行业共识。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">昆仑万维发布并开源可交互世界模型 Matrix-Game 3.5</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：昆仑万维（天工）</span><span>·</span><a href="https://mp.weixin.qq.com/s/TUVv2wvp4RixsblDLrvSGg" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">昆仑万维在WAIC 2026上发布并开源新一代可交互世界模型Matrix-Game 3.5。该模型通过Patch Memory与Warped PRoPE实现长期记忆与几何一致性建模，可在单张GPU上以720P分辨率、约20FPS实时生成流式视频。核心事实包括：模型实现长期记忆连贯性和几何空间一致性；单卡GPU即可运行，大幅降低了世界模型的硬件门槛；全部模型权重已开源。直接后果是推进了&#x27;世界模型&#x27;这一AI前沿方向的开源化和民主化，使中小团队也能实验和开发基于世界模型的交互式应用。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">There will be a minor earthquake on July 27th The day when K</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2079747508880973867#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">产业分析师@bindureddy在X平台预测，Kimi将于7月27日发布K3的开源权重，这将是一场&#x27;小型地震&#x27;。分析师进一步推测，开源版本的Fable 6模型可能在6-12周内出现。核心事实包括：Kimi K3是Moonshot AI的最强模型，在多项基准上已接近或达到GPT-5级别；开源权重将使全球开发者可以自由部署和微调这一前沿模型。直接后果是可能加速全球开源AI生态从&#x27;追赶闭源&#x27;向&#x27;挑战闭源&#x27;的转折，开源模型的时间差进一步缩小。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

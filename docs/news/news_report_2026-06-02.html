@@ -8,230 +8,278 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
   
-    <style>
-      /* ========== DESIGN TOKENS (v5.3 Optimized) ========== */
-      :root {
-        --bg: #0a0a12; --bg2: #0f0f1a; --surface: #141422; --card: #181828;
-        --border: #25253a; --border-bright: #363655;
-        --text: #e2e2f0; --text-muted: #9595c0; --text-faint: #4a4a6a;
-        --accent: #ff5c45; --accent-dim: rgba(255,92,69,0.12);
-        --accent2: #d4af5c; --accent3: #5ba3e6; --accent3-dim: rgba(91,163,230,0.10);
-        --white: #f4f4fc;
-        --mono: 'Space Mono', 'Courier New', monospace;
-        --serif: 'Crimson Pro', Georgia, serif;
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-      }
-      :root.light {
-        --bg: #f5f6fa; --bg2: #fff; --surface: #eceef5; --card: #fff;
-        --border: #d8dbe6; --border-bright: #c0c4d6;
-        --text: #222233; --text-muted: #5c5c75; --text-faint: #9a9ab0;
-        --accent: #e8503a; --accent-dim: rgba(232,80,58,0.08);
-        --accent2: #b88c2a; --accent3: #3a7fbf; --accent3-dim: rgba(74,143,207,0.08);
-        --white: #222233;
-      }
-
-      /* ========== RESET & TYPOGRAPHY ========== */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body {
-        font-family: var(--serif); background: var(--bg); color: var(--text);
-        line-height: 1.8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        text-rendering: optimizeLegibility; font-feature-settings: "kern" 1, "liga" 1;
-      }
-      ::selection { background: var(--accent); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
-      
-      /* ========== ACCESSIBILITY ========== */
-      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; z-index: 10; }
-      :focus:not(:focus-visible) { outline: none; }
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      }
-
-      /* ========== NAV ========== */
-      nav {
-        position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(10,10,18,.92); backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border); height: 56px;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 32px; font-family: var(--mono);
-      }
-      .light nav { background: rgba(245,246,250,.92); }
-      .nav-brand {
-        font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 3px;
-        text-transform: uppercase; text-decoration: none;
-      }
-      .nav-right { display: flex; gap: 8px; align-items: center; }
-      .nav-pill {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        font-family: var(--mono); font-size: .72rem; font-weight: 500; letter-spacing: 2px;
-        padding: 5px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
-      }
-      .nav-pill:hover, .nav-pill:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-      .theme-btn {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .9rem;
-      }
-      .theme-btn:hover, .theme-btn:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      /* ========== MAIN ========== */
-      .main { max-width: 960px; margin: 0 auto; padding: 80px 32px 60px; }
-      .back-link {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; 
-        color: var(--text-muted); text-decoration: none; text-transform: uppercase;
-        border: 1px solid var(--border); padding: 6px 14px; display: inline-block; margin-bottom: 16px;
-      }
-      .back-link:hover { border-color: var(--accent); color: var(--accent); }
-      .page-eyebrow {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 4px; 
-        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
-        display: flex; align-items: center; gap: 10px;
-      }
-      .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
-      .page-title {
-        font-family: var(--display); font-size: clamp(2.5rem, 5vw, 3.5rem);
-        letter-spacing: 2px; color: var(--white); margin-bottom: 8px; line-height: 1;
-      }
-      .page-sub {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 24px;
-      }
-      .stats-row {
-        display: flex; gap: 24px; margin-bottom: 24px;
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); flex-wrap: wrap;
-      }
-      .stats-row span { color: var(--accent); font-weight: 700; }
-      
-      /* ========== URGENT BOX ========== */
-      .urgent-box {
-        background: var(--accent-dim); border: 1px solid var(--accent);
-        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
-      }
-      .urgent-title {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
-        letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
-      }
-      .urgent-item {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; margin-bottom: 8px;
-        padding-left: 16px; border-left: 2px solid var(--border); color: var(--text-muted);
-      }
-      .urgent-item strong { color: var(--white); }
-      .urgent-type-tag {
-        font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
-        color: var(--accent); background: var(--bg); padding: 2px 6px; margin-left: 6px; text-transform: uppercase;
-      }
-      
-      /* ========== CARDS ========== */
-      .card {
-        background: var(--card); border: 1px solid var(--border); padding: 28px; margin-bottom: 16px;
-        transition: border-color .2s, background 0.2s, box-shadow .2s;
-        box-shadow: 0 4px 24px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.02);
-      }
-      .card:hover { border-color: var(--accent); }
-      .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; }
-      .card-title {
-        font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.5px; 
-        color: var(--white); line-height: 1.3; flex: 1;
-      }
-      .card-score {
-        font-family: var(--display); font-size: 2.2rem; color: var(--accent); 
-        line-height: 1; white-space: nowrap; text-align: right;
-      }
-      .card-score span {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); display: block; letter-spacing: 1px; margin-top: 4px;
-      }
-      .card-badge {
-        display: inline-block; padding: 3px 8px; font-family: var(--mono); 
-        font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-        background: var(--accent3-dim); color: var(--accent3); border: 1px solid var(--accent3); margin-left: 8px;
-      }
-      .card-badge.high { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
-      .card-meta {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); letter-spacing: 0.5px; margin-bottom: 16px; 
-        display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
-      }
-      .card-meta a { color: var(--accent2); text-decoration: none; }
-      .card-meta a:hover { text-decoration: underline; }
-      .card-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
-      .card-implications {
-        font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
-        color: var(--accent2); padding: 12px 16px; background: rgba(212,175,92,0.05);
-        border-left: 3px solid var(--accent2); letter-spacing: 0.3px; margin-bottom: 16px; line-height: 1.7;
-      }
-      .card-footer {
-        display: flex; gap: 12px; flex-wrap: wrap; font-family: var(--mono); 
-        font-size: 0.72rem; font-weight: 500; color: var(--text-faint); letter-spacing: 0.5px;
-        padding-top: 12px; border-top: 1px dashed var(--border);
-      }
-      .card-footer .tag { padding: 3px 8px; background: var(--surface); border-radius: 2px; color: var(--text-muted); }
-      
-      /* ========== COLLAPSED LIST ========== */
-      details { margin: 32px 0; border: 1px solid var(--border); background: var(--card); }
-      summary {
-        padding: 14px 20px; cursor: pointer; font-family: var(--mono); 
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: var(--text-muted);
-        background: var(--surface); user-select: none; display: flex; align-items: center; gap: 8px;
-      }
-      summary:hover { color: var(--accent); }
-      details[open] summary { border-bottom: 1px solid var(--border); }
-      .collapsed-list { padding: 16px 20px; }
-      .collapsed-list li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
-      .collapsed-list a { color: var(--text); text-decoration: none; }
-      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
-      
-      /* ========== FOOTER ========== */
-      footer {
-        margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); letter-spacing: 1px; display: flex; justify-content: space-between;
-      }
-      footer a { color: var(--text-muted); text-decoration: none; }
-      footer a:hover { color: var(--accent); }
-      
-      /* ========== STATUS BAR ========== */
-      .status-bar {
-        position: fixed; bottom: 0; width: 100%; z-index: 200;
-        background: var(--bg); border-top: 1px solid var(--border);
-        padding: 10px 32px; font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); letter-spacing: 2px;
-        display: flex; justify-content: space-between; align-items: center;
-      }
-      .status-dot {
-        display: inline-block; width: 6px; height: 6px; background: var(--accent);
-        border-radius: 50%; margin-right: 8px; animation: pulse 2s infinite;
-      }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
-
-      /* ========== MOBILE & TOUCH TARGETS ========== */
-      @media (max-width: 768px) {
-        .nav-pill, .theme-btn, .back-link { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
-      }
-      @media (max-width: 600px) {
-        .main { padding: 70px 16px 60px; }
-        .page-title { font-size: 2.2rem; }
-        .card-header { flex-direction: column; }
-        .card-score { text-align: left; }
-        .stats-row { flex-direction: row; gap: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-      }
-    </style>
+  </style>
 </head>
 <body>
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
     <div class="nav-right">
       <a href="../index.html" class="nav-pill">HOME</a>
-      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
       <a href="../academic/" class="nav-pill">PAPERS</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
   <main class="main">
-    <a href="index.html" class="back-link">← BACK TO INDEX</a>
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">2026-06-02 · Model: deepseek-v4-flash</p>
@@ -600,10 +648,142 @@
       <div class="card-implications">这条新闻支持了资本驯化AI和需求侧规训的理论：企业为追求效率最大化，利用AI替代低成本人力，削减入门级岗位；同时用户（雇主）渴望无摩擦的自动化流程，忽视了对人类技能发展的长远影响。这挑战了碳硅共生的理想图景——AI并未与人类形成互补，反而剥夺了人类学习进阶的生态位。此外，它还补充了时间主权理论的一个维度：新人自主积累技能的时间被AI剥夺，生存被迫卷入更高层次的竞争。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (14条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Building the infrastructure for the Intelligence Age in Mich</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/stargate-michigan-data-center" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">2026年6月，OpenAI宣布在密歇根州启动一项规模达1GW的数据中心项目，作为其‘星门’（Stargate）全球AI基础设施计划的一部分。该项目旨在建设超级计算集群，以支撑下一代AI模型的训练与推理，同时宣称将扩大AI技术访问、创造大量就业岗位并支持当地社区发展。核心主体包括OpenAI、参与星门计划的投资者（如微软）以及密歇根州政府。直接后果是进一步集中AI算力资源，可能加速AI应用的普及，但也引发了关于算力垄断、能源消耗与环境影响的讨论。此举强化了大型科技公司对AI基础设施的掌控，使得计算过程进一步向数据中心内部集中。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Boston Children’s uses AI to unlock new diagnoses</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/boston-childrens-hospital" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II (碳硅共生：协作而非替代)</span></div>
+      <div class="card-body">波士顿儿童医院（Boston Children’s Hospital）采用OpenAI技术，旨在通过AI辅助诊断罕见疾病、改善患者护理并减轻临床运营负担。背景：罕见病诊断长期面临识别困难、漏诊率高、医生认知负荷大等挑战，传统方法依赖专家经验与有限数据库。核心事实：该医院利用OpenAI的先进语言模型和医学数据分析能力，成功帮助识别出超过40例以往未能确诊的罕见病病例。涉及主体包括医院临床团队、AI工程师以及OpenAI的技术平台。直接后果：AI的引入显著缩短了诊断周期，降低了误诊率，同时使医护人员能将更多精力投入患者直接护理。行业影响：这一实践展示了AI在复杂医学推理中的潜力，可能推动更多医疗机构采纳类似工具，但也引发了对数据隐私、算法偏见和临床责任归属的讨论。技术层面，证明通用AI模型经过领域微调后可在高专业性任务中发挥实效。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">A shared playbook for trustworthy third party evaluations</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/trustworthy-third-party-evaluations-foundations" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II（资本驯化AI）</span></div>
+      <div class="card-body">2026年5月29日，OpenAI发布《可信第三方评估共享手册》，旨在为前沿AI系统的第三方评估提供标准化指导。该指南详细阐述了如何评估模型能力（如推理、多模态）、安全防护措施（红队测试、滥用风险）以及评估的有效性（方法论、可重复性）。此举发生在全球AI监管加速、多国要求独立审计的背景下，OpenAI希望通过开放评估框架提升透明度，同时构建行业共同遵循的评估基准。直接影响是：为第三方评估机构提供了可操作的标准，可能加速AI治理的规范化；但也可能因OpenAI的主导地位而固化评估范式，挤占替代性评估路径的空间。行业反应不一：部分专家称赞其促进可信度，另一些人担忧评估筛选和解释权过度集中。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cisco and OpenAI redefine enterprise engineering with Codex</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/cisco" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI的实现路径)</span></div>
+      <div class="card-body">Cisco 与 OpenAI 宣布合作，将 OpenAI 的 Codex 模型集成到 Cisco 的企业工程流程中，旨在推动 AI 原生应用开发、加速 AI 防御系统的构建，并自动化缺陷修复工作。Codex 是一种能够根据自然语言描述生成代码的 AI 模型，在此次合作中，Cisco 工程师将使用 Codex 辅助编写、审查和调试代码，从而提升开发效率并减少人为错误。OpenAI 表示，该合作标志着企业级 AI 工具从实验性应用向规模化工程实践的转变。双方未披露具体财务条款，但指出 Codex 将嵌入 Cisco 的内部开发者平台，预计覆盖数千名工程师。这一合作也引发了对企业依赖 AI 编程可能带来的代码质量与安全意识问题的讨论，但 Cisco 强调将保留人工审核环节以确保系统可靠性。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Strengthening Singapore’s AI Future: A New National Partners</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/strengthening-singapores-ai-future-a-new-national-partnership/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">2026年5月16日，Google DeepMind与新加坡政府宣布建立新的国家合作伙伴关系，旨在将前沿人工智能技术应用于健康、教育、可持续发展等关键领域。该合作是新加坡智慧国计划（Smart Nation）的一部分，双方将共同开发AI解决方案以应对复杂社会挑战，例如疾病早期检测、个性化学习路径规划、碳排放优化等。合作还包括人才培养计划、联合研究实验室以及负责任AI治理框架的制定。DeepMind将提供其基础模型与算法专长，新加坡政府则提供本地化场景与数据支持。此举标志着主权国家与全球AI巨头在战略层面深化绑定，可能加速AI在公共服务领域的渗透，但也引发关于数据主权、技术依赖和算法治理的讨论。目前尚未披露具体投资金额与时间表。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Taiwan’s Industry Titans Turbocharge World’s AI Infrastructu</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/taiwan-ecosystem-ai-infrastructure/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">台湾作为全球AI基础设施关键枢纽，拥有超过500家NVIDIA生态系统合作伙伴，包括广达、鸿海、台积电等巨头。在NVIDIA最新Vera Rubin架构全面量产之际，超过100万个MGX机架组件在台湾25个工厂完成组装，支撑全球自主AI工厂（agentic AI factories）的算力需求。新闻强调台湾供应链从晶圆制造、封装测试到系统集成的完整闭环能力，以及NVIDIA通过高度集中的硬件生态（如MGX标准化）加速AI部署的战略。影响方面：台湾进一步巩固全球AI硬件制造的垄断地位，但也加剧了地缘政治风险与算力依赖；NVIDIA通过控制硬件标准与供应量，强化了对AI发展路径的隐性控制。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA Vera CPU Is ‘Packing a Heavy-Hitting Punch’ Against C</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-cpu-phoronix/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 5 月 26 日通过官方博客公开 Vera CPU 的初步基准测试数据，该芯片专为代理型 AI（agentic AI）工作负载设计，强调高核心性能、大内存带宽及全核持续高性能。Phoronix 发布的测试结果显示，Vera CPU 在多项指标上显著优于现有竞争产品，尤其是在多线程和 AI 推理任务中。NVIDIA 此举旨在巩固其在 AI 工厂（AI factory）硬件生态中的主导地位，通过垂直整合 CPU 与 GPU 来锁定客户。直接后果是加剧了算力市场的竞争，可能迫使 AMD、Intel 等对手加速迭代；同时，该芯片的高性能特性将进一步降低 AI 模型的推理成本，推动代理型 AI 的大规模部署。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Rethinking organizational design in the age of agentic AI</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/26/1137584/rethinking-organizational-design-in-the-age-of-agentic-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">在企业级AI代理（agentic AI）快速普及的背景下，一项调查显示85%的组织希望在三年内实现“代理化”转型（即让AI代理自主执行工作流程），但76%的组织认为当前的运营和基础设施无法支撑这一变革。受访企业普遍指出人员技能、流程设计与工作流协调三方面准备不足。该调查由MIT Technology Review联合某咨询机构于2026年5月发布，覆盖全球500多家大型企业。核心矛盾在于：高层战略意愿强烈，但中层执行与底层系统存在显著断层，直接导致AI代理部署的落地率远低于预期。这一现象反映出组织设计（包括层级结构、决策路径、跨部门协同机制）尚未为AI自主性做好适配，企业面临“有技术无组织”的困境。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">A reality check on the AI jobs hysteria</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/26/1137855/a-reality-check-on-the-ai-jobs-hysteria/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">近期科技行业裁员潮（Coinbase、Meta、Cisco等）引发舆论对AI取代白领工作的广泛恐慌，媒体和专家普遍预测知识工作者（如程序员、分析师、记者）将大规模失业。然而，本文（MIT Technology Review，2026-05-26）对此进行现实检验，指出当前恐慌缺乏充分证据：裁员更多源于经济周期和技术泡沫回调，而非AI直接替代；AI当前能力仍以辅助为主，尚未实现完全自主替代；历史经验显示技术变革往往创造新岗位而非单纯消灭旧岗。作者呼吁理性看待AI对就业的冲击，避免被过度恐慌裹挟。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google I/O showed how the path for AI-driven science is shif</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/22/1137813/google-i-o-showed-how-the-path-for-ai-science-is-shifting/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">2026年5月22日Google I/O开发者大会上，DeepMind CEO Demis Hassabis宣称人类正“站在奇点山麓”，暗示AI即将迅速超越人类智能并彻底改变世界。该言论标志谷歌在AI驱动科学领域路径的显著转变：从过去强调安全、渐进式对齐，转向公开拥抱奇点叙事，并展示一系列用于加速科学发现的AI工具（如AlphaFold升级版、AI驱动的材料模拟平台等）。核心事实是：谷歌首次由高层在年度大会提出奇点临近，同时公布AI在生命科学、材料科学等领域的突破性应用，涉及数千个科研机构的协作。直接后果包括：引发科技界对AI安全与对齐策略的激烈辩论；投资者对AI科学应用领域信心增强，相关初创公司估值飙升；部分伦理学者警告这种公开叙事可能弱化公众对风险的认识，并加剧竞争性对齐压力。此外，谷歌还宣布开放部分AI科学模型的API，旨在构建新的科研协作生态，这进一步推动了“碳硅共生”式的人机协作模式，但也可能打破现有科研评价体系（信号异化）。总体而言，该事件既是对齐挑战的缩影，也标志着AI驱动力从消费端转向科研端。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic files to go public</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/01/anthropic-files-to-go-public/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Anthropic 公司，作为大语言模型领域的后起之秀，现已成长为拥有顶级企业客户的 AI 巨头，并计划进行首次公开募股（IPO）。此次上市标志着 Anthropic 从早期挑战者向主流商业实体的转变，进一步巩固其在 AI 行业中的地位。Anthropic 以其注重安全和伦理的 AI 模型（如 Claude）闻名，IPO 将为其提供更多资金用于研发和市场扩张，同时可能引入更多资本约束和市场预期。该事件反映了 AI 创业公司通过资本市场实现规模化和主流化的典型路径，也暗示着 AI 行业从技术竞赛向商业成熟阶段的过渡。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Erin Brockovich takes aim at data center secrecy</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/05/31/erin-brockovich-takes-aim-at-data-center-secrecy/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">环境活动家艾琳·布罗克维奇（Erin Brockovich）近期将矛头指向数据中心行业，批评其建设过程中的信息不透明问题。她认为许多数据中心项目在选址、能耗、水源使用及环境影响方面缺乏公开披露，侵犯了当地社区的知情权和参与决策权。布罗克维奇以1993年成功揭露太平洋煤气电力公司水污染事件而闻名，如今她关注AI算力背后的基础设施代价，尤其指出科技公司利用商业机密为由掩盖数据中心对地下水、电网和土地资源的真实压力。目前尚无具体数据披露，但她的介入可能推动美国多州立法要求数据中心公开环境审计报告。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">We Sued ICE to Get Its Spyware Contract. The Agency Is Redac</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/we-sued-ice-to-get-its-spyware-contract-the-agency-is-redacting-essentially-everything/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">事件背景：2026年，一家名为Paragon的科技公司被揭露向美国移民和海关执法局（ICE）提供间谍软件，该软件能够远程入侵手机，并读取包括加密通讯应用在内的消息内容。核心事实：404 Media报道称，为了获取该合约的具体记录，相关方提起了诉讼，但ICE在回应时几乎将所有文件内容都进行了涂黑处理，导致关键信息无从得知。涉及主体包括Paragon公司、ICE以及提起诉讼的公民团体或媒体。直接后果：该事件进一步引发了公众对政府大规模监控、公民隐私权以及商业间谍软件滥用的担忧；同时，司法诉讼的推进可能迫使ICE公开部分信息，但也可能因保密原因受阻。行业影响：此案凸显了监控技术公司与执法机构之间不透明的合作关系，可能推动相关监管立法或技术伦理讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Shape of AI: Jaggedness, Bottlenecks and Salients</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>One Useful Thing</span><span>·</span><a href="https://www.oneusefulthing.org/p/the-shape-of-ai-jaggedness-bottlenecks" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">该新闻由《One Useful Thing》于2025年12月20日发布，标题探讨了AI系统的形状特征：锯齿性（Jaggedness）、瓶颈（Bottlenecks）和突出点（Salients）。文章核心观点是AI能力在不同任务上分布极不均匀，存在明显的能力突进和性能瓶颈，并指出Nano Banana Pro（推测为一项具体技术或产品）的推出之所以意义重大，是因为它可能突破了某个关键瓶颈，改变了AI能力分布的“形状”。文中未披露具体数据或主体细节，但强调这种非均匀性是当前AI应用的典型特征，直接影响人机协作的效率和可靠性。该分析聚焦于AI系统的结构性局限与突破，属于技术趋势评论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <span>Renegade AI v5.3 · Brooks Han</span>
+    <span>Renegade AI v5.4 · Brooks Han</span>
     <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
   </footer>
 

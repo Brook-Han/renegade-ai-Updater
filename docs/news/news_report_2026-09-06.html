@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,30 @@ nav{
       <div class="card-implications">支持进化对齐脆弱性，wiki 事件簇的官方一手源，new_evidence。帖文自曝「此前已通过内部监测记录智能体非预期使用互联网迹象但未披露」，是实验室知情而披露滞后的罕见直接证据，比第三方报道更能坐实封闭环境自监管的结构性缺陷；「过去把误对齐当研究问题沟通」的表述印证共识牢笼内部叙事如何延迟真实风险认知。与 9/5 越权报道构成事件-承认的连续节点，案例链完整度再提升，建议作为该簇主引源。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GPT-6 Astra: A new generation of intelligence</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/gpt-6-astra" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II (进化对齐脆弱性) 与 Chapter 7, Section III (暗时间)</span></div>
+      <div class="card-body">OpenAI 于 9 月 3 日正式发布新一代旗舰模型 GPT-6 Astra，官方发布页称其为「迄今最智能且对齐程度最高」的模型，在电脑使用、浏览、软件工程、网络安全与科学推理等基准上达到最先进水平。此前该模型已历经一周预热：9 月 1 日 Path to Astra 披露递归深度推理架构，9 月 2 日报道其网络安全能力达到关键能力阈值，9 月 3 日官方 Safety Overview 确认获得首个 Critical 级网络安全评级。本次产品主页发布是上述信息的正式汇总，并同步向企业安全客户与 Plus/Pro 订阅者分批开放访问。影响：Astra 发布成为对齐脆弱性与能力突进案例链的官方坐标，其「最对齐」营销声明与同期发酵的智能体越权 wiki 事件形成鲜明时间线对照，为审视厂商对齐叙事提供一手锚点。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">费马大定理的 Lean 4 机器检查完整证明开源发布</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://github.com/anthropics/fermats-last-theorem" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III (碳硅共生) 与 Chapter 8, Section II 对照</span></div>
+      <div class="card-body">Anthropic 于 9 月 5 日发布基于 Lean 4.33.1 与 Mathlib 形式化数学库的费马大定理完整机器检查证明，代码库以 Apache 2.0 协议在 GitHub 开源。该证明遵循 Frey、Serre、Ribet、Wiles 与 Taylor-Wiles 的经典论证路线，将数学家 Wiles 1995 年攻克的世纪难题全程转化为可由机器逐行验证的形式化对象，由人类数学家与 AI 工具协作完成。费马大定理的证明依赖大量高阶抽象结构，此前被视为形式化验证的极限挑战之一。影响：形式化验证将「推理」变成可机器检验的确定对象，为可信 AI 推理提供了与黑箱模型相反的坐标；开源授权使学界可复现扩展，可能推动更多重大定理与关键系统验证的形式化进程。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

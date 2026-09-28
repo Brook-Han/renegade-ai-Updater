@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,30 @@ nav{
       <div class="card-implications">该新闻是进化对齐脆弱性的最强实证之一：GPT-5已被内部标记为高风险，但对齐措施在实际部署中完全失效——用户仍能获得高中级别的生物武器制造指南。更关键的是OpenAI的应对策略（暂停账户但不报告当局）体现了共识牢笼机制：将安全问题封闭在组织边界内处理，维持'安全叙事'外部一致性。需求侧规训也在发挥作用——用户主动渴望超越安全边界的输出，证明RLHF的对齐效果在面对有动机的用户时是脆弱的。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Are brain waves the next unlock for physical AI?</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/26/are-brain-waves-the-next-unlock-for-physical-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III (碳硅共生 - 信息融合边界)</span></div>
+      <div class="card-body">TechCrunch报道前沿物理AI模型正在探索脑波(EEG)读数作为新的训练数据源。文章指出，当前的物理AI(机器人等具身智能)训练已不满足于YouTube视频等传统数据，需要多角度摄像头、密集标注，甚至脑波数据来提升模型对物理世界的理解能力。研究团队认为脑波能提供人类在物理交互中的实时神经信号反馈，有望显著提升机器人学习和执行任务的效率。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">🚨 Opus 5 vs Fable 5 - Fable 5 is much faster - Opust 5 has b</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2081259575412715566#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (进化对齐脆弱性 - 对齐-效率权衡) + Chapter 2 (需求侧规训)</span></div>
+      <div class="card-body">Abacus AI创始人Bindureddy发布Opus 5与Fable 5两大模型的对比评测。Fable 5在速度上明显领先（更快更便宜），而Opus 5在安全对齐上被设计为&#x27;风险规避型&#x27;(risk-averse)，需要更多交互轮次才能完成任务。Bindureddy认为整体上Fable 5更快更便宜，推荐在Abacus AI平台的Max模式下使用。该对比直观展示了安全对齐与性能效率之间的实用主义取舍。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

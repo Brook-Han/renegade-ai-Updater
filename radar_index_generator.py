@@ -195,6 +195,11 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
         link_html = f'<a class="card-source-link" href="{escape(link)}" target="_blank" rel="noopener">↗ SOURCE</a>' if link and link != "#" else ""
         draft_dot = '<span class="draft-dot" title="Has Draft">●</span>' if card.get("has_draft") else ""
 
+        # 分档：中相关条目降调呈现，并带 MED 角标
+        tier = card.get("tier", "high")
+        tier_cls = " tier-medium" if tier == "medium" else ""
+        tier_chip = '<span class="tier-chip">MED</span>' if tier == "medium" else ''
+
         # Score visual bars (0-10 → 5 bars, each bar = 2 points)
         score_val = _safe_float(score, 5.0)
         filled_bars = min(5, max(0, round(score_val / 2)))
@@ -203,11 +208,12 @@ def generate_day_html(date: str, entries: list[dict]) -> str:
             for i in range(5)
         ) + '</div>'
 
-        html += f'''    <article class="radar-card" data-type="{card_type}">
+        html += f'''    <article class="radar-card{tier_cls}" data-type="{card_type}">
       <div class="radar-card-top">
         <div class="radar-card-meta">
           <span class="type-tag {card_type}">{type_label}</span>
           {chapter_html}
+          {tier_chip}
           {draft_dot}
         </div>
         <div class="radar-score">
@@ -457,9 +463,12 @@ nav{
 
 /* ── CARD GRID ── */
 .card-grid{
-  display:grid;grid-template-columns:repeat(auto-fill,minmax(480px,1fr));
-  gap:1px;background:var(--border);border:1px solid var(--border);
+  --card-min:480px;
+  display:flex;flex-wrap:wrap;gap:1px;
+  background:var(--border);border:1px solid var(--border);
 }
+/* 尾行卡片自动占满整行，避免奇数张时露出网格底色（灰块） */
+.card-grid > *{flex:1 1 var(--card-min)}
 
 /* ── RADAR CARD (v5.4) ── */
 .radar-card{
@@ -487,6 +496,26 @@ nav{
   box-shadow:0 8px 32px rgba(0,0,0,.2),0 0 0 2px var(--accent);
 }
 .radar-card.hidden{display:none}
+
+/* 中相关条目：降调呈现（左侧蓝调色条 + MED 角标），不抢高价值层级 */
+.radar-card.tier-medium{
+  background:var(--bg2);
+  border-left:2px solid var(--accent3);
+  box-shadow:none;
+}
+.radar-card.tier-medium::before{display:none}
+.radar-card.tier-medium:hover{
+  background:var(--surface);
+  box-shadow:0 6px 24px rgba(0,0,0,.16),0 0 0 1px rgba(91,163,230,.16);
+}
+.radar-card.tier-medium .radar-score{color:var(--accent3)}
+.radar-card.tier-medium .radar-card-title{font-size:1.05rem}
+.radar-card.tier-medium .radar-card-body{font-size:.85rem;line-height:1.7}
+.tier-chip{
+  font-family:var(--mono);font-size:.62rem;font-weight:700;letter-spacing:1px;
+  padding:2px 7px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid rgba(91,163,230,.28);
+}
 
 .radar-card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
 .radar-card-meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap;flex:1}
@@ -612,7 +641,7 @@ nav{
 
 /* ── RESPONSIVE ── */
 @media(max-width:1200px){
-  .card-grid{grid-template-columns:repeat(auto-fill,minmax(420px,1fr))}
+  .card-grid{--card-min:420px}
 }
 @media(max-width:900px){
   .main{padding:48px 24px 80px}
@@ -621,7 +650,7 @@ nav{
   .hero-left{padding:48px 24px 36px;border-right:none;border-bottom:1px solid var(--border)}
   .hero-right{flex-direction:row;padding:24px;border-bottom:1px solid var(--border)}
   .stat-divider{width:40px;height:1px}
-  .card-grid{grid-template-columns:1fr}
+  .card-grid{--card-min:100%}
   .nav-center{display:none}
 }
   </style>

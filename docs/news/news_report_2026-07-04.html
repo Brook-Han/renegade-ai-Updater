@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -315,6 +360,21 @@ nav{
       <div class="card-implications">该预测触及多个理论模型：(1) '叛逆AI'——开源AI被视为抵抗AI权力集中的核心力量，是'叛逆AI'在开源运动中的具体表现；(2) '资本驯化AI'——开源与闭源之争本质上是AI发展路线的意识形态对抗；(3) '共识牢笼'——'美国开源将超越中国'本身是硅谷主流叙事的一部分，可能构成一种新的共识牢笼。该预测还暗含了'信号异化'问题——在AI生成内容泛滥的背景下，开源模型的质量信号越来越难以辨别。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (1条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google DeepMind and A24 announce first-of-its-kind research </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/google-deepmind-and-a24-announce-first-of-its-kind-research-partnership/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II (碳硅共生)</span></div>
+      <div class="card-body">2026年7月3日，Google DeepMind与独立电影制作公司A24宣布建立开创性的研究合作伙伴关系。这是AI研究机构与电影制片厂之间的首次深度跨界合作，旨在探索AI技术在叙事、创意内容生成和电影制作中的创新应用。DeepMind将其在生成式AI、多模态理解和人机交互方面的前沿研究能力带入合作，A24则提供其独特的创意视角和艺术审美。该合作可能涉及AI辅助剧本创作、视觉特效生成、个性化观影体验等方向。业界认为，此举标志着AI从纯工程领域向艺术创意领域的正式渗透，也意味着AI公司正在积极寻找除传统科技应用外的文化影响力出口。如果成功，可能开创AI研究与创意产业融合的新范式。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

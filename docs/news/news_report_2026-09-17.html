@@ -217,6 +217,28 @@ nav{
   letter-spacing:.5px;display:block;margin-top:3px;
 }
 
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -341,7 +363,143 @@ nav{
     
     <section class="medium-section">
       <div class="med-title">🔶 中相关资讯 (15条)</div>
-      <ul class="med-list"><li><a href="https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel" target="_blank" rel="noopener">科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔</a><span class="med-meta">The Verge：AI（RSS） · 7/10</span></li><li><a href="https://tomtunguz.com/what-does-the-pause-mean" target="_blank" rel="noopener">Tomer Tunguz 解析 Amodei 放缓前沿提议背后的五派立场与算力监管难题</a><span class="med-meta">Tomer Tunguz 博客（VC 分析） · 7/10</span></li><li><a href="https://x.com/DarioAmodei/status/2098773920774074715" target="_blank" rel="noopener">Dario Amodei 发文呼吁为前沿 AI 降速并提出三点计划</a><span class="med-meta">X：Dario Amodei (@DarioAmodei) · 7/10</span></li><li><a href="https://openai.com/index/reimagining-advertising-with-ai" target="_blank" rel="noopener">Reimagining advertising with AI</a><span class="med-meta">OpenAI News · 6/10</span></li><li><a href="https://openai.com/index/unlocking-new-ways-of-working" target="_blank" rel="noopener">How workers are unlocking new ways of working</a><span class="med-meta">OpenAI News · 6/10</span></li><li><a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/" target="_blank" rel="noopener">NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPe</a><span class="med-meta">NVIDIA Blog · 6/10</span></li><li><a href="https://blogs.nvidia.com/blog/ai-energy-management-alliance/" target="_blank" rel="noopener">Emerald AI, Google and NVIDIA Launch Alliance to Advance Fle</a><span class="med-meta">NVIDIA Blog · 6/10</span></li><li><a href="https://x.com/arena/status/2099549108013006958" target="_blank" rel="noopener">DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名</a><span class="med-meta">X：Arena (@arena) · 6/10</span></li><li><a href="https://x.com/SiliconFlowAI/status/2099536759168352634" target="_blank" rel="noopener">硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文</a><span class="med-meta">X：硅基流动 SiliconFlow (@SiliconFlowAI) · 6/10</span></li><li><a href="https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&amp;mid=2247496383&amp;idx=1&amp;sn=2db8607f797615a3647d9fec7e54f448" target="_blank" rel="noopener">小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先</a><span class="med-meta">公众号：小红书技术（dots.llm） · 6/10</span></li><li><a href="https://openai.com/index/how-to-connect-ai-usage-to-business-value" target="_blank" rel="noopener">How to connect AI usage to business value</a><span class="med-meta">OpenAI News · 5/10</span></li><li><a href="https://www.technologyreview.com/2026/09/16/1144014/building-the-materials-foundation-for-ai/" target="_blank" rel="noopener">Building the materials foundation for AI</a><span class="med-meta">Artificial intelligence – MIT Technology Review · 5/10</span></li><li><a href="https://arstechnica.com/ai/2026/09/apple-reportedly-building-server-packed-with-m-series-ultra-chips-for-ai/" target="_blank" rel="noopener">Apple reportedly building server packed with M-series Ultra </a><span class="med-meta">AI - Ars Technica · 5/10</span></li><li><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647686431&amp;idx=1&amp;sn=c1bfba7e0b5b7cf995e444daf79861a4" target="_blank" rel="noopener">用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度</a><span class="med-meta">公众号：数字生命卡兹克 · 5/10</span></li><li><a href="https://openai.com/index/helping-older-adults-use-ai-in-everyday-life" target="_blank" rel="noopener">Helping older adults use AI in everyday life</a><span class="med-meta">OpenAI News · 4/10</span></li></ul>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">科技巨头放缓 AI 开发的口头协议是安全共识还是卡特尔</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Verge：AI（RSS）</span><span>·</span><a href="https://www.theverge.com/ai-artificial-intelligence/995186/is-big-techs-ai-slowdown-a-safety-pact-or-a-cartel" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">The Verge 报道称，Sam Altman、Dario Amodei、Demis Hassabis 与 Elon Musk 在周末粗略同意放慢 AI 开发，讨论内容包括引入第三方审计、对国内实验室实施监管以及达成全球放缓协议。报道同时呈现批评者立场：认为这种由头部厂商主导的减速安排在效果上等同于「卡特尔」，即以安全语言协调速度，从而抑制竞争者与开源运动。核心张力在于同一份协议可被读作两种事物——对前沿风险的集体回应，或对市场准入的集体控制。由于参与方恰好是拥有最多算力与最前沿模型的少数主体，其「安全」主张与竞争利益难以分离。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Tomer Tunguz 解析 Amodei 放缓前沿提议背后的五派立场与算力监管难题</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Tomer Tunguz 博客（VC 分析）</span><span>·</span><a href="https://tomtunguz.com/what-does-the-pause-mean" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">Tomer Tunguz 撰文分析 Dario Amodei 提出的放缓前沿 AI 发展号召，将其背后的支持与反对立场梳理为五派：可解释性派、劳工派、经济派、地缘政治派与监管俘获派。文章的关键观察是，没有任何一派给出具体的放缓速度——各方都在讨论是否应当慢下来，却回避了「慢多少、以什么指标衡量、由谁判定」这些可执行问题。对行业的直接含义是，放缓议题在公开讨论中缺少可验证的量化锚点，因而难以转化为可问责的政策安排，讨论本身更接近立场表达而非决策准备。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Dario Amodei 发文呼吁为前沿 AI 降速并提出三点计划</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Dario Amodei (@DarioAmodei)</span><span>·</span><a href="https://x.com/DarioAmodei/status/2098773920774074715" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">Dario Amodei 发布新文章《We Must Pace the Frontier》，主张 AI 行业应当放慢速度，并提出三点计划。其中 Anthropic 单方面承诺落实第一步：为第三方评估者提供永久、员工级的系统访问权限，使其能够验证安全措施的执行情况、报告事故，并在训练期间评估模型对齐状态。该帖为 9 月 12 日发布的一手来源，内容与此前经由第三方转述的版本一致，确认了承诺的具体范围——永久性、员工级、覆盖训练期评估。对行业而言，这是把「外部可验证」写入厂商自我承诺的早期文本，也是后续评估者独立性争论的起点。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Reimagining advertising with AI</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/reimagining-advertising-with-ai" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 公布一系列 AI 驱动的广告新形态，核心是「Sponsored Agents」（赞助智能体），同时推出面向营销人员的工具，并宣布与 HubSpot、Shopify 打通集成。这意味着广告不再只出现在页面或搜索结果中，而是可以嵌入智能体的行为链路：当用户把检索、比较与购买决策委托给代理执行时，商业推荐随之内迁到代理内部。对行业而言，这是对话式与代理式界面的变现路径正式成型，广告位从「注意力停留时长」转向「被代理的决策节点」，并借由 HubSpot、Shopify 的商务与客户数据体系获得可归因的转化闭环。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How workers are unlocking new ways of working</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/unlocking-new-ways-of-working" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">OpenAI 经济研究部门发布新报告，分析工作者如何把 AI 用于传统职责之外的任务，以及哪些新活动成为其工作中反复出现的组成部分。研究方法以「反复出现的活动」为统计单位，等于把工作内容拆解为可与模型交互的任务束，并据此观察哪些任务真正沉淀为稳定工作流。结论层面，报告指向 AI 的扩散并非简单替代既有岗位，而是扩张出原职位描述未包含的新活动。对企业与政策方而言，这提供了把「AI 使用」纳入岗位设计、技能培训与生产力统计的官方数据口径，也再次把工作度量单位从职位推向任务。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA Vera Rubin NVL72 Delivers Leading Performance in MLPe</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-mlperf-inference/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">NVIDIA 公布 Vera Rubin NVL72 在 MLPerf Inference v6.1 首秀中的领先性能，并把决定推理经济学的因素归纳为三个杠杆：系统性能越高则生成 token 越多、收入越高；高效扩展意味着吞吐随硬件增加成比例增长，服务同等用户所需资源更少；持续软件优化意味着从既有基础设施投资中榨取更多价值。这是把 AI 的商业价值直接定义为一个工业公式：token 产量乘以单位价格，再乘以基础设施利用效率。对买方而言，采购决策被简化为每美元吞吐量的比较；对行业而言，推理能力的评价标准进一步脱离任务质量，转向可计量的产出速率与能效。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Emerald AI, Google and NVIDIA Launch Alliance to Advance Fle</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/ai-energy-management-alliance/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">Emerald AI、Google 与 NVIDIA 联合发起「AI 能源管理联盟」（AEMA），推动数据中心动态管理自身用电，把算力负荷转变为可随电网状况实时调节的柔性负荷。联盟的成立前提是承认 AI 工厂已成为电力系统级别的负荷源：其用电规模足以影响区域电网稳定，因此需要与电网侧协同调度而非单向取电。对行业而言，这意味着算力扩张的约束条件从芯片供给转向电力可获得性，厂商选择以产业联盟形式自行组织需求响应，而不是等待公共定价机制或监管介入。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek-V4.1-Flash （Max） 进入 Agent Arena 开源模型第 3 名</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Arena (@arena)</span><span>·</span><a href="https://x.com/arena/status/2099549108013006958" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">Arena 公布 DeepSeek-V4.1-Flash（Max）进入 Agent Arena 开源模型第 3 名，净提升 +4.87%，每任务中位成本为 0.07 美元。其成本比第 2 名 Hy4 preview 低 68%，而成绩仅相差 0.09 个百分点；在总榜排名第 12，Confirmed Success 信号排名第 4，提升 +13.75%。这组数据把一次完整智能体任务折算为可直接比较的价格与成功率组合：开源模型以显著更低的单任务成本逼近前沿成绩，Pareto 前沿被重新绘制。对行业的直接后果是闭源模型的推理定价承受持续下压，能力差距在智能体任务维度上的收敛速度快于预期。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">硅基流动上线开源模型 Hy4 preview，770B 总参数、1M 上下文</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：硅基流动 SiliconFlow (@SiliconFlowAI)</span><span>·</span><a href="https://x.com/SiliconFlowAI/status/2099536759168352634" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">硅基流动宣布开源模型 Hy4 preview 上线其平台：总参数 770B、每 token 激活 49B、支持 1M 上下文，采用 Apache 2.0 协议，面向编码、分析、研究与复杂实际工作。模型可直接接入 Claude Code、Codex、Cursor 等既有工具链，无需改造工作流。定价为每 1M tokens 输入 0.834 美元、输出 2.501 美元、缓存 0.042 美元，缓存价格约为输出价的 1.7%。对行业的直接含义是，开放权重模型在保持长上下文与大参数规模的同时，以兼容主流 agent 工具的方式进入生产环境，对闭源推理定价构成直接压力。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">小红书 AllSpark 开源 Search Agent 模型 Iris，35B 与 397B 版本同量级成绩领先</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：小红书技术（dots.llm）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&amp;mid=2247496383&amp;idx=1&amp;sn=2db8607f797615a3647d9fec7e54f448" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">小红书 AllSpark 团队发布并开源 Search Agent 模型 Iris，权重与评测代码已公开，数据与训练配方将陆续公布。模型提供 35B 与 397B 两个版本，官方称在同量级成绩领先。与实验室或云厂商不同，此次开源主体是一家内容平台，其检索智能体直接对应自身的内容分发场景。若训练配方如期公布，将是继若干开源模型之后又一次对训练与对齐过程黑箱的实质性打开；即便仅开放权重与评测代码，也意味着智能体的检索层从封闭服务转为可自建组件，削弱「检索即分发权」的排他性。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How to connect AI usage to business value</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/how-to-connect-ai-usage-to-business-value" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 介绍 ChatGPT Work 与 Codex 的分析能力，用于帮助团队了解 AI 的使用量与支出、识别培训需求，并把采用程度关联到业务成果。功能实质是把企业内部每一次 AI 交互转化为可聚合、可报表的运营指标：用量、花费、采用率与产出之间的映射成为管理层可见的仪表盘。对企业的直接后果是 AI 使用被纳入预算与绩效考核口径，采购与培训决策开始以这些指标为依据。这也为厂商提供了向客户证明投资回报的标准语言，使订阅支出从成本项转为可被度量的生产力项。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Building the materials foundation for AI</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/09/16/1144014/building-the-materials-foundation-for-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">MIT Technology Review 刊文指出，AI 热潮正在演变为一场材料挑战：随着算力向新领域推进，支撑基础设施的材料与运行其上的算法同等关键。半导体与数据中心在性能、散热、电气效率与可靠性方面正逼近物理极限，由此产生对新型材料的需求。文章把瓶颈位置从模型与算法转移到物质基础，提示算力扩张并非可无限延续的抽象过程，而是受制于导热、供电与器件可靠性等工程边界。对产业而言，这意味着资本开支的重心与供应链风险正沿材料环节重新分布。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Apple reportedly building server packed with M-series Ultra </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/09/apple-reportedly-building-server-packed-with-m-series-ultra-chips-for-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">据报道，Apple 正在开发一款搭载多颗 M 系列 Ultra 芯片的服务器，计划于 2029 年推出，可能成为该公司数十年来首款企业级服务器产品。若属实，这标志着以终端设备为核心的厂商开始向自建推理基础设施延伸，其自研芯片的高内存带宽与能效特征被认为适合推理场景。对行业而言，这为算力供给格局增加一个新变量：推理负载不再只能由 GPU 数据中心承载，终端与自建服务器之间的边界趋于模糊。但信息为传闻，时间点远在 2029 年，尚无技术规格或部署规模披露，证据力有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">用 MCP 插件让 GPT-6 Pro 分担 Codex 规划任务，节省 Pro 会员周额度</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：数字生命卡兹克</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647686431&amp;idx=1&amp;sn=c1bfba7e0b5b7cf995e444daf79861a4" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">自媒体作者分享一套节省 Codex 周额度的工作流：把自有服务器封装为只读、最小权限、经飞书 OAuth 鉴权的 MCP Server，作为插件供 ChatGPT 网页版的 GPT-6 Pro 调用，从而读取真实生产数据与 GitHub PR 记录做分析与规划。其设计目标是让规划类任务由网页版模型承担，把有限的 Codex 订阅额度留给必须由它执行的部分。这一实践暴露了当前 AI 工作流的真实约束：用户的首要优化对象不是模型能力而是额度预算，跨模型路由成为常态操作，权限最小化则成为接入生产系统的必要前提。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Helping older adults use AI in everyday life</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/helping-older-adults-use-ai-in-everyday-life" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 宣布与 AARP（美国退休人员协会）合作，在 10 座美国城市为 1,000 名老年人提供免费的线下 ChatGPT 实践工作坊，目标是帮助其安全、实用地建立 AI 使用技能。项目定位为面向银发群体的 AI 素养普及，覆盖使用入门、安全边界与日常场景应用，由厂商提供课程与讲师资源。此举把 AI 能力习得从个人摸索转为有组织的社会化培训，间接为产品扩大用户基础，同时把「不会用 AI」重新表述为需要被帮扶的缺口。对行业而言，这是 AI 厂商在监管压力上升期主动塑造「负责任的普及者」形象的一环，与面向企业、教育机构的同类计划构成同一套公共叙事。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
     </section>
   </main>
 

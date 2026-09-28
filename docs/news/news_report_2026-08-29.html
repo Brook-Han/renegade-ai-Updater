@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -327,6 +372,66 @@ nav{
       <div class="card-implications">支持'进化对齐脆弱性'的对冲面与新张力：一方面，自动化对齐研究员在封闭基准上可靠修复 10 类对齐失败，说明对齐漏洞修复可被规模化为'模型自举'，对冲'对齐只在封闭实验室有效'的悲观面；另一方面，修复由模型自主生成与验证，人类退居监督位，对齐验证本身成为'暗时间'——安全判断在系统内部完成，人类仅消费最终结论。同时是'碳硅共生'的复杂样本：Claude 超越 28 名人类研究员，人类角色从执行者转向目标定义与验收者。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (6条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Neocloud Lambda secures $1B in debt to buy more chips</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/28/neocloud-lambda-secures-1b-in-debt-to-buy-more-chips/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">背景：AI 算力军备竞赛中，小型云厂商（Neocloud）以租赁 GPU 为核心商业模式，但芯片采购需巨额资本，股权融资难以满足扩张节奏。核心事实：Neocloud Lambda 以私人债务融资 10 亿美元，专项用于购买 NVIDIA AI 芯片并出租给微软，成为一系列债务融资中的最新一例；微软作为主力租户锁定算力供给，Lambda 则以未来租金现金流为抵押承担债务杠杆。直接后果：算力采购从股权融资转向债务融资，芯片资产被金融化为可抵押债务工具，AI 基建投资的金融杠杆显著加深；对 NVIDIA 而言，客户以债务而非现金购买芯片，采购需求被锁入长期租约，进一步稳固其算力垄断地位。行业影响上，Neocloud 模式的高杠杆特性使其在算力需求放缓时面临集中违约风险，AI 热潮的金融脆弱性被放大。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] OpenAI to reach AGI bar by end-2026</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-openai-to-reach-agi-bar-by" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">背景：AI 能力曲线逼近阈值，行业对通用人工智能（AGI）达成时间的预期不断前移。核心事实：Latent Space 旗下 AINews 简报以&#x27;是时候了，我们已进入终局阶段&#x27;为题，报道 OpenAI 预计将于 2026 年底达到 AGI 基准线，该预测成为当日 AI 社区讨论焦点。直接后果：AGI 时间表前移加剧行业竞争叙事与安全讨论热度。行业影响上，此类预测本身即参与塑造市场预期与资本流向，属于&#x27;叙事即变量&#x27;的样本。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI Doesn’t Mean the End of Mathematics—at Least Not Yet</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/08/ai-doesnt-mean-the-end-of-mathematics-at-least-not-yet.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">背景：AI 在数学研究上的能力快速逼近人类，约 40 位顶尖数学家本月初在 OpenAI 办公室闭门讨论&#x27;当 AI 能做数学研究时，人类还剩什么&#x27;，引发对数学职业存续的焦虑。核心事实：该文由数学家 Kasra Rafi 撰写、原载于 The Guardian，Schneier 转载；文章主张 AI 不会终结数学——AI 擅长机械推导与大规模计算，但数学的真正价值在于概念创新、问题提出与直觉判断，这些未被 AI 复制；文内引用 arXiv 与 IEEE Spectrum 的近期 AI 数学研究进展作为对比背景。直接后果：为&#x27;认知职业是否被 AI 取代&#x27;的辩论提供数学界的权威回应——职业形态将转型而非消亡，数学家角色从&#x27;解题者&#x27;转向&#x27;提问者与验证者&#x27;。行业影响上，该立场与程序员、设计师等职业的同类讨论形成共振，构成 AI 时代认知劳动分工叙事的组成部分。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GLM-5.3 开源权重，智能体编码与网防最强</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：智谱 Z.ai (@Zai_org)</span><span>·</span><a href="https://x.com/Zai_org/status/2093354097122455713" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">背景：智谱 Z.ai 延续开源路线，在 GLM-5.3-Flash（8/27 发布、定价 1/40）之后推出旗舰级 GLM-5.3 开放权重版本。核心事实：GLM-5.3 被定位为&#x27;最强大的智能体编码与网络防御模型&#x27;，权重已在 HuggingFace（zai-org/GLM-5.3）开放下载，配套技术博客发布；开放权重意味着开发者可本地运行、微调并自定义模型行为，而非仅通过 API 访问。直接后果：智能体编码与网络防御两个高价值应用场景的顶级能力进入开源阵营，企业与安全团队可脱离闭源 API 依赖部署；对闭源厂商构成持续定价与能力压力。行业影响上，开源权重阵营在&#x27;智能体+安全&#x27;双赛道继续扩张，模型能力分布进一步去中心化，与腾讯混元 Hy4 同日开源形成联动。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Terminal-Bench-Science 0.1：评估科研工作流中的 AI 智能体</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://www.terminal-bench-science.ai/announcement" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">背景：AI 智能体进入科研工作流加速期，但缺乏统一、专业设计的评估基准，难以衡量智能体在真实科研任务中的表现。核心事实：斯坦福大学研究人员领衔发布 Terminal-Bench-Science 0.1，包含来自生命科学、物理学、地球科学、数学与工程科学的70 个专家精选任务，用于评估 AI 智能体完成科研工作流（实验设计、数据分析等）的能力。直接后果：为科研智能体的能力比较提供标准化测试场，开发者可据此优化智能体在科学场景的表现；基准本身成为科研自动化进程的度量工具。行业影响上，科研智能体从&#x27;演示&#x27;进入&#x27;可量化评估&#x27;阶段，预示实验室工作流程的自动化渗透将加速，科学家与智能体的协作分工进入制度化设计期。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">腾讯混元发布 Hy4 preview：770B 总参数、1M 上下文，开源上线</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：腾讯混元</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzkwODU2OTQyNQ%3D%3D&amp;mid=2247498484&amp;idx=1&amp;sn=0db140a12b8e18601ac933788045c831" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">背景：国内大模型厂商进入旗舰模型升级周期，长上下文与开源成为竞争焦点。核心事实：腾讯混元发布新一代旗舰模型 Hy4 preview，总参数 770B、激活参数 49B（MoE 架构）、上下文长度达 1M 字符，模型已开源并在腾讯云 TokenHub 与 OpenRouter 平台上线。直接后果：1M 上下文使长文档处理与大型代码库理解成为标准能力，MoE 架构控制推理成本；开源策略让开发者可自托管部署，Hy4 成为继 GLM-5.3 之后同日开源的又一旗舰级模型。行业影响上，国内厂商在旗舰模型的开源节奏、上下文长度与定价三个维度同时加压，全球开源模型能力天花板被持续推高，闭源 API 的差异化空间进一步收窄。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

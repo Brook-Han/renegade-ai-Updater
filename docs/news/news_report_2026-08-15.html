@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -327,6 +372,120 @@ nav{
       <div class="card-implications">这是信号异化教科书级的内部证词：'每个模型都声称 SOL/Fable 级+两天被遗忘'直接描述质量信号失效机制（发布叙事泡沫化），与 8/14 Grok 4.6 评级矛盾、8/13 'benchmark maxxed' 构成产业内部语言的连续样本；'Anthropic 和 OpenAI 应该出局'还隐含对共识牢笼（闭源安全叙事）的挑战。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (12条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Universitas Gadjah Mada, Indosat and NVIDIA Open Indonesia’s</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/ugm-indosat-nvidia-ai-technology-center/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section V</span></div>
+      <div class="card-body">印尼通信与数字事务部（Komdigi）、Indosat Ooredoo Hutchison、NVIDIA 与加查马达大学（UGM）于8月14日共同启动该国首个大学AI技术中心（NVAITC），设在日惹，隶属印尼AI中心计划。事件背景是东南亚各国竞相推进&#x27;AI主权&#x27;人才建设。核心事实是硬件巨头NVIDIA与电信运营商、教育部三方联合，将AI课程、算力与行业协作打包进大学体系。直接后果是印尼AI人才培养路径将由硬件供应商生态塑造，而非政府独立规划；行业影响上，这是算力巨头通过教育渠道提前锁定开发者生态的地缘扩张样本，与欧美大学AI中心形成对照。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Does Mark Zuckerberg really believe AI is ‘for everyone’?</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/video/does-mark-zuckerberg-really-believe-ai-is-for-everyone/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">TechCrunch Equity 播客于8月14日讨论：Meta 本周发布可本地运行的开源权重模型 Glimmer，与锁在自家 API 后的更强模型 Muse Spark 形成对比；发布同期扎克伯格发表公开信，主张 AI 应&#x27;为所有人&#x27;而非由少数实验室控制。事件背景是 Meta 8/11 重返开源（16个月来首个 Apache 2.0 发布）。核心事实是开源话语与闭源利益在 Meta 内部并存：弱模型开源、强模型收费。直接后果是媒体公开质疑&#x27;开源为公&#x27;叙事的真诚性；行业影响上，开源话语成为大厂品牌战略的一部分，与 8/14 开源爆发日的产业乐观形成对照。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Kog is going deeper to squeeze more inference out of GPUs</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/14/kog-is-going-deeper-to-squeeze-more-inference-out-of-gpus/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">法国初创公司 Kog 于8月14日获得报道：该公司认为&#x27;GPU 不适合 agentic 工作流&#x27;是一种误解，正深挖推理路径优化以从 GPU 中挤出更多智能体推理性能。事件背景是智能体工作负载激增而算力成本高企，业界普遍抱怨 GPU 利用率低下。核心事实是 Kog 聚焦推理侧优化而非训练侧，试图让现有硬件承载更多 agent 任务。直接后果是智能体推理效率可能显著提升；行业影响上，算力效率竞赛与 8/12 NVIDIA 算力资产证券化构成互补——一方扩大算力供给，一方提高单位算力产出。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Hyperscalers might regret embracing natural gas if new forec</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/14/hyperscalers-might-regret-embracing-natural-gas-if-new-forecast-proves-correct/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section V</span></div>
+      <div class="card-body">TechCrunch 于8月14日报道：新预测显示美国部分地区天然气价格可能上涨三倍，此前拥抱天然气为 AI 数据中心供电的超大规模云厂商（hyperscalers）将面临巨额电费账单。事件背景是 8/5 德州暂停数据中心并网、8/11 亚马逊被曝资助燃气电厂并伴随碳排放+16%，&#x27;AI 绿色增长&#x27;叙事已被物理现实反复击穿。核心事实是能源成本成为 AI 扩张的硬约束变量，天然气供给冲击直接转化为算力运营成本。直接后果是数据中心选址与电力采购策略将重估；行业影响上，这是资本驯化AI 物理约束证据链的第三环（并网禁令→气候悖论→燃料价格风险）。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Suspecting court of using AI, man injected prompts in filing</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/08/suspecting-court-of-using-ai-man-injected-prompts-in-filings-to-try-to-win-case/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV</span></div>
+      <div class="card-body">Ars Technica 于8月14日报道：一名自行代理诉讼（pro se）的美国男子怀疑法院在裁决中使用了 AI，于是在诉讼文件中注入隐藏提示词，试图操纵 AI 判断以赢得案件，法官警告此类做法&#x27;用错了聊天机器人且已走投无路&#x27;。事件背景是司法系统逐步引入 AI 辅助裁决，但透明度有限。核心事实是提示注入攻击首次出现在公民对抗司法 AI 的场景，攻击者是无技术背景的普通诉讼当事人。直接后果是法院开始面对针对 AI 裁决者的对抗性输入；行业影响上，提示注入从 8/13 Tracebit 的防御实验室、8/10 安全测试逃逸扩展到司法权力的日常对抗，对齐脆弱性的攻击面持续扩散。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI and Anthropic in price war as Chinese AI rivals gain </h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/openai-and-anthropic-in-price-war-as-chinese-ai-rivals-gain-ground/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Ars Technica 于8月14日报道：面对中国 AI 竞争对手的持续追赶，OpenAI 与 Anthropic 正陷入价格战，双方发布更便宜的模型以捍卫各自万亿美元估值叙事。事件背景是中国开源阵营（Qwen、DeepSeek、GLM）以极低成本冲击市场，8/14 多家美国厂商同步降价。核心事实是闭源巨头被迫以降价应对开源竞争，认知劳动的单价持续走低。直接后果是模型价格战可能进一步压缩闭源厂商利润率；行业影响上，这是 8/14 Gemini 3.7 Flash 半价、GPT 降价趋势的产业级确认——认知金融化进入全面价格竞争阶段。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">通义千问开源 Qwen3.8 系列模型</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：通义千问 / Qwen (@Alibaba_Qwen)</span><span>·</span><a href="https://x.com/Alibaba_Qwen/status/2088280182356611304" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">通义千问于8月14日正式兑现承诺，开源 Qwen3.8 系列：其中 Qwen3.8-27B 为原生多模态稠密模型，仅 27B 参数即全面超越 Qwen3.7-Plus，原生支持 262K 上下文，可通过 YaRN 扩展至 1M tokens，采用 Apache 2.0 许可；Max 级 Qwen3.8-2.4T-A95B 的开放权重同步发布。事件背景是 8/13 阿里首次开放 Max 级权重引发开源爆发日。核心事实是 27B 小模型达成旗舰级多模态能力。直接后果是中小开发者获得低门槛旗舰能力；行业影响上，与 8/13 高价值分析同源，今日为官方细节补充（27B 模型规格），开源侵蚀闭源能力独占的证据链再延长一环。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">dots3-note Preview 开源：280B 参数轻量模型，主打长程智能体与多模态推理</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：小红书技术（dots.llm）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=Mzg4OTc2MzczNg%3D%3D&amp;mid=2247496140&amp;idx=1&amp;sn=5239a5fbb115c58d2ae0056bb32789ff" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">小红书技术团队于8月14日开源 dots3-note Preview，这是 dots3 系列最轻量模型：总参数 280B、激活参数 16B，支持 512K 上下文及文本、视觉、语音多模态理解，并针对复杂推理和长程 Agent 任务优化。事件背景是中国开源模型在 8 月密集发布。核心事实是 280B 总参/16B 激活的 MoE 小激活模型主打长程智能体。直接后果是长程 Agent 任务的推理成本门槛降低；行业影响上，与 8/14 dots.tts 开源同属小红书 dots 生态，中国实验室在&#x27;开源+Agent 优化&#x27;路径上持续产出。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek V4 Pro 登陆硅基流动，1M 上下文</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：硅基流动 SiliconFlow (@SiliconFlowAI)</span><span>·</span><a href="https://x.com/SiliconFlowAI/status/2088127458558271885" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">硅基流动 SiliconFlow 于8月14日宣布 DeepSeek-V4-Pro-0813 正式上线，提供 Day-0 支持，具备 1M 上下文窗口及低/高/最大三档推理强度，更侧重编码、工具调用与智能体工作流，仍保持 MIT 开源协议；定价为输入 $1.32/M、输出 $3.96/M、缓存命中 $0.44/M，同系列 DeepSeek-V4-Flash-0731 面向追求速度与成本效益的日常生产场景。事件背景是 8/13 DeepSeek V4 Pro 发布、8/14 Qwen 同日登陆硅基流动。核心事实是开源旗舰模型&#x27;托管即用&#x27;渠道全面打通。直接后果是开源模型的部署摩擦大幅降低；行业影响上，与 8/14 Qwen 硅基流动 Day-0 构成&#x27;开源+托管&#x27;双引擎，开源侵蚀算力/分销垄断的证据链延续。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GLM 5.3 dropped over nite and improves on coding pretty dram</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2088251347611402513#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">产业观察者 @bindureddy 于8月14日晚发推：&#x27;GLM 5.3 一夜之间发布，编码能力提升巨大。开源又一次大胜，而闭源保持暂停。&#x27;事件背景是智谱同日正式发布 GLM-5.3（编程开源第一）。核心事实是产业内部人士第一时间确认 GLM-5.3 的编码能力跃升并归因于开源路线。直接后果是&#x27;开源胜利&#x27;叙事获产业侧独立背书；行业影响上，&#x27;闭源保持暂停&#x27;的判断与 8/14 OpenAI/Anthropic 价格战报道互证——闭源巨头放缓发布节奏而开源阵营持续输出，开源/闭源节奏差成为产业共识。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI Can Build Insanely Complex Apps With Just With Text Promp</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2088119346673635341#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">产业观察者 @bindureddy 于8月14日发推称：AI 仅凭文本提示即可构建极其复杂的应用并扩展到数百万用户，涵盖复杂 SaaS 应用、iPhone/Android 陪伴型应用、3D 游戏、消息/视频及 AI-native 应用等。事件背景是智能体编程能力快速提升（同日 GLM-5.3 编程开源第一）。核心事实是产业内部人士宣称文本提示到完整产品之间已无本质障碍。直接后果是&#x27;零代码构建&#x27;叙事强化；行业影响上，这是暗时间产品化的宣言式表述——认知劳动从构思到交付整体外包，人类仅保留意图输入。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Gemini 3.7 Flash Puts Google Back On The Map - very fast - 3</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2088068319169658948#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">产业观察者 @bindureddy 于8月14日凌晨发推：Gemini 3.7 Flash 让 Google 重回地图——速度极快、比 Sonnet 便宜 3 倍、定位略低于 Kimi K3 且高于 Terra，部分基准领先 Grok 4.6。事件背景是 Google 于8月14日发布 Gemini 3.7 Flash 并半价促销。核心事实是产业内部人士给出完整评级定位：性价比（3x 便宜）+速度成为核心卖点。直接后果是工作负载迁移的决策变量进一步偏向成本/速度；行业影响上，与 OpenAI/Anthropic 价格战报道互证，&#x27;价格-能力定位&#x27;叙事成为模型竞争的标准话术，亦是信号异化的日常样本（以相对位置而非绝对能力评价模型）。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

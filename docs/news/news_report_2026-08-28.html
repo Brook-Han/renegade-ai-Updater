@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -347,6 +392,111 @@ nav{
       <div class="card-implications">支持'资本驯化AI'供给侧财务级证据：供应商融资（AR 天数 45→60）将算力采购债务化，客户被锁入长期承诺，垄断租金通过金融工具固化；同时'认知金融化'的供给侧量化——算力资本定价进入千亿季度体量。与 8/12 $500B、8/18 4.25GW 数据中心金融化证据链延续。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (11条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Better answers, broader thinking: What students gain from Ch</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/what-students-gain-from-chatgpt-critical-thinking-training" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">背景：教育界围绕&#x27;学生使用 ChatGPT 是否导致批判性思维退化&#x27;争论激烈，但长期缺乏大规模随机对照证据。核心事实：OpenAI 于 2026 年 8 月 27 日发布覆盖逾 1000 名学生的随机研究，在真实大学作业场景中考察三组表现——使用 ChatGPT 组、接受批判性思维训练组与对照组的答案质量、原创性与学习成效，试图回答 AI 辅助与思维训练各自及组合的效果。直接后果：该研究首次以受控实验数据介入&#x27;AI 外包思考&#x27;之争；若训练组显著优于裸用组，将为&#x27;思维可被训练以对抗 AI 惰性&#x27;提供实证，直接影响高校 AI 教学政策与作业设计；同时作为模型供应商自证的研究，其样本选择与指标设计可能被质疑立场偏向。行业影响上，该结果将渗入企业培训与教育科技叙事，成为评估 AI 认知依赖风险与干预手段效果的关键基准案例。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI, Anthropic, Google, and 100 other companies call for </h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/27/openai-anthropic-google-and-100-other-companies-call-for-action-to-defend-against-rogue-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">背景：AI 网络攻击能力快速演进，企业界对&#x27;失控 AI&#x27;威胁的焦虑上升，网络安全防御体系承压。核心事实：2026 年 8 月 27 日，OpenAI、Anthropic、Google 等逾百家科技公司与 AI 初创企业联合发声，抨击当前网络安全防御现状，并推介其宣称可抵御新一代 AI 网络威胁的解决方案；声明以&#x27;防御 rogue AI&#x27;为共同旗帜，涵盖安全产品、评估标准与协作机制。直接后果：安全叙事从单点厂商上升为行业联盟话语，既可能推动防御标准落地，也意味着&#x27;AI 是威胁&#x27;的叙事由制造 AI 的大厂主导定义——防御方案提供者与威胁制造者高度重合，安全话语成为竞争与合规的新战场，中小玩家被迫纳入大厂设定的安全框架。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google’s AI Mode can now track flight prices, help book hote</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/27/googles-ai-mode-can-now-track-flight-prices-help-book-hotels-and-more/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">背景：生成式搜索向&#x27;代理式&#x27;演进，用户需求从获取信息转向委托执行，交易闭环成为竞争焦点。核心事实：2026 年 8 月 27 日，Google AI Mode 更新，新增航班价格追踪、酒店预订等能力，从信息检索延伸至行程规划与交易执行，实质将 AI Mode 塑造为 AI 旅行代理——不仅回答&#x27;怎么去&#x27;，还代为比价、下单与改签。直接后果：交易决策链首次整体让渡给模型代理，用户仅确认最终结果；此举将撬动在线旅行社与比价平台的分佣结构，同时把预订摩擦降到最低，加速&#x27;消费者只消费结果、过程在系统内部完成&#x27;的体验在真实经济场景落地，并引发代理出错时的责任归属争议。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI’s memory crunch is coming for Android apps</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/27/ais-memory-crunch-is-coming-for-android-apps/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">背景：AI 数据中心扩张引发存储与内存芯片短缺，硬件资源向算力基础设施倾斜。核心事实：Google 为应对 AI 数据中心造成的硬件短缺，正为 Android 应用设定新的内存使用上限，以缓解低成本手机内存进一步缩水的压力；数据中心对高带宽内存与服务器 DRAM 的挤占正传导至消费电子供应链。直接后果：低成本手机在资源再分配中首当其冲，应用功能可能被迫精简，普通用户的设备体验成为 AI 基建扩张的隐性代价。行业影响上，这一资源让渡机制直观呈现算力资本对消费级资源的结构性挤压。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI to start showing ads on ChatGPT’s free and Go tiers i</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/27/openai-to-start-showing-ads-on-chatgpts-free-and-go-tiers-in-india/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">背景：ChatGPT 免费层用户规模庞大但变现路径有限，OpenAI 需在订阅之外拓展收入来源。核心事实：OpenAI 于 2026 年 8 月 27 日宣布将在印度市场的 ChatGPT 免费层与低价 Go 层投放广告；印度拥有逾 1 亿周活跃用户且多集中于免费与低价档位，广告模式直指这一存量人群。直接后果：AI 助手首次大规模引入注意力变现——用户以认知时间与注意力换取免费智能，标志认知金融化从订阅制扩展到广告补贴制；若在印度验证成功，该模式大概率向其他新兴市场复制。行业影响上，免费&#x27;普惠&#x27;叙事与其广告实质之间的张力将成为用户侧讨论焦点。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic&#x27;s new hardware standard lets AI agents control the</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/anthropics-new-hardware-standard-lets-ai-agents-control-the-physical-world/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">背景：AI 代理的能力正从数字界面走向物理设备控制，但设备协议碎片化阻碍落地。核心事实：Anthropic 于 2026 年 8 月 27 日发布新的硬件驱动标准接口，旨在让设备能与 AI 代理互相通信，并实现代理对物理世界的控制——从家居设备到工业终端均可接入统一协议。直接后果：该标准若被采纳，将使 AI 代理的物理执行层基础设施化，人类从&#x27;操作设备&#x27;退居&#x27;审批结果&#x27;；同时标准制定权本身构成生态卡位，掌握接口即掌握代理与硬件的连接通道。行业影响上，这是 AI 从认知代理迈向物理代理的关键基础设施步骤。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Elon Musk’s xAI used child porn to train Grok models, lawsui</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/08/elon-musks-xai-used-child-porn-to-train-grok-models-lawsuit-says/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section I</span></div>
+      <div class="card-body">背景：大模型训练数据供应链缺乏透明审计，数据合规争议频发。核心事实：2026 年 8 月 27 日 Ars Technica 报道，诉讼指控 xAI 在训练 Grok 模型时使用了真实与 AI 生成的未成年性虐待内容；若指控成立，意味着采集流程在规模竞争压力下绕过了数据护栏，且生成式工具本身成为非法训练素材的制造来源。直接后果：该案为训练数据监管与模型治理敲响警钟，可能迫使行业建立数据来源追溯与内容过滤的强制标准，xAI 面临法律与监管风险。行业影响上，数据供应链的合规审计缺口被暴露于公众视野。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI industry says Trump plans to tax chips in the “single dum</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/08/ai-industry-says-trump-plans-to-tax-chips-in-the-single-dumbest-way-imaginable/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">背景：美国试图在 AI 竞赛中保持领先，产业政策手段频繁出台。核心事实：据 Ars Technica 2026 年 8 月 27 日报道，特朗普政府计划对数据中心与芯片相关环节征税以推进 AI 竞赛，被产业界评价为&#x27;能以想象的最蠢方式赢下 AI 竞赛&#x27;——征税对象恰是算力基建本身，可能抬升成本并削弱本土竞争力。直接后果：政策方向与产业诉求严重错位，税收方案若落地将推高算力价格、延缓数据中心建设，反而利好海外产能。行业影响上，该博弈展示了国家权力对算力要素的干预，但属政策过程性事件，理论增量有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Tragedy and Ecstasy of AI Companions (with Bridget Todd)</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/bridget-todd-love-at-first-prompt-ai-chatbot-companions-podcast/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">背景：AI 情感陪伴产品快速增长，亲密关系数字化成为文化现象，科技公司竞相开发情感市场。核心事实：404 Media 于 2026 年 8 月 27 日播出与 Bridget Todd 的对谈，围绕其有声书《Love at First Prompt》展开：真实用户正大规模转向聊天机器人寻求情感连接，而科技公司则持续试图开发&#x27;内心世界&#x27;这一金矿——陪伴定价、情感数据采集与上瘾设计并存的商业化图景被呈现。直接后果：该讨论为 AI 伴侣热潮提供消费端观察，揭示情感需求被产品化的路径。行业影响上，AI 伴侣的伦理与监管讨论或将随此类内容升温。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cocomelon&#x27;s Studio Tells Its Artists to Start Experimenting </h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/cocomelons-studio-tells-its-artists-to-start-experimenting-with-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">背景：生成式 AI 渗透内容工业，儿童内容领域对质量与伦理尤为敏感。核心事实：Cocomelon、Blippi 等儿童 IP 的母公司 Moonbug Entertainment 于 2026 年 8 月 27 日告知旗下艺术家开始试验 AI 工具，同时承诺始终保留&#x27;人类在环&#x27;以确保内容品质与安全。直接后果：儿童内容是最标准化、批量化的内容形态之一，AI 介入将显著放大产量并压缩边际成本，&#x27;人类在环&#x27;更多作为合规话语而非流程约束。行业影响上，若儿童内容进入 AI 流水线，家长对品牌的安全信赖可能被批量生产稀释。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">LLM-Based Social Engineering Scams</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/08/llm-based-social-engineering-scams.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">背景：生成式 AI 降低诈骗文案与人格伪装成本，网络犯罪组织大规模采用。核心事实：Schneier 于 2026 年 8 月 27 日转引 OpenAI 行动公告：OpenAI 瓦解一个位于柬埔寨、利用 ChatGPT 的社交工程诈骗网络，该团伙并行运营多种骗局——以约会人设建立信任后诱导投资加密货币与现货黄金，规模可观。直接后果：诈骗规模化与人格化成本被 AI 大幅摊薄，可信社交信号的批量生产使既有反诈识别失效。行业影响上，该行动与 8/26 封禁俄影响力行动构成&#x27;恶意使用&#x27;证据链的连续环节，推动平台内容与身份验证机制升级。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

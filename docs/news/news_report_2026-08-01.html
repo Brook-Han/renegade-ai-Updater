@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -443,6 +488,120 @@ nav{
       <div class="card-implications">支持'暗时间'的产品化实证：思考与执行完全发生在系统内部，用户仅消费最终结果。同时补充'进化对齐脆弱性'：'不需要人在回路中'的自治递归改进正是对齐漂移的高风险场景，无人监督的自我优化放大不可预测性。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (12条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Advancing responsible AI across Europe</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/advancing-responsible-ai-across-europe" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">OpenAI 于 2026 年 7 月 31 日发布声明，阐述其如何以安全、安保、透明度和溯源四类实践支持欧洲的负责任 AI 治理，并承诺在《欧盟人工智能法案》(EU AI Act) 推进过程中继续配合。核心事实包括：OpenAI 将合规实践包装为可对外宣讲的治理承诺，主动对接欧盟监管框架，展示其对欧洲市场的战略性投入。直接后果是强化了&#x27;AI 需要监管背书才能发展&#x27;的主流叙事，将企业合规行为塑造为行业标准的一部分。技术影响有限，主要体现为政策与公关层面的信号传递，是资本驯化AI在跨国监管语境下的典型话术样本。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How avatarin built a 24/7 retail agent with GPT-Realtime</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/avatarin" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">日本机器人公司 avatarin 利用 OpenAI 的 GPT-Realtime 为山田电机 (Yamada Denki) 零售店打造 24/7 多语言客服代理。上线两周内即有 3 万人使用，92% 的调研反馈为正面。该代理支持多语言实时对话，显著扩展了零售场景的服务时间与语言覆盖能力。直接后果是降低了零售业人力客服成本，提升了非营业时间服务覆盖。该案例属于 GPT-Realtime 在实体零售领域的商业落地示范，展示了实时语音 AI 的商业可行性，但内容以供应商宣传为主，理论映射价值有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">SpaceX won’t remove all of xAI’s unpermitted turbines for an</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/31/spacex-wont-remove-all-of-xais-unpermitted-turbines-for-another-year/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">TechCrunch 报道，SpaceX 为 xAI 的 Colossus 数据中心建设新发电厂，但现有未获许可的燃气轮机在一年内不会被全部移除。该事件涉及 AI 算力扩张与地方环境监管的冲突：xAI 的超大规模数据中心对电力需求急剧膨胀，基础设施建设先行、许可追认滞后成为常态。核心事实包括：Colossus 是美国最大 AI 算力集群之一，其电力供应牵动当地环境评估与合规争议。直接后果是凸显 AI 算力军备竞赛与能源、环境治理之间的张力，资本扩张速度持续超越制度规训速度。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Reddit keeps its strange DMCA fight over Google search resul</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/07/reddit-keeps-weird-dmca-lawsuit-against-web-scraper-alive-despite-googles-loss/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">Reddit 针对 Perplexity AI 与网络抓取工具合谋的 DMCA 诉讼持续推进，尽管关联的针对 Google 的同类诉讼已败诉。Reddit 指控 Perplexity 绕过其反爬虫措施抓取内容并用于 AI 搜索答案，构成&#x27;盗用内容训练商业产品&#x27;。核心事实包括：Reddit 坚持主张抓取与 AI 使用的边界，诉讼进入更深程序阶段。直接后果是加剧内容平台与 AI 公司之间的版权对抗，为&#x27;AI 是否可无偿消费网络内容&#x27;确立判例方向，也牵动搜索流量分配与内容价值重估。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s Opus 5 Is Better at Resisting Prompt Injection</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/07/anthropics-opus-5-is-better-at-resisting-prompt-injection.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Bruce Schneier 引用 Anthropic 系统卡片数据：Claude Opus 5 在提示注入防御基准 (IPI) 上明显进步，攻击者在 15 次尝试内成功的概率从 Opus 4.8 的 5.5% 降至 2.0%，单次尝试成功率从 0.5% 降至 0.2%，且优于 Sonnet 5 (5.9%) 与 Mythos 5 (2.6%)，成为当前最鲁棒模型。核心事实包括：跨代际防御指标的实质性改善，以及多家模型间防御水平的显著差异。直接后果是证明提示注入攻击存在可缓解空间，为&#x27;对齐可以改善&#x27;提供正面数据，但攻击成功率仍非零，攻防对抗远未终结。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">animated-voiceover 开源：一人干翻动画工作室</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：阿易 AI Notes (@AYi_AInotes)</span><span>·</span><a href="https://x.com/AYi_AInotes/status/2083221612778668388" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">前字节跳动产品经理开源 animated-voiceover：一套喂给 Codex/Claude Code 的完整动画科普视频制片流程，MIT 协议，宣称可实现 90% 自动化。演示案例显示一人以一条指令、约 40 元成本、两分钟产出电影级动画科普视频。核心事实包括：多 Agent 协作流水线覆盖脚本、分镜、配音、剪辑全流程，个人创作者获得以往整个工作室的产能。直接后果是内容生产的人力成本与门槛大幅下降，动画视频从&#x27;团队项目&#x27;变为&#x27;个人可执行&#x27;，对中小动画工作室形成结构性冲击，也重新定义了创意劳动的附加值来源。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">面壁智能ALIGN：自动对齐智能体与环境接口</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：面壁智能 OpenBMB (@OpenBMB)</span><span>·</span><a href="https://x.com/OpenBMB/status/2083175856563003724" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">面壁智能与清华 NLP 团队提出 ALIGN 方法：自动生成对齐接口，解决智能体与环境之间的失配问题。仅通过改写反馈措辞，Qwen2.5-7B 智能体在 ALFWorld 上的任务成功率从 13.4% 提升至 31.3%；在四个基准上最高提升 45.67% 成功率，并减少 65% 连续无效动作，且接口可跨智能体架构和 LLM 骨干迁移。核心事实包括：接口即对齐、无需修改模型权重或环境，通过反馈语义工程实现大幅性能增益。直接后果是提供了一种低成本、可迁移的智能体对齐工具，可能成为通用智能体部署的基础组件。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MiniMax H3 发布：开源全能多模态生成模型，支持 2K 原生立体声视频</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>MiniMax：Blog（网页）</span><span>·</span><a href="https://www.minimax.io/blog/minimax-h3" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">MiniMax 发布开源全能多模态生成模型 H3，可联合理解文本、图像、视频和音频，生成最高 2K 分辨率、15 秒时长且带原生立体声的视频。H3 在指令跟随、文字与品牌呈现、V2V 动作迁移上表现突出，2K 价格低于主流模型三分之一，768p 价格低于主流 720p 一半，官方计划近日开源模型权重。核心事实包括：多模态统一架构、显著价格优势与开源承诺。直接后果是降低高质量视频生成的门槛，可能重塑视频创作与营销行业成本结构，并加剧生成模型市场的价格竞争。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">国家发改委：人工智能相关行业保持 30% 以上高增长，全国智能算力规模达去年同期 2.8 倍</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/984/130.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">国家发改委在 7 月新闻发布会披露：上半年人工智能自主创新加快，首个全国产 10 万卡 AI 超集群正式投用，截至 6 月底全国智能算力规模达去年同期 2.8 倍；深度求索、月之暗面等本土企业发布多个万亿级参数开源大模型，国产大模型全球总下载量突破 100 亿次；相关行业保持 30% 以上高增长，规模以上工业企业集成电路产量同比增长 23.1%，出口额同比增长 88.7%。核心事实包括：算力规模、开源模型下载量与芯片出口的三重高速增长。直接后果是 AI 产业被纳入国家经济战略核心叙事，政策资源持续倾斜。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">国家发改委：将加快《人工智能法》立法进程</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/983/974.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">国家发改委在 7 月 31 日发布会宣布将加快《人工智能法》立法进程。发布内容同时重申：上半年国产大模型全球下载量突破 100 亿次，深度求索、月之暗面等本土企业已发布万亿级参数开源大模型；下一步将加快自主创新、布局应用中试基地，并强化风险监测防控体系。核心事实包括：立法与产业扶持并行推进，监管框架进入落地阶段。直接后果是 AI 监管从行业自律走向国家立法，为产业划定规则边界的同时，也通过&#x27;风险监测&#x27;话语强化国家主导的治理叙事，监管与激励双轨塑造 AI 生态走向。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek Flash Is An Awesome Model - The New Version Is Even</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2083257271476494572#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">产业投资人 Bindu Reddy 发推盛赞 DeepSeek Flash 是&#x27;不可思议的模型&#x27;，认为新版本更佳，并称其团队已将所有简单任务切换至 DeepSeek Flash，且该模型在 ChatLLM 上以无限制方式提供。核心事实包括：业界对 DeepSeek Flash 性价比与稳定性的高度认可，以及其作为&#x27;简单任务默认模型&#x27;的定位。直接后果是反映开源低成本模型在产业日常使用中的渗透率持续上升，闭源旗舰模型的高溢价正在被工作负载分流侵蚀。该推文为观点性内容，数据与细节有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GLM 5.5 will be the next big model It’s a Kimi K3 class mode</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2082997540639936896#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">产业投资人 Bindu Reddy 预测 GLM 5.5 将成为下一个大模型，称其达到 Kimi K3 级别但速度更快、价格有望更低；同时判断前沿闭源模型将因监管而推迟发布，开源将最终追平闭源。核心事实包括：对 GLM 5.5 性能定位的行业预期，以及&#x27;监管拖延前沿、开源加速追赶&#x27;的判断。直接后果是折射产业资本对&#x27;开源追平闭源&#x27;时间表的乐观预期，若成真将进一步瓦解闭源高溢价的定价基础。该推文为预测性观点，缺乏实证数据，价值在于反映产业情绪。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

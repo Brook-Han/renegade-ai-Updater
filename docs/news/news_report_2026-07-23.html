@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -459,6 +504,57 @@ nav{
       <div class="card-implications">资本驯化AI+信号异化双重模型。资本驯化AI：Anthropic选择支付15亿美元和解而非接受'合理使用'的法律先例审判，说明资本宁愿用金钱平息争议也不愿冒险确立可能约束整个行业的判例。信号异化：创纪录的版权赔偿标志着'人类创作信号'正在被明确定价——每部作品约3000美元的赔偿为信号价值设立了新的基准。这与7月21日Anthropic 15亿和解获批构成系列报道。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (5条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Advancing the next era of national science</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/advancing-the-next-era-of-national-science" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">OpenAI于2026年7月22日宣布与美国能源部（DOE）和国家实验室合作，使用前沿AI加速科学发现。OpenAI承诺为美国国家科学事业做出贡献，将AI能力应用于能源、材料、生物等领域的基础研究。这标志着AI实验室与联邦政府科研机构的深度绑定。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Menlo Ventures’ Matt Murphy explains what AI startups founde</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/podcast/menlo-ventures-matt-murphy-explains-what-ai-startups-founders-must-do-differently/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">Menlo Ventures的Matt Murphy在接受播客采访时表示，Anthropic在2026年5月已达到470亿美元营收运行率（2025年为90亿美元），这是他在25年投资生涯中从未见过的增长速度——超越了互联网、移动和云计算浪潮。Menlo领投了Anthropic的5亿美元D轮融资。Murphy讨论了AI初创公司创始人必须采取的不同策略。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">微软 MagenticLite 模型全面开源</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Microsoft Research (@MSFTResearch)</span><span>·</span><a href="https://x.com/MSFTResearch/status/2079989338994069511" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section V</span></div>
+      <div class="card-body">微软研究院宣布MagenticLite模型全面开源。此前仅在Microsoft Foundry上提供的MagenticBrain和Fara 1.5模型现已在Hugging Face上开放权重。整个应用、测试工具及堆栈中的每个模型现已全部开放。这是微软在AI开源策略上的重要举措。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">开源模型季度盘点：Kimi K3、Qwen 3.8、WAIC 演讲、知识蒸馏与开源闭源差距</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Nathan Lambert：Interconnects（RSS）</span><span>·</span><a href="https://www.interconnects.ai/p/open-models-recap-more-on-kimi-k3" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section V</span></div>
+      <div class="card-body">Nathan Lambert与Florian Brand在播客中盘点开源模型最新动态。讨论Kimi K3发布后的中美AI地缘政治、开源与闭源模型的经济性、前沿安全问题。Qwen宣布下一代大模型将开源权重。讨论还涉及知识蒸馏争议、后训练价值以及开源与闭源前沿的性能差距。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Remarkable how many programmers and software engineers are s</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2079943876606038029#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">Bindureddy发推指出，许多程序员和软件工程师仍处于否认状态，认为&#x27;vibe coding&#x27;不适用于真实软件，并继续使用传统IDE。而事实上，包括OpenAI和Anthropic在内的最大科技公司基本上都在使用vibe coding。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

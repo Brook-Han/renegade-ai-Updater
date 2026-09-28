@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -295,6 +340,102 @@ nav{
       <div class="card-implications">叛逆AI模型的官方发布版深化（8/15、8/18 已分析 r=7，今日为智谱官方渠道的发布细节）：开源第一+成本最低+权重确认开源，三要素齐备标志开源旗舰成为定价者；同时是信号异化的绝佳样本——AA 指数 60 分'与闭源旗舰同级'评级叙事与 bindureddy 同日'hype 72 小时'推文（第14条）直接互证，评分信号的有效性正被产业内部公开质疑。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (10条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Offering Zero Data Retention for frontier models</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/offering-zero-data-retention-for-frontier-models" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section II</span></div>
+      <div class="card-body">OpenAI 于 2026年8月19日重申面向合格 API 客户的前沿模型零数据保留（Zero Data Retention, ZDR）承诺，并预告推出私有安全处理（Private Safety Processing）机制，宣称可在不损害客户数据隐私的前提下执行高级 AI 安全检测。该举措的背景是企业级 AI 市场的隐私竞争白热化，Anthropic 同期以客户数据保护为卖点争夺企业客户，OpenAI 需以隐私承诺对冲。核心事实包括：ZDR 覆盖前沿模型 API 调用，安全检测与训练数据隔离；OpenAI 将隐私保护定位为企业采购 AI 服务的差异化优势。直接后果是数据主权成为企业 AI 采购的关键谈判项，认知劳动外包的数据流出通道被制度性收窄；行业影响上，隐私承诺可能成为头部模型提供商的标配竞争维度，小厂难以跟进，客观上强化头部平台的企业数据护城河。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Replit expands access to software creation with GPT-5.6 Luna</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/replit" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6（暗时间）, Section III</span></div>
+      <div class="card-body">Replit 于 2026年8月19日推出由 GPT-5.6 Luna 驱动的免费模式（Free Mode），宣称任何人都可将想法转化为可运行软件而无需担忧 token 成本。背景是 AI 编程工具从付费墙转向流量获取模式，头部模型厂商（OpenAI）与低代码平台（Replit）的合作深化。核心事实包括：免费模式消除 token 计费摩擦，GPT-5.6 Luna 作为底层模型提供代码生成与执行能力；Replit 借此争夺 AI 编程大众市场。直接后果是软件创建认知劳动的门槛进一步降低，&#x27;想法→产品&#x27;的转化过程被整体封装在平台内；行业影响上，token 成本归零化使认知金融化的显性定价被掩盖，用户以数据与注意力换取免费算力，编程外包从专业场景扩散到业余用户。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI seeks to one-up Anthropic with new customer privacy p</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/19/openai-seeks-to-one-up-anthropic-with-new-customer-privacy-protections/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section II</span></div>
+      <div class="card-body">TechCrunch 于 2026年8月19日报道，OpenAI 与 Anthropic 之间正展开一场关于企业客户数据隐私保护能力的竞争，双方竞相推出更严格的隐私承诺以争夺企业订单。背景是企业级 AI 采购中数据主权顾虑成为主要决策障碍，此前 OpenAI 已宣布前沿模型零数据保留（ZDR），Anthropic 则以隐私友好定位著称。核心事实包括：OpenAI 预告私有安全处理机制，寻求在隐私与企业安全检测之间取得平衡；Anthropic 以客户数据保护为差异化卖点。直接后果是企业数据隐私成为头部模型厂商竞争的新维度，隐私承诺可能被纳入企业采购合同硬性条款；行业影响上，隐私军备竞赛抬高合规成本，客观上强化大厂的合规壁垒，中小企业难以复制同等承诺。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cognition CEO denies report that SpaceX tried to acquire the</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/19/cognition-ceo-denies-report-that-spacex-tried-to-acquire-the-startup/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section III</span></div>
+      <div class="card-body">TechCrunch 于 2026年8月19日报道，据称 SpaceX 正在洽谈收购 AI 编程初创公司 Cognition（Devin 智能体开发方），Cognition CEO 随即否认该传闻；此前 SpaceX 已收购 AI 编程工具 Cursor，以追赶 OpenAI、Anthropic 等在企业 AI 领域的领先地位。背景是巨型科技企业加速整合 AI 编程工具链，编程认知劳动产品成为并购热点资产。核心事实包括：SpaceX 连续布局 Cursor 与 Cognition 两类 AI 编程资产；传闻中收购意图与马斯克阵营的 AI 基础设施野心相关。直接后果是编程认知劳动工具加速向少数资本集团集中，独立 AI 编程工具的生存空间收窄；行业影响上，AI 编程赛道出现&#x27;资本整合-工具收敛&#x27;趋势，开发者生态可能被绑定到特定资本阵营的模型与平台。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google packs Search and Gemini with new AI study tools</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/19/google-launches-new-study-tools-for-students-across-search-and-gemini/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3（需求侧规训）, Section II</span></div>
+      <div class="card-body">TechCrunch 于 2026年8月19日报道，Google 在 Search 与 Gemini 中推出新的 AI 学习工具，面向学生群体，涵盖资料查询、知识点拆解、练习生成等学习辅助功能，此举是 Google 将 Gemini 打造为学生首选 AI 助手的系列动作之一，与 OpenAI 等对手争夺教育市场。背景是 AI 教育应用市场快速膨胀，学生成为各厂商争夺的高粘性用户群体。核心事实包括：新工具嵌入搜索与助手双入口，降低学生学习场景的使用摩擦；Google 强调工具的准确性与教育适配。直接后果是学习过程的认知劳动进一步外包给 AI 平台，学生从&#x27;学会&#x27;转向&#x27;获得答案&#x27;；行业影响上，教育层 AI 驯化加速，学习能力评估、防作弊机制等衍生问题随之放大，厂商间的教育市场份额竞争白热化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Researchers say OpenAI revoked their access to limited cyber</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/19/researchers-complain-that-openai-revoked-their-access-to-limited-cyber-program/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5（进化对齐脆弱性）, Section I / Chapter 2（共识牢笼）</span></div>
+      <div class="card-body">TechCrunch 于 2026年8月19日报道，多名网络安全研究人员抱怨 OpenAI 撤销了他们参与&#x27;可信网络访问计划&#x27;（Trusted Access for Cyber）的权限。该计划本意是向受信任的防御方提供更强的模型能力，使其能更快向企业报告漏洞，加速补丁落地。背景是 OpenAI 在 8/11 扩展网络安全模型 Daybreak Red 后持续收紧攻击能力的准入控制，以呼应其&#x27;防御窗口收窄&#x27;的安全叙事。核心事实包括：研究人员在未获明确解释的情况下被移出计划；OpenAI 单方面掌握网络安全模型能力的准入权。直接后果是网络安全研究社区与 OpenAI 之间的信任出现裂痕，第三方漏洞发现能力受制于平台放行；行业影响上，安全能力的授予与撤销成为平台权力工具，&#x27;谁配使用强模型&#x27;的话语权高度集中。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Meet the startup helping Wall Street put a price on AI compu</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/video/meet-the-startup-helping-wall-street-put-a-price-on-ai-compute/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section IV</span></div>
+      <div class="card-body">TechCrunch 视频报道 2026年8月19日：初创公司 Silicon Data 正在帮助华尔街为 AI 算力定价并对冲价格风险。背景是 AI 建设热潮不减，数据中心与 GPU 年投入达数千亿美元，算力成为 AI 产品构建者最大单项成本，但市场缺乏标准化的算力定价与对冲工具。核心事实包括：Silicon Data 将 GPU/算力视为可交易资产类别，为金融机构提供算力价格指数与衍生品对冲；瞄准算力价格波动带来的敞口管理需求。直接后果是算力从采购品升格为金融化资产，算力价格的金融工具化使资本可对 AI 基础设施进行投机与套期保值；行业影响上，算力金融化与 8/12 NVIDIA 5000 亿美元融资平台、8/18 SB Energy 4.25 吉瓦工厂构成同一趋势，认知劳动的物质基础全面进入资本市场定价体系。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">TerraPower’s nuclear reactor has a secret weapon for powerin</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/19/terrapowers-nuclear-reactor-has-a-secret-weapon-for-powering-ai-data-centers/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section IV</span></div>
+      <div class="card-body">TechCrunch 于 2026年8月19日报道，比尔·盖茨支持的 TerraPower 核反应堆在争夺 AI 数据中心供电合同方面具备&#x27;秘密武器&#x27;式的战略优势。背景是 AI 算力扩张遭遇电力瓶颈，数据中心与核电厂的直连供电模式（behind-the-meter）成为头部算力玩家争抢的资源。核心事实包括：TerraPower 的钠冷快堆设计具备更高的热效率与连续运行能力，更适合高负载数据中心；核电供应商正围绕数据中心长期购电协议展开竞争。直接后果是核能成为 AI 基础设施竞赛的关键物理约束变量，数据中心选址与核电布局深度绑定；行业影响上，能源物理约束持续塑造算力版图，与天然气价格风险、电网并网禁令共同构成 AI 扩张的硬边界。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Podcast: Amazon is Destroying Rare Books to Train AI</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/podcast-amazon-is-destroying-rare-books-to-train-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4（资本驯化AI）, Section II</span></div>
+      <div class="card-body">404 Media 于 2026年8月19日发布播客，专题讨论亚马逊购买并销毁珍稀书籍以训练 AI 的事件（此前 8/18 已由 404 Media 以文字报道形式披露），并延展讨论法院场景中的 AI 滥用案例与 Meta 新申请的 AI 智能眼镜专利。背景是 AI 训练数据供应链的物理形态引发关注——亚马逊通过购买绝版珍稀书籍并销毁实体书来独占其扫描数字化内容，规避版权纠纷。核心事实包括：珍稀书籍的物理销毁使其数字化内容成为亚马逊独占训练数据；播客叠加讨论了 AI 在司法场景的应用争议。直接后果是训练数据供应链的独占性强化，稀有知识资产被单一平台收编；行业影响上，数据主权与版权边界问题再度成为 AI 治理焦点。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">StartupBench：面向市场验证端到端工作流的通用智能体基准测试</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>HuggingFace Daily Papers（社区热门论文）</span><span>·</span><a href="https://arxiv.org/abs/2608.17800" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2（信号异化）, Section III</span></div>
+      <div class="card-body">arXiv 论文（2026年8月18日）发布 StartupBench——一个基于市场验证的 AI 初创公司产品构建的端到端智能体基准，从真实被采用的产品工作流中提炼任务，而非研究者预设任务。关键发现：在统一智能体框架下，最强模型也仅能完成约 30% 的任务，复杂指令遵循与领域专业知识是主要失败来源。背景是现有智能体基准普遍存在&#x27;刷分&#x27;问题，排行榜分数与真实用户任务能力脱节。核心事实包括：任务来源于市场验证产品的真实工作流；最强模型完成率仅三成；失败集中在指令遵循与专业领域知识。直接后果是该基准揭示了通用智能体在真实任务上的能力边界远低于排行榜暗示的水平；行业影响上，为基准作为质量信号失效提供了新的量化证据，与基准指纹识别、创造性评估（DiG-bench）等构成方法论层面的连环质疑。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -459,6 +504,75 @@ nav{
       <div class="card-implications">资本驯化AI的反向实证——OpenAI自研芯片是为了打破NVIDIA的算力垄断，本身是反垄断行为。但同时，这种垂直整合也使OpenAI对AI生态的控制力更强，从'算力消费者'转变为'算力统治者'。映射了资本驯化AI的演进：垄断从应用层向基础设施层转移。也部分映射叛逆AI——通过硬件的自主可控重置了算力的供需关系。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">UK regulator warns of &quot;arms race&quot; to keep up with AI use in </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/07/uk-regulator-warns-of-arms-race-to-keep-up-with-ai-use-in-financial-services/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">英国金融行为监管局（FCA）官员警告在金融服务领域存在&#x27;军备竞赛&#x27;以跟上AI应用的步伐。数百万英国居民已使用AI进行个人财务决策，监管机构需要更大权力来监督AI在金融领域的使用。FCA认为现有的监管框架不足以应对AI带来的系统性风险，呼吁加强监管能力建设。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OfficeCLI：为AI智能体设计的开源Office套件</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://github.com/iOfficeAI/OfficeCLI" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">OfficeCLI是全球首个专为AI智能体设计的开源Office套件，以单二进制文件运行，无需安装Office或任何依赖。它内置HTML渲染引擎，可将.docx/.xlsx/.pptx转换为HTML或PNG，形成&#x27;渲染→查看→修复&#x27;的视觉闭环，使AI代理能自主创建、读取和修改Office文档。支持公式、图表、条件格式等复杂功能，可一键安装到Claude Code、Cursor、GitHub Copilot等AI编码工具中。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Code 团队详解四种智能体循环类型</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Claude Devs (@ClaudeDevs)</span><span>·</span><a href="https://x.com/ClaudeDevs/status/2074208949205881033" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Claude Code团队定义了四种智能体循环类型：回合循环（手动提示触发，自判完成，适合短任务）、目标循环（/goal触发，达成目标或达最大轮数停止）、时间循环（/loop和/schedule按间隔触发，适合同步消息等重复任务）、主动循环（事件或计划触发，无人实时参与，每个子任务独立退出）。建议从最简单方案开始，选择性使用复杂循环。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Fable实地指南：发现你的未知</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude：Blog（网页）</span><span>·</span><a href="https://claude.com/blog/a-field-guide-to-claude-fable-finding-your-unknowns" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section I</span></div>
+      <div class="card-body">Claude Fable是第一款要求用户主动澄清未知才能获得高质量工作的模型。与Fable协作是一个在实现前后迭代发现未知的过程。通过将问题分解为已知的已知、已知的未知、未知的已知和未知的未知四类，用户可以借助Claude Fable和Claude Code进行盲点检查、头脑风暴、原型设计等，高效挖掘深藏于代码库和设计中的潜在问题。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">腾讯混元正式发布Hy3模型</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>腾讯混元：Research（API）</span><span>·</span><a href="https://hunyuan.tencent.com/research/100064?langVersion=zh" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">腾讯混元7月6日正式发布Hy3模型。相比preview版，任务解决率从72%升至90%，平均耗时缩短34%；幻觉率从12.5%降至5.4%，常识错误率从25.4%降至12.7%。在270位专家盲测中均分2.67/4，优于GLM5.1的2.51/4。API价格极具竞争力（输入1元/百万tokens），且已基于Apache 2.0协议开源。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">RT by @ylecun: During a Bloomberg interview, Yann LeCun (@yl</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @ylecun (前沿与安全)</span><span>·</span><a href="https://nitter.net/rohanpaul_ai/status/2074011687024517141#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">Yann LeCun在彭博采访中解释LLM在现实世界智能方面的局限性。LeCun指出&#x27;语言是对现实的非常近似、降级、量化和简化的描述&#x27;，认为仅靠语言模型无法实现真正的智能，需要结合世界模型和其他认知能力。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">🚨 Fable can one-shot almost anything on the Abacus AI SuperC</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2074021076221263877#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">Abacus AI宣布其SuperComputer平台上的Fable模型可以一次性生成从复杂3D游戏到全功能SaaS应用的几乎任何内容，并提供免费托管、认证、计算和数据库服务。展示了前沿AI模型在应用生成方面的能力。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

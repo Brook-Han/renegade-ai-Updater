@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -263,6 +308,39 @@ nav{
       <div class="card-implications">认知金融化/Token 陷阱的教科书级产业表述——认知被离散化为 token 资产，社会按 token 占有量分化为阶级；同时暗时间概念获得分层结构：Token-rich 将思考外包给系统换取 100x 输出，Token-poor 仅消费廉价模型的表层结果。与 8/14 Schneier '体外认知劳动'、8/8 Rippling AI 支出审计构成认知金融化证据链的阶级分化新维度。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (3条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic shares more details about how Claude’s new waterma</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/15/anthropic-shares-more-details-about-how-claudes-new-watermarks-will-work/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">Anthropic 于 8 月 15 日通过 TechCrunch 公开 Claude 文本水印的更多技术细节，包括水印如何嵌入、能否通过编辑隐藏、以及对代码输出是否产生影响。此前 8/13 Claude 水印消息引发用户大规模抵制（&#x27;被抓到&#x27;恐惧），8/15 Google 又移除 Gemini 可见水印，Anthropic 此次主动披露机制细节，属于对用户信任危机的直接回应，试图以透明度修复信号治理工具的合法性。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ling-3.0-tiny 正式开源：1.3B 激活参数如何进入真实任务</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：蚂蚁百灵（Ling）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&amp;mid=2247487496&amp;idx=1&amp;sn=6486908f50006a356d48168b0b2762f1" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section V</span></div>
+      <div class="card-body">蚂蚁百灵于 2026 年 8 月 11 日正式开源 Ling-3.0-tiny，一款总参数 7.9B、推理时仅激活 1.3B 参数的原生混合推理模型，提供 BF16、FP8、INT4 三个版本。这是蚂蚁在 Ling 系列开源路线上的延续，极小激活参数使模型可在消费级硬件运行，瞄准真实业务场景的本地部署。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">THE NEXT BIG THING - ASTRA OpenAI’s Astra or GPT-6 will beco</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2088493951305339124#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">@bindureddy 于 8 月 15 日预告 OpenAI 的 Astra（或 GPT-6）将在数周内发布，认为届时 OpenAI 将回到与 Anthropic 同等水平，并称 Astra 恰好填补 Fable-5 在数学与硬核推理上的短板。此前 8/8 OpenAI 曾以 Astra 达到&#x27;关键网络安全阈值&#x27;为由放缓其开发，此次预告意味着该模型即将从受控评估走向公开可用。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

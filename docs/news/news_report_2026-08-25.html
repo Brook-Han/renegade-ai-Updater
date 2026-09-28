@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -295,6 +340,111 @@ nav{
       <div class="card-implications">双重理论印证：①暗时间产品化的需求侧摩擦——企业愿意购买 AI 完成工作（暗时间商业化），但个人用户拒绝交出控制权（需求侧规训的抵抗力）；②信号异化/产业证词——98% vs 17% 的悬殊揭示产业内部 KOL 话语与市场现实的结构性断裂，OpenAI 以巨额训练投入倒逼采用扩张，是资本驯化AI（训练成本锁定必须变现）的财务压力实证。与 8/21 Fable 5 唯一可用推文构成互证：实验室内部工具生态繁荣 vs 大众市场冷淡。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (11条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MetaRoCE: A New RDMA Transport Built for AI-Scale Ethernet</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Meta 于 2026 年 8 月 24 日发布并开源 MetaRoCE——一个专为 AI 工作负载在通用以太网上设计的全新 RDMA 传输协议，同时通过 Open Compute Project（OCP）发布规范、参考软件实现与合规测试套件。背景是前沿模型训练与推理依赖 GPU 间高效数据传输，传统 RDMA 依赖 PFC 且扩展性受限。核心事实：MetaRoCE 将智能移至端点，原生支持乱序交付、多路径、无损容忍与双向拥塞控制，无需 PFC，可在百万 GPU 规模下维持高吞吐与低尾延迟，且现有 RDMA Verbs API 与软件栈无需修改即可运行。直接后果是 AI 数据中心网络层出现一个可免授权扩展的开源替代方案，降低了对专有网络/硬件栈的依赖，与 Meta 同日发布的 MTIA 300 训练芯片构成垂直整合组合。行业影响上，这是超大规模算力买家自建网络协议栈的标志性动作，对 NVIDIA InfiniBand 生态构成间接竞争压力。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MTIA 300: Meta’s First Training Chip with Built-in NICs and </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/08/24/networking-traffic/mtia-300-meta-training-chip-built-in-nics/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Meta 于 2026 年 8 月 24 日公布 MTIA 300——其自研训练/推理加速器家族首款内置 NIC 芯片组与通信卸载引擎的芯片，针对训练排序与推荐模型优化。背景是 Meta 作为全球最大算力买家之一，长期受制于通用 GPU 在推荐类工作负载上的通信瓶颈与成本。核心事实：MTIA 300 通过将通信库 HCCL 与芯片协同设计，内置 NIC chiplet 满足推荐模型训练的通信需求，官方宣称性能优于通用 GPU。直接后果是 Meta 在训练芯片层面获得垂直整合能力，与同日发布的 MetaRoCE 网络协议构成&#x27;芯片+网络+协议&#x27;三位一体的自研栈。行业影响上，这是继 AWS Trainium、Google TPU 之后又一个超大规模云厂自研训练芯片的实质性进展，进一步稀释 NVIDIA 在训练侧的市场垄断，但当前仍限定于推荐/排序场景而非前沿通用模型训练。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">With Groq 3 LPX in Full Production, NVIDIA Extends Vera Rubi</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-rubin-lpx-spectrum-x-nvlink-fusion/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 8 月 24 日宣布 Vera Rubin NVL72 扩展智能体推理能力，同时 Groq 3 LPX 全面投产。背景是 AI 推理竞争从单一芯片转向整机系统——&#x27;AI 工厂&#x27;各层协同（芯片、网络、系统）成为新的差异化战场。核心事实：NVIDIA 为 Vera Rubin NVL72 增加面向 agentic systems 的快速 token 生成能力，Groq 3 LPX 进入全面生产状态，NVIDIA 同期宣传&#x27;智能体推理是下一个增长引擎&#x27;（OpenRouter 数据显示智能体工作负载 token 消耗为简单对话的 15 倍）。直接后果是推理侧算力军备竞赛从训练峰值转向智能体工作负载吞吐与能效。行业影响上，智能体推理成为算力需求的新估值锚，与 8/24 SemiAnalysis 关于推理工作负载重估硬件竞争的判断同频。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Up to 30x More Work Per Watt: NVIDIA Vera Rubin NVL72 Sets a</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 8 月 24 日发布 Vera Rubin NVL72 效率数据：在智能体工作负载下每兆瓦吞吐量较 GB300 NVL72 最高提升 30 倍，每百万 token 成本降低至 35 分之一。背景是智能体推理成为算力新需求引擎——NVIDIA 援引 OpenRouter 数据：智能体处理单次任务（如投资研究中的多源查询、子代理调用、结果综合）消耗的 token 是简单对话的 15 倍。核心事实：30x 每瓦特提升、35x 单位成本下降、15x token 消耗系数，三者构成智能体推理经济性的官方测算。直接后果是智能体推理的单位成本大幅下降，可能加速 agent 类应用的规模化采用。行业影响上，这是算力厂商首次以&#x27;智能体工作负载&#x27;为基准宣传硬件效率，标志着 token 经济学的定价锚从对话转向智能体流程。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How to encourage smarter AI use in the classroom</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/08/24/1142630/ai-school-classroom-policies/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">MIT Technology Review 于 2026 年 8 月 24 日发表《如何在课堂鼓励更明智的 AI 使用》——&#x27;Making AI Work&#x27;限定系列通讯的教育应用篇。背景是聊天机器人发布数年来彻底改变学校环境，学生随时携带能回答几乎任何问题的 AI 应用，教育机构从最初恐慌转向政策制定。核心事实：文章探讨学校如何制定课堂 AI 使用政策，从完全禁止转向引导&#x27;更明智使用&#x27;，涉及作业评估、批判性思维培养与工具边界界定。直接后果是教育机构开始以制度化方式将 AI 纳入教学流程，而非对抗或回避。行业影响上，这是教育层驯化叙事的又一官方口径样本——通过&#x27;明智使用&#x27;话语将 AI 内嵌为教育基础设施，与 ChatGPT for Teens（8/19）、Google 学习工具（8/20）构成同类证据链。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI is hitting entry-level jobs hardest, Stanford study finds</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/ai-is-hitting-entry-level-jobs-hardest-stanford-study-finds/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">Ars Technica 于 2026 年 8 月 24 日报道斯坦福大学研究：AI 对入门级岗位冲击最重——AI 影响领域内年轻就业较抗 AI 领域下降 19%。背景是自 ChatGPT 引发生成式 AI 普及以来，关于 AI 替代劳动力的争论从白领替代转向劳动市场结构性影响。核心事实：斯坦福研究以年龄段与职业 AI 暴露度为维度，发现年轻员工（入门级）在 AI 密集职业中的就业降幅达 19%，显著高于其他群体。直接后果是入门级职业阶梯的&#x27;第一级台阶&#x27;被 AI 压缩，年轻劳动者进入职业生涯的通道收窄。行业影响上，这是&#x27;AI 归还时间&#x27;乐观叙事（时间主权）的反向校准——对在职者而言 AI 可能释放时间，但对入门求职者而言 AI 直接挤占岗位，暗时间的分配效应并非普惠。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia senior manager linked to Supermicro scheme smuggling </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/08/nvidia-senior-manager-linked-to-supermicro-scheme-smuggling-ai-servers-to-china/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">Ars Technica 于 2026 年 8 月 24 日报道：一名 NVIDIA 高级经理被起诉，涉嫌参与 Supermicro 将 AI 服务器走私到中国的计划。背景是黄仁勋此前曾斥责 Supermicro 向中国走私 AI 服务器，美国对华先进算力出口管制持续收紧。核心事实：NVIDIA 内部高级管理人员被指控与超微的走私计划关联，事件上升为个人刑事责任。直接后果是出口管制的执行从公司层面下沉到个人层面，合规压力传导至高管个体。行业影响上，该事件暴露算力管制的现实缝隙——官方禁令与地下流通并行，说明&#x27;算力封锁&#x27;作为资本驯化AI 地缘杠杆的效力是部分性的，走私网络的持续存在印证了需求侧（中国算力买家）对禁令的规避动机，呼应 8/15 中国 2.78T vs 美国 130B 开源生态对比。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How a Network of Volunteers Is Liberating Critical Court Rec</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/how-a-network-of-volunteers-is-liberating-critical-court-records-for-everyone/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section I</span></div>
+      <div class="card-body">404 Media 于 2026 年 8 月 24 日报道：志愿者网络 Habeas Dockets 正在发布通常无法在线获取的移民法庭记录，&#x27;解放&#x27;关键法庭记录供公众查阅。背景是移民法庭记录大多不对外公开，被拘留移民的案卷信息难以获取，公民查阅权长期受限。核心事实：志愿者以人工+技术手段整理并公开移民法庭案卷数据，绕过官方渠道的信息封锁。直接后果是公众与媒体首次能系统性查阅此类记录，为移民权益监督提供数据基础。行业影响上，这是信息访问民主化的公民行动样本——在 AI 时代的信号环境中，志愿者用非 AI 的组织化劳动对抗官方信息管道垄断，与共识牢笼的&#x27;准入权=话语权&#x27;命题构成正面张力（8/20 OpenAI 撤销研究人员网络访问的反面案例）。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MetaRoCE：为 AI 规模以太网打造的全新 RDMA 传输协议</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Meta Engineering Blog（RSS）</span><span>·</span><a href="https://engineering.fb.com/2026/08/24/networking-traffic/metaroce-rdma-transport-ai-ethernet" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Meta 于 2026 年 8 月 24 日发布并开源 MetaRoCE——一个专为 AI 工作负载在通用以太网上设计的全新 RDMA 传输协议，同时通过 Open Compute Project（OCP）发布规范、参考软件实现与合规测试套件。背景是前沿模型训练与推理依赖 GPU 间高效数据传输，传统 RDMA 依赖 PFC 且扩展性受限。核心事实：MetaRoCE 将智能移至端点，原生支持乱序交付、多路径、无损容忍与双向拥塞控制，无需 PFC，可在百万 GPU 规模下维持高吞吐与低尾延迟，且现有 RDMA Verbs API 与软件栈无需修改即可运行。直接后果是 AI 数据中心网络层出现一个可免授权扩展的开源替代方案，降低了对专有网络/硬件栈的依赖，与 Meta 同日发布的 MTIA 300 训练芯片构成垂直整合组合。行业影响上，这是超大规模算力买家自建网络协议栈的标志性动作，对 NVIDIA InfiniBand 生态构成间接竞争压力。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA Vera Rubin NVL72 树立 AI 智能体效率新标准：每瓦特工作量提升至 30 倍</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog（RSS）</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-rubin-nvl72-efficiency-ai-agents" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 8 月 24 日发布 Vera Rubin NVL72 效率数据：在智能体工作负载下每兆瓦吞吐量较 GB300 NVL72 最高提升 30 倍，每百万 token 成本降低至 35 分之一。背景是智能体推理成为算力新需求引擎——NVIDIA 援引 OpenRouter 数据：智能体处理单次任务（如投资研究中的多源查询、子代理调用、结果综合）消耗的 token 是简单对话的 15 倍。核心事实：30x 每瓦特提升、35x 单位成本下降、15x token 消耗系数，三者构成智能体推理经济性的官方测算。直接后果是智能体推理的单位成本大幅下降，可能加速 agent 类应用的规模化采用。行业影响上，这是算力厂商首次以&#x27;智能体工作负载&#x27;为基准宣传硬件效率，标志着 token 经济学的定价锚从对话转向智能体流程。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI 基础设施的牛鞭效应：从 GPU 到存储的连锁瓶颈</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Tomer Tunguz 博客（VC 分析）</span><span>·</span><a href="https://www.tomtunguz.com/the-ai-cost-stack" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">VC 分析师 Tomer Tunguz 于 2026 年 8 月 23 日发表《AI 基础设施的牛鞭效应》：AI 基础设施瓶颈沿供应链依次传导——2023 年初 GPU 短缺使 H100 租赁价超过 9 美元/小时，压力随后转移至内存，企业级 SSD 合约价单季上涨 80%；到 2025 年底智能体推高 CPU 需求，2026 年存储短缺导致西数与希捷全年 nearline 产能售罄；数据中心建设成本已超 20 亿美元/GW，变压器交期近三年，涡轮机订单排至 2031 年。核心事实：瓶颈从计算→内存→存储→CPU→电力依次迁移，每一轮短缺都推高下一环节成本。直接后果是 AI 基础设施投资周期被物理供应链约束拉长，算力扩张的边际成本持续上升。行业影响上，牛鞭效应为&#x27;AI 工厂&#x27;叙事的物理现实提供了结构化表述，与 8/18 俄亥俄 4.25GW/6000 亿美元、8/15 天然气三倍风险、8/12 NVIDIA $500B 构成算力物理约束证据链的延续。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

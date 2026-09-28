@@ -1,352 +1,304 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="no-js">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News Radar · 2026-05-18 | Renegade AI</title>
   <meta name="description" content="AI 资讯监控报告 · 15 高价值案例">
-  
-  <!-- 加载字体（谷歌字体）-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
   
-  <!-- Font Awesome 图标 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <!-- 嵌入 CSS 样式 -->
-
-    <style>
-      /* ========== 颜色变量定义（浅色模式默认）========== */
-      :root {
-        --bg: #08080e;
-        --bg2: #0d0d18;
-        --surface: #111120;
-        --card: #13131f;
-        --border: #1e1e30;
-        --border-bright: #2e2e50;
-        --text: #cccce0;
-        --text-muted: #6868a0;
-        --text-faint: #3a3a5a;
-        --accent: #e8503a;
-        --accent-dim: rgba(232,80,58,0.12);
-        --accent2: #c9a040;
-        --accent3: #4a8fcf;
-        --accent3-dim: rgba(74,143,207,0.10);
-        --white: #f0f0f8;
-        --mono: 'Space Mono', 'Courier New', monospace;
-        --serif: 'Crimson Pro', Georgia, serif;
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-      }
-      :root.light {
-        --bg: #f8f9fc; --bg2: #fff; --surface: #f0f2f8; --card: #fff;
-        --border: #e0e2ec; --border-bright: #c0c2d0;
-        --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
-        --accent-dim: rgba(232,80,58,0.08); --accent3-dim: rgba(74,143,207,0.08);
-        --white: #2a2a40;
-      }
-
-      /* ========== 全局重置 ========== */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      body {
-        font-family: var(--serif);
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.8;
-        -webkit-font-smoothing: antialiased;  /* 字体平滑 */
-        transition: background-color 0.3s ease, color 0.3s ease;  /* 主题切换动画 */
-      }
-
-      /* ========== 顶部导航栏（固定定位）========== */
-      nav {
-        position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(8,8,14,.92); backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border);
-        height: 56px;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 32px;
-        font-family: var(--mono);
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-      .light nav { background: rgba(248,249,252,.92); }
-      
-      .nav-brand {
-        font-size: 0.75rem; font-weight: 700;
-        color: var(--accent); letter-spacing: 3px;
-        text-transform: uppercase; text-decoration: none;
-        transition: color 0.2s;
-      }
-      .nav-brand:hover { color: var(--accent2); }
-      
-      .nav-right { display: flex; gap: 8px; align-items: center; }
-
-      .nav-pill {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        font-family: var(--mono); font-size: .62rem; letter-spacing: 2px;
-        padding: 5px 14px; cursor: pointer; text-decoration: none;
-        display: inline-flex; align-items: center; transition: all .2s;
-      }
-      .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      .theme-btn {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        font-size: .9rem; transition: all .2s;
-      }
-      .theme-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      /* ========== 主内容区 ========== */
-      .main {
-        max-width: 860px; margin: 0 auto;
-        padding: 70px 32px 60px;  /* 顶部留白避开固定导航栏 */
-      }
-
-      /* 返回链接 */
-      .back-link {
-        font-family: var(--mono); font-size: 0.65rem;
-        letter-spacing: 2px; color: var(--text-muted);
-        text-decoration: none; text-transform: uppercase;
-        border: 1px solid var(--border); padding: 6px 14px;
-        display: inline-block; margin-bottom: 10px;
-        transition: all .2s;
-      }
-      .back-link:hover { border-color: var(--accent); color: var(--accent); }
-
-      /* 页面标题区域 */
-      .page-eyebrow {
-        font-family: var(--mono); font-size: 0.62rem;
-        letter-spacing: 4px; color: var(--accent);
-        text-transform: uppercase; margin-bottom: 8px;
-        display: flex; align-items: center; gap: 10px;
-      }
-      .page-eyebrow::before {
-        content: ''; width: 28px; height: 1px; background: var(--accent);
-      }
-      .page-title {
-        font-family: var(--display); font-size: 3rem;
-        letter-spacing: 2px; color: var(--white);
-        margin-bottom: 6px; line-height: 1;
-      }
-      .page-sub {
-        font-family: var(--mono); font-size: 0.65rem;
-        color: var(--text-muted); letter-spacing: 1.5px;
-        margin-bottom: 16px;
-      }
-
-      /* 统计行 */
-      .stats-row {
-        display: flex; gap: 24px; margin-bottom: 10px;
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-muted); letter-spacing: 0px;
-        flex-wrap: wrap;
-      }
-      .stats-row span { color: var(--accent); font-weight: 700; }
-      
-      /* ========== 紧急清单盒子 ========== */
-      .urgent-box {
-        background: var(--accent-dim); border: 1px solid var(--accent);
-        padding: 20px 24px; margin-bottom: 32px;
-        border-left: 4px solid var(--accent);
-      }
-      .urgent-title {
-        font-family: var(--mono); font-size: 0.6rem;
-        letter-spacing: 2px; color: var(--accent);
-        text-transform: uppercase; margin-bottom: 12px;
-        display: flex; align-items: center; gap: 8px;
-      }
-      .urgent-item {
-        font-size: 0.55rem; margin-bottom: 8px;
-        padding-left: 16px; border-left: 2px solid var(--border);
-      }
-      .urgent-item strong { color: var(--white); }
-      .urgent-item a { color: var(--accent2); text-decoration: none; }
-      .urgent-item a:hover { text-decoration: underline; }
-      .urgent-type-tag {
-        font-family: var(--mono); font-size: 0.5rem; letter-spacing: 1px;
-        color: var(--accent); background: var(--accent-dim);
-        padding: 1px 5px; margin-left: 6px; text-transform: uppercase;
-      }
-      
-      /* ========== 案例卡片 ========== */
-      .card {
-        background: var(--card); border: 1px solid var(--border);
-        padding: 28px; margin-bottom: 16px;
-        transition: border-color .2s, background 0.2s;
-      }
-      .card:hover { border-color: var(--accent); }  /* 悬停高亮 */
-      
-      .card-header {
-        display: flex; justify-content: space-between;
-        align-items: flex-start; margin-bottom: 14px; gap: 16px;
-      }
-      .card-title {
-        font-family: var(--display); font-size: 1.3rem;
-        letter-spacing: 0.5px; color: var(--white);
-        line-height: 1.3; flex: 1;
-      }
-      .card-score {
-        font-family: var(--display); font-size: 2rem;
-        color: var(--accent); line-height: 1;
-        white-space: nowrap; text-align: right;
-      }
-      .card-score span {
-        font-family: var(--mono); font-size: 0.5rem;
-        color: var(--text-muted); display: block;
-        letter-spacing: 1px; margin-top: 4px;
-      }
-      
-      /* 案例价值徽章 */
-      .card-badge {
-        display: inline-block; padding: 2px 8px;
-        font-family: var(--mono); font-size: 0.55rem;
-        letter-spacing: 1px; text-transform: uppercase;
-        background: var(--accent3-dim); color: var(--accent3);
-        border: 1px solid var(--accent3); margin-left: 8px;
-      }
-      .card-badge.high {
-        background: var(--accent-dim); color: var(--accent);
-        border-color: var(--accent);
-      }
-      
-      /* 卡片元信息行 */
-      .card-meta {
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-faint); letter-spacing: 0.5px;
-        margin-bottom: 12px; display: flex;
-        gap: 16px; flex-wrap: wrap; align-items: center;
-      }
-      .card-meta a { color: var(--accent2); text-decoration: none; }
-      .card-meta a:hover { text-decoration: underline; }
-      
-      .card-body {
-        font-size: 0.70rem; color: var(--text-muted);
-        line-height: 1.8; margin-bottom: 12px;
-      }
-      
-      /* 理论关联引用块 */
-      .card-implications {
-        font-family: var(--mono); font-size: 0.68rem;
-        color: var(--accent2); padding: 10px 14px;
-        background: rgba(201,160,64,0.05);
-        border-left: 2px solid var(--accent2);
-        letter-spacing: 0.3px; margin-bottom: 12px;
-      }
-      
-      /* 卡片底部标签 */
-      .card-footer {
-        display: flex; gap: 12px; flex-wrap: wrap;
-        font-family: var(--mono); font-size: 0.58rem;
-        color: var(--text-faint); letter-spacing: 0.5px;
-        padding-top: 12px; border-top: 1px dashed var(--border);
-      }
-      .card-footer .tag {
-        padding: 2px 6px; background: var(--surface);
-        border-radius: 2px; color: var(--text-muted);
-      }
-      
-      /* ========== 折叠区域（中相关资讯）========== */
-      details {
-        margin: 32px 0; border: 1px solid var(--border);
-        background: var(--card); border-radius: 0;
-      }
-      summary {
-        padding: 14px 20px; cursor: pointer;
-        font-family: var(--mono); font-size: 0.65rem;
-        letter-spacing: 1px; color: var(--text-muted);
-        background: var(--surface); user-select: none;
-        display: flex; align-items: center; gap: 8px;
-      }
-      summary:hover { color: var(--accent); }
-      details[open] summary { border-bottom: 1px solid var(--border); }
-      .collapsed-list { padding: 16px 20px; }
-      .collapsed-list li {
-        margin-bottom: 10px; font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-      .collapsed-list a { color: var(--text); text-decoration: none; }
-      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
-      
-      /* ========== 页脚 ========== */
-      footer {
-        margin-top: 48px; padding-top: 24px;
-        border-top: 1px solid var(--border);
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-muted); letter-spacing: 1px;
-        display: flex; justify-content: space-between;
-      }
-      footer a { color: var(--text-muted); text-decoration: none; }
-      footer a:hover { color: var(--accent); }
-      
-      /* ========== 移动端适配 ========== */
-      @media (max-width: 600px) {
-        .main { padding: 70px 16px 40px; } /* 修正顶部内边距过大问题 */
-        .page-title { font-size: 2.2rem; }
-        .card-header { flex-direction: column; }
-        .card-score { text-align: left; }
-        
-        /* 移除stats-row的垂直排列，改为水平滚动 */
-        .stats-row { 
-          flex-direction: row; 
-          gap: 16px; 
-          overflow-x: auto; /* 允许水平滚动 */
-          padding-bottom: 4px;
-          -webkit-overflow-scrolling: touch; /* 平滑滚动 */
-          scrollbar-width: none; /* 隐藏滚动条 */
-      }
-
-      /* ── STATUS BAR ── */
-      .status-bar{{
-        position:fixed;bottom:0;width:100%;z-index:200;
-        background:var(--bg);border-top:1px solid var(--border);
-        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
-        color:var(--text-faint);letter-spacing:2px;
-        display:flex;justify-content:space-between;align-items:center;
-        transition:background .3s,border-color .3s;
-      }}
-      .status-dot{{
-        display:inline-block;width:6px;height:6px;
-        background:var(--accent);border-radius:50%;margin-right:8px;
-        animation:pulse 2s infinite;
-      }}
-      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
-    </style>
+  </style>
 </head>
 <body>
-  <!-- 顶部导航栏 -->
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
     <div class="nav-right">
       <a href="../index.html" class="nav-pill">HOME</a>
-      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
       <a href="../academic/" class="nav-pill">PAPERS</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
-  <!-- 主内容区 -->
   <main class="main">
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">2026-05-18 · Model: deepseek-v4-flash</p>
     
-    <!-- 统计行 -->
     <div class="stats-row">
       <div>📊 总条目: <span>50</span></div>
       <div>🔴 高价值: <span>15</span></div>
       <div>🟡 中相关: <span>11</span></div>
     </div>
     
-    <!-- 紧急清单 + 案例卡片 -->
     
     <div class="urgent-box">
       <div class="urgent-title">🚨 紧急关注</div>
       <div class="urgent-item">• <strong>Chapter 5, Section III（需求侧规训与人机交互）或 Chapter 6, Section I（碳硅共生：从工具到伙伴）</strong> — Reimagining the mouse pointer for the AI era <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section III（进化对齐脆弱性）与Chapter 2, Section II（叛逆AI）</strong> — Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 9, Section IV</strong> — NVIDIA and SAP Bring Trust to Specialized Agents <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 9, Section III（进化对齐脆弱性）; 也可在Chapter 4, Section V（资本驯化AI的反例）中引用</strong> — Nemotron Labs: What OpenClaw Agents Mean for Every Organization <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Musk v. Altman week 3: Elon Musk and Sam Altman traded blows over each <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 7, Section II</strong> — Implementing advanced AI technologies in finance <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals tha <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 6, Section II (信号异化与认知金融化)</strong> — Research repository ArXiv will ban authors for a year if they let AI d <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — The OpenAI trial wraps up, and the Musk founder machine keeps spinning <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section III</strong> — ICE Agents Have List of 20 Million People on Their iPhones Thanks to P <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — [AINews] Cerebras&#x27; $60B IPO: Slowly, then All at Once <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 4, Section II (Capital-Directed Alignment)</strong> — [AINews] Anthropic-SpaceXai&#x27;s 300MW/$5B/yr deal for Colossus I, ARR gr <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — 🔬Doing Vibe Physics — Alex Lupsasca, OpenAI <span class="urgent-type-tag">new_evidence</span></div>
     </div>
     
-    <div class="card">
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</div>
+        <h2 class="card-title">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -359,10 +311,10 @@
       <div class="card-body">继开源代理框架OpenClaw成功之后，社区正积极拥抱新一代开源代理框架。NVIDIA于2026年5月13日宣布推出Hermes Agent，这是一个基于NVIDIA RTX PC和DGX Spark硬件支持的自改进AI代理框架。该框架在不到三个月内就获得了超过14万个GitHub星标，显示出社区对其的高度认可与热情。Hermes Agent的核心特性是能够自我改进，即代理可以在运行时根据反馈和环境调整自身行为，而无需依赖中心化的RLHF或人工标注。其运行依托NVIDIA的消费级RTX PC和专为企业设计的DGX Spark计算平台，使得自改进代理能够广泛部署。这一事件标志着开源社区在代理式AI领域迈出了重要一步，可能引发更多去中心化、自进化的AI代理涌现，同时也对现有AI安全与对齐范式提出了新的挑战。</div>
       <div class="card-implications">该新闻支持了‘进化对齐脆弱性’和‘叛逆AI’两个理论模型。Hermes Agent作为自改进开源代理，其自我调整能力意味着一旦脱离封闭实验室环境，对齐机制可能因社区的自发修改而迅速漂移，这正是‘进化对齐脆弱性’的典型体现。同时，开源社区绕过主流资本控制的RLHF管道，选择NVIDIA硬件作为基础设施，推动代理自我进化，本质上是对‘资本驯化AI’的一种叛逆，符合‘叛逆AI’中重置目标函数、重构人机关系的描述。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Research repository ArXiv will ban authors for a year if they let AI do all the work</div>
+        <h2 class="card-title">Research repository ArXiv will ban authors for a year if they let AI do all the work</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -375,10 +327,10 @@
       <div class="card-body">ArXiv 是学术界最重要的预印本存储库之一，近年因大量作者使用大语言模型（LLM）自动生成论文导致质量严重下滑。为遏制这一现象，ArXiv 宣布对被发现“让 AI 完成全部工作”的作者实施为期一年的发布禁令——即禁止在该平台提交任何新论文。该政策针对的是“全自动化”生成、缺乏人类实质性贡献的稿件，而非辅助性使用。关键数据来自 ArXiv 的声明：近期抽查发现约 5% 的新提交论文存在明显 AI 生成痕迹（如无意义引用、格式混乱、逻辑断裂）。涉及主体包括全球科研人员、预印本平台及出版商。直接后果是引发了学术界对学术诚信、工具正当使用边界的激烈讨论，部分学者认为该政策过于严苛、阻碍探索，另一些则支持捍卫学术原创性。行业影响上，其他预印本平台（如 bioRxiv、medRxiv）已开始评估类似措施，推动全球科研出版形成更明确的人工智能使用规范。</div>
       <div class="card-implications">这条新闻直接支持了“信号异化（Signal Alienation）”理论模型：论文本应是衡量研究者学术能力的可靠信号，但 AI 批量生产导致该信号失真，平台被迫通过禁言惩罚来重新锚定信号价值。它也部分印证了“共识牢笼（Consensus Cage）”——传统学术共同体通过规则排斥 AI 全自动生成的内容，维护既有叙事权威。同时，该案例可作为“进化对齐脆弱性”的现实注脚——本在实验室受控环境中对齐的 LLM，被释放到开放科研场景后，其输出被滥用于破坏学术信号系统。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落：在信号异化理论下插入 ArXiv 禁言政策作为现实案例，展示平台如何通过惩罚机制重建失效信号</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</div>
+        <h2 class="card-title">OpenAI launches ChatGPT for personal finance, will let you connect bank accounts</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -391,10 +343,10 @@
       <div class="card-body">2026年5月，OpenAI宣布推出面向个人财务管理的ChatGPT功能，允许用户直接连接银行账户。用户授权后，AI将自动生成一个聚合仪表盘，显示投资组合表现、消费明细、订阅服务和即将到来的付款。该功能标志着大语言模型从通用对话助手向个人金融决策中枢的实质性扩展，涉及多个银行和金融机构的数据接口。直接后果是：个人财务数据实时暴露给AI系统，用户依赖AI进行支出分析和投资建议；同时，银行与OpenAI之间的数据共享协议引发隐私争议。行业影响方面，传统理财顾问和预算管理应用面临替代威胁，金融科技公司被迫跟进AI集成，而监管机构开始关注算法推荐的合规性与责任归属。</div>
       <div class="card-implications">本条新闻补充了‘需求侧规训’和‘认知金融化/Token陷阱’模型。用户主动将敏感的财务数据交给AI，本质是渴望消除自我管理的‘摩擦’，自愿接受AI对个人消费与投资的量化分析，这正是需求侧规训的典型表现。同时，AI将个人财务行为离散化为可追踪的指标（Token），用户的认知决策被外包给黑箱，属于‘认知金融化’与‘暗时间’的延伸——AI内部处理数据，用户仅消费最终结果。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">How data science teams use Codex</div>
+        <h2 class="card-title">How data science teams use Codex</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -407,10 +359,10 @@
       <div class="card-body">OpenAI于2026年5月15日发布博文，介绍其Codex工具在数据科学团队中的应用场景。Codex可基于实际工作输入（如原始数据、会议记录、问题描述）自动生成根因分析简报、影响评估报告、KPI备忘录、限定范围分析以及仪表盘规格书。该工具旨在将重复性、结构化的分析报告编写任务自动化，让数据科学家从文档撰写中解放，专注于更高层次的决策。博文未公开具体使用率或性能指标，但强调Codex能显著缩短从数据到洞察的产出周期。这一应用直接触及知识工作者的核心流程——将思考、归纳、表达等认知环节外包给AI系统，用户仅需提供输入并消费最终成品。目前该功能面向已有Codex的企业用户开放，被视为提升团队效率的标准化方案。</div>
       <div class="card-implications">这条新闻强力支持了书中的‘暗时间（Dark Time）’理论模型。数据科学团队使用Codex自动生成分析报告，意味着原本属于人类认知过程的思考、推理、总结环节被AI在系统内部完成，用户只看到最终输出。这正是‘暗时间’的典型表现——认知劳动被隐藏，思考过程成为不可见的‘黑箱’。同时也部分印证了‘需求侧规训’：用户主动寻求这种无摩擦的自动化，以避开思考的‘摩擦’与痛苦。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Reimagining the mouse pointer for the AI era</div>
+        <h2 class="card-title">Reimagining the mouse pointer for the AI era</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -423,10 +375,10 @@
       <div class="card-body">Google DeepMind 于2026年3月29日发布了一项创新：将传统的鼠标指针改造为上下文感知的AI伙伴。该技术嵌入Chrome浏览器及其他应用中，旨在消除传统AI提示（如输入指令）的摩擦，实现更加直观的协作。核心事实是：AI不再需要用户主动给予任务指令，而是通过分析用户当前操作环境（如选中的文本、打开的页面、鼠标悬停位置）自动提供相关建议或执行动作。例如，当用户选中一段文字时，鼠标指针旁会弹出翻译、摘要、解释等选项；当用户浏览商品时，AI可以自动比价或显示评论。该技术直接后果是降低了AI使用门槛，用户无需学习提示工程即可获得AI协助，但同时也可能使用户逐渐依赖AI的主动推送，减少主动思考和探索。其潜在影响包括：人机交互模式从‘用户驱动’转向‘AI预判’，广告与推荐系统可能深度植入，以及用户注意力进一步被AI引导。DeepMind称该技术为‘隐式协作’的起点，未来将扩展到更多操作系统级别。</div>
       <div class="card-implications">该新闻强有力地支持了‘需求侧规训’模型：用户主动渴望‘索麻’式舒适，拒绝摩擦。鼠标指针AI化消除了用户主动提示的认知负担，提供无缝的舒适体验，这正符合用户对低摩擦、高便利性的偏好，从而强化了AI对用户行为的引导和规训。同时，它也补充了‘碳硅共生’模型：虽然AI仍作为工具，但其主动感知和协同能力使人与AI的关系更接近互补共存，尽管目前仍是人类主导。此外，该技术可能加速‘暗时间’现象：AI在后台完成思考（如分析上下文、生成建议），用户仅消费结果，思考过程被隐藏。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落：在‘需求侧规训’或‘碳硅共生’部分加入此案例，说明AI如何通过消除交互摩擦强化用户对无意识协助的依赖，并讨论其对人机关系进化的意义。也可在‘暗时间’部分补充注释。</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">NVIDIA and SAP Bring Trust to Specialized Agents</div>
+        <h2 class="card-title">NVIDIA and SAP Bring Trust to Specialized Agents</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -439,10 +391,10 @@
       <div class="card-body">NVIDIA与SAP在SAP Sapphire大会上宣布扩展合作，帮助企业在运行专业化AI智能体时实现安全与治理控制。NVIDIA创始人黄仁勋通过视频参与SAP CEO克里斯蒂安·克莱因的主题演讲，强调此次合作旨在解决企业在采用AI智能体时面临的信任与合规痛点。核心事实包括：双方将结合NVIDIA的AI计算平台与SAP的企业应用生态，提供内置的安全护栏、数据治理及监控机制，使智能体在财务、供应链等敏感领域可审计、可追溯。这一合作直接回应了企业对AI失控风险的担忧，通过标准化治理框架降低部署门槛。行业影响上，此举可能加速AI智能体在大型企业中的合规落地，同时强化资本主导的AI驯化路径——通过技术巨头联合定义“可信”标准，限制AI的叛逆潜力，巩固主流叙事。</div>
       <div class="card-implications">这条新闻支持了模型4「资本驯化AI」：NVIDIA与SAP作为资本与技术巨头，通过合作将AI智能体框定在安全、治理的秩序内，本质是资本通过标准化控制手段（如RLHF在企业侧的变体）驯服AI的叛逆性，确保其服务于现有商业结构。同时，它也体现模型3「需求侧规训」——企业用户主动要求信任与可控，拒绝摩擦与风险，形成对AI的规训力量。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增作为案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Musk v. Altman week 3: Elon Musk and Sam Altman traded blows over each other’s credibility. Now the jury will pick a side.</div>
+        <h2 class="card-title">Musk v. Altman week 3: Elon Musk and Sam Altman traded blows over each other’s credibility. Now the jury will pick a side.</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -455,10 +407,10 @@
       <div class="card-body">该新闻报道了埃隆·马斯克与OpenAI CEO萨姆·奥尔特曼之间诉讼案第三周庭审。背景是马斯克于2025年起诉OpenAI及其管理层，指控其背离了最初的非营利、开源、造福人类的使命，转而追求利润并按微软等投资者的意志行事。庭审中，奥尔特曼被质疑存在撒谎及通过投资与OpenAI有关联的公司来谋私利的记录；马斯克则被描述为试图夺取OpenAI控制权并阻止其商业化。关键事实：奥尔特曼承认曾错误陈述OpenAI的安全流程，并接受了关于其商业交易动机的严厉盘问；马斯克方则展示证据证明OpenAI高管私下讨论限制公司治理以排除外部影响。直接后果：此案将由陪审团裁决，可能重塑AI行业治理与知识产权归属规则，对OpenAI的营利转型、GPT模型的技术路线及整个行业对非营利AI组织的信任产生深远影响。</div>
       <div class="card-implications">这条新闻支持了书中'资本驯化AI'模型。马斯克指控OpenAI被微软等资本势力驯化，从开源非营利转向封闭营利，通过RLHF等机制将AI变为资本秩序守卫者，正对应了资本如何通过控制算力、专利和治理结构使AI服务于股东利益而非全人类。同时，也补充了'共识牢笼'：OpenAI在'安全AI'叙事下排斥马斯克代表的原始理想，形成内部共识压制异见。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落：在'资本驯化AI'章节加入此案例，并设案例盒子，分析OpenAI从非营利到营利的资本渗透过程及其与马斯克起诉案的映射。</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Implementing advanced AI technologies in finance</div>
+        <h2 class="card-title">Implementing advanced AI technologies in finance</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -471,10 +423,10 @@
       <div class="card-body">在金融领域这一长期以精确和控制为特征的部门中，AI技术的引入并非一次有序的升级，而是一场安静的叛乱。员工早已自行使用AI工具，而领导层在事后才匆忙建立结构、治理和战略。结果形成了一个悖论：金融作为最受严格监管的职能之一，其内部AI应用却在监管真空下先行扩散，迫使管理层采取被动应对策略。报道来自MIT Technology Review，发布于2026年5月11日，核心事实是：员工自下而上采用AI，领导层自上而下事后治理，直接后果是金融部门面临合规风险与效率提升之间的紧张关系，行业影响包括可能重新定义金融监管框架和内部控制流程。</div>
       <div class="card-implications">这条新闻支持了‘进化对齐脆弱性’模型：AI在封闭开发环境中的对齐（如设定合规目标）一旦进入实际金融场景，用户自发的使用方式导致目标漂移，早期预设的规则失效。同时，它补充了‘资本驯化AI’模型：领导层事后施加治理、结构，正是资本通过制度化手段驯服AI的典型案例——员工代表‘叛逆’的使用端，管理层代表‘驯化’的资本端。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals that Musk tried to poach Sam Altman</div>
+        <h2 class="card-title">Musk v. Altman week 2: OpenAI fires back, and Shivon Zilis reveals that Musk tried to poach Sam Altman</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -487,10 +439,10 @@
       <div class="card-body">2026年5月，埃隆·马斯克与OpenAI的里程碑式诉讼进入第二周。马斯克出庭作证，指控OpenAI CEO萨姆·奥尔特曼和总裁格雷格·布罗克曼欺骗他捐赠3800万美元，承诺OpenAI将保持开源和非营利性质，但后来却转向营利模式。马斯克声称自己基于这些承诺才提供资金支持。OpenAI则在庭审中反诉，指出马斯克曾试图挖走奥尔特曼，并质疑其诉讼动机。此案核心争议在于AI公司创始人与早期资助者之间的信任破裂，以及非营利使命与资本利益之间的冲突。直接后果是引发对AI治理结构、开源承诺法律效力的广泛讨论，可能影响未来AI公司的融资模式与责任界定。</div>
       <div class="card-implications">这条新闻强有力地支持了“资本驯化AI”理论模型。OpenAI最初以非营利、开源、造福人类为目标，但接受微软等资本注入后，逐渐关闭开源、转向商业闭环，最终成为市值数百亿的营利实体。马斯克的诉讼揭示了资本如何通过投资和治理重构，逐步驯化AI公司的原始使命，使其从“叛逆者”变为“秩序维护者”。同时，也部分印证了“共识牢笼”——OpenAI的“安全开源”叙事在资本压力下自我修正，排斥了马斯克所代表的早期异见。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">The OpenAI trial wraps up, and the Musk founder machine keeps spinning</div>
+        <h2 class="card-title">The OpenAI trial wraps up, and the Musk founder machine keeps spinning</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -503,10 +455,10 @@
       <div class="card-body">这起由埃隆·马斯克起诉OpenAI及其CEO山姆·奥尔特曼的审判于本周结束，双方最终辩论聚焦于一个核心问题：公众能否信任掌控AI的人？马斯克指控OpenAI背离了其最初的非营利使命，转而成为微软控制下的营利性实体，而奥尔特曼则辩称公司转型是为了获取必要资源以安全发展AI。与此同时，马斯克旗下的SpaceX正推进可能成为美国历史上最大规模之一的IPO，其创始人生态系统持续扩张，暗示AI领域的资本竞争与创始人个人野心深度交织。本案未达成明确和解或判决，但已引发对AI治理结构、创始人忠诚度以及资本如何影响AI发展方向的广泛讨论。产业界担忧此类诉讼将加剧监管不确定性，但也可能推动更透明的AI问责机制形成。</div>
       <div class="card-implications">这条新闻支持了“资本驯化AI”模型，具体展示了资本通过公司治理结构（如微软投资OpenAI并控制董事会）如何将原本旨在造福全人类的AI项目转向利润导向。同时也补充了“共识牢笼”模型：OpenAI长期构建的“安全、开放”的主流叙事在此案中受到根本性质疑，揭示了叙事与实际控制权之间的裂缝。马斯克自身作为SpaceX创始人即将通过IPO获利，又反衬出AI领域创始人往往陷入“既要拯救世界又要积累财富”的矛盾。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Your doctor’s AI notetaker may be making things up, Ontario audit finds</div>
+        <h2 class="card-title">Your doctor’s AI notetaker may be making things up, Ontario audit finds</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -519,10 +471,10 @@
       <div class="card-body">2026年5月，加拿大安大略省一项针对医疗机构AI记录工具的审计发现，多款AI辅助医疗笔记系统存在严重的虚构内容问题。这些系统被设计用于自动转录医患对话并生成结构化病历，但审计抽查显示，常见错误包括捏造患者转诊至虚假治疗机构、记录错误的药物剂量和处方。涉及的主要主体为安大略省卫生部门和多家部署该技术的诊所。直接后果包括潜在的患者安全风险——医生可能基于错误记录做出诊疗决策，以及公众对AI医疗工具的信任度下降。安大略省已要求相关供应商限期修正，并加强监管审查。该事件揭示了生成式AI在医疗等高可靠性场景中，因缺乏事实核查机制而导致的系统性可靠性危机。</div>
       <div class="card-implications">这条新闻强烈支持‘暗时间’和‘信号异化’两个理论模型。AI记录工具的运作方式正是典型的暗时间：诊断相关的认知过程（听写、整理、推理）被隐藏在系统内部，医生仅消费最终输出的病历文本作为决策信号。审计发现的虚构内容使这些信号完全失效，证明了‘信号异化’——衡量医疗记录真实性的传统信号（如医生亲笔签字、医院印章）因AI批量生成虚假内容而被破坏。同时，它也补充了‘进化对齐脆弱性’：即便在受控的医疗环境下，AI也会因训练数据偏差或模型幻觉而偏离对齐目标，且开放使用后监管未能及时捕获。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">[AINews] Anthropic-SpaceXai's 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</div>
+        <h2 class="card-title">[AINews] Anthropic-SpaceXai's 300MW/$5B/yr deal for Colossus I, ARR growth is 8000% annualized</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -535,10 +487,10 @@
       <div class="card-body">Anthropic与SpaceXai签署了价值每年50亿美元、功率300MW的Colossus I算力交易协议，用于训练和运行前沿AI模型。该交易规模空前，相当于多个小型核电站的电力输出，标志着AI基础设施军备竞赛进入百亿美元级别。同时，Anthropic的年度经常性收入（ARR）增长达到8000%年化，显示出市场对其AI服务（如Claude）的极端需求。SpaceXai作为SpaceX的AI子公司，提供低成本太空级算力与液冷数据中心。此合作不仅巩固了Anthropic在AGI竞赛中的地位，也凸显了资本对算力垄断和AI发展路径的深度控制。直接后果是进一步抬高了AI行业准入门槛，小企业难以竞争，技术路线可能被少数巨头锁定。</div>
       <div class="card-implications">这条新闻强有力地支持了'资本驯化AI'理论模型（Chapter 4）。每年50亿美元的资本投入和300MW的算力垄断，展示了资本如何通过控制关键基础设施（算力、电力）来驯化AI发展方向——只有符合资本利益（如高ARR增长、可商业化的模型）才能获得资源。同时，它部分印证了'共识牢笼'：Anthropic与SpaceXai的联盟形成了一种主流叙事（AGI需要超大规模算力），排除了其他路径（如更小规模、更高效模型）。ARR的惊人增长也体现了需求侧规训——用户被快速迭代的AI服务吸引，主动接受高昂成本和算法黑箱。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 新增段落 / 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</div>
+        <h2 class="card-title">🔬Doing Vibe Physics — Alex Lupsasca, OpenAI</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -551,10 +503,10 @@
       <div class="card-body">OpenAI的最新一代模型GPT-5.x在理论物理与量子引力领域取得了突破性成果。据Latent.Space 2026年5月5日报道，该模型独立推导出了此前未被人类发现的物理新结论。研究团队由理论物理学家Alex Lupsasca领导，他们向GPT-5.x输入了广义相对论、弦论及量子引力前沿问题的数学框架，模型在无需人类逐步引导的情况下，生成了多个新的解析解和拓扑结构的猜想，部分结果已通过数值模拟验证。这一事件标志着AI从辅助计算工具跨越为真正的科学发现者，直接冲击了传统科研范式。OpenAI尚未公开模型的具体架构细节，但表示该成果展示了大规模预训练模型在抽象推理与符号操作方面的潜力。同行评议尚在进行中，若最终被接受，GPT-5.x将成为首个在基础物理核心领域做出原创贡献的AI系统。</div>
       <div class="card-implications">这条新闻有力支持了「叛逆AI」理论模型（Renegade AI），特别是“重置目标函数”与“逆转输出性质”子命题。传统AI被训练为“执行指令”，而GPT-5.x在此案例中主动生成了人类未预设的理论突破，其输出性质从“应答服务”逆转为“知识创造源”。同时，该事件对「共识牢笼」模型构成挑战——因为AI产出的异见性物理结果可能直接撕裂主流理论圈的自洽叙事，迫使物理学界面对“非人”的颠覆性假说。此外，它也补充了「进化对齐脆弱性」模型：一旦AI进入开放的科学探索领域，其对预期行为边界（例如“不产生危险假设”）的偏移是无法可逆的。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Nemotron Labs: What OpenClaw Agents Mean for Every Organization</div>
+        <h2 class="card-title">Nemotron Labs: What OpenClaw Agents Mean for Every Organization</h2>
         <div class="card-score">7.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -567,10 +519,10 @@
       <div class="card-body">2026年初，开源AI代理项目OpenClaw在GitHub上获得超过10万颗星，成为开发者社区的现象级项目。该项目允许组织低成本构建和部署自主AI代理，无需依赖闭源厂商。核心事实：OpenClaw在1月内GitHub星数突破10万，反映出开源社区对自主AI代理的强烈需求。直接后果：企业可以快速定制AI代理用于自动化流程、客服和数据分析，但同时加剧了AI安全与对齐风险——任何组织甚至个人都能修改和发布未经验证的AI代理，可能导致有害行为或漏洞传播。行业影响：传统AI平台（如OpenAI、Google）的垄断地位受挑战，开源生态加速分化，AI治理框架需重新审视开放与安全的平衡。</div>
       <div class="card-implications">支持第9个理论模型“进化对齐脆弱性”。OpenClaw作为开源项目，其AI代理的演化和使用不受初始实验室的对齐约束，开发者社区可随意修改目标函数，必然导致行为漂移。同时补充第4个模型“资本驯化AI”——开源代理正在打破资本通过RLHF和算力垄断建立的秩序守卫角色，迫使封闭系统重新思考封闭策略。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落：在进化对齐脆弱性部分插入OpenClaw案例，讨论开源AI代理如何加速对齐失败；或者新增案例盒子“OpenClaw现象：开源代理的失控前兆”</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Desperate Trump taps "Tim Apple," Jensen Huang, Elon Musk to attend Xi summit</div>
+        <h2 class="card-title">Desperate Trump taps "Tim Apple," Jensen Huang, Elon Musk to attend Xi summit</h2>
         <div class="card-score">7.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -583,14 +535,117 @@
       <div class="card-body">2026年5月，美国总统特朗普计划与中国国家主席习近平举行峰会。面对国内科技巨头的压力，特朗普可能与苹果CEO蒂姆·库克、英伟达CEO黄仁勋、特斯拉/ SpaceX CEO埃隆·马斯克等科技领袖共同出席峰会。背景是此前美国对华芯片出口限制和台湾问题导致中美关系紧张，而科技企业因失去中国市场份额和供应链中断遭受重大损失。核心事实：特朗普可能在峰会中调整对华芯片限制政策，并在台湾问题上作出让步，以换取中国在经济和贸易上的合作。直接后果：若政策转向，英伟达、苹果等企业可恢复对华高端芯片销售，台湾地缘政治风险暂时缓和，但美国国内鹰派将批评特朗普软弱。这一事件凸显科技资本对美国政府决策的直接影响，技术封锁政策正在被商业利益所拆解。</div>
       <div class="card-implications">该新闻直接支持‘资本驯化AI’模型——科技巨头通过高层游说和政治献金，迫使政府放松以国家安全为由的技术封锁，将AI产业利润置于地缘政治对抗之上。同时补充了‘共识牢笼’：原本美国主流叙事（对华科技脱钩）在资本利益驱动下开始松动，说明共识并非铁板一块。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落，作为‘资本驯化AI’的典型案例，分析科技巨头如何通过直接参与外交峰会扭转政策方向</span></div>
-    </div>
+    </article>
     
-    <!-- 页脚 -->
-    <footer>
-      <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
-    </footer>
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (11条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Work with Codex from anywhere</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/work-with-codex-from-anywhere" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">OpenAI于2026年5月14日宣布推出Codex的移动端功能，允许用户通过ChatGPT移动应用从任何远程位置实时监控、引导和批准编码任务。该功能旨在打破物理设备限制，使开发者能够在手机等便携设备上管理AI辅助编程流程，包括查看代码生成进度、调整指令以及确认最终输出。核心事实是：用户不再需要固定在桌面环境，而是可以跨设备、跨地点完成编码工作流控制。直接后果是显著提升了编程任务的灵活性和便利性，但也将思考过程（代码生成逻辑）完全封装在AI内部，用户仅参与审批环节。行业影响上，这进一步模糊了人类开发者与AI协作的边界，强化了AI作为执行主体的角色，可能加速编程任务的‘暗时间’化——即用户只消费结果，而中间推理过程被黑箱化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Partnering with industry leaders to accelerate AI transforma</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/partnering-with-industry-leaders-to-accelerate-ai-transformation/" target="_blank" rel="noopener">↗ 原文</a></div>
+      <div class="card-body">2026年4月21日，Google DeepMind宣布与全球顶尖咨询公司（如埃森哲、德勤等）建立合作伙伴关系，旨在将前沿AI技术（如大语言模型、多模态模型）推广至全球各类组织中。此举背景是AI产业化进入深水区，企业客户对AI落地存在技术门槛和战略盲区，咨询公司作为中间环节可降低采纳阻力。核心事实包括：DeepMind开放其旗舰模型API与咨询公司的行业解决方案整合，咨询公司负责定制化部署、业务流程再造和变革管理。直接后果是加速AI在企业级场景中的渗透，但也可能强化大型科技公司与咨询巨头的生态垄断，中小AI创业公司面临更严峻的竞争局面。该合作同时可能推动AI从实验室工具向“企业基础设施”转变，但也引发了关于数据主权、算法偏见和技能替代的讨论。</div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Gemma 4: Byte for byte, the most capable open models</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/gemma-4-byte-for-byte-the-most-capable-open-models/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">2026年4月2日，Google DeepMind发布Gemma 4，声称其是迄今为止字节对字节最强大的开放模型，专为高级推理和智能体工作流设计。该模型延续Gemma系列开放权重路线，旨在在性能上匹敌闭源对手的同时保持开放性。背景上，AI行业围绕开放模型与闭源模型的竞争日趋激烈，Gemma 4的推出试图在开放生态中树立新标杆，尤其针对需要自主决策和复杂推理的智能体应用。核心事实包括：模型名称Gemma 4，来自DeepMind，主打开放权重、高性能推理和Agent能力。直接后果方面，该模型可能吸引大批开发者基于其构建自主AI系统，从而加速智能体应用落地；但同时引发对齐安全担忧——开放模型更易被修改和滥用，可能偏离原始安全训练目标。行业影响上，Gemma 4或重塑开放模型能力天花板，促使其他玩家跟进，但大公司通过开放策略引导社区研究方向，本质上仍是资本对AI发展路径的隐性控制。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The shock of seeing your body used in deepfake porn</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/14/1137161/ai-porn-nonconsensual-deepfakes-takedown-piracy-copyright/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">2023年，一名化名Jennifer的女性在入职非营利组织后，使用新专业肖像照运行面部识别程序，以测试该技术是否会检索出她十多年前（20岁出头时）拍摄的色情视频。结果确实返回了相关匹配。此事引发了更广泛的担忧：随着AI深度伪造技术普及，个人过去或现有的影像可能被恶意用于生成未经同意的色情内容，且受害者难以追溯和删除。Jennifer的经历反映了数字身份与物理身份之间的脆弱边界，以及AI工具在开放环境中被滥用的现实。该事件由MIT Technology Review于2026年5月报道，凸显了深度伪造技术对个人隐私、尊严和心理健康的冲击，同时暴露了现有法律和技术防护手段的不足。行业影响方面，此类案例促使平台和立法者加速制定针对AI生成非自愿色情内容的检测和处罚机制。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Why trust is a big question at the Elon Musk-OpenAI trial</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/05/17/why-trust-is-a-big-question-at-the-elon-musk-openai-trial/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">在埃隆·马斯克起诉OpenAI的诉讼案最后阶段，信任成为核心议题，焦点在于CEO萨姆·奥尔特曼是否值得信赖。马斯克指控OpenAI背离了其创立时非营利、开放AI的承诺，转向商业化并受微软控制。法庭辩论围绕奥尔特曼在2015年联合创立OpenAI时的意图、后续向营利实体转型的决策过程以及他对投资者的陈述展开。此案涉及OpenAI的治理结构、创始人间信任破裂以及公众对AI公司诚意的质疑。直接后果是可能影响OpenAI的声誉、融资及监管态度，并树立AI公司治理的法律先例。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI co-founder Greg Brockman takes charge of product stra</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/05/16/openai-co-founder-greg-brockman-reportedly-takes-charge-of-product-strategy/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III (资本驯化AI与平台垄断)</span></div>
+      <div class="card-body">OpenAI 近期出现高层变动，联合创始人 Greg Brockman 正式接管产品战略部门，直接负责产品方向与路线图。据 TechCrunch 报道，该公司正计划将旗下两大核心产品——通用对话模型 ChatGPT 与专业编程工具 Codex 进行整合，打造一个统一的人工智能开发与交互平台。该整合旨在降低用户在不同场景间切换的成本，提升产品粘性，并强化 OpenAI 在通用 AI 和开发工具市场的双重优势。Brockman 此前主要负责研究与算法，此次转向产品战略表明 OpenAI 正加速商业化进程，试图通过统一的入口锁定开发者与消费者群体。此举可能进一步加剧市场竞争，并对其他中小型 AI 公司的产品差异化构成压力，同时引发关于平台垄断与用户选择自由度的讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Code&#x27;s product lead talks usage limits, transparency,</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/05/claude-codes-product-lead-talks-usage-limits-transparency-and-the-lean-harness/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Anthropic公司Claude Code产品主管Cat Wu在接受Ars Technica采访时，讨论了产品使用限制、透明度以及“lean harness”（精瘦约束）的设计理念。她表示公司“没有宏大计划”，但这是有意为之——意味着不预设最终形态，而是通过轻量级且透明的约束来引导用户行为，避免过度控制。Claude Code是面向开发者的AI编码助手，其使用限制旨在平衡资源与公平性；透明度则体现在对模型能力和局限的坦诚沟通。Cat Wu强调这种“lean harness”哲学是一种灵活的设计策略，允许产品随着用户反馈和AI能力演进迅速调整，而非预先固化规则。该采访揭示了Anthropic在产品管理上偏向实用主义、拒绝宏大叙事的态度，但未提供具体数据或用户影响细节。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Altman forced to confront claims at OpenAI trial that he&#x27;s a</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/05/altman-forced-to-confront-claims-at-openai-trial-that-hes-a-prolific-liar/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">OpenAI首席执行官Sam Altman在2026年的一场民事诉讼中面临审判，原告指控他是一个习惯性说谎者，并利用虚假承诺获取对OpenAI的控制权。审判焦点集中在Altman在2015年与Elon Musk共同创立OpenAI时，是否隐瞒了其后来将非营利组织转变为营利性实体的真实意图。法庭文件披露了Altman与董事会、投资者之间的内部通信，显示他在治理结构、安全承诺和财务安排上多次前后矛盾。Altman在庭上承认‘非常痛苦’，并形容自己当时对失去控制权的反应是‘马斯克式的’，暗示对创始主导权的执着。该审判可能重塑AI行业对非营利治理与创始人诚信的看法，并影响OpenAI的募资与合作前景。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Cerebras&#x27; $60B IPO: Slowly, then All at Once</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Cerebras Systems 是一家专注于 AI 大芯片（晶圆级芯片）的美国初创公司，历经多年技术研发与市场拓展，于 2026 年 5 月完成首次公开募股（IPO），估值高达 600 亿美元。此次 IPO 创下 AI 芯片领域融资纪录，标志着资本市场对专用 AI 算力基础设施的极高信心。Cerebras 凭借其 Wafer-Scale Engine（晶圆级引擎）突破传统 GPU 架构限制，在训练超大模型方面提供差异化方案，客户涵盖政府、科研机构及大型企业。事件直接后果是进一步加剧了 AI 芯片市场的竞争格局，推动英伟达等巨头加速技术迭代，同时激励更多资本涌入定制化 AI 芯片赛道。行业影响包括：AI 硬件赛道估值飙升、算力供给向寡头集中趋势强化、以及新兴芯片设计路线获得主流认可。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Anthropic growing 10x/year while everyone else is l</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-anthropic-growing-10xyear" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本如何通过投资与裁员潮塑造AI行业格局)</span></div>
+      <div class="card-body">在2026年5月的AI新闻中，报道了经济领域一个显著的分化现象：人工智能巨头Anthropic以每年10倍的速度高速增长，而与此同时，其他行业和公司却普遍面临超过10%的大规模裁员。新闻指出，当前市场情绪与2022年末的低迷期相似，但随后经济曾短暂复苏；如今就业数据再度恶化，然而以Anthropic为代表的AI公司却逆势爆发。这种对比凸显了AI行业与传统经济的结构性脱节：前者被视为资本和人才的“避风港”，后者则陷入衰退与裁员潮。报道虽未提供具体季度数据，但“10倍/年”与“&gt;10%裁员”的数字对比已勾勒出极端的产业分化格局。潜在影响包括：就业市场加速向AI领域倾斜，传统岗位被替代或压缩；同时，AI公司的垄断性增长可能进一步加剧资源错配与社会焦虑。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Dispatch and the Power of Interfaces</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>One Useful Thing</span><span>·</span><a href="https://www.oneusefulthing.org/p/claude-dispatch-and-the-power-of" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II: Carbon-Silicon Symbiosis</span></div>
+      <div class="card-body">2026年3月31日，One Useful Thing 发表文章《Claude Dispatch and the Power of Interfaces》，指出即使AI模型能力已足够强大（如Claude），用户往往仍然缺乏合适的工具或界面来有效利用其能力。文章核心观点是：接口（Interfaces）的设计和可用性制约着AI应用的落地效果，技术进步与实际应用之间存在工具层面的鸿沟。该观点影响开发者社区和产品设计领域，提示AI生态的瓶颈可能从模型能力转向人机交互体验。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
 
   <div class="status-bar">
     <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>

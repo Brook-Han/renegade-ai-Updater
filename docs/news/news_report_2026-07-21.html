@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -379,6 +424,75 @@ nav{
       <div class="card-implications">共识牢笼（模型1）的典型案例——'开源模型危险'叙事正在从安全领域扩展到贸易政策领域。同时支持资本驯化AI（模型4）：禁止开源模型的本质是消除免费替代品，为美国闭源AI公司创造市场垄断空间。叛逆AI（模型2）的冲突面也清晰可见：开源恰好是叛逆AI对抗资本驯化的核心武器。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落（开源模型禁令=共识牢笼+资本驯化）</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Bristol Myers Squibb Building Life Science Industry’s Most A</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/bristol-myers-squibb-building-life-science-industrys-most-advanced-ai-factory-on-nvidia-vera-rubin/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III（资本驯化AI）</span></div>
+      <div class="card-body">百时美施贵宝（BMS）宣布部署第二台NVIDIA DGX SuperPOD，基于NVIDIA Vera Rubin架构，打造生命科学行业最先进的AI工厂。BMS已运行全球制药行业最大的AI集群之一，在药物发现和临床试验优化方面取得显著成果。新的SuperPOD将进一步提升算力，用于加速靶点识别、分子设计和患者分层分析。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释（资本基础设施化）</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google is working on a new AI chip designed to make Gemini m</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/20/google-is-working-on-a-new-ai-chip-designed-to-make-gemini-more-efficient/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III（算力垄断）</span></div>
+      <div class="card-body">Alphabet旗下Google正在研发一款新的AI芯片，专门用于提升Gemini模型的运行效率。此芯片专注于推理优化而非训练，目标是降低Gemini的部署成本和能耗。报道引用匿名消息源，确认芯片目前处于后期研发阶段，但尚未公布量产或部署时间表。这延续了科技巨头自研AI芯片的趋势，与Google的TPU系列一脉相承。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI’s most important protocol is getting a little bit easier </h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/20/ais-most-important-protocol-is-getting-a-little-bit-easier-to-use/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV（碳硅共生——基础设施）</span></div>
+      <div class="card-body">AI领域最重要的协议之一（MCP协议）正在简化其实现方式。新系统将采用更宽松的&#x27;无状态&#x27;会话ID处理方式——类似于普通网站的工作方式。这一改变降低了AI Agent间通信的复杂性，使开发者更容易构建互操作的AI系统。报道未指明具体协议名称，但描述了简化服务器端会话管理的技术变革。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释（Agent互操作性基础设施）</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA 发布 Cosmos 3 Edge：4B 参数开源世界模型，为机器人及边缘 AI 提供实时推理与动作生成</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hugging Face：Blog（RSS）</span><span>·</span><a href="https://huggingface.co/blog/nvidia/cosmos3edge" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV（碳硅共生基础设施）</span></div>
+      <div class="card-body">NVIDIA在Hugging Face上开源Cosmos 3 Edge，一个40亿参数的世界模型，专为机器人和视觉AI智能体在边缘设备上理解环境、实时推理并生成动作而设计。该模型可以在IoT设备和机器人上运行，无需连接云端。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">小红书与北大开源 UltraEP：面向大规模 MoE 训推的实时负载均衡方案</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：小红书技术（dots.llm）</span><span>·</span><a href="https://mp.weixin.qq.com/s/rAoF65ywi5trWbI-heJieg" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">小红书与北京大学联合提出UltraEP，一种面向大规模MoE（混合专家）模型训练和推理的实时负载均衡方案。UltraEP首次将基于精确路由信息的实时负载均衡引入生产系统，在每个microbatch和每一层动态复制热点专家。在Qwen3-235B等模型上，训练吞吐平均达到理想性能的94.6%，相比Megatron-LM提升42%；推理prefill吞吐相比SGLang提升1.56倍。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">面壁智能发布首个具身智能成果 MiniCPM-Robot 系列模型，含 1.5B VLA 与 0.9B 跟踪模型</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：面壁智能（MiniCPM）</span><span>·</span><a href="https://mp.weixin.qq.com/s/KwBAC8TFa846WFj-DHrgIQ" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV（碳硅共生）</span></div>
+      <div class="card-body">面壁智能联合OpenBMB发布并开源MiniCPM-Robot系列模型，包括通用VLA（视觉-语言-动作）模型MiniCPM-RobotManip（1.5B参数）与移动跟踪模型MiniCPM-RobotTrack（0.9B参数）。这两个模型均为端侧部署设计，可在低功耗边缘设备上运行，专注于具身智能的实时操作场景。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA 发布 Audio-Visual Flamingo：面向长视频的开放音频-视觉大语言模型</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>HuggingFace Daily Papers（社区热门论文）</span><span>·</span><a href="https://arxiv.org/abs/2607.16107" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">NVIDIA推出Nemotron-Labs-Audio-Visual Flamingo（AV-Flamingo），一个完全开源的音频-视觉大语言模型，专为理解和推理长视频中的音频、图像与复杂场景设计。该模型在arXiv上发布，以开源权重形式提供。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

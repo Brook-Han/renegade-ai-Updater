@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -315,6 +360,30 @@ nav{
       <div class="card-implications">强印证"共识牢笼"正在裂变——原本被视为"不安全"的开源AI立场，现在获得了NVIDIA、Meta、Microsoft、OpenAI四巨头的背书，旧共识(闭源才是安全)正在瓦解。同时是"资本驯化AI"的绝佳案例——资本从利用安全叙事控制AI，转向大规模支持开源以获取产业话语权，显示资本立场随利益变化的灵活性。与7月25日三巨头联合信函形成延续性叙事。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">One fallen power line exposed a growing AI data center probl</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/25/one-fallen-power-line-exposed-a-growing-ai-data-center-problem-heres-how-to-fix-it/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I (Capital Domestication of AI)</span></div>
+      <div class="card-body">北弗吉尼亚州一条输电线路故障暴露了AI数据中心在电网中断时的脆弱应对能力。该地区是全球最大数据中心聚集地，一条线路的故障险些引发大规模服务中断。报道分析了数据中心备用电源系统的不足，以及当前AI基础设施对电网的极端依赖——单个超大规模数据中心的用电量已相当于中等城市。文章提出了包括分布式储能、微型核电站、电网侧冗余等多条技术修复路径。这一事件凸显AI产业物理基础设施的脆弱性常常被软件层的进步所掩盖。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Claude Opus 5: Fable-level performance at Opus pric</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-claude-opus-5-fable-level" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I (Capital Domestication of AI)</span></div>
+      <div class="card-body">Anthropic发布Claude Opus 5，声称以Opus价格达到此前旗舰模型Fable级别的性能(即价格减半)。Latent Space的AINews简报详细对比了性能指标，指出Opus 5在多项基准上接近Fable水平，体现了Anthropic在模型蒸馏和成本优化方面的进展。该模型延续了Anthropic的封闭路线，通过API独家提供，不开源权重。此发布是Anthropic产品线更新的一部分，旨在巩固其在高性能闭源模型市场的地位。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

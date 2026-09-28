@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,75 @@ nav{
       <div class="card-implications">资本驯化AI的反向实证——'企业不再租用AI'直接挑战了资本通过API订阅锁定用户的策略。这与书中描述的资本试图将AI能力商品化、通过持续付费模式驯化用户的叙事形成鲜明对比，是重要的反向案例。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How Deutsche Telekom is rewiring telecommunications with AI</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/deutsche-telekom" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">德意志电信与OpenAI合作，推动电信行业AI转型。该合作覆盖客户服务自动化、员工工作流优化、网络运维和语音交互四个领域，旨在将德意志电信打造为AI原生电信运营商。德意志电信作为欧洲最大电信运营商之一，其全面拥抱OpenAI技术栈的决策具有行业示范效应。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Meta removes controversial AI feature on Instagram after bac</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/10/meta-removes-controversial-ai-feature-on-instagram-after-backlash/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Meta在Instagram上推出了一项具争议性的AI功能，在用户群强烈反弹后被迫移除。据Puck News记者Dylan Byers报道，Meta已确认取消该功能。具体功能细节未披露，但用户反弹的规模和速度显示出用户对AI强推的敏感度正在显著提高。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">SK Hynix raises $26.5B in the biggest foreign IPO in US hist</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/10/sk-hynix-raises-26-5b-in-the-biggest-foreign-ipo-in-us-history-is-urged-to-build-new-us-fabs/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">韩国存储芯片制造商SK海力士在美国完成历史上规模最大的外国企业IPO，募资265亿美元，首日股价飙升13%。美国政府同时敦促SK海力士和三星在美国建设新工厂。这标志着AI芯片热潮达到新的资本化高度。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How AI could enable autonomous robot workers in workplaces—a</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/07/robot-workers-rising-how-ai-may-drive-general-purpose-autonomy-in-robotics/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">顶级机器人研究者和创始人解释机器人自主性如何演进。AI正在推动通用型机器人自主能力的发展，使机器人能够在工作场所（乃至家庭）执行越来越多的任务。文章涉及从专用工业机器人到通用自主机器人的转变趋势。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] OpenAI launches GPT 5.6 Sol/Terra/Luna, Codex becom</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-openai-launches-gpt-56-solterraluna" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I</span></div>
+      <div class="card-body">OpenAI正式发布GPT 5.6系列模型，包括Sol（旗舰）、Terra（中端）和Luna（轻量）三个版本。同时宣布Codex升级为ChatGPT超级应用，整合编程能力和通用对话。这是OpenAI产品矩阵的重要扩展。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">SK海力士完成创纪录美国上市，AI能打破芯片行业盛衰周期？</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>凤凰网</span><span>·</span><a href="https://view.inews.qq.com/a/20260711A02PPR00?scene=news-skill" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">韩国SK海力士完成美国史上最大规模外国企业IPO，首日股价飙升13%。分析师对AI芯片行业的周期性风险提出质疑，认为AI需求能否持续支撑芯片行业的盛衰周期仍存不确定性。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">国产GPU四小龙之一燧原科技募资60亿元押注下一代AI芯片，累计亏损超47亿元，预计今明两年盈利</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>凤凰WEEKLY</span><span>·</span><a href="https://view.inews.qq.com/a/20260710A0ABML00?scene=news-skill" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">国产GPU企业燧原科技科创板IPO注册生效，募资60亿元人民币押注下一代AI芯片。燧原科技成立于2018年，是国内较早布局云端AI芯片的企业之一，采用DSA领域专用架构路线。公司累计亏损超47亿元，预计今明两年实现盈利。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

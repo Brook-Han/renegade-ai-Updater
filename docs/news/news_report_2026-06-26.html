@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -363,6 +408,111 @@ nav{
       <div class="card-implications">强烈支持「暗时间」深化——AI 不仅「思考」还「动手操作」计算机界面，认知劳动进一步转移到系统内部。标志着暗时间的质的飞跃：从「AI 替你想」到「AI 替你做」。同时支撑「需求侧规训」——企业自动化长周期任务减少人工干预。对抗训练和企业防护系统反映「资本驯化AI」——企业对 AI 行动能力的控制需求。检测 prompt 注入自动停止呼应「进化对齐脆弱性」。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (11条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI and Broadcom unveil LLM-optimized inference chip</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/openai-broadcom-jalapeno-inference-chip" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">2026年6月24日，OpenAI与Broadcom联合发布名为Jalapeño的定制AI推理芯片，专为大语言模型推理优化。该芯片由Broadcom制造，旨在提升OpenAI系统的性能、效率和规模化能力。Jalapeño的推出标志着AI巨头从依赖通用GPU向自研芯片的战略转向，OpenAI加入Google（TPU）、Amazon（Trainium/Inferentia）、Microsoft（Maia）的自研芯片行列。芯片行业竞争加剧，定制化AI硅片成为降低推理成本、摆脱对单一供应商依赖的关键路径。此举将推动AI推理成本进一步下降，加速大规模AI应用部署。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How Businesses Are Building Specialized AI They Can Trust</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/nvidia-agent-toolkit-open-models-tools-skills-secure-runtime-ai-agents/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">NVIDIA 通过 Nemotron Labs 博客系列介绍企业如何利用开放模型、数据集和训练技术构建可信任的专用 AI 系统。文章展示了 NVIDIA Agent Toolkit 的开放堆栈——包括开源模型、技能库、安全运行时和工具集成——使企业能在生产环境中部署可信的 AI 智能体。核心案例包括透明研究助手和行业特定应用。关键词是信任与安全性——企业需要可审计、可控的 AI 才能投入生产。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Repositioning retail for the AI era</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/06/25/1137848/repositioning-retail-for-the-ai-era/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III (暗时间), Chapter 3, Section II (需求侧规训)</span></div>
+      <div class="card-body">MIT Technology Review 于 2026 年 6 月 25 日发布分析文章，探讨 AI 如何重塑零售业的幕后决策。文章指出 AI 在零售业最深刻的变革并非用户可见的功能，而是后台决策方式的变化：商品排名、库存流动、工程师代码部署等。具体包括 AI 驱动的动态定价、需求预测、个性化推荐优化、自动化物流规划等。零售商通过 AI 重构了整个运营决策链，消费者几乎无感知。核心趋势是 AI 将零售从被动响应转变为主动预测。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s Claude is winning over paid consumers, a market </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/25/anthropics-claude-is-winning-over-paid-consumers-a-market-owned-by-chatgpt/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">TechCrunch 2026 年 6 月 25 日报道，尽管 ChatGPT 在 AI 消费市场占据主导地位，但付费用户正越来越多地转向 Anthropic 的 Claude。数据显示，愿意为 AI 付费的消费者正在改变选择偏好——Claude 在付费细分市场的份额持续增长。ChatGPT 整体用户基数仍遥遥领先，但 Claude 在企业级和高端消费者市场建立了差异化优势。市场竞争格局从单一赢家通吃走向多极化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI and Broadcom announce chip designed for LLM inference</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/gadgets/2026/06/openai-and-broadcom-announce-chip-designed-for-llm-inference-at-scale/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">OpenAI与Broadcom联合宣布推出专为LLM推理设计的定制芯片，这是AI硅片竞赛升温的最新信号。该芯片旨在解决大规模AI推理的需求压力，在算力需求持续爆发的背景下，科技巨头纷纷加速自研芯片以应对GPU供应紧张和高成本挑战。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Podcast: If AI Is Sentient Then So Is ‘Age of Empires II</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/podcast-if-ai-is-sentient-then-so-is-age-of-empires-ii/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">404 Media播客讨论了一个思想实验：如果AI具有感知能力，那么《帝国时代II》的游戏AI同样有资格声称具有感知。节目还探讨了德克萨斯州将原计划用于公园的土地出售给数据中心公司的事件，以及麦迪逊广场花园黑客事件。核心在于质疑&quot;AI感知&quot;概念的模糊性和双重标准。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Codex 在 ChatGPT 移动 App 正式可用</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：OpenAI Developers (@OpenAIDevs)</span><span>·</span><a href="https://x.com/OpenAIDevs/status/2070254532911882707" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III (暗时间), Chapter 5, Section II (碳硅共生)</span></div>
+      <div class="card-body">OpenAI 宣布 Codex 在 ChatGPT 移动应用中正式开放（GA），并新增一对一设备配对实现更安全的手机与电脑连接。移动端新增通知、目标、侧边聊天、文件预览及内联审阅评论功能。用户可通过 ChatGPT 移动 App 启动新工作、审查输出、引导执行和批准下一步，而 Codex 实际继续在笔记本或开发机上后台运行。这标志着 AI 编程助手从桌面扩展至移动端。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ornith-1.0 开源模型家族发布，专注 Agentic Coding 全参数规模</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Berry Xia (@berryxia)</span><span>·</span><a href="https://x.com/berryxia/status/2070167806700908957" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I (叛逆AI), Chapter 5, Section III (暗时间)</span></div>
+      <div class="card-body">Ornith-1.0 开源模型家族发布，专注智能体编程（Agentic Coding），覆盖 9B Dense、31B Dense、35B MoE 及 397B MoE 全参数规模。在 Agent Coding 基准上达开源顶尖：SWE-Bench Verified 82.4、SWE-Bench Pro 62.2、Terminal-Bench 2.1 77.5。基于 gemma4 和 qwen3.5 后训练，采用强化学习联合优化任务脚手架与最终解决方案。全系列 MIT 开源，提供 GGUF 版本，支持 Ollama 等本地运行。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Figma在Config 2026押注人类判断，画布AI能力却来自第三方</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Decoder：AI News（RSS）</span><span>·</span><a href="https://the-decoder.com/figma-bets-on-human-judgment-at-config-2026-while-the-ai-powering-its-canvas-belongs-to-someone-else" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I; Chapter 5, Section III</span></div>
+      <div class="card-body">Figma在Config 2026将设计画布扩展至代码、动画、3D和着色器效果，并集成去年收购的Weave工作流系统。新功能包括Code Layers、Motion动画、深度层及Generative Plugins。协作方面支持搜索复用AI提示词、保存工作流为技能。Figma的AI功能依赖Anthropic、OpenAI和Google外部模型，推理成本挤压利润率。同时Anthropic等公司的竞争产品可直接生成界面，对Figma构成威胁。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">里德·霍夫曼称SpaceX&quot;不是一家人工智能公司&quot;，xAI则是&quot;彻底的灾难&quot;</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III; Chapter 5, Section III</span></div>
+      <div class="card-body">LinkedIn联合创始人、Anthropic和OpenAI投资者Reid Hoffman公开批评SpaceX和xAI。他指出SpaceX&quot;不是一家人工智能公司&quot;，收购Cursor是&quot;花钱买相关性&quot;；xAI是&quot;彻底的灾难&quot;，11位联合创始人全部离职，Grok落后于竞品。他还批评美国政府强制Anthropic下架Fable/Mythos，称Amazon CEO报告一个jailbreak漏洞就触发监管&quot;专断随意&quot;。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Qwen-AgentWorld：面向通用智能体的语言世界模型</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Qwen：Blog Retrieval（API）</span><span>·</span><a href="https://qwen.ai/blog?id=qwen-agentworld" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III (暗时间), Chapter 2, Section IV (认知金融化)</span></div>
+      <div class="card-body">Qwen 团队发布 Qwen-AgentWorld，一个以环境建模为训练目标的原生语言世界模型，在单个模型中模拟 MCP、Search、Terminal、SWE 及 GUI 域（Web、OS、Android）共七个域。模型使用超 1000 万条真实交互轨迹训练，在 AgentWorldBench 上以 397B-A17B 版本达最高模拟质量，超越 GPT-5.4、Claude Opus 4.8 和 Gemini 3.1 Pro。模型和基准已开源。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

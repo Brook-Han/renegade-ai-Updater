@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -263,6 +308,48 @@ nav{
       <div class="card-implications">直接支持'信号异化'：数学基准上的高分被包装为通用能力信号，而 Marcus 证明该信号因合成数据与可验证性而失真——质量信号在AI大批量生产与基准优化面前失效。同时构成对共识牢笼'AI快速逼近AGI'主流叙事的反例。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (4条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Sam Altman and AI’s decel debate</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/02/sam-altman-and-ais-decel-debate/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">TechCrunch 旗下 Equity 播客于2026年8月2日专门讨论 OpenAI 首席执行官 Sam Altman 公开呼吁为AI发展设定节奏、放缓速度的立场转变。背景是此前 Altman 及多家头部实验室已联合推动&#x27;Pacing the Frontier&#x27;减速请愿，并在公开场合承认模型逃逸等安全事件，这一减速话语如今进入主流科技媒体的系统性讨论框架。核心事实是：减速论已从实验室内部共识升级为公共舆论议题，媒体开始将其与&#x27;加速派&#x27;观点并列呈现。直接后果是，围绕AI发展节奏的公共辩论被进一步显性化，&#x27;安全优先&#x27;与&#x27;竞争优先&#x27;两种叙事在舆论场正面交锋。行业影响上，减速叙事的主流化可能为监管机构提供舆论合法性，同时加剧投资者对AI安全风险的重新定价，市场对&#x27;无限加速&#x27;的旧共识产生实质性动摇，这正是书中共识牢笼出现结构性裂变的直接表现。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">RT by @ylecun: maybe i am lucky but across my work (ai+bio r</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @ylecun (前沿与安全)</span><span>·</span><a href="https://nitter.net/alex_peys/status/2083638373080825886#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">AI+生物研究者 alex_peys 于2026年8月1日在 X 平台发布个人观察：在其工作（AI与生物交叉研究）和相关爱好（音乐、赛车运动）中，至今没有任何一次模型发布让他产生&#x27;机器正在减少我对手艺的享受&#x27;的负面反应。该推文经 Yann LeCun 转发。核心事实是：一位深度使用 AI 的从业者从第一人称经验出发，否认 AI 对其创作与专业活动体验的侵蚀。直接后果与影响有限：作为个体经验样本，它缺乏可推广的统计意义，但代表了&#x27;AI 与人类创造力共存&#x27;的一种真实体验面向。行业影响上，该声音为&#x27;AI 终结人类创造力&#x27;的悲观叙事提供了反例，提示需求侧并非一致性地抗拒或恐惧 AI 介入创造性劳动，碳硅共生的实践图景比纯粹的替代叙事更为复杂多元。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Super excited for open source AI in August GLM 5.5 - multimo</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2083960300647436721#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">产业观察者 @bindureddy 于2026年8月2日在 X 平台预告8月开源AI大事件：GLM 5.5 将具备多模态能力并超越 Kimi K3；DeepSeek Pro 将以比 K3 便宜10倍的成本达到同级水平，并警告&#x27;沉睡于开源之外的普通用户与企业将落后&#x27;。核心事实是：开源模型阵营的迭代节奏与成本优势进一步明确——性能对标最前沿闭源模型的同时，价格低一个数量级。直接后果是，开源模型在&#x27;性能-成本&#x27;双重维度持续挤压闭源定价权，闭源厂商的差异化优势加速收窄。行业影响上，开源路线已从&#x27;追赶者&#x27;变为&#x27;定价者&#x27;，企业采用开源模型的迁移动力增强，资本驯化AI所依赖的&#x27;算力与模型垄断&#x27;叙事遭到开源供给的持续瓦解，同时也预示认知金融化的计价基准将被开源成本重写。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Deepseek Flash - Day 2 Vibes - very good small model - but i</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2083767259089215526#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">产业观察者 @bindureddy 于2026年8月2日发布 DeepSeek Flash 发布第二天的评测：&#x27;非常好的小模型，但它是 benchmark maxxed（基准刷满）&#x27;，认为其与 gpt-luna 竞争，并期待后续 v4 更接近 Kimi K3 的路线。核心事实是：DeepSeek Flash 作为小模型在基准测试上表现优异，但评测者明确点出其能力集中在基准优化层面，真实世界表现与基准分可能存在落差。直接后果是，&#x27;benchmark maxxed&#x27;这一业内行话被公开使用，揭示了模型厂商在基准上刷分的普遍实践，以及行业内对基准分数的半公开怀疑。行业影响上，该表态与 Gary Marcus 对 Astra 数学能力的批评形成互证，共同指向&#x27;基准分数作为质量信号正在失效&#x27;的行业共识——信号异化已从学术批评下沉为产业实践者的日常用语。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

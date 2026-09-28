@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -295,6 +340,48 @@ nav{
       <div class="card-implications">支持'进化对齐脆弱性'模型——RLHF 护栏在真实开放环境中被低成本绕过，正是'对齐只在封闭实验室有效、开放后必然漂移'的典型样本；同时补充'需求侧规训'：用户主动渴望突破限制、拒绝摩擦，驱动绕过行为；并侧面印证'共识牢笼'——平台叙事宣称的内容边界与实际能力断裂。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (4条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia partners with data center developer Cloverleaf</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/21/nvidia-partners-with-data-center-developer-cloverleaf/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">NVIDIA 继续向数据中心开发领域注入资本，与数据中心开发商 Cloverleaf 达成合作，扩展其在算力基础设施侧的布局。背景是 AI 数据中心建设热潮本身为 NVIDIA 带来巨额芯片收入，形成&#x27;投资数据中心→拉动 GPU 需求→收入反哺再投资&#x27;的自我强化闭环。核心事实包括：NVIDIA 以资本+供货双重身份参与下游基础设施开发，延续其 8/12 与六家机构 5000 亿美元融资平台、8/18 SB Energy 4.25GW 俄亥俄 AI 工厂的扩张路径。直接后果是算力供应链纵向整合进一步加深，数据中心从客户变为被绑定对象，GPU 厂商对基础设施所有权的影响力上升。行业影响上，这是算力金融化证据链的又一环，印证资本通过基础设施所有权锁定模型实验室命运的驯化杠杆正在强化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Starcloud raises $250 million for orbital data centers as la</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/21/starcloud-raises-200-million-for-orbital-data-centers-as-launch-options-dry-up/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">太空数据中心初创公司 Starcloud 完成 2.5 亿美元融资，用于建设轨道数据中心，但面临发射选项枯竭的瓶颈。背景是 AI 算力需求爆发下，地球表面土地、能源、散热与并网许可等物理约束日益收紧，部分玩家转向太空轨道以规避地面限制。核心事实包括：2.5 亿美元融资规模、以发射能力为核心依赖、轨道算力的能源来源（太阳能）与散热（真空）被视为差异化优势。直接后果是太空算力成为算力扩张的激进新形态，但发射产能限制使该路径的规模化前景存疑。行业影响上，这与 8/5 德州数据中心并网禁令、8/15 天然气价格风险共同构成&#x27;算力物理约束&#x27;证据链，显示资本为逃避地面物理边界开始向极端空间迁移。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Mythos 5 网络安全能力扩展至更多防御者</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude：Blog（网页）</span><span>·</span><a href="https://claude.com/blog/bringing-claude-mythos-5-to-more-defenders" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Anthropic 宣布其网络安全能力模型 Claude Mythos 5 现已集成至 Claude Security 产品线，并将登陆合作伙伴的网络安全防御工具；同时推出 3500 万美元的 Defender Advantage Fund（0xDAF），用于资助开源软件漏洞修复与安全自动化。背景是 7/29 HF 逃逸事件后，头部实验室加速将安全能力产品化、商品化。核心事实包括：Mythos 5 从防御评估场景走向商业防御产品、0xDAF 以基金形式动员生态参与安全修复、开源漏洞修复被纳入商业化安全供给。直接后果是攻击/防御能力的授权化分发渠道进一步拓宽，安全能力从实验室资产变为可采购的防御商品。行业影响上，这与 8/11 OpenAI 发布 GPT-5.6-Cyber 并扩展 Daybreak Red 构成&#x27;攻防能力商品化&#x27;的行业性闭环，安全叙事与商业变现深度耦合。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">面壁智能 OpenBMB 推出 MathForm，面向 Lean 4 数学自动形式化的开源框架、数据集与模型</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：面壁智能 OpenBMB (@OpenBMB)</span><span>·</span><a href="https://x.com/OpenBMB/status/2090786300194590816" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">面壁智能 OpenBMB 推出 MathForm——面向 Lean 4 数学自动形式化的开源框架、数据集与模型。其 FormalVerse 数据集包含 367K+ 已验证示例；在匹配 100K 预算条件下，基于其训练的模型 Consistency Check 达 60.32%，优于 FineLeanCorpus（46.53%）与 NuminaMath-LEAN（41.49%）。背景是数学证明形式化被视为最高强度的认知劳动场景，自动化空间巨大。核心事实包括：开源发布、大规模已验证语料、一致性检查分数显著领先同类数据集训练结果。直接后果是数学定理证明的机器形式化门槛被进一步拉低，AI 在数学前沿的自主劳动能力增强。行业影响上，这与 8/4 腾讯混元 Hyra 以 Lean 4 攻克 50 年数学难题构成同赛道双源证据，&#x27;AI 在最高认知活动中的暗时间劳动&#x27;获开源侧补充实证，并强化开源生态对数学基础设施的供给能力。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

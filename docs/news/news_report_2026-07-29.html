@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -395,6 +440,75 @@ nav{
       <div class="card-implications">强力支持"信号异化"模型：印度法院的裁决确认了AI训练使用版权内容的合法性，实质上是法律体系在执行"信号异化"——当AI能大规模生产与人类内容无法区分的信息时，传统的版权信号（原创性、作者身份）失去法律效力。补充"认知金融化/Token陷阱"：数据被合法化为AI训练的"原料"，人类创作者的智力产出被金融化为AI的训练Token，且无需补偿原作者。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Samsung’s chip workers are jumping ship to rival SK Hynix</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/07/28/1140853/samsung-chip-workers-exodus-sk-hynix/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">三星半导体部门工程师大规模跳槽至竞争对手SK海力士，因三星在HBM（高带宽存储器）领域落后，员工士气低落且薪酬竞争力下降。工程师Lee缩短工时以准备跳槽申请，并向同事分享求职经验。该人才外流现象反映韩国存储芯片双雄竞争的加剧，SK海力士凭借HBM3E领先地位持续吸纳三星核心人才。直接影响是三星半导体技术研发和产能爬坡可能进一步受阻，HBM市场格局向SK海力士集中。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Fish Audio raises $52M seed to build AI voice models for cre</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/28/fish-audio-raises-50m-seed-to-build-ai-voice-models-for-creators-and-enterprises/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">AI语音公司Fish Audio完成5200万美元种子轮融资，为开源及托管语音模型提供AI语音生成服务。公司目前拥有超800万用户，年经常性收入达2100万美元。其模型开源策略一方面面向创作者提供个性化声音克隆，另一方面服务于企业级语音合成需求。这笔大额种子轮融资反映市场对AI语音赛道的高度认可，但也凸显AI语音技术的商业化潜力与潜在滥用风险（如深度伪造）。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Codex from 0 to 10M Users: Building ChatGPT Work — Akshay Na</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/chatgpt-work" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">OpenAI产品工程负责人Akshay Nathan在Latent Space播客中详细介绍了ChatGPT Work从0到1000万用户的构建历程，涉及Sites（站点）、OpenClaw、Memory（记忆）、Subagents（子智能体）、Finance（金融）和无代码功能等产品模块。Nathan分享了如何让AGI&quot;为全人类所用&quot;的产品哲学，以及从工程实践角度如何平衡功能扩展与系统稳定性。直接反映了OpenAI在将前沿模型转化为可规模化的消费者产品方面的战略思考。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Axon Is Another License Plate Surveillance Company</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/07/axon-is-another-license-plate-surveillance-company.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section V</span></div>
+      <div class="card-body">Schneier on Security发文指出Axon成为又一车牌监控公司，多地政府正在从Flock系统替换为Axon系统。文章将政府从一个车牌读取器品牌换到另一个比作&quot;赌徒从FanDuel换到DraftKings&quot;——更换供应商而非停止监控。该视角揭示了监控技术在社会中的不可逆渗透趋势，以及政府机构对监控系统的路径依赖。直接影响是车牌数据收集范围的扩大和隐私边界的进一步收缩。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 发布 Codex 安全 CLI 与 SDK</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Tibo (@thsottiaux)</span><span>·</span><a href="https://x.com/thsottiaux/status/2082241164850364555" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">OpenAI发布Codex安全CLI和TypeScript SDK，用于查找、验证和修复代码中的安全漏洞。该工具支持扫描代码仓库、审查变更、随时间追踪发现，并能在CI/CD流水线中自动运行安全检查。GitHub仓库已开源。此举将AI驱动的安全分析能力标准化为开发工具，体现了AI辅助软件开发安全的新方向。直接后果是降低了AI安全工具的进入门槛，但作为独立产品，其长期影响取决于社群采纳度和迭代维护。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Andrew Ng 创办 LearnVector，用 AI 实现一对一学习</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)</span><span>·</span><a href="https://x.com/AndrewYNg/status/2082199333920027009" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">Andrew Ng宣布创办AI教育公司LearnVector，获Coursera 1亿美元投资。公司核心理念是利用AI将学习从&quot;一对多&quot;转变为&quot;一对一&quot;个性化模式。区别于无约束的聊天机器人（研究证明其损害学习效果），LearnVector将整合Coursera权威课程库，为每位学习者定制精准学习路径。这一模式试图解决在线教育中&quot;标准化与个性化&quot;的根本矛盾。直接影响是推动AI教育赛道从&quot;通用知识问答&quot;向&quot;结构化适应性教学&quot;转型。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Perplexity 推出 Windows 版个人电脑智能体</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Perplexity (@perplexity_ai)</span><span>·</span><a href="https://x.com/perplexity_ai/status/2082103880155046176" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I</span></div>
+      <div class="card-body">Perplexity推出Windows版&quot;Personal Computer&quot;本地智能体工具，可协调跨本地文件、已连接应用和网络的多个智能体。该产品将搜索、编码、浏览和构建功能整合到一个统一系统中，用户可通过Perplexity Windows应用直接使用。这是AI搜索平台向操作系统级智能体扩展的典型代表，标志着AI助手从网页插件向桌面原生体验的迁移。直接后果是加剧AI个人助手市场的竞争态势。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

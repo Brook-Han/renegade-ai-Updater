@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,57 @@ nav{
       <div class="card-implications">革命性支持信号异化模型——AI基准分数是最典型的信号异化案例。基准测试本应提供关于模型真实能力的质量信号，但模型被针对性调优后在基准上得分等同于信号完全脱离现实意义。这是信号异化定义中描述的质量信号因AI大批量生产而失效的直接印证。同时支持共识牢笼：整个AI行业仍然依赖这些破碎的基准来宣称进展，形成了基准进步=AI进步的共识，排除了对评估范式本身的质疑。强烈建议纳入案例盒子。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (5条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Future of Meta Superintelligence: A 1 Year Progress Upda</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>SemiAnalysis</span><span>·</span><a href="https://newsletter.semianalysis.com/p/the-future-of-meta-superintelligence" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">SemiAnalysis于2026年7月发布Meta超智能项目一周年进展报告。核心内容涉及：Meta内部孵化出顶级RL环境创业公司（推测为独立团队创建的强化学习基础设施平台），实施了行业最具侵略性的算力扩张计划，实现了2000公里级跨区域scale-across分布式训练架构，并向Google DeepMind提出战略建议。关键数据包括Meta的GPU部署规模远超华尔街预期，其AI研究团队的自主权达到史无前例的水平，RL基础设施从内部工具快速商业化。直接后果是Meta在超级智能竞赛中从追赶者转变为领先竞争者，可能改变AI产业权力格局。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Mesh LLM：在 iroh 上进行分布式人工智能计算</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://www.iroh.computer/blog/mesh-llm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">Mesh LLM是一个开源项目，能将用户多台机器上的GPU和内存池化，对外暴露兼容OpenAI的API。实现通过iroh网络库建立点对点连接，无需中央服务器。请求可在本地GPU运行、路由到已加载模型的节点，或将大模型按层分区（内部称Skippy）流水线式拆分到多台机器执行。系统内置40多个模型，从5亿参数到235B MoE巨模型均可支持。软件体积约18MB，启动后以localhost:9337/v1提供服务。该技术降低了个人和小团队访问大规模模型的门槛。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">官方支招两种AI方案：Claude Fable 5搭配Sonnet 5省token</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/974/511.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Anthropic官方发布两种Claude模型组合方案以降低AI使用成本。顾问模式下Sonnet 5主执行，仅需额外指导时调用Fable 5，SWE-bench Pro显示可达完全使用Fable 5性能的92%，成本仅63%。协调者模式下Fable 5充当规划者，将子任务分派给多个Sonnet 5工作智能体，BrowseComp基准上达到Fable 5单独运行96%表现，成本为46%。该策略本质是将复杂任务拆解为不同价位的认知劳动，实现性价比最大化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">RT by @ylecun: All foundation models are in fact models of k</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @ylecun (前沿与安全)</span><span>·</span><a href="https://nitter.net/YiMaTweets/status/2075644501222367375#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III; Chapter 5, Section I</span></div>
+      <div class="card-body">Yann LeCun通过转发立场称所有基础模型本质上是知识模型，基于人类已开发的开放知识。显然，人类的知识（模型）应该开源！并补充请不要将知识与智能混淆。该言论延续了LeCun一贯的开源AI立场：主张大语言模型作为人类知识的数字化表达，应属于公共品而非私有资产。LeCun的区分——知识与智能不是一回事——暗示开放模型权重不会直接导致超级智能风险，为开源路径提供了认识论基础。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic keeps increasing their effective API prices.... So</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2076359473942429817#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">独立分析师@bindureddy发布对比数据：Anthropic持续提高API有效定价，Sonnet 5是Sonnet 4.6价格的2倍；而OpenAI则在提升效率和降低成本，Terra成为更具性价比的选择。长期看这将使OpenAI比Anthropic更盈利。该比较揭示了AI模型定价策略的分化：Anthropic走高价高质路线，OpenAI走规模效率路线。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

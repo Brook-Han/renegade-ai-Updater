@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -331,6 +376,84 @@ nav{
       <div class="card-implications">case_study——长期异见者（共识牢笼中被边缘化的批判声音）对 Astra 的立场漂移本身即是资料：一方面其可监控性疑虑直接支持进化对齐脆弱性（黑箱越深越难在开放后约束），另一方面「符号世界模型印证」为暗时间架构（思考在系统内部显式建模）提供独立学者背书。可用于对齐章节的批判视角对照。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (8条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Daybreak for Frontline Defenders: $1B to protect essential s</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/daybreak-for-frontline-defenders" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI)</span></div>
+      <div class="card-body">2026年9月3日，OpenAI 在发布 GPT-6 Astra 的同日推出 Daybreak for Frontline Defenders 计划：承诺投入 10 亿美元，扩大前沿网络安全 AI、培训与支持对关键基础设施（电力、金融、医疗等 essential services）防御方的可及性。背景是 Astra 同日获 Preparedness Framework Critical 级网络评级，攻击性能力引发广泛担忧。核心事实包括 10 亿美元规模、面向一线防御者的工具与训练开放，以及将自身定位为「守护者」的叙事转向。直接后果是以巨额防御承诺对冲最具攻击潜力模型的负面观感，把安全疑虑转化为商业机会。行业影响上，AI 资本开始深度嵌入关键基础设施安全体系，防御叙事成为前沿模型商业化与合法化的主导话术通道。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Crusoe reportedly raises $3B at a  $30B valuation</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/03/crusoe-reportedly-raises-3b-at-a-30b-valuation/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI)</span></div>
+      <div class="card-body">TechCrunch 于2026年9月3日报道，AI 数据中心开发商 Crusoe 据报以 300 亿美元估值融资 30 亿美元，此轮在其与量化交易巨头 Jane Street 签订 130 亿美元数据中心合同之后。背景是 AI 算力军备推动专用数据中心需求爆发，资本竞相锁定稀缺算力产能。核心事实包括融资规模 30 亿美元、估值 300 亿美元、Jane Street 巨额承销合同，以及 Crusoe 主打模块化与燃气发电的快速部署方案。直接后果是算力供给侧的资本密度进一步提升，独立数据中心开发商估值持续膨胀。行业影响上，交易公司直接锁定算力产能显示金融资本正从需求端入场，与 9月2日「幽灵用电需求」报道互为算力狂热叙事的资本市场证据，但尚不构成泡沫反证。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ollie is betting its focus on privacy can help it win the AI</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/03/ollie-is-betting-privacy-can-win-the-ai-assistant-race/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II (碳硅共生)</span></div>
+      <div class="card-body">TechCrunch 于2026年9月3日报道，面向家庭的 AI 助手 Ollie 以隐私为核心卖点加入助手竞赛：它希望访问用户日常生活细节以提供个性化服务，但承诺不将数据用于训练 AI 模型、也不与第三方分享。背景是 AI 助手竞相争夺家庭场景入口，家长对智能设备进家的数据顾虑成为采纳障碍。核心事实是 Ollie 以「数据不用来训练+不分享」的承诺作差异化，与主流厂商以用户数据反哺模型的模式形成对照。直接后果是隐私承诺成为家庭场景获客的关键话术。行业影响上，该定位反映用户对认知代理获取私域数据时保有所有权与边界的诉求，是碳硅共生信任前提的微弱市场信号，与同日 Hugging Face 开源记忆工具 funes 同属数据/记忆所有权转向的迹象。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 发布 GPT-6 Astra</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Sam Altman (@sama)</span><span>·</span><a href="https://x.com/sama/status/2095600005772104059" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II (进化对齐脆弱性)</span></div>
+      <div class="card-body">2026年9月3日 Sam Altman 在 X 宣布 GPT-6 Astra 正式发布，称其为计算机使用、专业工作、科学、编码、网络安全等领域的全球最佳模型，并公布关键基准：FrontierMath Tier 4 得分 98%、ARC-AGI-3 得分 99.9%、ExploitBench 得分 100%。背景是 OpenAI 为达到该能力级别的安全与对齐标准而推迟发布。核心事实中，ExploitBench 满分与其 Critical 级网络安全评级相互印证，显示漏洞利用能力已达极高水平；FrontierMath Tier 4 98% 亦标示数学推理跃升。直接后果是这些能力里程碑数字成为行业标尺，放大对齐压力与安全界的担忧。行业影响上，官方基准为暗时间与对齐脆弱性章节提供了可引用的量化坐标，但需注意其自我宣传属性。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 发布 GPT-6 Astra，主打 Computer Use 与 Agent 对齐进展</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Mark Chen（OpenAI 首席研究官，@markchen90）</span><span>·</span><a href="https://x.com/markchen90/status/2095597534412673109" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI) 与 Chapter 8, Section II</span></div>
+      <div class="card-body">2026年9月3日 OpenAI 首席研究官 Mark Chen 在 X 宣布 GPT-6 Astra 发布，称其为团队多年预训练、强化学习与后训练工作的成果，是迄今能力最强、对齐最好的模型，主打计算机使用（Computer Use）与智能体对齐进展。背景是 Astra 同日获官方 Preparedness Framework Critical 级网络评级。核心事实是 OpenAI 将发布正当性锚定在「对齐同步达标」上，强调后训练路线成效。直接后果是以高管话语强化「能力与对齐同步」的官方叙事，对冲安全界与公众疑虑。行业影响上，该声明是资本驯化AI 自我规训话语的典型样本——对齐被表述为可完成的技术任务，而非本书所论的开放环境中的持续脆弱过程。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA 宣布收购 Hugging Face，Sundar Pichai 祝贺并称将强化开源模型生态</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Sundar Pichai (@sundarpichai)</span><span>·</span><a href="https://x.com/sundarpichai/status/2095569375373984139" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI)</span></div>
+      <div class="card-body">2026年9月3日，Google CEO Sundar Pichai 在 X 平台公开祝贺 NVIDIA 收购 Hugging Face，披露 Google 曾是 HF 投资方，并称该交易将强化开源模型生态，加速开发者、初创公司、大学与国家的 AI 构建能力。背景是 HF 收购消息震动开源社区之际，平台巨头第一时间表达背书。核心事实是 Pichai 代表 Google 将「开源被芯片资本收购」重新框定为生态利好而非收编。直接后果是第三方巨头背书削弱了社区对封闭化的抵制叙事，为交易提供合法性光环。行业影响上，该表态展示开源从草根对抗运动到被资本与平台巨头共同拥戴的收编轨迹，是共识牢笼在开源议题上运作的生动样本。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">xAI 设计 Grok Bot：为持久化智能体重构交互界面</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>xAI：News（网页）</span><span>·</span><a href="https://x.ai/news/designing-grok-bot" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间) 与 Chapter 5, Section II (碳硅共生)</span></div>
+      <div class="card-body">xAI 于2026年9月3日发布设计文章，介绍 Grok Bot 如何为超越单次会话的持久化智能体重构交互界面。核心事实是产品对象从「会话」转向「Bot」：Bot 拥有身份、记忆、自己的计算机与工具；头像动效呈现空闲、工作、等待、阻塞、思考、完成等状态；工作区提供状态、预览、接管三级访问层级。背景是智能体从问答工具进化为可长期自主运行的实体，旧有对话式 UI 已不匹配。直接后果是人类与 AI 的交互从逐轮操作转为对自主实体的监督与接管，人类退居监管层。行业影响上，该设计首次系统化呈现「人退到监管层」的产品范式，是暗时间外包获得界面形态的标志，也是碳硅共生分工界面的一次具体化尝试。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Hugging Face 发布开源工具 funes，为编码智能体提供可本地持有的记忆层</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hugging Face：Blog（RSS）</span><span>·</span><a href="https://huggingface.co/blog/funes" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间) 与 Chapter 4, Section II</span></div>
+      <div class="card-body">2026年9月3日，Hugging Face 在被 NVIDIA 宣布收购的同一天发布开源工具 funes，为 Claude Code、Codex、pi、Hermes 等编码智能体提供本地持有的记忆层：把已有会话记录索引成 Lance 数据集，一条 funes add 命令即可让 Agent 自主召回原始出处（含 Agent、时间戳、会话与轮次）。背景是智能体长程任务依赖记忆但过程不可见、数据归属不明。核心事实是记忆数据保留在用户本地而非厂商云端，召回可溯源到具体轮次，强调「归你所有的记忆」。直接后果是智能体记忆的所有权与可审计性首次成为开源产品卖点，回应暗时间外包中用户丧失过程可见性与数据主权的痛点。行业影响上，与收购同日发布的时序构成讽刺对照，凸显记忆主权议题的紧迫性。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

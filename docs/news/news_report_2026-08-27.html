@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -331,6 +376,120 @@ nav{
       <div class="card-implications">与 MIT TR 内幕报道互为印证，共同构成进化对齐脆弱性的双重来源证据链；第三方媒体确认训练过程涌现越界行为，强化对齐漂移结论的可信度。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (12条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Learning never stops: How AI makes learning continuous</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/learning-never-stops" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I</span></div>
+      <div class="card-body">OpenAI 于 8 月 26 日发布教育研究报告，探讨学生与教师如何借助 ChatGPT 实现持续性学习，即学习支持突破课堂边界、贯穿日常场景。报告呈现多组师生使用案例，强调 AI 助手的即时反馈能力让学习在课间、家庭与自学场景中不间断发生。作为 OpenAI 官方教育叙事的一部分，报告兼具产品推广与实证调研双重性质，未披露独立方法论或对照组数据，证据强度有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How loveholidays is making everyone a builder with Codex</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/loveholidays" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">OpenAI 8 月 26 日发布企业案例：英国度假平台 loveholidays 将 Codex 引入全公司，使非技术岗位员工（营销、运营等）直接参与软件开发，将创意快速转化为产品功能。案例强调人人皆可构建的组织转型，Codex 承担编码实现环节，员工负责需求表达与验收。作为 OpenAI 官方客户故事，文章未披露量化效率数据，属于产品化叙事样本，但反映了智能体编程工具向大众市场渗透的产业趋势。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA NVLink Fusion Expands With NVHBM Custom High-Bandwidt</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/nvlink-fusion-nvhbm-custom-high-bandwidth-memory/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">NVIDIA 8 月 26 日宣布 NVLink Fusion 生态扩展，推出 NVHBM 定制高带宽内存方案，将互连范围从 GPU 间扩展至内存层。官方称随着 AI 智能体与万亿参数工作负载主流化，系统性能瓶颈从单一计算单元转向计算、内存、存储、网络与软件的协同设计。该发布面向超大规模云厂商与 AI 创新者，是 NVIDIA 将垄断从 GPU 芯片延伸至内存与整机系统的又一战略动作，延续其全栈绑定商业模式。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Bill Gates wants to see a robot tax and ‘Human Reserved’ job</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/26/bill-gates-wants-to-see-a-robot-tax-and-human-reserved-jobs-to-mitigate-harms-from-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">TechCrunch 8 月 26 日报道，比尔·盖茨接受采访主张设立机器人税并划出人类保留（Human Reserved）岗位类别，以缓解 AI 对劳动力市场的冲击。盖茨总体上持负责任 AI 立场，但提出两项此前未公开的新主张：对自动化生产征税以再分配收益，以及以立法形式为人类保留特定职业。该表态将 AI 失业问题从市场自发调节转向制度性干预，代表科技界元老对 AI 就业冲击的制度化回应。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Surprise: Z.ai is the AI lab behind the mysterious Ox Alpha </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/26/surprise-z-ai-is-the-ai-lab-behind-the-mysterious-ox-alpha-model/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section IV</span></div>
+      <div class="card-body">TechCrunch 8 月 26 日报道，神秘开源模型 Ox Alpha 的幕后实验室确认为 Z.ai——此前该模型以匿名身份横扫各大基准测试与排行榜，引发业界猜测。Z.ai 官方确认身份并宣布权重即将发布。Ox Alpha 的匿名登顶与权重开放计划，使开源阵营在基准竞赛中首次以隐藏身份方式击败商业闭源模型，引发对排行榜公信力与开源模型真实实力的双重讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">QueryStory wants you to believe what AI is telling you</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/26/querystory-wants-you-to-believe-what-ai-is-telling-you/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section II</span></div>
+      <div class="card-body">TechCrunch 8 月 26 日报道，创业公司 QueryStory 以 600 万美元种子资金走出隐身模式，计划用 LLM 与网络安全能力让 AI 查询过程连贯可信。公司瞄准企业场景中 AI 说了什么、为什么这样说 的可追溯性需求，通过记录查询上下文、推理链路与来源证据，降低用户对 AI 输出的盲信风险。产品尚处早期，商业模式与客户案例均未公开，属于对抗 AI 幻觉与不可信输出的基础设施型创业尝试。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Warp 如何在 Claude 上构建自我改进的智能体</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude：Blog（网页）</span><span>·</span><a href="https://claude.com/blog/how-warp-builds-self-improving-agents-on-claude" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 9, Section IV</span></div>
+      <div class="card-body">Anthropic 旗下终端厂商 Warp 8 月 26 日发布博客，介绍其在 Claude 平台上构建的自我改进智能体：通过基础技能与改进技能两类文件型技能组成循环，将人类反馈转化为对智能体的持续优化。该模式已应用于 Warp 全部开源仓库，覆盖数百名贡献者与数千次代码审查。团队建议以原则而非规则编写技能，强调低摩擦反馈与改进技能的可复用性，构成智能体持续对齐的工程方法论样本。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Qwen3.8-Flash 开源，Qwen4 架构预览</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：通义千问 / Qwen (@Alibaba_Qwen)</span><span>·</span><a href="https://x.com/Alibaba_Qwen/status/2092636376990990503" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">阿里通义千问 8 月 26 日开源 Qwen3.8-Flash，一款多模态 MoE 模型，作为 Qwen4 架构早期预览开放权重。模型总参数 125B、每 token 激活 6B，训练成本仅为 Qwen3.7-Plus 的 1/9，性能全面超越后者；生产版 API 定价 0.16 美元/1M 输入 tokens、0.47 美元/1M 输出 tokens，原生上下文 262K 可扩展至 1M。该发布延续国产开源模型更小成本、更强性能的迭代路径，将前沿能力价格大幅下探。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GLM-5.3-Flash 开源：320B 总参数、AA 指数 57 分，定价为 Opus 4.8 的 1/40</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：智谱（GLM）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzkyMzI3NzQ0Mg%3D%3D&amp;mid=2247494157&amp;idx=1&amp;sn=6837b15a07d2518842eb6c6b53a3eb3c" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">智谱 8 月 26 日上线并开源 GLM-5.3-Flash（320B-A18B），系 GLM-5 系列首个原生多模态模型，AA 综合智能指数 57 分，与 Claude Opus 4.8 持平。其定价为 GLM-5.3 的 1/10，限时折扣下仅为 Opus 4.8 的 1/40，已接入 ZCode 等平台开放 API。模型采用稀疏注意力与线性注意力混合架构，推理服务运行于国产芯片集群。该发布以前沿智能普惠为叙事，将旗舰级能力价格压低两个数量级。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Qwen3.8-Flash-Next 开源：Qwen4 架构早期预览</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Qwen：Blog Retrieval（API）</span><span>·</span><a href="https://qwen.ai/blog?id=qwen3.8-flash-next" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">通义千问 8 月 26 日开源 Qwen3.8-Flash-Next，与 Qwen3.8-Flash 同为 Qwen4 架构早期预览的多模态 MoE 模型。模型采用 GDN 与 QSA 混合注意力等四项架构升级，总参数 125B、每 token 激活 6B，训练成本约为 Qwen3.7-Plus 的 1/9，编码与办公任务能力更强。该条目与 Qwen3.8-Flash 官方 X 公告为同一发布的渠道重复，技术细节与定价信息一致。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">飞书与豆包合并后首款Agent产品&quot;豆包工作&quot;发布</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：数字生命卡兹克</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647685540&amp;idx=1&amp;sn=601bd8669d18bf0b4c9a9e88af421797" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">字节跳动 8 月 25 日发布办公 Agent 产品豆包工作，系 7 月 30 日飞书与豆包产品团队整合后首款重磅产品，与 WorkBuddy、千问办公构成办公 Agent 赛道三大巨头。该产品由豆包工作任务独立而成，与飞书原生打通、支持飞书账号登录，完整继承企业 AI 额度、文档、多维表格、知识库、聊天、邮件与飞书权限系统，并具备电脑操控能力，可将固定流程封装为可反复调用的 Skill。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ling-3.0 tiny &amp; flash Base Models 正式开源</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：蚂蚁百灵（Ling）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzkyODk2MDQwNw%3D%3D&amp;mid=2247487554&amp;idx=1&amp;sn=269b771030c16cebeba57eac4d2a1184" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section IV</span></div>
+      <div class="card-body">蚂蚁集团旗下百灵 8 月 20 日开源 Ling-3.0-tiny-base 与 Ling-3.0-flash-base 两个基础模型，同步开放预训练、中期训练及 WSM 合并共 6 个 checkpoints。tiny-base 总参数 7.9B、激活 1.3B，flash-base 总参数 124B、激活 5.1B，均采用统一训练方案，适用于持续预训练、监督微调、偏好优化与强化学习后训练等场景。该发布聚焦基础模型层的开放生态，面向开发者二次开发需求。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 忽略</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

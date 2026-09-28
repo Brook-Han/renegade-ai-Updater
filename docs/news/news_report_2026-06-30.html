@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -587,6 +632,111 @@ nav{
       <div class="card-implications">信号异化的社会后果——AI招聘系统作为'质量信号'替代品，却在算法层面系统性地放大种族偏见。'算法单一文化'概念完美对应书中关于信号集中化风险论述。这也是共识牢笼在社会公平维度的延伸——算法决策成为不可见的新权力结构。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (11条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Previewing GPT-5.6 Sol: a next-generation model</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/previewing-gpt-5-6-sol" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">OpenAI发布GPT-5.6 Sol预览，称其为下一代模型，在编码、科学和网络安全方面能力更强，配备了最先进的安全栈。该模型随后被美国政府要求暂缓广泛发布，改为受控预览版。Sol是GPT-5.6三层次（Sol/Terra/Luna）中的最高级别。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NYT slams Microsoft for building copyright-infringing superc</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">纽约时报修订对OpenAI和微软的版权诉讼，根据最高法院在Cox案中确立的新帮助侵权标准，指控微软建造超级计算机以帮助OpenAI侵犯版权。微软称修订是&#x27;挽救不利先例的最后手段&#x27;。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Oracle’s 21,000 layoffs help drive its debt-fueled AI invest</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/06/oracles-21000-layoffs-help-drive-its-debt-fueled-ai-investments/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II &amp; Chapter 4, Section I</span></div>
+      <div class="card-body">Oracle裁员21000人以为债务驱动的AI基础设施投资提供资金。公司投入数十亿美元建设数据中心以支持AI，人力成本成为首要削减对象。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Bodycam Shows Moment Cops Arrested a Man for Speaking Too Lo</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/bodycam-footage-video-claremore-oklahoma-data-center-meeting/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">俄克拉荷马州Claremore市，一名男子在市议会会议上反对数据中心建设时发言时间过长被警方逮捕。当事人首次向404 Media公开了执法记录仪视频。这一事件反映了社区对AI基础设施扩张的抵制。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Artifacts 22：Zyphra、Cohere 和 Poolside 正在扩展生态系统广度</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Nathan Lambert：Interconnects（RSS）</span><span>·</span><a href="https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">开源模型生态在扩展：中国公司之外，全球组织参与度提升。Cohere以Apache 2.0开源Command A+（218B-A25B MoE），NVIDIA发布Nemotron-3-Ultra采用LatentMoE架构和OpenMDW许可证。模型类别从纯通用模型扩展到专业细分领域。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">仅有三个AI模型在500天创业测试中盈利超过起始资本</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Decoder：AI News（RSS）</span><span>·</span><a href="https://the-decoder.com/only-three-ai-models-finished-above-starting-capital-in-a-500-day-startup-survival-test" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">普林斯顿大学CEO-Bench基准测试让AI智能体在模拟环境中运营订阅软件公司500天。14个模型中仅Claude Fable 5、Claude Opus 4.8和GPT-5.5在最佳运行中盈利超过起始资本（100万美元）。多数模型无法保持连贯策略而破产。一个简单规则启发式方法表现优于除前三名外的所有模型。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">纽约时报修订诉讼，指控微软为OpenAI建造版权侵权超级计算机</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Ars Technica：AI（RSS）</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">同Article 28——纽约时报修订对微软的版权诉讼。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">下一个重大突破：AI在工作中学习</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Dwarkesh Patel：Podcast &amp; Blog（RSS）</span><span>·</span><a href="https://www.dwarkesh.com/p/the-next-paradigm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III &amp; Chapter 8, Section I</span></div>
+      <div class="card-body">Dwarkesh Patel发表的AI实验室研究赌注文章：在数千个多样化RL环境中训练模型完成数百万可验证任务即可构建AGI。训练成本一次性可摊销，关键是模型在单会话内的智能和样本效率。Transformer架构创新已能大幅扩展上下文存储。论文提出一个领域需要&#x27;可碾压性&#x27;——能并行运行大量rollout的确定性模拟器。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">近400家美国报纸起诉微软和OpenAI：未经授权抓取新闻内容训练AI</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/968/872.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">代表近400家纸媒的出版商联盟起诉微软和OpenAI，指控其未经授权抓取新闻训练AI模型，触犯版权法。AI产品基于其内容创造数十亿美元价值但出版商分文未得。OpenAI辩称基于公开内容和合理使用原则。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">里德·霍夫曼称SpaceX&quot;不是一家人工智能公司&quot;，xAI则是&quot;彻底的灾难&quot;</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">LinkedIn联合创始人Reid Hoffman批评SpaceX不是AI公司，xAI是&#x27;彻底灾难&#x27;。他还批评美国政府以出口管制强制Anthropic下架Fable和Mythos模型，称此举&#x27;专断随意&#x27;。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">GitHub联合开源联盟呼吁修改加州AI透明度法案以保护开源</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>GitHub Blog</span><span>·</span><a href="https://github.blog/news-insights/policy-news-and-insights/github-joins-coalition-advocating-for-fixes-to-california-ai-transparency-act-to-protect-open-source" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 1, Section IV</span></div>
+      <div class="card-body">GitHub联合Black Forest Labs、Hugging Face、Mozilla组成开源联盟，呼吁修改加州AI透明度法案SB 942以保护开源。当前草案要求开发者在用户未履行义务时撤销开源许可证，与开源许可证永久不可撤销性质冲突。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

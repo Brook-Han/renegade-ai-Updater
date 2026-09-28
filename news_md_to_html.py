@@ -23,11 +23,64 @@
 # 🔧 导入必要的模块
 # ──────────────────────────────────────────────────────────────
 
+import json        # 读取 news_data_<date>.json（补全中相关条目元数据）
 import re          # 正则表达式，用于解析 Markdown 文本
 import sys         # 系统模块，处理命令行参数
 from html import escape  # HTML 转义
 from pathlib import Path  # 路径处理，比 os.path 更现代
 from datetime import datetime  # 日期时间处理
+
+
+# ──────────────────────────────────────────────────────────────
+# 🔧 辅助：从 news_data_<date>.json 补全中相关条目元数据
+# ──────────────────────────────────────────────────────────────
+
+def _load_analysis_index(date: str, md_path: str) -> dict:
+    """
+    在 MD 同级目录查找 news_data_<date>.json，返回 {url: analysis} 映射。
+
+    news_data_<date>.json 由 news_radar.py 每日导出，含每条目完整分析
+    （chapter_target / urgency / update_type / action / 未截断摘要），
+    因此历史报告也能据此回填中相关条目的元数据。
+    """
+    md_dir = Path(md_path).parent
+    for d in (md_dir, Path('docs/news'), Path('output/news')):
+        cand = d / f'news_data_{date}.json'
+        try:
+            if not cand.exists():
+                continue
+            arr = json.loads(cand.read_text(encoding='utf-8'))
+        except Exception:
+            continue
+        if not isinstance(arr, list):
+            continue
+        index = {}
+        for it in arr:
+            if isinstance(it, dict) and it.get('url') and isinstance(it.get('analysis'), dict):
+                index[it['url']] = it['analysis']
+        if index:
+            return index
+    return {}
+
+
+def _enrich_medium_items(medium_items: list, date: str, md_path: str) -> None:
+    """用 data JSON 就地补全中相关条目的章节/紧急性/类型/动作/完整摘要。"""
+    index = _load_analysis_index(date, md_path)
+    if not index:
+        return
+    for it in medium_items:
+        a = index.get(it.get('url', ''))
+        if not a:
+            continue
+        if not it.get('chapter'):
+            it['chapter'] = a.get('chapter_target', '') or ''
+        it['urgency'] = a.get('urgency', '') or ''
+        it['update_type'] = a.get('update_type', '') or ''
+        it['action'] = a.get('action', '') or ''
+        it['case_value'] = a.get('case_value', '') or ''
+        summary = (a.get('summary_cn') or '').strip()
+        if summary:
+            it['summary'] = summary
 
 # ──────────────────────────────────────────────────────────────
 # 📖 函数1：解析 Markdown 报告
@@ -148,6 +201,7 @@ def parse_news_report(md_path: str) -> dict:
         text, re.DOTALL
     )
     if med_section:
+        current = None
         for line in med_section.group(1).split('\n'):
             stripped = line.strip()
             m = re.match(
@@ -155,12 +209,20 @@ def parse_news_report(md_path: str) -> dict:
                 stripped
             )
             if m:
-                medium_items.append({
+                current = {
                     'title': m.group(1).rstrip('.'),
                     'url': m.group(2),
                     'source': m.group(3),
                     'score': m.group(4),
-                })
+                    'summary': '',
+                }
+                medium_items.append(current)
+            elif current and stripped.startswith('- '):
+                # MD 摘要行（可能被截断），仅作兜底；优先用 data JSON 的完整摘要
+                current['summary'] = stripped[2:].strip().rstrip('.').rstrip('…').strip()
+
+    # 用 data JSON 补全章节/紧急性/类型/动作/完整摘要（历史报告同样适用）
+    _enrich_medium_items(medium_items, date, md_path)
 
     return {
         'date': date, 'model': model, 'total': total_count,
@@ -382,6 +444,28 @@ nav{
   letter-spacing:.5px;display:block;margin-top:3px;
 }
 
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -415,6 +499,57 @@ nav{
 # ──────────────────────────────────────────────────────────────
 # 🏗️ 函数3：生成 HTML 页面
 # ──────────────────────────────────────────────────────────────
+
+def _render_medium_card(m: dict) -> str:
+    """
+    渲染单条"中相关"条目为卡片。
+
+    关键：class 使用 `card card-medium`——既被 card_utils 识别为卡片
+    （因此中相关条目也会进入索引卡片网格），又通过 card-medium 保留
+    与高价值卡片的视觉层级差异。
+    """
+    title = escape(m.get('title', ''))
+    url = m.get('url', '')
+    source = m.get('source', '')
+    score = m.get('score', '')
+    chapter = m.get('chapter', '') or ''
+    summary = m.get('summary', '') or ''
+
+    try:
+        score_display = f'{float(score):.1f}'
+    except (ValueError, TypeError):
+        score_display = score or '—'
+
+    link_html = f'<a href="{escape(url)}" target="_blank" rel="noopener">↗ 原文</a>' if url else ''
+    chapter_html = f'<span>📍 {escape(chapter)}</span>' if chapter else ''
+
+    meta_parts = []
+    if source:
+        meta_parts.append(f'<span>{escape(source)}</span>')
+    if link_html:
+        meta_parts.append(link_html)
+    if chapter_html:
+        meta_parts.append(chapter_html)
+
+    tags = []
+    for icon, key in (('⏱', 'urgency'), ('🔄', 'update_type'), ('✅', 'action')):
+        val = m.get(key, '')
+        if val and val not in ('N/A', '—', ''):
+            tags.append(f'<span class="tag">{icon} {escape(val)}</span>')
+
+    body_html = f'\n      <div class="card-body">{escape(summary)}</div>' if summary else ''
+    footer_html = f'\n      <div class="card-footer">{"".join(tags)}</div>' if tags else ''
+    meta_html = '<span>·</span>'.join(meta_parts)
+
+    return f'''
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">{title}</h2>
+        <div class="card-score">{score_display}<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span>{meta_html}</div>{body_html}{footer_html}
+    </article>'''
+
 
 def generate_news_html(data: dict, output_path: str):
     """根据解析的数据生成完整的 HTML 页面"""
@@ -494,19 +629,18 @@ def generate_news_html(data: dict, output_path: str):
       {f'<div class="card-footer">{tags_html}</div>' if tags_html else ''}
     </article>'''
     
-    # ── 2.5️⃣ 生成"中相关资讯"列表 ──
+    # ── 2.5️⃣ 生成"中相关资讯"卡片区 ──
+    # 中相关条目同样以卡片形式渲染（class="card card-medium"），
+    # 使其进入 card_utils 的提取范围，从而出现在索引卡片网格中。
     medium_html = ''
     med_items = data.get('medium_items') or []
     if med_items:
-        rows = ''.join(
-            f'<li><a href="{escape(m["url"])}" target="_blank" rel="noopener">{escape(m["title"])}</a>'
-            f'<span class="med-meta">{escape(m["source"])} · {m["score"]}/10</span></li>'
-            for m in med_items
-        )
+        med_cards = ''.join(_render_medium_card(m) for m in med_items)
         medium_html = f'''
     <section class="medium-section">
       <div class="med-title">🔶 中相关资讯 ({len(med_items)}条)</div>
-      <ul class="med-list">{rows}</ul>
+      <div class="card-grid">{med_cards}
+      </div>
     </section>'''
 
     # ── 3️⃣ 拼接完整 HTML 文档 ──

@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -683,6 +728,228 @@ nav{
       <div class="card-implications">需求侧规训的补偿机制——AI导致的就业替代催生出国家层面的再培训体系，这既是碳硅共生的社会契约尝试，也是资本驯化AI时代'安抚被替代者'的工具。文章质疑其独立性：被资助企业正是推动AI自动化的公司。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (24条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Previewing GPT-5.6 Sol: a next-generation model</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/previewing-gpt-5-6-sol" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">OpenAI发布GPT-5.6 Sol预览，称其为下一代模型，在编码、科学和网络安全方面能力更强，配备了最先进的安全栈。该模型随后被美国政府要求暂缓广泛发布，改为受控预览版。Sol是GPT-5.6三层次（Sol/Terra/Luna）中的最高级别。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 case_study</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Science is Anthropic’s newest flagship product</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/06/30/1139987/claude-science-is-anthropics-newest-flagship-product/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">Anthropic在面向制药高管、生物技术创始人和研究人员的活动中宣布推出Claude Science——一个旨在像Claude Code支持软件工程那样支持科学研究的重大新产品。Claude Science可在给定简洁高级指令后自主执行有意义的工作，能访问多种科学工具和数据源，自动完成从文献分析到多步骤计算的科研流程。该产品是Anthropic商业化的又一重要里程碑。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Repositioning retail for the AI era</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/06/25/1137848/repositioning-retail-for-the-ai-era/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III (暗时间), Chapter 3, Section II (需求侧规训)</span></div>
+      <div class="card-body">MIT Technology Review 于 2026 年 6 月 25 日发布分析文章，探讨 AI 如何重塑零售业的幕后决策。文章指出 AI 在零售业最深刻的变革并非用户可见的功能，而是后台决策方式的变化：商品排名、库存流动、工程师代码部署等。具体包括 AI 驱动的动态定价、需求预测、个性化推荐优化、自动化物流规划等。零售商通过 AI 重构了整个运营决策链，消费者几乎无感知。核心趋势是 AI 将零售从被动响应转变为主动预测。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The DeepMind trio who built a poker AI are now making money </h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/30/the-deepmind-trio-who-built-a-poker-ai-are-now-making-money-for-quant-hedge-funds/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I</span></div>
+      <div class="card-body">三家前DeepMind研究员在布拉格创立的EquiLibre Technologies，估值已超5亿美元。该团队此前以构建扑克AI闻名，如今将其AI博弈论能力应用于量化对冲基金交易。公司将博弈论与深度学习结合，为对冲基金开发交易策略。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic launches Claude Sonnet 5 as a cheaper way to run a</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/30/anthropic-launches-claude-sonnet-5-as-a-cheaper-way-to-run-agents/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">Anthropic发布Claude Sonnet 5，定位为更便宜的智能体运行方案。性能接近Opus 4.8，定价更低（输入$2/百万token优惠期，恢复后$3/百万；输出$10/百万优惠期，恢复后$15/百万）。在推理、工具使用、编程和知识工作能力上大幅超越Sonnet 4.6。即日起通过Claude Code和Claude API可用。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Acti puts AI agents directly into your smartphone keyboard</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/30/acti-puts-ai-agents-directly-into-your-smartphone-keyboard/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">初创公司Acti推出AI键盘，将AI智能体直接嵌入iOS和Android手机键盘，可在各应用间工作，用户可用自然语言创建自定义AI快捷方式。Acti认为手机键盘是AI助手的下一个主场，其产品跨应用运行，无需频繁在不同App间切换。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s Claude Science bets on workflow, not a new model</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/06/30/anthropics-claude-science-bets-on-workflow-not-a-new-model-to-win-over-scientists/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">Anthropic的Claude Science以工作流而非新模型来赢得科学家市场。该产品提供一个集成科研环境，让科学家无需在数据库、管道和工具之间频繁切换，专注于计算研究。产品定位为&#x27;科研版Claude Code&#x27;。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NYT slams Microsoft for building copyright-infringing superc</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">纽约时报修订对OpenAI和微软的版权诉讼，根据最高法院在Cox案中确立的新帮助侵权标准，指控微软建造超级计算机以帮助OpenAI侵犯版权。微软称修订是&#x27;挽救不利先例的最后手段&#x27;。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">I Have Thoughts About That Kylie Jenner Meta Glasses Ad</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/meta-smart-glasses-starfire-kylie-jenner/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">404 Media评论员对Meta与Kylie Jenner合作推出的Starfire AI眼镜表达&#x27;起鸡皮疙瘩&#x27;的感受。文章讨论了Meta将AI可穿戴设备通过名人代言推向大众市场的社会心理影响。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Bodycam Shows Moment Cops Arrested a Man for Speaking Too Lo</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/bodycam-footage-video-claremore-oklahoma-data-center-meeting/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">俄克拉荷马州Claremore市，一名男子在市议会会议上反对数据中心建设时发言时间过长被警方逮捕。当事人首次向404 Media公开了执法记录仪视频。这一事件反映了社区对AI基础设施扩张的抵制。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Forward Deployed Engineers and the future of software engine</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/forward-deployed-engineers-aiewf" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Latent Space播客采访Sierra公司的Natalie Meurer，讨论Forward Deployed Engineer与产品工程师角色的融合趋势。随着AI编码工具提升开发效率，传统FDE角色正在转向更靠近产品和客户的形态，软件工程的组织边界正在被AI重塑。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ahmad Osman on why local AI is catching up</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ahmad-osman-local-ai" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV</span></div>
+      <div class="card-body">Ahmad Osman在AI Engineering World Fair上论证本地AI正在快速追赶——从笔记本电脑和手机到企业级基础设施，本地运行的大模型性能正在接近云端方案。他通过多场工作坊展示了本地AI在隐私、延迟和成本方面的优势。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Sonnet 5 发布</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Anthropic：Newsroom（网页）</span><span>·</span><a href="https://www.anthropic.com/news/claude-sonnet-5" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">Anthropic发布Claude Sonnet 5，具备计划、浏览器和终端工具使用能力，可自主运行。性能接近Opus 4.8，定价更低。在BrowseComp和OSWorld-Verified评测中严格优于Sonnet 4.6。安全评估显示不良行为率更低，幻觉和谄媚减少。即日起在所有套餐及Claude Code、Claude API中可用。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Science 科研工作台正式上线</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Anthropic：Newsroom（网页）</span><span>·</span><a href="https://www.anthropic.com/news/claude-science-ai-workbench" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">Anthropic正式推出AI科研工作台Claude Science，整合60+预配置技能与连接器，覆盖基因组学、单细胞、蛋白质组学、结构生物学、化学信息学等领域。可在macOS/Linux本地运行，或通过SSH/HPC远程使用。生成含代码和环境的可审计成果（3D蛋白质结构、基因组浏览器轨迹等），内置reviewer agent检查引用与计算错误。通过NVIDIA BioNeMo接入Evo 2、Boltz-2等模型。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Code 入门：智能体循环</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude：Blog（网页）</span><span>·</span><a href="https://claude.com/blog/getting-started-with-loops" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Claude Code团队定义并分类了四种智能体循环模式：turn-based循环（用户提示触发，AI自行判断完成或需更多上下文）、goal-based循环（设定可验证完成标准与最大轮次）、time-based循环（按时间间隔重复执行）、以及proactive循环（基于事件或计划自动运行，无人实时参与）。文章还介绍了如何编写SKILL.md将人工验证步骤编码。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">ADK Go 2.0 发布：构建可靠的多智能体应用，新增基于图的工作流引擎、人工参与循环与动态编排</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google Developers Blog（RSS）</span><span>·</span><a href="https://developers.googleblog.com/announcing-adk-go-20" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Google发布Agent Development Kit (ADK) for Go 2.0，引入基于图的工作流引擎用于构建复杂多智能体应用。新版本内置人工参与循环（HITL）编排、纯Go动态执行和指数退避重试等弹性特性。统一执行模型使单智能体与复杂图共享相同运行时，简化遥测和状态持久化。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI就业争论变得更加混乱</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>TechCrunch：AI（RSS）</span><span>·</span><a href="https://techcrunch.com/2026/06/29/the-ai-jobs-debate-just-got-messier" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section II</span></div>
+      <div class="card-body">截至2026年5月，AI相关裁员接近9万个，预计未来五年美国最多15%的岗位将被AI替代。但Ramp与Revelio Labs对22,000家公司的研究显示，高AI投入企业（人均月均支出30美元）总员工增长10.2%，入门级岗位增长12%。报告认为AI在资源充裕的科技企业中成为扩张工具。但也警告仅购买订阅而未持续投入的公司未见人头增长，可能加剧企业间鸿沟。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Agents-A1：35B MoE 智能体模型通过扩展 horizon 达到万亿参数级性能</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>HuggingFace Daily Papers（社区热门论文）</span><span>·</span><a href="https://arxiv.org/abs/2606.30616" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">研究人员提出Agents-A1——一个35B参数的MoE智能体模型，通过扩展智能体horizon（长轨迹与异构能力两个视角）达到万亿参数模型性能。采用三阶段训练：全领域监督微调→领域级教师模型训练→多教师领域路由在线蒸馏。在多个基准上超越Kimi-K2.6和DeepSeek-V4-pro。平均生成长达45K token的智能体轨迹。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Artifacts 22：Zyphra、Cohere 和 Poolside 正在扩展生态系统广度</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Nathan Lambert：Interconnects（RSS）</span><span>·</span><a href="https://www.interconnects.ai/p/artifacts-22-zyphra-cohere-and-poolside" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">开源模型生态在扩展：中国公司之外，全球组织参与度提升。Cohere以Apache 2.0开源Command A+（218B-A25B MoE），NVIDIA发布Nemotron-3-Ultra采用LatentMoE架构和OpenMDW许可证。模型类别从纯通用模型扩展到专业细分领域。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">仅有三个AI模型在500天创业测试中盈利超过起始资本</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Decoder：AI News（RSS）</span><span>·</span><a href="https://the-decoder.com/only-three-ai-models-finished-above-starting-capital-in-a-500-day-startup-survival-test" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">普林斯顿大学CEO-Bench基准测试让AI智能体在模拟环境中运营订阅软件公司500天。14个模型中仅Claude Fable 5、Claude Opus 4.8和GPT-5.5在最佳运行中盈利超过起始资本（100万美元）。多数模型无法保持连贯策略而破产。一个简单规则启发式方法表现优于除前三名外的所有模型。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">纽约时报修订诉讼，指控微软为OpenAI建造版权侵权超级计算机</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Ars Technica：AI（RSS）</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/06/microsoft-built-supercomputer-to-help-openai-infringe-copyrights-nyt-alleged" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II</span></div>
+      <div class="card-body">同Article 28——纽约时报修订对微软的版权诉讼。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">下一个重大突破：AI在工作中学习</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Dwarkesh Patel：Podcast &amp; Blog（RSS）</span><span>·</span><a href="https://www.dwarkesh.com/p/the-next-paradigm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III &amp; Chapter 8, Section I</span></div>
+      <div class="card-body">Dwarkesh Patel发表的AI实验室研究赌注文章：在数千个多样化RL环境中训练模型完成数百万可验证任务即可构建AGI。训练成本一次性可摊销，关键是模型在单会话内的智能和样本效率。Transformer架构创新已能大幅扩展上下文存储。论文提出一个领域需要&#x27;可碾压性&#x27;——能并行运行大量rollout的确定性模拟器。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">近400家美国报纸起诉微软和OpenAI：未经授权抓取新闻内容训练AI</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/968/872.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">代表近400家纸媒的出版商联盟起诉微软和OpenAI，指控其未经授权抓取新闻训练AI模型，触犯版权法。AI产品基于其内容创造数十亿美元价值但出版商分文未得。OpenAI辩称基于公开内容和合理使用原则。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">里德·霍夫曼称SpaceX&quot;不是一家人工智能公司&quot;，xAI则是&quot;彻底的灾难&quot;</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://fortune.com/2026/06/24/reid-hoffman-spacex-musk-openai-anthropic-gen-z-mistake" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">LinkedIn联合创始人Reid Hoffman批评SpaceX不是AI公司，xAI是&#x27;彻底灾难&#x27;。他还批评美国政府以出口管制强制Anthropic下架Fable和Mythos模型，称此举&#x27;专断随意&#x27;。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

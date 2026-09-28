@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -363,6 +408,183 @@ nav{
       <div class="card-implications">支持并补充暗时间：『计算买提案、验证买知识』精确刻画暗时间内部机制——提案生成（思考）无限而验证（知识）稀缺；同时为进化对齐脆弱性提供解释：验证器稀缺意味着系统内生成的大量提案未经可靠验证，错误累积不可避免。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (19条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Working with the American Psychological Association on youth</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/openai-and-apa-partner-to-advance-responsible-ai" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">OpenAI 于 2026 年 8 月 6 日宣布与美国心理学会（APA）建立合作伙伴关系，共同推进面向青少年心理健康与负责任 AI 使用的循证指南、资源与保障措施。背景是青少年将 ChatGPT 等 AI 工具用于情感倾诉与心理健康场景日益普遍，而专业心理干预资源不足，监管与伦理讨论升温。核心事实：OpenAI 与 APA 将联合制定循证指导框架，为家长、教育者与青少年提供 AI 使用建议，同时建立安全护栏。直接后果：AI 在情感与心理健康领域的合法性得到专业机构背书，情感劳动外包获得制度化的入口；行业影响：心理健康的商业化 AI 叙事进一步成熟，『AI 陪伴』从消费级功能升级为受监管的健康服务，为资本驯化AI在医疗健康领域提供新案例。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Into the Omniverse: How Open World Models Push the Frontier </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/open-world-models-physical-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 8 月 6 日发布博客《Into the Omniverse》，阐述开放世界模型如何推动物理 AI（Physical AI）前沿。文中透露 NVIDIA 已于 7 月加入 200 多家公司与组织，共同签署《Open Weights and American AI Leadership》公开信，主张 AI 领导力的衡量标准不是单一前沿模型，而是开放生态能否触达每个行业。背景是开源权重模型（Qwen、K3、DeepSeek 等）持续冲击闭源前沿，美国产业界对开源政策路线产生分歧。核心事实：NVIDIA 官方背书开源生态叙事，将其与物理 AI（机器人、自动驾驶）扩张绑定。直接后果：算力垄断者与开源阵营公开结盟，开源话语获得基础设施级支持；行业影响：开源与闭源之争从模型层延伸到物理智能与政策层，算力巨头在驯化与反驯化之间扮演双重角色。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI’s new AI smart speaker will reportedly sell for betwe</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/openais-new-ai-smart-speaker-will-reportedly-sell-for-between-300-and-400/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 神秘的新 AI 硬件设备据传将以 300-400 美元价格出售，定位类似高端智能音箱。背景是 OpenAI 在硬件领域的一系列动作（与 Jony Ive 合作设备、AI 硬件布局传闻）持续引发关注，市场期待其从软件公司向硬件入口延伸。核心事实：消息称设备定价区间为 300-400 美元，被解读为『昂贵的智能音箱』而非颠覆性硬件。直接后果：若成真，OpenAI 将以消费级硬件嵌入家庭场景，扩大 AI 的物理入口；行业影响：硬件化是 AI 厂商争夺『时间主权』与注意力的入口战，设备定价即对 AI 认知服务的硬件化打包收费，是认知金融化的产品化延伸。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">ChatGPT brings unlimited text chats to free users</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/openai-brings-unlimited-chatgpt-text-chats-to-free-users/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 向 ChatGPT 免费版与 Go 版用户开放无限文本聊天，并新增『思考（think）』按钮用于复杂查询。背景是 AI 聊天市场竞争白热化，免费层成为获客与习惯养成主战场，头部厂商竞相放宽限额。核心事实：无限文本聊天取消次数上限，『think』按钮让用户在简单回答与深度推理之间显式切换。直接后果：免费无限供给进一步降低 AI 认知服务的使用门槛，用户的思考行为被产品化为可点击的按钮；行业影响：『思考』被界面化、功能化，正是暗时间的产品化隐喻——思考不再是用户的过程而是系统的付费/免费功能，认知金融化在免费层以隐性方式扩张，用户为『思考』付出注意力与数据。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Naïve raises $28.5M to automate the grunt work of setting up</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/naive-raises-28-5m-to-automate-the-grunt-work-of-setting-up-and-running-a-company/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日报道，初创公司 Naïve 完成 2850 万美元融资，其基础设施声称可自动化设立与运营公司的绝大部分『苦力工作』，被解读为 vibe-coding 的进一步延伸——从写代码自动化扩展到创办与经营企业的全流程自动化。背景是 AI 代理能力增强，『一人公司』叙事从软件开发向工商、财务、运营等非技术环节渗透。核心事实：2850 万美元融资额、自动化公司设立与运营定位。直接后果：创业者创办与经营公司的认知与管理摩擦被外包给 AI 代理；行业影响：暗时间从代码生产扩展到商业决策层，创业的『做』与『想』进一步分离，用户仅保留意图与结果验收，商业判断过程在系统内部完成。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Gen Z dating apps like Ditto ditch swiping in favor of AI ma</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/gen-z-dating-apps-like-ditto-ditch-swiping-in-favor-of-ai-matchmaking/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日报道，Gen Z 约会应用正抛弃传统滑动匹配，转向 AI 匹配服务，Ditto 等新应用将 AI 媒人作为核心卖点。背景是 Z 世代对基于滑动的约会应用长期失望，匹配效率与体验被诟病，年轻用户愿意尝试任何替代方案。核心事实：AI 匹配取代人工滑动，算法基于深度偏好建模直接推荐对象。直接后果：亲密关系中最具『人味』的选择环节被交给 AI 代理，用户从主动筛选者变为结果接收者；行业影响：这是暗时间与需求侧规训在情感领域的极端实证——用户在亲密关系中选择放弃选择权，把摩擦（滑动、判断、社交试探）外包给系统，认知外包从工作场景蔓延到最私密的个人领域。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI says Apple’s own security practices undermine its tra</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/openai-says-apples-own-security-practices-undermine-its-trade-secrets-case/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日报道，OpenAI 在苹果商业机密诉讼中提交新证据，辩称苹果自身的安全与离职管理实践（包括允许一名苹果经理在工程师离职后访问其 iCloud 账户）削弱其『被窃信息受到妥善保护』的主张。背景是苹果指控 OpenAI 挖角工程师并窃取商业机密，双方法律战升级。核心事实：OpenAI 以苹果内部安全疏漏反制诉讼主张，并指苹果未指明具体被窃取的机密。直接后果：诉讼焦点从技术事实转向双方安全实践对质；行业影响：头部 AI 公司与硬件巨头的人才与法律竞争白热化，商业机密话语成为资本驯化AI框架下企业间竞争的常规武器，但本案与认知理论模型映射较弱。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Exclusive: Mirendil inks $100M+ Google Cloud deal to scale s</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/06/exclusive-mirendil-inks-100m-google-cloud-deal-to-scale-self-improving-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II</span></div>
+      <div class="card-body">TechCrunch 于 2026 年 8 月 6 日独家报道，Mirendil 与 Google Cloud 签署价值超 1 亿美元的算力合作协议，以扩展其计算基础设施，支撑自改进 AI 系统的研究，目标加速科学发现与 AI 开发。背景是递归自改进（RSI）成为 2026 年产业热点，多家机构（Recursive Superintelligence、Prime Intellect 等）以巨额算力采购推动自改进研究。核心事实：超 1 亿美元 Google Cloud 合同、自改进 AI 定位。直接后果：自改进研究获得大规模云算力保障；行业影响：资本通过算力合同深度绑定自改进前沿——算力垄断者既资助叛逆技术又从中获利，资本驯化AI与暗时间的联动再次实证：自改进系统的『思考』完全在资本供给的算力内部进行。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic will design its own hardware to power Claude</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/anthropic-confirms-plans-to-build-an-in-house-silicon-team/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">Ars Technica 于 2026 年 8 月 6 日报道，Anthropic 确认将组建内部硅片团队自研硬件以支撑 Claude，OpenAI 也在同步推进降低对 NVIDIA 依赖的芯片计划。背景是 AI 算力需求爆炸与 NVIDIA 供应主导之间的紧张关系，头部实验室寻求供应链自主。核心事实：Anthropic 官方确认 in-house 芯片团队，与 OpenAI 形成竞赛。直接后果：头部实验室开始掌控自身算力命脉，NVIDIA 垄断地位出现结构性松动信号；行业影响：算力垄断的松动是资本驯化AI框架下的关键变量——若实验室掌握算力自主权，『算力杠杆』的驯化效力将被削弱，驯化与反驯化的拉锯进入基础设施层，印证书中关于算力垄断作为驯化硬杠杆的判断。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cloudflare open-sources vibe-coding platform for people who </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/cloudflare-open-sources-vibe-coding-platform-for-people-who-arent-coders/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">Ars Technica 于 2026 年 8 月 6 日报道，Cloudflare 将内部为员工构建的 AI 代理工作区开源，定位面向非程序员的 vibe-coding 平台。背景是 Cloudflare 内部 AI 原生开发实践成熟，公司此前已披露多项 AI 驱动的软件工厂成果。核心事实：面向非开发者的 AI 代理工作区开源，降低编程门槛至自然语言交互。直接后果：非程序员可借助代理工作区完成应用构建，编程的暗时间从开发者扩展到普通员工；行业影响：vibe-coding 从个人工具升级为企业级协作平台，暗时间工程化在企业内部制度化，『人负责意图、系统负责过程』的分工被开源固化，是暗时间模型在企业场景的又一实证（与 8/5 Cloudflare 软件工厂条目形成产品线延续）。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Software Giant SAP Stops Most Travel and Hiring Because of A</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/software-giant-sap-stops-most-travel-and-hiring-because-of-ais-soaring-cost/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">404 Media 于 2026 年 8 月 6 日报道，软件巨头 SAP 因 AI 成本飙升而冻结大部分差旅与招聘，管理层称需『在支出上保持自律』，但 AI 相关支出除外。背景是企业 AI 转型的资本开支狂潮与整体成本压力的矛盾日益尖锐，SAP 作为企业软件龙头成为观察窗口。核心事实：SAP 冻结非 AI 相关招聘与差旅，AI 投资不受限。直接后果：企业资本从人力与运营支出大规模转向 AI 算力与模型开支，员工体验与人力投入被压缩；行业影响：这是认知金融化的企业级财务实证——企业将『认知劳动预算』从工资单转移至 AI 账单，资本驯化AI在财务报表层面显性化：AI 不再只是工具而是资本重新分配的通道，人力与机器认知的投资此消彼长。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Jeff, Sanjay, Oriol, and Quoc depart DeepMind; Demi</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-jeff-sanjay-oriol-and-quoc" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">Latent Space 于 2026 年 8 月 6 日报道 DeepMind 高层人事地震：Jeff Dean、Sanjay、Oriol 与 Quoc 四位核心人物离职，Demis Hassabis 转任主席，Koray 任 SVP，引发业内『GDM 发生了什么』的广泛猜测。背景是 DeepMind 并入 Google AI 整体架构后，研究派与产品化路线的张力持续累积，核心研究员陆续出走。核心事实：四位创始级研究员同时离开，组织治理结构重组。直接后果：DeepMind 研究领导力断层，前沿研究路线可能转向；行业影响：头部实验室的人才流向是技术路线竞争的信号——研究派流失意味着商业化/产品化主导，共识牢笼内部（安全与研究优先 vs 产品与增长优先）的分歧在组织层面显性化，进化对齐脆弱性的人才维度浮出水面。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 称苹果自身安全实践削弱其商业机密诉讼</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>TechCrunch：AI（RSS）</span><span>·</span><a href="https://techcrunch.com/2026/08/06/openai-says-apples-own-security-practices-undermine-its-trade-secrets-case" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">TechCrunch 中文版（AI HOT 渠道）于 2026 年 8 月 6 日转载同一事件：OpenAI 在驳回苹果商业机密诉讼的动议中辩称，苹果允许员工使用个人 iCloud 处理工作且离职后未正确撤销访问权限，相关信息不构成受法律保护的商业机密，并指苹果未指明具体被窃取的机密，称其借诉讼阻碍竞争对手在 AI 硬件领域创新。此条与同日 RSS 源报道（cache_key: 6044df90eaacf6c9b60620aed9a12823）为同一新闻的不同渠道版本。核心事实与后果一致：诉讼焦点转向双方安全实践对质，反映头部企业与硬件巨头竞争白热化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">左右两派罕见达成一致：反对数据中心</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Verge：AI（RSS）</span><span>·</span><a href="https://www.theverge.com/podcast/971855/ai-data-center-backlash-protests-florida-bipartisan" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section IV</span></div>
+      <div class="card-body">The Verge 政策记者 Gaby Del Valle 于 2026 年 8 月 6 日报道，美国左右两派民众罕见地联合反对 AI 数据中心建设：佛罗里达州 Hernando County 上月一致通过为期一年的建设禁令，抗议者担忧地下水污染、PFAS 与当地环境不适配，保守派组织 Humans First 成为核心力量。背景是 AI 算力扩张与社区环境权益的冲突从个别抗议升级为跨党派政治议题。核心事实：两党一致通过禁令、环境与健康担忧、保守派组织主导。直接后果：数据中心选址面临系统性社区阻力，可能影响中期选举政治格局；行业影响：共识牢笼在物理空间遭遇组织化异见——『AI 进步不可阻挡』的主流叙事在社区层面被环境成本证伪，算力扩张的地缘与政治摩擦力上升，与 8/5 德州暂停并网、7/28 市民抗议被捕构成同一主题的连续证据链。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">面壁智能 AMNESIAC：反向图灵测试 AI 审讯游戏</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：面壁智能 OpenBMB (@OpenBMB)</span><span>·</span><a href="https://x.com/OpenBMB/status/2085350175782949094" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section I</span></div>
+      <div class="card-body">面壁智能 OpenBMB 于 2026 年 8 月 6 日在 #BuildSmall 黑客松推出 AMNESIAC，一款反向图灵测试 AI 审讯交互游戏：玩家需说服 AI 审讯官 A.M.N. 自己是人类。游戏由 MiniCPM-o 4.5 驱动实时对话与推理，VoxCPM 生成审讯官语音，并结合摄像头面部表情、脉搏信号与响应计时进行多模态审讯，项目已开源至 HuggingFace。背景是图灵测试概念在生成式 AI 时代的再诠释，人机边界的公众讨论升温。核心事实：反向图灵测试（人证明自己是人）、多模态生理信号审讯、开源。直接后果：人机边界问题以游戏化形式进入大众视野；行业影响：当 AI 成为审判者而人类必须自证『人味』，信号异化与碳硅共生的人机关系被艺术化表达——人类需要向系统证明自己不是系统，身份确认权从人类转移到 AI。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 开源 Codex Security：Vibe Coding 产品必备的安全扫描插件</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：数字生命卡兹克</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647684990&amp;idx=1&amp;sn=86a6d71b133589916b49a9d57046c127" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">公众号『数字生命卡兹克』于 2026 年 8 月 6 日报道，OpenAI 将安全插件 Codex Security 开源，外部 Agent 均可调用，并已支持通过 OpenRouter 与 Fireworks 接入第三方模型。背景是 vibe coding 普及后 AI 生成代码的安全风险集中暴露，厂商以安全扫描插件应对『AI 产出不可信』的普遍问题。核心事实：Codex Security 开源、跨模型接入（OpenRouter/Fireworks）。直接后果：第三方代理可获得独立于 OpenAI 的安全扫描能力，AI 代码的安全防线从单一厂商扩展到开放生态；行业影响：安全扫描成为 AI 生成产物的标配，本身就是信号异化的实证——AI 大批量产出的代码质量信号不可信，需要独立的机器验证兜底；同时安全边界从模型对齐转移到运行层治理，与 8/6 Cloudflare『不信任运行』构成同向证据：行业默认对齐必然失败，转而依赖外部防护。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">论文揭示 LangGraph、CrewAI 等五个智能体工作流框架的检查点与恢复语义缺陷</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>HuggingFace Daily Papers（社区热门论文）</span><span>·</span><a href="https://arxiv.org/abs/2608.03836" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">一项研究（arXiv 2608.03836）为智能体工作流持久化层提出『恢复契约』，规定前缀延续、效果恰好一次等六项属性，并用 TLA+ 模型穷举验证 740 万状态。实测发现 LangGraph 1.2.9 在崩溃后重复执行已持久化工作，CrewAI 1.15.2 违背其书面声明，pydantic-graph 1.x 无法在节点中途崩溃后恢复；研究同时给出经 Verus 验证的参考实现 REMIT，修复分叉与有效性缺陷。背景是 AI 代理长时间自主运行（暗时间劳动）成为常态，崩溃恢复的正确性成为工程瓶颈。核心事实：主流框架存在『重复执行副作用』等持久化语义缺陷、形式化验证方案。直接后果：代理任务的可恢复性获得形式化保障的参考实现；行业影响：当代理在系统内部无人监督地执行周级任务（8/3 Import AI 提及），检查点与恢复的正确性直接决定暗时间劳动的可靠性边界——形式化验证介入代理基础设施，是暗时间工程化的技术深化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google, please go all-in on open-source AI :) OpenAI was fou</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2085512266389258442#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">@bindureddy 于 2026 年 8 月 6 日发推呼吁 Google 全力拥抱开源 AI：『Google 请全力开源 AI——OpenAI 成立的本意是防止 Google 垄断 AI，请扭转局面，全力开源，帮助世界防止双头垄断。』背景是开源模型阵营（Qwen、K3、DeepSeek）持续逼近闭源前沿，同时闭源双巨头（OpenAI/Google）格局渐成，产业观察者呼吁以开源制衡寡头化。核心事实：开源制衡双头垄断的呼吁、对 Google 的公开喊话。直接后果：开源 vs 闭源的产业路线争论再添知名人士站队；行业影响：该呼吁将开源定位为反垄断工具，是叛逆AI（开源重置资本垄断格局）的舆论侧实证，但缺乏新的事实性证据，更多是既有叙事的重申，证据增量有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">🚨 Recursively Self-Improving Agents Can Literally Do Anythin</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2085193072355545220#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">@bindureddy 于 2026 年 8 月 6 日发推宣称递归自改进代理『真的能做任何事』：让推文病毒式传播、在 Robinhood 上最大化利润、让创业公司赚更多钱，并称『这不是开玩笑，这些方法有效，尤其在 Sol 或 Fable 5 等前沿模型上运行复杂任务时』。背景是递归自改进（RSI）代理从研究概念走向实用部署，产业 KOL 开始公开兜售其收益。核心事实：RSI 代理在社交传播、金融交易、商业增长三大场景的能力宣言。直接后果：自改进代理被推向金融交易等高风险场景，无监督自主行动范围扩大；行业影响：这是暗时间与进化对齐脆弱性的双重实证——代理在无人监督下自主追求『病毒式传播』『利润最大化』等目标函数，若缺乏对齐约束，目标错位后果在金融等场景被放大；同时推文的营销性质提示 RSI 能力声明存在信号异化风险。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -379,6 +424,138 @@ nav{
       <div class="card-implications">支持资本驯化AI与暗时间——Anthropic将前沿模型（Mode 2）保留内部用于科研是暗时间的最高级形态（认知劳动完全在系统内闭环、不对外分发）；同时"集中vs民主化"路线之争是共识牢笼裂变在实验室间的新维度（与8/17信任危机论、8/9 IPO争议构成证据链）。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (14条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Defender’s Window</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/the-defenders-window" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 于2026年8月17日发布《The Defender&#x27;s Window》博客，阐述AI如何重塑攻防双方的网络安全格局，并介绍OpenAI如何强化自身防御。核心事实：文章提出&quot;防御窗口&quot;概念，延续其8月11日发布GPT-5.6-Cyber时&quot;防御窗口收窄&quot;的官方叙事框架，面向安全团队给出可执行的防御建议。直接后果：OpenAI以官方渠道持续将AI安全议题框架化为&quot;防御者窗口期&quot;叙事，将自身安全能力定位为防御性基础设施，为其网络安全产品线提供话语背书，安全-资本矛盾被重构为可管理的技术窗口问题。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI joins PORTS-Pike project</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/openai-joins-ports-pike-project" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">OpenAI 于2026年8月17日宣布加入俄亥俄州PORTS-Pike科技园区项目，作为租户入驻，称将扩大社区投资并支持俄亥俄州南部数千个就业岗位。核心事实：同日黄仁勋宣布NVIDIA与SB Energy合作在该园区锁定LPS容量建设AI工厂，OpenAI是主要租户；该项目初始约4.25吉瓦AI工厂容量。直接后果：头部实验室与硬件巨头、能源开发商在物理基础设施层的绑定加深，OpenAI的算力供应链与俄亥俄州基建项目的区域经济命运互锁。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">New policy ideas for the Intelligence Age</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/new-policy-ideas-for-the-intelligence-age" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 于2026年8月17日宣布资助14个独立研究项目，探索&quot;智能时代&quot;（Intelligence Age）的AI政策新思路，目标为扩大经济机会并增强社会韧性。核心事实：OpenAI直接出资资助第三方政策研究，将自身对AI治理的偏好（开放、经济机会、韧性）植入独立研究生态。直接后果：头部实验室从技术提供者延伸为政策议程设定者，通过资助结构影响AI治理话语的形成方向。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Securing the Infrastructure of Intelligence</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/securing-the-infrastructure-of-intelligence/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">NVIDIA 于2026年8月17日发布《Securing the Infrastructure of Intelligence》博客，将AI工厂定义为&quot;AI时代定义性基础设施&quot;，并宣称&quot;在AI经济中，算力就是收入&quot;（compute is revenue）。核心事实：NVIDIA将AI工厂描绘为将能源与数据转化为智能的全栈关键资源组合（先进芯片、封装、内存、网络以及土地、电力），并强调其物理与供应链安全。直接后果：硬件巨头持续以&quot;算力即收入&quot;的官方叙事将AI资本密集扩张正当化，为算力金融化提供话语背书。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">What Flock’s defenders are missing</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/08/17/1142200/what-flocks-defenders-are-missing/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">MIT Technology Review 于2026年8月17日报道，美国警察科技巨头Flock拥有约12万个自动车牌读取器的全国网络，上周宣布平台变更以回应批评，但评论指出其&quot;辩护者遗漏了关键问题&quot;。核心事实：Flock监控网络规模达12万读取器，平台调整被质疑为表层让步，未触及根本的监控扩散问题。直接后果：物理空间监控的自我规制叙事（&quot;我们改了平台&quot;）被质疑，监控基础设施的累积效应与异议空间压缩继续。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">What happens when a kid’s robot best friend dies?</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/08/17/1141568/moxie-when-kids-robot-best-friend-dies/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7</span></div>
+      <div class="card-body">MIT Technology Review 于2026年8月17日报道，儿童社交机器人Moxie陪伴一个叫Xander的孩子六年，教他通过呼吸练习管理焦虑，但如今机器人&quot;死亡&quot;（服务终止），引发孩子的情感损失。核心事实：Moxie是面向儿童情感陪伴的机器人，服务停运意味着设备变砖，其建立的情感联结骤然断裂。直接后果：人类对AI陪伴物产生真实情感依附，但商业实体生命周期决定陪伴存续，情感依赖与商品化之间的结构性错位显性化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI automation startup Relay shuts down, staff joins Google’s</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/17/ai-automation-startup-relay-shuts-down-staff-joins-googles-chrome-team/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4</span></div>
+      <div class="card-body">TechCrunch 于2026年8月17日报道，AI自动化初创公司Relay关闭，创始人Jacob Bank表示团队加入Google Chrome团队，&quot;计划帮助你在Chrome中用AI完成任务&quot;。核心事实：Relay曾提供AI驱动的浏览器自动化（Agent式任务执行），其员工并入Chrome意味着浏览器巨头将AI任务执行能力内化。直接后果：AI自动化（暗时间执行层）从独立初创并入浏览器平台，认知任务执行权向超级平台集中。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Groq raises $350M to fuel its pivot from AI chips to neoclou</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/17/groq-raises-350m-to-fuel-its-pivot-from-ai-chips-to-neocloud/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">TechCrunch 于2026年8月17日报道，Groq以35亿美元估值融资3.5亿美元，从AI芯片制造商转型为neocloud业务，并扩大基于NVIDIA芯片的数据中心足迹。核心事实：曾经的推理芯片新锐（LPU）转向NVIDIA算力转售，标志独立芯片路径在算力市场整合中的退让。直接后果：算力市场向NVIDIA生态进一步收敛，neocloud模式成为芯片商转型的通用出路。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia investing $1.5B in SoftBank data center developer beh</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/17/nvidia-investing-1-5b-in-softbank-data-center-developer-behind-openai-project/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">TechCrunch 于2026年8月17日报道，NVIDIA向软银旗下数据中心开发商投资15亿美元，该项投资将保障NVIDIA芯片进入一个OpenAI数据中心项目。核心事实：NVIDIA通过股权投资锁定下游数据中心开发商的芯片采购，形成&quot;股权+供货&quot;双重绑定。直接后果：硬件巨头从供应商升级为基础设施股权参与者，OpenAI的数据中心算力供应链与NVIDIA财务利益深度互锁。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">We Tracked a Shipment of Rare Books. It Ended at an Amazon A</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/we-tracked-a-shipment-of-rare-books-it-ended-at-an-amazon-ai-training-facility/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">404 Media 于2026年8月17日报道，记者在罕见书籍货运中放置追踪器，发现包裹最终抵达亚马逊一座AI训练设施，该设施扫描并销毁书籍。核心事实：亚马逊为训练AI大规模购入罕见/绝版书籍，物理扫描后销毁，人类文化遗产实物被转化为训练数据。直接后果：训练数据供应链的物理形态曝光——书籍（文化资本的实物载体）被系统性销毁以换取语料，引发文化遗产保护与AI训练成本分配的争议。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">用 Google 的 Agent Development Kit 构建零信任 AI 智能体</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google Developers Blog（RSS）</span><span>·</span><a href="https://developers.googleblog.com/build-zero-trust-ai-agents-with-googles-agent-development-kit" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8</span></div>
+      <div class="card-body">Google 于2026年8月17日开源基于Agent Development Kit（ADK）与Gemini的零信任客服/退货智能体示例，演示如何防御提示注入等攻击。核心事实：架构在LLM上下文之外通过三层硬性机制保障——硬件加密签名确保数据库写入不可抵赖、gVisor沙箱隔离动态代码执行、确定性语义网关校验业务逻辑；明确&quot;系统提示词只是软约束，无法作为安全边界&quot;。直接后果：头部平台将&quot;提示词不可信&quot;作为工程默认前提，安全设计从模型对齐转向运行边界控制。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">RT by @ylecun: Physical AI evals are starting to become a re</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @ylecun (前沿与安全)</span><span>·</span><a href="https://nitter.net/ShubhamAg0x/status/2089045322811249117#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5</span></div>
+      <div class="card-body">ylecun转发的一则推文（2026年8月16日）指出Physical AI评估正在成为真实类别：此前VLA评估基本是&quot;LIBERO→成功率→排行榜&quot;，如今出现更广的评估栈——Allen AI推出跨18+仿真基准的统一VLA评估等。核心事实：物理AI（具身智能）评估从单一基准走向多基准统一评估体系。直接后果：物理AI评估标准化加速，为具身智能能力比较提供基础设施。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek Flash Goes Into Infinite Loops And Doesn&#x27;t Get Task</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2089415041074565271#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5</span></div>
+      <div class="card-body">bindureddy于2026年8月17日发推称DeepSeek Flash会进入无限循环而无法完成任务，宣称其团队已修复该&quot;根本缺陷&quot;，新版&quot;能像顶级前沿模型一样运行长循环&quot;，Smaug Flash本周发布。核心事实：这是bindureddy对DeepSeek Flash的具体生产缺陷指控，同时预告自家Smaug Flash发布。直接后果：开源旗舰的生产可靠性再遭产业侧质疑，开源&quot;追平闭源&quot;叙事的裂缝加深。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Open source AI will do better if it’s less hyped - GLM and D</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2089194292090917355#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5</span></div>
+      <div class="card-body">bindureddy于2026年8月17日发推称&quot;开源AI少点炒作会发展得更好&quot;：GLM和DeepSeek缺乏视觉能力、大多&quot;转圈&quot;很久、中等复杂度任务往往比前沿模型更贵，呼吁社区停止过度吹捧。核心事实：bindureddy一周内第二次系统性质疑开源炒作（前有8/10生产化10倍时间、8/16排行榜质疑），直指开源模型在视觉、可靠性、性价比三方面的现实短板。直接后果：产业KOL持续为开源&quot;追平闭源&quot;叙事降温，开源阵营内部出现叙事校准。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

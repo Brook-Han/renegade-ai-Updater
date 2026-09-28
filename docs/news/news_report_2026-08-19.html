@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -331,6 +376,93 @@ nav{
       <div class="card-implications">叛逆AI（开源追平叙事）+ 共识牢笼裂变（产业侧对减速话语的嘲讽性重构）+ 信号异化（绝对化预测）；与 OpenAI 官方声明构成当日互证。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (9条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Strengthening democratic oversight in national security</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/strengthening-democratic-oversight-in-national-security" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">OpenAI 于 2026 年 8 月 18 日宣布启动一项倡议，旨在强化 AI 在国家安全应用中的民主监督，向政府机构提供工具、培训与专业支持。背景是前沿模型网络能力持续升级（8 月以来 HF 入侵、Astra 网络安全阈值等事件），监管与立法机构缺乏独立评估能力。核心事实：OpenAI 主动向国家权力机构输出评估工具与专业知识，将安全护栏建设延伸至政府决策层。直接后果：驯化杠杆从市场与资本向国家机器延伸，政府机构对商业模型供应商的依赖加深，与 Schneier 国有化方案形成主动靠拢与强制接管的对照；同时国家安全话语成为模型部署合法性的新论证场域。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Partnering with CodeAI to prepare the first AI generation</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/partnering-with-codeai" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">OpenAI 与教育公司 CodeAI 建立合作，帮助学生建立 AI 素养、批判性思维并掌握负责任使用技能，2026 年 8 月 18 日公布。背景是 AI 工具在青少年群体中的渗透速度远超学校课程更新（同日 OpenAI 推出 ChatGPT for Teens）。核心事实：合作聚焦 K-12 阶段 AI 通识教育，由 OpenAI 提供课程资源与工具支持。直接后果：模型供应商直接介入基础教育内容生产，教育层成为需求侧驯化的前置场域；批判性思维与负责任使用话语由卖方定义，构成对儿童认知习惯的早期塑造，类似 8/15 NVIDIA 印尼大学 AI 中心的模式。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How NVIDIA scales expertise with ChatGPT Work</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/nvidia/chatgpt-work" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section IV</span></div>
+      <div class="card-body">OpenAI 于 2026 年 8 月 18 日发布客户案例：NVIDIA 团队使用 ChatGPT Work 减少手动任务、连接快速变化信号并在全球扩展成功工作流。背景是企业级 AI 工作平台（ChatGPT Work）进入规模化渗透期。核心事实：全球最大 AI 芯片厂商本身成为认知外包的采购方，将内部知识工作流程迁移到第三方模型平台。直接后果：企业端暗时间从初创公司扩散至硬件巨头内部，模型供应商与算力供应商的角色互嵌加深——NVIDIA 卖算力给 OpenAI、OpenAI 卖认知劳动给 NVIDIA，构成算力-认知双向金融化闭环；也暴露企业知识资产对第三方平台的结构性依赖。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Asana cleared 5 years of engineering work in 2 weeks with Co</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/asana" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section IV</span></div>
+      <div class="card-body">OpenAI 于 2026 年 8 月 18 日发布案例：Asana 用 Codex 在两周内替换过时的测试系统，完成原本预计需要五年、成本约 1.2 万美元的工程工作。背景是 AI 编程代理能力进入企业工程改造的实质性应用阶段。核心事实：时间压缩比约 130:1，五年人工工程量以 1.2 万美元结算，展示认知劳动定价的极端塌缩。直接后果：为暗时间提供最强量化实证之一——工程认知劳动的大规模外包使时间尺度与成本结构同时重构；但数据来源为 OpenAI 官方营销案例，缺乏独立审计，与同日 MIT TR&#x27;使用数据无独立来源&#x27;批判形成互文，需警惕叙事单边性。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Etched’s valuation doubles to $21B in a month</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/18/etcheds-valuation-doubles-to-21b-in-a-month/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">TechCrunch 2026 年 8 月 18 日报道：AI 芯片初创公司 Etched 估值一个月内翻倍至 210 亿美元。交易公司 Jane Street 已安装 Etched 首个发货的 AI 集群系统，并因印象深而领投新一轮巨额融资。背景是专用推理芯片（Transformer 专用 ASIC）在推理成本竞争中的价值重估。核心事实：量化交易机构成为专用 AI 芯片的首批工业级客户，直接以算力部署背书估值。直接后果：算力金融化从云巨头采购延伸到交易机构的直接部署，芯片初创估值进入月度翻倍节奏，与 NVIDIA 5000 亿美元融资平台、Anthropic 2 万亿美元 IPO 传闻共同构成算力资产证券化证据链。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI launches a safer ChatGPT for teens — years after teen</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/18/openai-launches-a-safer-chatgpt-for-teens-years-after-teens-started-using-it/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section III</span></div>
+      <div class="card-body">TechCrunch 2026 年 8 月 18 日报道：OpenAI 推出 ChatGPT for Teens，加入年龄适龄安全措施、家长控制与学习工具，引导青少年远离有害内容与作业作弊——尽管青少年使用 ChatGPT 已持续数年。背景是教育场景作弊争议（8/1 耶鲁 AI 作弊诉讼）与家长监管需求。核心事实：平台以防作弊与家长控制双重框架定义青少年 AI 使用边界。直接后果：教育层驯化获得官方产品形态，信号异化修复（防作弊）与需求侧规训（代际依赖塑造）在同一产品中交汇；&#x27;迟到数年&#x27;的措辞暴露平台此前对青少年使用的放任与现在的合规补救。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s Text Watermarking Proves AI Companies Do Not Car</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/anthropics-text-watermarking-proves-ai-companies-do-not-care-at-all-about-writing/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">404 Media 于 2026 年 8 月 18 日发表评论：Anthropic 的文本水印技术恰恰证明 AI 公司完全不关心写作本身。背景是 Anthropic 推出文本水印（8/12）并引发用户抵制（8/13），随后公开机制细节（8/16）。核心事实：评论论证水印将文字当作可追踪的可交换单元，无视写作的语境、风格与质量维度——&#x27;AI 公司把词视为可互换物，且毫无判断写作质量的能力&#x27;。直接后果：为水印争议补充文化批判维度——信号异化修复方案本身暴露平台对认知劳动产品本质的漠视，认知金融化（文字被离散化定价）获得美学与伦理层面的反证。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">LLMs and Contextual Integrity</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/08/llms-and-contextual-integrity.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Bruce Schneier 于 2026 年 8 月 18 日撰文探讨 AI 与上下文完整性（contextual integrity），引用 CIMemories 等两篇论文：LLM 越来越依赖来自过往交互的持久记忆以增强个性化，但这种记忆引入隐私与信息流动规范的破坏风险。背景是模型持久记忆成为产品标配。核心事实：Schneier 将隐私理论（Nissenbaum 的上下文完整性框架）应用于 LLM 持久记忆场景，指出跨上下文的信息流动需要新规范。直接后果：用户的思考痕迹（交互历史）被平台沉淀为可复用资产，认知数据资产化的隐私维度获得理论化表述；与认知金融化（思考过程被隐性外包）构成学术呼应。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Qwen 3.8 27B is an extremely good small model It’s perfect f</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2089551023497175497#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">产业分析师 @bindureddy 于 2026 年 8 月 18 日发推：Qwen 3.8 27B 是&#x27;极其优秀的小模型&#x27;，适合小型分类器与快速推理，可作为 Luna 的直接替代品，是开源的重大胜利。背景是 Qwen 3.8 系列权重持续开源（8/13 Max 级、8/15 官方细节）。核心事实：产业 KOL 将 27B 小模型定位为闭源小模型的 drop-in replacement。直接后果：开源生态向小模型与推理侧扩张，信号异化样本延续——&#x27;extremely good&#x27;评级通胀与 8/15&#x27;每个模型都自称 SOL/Fable 级&#x27;同构；Qwen 证据链（8/13-8/15）的第 N 环。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

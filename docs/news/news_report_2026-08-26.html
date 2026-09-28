@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -315,6 +360,102 @@ nav{
       <div class="card-implications">与 Jalapeño 主分析同主题的独立渠道复证，强化推理能效成为算力竞争新主轴的判断，支撑资本驯化AI松动与认知金融化供给侧量化，证据链延续 8/24-8/25 算力重估主题。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 补充注释</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (10条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The full stack behind abundant intelligence</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/the-full-stack-behind-abundant-intelligence" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">OpenAI 首席财务官 Sarah Friar 发表官方博客《The full stack behind abundant intelligence》，阐述丰裕智能的全栈叙事：芯片、算力、模型、产品四层能力复合演进，宣称以更大规模、更低成本交付更实用的智能。这是大厂官方对智能成本持续下降、供给趋向丰裕这一主流叙事的框架性陈述，属于行业共识话语的一部分，未提供新的独立数据。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Disrupting a new covert influence campaign from Russia</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/disrupting-malicious-uses-of-ai-influence-campaign-russia" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section II</span></div>
+      <div class="card-body">OpenAI 宣布封禁一批俄罗斯来源账号，这些账号利用 AI 推广一个虚构的以色列智库和所谓主权指数，该指数赞扬俄罗斯、批评西方。这是 AI 被用于大规模生成政治质量信号的最新实证：一个虚假智库加一个指数即可制造可被引用的独立信源，叙事竞争正被工业化生产。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI loses a top data center exec, as stream of high-profi</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/25/openai-loses-a-top-data-center-exec-as-stream-of-high-profile-departures-continues/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4</span></div>
+      <div class="card-body">TechCrunch 报道 OpenAI 数据中心负责人 Malone 离职，成为近期高管离职潮又一例。此前 OpenAI 已重组基础设施部门，将其汇报线从总裁 Greg Brockman 移出，改由副总裁 Sachin Katti 接管该团队。组织动荡发生在算力扩张与产品化变现压力的背景下。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Cowork finally remembers what you told the app in cha</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/25/claude-cowork-finally-remembers-what-you-told-the-app-in-chat/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">Anthropic 为 Claude 增加跨聊天与 Cowork 的共享记忆：用户不再需要在每次会话中重复交代项目背景、偏好等上下文，系统跨应用记住用户信息。这是记忆持久化从会话级向应用级扩展的产品化信号，减少用户的重复劳动。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">‘The world seems to be ready’: An interview with OpenAI head</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/25/the-world-seems-to-be-ready-an-interview-with-openai-head-of-product-thibault-sottiaux/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">TechCrunch 专访 OpenAI 产品负责人 Thibault Sottiaux，讨论智能体产品化、UX 设计以及向总裁 Greg Brockman 汇报的组织架构。世界似乎准备好了的表述反映公司对 agent 时代的乐观判断，访谈亦涉及产品化摩擦与采用率现实。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI won’t replace radiologists, but it will dramatically chan</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/health/2026/08/ai-wont-replace-radiologists-but-it-will-dramatically-change-their-jobs/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Ars Technica 报道：曾预测 AI 将取代人类放射科医生的先驱科学家的预言并未兑现——放射科医生仍然存在，但工作方式已被 AI 显著重塑：读片辅助、报告生成、工作流重组成为常态。这是对 AI 全面替代职业这一主流预言的实证校准。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Charges Dropped Against Person Who Clapped at a City Data Ce</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/charges-dropped-against-person-who-clapped-at-a-city-data-center-meeting/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section IV</span></div>
+      <div class="card-body">404 Media 报道：Lux Claridge 在一场关于数据中心的市镇会议上鼓掌，被保安拖离现场并以妨碍警察罪起诉，后指控被撤销。数据中心扩张引发的地方公众反弹与行政压制升级为对公共参与权的直接干预。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Black Hat State of Security Vendors</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/08/black-hat-state-of-security-vendors.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section III</span></div>
+      <div class="card-body">Schneier 转载 Andy Ellis 对今年 Black Hat 安全厂商的综述：安全行业已全面进入 AI 世界——近半数展位标语未直接提及 AI 或智能体，但 AI 的影响无处不在；身份、SaaS、AppSec、数据等领域的厂商几乎全部以 AI 打头；既有的未解决问题在 AI 时代变得更糟。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenWorker 新版发布，内置网络安全智能体</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Andrew Ng（DeepLearning.AI 创始人） (@AndrewYNg)</span><span>·</span><a href="https://x.com/AndrewYNg/status/2092315079576555806" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">Andrew Ng 旗下开源智能体 OpenWorker 发布新版，强化安全工作流：harness 完全开源可审计（无后门），内置代码漏洞扫描、依赖供应链注入检测、云安全配置检查三类网络安全智能体，并支持本地运行开源权重模型以保护敏感代码。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">WeatherNext 预测气旋：提前五天预警五级飓风</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Google AI (@GoogleAI)</span><span>·</span><a href="https://x.com/GoogleAI/status/2092275116503707733" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section I</span></div>
+      <div class="card-body">Google AI 发布 WeatherNext 气旋预测模型，可同时预测风暴路径、强度与规模，比现有系统多提供一整天的预警时间。2025 飓风季实战中提前五天预测飓风 Melissa 在牙买加的五级登陆，系美国国家飓风中心首次实时使用 AI 模型；单场风暴可生成多达 1000 次模拟，代码与权重已开源。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

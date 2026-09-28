@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -267,6 +312,21 @@ nav{
       <div class="card-implications">补充认知金融化/Token 陷阱模型的产业级实证：token 计费、路由与结算被标准化为可收购的基础设施，认知劳动交换完成金融化闭环——定价权与调度权集中于资本实体。同时为资本驯化AI 提供新杠杆：控制结算层即可通过默认路由与推荐结构影响模型采纳，是'驯化'从训练端延伸至消费分发端的直接案例。另与 8/13 记录的 OpenRouter 搜索基准（信号异化）呼应：聚合器的评分与路由本已替代质量信号，如今该信号权被金融化定价收编。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (1条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic CEO says AI backlash is ‘fundamentally a crisis of</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/16/anthropic-ceo-says-ai-backlash-is-fundamentally-a-crisis-of-trust/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3（共识牢笼）</span></div>
+      <div class="card-body">Anthropic CEO Dario Amodei 于 2026 年 8 月 16 日接受 TechCrunch 采访，正面回应外界对其&#x27;过度悲观渲染 AI 风险&#x27;的批评，称当前 AI 反弹（backlash）&#x27;根本上是信任危机&#x27;。背景是 Amodei 数月来持续公开警告前沿模型能力失控风险，而 8 月中旬有投资者公开质疑其末日营销将损害 Anthropic 的 IPO 估值，形容他&#x27;更像宗教领袖而非 CEO&#x27;。Amodei 的核心辩护是：公众对 AI 的担忧并非技术失败，而是对部署主体信任崩塌，行业应通过透明沟通与治理机制重建信任，而非停止发展。直接后果是，Anthropic 的对外叙事从&#x27;安全警示&#x27;转向&#x27;信任修复&#x27;框架，试图在减速话语与商业化压力之间寻找平衡点；这一表态也与其数日内披露的文本水印机制透明化、2 万亿美元 IPO 预期形成联动，显示头部实验室正以&#x27;信任治理&#x27;话语整合安全与资本市场双重诉求。行业影响上，信任危机框架为 AI 治理讨论提供了新的语言模板，但未能回应批评者提出的&#x27;能力释放不可逆&#x27;这一结构性追问。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

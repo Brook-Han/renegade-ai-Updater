@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -331,6 +376,39 @@ nav{
       <div class="card-implications">支持并深化「信号异化」。此前案例（基准分被事后修订、llms.txt 供应链投毒）是外部信号被操纵，本例则是信号的生产者与验证者被合并为同一主体——人类审阅量下降意味着独立校验环节被结构性拆除，而非仅被削弱。同时补充「暗时间」：测试推理在 Devin 内部完成，工程师只消费「已通过」这一结论。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (3条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nscale adds former OpenAI exec Fidji Simo to its board ahead</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/11/nscale-adds-former-openai-exec-fidji-simo-to-its-board-ahead-of-potential-ipo/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">算力服务商 Nscale 在筹备潜在 IPO 期间，任命前 OpenAI 二号人物、曾主导 Instacart 2023 年上市的 Fidji Simo 进入董事会。核心事实是 AI 算力供应商正系统性引入兼具资本市场操盘经验与大型科技公司运营背景的高管，以完成从私有基础设施商向公共市场公司的身份转换。直接后果是算力层的资本化进程再获节点：Nscale 此前已获 35 亿美元融资，本次人事任命进一步指向公开上市。本条与 9 月初 Nscale 的 pre-IPO 融资构成同一案例链的连续节点。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">‘We Did Not Invite You.’ Citizens Rage at Town Hall Over Pro</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/we-did-not-invite-you-citizens-rage-at-town-hall-over-proposed-nuclear-ai-data-center/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">密歇根大学与洛斯阿拉莫斯国家实验室合作，计划在一座小型密歇根镇区建设大型 AI 数据中心，并配套核能供电。在当地听证会上，居民集体愤怒抗议，指出自己从未被征询意见。核心事实是 AI 基础设施的选址与能源方案在未获社区同意的情况下推进，居民以「你们没有邀请我们」直接指认决策过程的排他性。直接后果是 AI 算力扩张的民主赤字从统计口径（此前的幽灵用电需求质疑）升级为具体社区的政治冲突，并与 9 月初曝光的 32 亿美元数据中心多层 SPV 结构问责真空构成同一问题线的两个切面。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenRouter 发布 Fusion 复合模型，让多个模型辩论后合成最终答案</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenRouter：Announcements（RSS）</span><span>·</span><a href="https://openrouter.ai/blog/insights/fusion-explainer" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">OpenRouter 发布 Fusion 复合推理系统：将同一提示词并行分发给 1 至 8 个面板模型，由 judge 模型比较各模型输出的共识与分歧，再由调用模型综合写出最终答案。官方披露的性能与成本数据显示，默认三模型面板的成本约为单次完成的 4 至 5 倍、延迟为 2 至 3 倍；在 DRACO 深度研究基准上预算面板得分 64.7%，前沿面板得分 69.0%。核心事实是多模型辩论被封装为可调用的标准商品，并以明确的成本与延迟倍数定价。直接后果是「用更多算力换更高可靠性」被产品化为默认选项，用户以支付溢价的方式购买经过内部仲裁的结论。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

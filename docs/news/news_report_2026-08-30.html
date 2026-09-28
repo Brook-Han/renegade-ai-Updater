@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,57 @@ nav{
       <div class="card-implications">这条新闻印证'资本驯化AI'模型的供应链维度：模型供给方作为资本主体，通过切断供给行使生态控制权，下游工具的命运系于上游资本博弈。同时映射'共识牢笼'——OpenAI 以'信任问题'表述将商业对抗叙事化，形成自洽的主流解释。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (5条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Sony Music, Warner sue Anthropic, alleging a “brazen campaig</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/29/sony-music-warner-sue-anthropic-alleging-a-brazen-campaign-of-intellectual-property-theft/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">Sony Music 与 Warner Music 于2026年8月29日对 AI 公司 Anthropic 提起诉讼，指控其存在&#x27;明目张胆的&#x27;知识产权盗窃行为，是迄今范围最广的音乐行业起诉 AI 企业的案件之一。背景是唱片公司持续打击 AI 训练数据中的版权内容使用，此前环球音乐等已发起多起类似诉讼。核心事实包括：两大唱片巨头联手起诉，指控 Anthropic 未经授权使用受版权保护的音乐作品进行模型训练，并称这是&#x27;非法盗版运动&#x27;。直接后果是 Anthropic 面临新的法律压力与潜在巨额赔偿，其训练数据合规策略将受到更严格司法审查。行业影响上，此案标志着内容产业与 AI 训练方之间的版权冲突进一步升级，可能推动训练数据授权与补偿机制的立法与行业标准形成，也加剧了 AI 公司获取高质量语料的合规成本。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia’s AI advantage is moving beyond the GPU</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/29/nvidias-ai-advantage-is-moving-beyond-the-gpu/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">TechCrunch 于2026年8月29日报道，NVIDIA 的 AI 竞争优势正从 GPU 硬件延伸到数据中心整体系统层面。背景是新一代数据中心系统通过更智能的网络流量控制与调度提升效率，而非单纯堆叠更多处理器算力。核心事实包括：NVIDIA 将网络、交换与软件栈整合进系统方案，使大规模 AI 训练与推理集群的端到端效率显著提升，硬件与系统协同成为新的差异化壁垒。直接后果是竞争对手难以仅凭 GPU 性能参数追赶，系统级优化构筑更深护城河。行业影响上，这一趋势强化了 NVIDIA 在 AI 算力基础设施中的主导地位，推高行业整体进入门槛，云厂商与芯片创业公司的追赶难度加大，同时也意味着算力资源进一步向头部集中。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] OpenAI shuts off Cursor</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-openai-shuts-off-cursor" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Latent Space 于2026年8月29日发布简报，分析 OpenAI 切断 Cursor 模型访问事件，标题直指&#x27;Elon v Altman 产生了真实后果&#x27;。背景是 SpaceX 收购 Cursor 母公司后，OpenAI 以信任问题为由终止合作，两大科技领袖的长期对抗首次在开发者工具市场落地。核心事实包括：OpenAI 决定11月12日起停止通过 Cursor 提供模型；评论指出这是亿万富翁资本博弈对下游开发者生态的实际冲击，开发者面临工具链被迫迁移的风险。直接后果是 Cursor 用户可预见地转向其他模型供应商，Anthropic 等竞争者受益。行业影响上，此事件被视为 AI 产业&#x27;权力政治化&#x27;的标志性样本——模型供应商的选择权成为资本对抗的筹码，开发者工具中立性神话被打破。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cursor回应OpenAI将封禁其模型访问</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Michael Truell (@mntruell)</span><span>·</span><a href="https://x.com/mntruell/status/2093532254006063557" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Cursor 创始人 Michael Truell 于2026年8月29日通过 X 平台回应 OpenAI 宣布封禁其模型访问的决定。背景是 SpaceX 收购 Cursor 后，OpenAI 以信任问题为由计划三个月内阻止 Cursor 用户访问其模型。核心事实包括：Truell 表示 OpenAI 模型承载 Cursor 约5%的用户流量，团队正在与 OpenAI 沟通解决；他强调 Cursor 是 OpenAI 最早的客户之一，多年来密切合作，并称一直信任 OpenAI 平台作为其业务的中立基础设施。直接后果是 Cursor 需要加速寻找替代模型供应商，以对冲5%流量的迁移风险。行业影响上，这一回应揭示了开发者工具对上游模型供应商的深度信任依赖，&#x27;中立基础设施&#x27;的信念与现实的资本博弈形成鲜明反差，引发对供应链集中风险的讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 终止与 Cursor 合作，11 月 12 日生效</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Tibo (@thsottiaux)</span><span>·</span><a href="https://x.com/thsottiaux/status/2093515916076343774" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">OpenAI 于2026年8月29日通过 X 平台宣布终止与 Cursor 的合作，自11月12日起生效。背景是 SpaceX 收购 Cursor 后引发信任问题，OpenAI 认为继续通过 Cursor 提供模型访问不再合适。核心事实包括：终止决定针对 Cursor 平台整体；开发者仍可通过自有 OpenAI API 密钥及 IDE 扩展继续使用 GPT 模型，影响面被限定在 Cursor 生态内；OpenAI 同时表示将继续支持广泛的工具生态与开源计划，试图淡化对抗色彩。直接后果是 Cursor 用户需在过渡期内调整工具链，Cursor 将加速整合其他模型供应商。行业影响上，该事件确立了模型供应商可单方面切断下游供给的先例，开发者工具的模型可移植性与供应链多元化成为新的行业议题。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

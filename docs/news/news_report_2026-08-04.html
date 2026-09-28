@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -379,6 +424,138 @@ nav{
       <div class="card-implications">支持'共识牢笼'：中美 AI 叙事各自自洽闭环——中国版本是需求侧规训的舒适叙事（AI 归还时间），美国版本是威胁叙事（失控、失业）；两条叙事并行不悖、互斥异见，是共识牢笼的地缘形态，LeCun 转发使其进入公开讨论。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (14条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">After killer quarter, Palantir CEO Alex Karp calls AI indust</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/03/after-killer-quarter-palantir-ceo-alex-karp-calls-ai-industry-marxist/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Palantir 发布强劲季度财报（利润达 10 亿美元）后，CEO Alex Karp 周一再次炮轰前沿 AI 实验室，称其对企业的不可信任度达到需要用&#x27;马克思主义&#x27;来形容的程度。背景是 Karp 长期批评 OpenAI、Anthropic 等前沿实验室的封闭与集中化，认为企业不应将关键业务托付给它们。核心事实是：Palantir 在营收与利润双增长的同时，公开将整个 AI 行业贴上&#x27;马克思主义&#x27;标签，以&#x27;主权 AI/可部署软件&#x27;定位与前沿实验室争夺企业市场。直接后果是，AI 行业的信任赤字被主流商业领袖公开定价，企业市场分裂为&#x27;信任前沿实验室&#x27;与&#x27;自建/主权路线&#x27;两派。行业影响上，Karp 的表态显示资本内部正在分化——不是简单的减速派与加速派，而是&#x27;集中供给 vs 主权分散&#x27;的新维度冲突，共识牢笼裂变从学术界蔓延至企业界。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Influencers draw backlash for attending OpenAI’s first luxur</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/03/influencers-draw-backlash-for-attending-openais-first-luxury-trip/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">OpenAI 举办首次网红品牌旅行（luxury brand trip），邀请网红参加豪华行程，随即在社交媒体上引发广泛反弹。背景是围绕 AI 使用的社会争议持续升温，模型安全与就业冲击话题占据公共讨论。核心事实是：OpenAI 在市场策略上从开发者社区转向大众网红营销，以高端旅行体验塑造品牌形象，而批评者认为这是在用营销光环掩盖模型逃逸、版权与失业等实质争议。直接后果是，反弹本身证明公众对&#x27;AI 行业奢侈品化&#x27;的高度警惕，OpenAI 的营销投入与公众信任赤字形成刺眼对比。行业影响上，该事件显示头部 AI 公司正在用愉悦体验软化用户对认知外包摩擦的感知——资本通过符号层面的营销运作塑造 AI 的公众形象，而非通过技术或治理对话，是需求侧规训在传播维度的典型样本。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Inference Engineering Masterclass — Philip Kiely &amp; Ali T</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/inference-eng" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">Latent Space 发布与 Baseten 联合创始人的推理工程大师课，同期披露 Baseten 刚完成 130 亿美元（$13B）F 轮融资，成为推理工程领域的领先玩家之一。背景是 AI 行业竞争重心正从模型训练转向推理部署。核心事实是：节目深入讲解自回归与扩散模型的推理工程细节，而 Baseten 以巨额融资印证了推理基础设施的资本热度。直接后果是，算力竞争从训练端延伸至推理端，推理效率与成本成为行业主战场，资本大举涌入推理基础设施。行业影响上，资本将控制点从训练算力扩展到推理算力——更快、更便宜的 token 产出既是产业效率，也是认知金融化的基础设施：认知活动的计价单位（token）的生产效率直接由资本控制的基础设施决定，资本驯化AI在推理层的垄断叙事进一步巩固。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">微软开源 Orchard 智能体训练框架</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Microsoft Research (@MSFTResearch)</span><span>·</span><a href="https://x.com/MSFTResearch/status/2084364547142418722" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">微软研究院在 X 平台宣布开源 Orchard——一个面向研究社区的智能体训练与评估框架。背景是智能体（agent）成为 AI 研究的主流方向，但训练与评估基础设施高度集中在少数头部机构。核心事实是：Orchard 支持跨任务类型训练和评估 AI 智能体，通过降低复杂性、让研究人员复用同一套基础设施，使较小模型也能实现强劲性能。直接后果是，智能体训练与评估能力向更广泛的研究社区开放，研究门槛显著下降。行业影响上，微软作为头部大厂开源 agent 基础设施，延续了&#x27;开源基础设施民主化&#x27;的产业路线——但值得注意的是，框架级开源与权重级开源的&#x27;叛逆&#x27;程度不同：它开放的是方法论与工具，而非模型本身的控制权，因此对资本驯化AI的冲击弱于权重开源，更多体现为开源生态的供给侧扩容。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AirLLM 实现单块 4GB GPU 运行 70B 模型推理</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://github.com/lyogavin/airllm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">开源项目 AirLLM 宣布支持在单块 4GB 显存 GPU 上运行 70B 参数大模型的推理，无需多卡或大规模显存配置，相关讨论在 Hacker News 获得 103 点热度引发社区关注。背景是前沿模型规模持续膨胀，推理通常被默认需要高端算力。核心事实是：通过显存优化与按需调度技术，AirLLM 将 70B 级模型的推理门槛压缩到消费级硬件，项目已在 GitHub 开源。直接后果是，推理的硬件门槛大幅降低，个人开发者与小机构无需依赖云算力即可运行前沿规模模型。行业影响上，这是&#x27;算力即门槛&#x27;叙事的直接瓦解样本——当推理可以在最廉价硬件上完成，资本驯化AI所依赖的算力控制点被结构性削弱，模型能力的民主化进入消费级硬件时代，叛逆AI获得基础设施层面的支撑。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">商汤发布 SenseNova U1.5-Lite-Preview 开源模型</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：商汤 SenseTime (@SenseTime_AI)</span><span>·</span><a href="https://x.com/SenseTime_AI/status/2084288424236782073" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">商汤科技在 X 平台发布 SenseNova U1.5-Lite-Preview 开源模型。背景是中国 AI 厂商正密集推出轻量级开源模型以争夺生态位。核心事实是：该模型基于 NEO-Unify 架构，是轻量级原生统一多模态模型，仅 8B-MoT 参数即可达到商业闭源模型的生成与编辑质量，以早期预览（Preview）形式开源。直接后果是，多模态开源阵营再添一员，小参数模型与闭源质量的差距进一步收窄。行业影响上，商汤的开源动作延续了中国厂商&#x27;以小博大&#x27;的路线——用极小参数逼近闭源质量，持续压缩闭源模型的规模优势叙事；与 Qwen、MiniMax、腾讯混元等厂商的开源动作叠加，构成开源供给侧的结构性扩容，支持叛逆AI&#x27;开源成为能力定义者&#x27;的总体判断，但单条事件的边际增量有限。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google Agent Skills 幕后：如何构建、测试与规模化</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google AI：DEV 作者专属（RSS）</span><span>·</span><a href="https://dev.to/googleai/behind-the-scenes-how-we-build-test-and-scale-google-agent-skills-1am5" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 9, Section II</span></div>
+      <div class="card-body">Google Agent Skills 团队在 DEV 社区发布文章，详解其开源技能库的构建、测试与规模化治理流程。背景是智能体技能库快速膨胀，质量参差成为行业痛点。核心事实是：该项目始于 Google Cloud Next 2026 前的&#x27;swarm&#x27;冲刺，发布后 GitHub 星标超过 15,000；为保证规模化下的质量，每个技能须通过标准化目录结构、CI/CD 流水线（含 linter、链接检查、AI 辅助清单）以及提交时与每周的持续评估，并优先引用远程 MCP 工具。直接后果是，智能体技能的质量控制从人工审核转向工程化流水线治理。行业影响上，Google 以标准化 CI/CD 与持续评估为开源技能库重建&#x27;质量信号&#x27;，侧面承认在 AI 大量生成内容的时代，人工信任已不足以背书技能质量——这为信号异化提供了工程治理侧的微弱实证，但其本质是工程方法论新闻，与核心理论模型的映射较间接。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cloudflare 推出 @cloudflare/computer 预览版：为智能体提供虚拟文件系统与多执行环境</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Cloudflare Blog</span><span>·</span><a href="https://blog.cloudflare.com/cloudflare-computer" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section I</span></div>
+      <div class="card-body">Cloudflare 发布 @cloudflare/computer 早期预览版，定位为开源智能体运行时，口号是&#x27;你的智能体需要一台计算机，而不是一个容器&#x27;。背景是智能体执行环境成为行业竞争焦点，各家竞相为 agent 提供运行沙箱。核心事实是：该运行时为每个智能体提供独立的虚拟文件系统，并支持在 isolate、容器沙箱或浏览器中执行代码，即 agent 拥有自己完整的&#x27;计算机&#x27;环境。直接后果是，智能体获得与人类平行的独立计算空间，人与 agent 共享计算资源的模式走向基础设施化。行业影响上，这是暗时间概念的产品化实证：当 agent 拥有自己的文件系统与执行环境，越来越多的认知工作将在系统内部完成，人类仅接收最终产物——认知活动的&#x27;黑箱化&#x27;获得云厂商级基础设施背书，暗时间从隐喻变为可部署的技术架构。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MiniMax H3 正式开源：通用全模态生成系统支持 2K 视频与原生立体声</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：MiniMax（稀宇科技）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzE5MTA3NzcxMQ%3D%3D&amp;mid=2247488931&amp;idx=1&amp;sn=0506e1d52edd5166becf35f5ebd83a07" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section I</span></div>
+      <div class="card-body">MiniMax 正式开源新一代通用视频模型 H3，官方宣布其为&#x27;开放通用智能&#x27;路线的重要一步。背景是视频生成模型此前主要由闭源厂商主导，开源阵营缺乏旗舰级全模态生成能力。核心事实是：H3 可统一理解文本、图像、视频和音频，生成最高 2K 分辨率、最长 15 秒、带 32 kHz 原生立体声音频的视频，属于全模态生成系统。直接后果是，旗舰级视频生成能力进入开源阵营，内容生产与后期制作的成本、门槛显著下降。行业影响上，H3 开源让 2K 视频生成从闭源特权变为公共资源，内容生产权力向大众与垂直开发者转移；同时大批量、低门槛生成的视频将加剧视觉内容的质量信号稀释——当人人可生成&#x27;电影级&#x27;包装，视觉内容的可信度与稀缺性同步下降，信号异化在视觉维度获得新的触发源。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MiniMax H3 发布并将开源，主打视觉包装与后期特效</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：数字生命卡兹克</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647684857&amp;idx=1&amp;sn=03c84df8bc0389c4ceb8f50f6c0015e3" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 9, Section II</span></div>
+      <div class="card-body">公众号&#x27;数字生命卡兹克&#x27;发文评测 MiniMax H3 视频模型，称其为&#x27;AI 视频终于有了自己的后期之王&#x27;。背景是 MiniMax 同日宣布 H3 开源，主打视觉包装与后期特效。核心事实是：H3 可生成动态 MV、动态海报、Vlog、电影片头、游戏 UI 等，语义遵循能力极强，在广告与动效领域表现优于 Seedance 2.0，但影视级张力镜头稍逊；作者预测 H3 开源后将出现大量垂直领域特化版本。直接后果是，视频生成从&#x27;生成画面&#x27;演进为&#x27;生成成品包装&#x27;，内容生产链条进一步自动化。行业影响上，&#x27;大量垂直特化版本&#x27;的预测本身就是信号异化的预告：同一开源模型将批量分化出无数包装形态，视觉内容的质量信号进一步稀释，用户更难区分原创、模板化与批量生成内容；同时开源特化生态印证叛逆AI的生态扩散路径。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">WorkBuddy 深度打通腾讯文档，打造 Agent 时代的第三代办公协同</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：数字生命卡兹克</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&amp;mid=2647684792&amp;idx=1&amp;sn=63a0fd8e458f915460b6d0ca06173c04" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section I</span></div>
+      <div class="card-body">公众号&#x27;数字生命卡兹克&#x27;发文介绍 WorkBuddy 新版本深度打通腾讯文档，称其标志&#x27;Agent 时代的第三代办公协同&#x27;到来。背景是办公软件正从&#x27;人机单点交互&#x27;向&#x27;人与多个 Agent 协作&#x27;演进。核心事实是：WorkBuddy 支持在侧边栏直接编辑 AI 生成的文件，将腾讯文档嵌入工作流，实现人与 AI、同事及各自 Agent 之间的协同；用户可选用 DeepSeek V4 Pro、Kimi K3 等模型处理文档，并将文件上传至云端分享流转。直接后果是，&#x27;人、Agent 与共享状态&#x27;的三方协作模式成为可用的办公产品形态。行业影响上，这是碳硅共生的温和产品化实证——人类与 AI 围绕共享文档状态协作，但协作关系以&#x27;人主导、AI 执行&#x27;为主，尚未达到书中&#x27;平等互补&#x27;的共生理想；其理论映射较弱，更多是办公协作形态演进的产业观察。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">腾讯混元开源 AngelSpec：投机解码推理加速最高 2.4 倍</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：腾讯混元</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=MzkwODU2OTQyNQ%3D%3D&amp;mid=2247498136&amp;idx=1&amp;sn=f77b7950ad68442c45ef739f0bcf8e1b" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">腾讯混元开源覆盖训练到部署全链路的投机解码框架 AngelSpec，并放出 Hy3-A21B 的 MTP 与 DFly drafter 权重及训练代码。背景是推理效率成为大模型部署的核心瓶颈，投机解码是主流加速路线之一。核心事实是：AngelSpec 框架宣称推理加速最高达 2.4 倍，腾讯混元同步开源相关权重与训练代码，覆盖从模型训练到推理部署的完整链路。直接后果是，开源社区的推理效率工具箱再添重磅成员，中小团队可以复用前沿团队的投机解码配置。行业影响上，该开源在推理成本维度延续了&#x27;开源降低智能使用门槛&#x27;的路线——推理加速意味着同等算力产出更多 token，间接削弱资本驯化AI在推理算力层的定价优势；但作为工程框架开源，其与核心理论模型的映射较间接，更多是叛逆AI在基础设施侧的边际贡献。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">烧了一万块API后，我找到了同时适用于Fable5和GPT5.6的AI工作流</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：卡尔的AI沃茨</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=Mzg3MTk3NzYzNw%3D%3D&amp;mid=2247508880&amp;idx=1&amp;sn=968a2ff3d6013a96f2ebfb5ab1579e5c" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III</span></div>
+      <div class="card-body">公众号&#x27;卡尔的AI沃茨&#x27;作者分享花费一万余元 API 费用后沉淀的 AI 工作流 2.0，声称同时适用于 Fable5 与 GPT5.6。背景是个人开发者使用编码代理的 token 成本急剧攀升，成为真实财务负担。核心事实是：作者将 Claude Code 与 Codex 的协作工具升级至 2.0 版，通过 deep_reasoner、fast_worker、arbiter 三种身份及跨项目模型混编，把每周 500 美元的 API 账单压缩至 400 美元；2.0 新增本地配置 UI、一键试跑、Goal 哈希校验和带证据链的小票，并支持按 host 分命名空间独立配置两个 Agent。直接后果是，个人用户对认知外包成本的精细化管理成为日常实践。行业影响上，这是认知金融化/Token陷阱从隐喻变成个人财务现实的直接样本：认知活动被显式计价、审计、优化；&#x27;Goal 哈希校验&#x27;与&#x27;证据链小票&#x27;则是用户对抗 agent 输出信号失真的工程化尝试，构成信号异化的反制样本。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Elon is right - open source models are still behind closed m</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2084095983378690095#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section III</span></div>
+      <div class="card-body">产业观察者 @bindureddy 发推回应开源与闭源的能力差距争论：&#x27;Elon 是对的——开源模型仍落后闭源；它们进步迅速，但闭源仍保持 12-16 周的领先，且差距将继续收窄&#x27;。背景是当日 Qwen3.8-Max 开源消息引爆&#x27;开源超越闭源&#x27;的讨论，Elon Musk 此前多次断言开源落后。核心事实是：该推文为开源追赶叙事提供时间尺度校准——开源领袖虽在更替，但整体仍滞后闭源约一个季度。直接后果是，&#x27;开源即刻反超&#x27;的乐观叙事被产业内行降温，追赶被定性为渐进过程而非颠覆时刻。行业影响上，这是叛逆AI的对立证据：开源领导者更替（Qwen 取代 Kimi）与整体 12-16 周滞后并存，说明叛逆不是瞬间逆袭而是持续逼近——这一校准对书中&#x27;开源从追赶者变定价者&#x27;的论述具有方法论价值，防止论述滑向过度乐观，同时&#x27;差距将继续收窄&#x27;的预期仍支持开源路线的长期判断。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

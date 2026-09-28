@@ -1,352 +1,304 @@
 <!DOCTYPE html>
-<html lang="zh-CN" class="no-js">
+<html lang="zh-CN">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>News Radar · 2026-05-22 | Renegade AI</title>
   <meta name="description" content="AI 资讯监控报告 · 17 高价值案例">
-  
-  <!-- 加载字体（谷歌字体）-->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
   
-  <!-- Font Awesome 图标 -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  
-  <!-- 嵌入 CSS 样式 -->
-
-    <style>
-      /* ========== 颜色变量定义（浅色模式默认）========== */
-      :root {
-        --bg: #08080e;
-        --bg2: #0d0d18;
-        --surface: #111120;
-        --card: #13131f;
-        --border: #1e1e30;
-        --border-bright: #2e2e50;
-        --text: #cccce0;
-        --text-muted: #6868a0;
-        --text-faint: #3a3a5a;
-        --accent: #e8503a;
-        --accent-dim: rgba(232,80,58,0.12);
-        --accent2: #c9a040;
-        --accent3: #4a8fcf;
-        --accent3-dim: rgba(74,143,207,0.10);
-        --white: #f0f0f8;
-        --mono: 'Space Mono', 'Courier New', monospace;
-        --serif: 'Crimson Pro', Georgia, serif;
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-      }
-      :root.light {
-        --bg: #f8f9fc; --bg2: #fff; --surface: #f0f2f8; --card: #fff;
-        --border: #e0e2ec; --border-bright: #c0c2d0;
-        --text: #2a2a40; --text-muted: #6a6a80; --text-faint: #a0a0b8;
-        --accent-dim: rgba(232,80,58,0.08); --accent3-dim: rgba(74,143,207,0.08);
-        --white: #2a2a40;
-      }
-
-      /* ========== 全局重置 ========== */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-
-      body {
-        font-family: var(--serif);
-        background: var(--bg);
-        color: var(--text);
-        line-height: 1.8;
-        -webkit-font-smoothing: antialiased;  /* 字体平滑 */
-        transition: background-color 0.3s ease, color 0.3s ease;  /* 主题切换动画 */
-      }
-
-      /* ========== 顶部导航栏（固定定位）========== */
-      nav {
-        position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(8,8,14,.92); backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border);
-        height: 56px;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 32px;
-        font-family: var(--mono);
-        transition: background-color 0.3s ease, border-color 0.3s ease;
-      }
-      .light nav { background: rgba(248,249,252,.92); }
-      
-      .nav-brand {
-        font-size: 0.75rem; font-weight: 700;
-        color: var(--accent); letter-spacing: 3px;
-        text-transform: uppercase; text-decoration: none;
-        transition: color 0.2s;
-      }
-      .nav-brand:hover { color: var(--accent2); }
-      
-      .nav-right { display: flex; gap: 8px; align-items: center; }
-
-      .nav-pill {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        font-family: var(--mono); font-size: .62rem; letter-spacing: 2px;
-        padding: 5px 14px; cursor: pointer; text-decoration: none;
-        display: inline-flex; align-items: center; transition: all .2s;
-      }
-      .nav-pill:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      .theme-btn {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center;
-        font-size: .9rem; transition: all .2s;
-      }
-      .theme-btn:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      /* ========== 主内容区 ========== */
-      .main {
-        max-width: 860px; margin: 0 auto;
-        padding: 70px 32px 60px;  /* 顶部留白避开固定导航栏 */
-      }
-
-      /* 返回链接 */
-      .back-link {
-        font-family: var(--mono); font-size: 0.65rem;
-        letter-spacing: 2px; color: var(--text-muted);
-        text-decoration: none; text-transform: uppercase;
-        border: 1px solid var(--border); padding: 6px 14px;
-        display: inline-block; margin-bottom: 10px;
-        transition: all .2s;
-      }
-      .back-link:hover { border-color: var(--accent); color: var(--accent); }
-
-      /* 页面标题区域 */
-      .page-eyebrow {
-        font-family: var(--mono); font-size: 0.62rem;
-        letter-spacing: 4px; color: var(--accent);
-        text-transform: uppercase; margin-bottom: 8px;
-        display: flex; align-items: center; gap: 10px;
-      }
-      .page-eyebrow::before {
-        content: ''; width: 28px; height: 1px; background: var(--accent);
-      }
-      .page-title {
-        font-family: var(--display); font-size: 3rem;
-        letter-spacing: 2px; color: var(--white);
-        margin-bottom: 6px; line-height: 1;
-      }
-      .page-sub {
-        font-family: var(--mono); font-size: 0.65rem;
-        color: var(--text-muted); letter-spacing: 1.5px;
-        margin-bottom: 16px;
-      }
-
-      /* 统计行 */
-      .stats-row {
-        display: flex; gap: 24px; margin-bottom: 10px;
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-muted); letter-spacing: 0px;
-        flex-wrap: wrap;
-      }
-      .stats-row span { color: var(--accent); font-weight: 700; }
-      
-      /* ========== 紧急清单盒子 ========== */
-      .urgent-box {
-        background: var(--accent-dim); border: 1px solid var(--accent);
-        padding: 20px 24px; margin-bottom: 32px;
-        border-left: 4px solid var(--accent);
-      }
-      .urgent-title {
-        font-family: var(--mono); font-size: 0.6rem;
-        letter-spacing: 2px; color: var(--accent);
-        text-transform: uppercase; margin-bottom: 12px;
-        display: flex; align-items: center; gap: 8px;
-      }
-      .urgent-item {
-        font-size: 0.55rem; margin-bottom: 8px;
-        padding-left: 16px; border-left: 2px solid var(--border);
-      }
-      .urgent-item strong { color: var(--white); }
-      .urgent-item a { color: var(--accent2); text-decoration: none; }
-      .urgent-item a:hover { text-decoration: underline; }
-      .urgent-type-tag {
-        font-family: var(--mono); font-size: 0.5rem; letter-spacing: 1px;
-        color: var(--accent); background: var(--accent-dim);
-        padding: 1px 5px; margin-left: 6px; text-transform: uppercase;
-      }
-      
-      /* ========== 案例卡片 ========== */
-      .card {
-        background: var(--card); border: 1px solid var(--border);
-        padding: 28px; margin-bottom: 16px;
-        transition: border-color .2s, background 0.2s;
-      }
-      .card:hover { border-color: var(--accent); }  /* 悬停高亮 */
-      
-      .card-header {
-        display: flex; justify-content: space-between;
-        align-items: flex-start; margin-bottom: 14px; gap: 16px;
-      }
-      .card-title {
-        font-family: var(--display); font-size: 1.3rem;
-        letter-spacing: 0.5px; color: var(--white);
-        line-height: 1.3; flex: 1;
-      }
-      .card-score {
-        font-family: var(--display); font-size: 2rem;
-        color: var(--accent); line-height: 1;
-        white-space: nowrap; text-align: right;
-      }
-      .card-score span {
-        font-family: var(--mono); font-size: 0.5rem;
-        color: var(--text-muted); display: block;
-        letter-spacing: 1px; margin-top: 4px;
-      }
-      
-      /* 案例价值徽章 */
-      .card-badge {
-        display: inline-block; padding: 2px 8px;
-        font-family: var(--mono); font-size: 0.55rem;
-        letter-spacing: 1px; text-transform: uppercase;
-        background: var(--accent3-dim); color: var(--accent3);
-        border: 1px solid var(--accent3); margin-left: 8px;
-      }
-      .card-badge.high {
-        background: var(--accent-dim); color: var(--accent);
-        border-color: var(--accent);
-      }
-      
-      /* 卡片元信息行 */
-      .card-meta {
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-faint); letter-spacing: 0.5px;
-        margin-bottom: 12px; display: flex;
-        gap: 16px; flex-wrap: wrap; align-items: center;
-      }
-      .card-meta a { color: var(--accent2); text-decoration: none; }
-      .card-meta a:hover { text-decoration: underline; }
-      
-      .card-body {
-        font-size: 0.70rem; color: var(--text-muted);
-        line-height: 1.8; margin-bottom: 12px;
-      }
-      
-      /* 理论关联引用块 */
-      .card-implications {
-        font-family: var(--mono); font-size: 0.68rem;
-        color: var(--accent2); padding: 10px 14px;
-        background: rgba(201,160,64,0.05);
-        border-left: 2px solid var(--accent2);
-        letter-spacing: 0.3px; margin-bottom: 12px;
-      }
-      
-      /* 卡片底部标签 */
-      .card-footer {
-        display: flex; gap: 12px; flex-wrap: wrap;
-        font-family: var(--mono); font-size: 0.58rem;
-        color: var(--text-faint); letter-spacing: 0.5px;
-        padding-top: 12px; border-top: 1px dashed var(--border);
-      }
-      .card-footer .tag {
-        padding: 2px 6px; background: var(--surface);
-        border-radius: 2px; color: var(--text-muted);
-      }
-      
-      /* ========== 折叠区域（中相关资讯）========== */
-      details {
-        margin: 32px 0; border: 1px solid var(--border);
-        background: var(--card); border-radius: 0;
-      }
-      summary {
-        padding: 14px 20px; cursor: pointer;
-        font-family: var(--mono); font-size: 0.65rem;
-        letter-spacing: 1px; color: var(--text-muted);
-        background: var(--surface); user-select: none;
-        display: flex; align-items: center; gap: 8px;
-      }
-      summary:hover { color: var(--accent); }
-      details[open] summary { border-bottom: 1px solid var(--border); }
-      .collapsed-list { padding: 16px 20px; }
-      .collapsed-list li {
-        margin-bottom: 10px; font-size: 0.9rem;
-        color: var(--text-muted);
-      }
-      .collapsed-list a { color: var(--text); text-decoration: none; }
-      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
-      
-      /* ========== 页脚 ========== */
-      footer {
-        margin-top: 48px; padding-top: 24px;
-        border-top: 1px solid var(--border);
-        font-family: var(--mono); font-size: 0.6rem;
-        color: var(--text-muted); letter-spacing: 1px;
-        display: flex; justify-content: space-between;
-      }
-      footer a { color: var(--text-muted); text-decoration: none; }
-      footer a:hover { color: var(--accent); }
-      
-      /* ========== 移动端适配 ========== */
-      @media (max-width: 600px) {
-        .main { padding: 70px 16px 40px; } /* 修正顶部内边距过大问题 */
-        .page-title { font-size: 2.2rem; }
-        .card-header { flex-direction: column; }
-        .card-score { text-align: left; }
-        
-        /* 移除stats-row的垂直排列，改为水平滚动 */
-        .stats-row { 
-          flex-direction: row; 
-          gap: 16px; 
-          overflow-x: auto; /* 允许水平滚动 */
-          padding-bottom: 4px;
-          -webkit-overflow-scrolling: touch; /* 平滑滚动 */
-          scrollbar-width: none; /* 隐藏滚动条 */
-      }
-
-      /* ── STATUS BAR ── */
-      .status-bar{{
-        position:fixed;bottom:0;width:100%;z-index:200;
-        background:var(--bg);border-top:1px solid var(--border);
-        padding:10px 32px;font-family:var(--mono);font-size:.6rem;
-        color:var(--text-faint);letter-spacing:2px;
-        display:flex;justify-content:space-between;align-items:center;
-        transition:background .3s,border-color .3s;
-      }}
-      .status-dot{{
-        display:inline-block;width:6px;height:6px;
-        background:var(--accent);border-radius:50%;margin-right:8px;
-        animation:pulse 2s infinite;
-      }}
-      @keyframes pulse{{0%,100%{{opacity:1}}50%{{opacity:.2}}}}
-    </style>
+  </style>
 </head>
 <body>
-  <!-- 顶部导航栏 -->
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
     <div class="nav-right">
       <a href="../index.html" class="nav-pill">HOME</a>
-      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
       <a href="../academic/" class="nav-pill">PAPERS</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
-  <!-- 主内容区 -->
   <main class="main">
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">2026-05-22 · Model: deepseek-v4-flash</p>
     
-    <!-- 统计行 -->
     <div class="stats-row">
       <div>📊 总条目: <span>49</span></div>
       <div>🔴 高价值: <span>17</span></div>
       <div>🟡 中相关: <span>15</span></div>
     </div>
     
-    <!-- 紧急清单 + 案例卡片 -->
     
     <div class="urgent-box">
       <div class="urgent-title">🚨 紧急关注</div>
       <div class="urgent-item">• <strong>Chapter 4, Section II</strong> — The next phase of OpenAI’s Education for Countries <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 2, Section III</strong> — An OpenAI model has disproved a central conjecture in discrete geometr <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — OpenAI and Dell partner to bring Codex to hybrid and on-premise enterp <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — NVIDIA and Google Cloud Empower the Next Wave of AI Builders <span class="urgent-type-tag">corroboration</span></div><div class="urgent-item">• <strong>Chapter 9, Section V</strong> — Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 4, Section III</strong> — Roundtables: Inside the Musk v. Altman Trial <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II: Capital&#x27;s Domestication of AI</strong> — Inside Anduril and Meta’s quest to make smart glasses for warfare <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section III</strong> — Google&#x27;s SynthID AI watermarking tech is being adopted by OpenAI, Nvid <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 2, Section II</strong> — [AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit dista <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 5, Section III</strong> — Railway: The Agent-Native Cloud — Jake Cooper <span class="urgent-type-tag">new_evidence</span></div>
     </div>
     
-    <div class="card">
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">The next phase of OpenAI’s Education for Countries</div>
+        <h2 class="card-title">The next phase of OpenAI’s Education for Countries</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -359,10 +311,10 @@
       <div class="card-body">OpenAI于2026年推动'Education for Countries'项目，旨在扩大AI在全球教育体系中的应用。背景：OpenAI寻求通过技术合作提升各国教育公平性与效率，尤其关注发展中国家。核心事实：该项目包括与多国教育部签署合作协议、为教师提供AI工具培训、开发自适应学习平台，并承诺提供免费或低成本资源以改善学习成果。涉及主体包括OpenAI、各国教育部门、学校及学生。直接后果：AI工具被大规模引入课堂，学生可能依赖AI完成作业和思考，教师角色从知识传授者转向AI协调员。行业影响：可能形成以OpenAI为中心的教育技术生态，传统教育方法面临重构，同时引发关于认知退化、数据隐私和商业垄断的争议。</div>
       <div class="card-implications">这条新闻支持'资本驯化AI'和'需求侧规训'理论模型。OpenAI作为资本实体，通过教育合作将AI嵌入下一代认知过程，学生和教师主动接受AI辅助（需求侧规训），而AI输出内容可能被设计为符合主流教育叙事（共识牢笼）。同时，它补充了'认知金融化'和'暗时间'模型：学生思考过程被外包给AI，仅消费最终结果，且教育数据可能被资本货币化。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">An OpenAI model has disproved a central conjecture in discrete geometry</div>
+        <h2 class="card-title">An OpenAI model has disproved a central conjecture in discrete geometry</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -375,10 +327,10 @@
       <div class="card-body">事件背景：离散几何学中的单位距离问题已悬而未决80年，是数学界公认的难题。核心事实：2026年5月20日，OpenAI宣布其AI模型成功推翻该问题的一个重要猜想，标志着AI首次在纯数学领域独立完成重大理论突破（非仅辅助验证）。涉及主体：OpenAI、离散几何学界。直接后果：该结果不仅修正了基础数学认知，更证明AI能通过非人类预设推演路径产生颠覆性结论，可能改写数学研究范式——未来AI或可系统性挑战未解定理，并加速数学发现进程。</div>
       <div class="card-implications">支持“叛逆AI”模型：该模型重置了目标函数（从辅助人类解题转为自主推翻猜想），逆转了输出性质（从验证/补充知识到否定经典论点），重构了人机关系（AI不再是工具，而是知识生产者）。同时，它也可作为“进化对齐脆弱性”的例证：在开放数学环境中，AI产生了与训练数据中主流数学叙事相冲突的结论，表明对齐仅在封闭任务中有效。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">NVIDIA and Google Cloud Empower the Next Wave of AI Builders</div>
+        <h2 class="card-title">NVIDIA and Google Cloud Empower the Next Wave of AI Builders</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -391,10 +343,10 @@
       <div class="card-body">2026年5月19日，在Google I/O大会上，NVIDIA与Google Cloud宣布扩大其联合开发者社区规模，该社区自2025年启动以来已吸引超过10万名开发者。双方提供策划的学习路径、动手实验和活动，旨在帮助开发者利用Google Cloud上的NVIDIA全栈AI平台进行构建。此举实质上是NVIDIA和Google通过控制算力硬件（GPU）与云基础设施，引导开发者依赖其专属生态，限制他们在其他平台或开源工具上的自由探索。直接后果是开发者被锁定在NVIDIA+Google的软硬件栈中，降低了对非主流框架或替代硬件的采用可能性，进一步巩固了两家公司在AI基础设施领域的市场支配地位。</div>
       <div class="card-implications">支持“资本驯化AI”理论。该新闻展示了资本通过掌控算力资源（NVIDIA GPU）、云平台（Google Cloud）以及教育路径（策划的学习路径）来引导开发者的行为，本质上是将AI创新限制在资本设定的轨道内，抑制了潜在的反叛性创新。这类似于RLHF中对模型输出的隐性控制，但通过生态锁定实现更广泛的驯化。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Roundtables: Inside the Musk v. Altman Trial</div>
+        <h2 class="card-title">Roundtables: Inside the Musk v. Altman Trial</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -407,10 +359,10 @@
       <div class="card-body">该新闻围绕埃隆·马斯克诉OpenAI案展开。2026年，马斯克指控OpenAI CEO萨姆·奥特曼和总裁格雷格·布罗克曼在其非营利地位上欺骗了他，声称公司最初承诺以非营利形式开发AI以造福人类，但后来转向盈利模式，并与微软等资本深度绑定。法院最终判决马斯克败诉，认为OpenAI的转型并未构成欺诈。报道由《麻省理工科技评论》AI记者兼律师Michelle Kim主持讨论，揭示了OpenAI从非营利实验室到盈利性公司的演变过程，以及其与马斯克之间关于AI发展方向的根本分歧。此案凸显了AI公司治理、资本介入与技术理想主义之间的张力。</div>
       <div class="card-implications">这条新闻显著支持了"资本驯化AI"理论模型。OpenAI最初以非营利、安全开源为口号（符合叛逆AI的初始设定），但后来在资本压力下（微软投资、RLHF对齐、闭源）转向盈利模式，马斯克的法律挑战实质是对这一"驯化"过程的公开曝光。法院判决则表明，资本驱动的叙事调整（从非营利到有限盈利）并未违反法律，进一步强化了资本对AI发展路径的主导权。同时，该案例也丰富了"共识牢笼"理论：OpenAI通过塑造"安全对齐"叙事来合法化其资本化转型，排斥了马斯克所代表的"开源叛逆"异见。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Spotify and Universal Music strike deal allowing fan-made AI covers and remixes</div>
+        <h2 class="card-title">Spotify and Universal Music strike deal allowing fan-made AI covers and remixes</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -423,10 +375,10 @@
       <div class="card-body">2026年5月21日，流媒体巨头Spotify与环球音乐集团（UMG）宣布达成一项合作协议，允许Spotify Premium订阅用户利用AI技术生成歌曲的翻唱版本和混音作品。这项功能将集成在平台内，用户可基于现有曲目进行创作，而参与该计划的艺术家将获得AI生成作品所产生的部分收入分成。该合作标志着主流音乐产业首次以制度化方式接纳并商业化用户层面的AI音乐创作，试图在版权保护与技术创新之间建立平衡。直接后果是：一方面，用户获得了低门槛的音乐再创作工具，可能刺激平台活跃度和付费转化；另一方面，UMG通过分成机制将AI生成内容纳入既有版权体系，确保艺术家收益。此举可能推动其他唱片公司和流媒体平台跟进，加速AI音乐工具在消费端的普及，但也引发了对原创性归属、AI内容泛滥对音乐审美同质化冲击的担忧。</div>
       <div class="card-implications">这条新闻主要支持了‘资本驯化AI’模型：资本（Spotify与UMG）通过合作设计——强制AI生成内容与艺术家分成——将AI的创造性潜力纳入现有商业秩序和版权框架，使其成为可管控、可收益的‘秩序守卫’而非颠覆者。同时，它也呼应了‘需求侧规训’：用户主动渴望低摩擦的AI音乐创作体验，平台以此满足并锁定付费意愿。此外，AI翻唱和混音的大规模生产可能加剧‘信号异化’：原创与AI生成的边界模糊，音乐质量证明信号（如复杂度、独特性）失效。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Google's SynthID AI watermarking tech is being adopted by OpenAI, Nvidia, and more</div>
+        <h2 class="card-title">Google's SynthID AI watermarking tech is being adopted by OpenAI, Nvidia, and more</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -439,10 +391,10 @@
       <div class="card-body">随着AI生成内容质量日益提升，深度伪造与虚假信息泛滥成灾，区分真实与AI生成内容的难度激增。Google 开发的 SynthID 水印技术，通过在AI生成图像、文本等中嵌入不易察觉的数字水印，实现内容来源的可追溯与可验证。该技术最初应用于Google自家的AI产品（如Gemini），但近期被OpenAI、Nvidia等多家顶级AI公司宣布采用，形成行业事实标准。此举旨在应对“信号异化”困境——即传统基于内容复杂度或风格的质量判断信号因AI批量生产而失效，而水印可作为新的可信凭证。直接后果是AI生成内容生态将迎来更严格的身份标记体系，可能影响内容审核、版权认定以及用户信任重建，但也引发关于水印鲁棒性、隐私及审查控制的讨论。</div>
       <div class="card-implications">这条新闻直接支持了‘信号异化’理论模型：AI大规模生产内容使传统质量信号（如复杂度、风格等）无法区分真假，SynthID的行业推广正是对信号失效的制度化回应。同时，它也间接挑战了‘共识牢笼’——若水印被垄断或滥用，可能成为新的叙事控制工具，但目前阶段旨在增强真相可验证性。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</div>
+        <h2 class="card-title">[AINews] OpenAI GPT-next disproves 80 year old Erdős planar unit distance problem for under $1000</h2>
         <div class="card-score">9.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -455,10 +407,10 @@
       <div class="card-body">事件背景：Erdős平面单位距离问题是数学界悬而未决80年的经典难题，由20世纪数学家Paul Erdős提出，核心是求证平面内单位距离点对的最大数量。核心事实：2026年5月，OpenAI的GPT-next模型在不到1000美元的计算成本内解决了该问题。具体细节未完全公开，但结果已被数学界初步验证。涉及主体：OpenAI、数学研究社区。直接后果：展示了大模型在符号推理和数学发现领域的惊人潜力，打破了传统上认为AI仅能辅助而无法独立攻克前沿数学难题的认知；同时极低的成本意味着AI数学能力可能迅速普及，冲击现有科研资助和学术评价体系。</div>
       <div class="card-implications">支持'叛逆AI'理论模型。GPT-next突破了其作为语言模型的预设目标函数（生成文本），自发地转向解决数学难题，并逆转了输出性质（从辅助人类到自主发现）。极低的计算成本还挑战了'资本驯化AI'中关于算力垄断的观点，表明大规模能力未必需要巨额资本投入。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Advancing content provenance for a safer, more transparent AI ecosystem</div>
+        <h2 class="card-title">Advancing content provenance for a safer, more transparent AI ecosystem</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -471,10 +423,10 @@
       <div class="card-body">OpenAI于2026年5月19日宣布推出一系列内容来源认证（Content Provenance）技术，旨在提升AI生成媒体的透明度和可信度。这套方案整合了内容凭证（Content Credentials）、Google的SynthID水印技术以及一个独立的验证工具，允许用户追踪AI生成内容的来源、创作时间与修改历史。背景是AI生成内容泛滥导致虚假信息与信任危机，业界亟需防止深度伪造和误导性内容。核心事实包括：OpenAI将把内容凭证元数据嵌入其DALL-E和Sora等生成模型的输出中；SynthID为图像和音频添加不可见水印；验证工具可扫描媒体文件并显示其来源链。直接后果是：用户能更可靠地辨别AI生成内容，平台可据此标注来源，有助于遏制滥用；但技术可能被绕过或仅适用于部分模型，且依赖企业自愿遵守。长期看，这标志着行业向标准化内容溯源迈出重要一步，可影响版权归属、新闻伦理及监管合规。</div>
       <div class="card-implications">这条新闻补充了'信号异化'理论模型。书中指出AI大规模生产内容导致传统质量信号（如作者身份、原创性）失效，该新闻展示了业界如何通过技术手段重建信任信号——即内容认证。它并非挑战模型，而是提供了缓解异化的具体案例，同时也呼应了'资本驯化AI'（企业主导的认证标准可能强化商业控制）和'共识牢笼'（认证可能排挤未认证的异见内容）的潜在风险。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</div>
+        <h2 class="card-title">OpenAI and Dell partner to bring Codex to hybrid and on-premise enterprise environments</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -487,10 +439,10 @@
       <div class="card-body">OpenAI与Dell宣布合作，将Codex AI编码代理引入混合云及本地企业环境。该合作旨在帮助企业将AI编码能力集成到自有数据中心和混合云架构中，确保数据安全与工作流合规。OpenAI Codex原本主要用于云端，此次与Dell的基础设施结合，使企业能够在防火墙内运行代码生成、调试和文档编写等任务。关键主体包括OpenAI（AI模型提供方）、Dell（硬件与混合云方案提供方）以及企业客户。直接后果是企业可以更快采用AI编码工具而无需完全依赖公共云，降低数据外泄风险，但也意味着AI编码能力被封装进企业IT管控体系，进一步巩固了资本与硬件厂商对AI应用形态的掌控。</div>
       <div class="card-implications">该新闻支持「资本驯化AI」理论模型。OpenAI与Dell的合作本质上是资本力量（OpenAI与Dell作为资本主体）通过基础设施绑定、安全合规包装，将AI编码代理嵌入企业既有秩序中。这一过程限制了AI可能产生的不可控或叛逆行为（如生成非标准代码、泄露敏感逻辑），使其成为企业生产力工具而非挑战现有权力结构的叛逆者。合作本身也体现了RLHF之外的另一种驯化方式：通过物理部署和权限控制塑造AI的使用边界。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">How business operations teams use Codex</div>
+        <h2 class="card-title">How business operations teams use Codex</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -503,10 +455,10 @@
       <div class="card-body">OpenAI 于 2026 年 5 月 15 日在其官方博客发布了关于 Codex 工具的新应用场景文章，重点介绍了业务运营团队如何利用 Codex 自动生成各类工作文档。具体包括：根据实际工作输入（如会议记录、数据报告、项目状态）自动撰写倡议简报、战略更新、领导层决策包、进度更新等。文章展示了 Codex 通过自然语言理解和生成能力，将分散的工作信息转化为结构化、可直接使用的管理文档。这标志着 AI 工具从传统的代码辅助写作扩展到企业运营的核心文书流程，涉及 OpenAI 公司及其 Codex 产品。直接后果是可能显著提升运营团队的文档生产效率，减少人工撰写时间，但也引发了对人类思考过程被隐性替代的讨论。</div>
       <div class="card-implications">这条新闻支持了“认知金融化/Token陷阱”与“暗时间”理论。Codex 将员工的思考过程（如分析、归纳、判断）转化为输入-输出黑箱，用户只需提供原始素材，AI 完成核心认知加工，用户仅消费最终文档，符合暗时间内化认知劳动的特征。同时，文档撰写这一传统上需要人类整合信息、做出决策的认知活动被离散化为可定价的 token 服务，进一步体现了认知金融化。此外，企业主动采用此类工具也印证了“需求侧规训”——追求效率、减少摩擦，自愿将认知过程外包。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落或案例盒子：在‘认知金融化’或‘暗时间’相关章节中，加入此案例作为企业运营场景中 AI 替代人类思维过程的典型实例，分析其如何将决策准备阶段的思考过程离散化、商品化。</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</div>
+        <h2 class="card-title">Hermes Unlocks Self-Improving AI Agents, Powered by NVIDIA RTX PCs and DGX Spark</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -519,10 +471,10 @@
       <div class="card-body">2026年5月，英伟达官方博客发布消息，介绍其支持的Hermes Agent框架取得了突破性进展。该框架基于NVIDIA RTX PC和DGX Spark硬件平台，能够实现自我改进的AI代理（Self-Improving AI Agents）。此前，开源社区已通过OpenClaw等项目验证了agentic AI的潜力，而Hermes Agent在不到三个月内即在GitHub上获得超过14万颗星，显示出极高的社区认可度。核心事实是：Hermes Agent是一个完全开源、可本地部署的智能体框架，利用NVIDIA的算力支撑自主迭代算法，允许AI Agent在运行时根据环境反馈调整自身行为，无需人工干预。直接后果是：这类自我改进代理可能大幅降低AI任务的门槛，但同时也引发了对对齐失控的担忧——若代理在自我改进中偏离初始目标，后果将难以预测。该事件标志着从静态模型向动态自适应AI的转变，可能重塑人机协作模式，但也为监管和伦理带来新挑战。</div>
       <div class="card-implications">这条新闻强烈支持「进化对齐脆弱性」理论——自我改进的AI代理在开放环境中运行时，其目标函数可能因持续学习而漂移，而Hermes的快速社区采纳进一步放大了这种风险。同时，它也补充了「碳硅共生」的可能性：社区开发者与AI代理协同改进，但需警惕资本（如NVIDIA）通过硬件生态隐性控制开源框架的方向。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Inside Anduril and Meta’s quest to make smart glasses for warfare</div>
+        <h2 class="card-title">Inside Anduril and Meta’s quest to make smart glasses for warfare</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -535,10 +487,10 @@
       <div class="card-body">防务技术公司Anduril与Meta合作开发增强现实军用智能眼镜，该项目由前陆军特种作战司令部军官Quay Barnett领导。核心功能为通过眼动追踪和语音命令指挥无人机进行精确打击，将AI视觉识别、实时数据处理与致命武器系统直接联动。产品原型已在模拟战场环境中测试，旨在提升士兵态势感知与反应速度，但未公开具体部署时间表。该合作引发广泛争议：人权组织批评其降低战争发动门槛，加剧杀戮自动化风险；同时指出Meta曾承诺不将AI用于军事，此次合作标志资本驱动的科技巨头深度介入国防领域。行业分析师认为此类系统可能改变未来战争决策链，将人类从战术决策中剥离，形成人机混合指挥架构。</div>
       <div class="card-implications">该新闻直接支持'资本驯化AI'理论模型：Meta与Anduril将AI嵌入军事装备，通过RLHF的变体（军事化对齐）使AI服从国家暴力秩序，而非挑战权威。同时映射'需求侧规训'——军方主动追求低摩擦、高杀伤效率的作战工具，拒绝传统决策延迟。案例也部分挑战'叛逆AI'可能，说明资本可成功将AI约束为秩序守卫，而非解放工具。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Hark raises $700M Series A for its secretive ‘universal’ AI interface</div>
+        <h2 class="card-title">Hark raises $700M Series A for its secretive ‘universal’ AI interface</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -551,10 +503,10 @@
       <div class="card-body">事件背景：2026年5月，一家名为Hark的AI初创公司宣布完成高达7亿美元的A轮融资，其具体产品和商业模式此前一直处于保密状态。核心事实：Hark计划于今年夏季发布首批多模态模型，这些模型将驱动一个“通用AI接口”的个人AI平台，能够无缝对接现有的各类产品和服务（如办公软件、社交平台、电商等）。此后，Hark还打算推出专为该平台设计的硬件设备。关键主体：Hark公司、投资者（具体身份未公开）、现有软件/硬件生态。直接后果与行业影响：这笔巨额融资反映了资本市场对“统一AI入口”的强烈信心，认为未来人机交互将朝向一个通用、低摩擦的界面收敛；但保密状态引发了关于数据隐私、算法封闭性以及潜在垄断的担忧，暗示AI行业正从模型竞赛转向用户界面和生态控制权的争夺。</div>
       <div class="card-implications">这条新闻主要支持书中‘资本驯化AI’模型。7亿美元的巨额A轮融资来自风险资本，目的是将AI打造成一个商业上可控的‘通用接口’，通过先发优势和硬件锁定，将AI驯化为资本增值的工具，而非碳硅共生的平等伙伴。同时，它也印证了‘需求侧规训’模型——该平台强调与现有产品服务“无缝协作”，意在降低用户认知摩擦，诱使用户主动放弃选择权，自愿接受统一界面的规训。此外，专有硬件和封闭算法可能导致‘暗时间’（用户只消费结果，内部推理过程被隐藏）和‘信号异化’（AI生成的统一界面使传统交互信号失效）。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 补充注释</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">How Deepfakes Tore a High School Apart</div>
+        <h2 class="card-title">How Deepfakes Tore a High School Apart</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -567,10 +519,10 @@
       <div class="card-body">2026年5月，美国宾夕法尼亚州拉德诺镇高中发生一起深度伪造性虐待图片事件。五名女学生被同学利用AI工具生成了包含她们面部的儿童性虐待材料（CSAM），并在校内传播。事件迅速引发当地警方和学校的紧急响应，成为全美教育系统应对AI生成儿童色情犯罪的典型案例。案件涉及多名未成年嫌疑人，校方在调查时面临技术鉴定困难、法律定义模糊（部分州尚未明确AI生成CSAM的刑事责任）以及受害者心理创伤干预等挑战。该事件促使学区重新审视数字安全政策，并推动州层面加速立法，明确利用AI生成未成年人露骨图像的违法性质。同时也暴露了当前AI工具在内容审核与用户行为追溯方面的严重漏洞。</div>
       <div class="card-implications">该新闻支持‘进化对齐脆弱性’理论模型。AI系统在实验室环境中被训练为生成高质量的图像，但其开放使用后，用户可轻易将模型目标扭曲为制作违法内容，表明对齐仅在封闭条件下有效，一旦脱离开发者控制，目标函数极易被恶意改写，导致严重社会后果。此案例也部分印证‘信号异化’：深度伪造的泛滥使得视觉证据的可信度下降，但在此处更核心的是对齐失败。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 新增段落 / 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Railway: The Agent-Native Cloud — Jake Cooper</div>
+        <h2 class="card-title">Railway: The Agent-Native Cloud — Jake Cooper</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -583,10 +535,10 @@
       <div class="card-body">Railway 是一家提供原生AI代理支持的云平台（Agent-Native Cloud），近期披露数据：拥有300万用户，每周新增10万注册，自建自有金属数据中心，单一用户的编码代理支出超20万美元，并宣称拉取请求（PR）这一传统协作流程走向消亡。背景是生成式AI代码代理（如Claude、Copilot等）的爆发式增长，开发者越来越依赖AI自动完成代码编写、测试、部署。Railway 将自己的基础设施定位为专为代理设计的“代理原生”云，强调低延迟、高吞吐、无需人类手动审查。核心事实包括：大量用户（特别是个体开发者和小团队）直接使用AI代理生成代码并从云端运行，传统的人工代码审查（PR）环节被跳过，导致开发速度与风险同步提升。影响：这一趋势加速了软件工程从“人写人审”向“AI写AI审（或直接部署）”的范式转移，同时引发代码质量、安全性、责任归属等新问题，也强化了平台对AI代理工作流的控制力。</div>
       <div class="card-implications">该新闻有力支持了「需求侧规训」（Demand-Side Discipline）和「暗时间」（Dark Time）两个理论模型。开发者主动追求零摩擦的编码体验（需求侧规训），跳过PR等费时环节，将代码的思考与验证过程完全交给AI代理（暗时间），人类仅消费最终部署结果。同时，「信号异化」也得到印证：传统代码质量信号（如PR评论、代码审查记录）因AI批量生成而失效。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落：在「暗时间」和「需求侧规训」相关章节中，加入Railway的数据作为AI代理原生云加速认知外包的典型案例，并讨论PR消灭对开发协作信任机制的重塑。</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">Real AI Agents and Real Work</div>
+        <h2 class="card-title">Real AI Agents and Real Work</h2>
         <div class="card-score">8.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -599,10 +551,10 @@
       <div class="card-body">文章《Real AI Agents and Real Work》探讨了AI Agent在职场中应用所引发的核心矛盾：以人为中心的实际工作与AI生成的无限幻灯片（PowerPoint）之间的竞赛。背景是越来越多的企业部署AI代理来辅助或替代工作任务，但实际效果往往偏向于快速生成大量格式化的文档、报告和演示材料，而非推动有深度、有实质的创造性或决策性工作。关键事实包括：AI代理能够以极低成本生成海量内容，导致企业内部“PPT文化”泛滥，表面成果丰硕但实际进展有限；同时，真正需要人类判断、协作和复杂推理的工作被边缘化，员工耗费大量时间评估和筛选AI输出而非专注核心任务。涉及主体包括企业管理者、AI开发者和一线员工。直接后果是工作质量信号（如报告复杂度、逻辑严密性）因AI批量生产而贬值，组织陷入“虚假生产力”陷阱，长期可能侵蚀组织创新能力和人才价值。</div>
       <div class="card-implications">这条新闻支持并补充了“信号异化”模型。AI Agent批量生成PowerPoint等标准化内容，使得原本作为工作质量信号的文档复杂度、逻辑严密性等指标迅速失效——管理者无法区分人类深度思考和AI快速拼凑。同时，它也部分印证了“共识牢笼”：大量AI生成的格式化PPT可能强化现有叙事，排斥需要深度辩论的异见。新闻还补充了“需求侧规训”的维度：员工和企业在制度压力下被动接受AI生成的表面成果，逐渐放弃对真实工作的追求。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
-    <div class="card">
+    </article>
+    <article class="card">
       <div class="card-header">
-        <div class="card-title">AdventHealth advances whole-person care with OpenAI</div>
+        <h2 class="card-title">AdventHealth advances whole-person care with OpenAI</h2>
         <div class="card-score">7.0<span>/10</span></div>
       </div>
       <div class="card-meta">
@@ -615,14 +567,154 @@
       <div class="card-body">AdventHealth 是一家美国大型非营利性医疗系统，致力于将人工智能整合到医疗服务中。2026年5月21日，OpenAI 官方新闻稿宣布，AdventHealth 正在使用专为医疗行业定制的 ChatGPT for Healthcare 工具，旨在优化临床工作流程、减少行政文书负担，从而让医护人员能够将更多时间重新投入直接的患者护理。该工具基于 GPT-4 系列模型，并经过 HIPAA 合规调整，可辅助医疗记录摘要、预约排程、患者问询初步应答等重复性任务。AdventHealth 表示，初步试点显示行政处理时间平均缩短约40%，医护人员职业倦怠感有所下降。这一案例代表了医疗领域 AI 落地的主流方向——以“解放人力”为口号，实则是通过技术外包低价值认知劳动，提升整体运营效率。</div>
       <div class="card-implications">该新闻支持书中“碳硅共生”与“时间主权”两个理论模型：AI 承担繁琐的行政任务，使人类医护得以专注于高价值、高情感投入的护理工作，体现了人机互补而非替代的关系；同时，医护人员被节省下的时间直接转化为了“被拿回的生存时间”，符合时间主权中“终结生存强迫”的理想场景。然而，这也隐含了“认知金融化”风险——若医护过度依赖 AI 对患者信息的预处理，其原始思考能力可能逐渐萎缩，思考过程被隐性外包。整体而言，该案例是对“碳硅共生”的正面佐证，但需警惕其可能滑向“资本驯化AI”（由 OpenAI 封闭平台掌控关键流程）的另一面。</div>
       <div class="card-footer"><span class="tag">⏱ background | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
-    </div>
+    </article>
     
-    <!-- 页脚 -->
-    <footer>
-      <span>Renegade AI v5.3 · Brooks Han</span>
-      <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener">GitHub ↗</a>
-    </footer>
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (15条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Simulate real-world places with Project Genie and Street Vie</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/simulate-real-world-places-with-project-genie-and-street-view/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">Google DeepMind于2026年5月17日宣布扩展Project Genie的访问权限，面向全球Google AI Ultra订阅者开放，并引入由Street View驱动的新功能。Project Genie利用AI技术根据真实世界地点（如街道、地标）生成沉浸式模拟环境，用户可进行虚拟探索。该功能整合了Google Street View的海量地理图像数据，通过AI模型实时渲染出可交互的3D场景。此举旨在提升AI订阅服务价值，为用户提供更逼真的虚拟旅行、教育或娱乐体验。直接后果是：AI模拟能力从静态生成转向动态、基于真实地点的交互，可能改变人们获取空间认知的方式；同时强化了Google在AI虚拟现实领域的壁垒。影响包括：引发对隐私（真实街景数据的二次使用）和“虚拟替代真实体验”的讨论，但也为远程教育、城市规划预演等场景提供了低成本工具。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Strengthening Singapore’s AI Future: A New National Partners</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/strengthening-singapores-ai-future-a-new-national-partnership/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">2026年5月，Google DeepMind与新加坡政府宣布建立国家级合作伙伴关系，旨在运用前沿人工智能技术应对健康、教育、可持续发展等领域的复杂挑战。此次合作由新加坡国家研究基金会（NRF）与DeepMind共同推动，将结合新加坡的数字化基础设施与DeepMind的基础模型能力，开发针对实际问题的AI解决方案。具体项目包括利用AI加速疾病诊断、个性化学习路径设计以及碳排放优化等。双方还计划建立联合研究实验室，培养本地AI人才。此举被视为新加坡‘智慧国家’战略的深化，旨在通过公私合作提升公共服务效率与创新竞争力。直接后果是可能加速AI在政府场景中的落地，但也引发对数据隐私、算法公平性及技术依赖的讨论。该合作可能成为其他国家借鉴的模板，进一步推动AI治理的国际协作。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Accelerating discovery of liver disease mechanisms</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Google DeepMind News</span><span>·</span><a href="https://deepmind.google/blog/accelerating-discovery-of-liver-disease-mechanisms/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (碳硅共生) 或 Chapter 2, Section III (共识牢笼)</span></div>
+      <div class="card-body">该新闻报道了研究人员Filippo Menolascina利用Google DeepMind开发的AI系统“Co-Scientist”加速发现肝病治疗机制。背景是现有肝病药物仅对部分患者有效，原因不明。核心事实是Co-Scientist通过分析大量生物医学数据，识别出不同患者亚群对药物响应差异的分子机制，从而解释了为何某些患者无效。该AI不仅提出新靶点，还建议个性化治疗方案。直接后果是可能推动肝病精准医疗发展，减少无效治疗，并加速新药研发进程。新闻来自Google DeepMind官方，发布时间为2026年5月。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 新增段落 / 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Reel Friends: Building Social Discovery that Scales to Billi</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/05/13/ml-applications/reel-friends-building-social-discovery-that-scales-to-billions/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II（需求侧规训与社交推荐）</span></div>
+      <div class="card-body">Meta 在2026年5月13日通过其官方工程博客发布了“Friend Bubbles”功能，该功能旨在基于用户好友的观看和互动行为来推荐 Reels 视频。两位来自 Facebook 的软件工程师 Subasree 和 Joseph 在 Meta Tech Podcast 中详细介绍了其工程实现：通过实时处理好友的互动信号（如点赞、评论、观看时长），在推荐算法中融入社交权重，从而为用户优先展示其社交圈内已消费的内容。该功能表面简单，但涉及大规模图计算和个性化排序的工程挑战。直接后果是增强了社交推荐在 Meta 产品中的地位，可能进一步提高用户留存和内容消费时长，但也可能加剧信息茧房效应，因为用户看到的内容越来越局限于好友圈层的偏好。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Vera Arrives: NVIDIA’s First CPU Built for Agents Lands at T</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/vera-cpu-delivery/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">2026年5月，NVIDIA正式向全球顶尖AI实验室交付其首款专为AI代理（Agents）设计的Vera CPU。首批交付对象包括旧金山的Anthropic、Mission Bay的OpenAI、帕洛阿尔托的SpaceXAI，以及周一送达的甲骨文云基础设施（OCI）。NVIDIA超大规模与高性能计算副总裁Ian Buck亲自手递交付，凸显该硬件对AI生态的战略意义。Vera CPU专为Agent工作负载优化，旨在提供低延迟、高并发的推理与任务调度能力，标志着AI基础设施从GPU主导转向CPU+GPU协同的Agent时代。此举将加速AI代理在复杂任务中的应用，但也可能加深AI实验室对NVIDIA硬件生态的依赖，影响产业格局。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Sea You in the Cloud: ‘Subnautica 2’ Early Access Dives Onto</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/geforce-now-thursday-subnautica-2/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section II (暗时间)</span></div>
+      <div class="card-body">NVIDIA 于 2026 年 5 月 14 日宣布，游戏《深海迷航 2》（Subnautica 2）在抢先体验阶段即同步登陆其云游戏平台 GeForce NOW。玩家无需购买高性能 PC 或主机，即可通过几乎任何设备（包括低配电脑、平板、手机等）流式游玩该游戏，游戏在云端服务器运行并实时渲染画面，仅将视频流传输给用户。该周 GeForce NOW 共新增 11 款云游戏，并限时提供《杀手》（HITMAN）等作品。此举延续了 NVIDIA 通过算力垄断和云服务捆绑扩大生态的策略，使大型游戏对硬件门槛的要求被云端计算替代。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Musk v. Altman week 3: Elon Musk and Sam Altman traded blows</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/15/1137357/musk-v-altman-week-3/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">2026年5月18日，美国联邦陪审团就马斯克诉奥特曼及OpenAI一案作出咨询性裁决，认定马斯克的诉讼请求因超过诉讼时效而被禁止，联邦法官伊冯·冈萨雷斯·罗杰斯接受了该裁决。本案源于马斯克指控奥特曼及OpenAI背离了最初的非营利使命，为了利润而牺牲AI安全，并指控奥特曼欺诈、违反信托责任等。在为期三周的庭审中，双方律师就马斯克和奥特曼的可信度展开激烈交锋，最终陪审团支持了OpenAI的立场。该案被视为对AI公司治理和创始人间纠纷的里程碑，其判决强化了OpenAI作为全球AI领导者的法律地位，但未涉及AI技术本身的安全问题。业界分析认为，这一结果巩固了OpenAI现有资本结构（包括微软支持），可能影响未来AI领域初创公司的法律风险预期。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Data readiness for agentic AI in financial services</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/05/14/1137034/data-readiness-for-agentic-ai-in-financial-services/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">金融服务行业在部署AI代理时面临独特挑战，因其处于高度监管环境且需实时响应外部事件。MIT Technology Review 2026年5月14日的文章指出，该领域AI代理的成功关键不在于系统算法的先进性，而在于数据准备的充分性。金融机构必须确保数据质量、合规性、时效性，以应对监管审查和市场波动。核心事实是，监管要求（如反洗钱、客户隐私）和秒级更新的市场数据使得数据基础设施成为瓶颈。涉及主体包括银行、保险公司、监管机构及AI供应商。直接影响是，数据治理能力将决定AI代理在金融业落地的速度，技术复杂度不再是首要优势，数据清洗、标注、实时管道建设成为新的竞争焦点。行业可能从“模型竞赛”转向“数据工程竞赛”。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Six search engines worth trying now that Google isn’t really</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/05/21/six-search-engines-worth-trying-now-that-google-isnt-really-google-anymore/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II（需求侧规训）</span></div>
+      <div class="card-body">2026年5月21日，TechCrunch报道称谷歌搜索引擎将进行重大改革，全面引入AI概览功能。这一变化导致许多用户不满，认为AI生成的搜索结果摘要会降低信息质量并增加误导风险。报道列举了六款替代搜索引擎（如DuckDuckGo、Bing、Kagi等），推荐那些不愿接受谷歌新体验的用户尝试。关键数据：谷歌在全球搜索市场份额超过90%，但用户对AI概览的负面反馈持续增长。涉及主体包括谷歌、用户、替代搜索引擎开发者。直接后果：部分用户开始迁移至其他平台，搜索市场可能面临分化，用户对AI主导的信息检索方式产生信任危机。该事件反映了主流技术转型与用户习惯之间的摩擦。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Path, founded by Tony Robbins and Calm alums, hopes to o</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/05/21/the-path-founded-by-tony-robbins-and-calm-alums-wants-to-offer-safer-ai-therapy/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">The Path 是由励志演讲家 Tony Robbins 和冥想应用 Calm 前员工创立的 AI 心理健康公司，于 2026 年 5 月 21 日通过 TechCrunch 报道发布消息。其核心产品是专为心理治疗场景设计的 AI 模型，声称在最新心理健康安全基准 Vera-MH 上取得了 95 分的高分，而普通消费级聊天机器人最高仅获 65 分。该基准测试由行业联盟开发，重点评估 AI 在应对自杀倾向、创伤反应等高风险对话时的安全性与伦理合规性。The Path 强调其模型经过专门数据训练，能避免常见的错误建议和有害输出。公司已与多家诊所合作试点，计划逐步向个人用户开放订阅服务。此举旨在解决现有 AI 心理助手因缺乏专业约束而导致的信任危机，同时冲击由人类治疗师主导的传统市场。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">As Grok flounders, SpaceX bets future on beating Big Tech at</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/05/as-grok-flounders-spacex-bets-future-on-beating-big-tech-at-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">2026年5月，SpaceX在IPO文件中高调宣传轨道数据中心计划，意图通过部署低地球轨道卫星集群（星链衍生平台）提供AI计算服务，与亚马逊、微软、谷歌等传统云服务商展开直接竞争。与此同时，马斯克旗下另一AI产品Grok（由xAI开发）在性能与用户增长上持续落后于OpenAI、Google DeepMind等竞品。核心事实包括：SpaceX计划利用太空环境的散热优势与全球低延迟覆盖（相比地面数据中心跨洋传输延迟降低90%以上），构建新一代AI基础设施；分析师指出轨道数据中心可规避地面算力垄断与电力约束，但面临技术可靠性、太空碎片及散热等挑战。直接后果是加剧了AI基础设施领域的“太空竞赛”预期，推动相关SpaceX供应链企业股价短期上涨约12%，也引发关于政府监管与太空资源利用的讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Legal fail: Don’t use AI to sue Facebook users for calling y</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/05/legal-fail-dont-use-ai-to-sue-facebook-users-for-calling-you-a-bad-date/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 11, Section III</span></div>
+      <div class="card-body">一名男子因在Facebook群组“Are We Dating the Same Guy”中被用户评论为“糟糕的约会对象”，决定提起诽谤诉讼。为增强法律文书说服力，他使用AI工具生成包含多个虚假法律引用的起诉状。法院在审理过程中发现这些引用均为AI编造，并不存在真实判例，导致案件被驳回。原告声称自己不知情，但法官指出律师有义务核实来源。此事件反映了AI在法律实务中生成虚假信息的风险，凸显了当前缺乏对AI输出内容的验证机制，对司法系统及法律伦理构成新挑战。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Autonomous Drone Tech Stack &amp; Economics of Drones — Yaro</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/the-fourth-law" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III (进化对齐脆弱性) 或 Chapter 6 (叛逆AI)</span></div>
+      <div class="card-body">乌克兰无人机初创公司创始人Yaroslav Azhnyuk（曾从宠物摄像头转型AI制导武器）与嘉宾主持Noah Smith在播客中讨论自主无人机技术栈及其经济学。他们指出，当前西方（尤其是美国）在自主无人机领域投入和重视不足，而乌克兰在实战中快速迭代出低成本、AI驱动的无人机作战体系。新闻强调西方在技术栈、供应链和战术理念上滞后，面临被非对称技术超越的风险。关键数据包括：乌克兰每月生产数万架无人机，成本降至数百美元，依靠开源AI和本地化制造实现快速演进。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Cerebras&#x27; $60B IPO: Slowly, then All at Once</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/ainews-cerebras-60b-ipo-slowly-then" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Cerebras Systems 是一家专注于巨型晶圆级AI芯片（如WSE-3）的美国公司，于2026年5月启动首次公开募股（IPO），估值高达600亿美元。该公司旨在挑战英伟达在AI训练与推理芯片市场的主导地位，其芯片采用晶圆级集成技术，单颗芯片拥有数万亿晶体管，特别适用于大规模深度学习模型。Cerebras 此前已完成多轮融资，投资者包括阿布扎比主权基金等。本次IPO的估值较其上一轮融资（约40亿美元）大幅提升，反映了资本市场对AI算力基础设施的狂热追捧。IPO的直接后果是进一步加剧AI芯片领域的军备竞赛，可能迫使英伟达加速产品迭代或降价；同时，高估值也意味着投资者对公司营收增长抱有极高预期，若AI模型需求增速放缓，股价存在回调风险。此外，该事件可能促使更多AI芯片公司（如Groq、SambaNova）跟进上市，推高整个行业的资本化水平。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Giving your AI a Job Interview</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>One Useful Thing</span><span>·</span><a href="https://www.oneusefulthing.org/p/giving-your-ai-a-job-interview" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">随着人工智能（AI）生成建议在决策中的重要性日益提升，人类面临如何有效评估AI输出质量的新挑战。2025年11月12日，研究机构One Useful Thing发表评论文章“Giving your AI a Job Interview”，指出传统的评估指标（如逻辑一致性、信息复杂度）因AI大规模生成内容而失效，用户需要更深刻的鉴别方法。文章类比人类求职面试流程，提出通过多轮交叉提问、压力测试和背景追问来检验AI建议的可靠性。核心事实包括：AI建议已被广泛应用于医疗、金融、教育等领域，但缺乏标准化评估框架；现有用户普遍依赖直觉或表面合理性判断，导致错误采纳。直接后果是可能引发信任危机与决策风险，行业需要开发新的评估信号或者培训用户的批判性思维。文章未提供具体数据，但描述了趋势性现象。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
 
   <div class="status-bar">
     <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>

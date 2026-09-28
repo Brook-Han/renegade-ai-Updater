@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -299,6 +344,93 @@ nav{
       <div class="card-implications">信号异化的自反性对抗样本：用 AI 工具对抗 AI 信号污染，『活人感』被重新定价为稀缺信号资产。该案例证明信号异化并非单向不可逆——市场开始生产恢复信号真实性的技术，构成模型的重要补充：异化催生修复工具，信号战争进入攻防循环。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (9条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Meta launches Muse Code, an AI agent for large code bases</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/05/meta-launches-muse-code-an-ai-agent-for-large-code-bases/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">Meta 于2026年8月5日宣布推出面向大型代码库的 AI 编码代理 Muse Code，扩展其 AI 编程产品线。背景是各头部实验室与厂商竞相押注智能体编码能力，争夺开发者工作流入口。核心事实：Muse Code 定位处理复杂软件项目中的复杂任务，与已有编码工具形成互补而非简单替代。直接后果：大型代码库场景的智能体自主性进一步提升，编码代理从代码补全走向端到端任务执行；行业影响上，Meta 以开源生态起家的策略延续至编码代理领域，可能压低企业级编码工具价格并加速开发者工作流重构，同时加剧 Anthropic、OpenAI、Google 等厂商在智能体编码赛道的竞争。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Shopify says AI search is driving more traffic and sales, no</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/05/shopify-says-ai-search-is-driving-more-traffic-and-sales-not-replacing-google/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section II</span></div>
+      <div class="card-body">Shopify 于2026年8月5日公布 Q2 数据称，AI 搜索正在为其商家带来更多流量与订单而非蚕食搜索，AI 驱动流量与订单量同比翻三倍。背景是出版业普遍遭遇 AI 聚合流量截胡、Reddit 等平台公开质疑 AI Overviews 授权价值，AI 搜索被视为流量分配者。核心事实：电商场景下 AI 搜索作为购买入口带来增量而非替代，与内容平台的流量萎缩形成对照。直接后果：AI 搜索的流量再分配效应呈现行业分化——电商受益而内容出版受损；行业影响上，该数据为 AI 聚合是否摧毁原创信号提供反例，提示信号异化模型存在场景边界，商业搜索类目可能形成新的信号均衡。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic is hiring an AI chip design team</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/05/anthropic-is-hiring-an-ai-chip-design-team/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section IV</span></div>
+      <div class="card-body">Anthropic 于2026年8月5日被披露正在组建自研 AI 芯片设计团队，计划软硬件协同设计以提升 Claude 运行效率。背景是头部实验室对 NVIDIA 算力依赖加深、英伟达主导定价权，多家实验室开始垂直整合硬件。核心事实：Anthropic 招募芯片设计人才，走与 OpenAI（与博通合作）、Google（TPU）类似的硬件自研路线。直接后果：实验室对第三方算力供应商的议价权增强，推理成本结构有望改变；行业影响上，头部 AI 实验室集体向芯片层渗透，算力垄断格局出现裂缝，但自研芯片周期长、投入大，短期难以撼动 NVIDIA 生态，更多是战略对冲与成本优化手段。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">MacPaw taps Liquid AI to offer on-device inference to devs b</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/05/macpaw-taps-liquid-ai-to-offer-on-device-inference-to-devs-building-for-its-app-store/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II</span></div>
+      <div class="card-body">MacPaw 于2026年8月5日宣布与 Liquid AI 合作，为其应用商店开发者提供端上推理能力，并用 Liquid AI 模型构建自家 AI 助手 Eney 的本地版本。背景是端侧 AI 推理成为隐私与成本考量下的新方向，苹果生态开发者寻求本地化 AI 方案。核心事实：MacPaw 为开发者提供 on-device inference 基础设施，Eney 助手实现本地运行。直接后果：应用商店内 AI 功能可在无云端依赖下运行，降低延迟与隐私暴露；行业影响上，端上推理生态进一步成熟，MacPaw 此举为中小开发者提供低成本 AI 入口，但模型能力与云端前沿仍有差距，短期属于生态补位而非颠覆。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cloudflare 提出智能体访问模型（Agent Access Model）</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Cloudflare Blog</span><span>·</span><a href="https://blog.cloudflare.com/the-agent-access-model" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section IV</span></div>
+      <div class="card-body">Cloudflare 于2026年8月5日发布《The Agent Access Model》论文，提出面向 AI 智能体的访问控制模型 AAM，核心原则是『不信任运行』，对任务执行图中的每个动作基于智能体身份、授权任务及已触达资源进行实时授权。背景是智能体自主执行任务日益普遍，传统权限模型失效。核心事实：AAM 针对智能体短暂性、机器速度、提示词非边界、跨跳组合权限四大特性设计，主张缩小能力集而非仅优化单次决策，并区分单主体控制与多人访问控制的难点。直接后果：为企业部署自主智能体提供权限治理框架；行业影响：标志行业从『模型对齐』转向『运行边界控制』，承认对齐不可依赖后的务实治理路线。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cloudflare 如何用 Cloudflare OS 重构内部工作方式</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Cloudflare Blog</span><span>·</span><a href="https://blog.cloudflare.com/how-we-use-ai-with-cloudflare-os" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">Cloudflare 于2026年8月5日发布文章，介绍其用 Cloudflare OS 重构内部工作方式：整合 Workers 与 Access 等组件，让员工安全使用 AI 并部署智能体。背景是销售团队用 AI 构建 SuperApp 引发内部需求，推动平台化。核心事实：遵循『人负责输出』『权限不因 AI 扩大』等五项原则，面向工程师与非工程师分别提供支持。直接后果：数千名员工日常使用 AI 构建内部应用，软件开发流程重组；行业影响：企业 AI 内部部署从点状工具走向平台化治理，智能体工作区成为企业基础设施新形态。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Cloudflare OS：面向智能体、应用与工作的开放平台</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Cloudflare Blog</span><span>·</span><a href="https://blog.cloudflare.com/cloudflare-os" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 8, Section III</span></div>
+      <div class="card-body">Cloudflare 于2026年8月5日开源新版 Cloudflare OS，任何组织均可部署并连接内部系统。平台为每位员工提供基于公司上下文与技能的智能体工作区，包含隔离运行时、安全治理框架及可共享修改的个人应用。背景是内部版本已供数千名员工日常使用，开源是治理模式的外部化。核心事实：针对协作中的信息暴露风险重建安全基础，采用开源许可。直接后果：企业智能体工作区从专有走向可自部署；行业影响：智能体作为『数字员工』的企业基础设施范式扩散，开源推动其成为通用工作形态，暗时间的企业制度化进程加速。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">NVIDIA 发布 Alpamayo 2 Super：面向 Robotaxi 与自动驾驶的 34B 开源视觉-语言-动作</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>MarkTechPost（RSS）</span><span>·</span><a href="https://www.marktechpost.com/2026/08/05/nvidia-alpamayo-2-super-open-vla-model-autonomous-driving" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">NVIDIA 于2026年8月5日发布 Alpamayo 2 Super，一款 34B 参数的视觉-语言-动作（VLA）开源模型，专为 Robotaxi 与自动驾驶长尾事件设计。权重采用 Linux 基金会 OpenMDW-1.1 许可，代码为 Apache 2.0，发布首日即可商用。背景是自动驾驶领域开源 VLA 模型竞争加剧，NVIDIA 以硬件生态优势切入模型层。核心事实：34B 规模、面向长尾驾驶场景、开源商用许可。直接后果：自动驾驶开发者获得可商用开源基础模型，降低自研门槛；行业影响：开源范式从语言模型扩展到物理世界智能，NVIDIA 以开源模型强化其算力平台粘性，算力垄断者参与开源生态的双重角色值得注意。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">PREDICTION - OPEN SOURCE AI WILL DOMINATE IN 2027 This is in</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2084839055586726272#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">@bindureddy 于2026年8月5日发推预测开源 AI 将在2027年主导，称『开源 AI 终将从根本上获胜』，理由是各中国实验室正在收集海量高质量 agentic traces，6 个月内足以达到 Fable 7 或 GPT 8 级别。背景是开源模型（Qwen 3.8、K3、DeepSeek）连续挑战闭源前沿，昨日他本人同时预警开源算力危机。核心事实：预测时间表（2027）、关键论据（agentic traces 数据积累+中国实验室）、目标水平（Fable 7/GPT 8）。直接后果：强化开源必胜叙事，与『开源算力危机』预警形成内部张力；行业影响：数据（agentic traces）被重新定义为模型能力的核心资产，暗时间数据积累成为开源阵营追赶闭源的真正弹药。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

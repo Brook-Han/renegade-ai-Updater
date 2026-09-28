@@ -43,7 +43,7 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
 
     cards = []
     for card_el in card_elements:
-        card = {"type": report_type}
+        card = {"type": report_type, "link": "", "summary": "", "chapter": ""}
 
         # 支持 card-title 和 radar-card-title
         title_els = card_el.xpath(".//*[contains(@class, 'card-title')] | .//*[contains(@class, 'radar-card-title')]")
@@ -87,6 +87,15 @@ def _extract_with_lxml(html_path: Path, report_type: str) -> list[dict]:
             if chapter_m:
                 card["chapter"] = chapter_m.group(1).strip()
 
+        # 分档：card-medium 表示"中相关"条目（高价值为 card）
+        cls_attr = card_el.get("class") or ""
+        card["tier"] = (
+            "medium"
+            if ("card-medium" in cls_attr or "tier-medium" in cls_attr
+                or card_el.xpath(".//*[contains(@class, 'tier-chip')]"))
+            else "high"
+        )
+
         cards.append(card)
 
     return cards
@@ -102,16 +111,27 @@ def _extract_with_regex(html_path: Path, report_type: str) -> list[dict]:
 
     cards = []
     # 支持两种卡片类名：card (旧) 和 radar-card (新 v5.4)
-    card_blocks = re.findall(
-        r'<(?:div|article) class="(?:card|radar-card)">(.*?)</(?:div|article)>\s*(?=<(?:div|article) class="(?:card|radar-card)">|</main>|</body>|$)',
-        content,
-        re.DOTALL,
-    )
+    # 修饰类只允许已知的分档标记（card-medium / tier-medium），否则会误匹配
+    # card-header / card-title / card-meta 等内部元素。
+    # 采用"按卡片起始位置切片"而非结束标签 + 前瞻：卡片可能嵌套在
+    # .card-grid 之类的容器里，闭合结构不固定，前瞻写法会漏掉最后一张卡。
+    _CARD_CLS = r'(?:card|radar-card)(?: (?:card-medium|tier-medium))*'
+    starts = list(re.finditer(rf'<(?:div|article) class="({_CARD_CLS})">', content))
+    card_blocks = []
+    for i, m in enumerate(starts):
+        end = starts[i + 1].start() if i + 1 < len(starts) else len(content)
+        card_blocks.append((m.group(1), content[m.end():end]))
+
     if card_blocks:
         print(f"   🔍 {html_path.name}: 找到 {len(card_blocks)} 个卡片区块")
 
-    for block in card_blocks:
-        card = {"type": report_type}
+    for cls_attr, block in card_blocks:
+        card = {"type": report_type, "link": "", "summary": "", "chapter": ""}
+        card["tier"] = (
+            "medium"
+            if ("card-medium" in cls_attr or "tier-medium" in cls_attr or "tier-chip" in block)
+            else "high"
+        )
 
         # 支持 card-title 和 radar-card-title
         title_m = re.search(r'<(?:div|h2) class="(?:card|radar-card)-title">(.*?)</(?:div|h2)>', block, re.DOTALL)

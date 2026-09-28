@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -395,6 +440,84 @@ nav{
       <div class="card-implications">支持'暗时间'模型：'100倍AI代理'意味着企业运营的绝大部分认知工作在AI系统内部完成，人类仅消费最终结果。同时支持'认知金融化/Token陷阱'——人类员工在企业决策中的角色被AI代理替代，认知过程被离散化为可定价的'Agent任务'。该推文虽然是个人观点，但代表了资本对'AI替代人力'的主流预期。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: corroboration</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (8条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How enabling two settings tripled our scores on the ARC-AGI-</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/how-two-settings-tripled-our-arc-agi-3-scores" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6, Section III</span></div>
+      <div class="card-body">OpenAI 于2026年7月29日发布研究报告，披露通过启用两项API设置（保留推理链+启用压缩），GPT-5.6在ARC-AGI-3基准测试上的得分提高了三倍。ARC-AGI-3是衡量AI抽象推理能力的关键测试，此前前沿模型在该测试上进展缓慢。OpenAI发现，默认关闭的推理保留（reasoning retention）设置可让模型回溯和修正自身推理过程，而压缩（compaction）设置则优化了推理链的表达效率。两项设置结合使模型在需要深度推理的视觉抽象任务上表现大幅提升。该发现直接影响API调用策略，可能推动AI在科学研究、数学推理等需要深度思考的领域的应用深化。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Accelerating scientific discovery with ChatGPT for Academic </h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/chatgpt-for-academic-researchers" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section I</span></div>
+      <div class="card-body">OpenAI 于2026年7月29日宣布启动&#x27;ChatGPT for Academic Researchers&#x27;计划，向10万名学术研究人员免费提供最先进的AI模型访问权限，以加速科学发现与跨学科协作。该计划覆盖全球范围内的大学和研究机构，受助研究人员可使用GPT-5.6等前沿模型进行文献分析、实验设计、数据解读和论文撰写。OpenAI表示该计划旨在&#x27;将AI工具交到推动知识边界的人手中&#x27;。直接后果是大幅降低顶尖AI工具的学术使用门槛，可能加速各领域的科研产出效率；同时也引发关于学术发表中AI使用边界、数据隐私和研究自主性的讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How GPT-5.6 fuses frontier intelligence with frontier effici</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/gpt-5-6-frontier-intelligence-efficiency" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section I</span></div>
+      <div class="card-body">OpenAI 于2026年7月29日发布GPT-5.6技术更新，重点展示了模型在保持前沿智能水平的同时大幅提升效率。具体改进包括：推理成本降低约40%、响应速度提升、Agent工作流性能优化。OpenAI声称GPT-5.6在多项基准测试中保持了与上一代相当或更优的成绩，但计算资源消耗显著下降。该版本是GPT-5系列的中期迭代，聚焦于使前沿模型在商业部署中更具经济可行性。直接后果是降低企业用户使用前沿AI的门槛，可能推动AI在更多垂直领域的大规模部署。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The AI Hype Index: Unsexy AI</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/07/29/1140795/the-ai-hype-index-unsexy-ai/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section I</span></div>
+      <div class="card-body">MIT Technology Review 于2026年7月29日发布最新一期&#x27;AI hype index&#x27;，主题为&#x27;Unsexy AI&#x27;（不性感的AI）。文章梳理了当前AI领域真正在产生实际影响但缺乏媒体关注的领域。重点包括：1X公司展示的新型灵巧机器人手臂（能做家务做饭），但因其非&#x27;炫酷&#x27;特性未获广泛报道；经济学家联名公开信警告AI可能导致就业流失；以及一批低调但实用的AI应用（供应链优化、农业监测、工业质检等）。文章认为媒体和公众对AI的关注过度集中在聊天机器人和生成式AI上，忽略了真正在改变物理世界的应用。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">What happens when you put AI to work deciphering lost langua</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/science/2026/07/what-happens-when-you-put-ai-to-work-deciphering-lost-languages/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">Ars Technica 于2026年7月29日发表深度报道，探讨AI在破译失落语言方面的应用与局限性。AI模型在识别古代文字（如线性文字A、原始埃兰文字等未解密语言）的模式方面展现出强大能力——能够快速匹配已知语系的结构特征和海量文本统计模式。然而，研究者强调人类的洞察力仍然是破译的关键：AI能发现模式但不能理解文化语境，人类的直觉和跨学科知识在最终解密中起到不可替代的作用。文章以多种未破解古文字的案例说明了AI作为&#x27;助手&#x27;而非&#x27;替代者&#x27;的定位。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Perplexity 开源智能体检测层 Numbat</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Perplexity (@perplexity_ai)</span><span>·</span><a href="https://x.com/perplexity_ai/status/2082511900580196596" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section V</span></div>
+      <div class="card-body">Perplexity AI 于2026年7月29日宣布开源智能体检测与响应层Numbat。Numbat是一个跨智能体框架的安全工具层，旨在为安全团队提供对AI Agent活动的全面可见性，并能在执行前阻止选定操作。该工具支持多种主流Agent框架，可检测Agent的异常行为模式并在造成伤害前进行干预。Perplexity将Numbat定位为&#x27;Agent的防火墙&#x27;。开源策略旨在推动行业建立AI Agent安全的标准实践。目前Numbat已在GitHub上发布。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">开源引擎可在任何 M 系列 Mac 上以 2 GB 内存运行 Gemma 4 26B</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://github.com/drumih/turbo-fieldfare" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">GitHub上一个名为turbo-fieldfare的开源项目发布，使Gemma 4 26B模型能在任何Apple M系列芯片Mac上以仅2GB内存运行。该项目通过内存优化、模型量化和推理加速等技术大幅降低了本地运行大语言模型的硬件门槛。此前运行同类模型通常需要8-16GB显存。该项目已开源并在Hacker News上获得大量关注。该成果使更多Mac用户能在本地运行前沿AI模型，无需依赖云服务。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ok this is crazy! The US government just banned foreign made</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X · @bindureddy (产业与投资)</span><span>·</span><a href="https://nitter.net/bindureddy/status/2082600153559781872#m" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">产业投资人@bindureddy在X上报道，美国联邦政府宣布禁止进口外国制造的人形机器人。禁令主要针对来自中国的机器人产品，包括已进入消费市场的家庭服务机器人。@bindureddy评论认为，如果禁令持续，美国消费者将无法获得中国制造的&#x27;能做家务做饭的机器人&#x27;。该禁令被视为中美科技竞争在地缘政治层面的延伸，从数字技术（芯片、AI模型）扩展到物理实体（机器人）。目前尚不清楚禁令的具体执行细则和豁免条款。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

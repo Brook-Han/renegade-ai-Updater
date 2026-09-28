@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -331,6 +376,75 @@ nav{
       <div class="card-implications">信号异化（Signal Alienation）的革命性反向实证——人类主动创建AI无法解析的信号空间，将通信编码恢复到前AI时代的'人类专属'通道。同时挑战'碳硅认知趋同'假设：前沿视觉模型无法解码人类可读的动态信息，揭示碳基与硅基感知的根本性差异——硅基视觉依赖静态帧分析，碳基视觉天然接受时间序列信息。这是人类反制AI信息垄断的创造性策略，为'人机认知差异'提供了极好的类比案例。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (7条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI bets on families as ChatGPT goes deeper into househol</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/11/openai-bets-on-families-as-chatgpt-goes-deeper-into-households/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 11, Section I</span></div>
+      <div class="card-body">2026年7月11日，OpenAI发布招聘信息，招募专门负责家庭、照护者和老年人群体的ChatGPT产品经理，标志着ChatGPT正式从企业工具向家庭场景渗透。核心事实包括：OpenAI正组建面向家庭用户的专门产品团队，招聘职位描述明确指向&#x27;为家庭和照护者打造体验&#x27;；此前ChatGPT已推出儿童账户和家庭计划（Family Plan），月费30美元可覆盖最多5个家庭成员。直接后果：AI应用场景从企业办公扩展到家庭日常生活，可能加速AI在儿童教育、老人陪伴、家庭管理中的普及。行业影响方面，此举进一步模糊了AI工具与生活伴侣的边界，引发关于AI对儿童发展、家庭关系和隐私保护的新一轮讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">扎克伯格首度回应 Meta&quot;算力过剩&quot;：没人会嫌算力太多，但租出去更赚钱</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>IT之家（RSS）</span><span>·</span><a href="https://www.ithome.com/0/975/078.htm" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">2026年7月10日，Meta CEO扎克伯格首次正面回应公司筹划云基础设施业务一事。他否认算力过剩猜测，称内部算力需求旺盛满负荷运转，但当前市场算力出价极高，将部分AI基础设施对外出租在财务上更划算。Meta正制定代号&#x27;Meta Compute&#x27;的云计算计划，包括开放模型访问权限和直线出租裸算力两条路线。扎克伯格提及SpaceX以每月12.5亿美元将数据中心租给Anthropic的模式。Meta 2026年资本支出指引达1250-1450亿美元，计划2026年9月量产自研AI芯片，目标2027年部署算力提升至14吉瓦。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DeepSeek-V4 Flash 强化学习训练登陆 AMD Instinct MI355X GPU，由 Miles 框</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>LMSYS：Blog（Chatbot Arena 团队）</span><span>·</span><a href="https://www.lmsys.org/blog/2026-07-10-rocm-miles-dsv4" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section II</span></div>
+      <div class="card-body">DeepSeek-V4 Flash（2840亿参数MoE模型，每token激活130亿参数）的强化学习训练现已在AMD Instinct MI355X GPU上通过Miles框架获得支持，基于ROCm软件栈运行。技术细节：需SGLang进行rollout生成、Megatron进行策略更新，Miles负责异步循环与权重同步。团队解决了SGLang与Megatron间模型对齐、量化状态在线更新及多节点并行稳定性三大挑战。在四个八GPU节点上完成端到端验证：超过100个优化器步骤中训练-rollout对数概率差可控，在线奖励持续提升，离线AIME-2024基准分数同步上涨。LMSYS团队主导此项工作。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">美团 LongCat-2.0 正式开源，同步开放国产卡推理代码</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：龙猫LongCat（美团）</span><span>·</span><a href="https://mp.weixin.qq.com/s/iCq4jVlTdKOt74zAMYIIdw" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section I</span></div>
+      <div class="card-body">美团万亿参数大模型LongCat-2.0正式开源，总参数1.6T，平均激活约48B，专为真实Agentic Coding任务设计。核心技术创新包括LongCat稀疏注意力机制与N-gram Embedding。里程碑意义：LongCat-2.0是业界首个在五万卡国产算力集群上完成推理的万亿参数模型，从模型架构、芯片适配到部署策略进行深度协同优化，支持百万上下文高效推理。开源同步提供BF16、FP8、INT8等多精度版本及针对国产算力极致优化的推理代码。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">xAI 发布 Grok 4.5</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>xAI：News（网页）</span><span>·</span><a href="https://x.ai/news/grok-4-5" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">2026年7月8日，xAI推出Grok 4.5模型，专为编程、智能体任务和知识工作打造。模型训练于数万块NVIDIA GB300 GPU，DeepSWE 1.0得分62.0%，DeepSWE 1.1得分53%，Terminal Bench 2.1得分83.3%，SWE Bench Pro解决率64.7%。服务速度80 TPS，token效率约为Opus 4.8(max)的4.2倍，在Harvey Legal Agent Benchmark排名第一。定价每百万输入token 2美元、输出token 6美元。即日起在Grok Build、Cursor和SpaceXAI API可用。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic Claude Code工程师分享Fable 5使用秘诀：砍掉80%系统提示词，靠&quot;能力悬余&quot;突破限制</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：宝玉 (@dotey)</span><span>·</span><a href="https://x.com/dotey/status/2074255513353642090" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 1, Section II</span></div>
+      <div class="card-body">Anthropic Claude Code工程师Thariq Shihipar在AI Engineer World&#x27;s Fair上分享Fable 5模型使用心得。核心观点：模型能力需通过工具发掘（称之为&#x27;能力悬余&#x27;），Claude Code已砍掉80%系统提示词，改为提供上下文而非约束。具体方法包括：让Fable做盲区扫描提前发现潜在问题；制作四个不同风格原型探索偏好；让模型提问挖出隐性知识；通过/goal指令设定目标并验证其工作。他建议打破常规大胆尝试模型能力，如用Fable剪辑视频。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">腾讯混元 Hy3 正式发布：智能体与产品体验显著提升</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：腾讯混元</span><span>·</span><a href="https://mp.weixin.qq.com/s/X2x1GF09bFbTzc3M1981BQ" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 N/A</span></div>
+      <div class="card-body">腾讯混元发布Hy3模型，在推理、智能体、长上下文等任务上显著进步，比肩2-5倍参数规模旗舰模型。内部盲测均分2.67/4，优于GLM5.1（2.51/4）。关键改进：幻觉率从12.5%降至5.4%，常识错误率从25.4%降至12.7%，多轮问题率降至7.9%，MRCR从42.9%升至75.1%。任务解决率从72%跃升至90%，平均耗时缩短34%。API价格输入1元、输出4元（每百万tokens），命中缓存0.25元。已以Apache 2.0协议在GitHub、HuggingFace等平台开源。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 background</span><span class="tag">✅ 忽略</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

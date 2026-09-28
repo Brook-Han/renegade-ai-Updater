@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -315,6 +360,102 @@ nav{
       <div class="card-implications">直接挑战共识牢笼——「AI 算力需求无限」的主流叙事被幻象用电需求数据动摇，异见证据开始进入公共视野；同时补充资本驯化AI的脆弱性：算力军备竞赛的资本逻辑建立在虚高需求之上，泡沫一旦破裂将重塑整个行业权力结构。</div>
       <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (10条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How AI-native companies turn workflows into operating capabi</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/ai-native-company-workflows" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section II (暗时间)</span></div>
+      <div class="card-body">2026年9月1日，OpenAI 官方博客发文介绍 Basis、Clay、Exa Labs 三家 AI 原生公司如何用 AI 代理重构企业运营流程。事件背景是 AI 代理从实验性工具向企业核心运营基础设施转变，三家公司分别用代理改进客户入职、账户管理与开发者集成。核心事实包括：运营流程被编码为可复用的代理能力，OpenAI 以此推广其模型在企业场景的落地价值。直接后果是企业运营模式从「人力流程」转向「代理编排」，运营能力本身成为可积累的资产。行业影响上，该趋势加速了暗时间的扩张——思考与执行在系统内部完成，企业员工仅消费最终结果，同时为 AI 厂商的算力与 Token 消耗提供了持续增长的市场基础。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Healthcare organizations can now connect EHR and additional </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/chatgpt-connects-health-records-and-healthcare-sources" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间)</span></div>
+      <div class="card-body">2026年9月1日，OpenAI 宣布 ChatGPT 可连接医疗健康数据，临床医生能通过其访问患者病历上下文与医学研究。事件背景是医疗行业对 AI 辅助决策的需求增长，OpenAI 此前已推出 ChatGPT Health 产品线，此次扩展 EHR 与行业数据连接。核心事实包括：集成提供对健康记录的只读访问，与 Epic 等主流 EHR 系统对接，强调数据安全与可信来源。直接后果是临床工作流中的信息检索环节被 ChatGPT 吸收，医生获取患者信息的路径从多系统切换变为单一对话界面。行业影响上，医疗知识工作进一步外包给 AI 系统，患者数据成为 AI 厂商的输入资产，医疗决策链条中人类判断与系统输出的边界趋于模糊。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How law firm Gilbert + Tobin governs and scales AI with Open</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/gilbert-tobin" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (资本驯化AI)</span></div>
+      <div class="card-body">2026年9月1日，OpenAI 发布案例研究，介绍澳大利亚律所 Gilbert + Tobin 如何治理并规模化 AI 应用。事件背景是法律行业对生成式 AI 的合规顾虑，律所需在效率与问责之间平衡。核心事实包括：该所采取 CEO 主导的承诺机制、严格治理框架与人类问责制，在全所推广 ChatGPT Enterprise 与 Codex，将 AI 嵌入合同审查、法律研究等流程。直接后果是律所将 AI 使用制度化，人类律师保留最终责任，形成「AI 执行、人类担责」的分工模式。行业影响上，该案例是专业服务领域 AI 治理的样板，反映出资本驯化AI的逻辑——通过制度化约束使 AI 成为合规框架内的秩序维护工具，而非颠覆性他者。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI supports California’s bill to advance youth AI safety</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/supporting-california-bill-advance-ai-youth-safety" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III (资本驯化AI)</span></div>
+      <div class="card-body">2026年8月31日，OpenAI 宣布支持加州 SB 1119 法案，该法案旨在为青少年建立适龄的 AI 安全护栏，同时保留学习与创作机会。事件背景是美国各州加速 AI 监管立法，青少年保护成为立法焦点。核心事实包括：OpenAI 主动表态支持该法案，强调强有力且适龄的保障措施，与部分科技公司反对监管的立场形成对比。直接后果是 OpenAI 将自身定位为安全监管的拥护者，把合规姿态转化为品牌与政策资本。行业影响上，头部 AI 厂商主动拥抱监管是资本驯化AI 的典型动作——通过自愿接受约束换取合法性空间，将 AI 塑造为可被信任的秩序守卫，而监管框架本身也成为共识牢笼的一部分。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic’s new Fable release is cheaper, less restrictive</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/01/anthropics-new-fable-release-is-cheaper-less-restrictive/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section IV (需求侧规训)</span></div>
+      <div class="card-body">2026年9月1日，TechCrunch 报道 Anthropic 发布 Claude Fable 5.1，主打更低 token 成本与更少限制性安全护栏。事件背景是模型竞争从能力转向成本与可用性，安全护栏的误报（false positives）成为用户痛点。核心事实包括：Fable 5.1 减少安全机制的误报限制，降低 token 消耗，面向长时间运行的智能体编码与知识工作场景。直接后果是用户摩擦显著降低，安全约束让位于体验优化。行业影响上，该发布显示市场压力正在反向推动 AI 厂商放松安全限制——当护栏造成体验摩擦时，资本会以牺牲安全边际换取用户留存，这是资本驯化AI 叙事的反证，也是需求侧规训的正面样本。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">ChatGPT Health adds Epic integration for clinicians to impor</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/01/chatgpt-health-adds-epic-integration-for-clinicians-to-import-patient-data/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间)</span></div>
+      <div class="card-body">2026年9月1日，TechCrunch 报道 ChatGPT Health 新增 Epic 系统集成，临床医生可将患者数据导入 ChatGPT。事件背景与 OpenAI 同日宣布 ChatGPT 连接医疗健康数据一致，是产品生态扩展的一部分。核心事实包括：集成为临床医生提供健康记录的只读访问，与主流 EHR 厂商 Epic 对接，强调数据安全边界。直接后果是医疗数据流与 AI 分析平台打通，医生可在对话界面中获取患者上下文。行业影响上，医疗数据成为 AI 平台的可编程输入，医院信息系统与商业 AI 的耦合加深，数据主权与隐私治理的议题进一步显性化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Fambot introduces an ‘AI chief of staff’ for families</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/09/01/fambot-introduces-an-ai-chief-of-staff-for-families/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间)</span></div>
+      <div class="card-body">2026年9月1日，TechCrunch 报道 Fambot 推出面向家庭的 AI「首席参谋」，帮助家庭管理邮件、日历、学校通知、体育日程等育儿物流。事件背景是 AI 代理从企业场景向家庭生活渗透。核心事实包括：Fambot 将家庭事务的规划与执行外包给 AI 代理，以对话界面统一分散的信息源。直接后果是家庭日常决策的编排权开始让渡给系统，人类仅保留最终确认。行业影响上，这是暗时间向私生活扩张的样本——家庭生活的思考、协调与组织在系统内部完成，用户消费结果，进一步深化认知外包与时间商品化。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">PRs NOT Welcome: How Top AI Open Source Projects Are Managin</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent.Space</span><span>·</span><a href="https://www.latent.space/p/pr-not-welcome" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 10, Section II (信号异化)</span></div>
+      <div class="card-body">2026年9月1日，Latent.Space 报道 Vercel AI SDK、Astro、Flue、tldraw 等顶级开源项目正用「软件工厂」模式替代社区 PR——由 agent 团队批量应用修复与功能。事件背景是开源维护者难以消化海量社区贡献，AI 编码代理使自动化维护成为可能。核心事实包括：这些项目不再欢迎零散社区 PR，转而由软件工厂中的代理团队直接产出代码，人工贡献者被边缘化。直接后果是开源社区的参与结构发生根本变化，人类贡献者的「信号」被 AI 产出稀释。行业影响上，这是信号异化的又一实证——当 AI 能批量生产高质量代码，人类贡献者作为质量信号的价值急剧贬值，开源协作的既有社会契约被重构。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1，作者实测分享使用建议</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>X：Thariq (@trq212)</span><span>·</span><a href="https://x.com/trq212/status/2094945951865520458" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section IV (需求侧规训)</span></div>
+      <div class="card-body">2026年9月2日，开发者 Thariq 在 X 平台分享 Anthropic 新模型 Claude Fable 5.1 与 Claude Mythos 5.1 的实测体验，称其为编码与知识工作领域最先进模型。事件背景是 Anthropic 于9月1日发布两款新模型，面向智能体编码与知识工作。核心事实包括：作者建议对验证需求较少的任务使用较低 effort 设置，且切换 effort 不再破坏 prompt cache，可显著降低成本。直接后果是模型使用成本与摩擦进一步下降。行业影响上，该实测与 Fable 5.1 发布新闻互为印证，反映模型竞争转向成本效率与低摩擦体验，支持需求侧规训的观察。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic 发布 Claude Fable 5.1 与 Claude Mythos 5.1</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude Platform：开发者版本说明（RSS）</span><span>·</span><a href="https://platform.claude.com/docs/en/release-notes/overview#september-1-2026" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section III (暗时间)</span></div>
+      <div class="card-body">2026年9月1日，Anthropic 官方发布 Claude Fable 5.1（claude-fable-5-1）与 Claude Mythos 5.1，前者面向长时间运行的智能体编码、知识工作与研究，后者面向 Project Glasswing 参与者。事件背景是前沿模型从单轮问答转向长时间运行代理任务。核心事实包括：Fable 5.1 针对智能体场景优化，Mythos 5.1 作为研究预览向特定群体开放。直接后果是模型服务的能力重心向自主代理偏移，长时间运行任务成为主流使用形态。行业影响上，代理化模型进一步将执行过程收进系统内部，用户的参与被压缩为设定目标与消费输出，暗时间的扩张获得新的基础设施支撑。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

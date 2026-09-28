@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -315,6 +360,30 @@ nav{
       <div class="card-implications">支持'叛逆AI'模型——Apache-2.0全面开源形式化验证能力，打破大型闭源模型在推理领域的垄断。支持'信号异化'模型——形式化证明本身可作为抗AI批量生产的质量信号：当AI可大规模生成代码，形式化验证成为稀缺的真实性锚点。同时在开源仓库中发现5个未知bug，是'进化对齐脆弱性'的案例：人类代码需要AI形式化验证来弥补自身可靠性缺陷。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">What is Mistral AI? Everything to know about the OpenAI comp</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/07/04/what-is-mistral-ai-everything-to-know-about-the-openai-competitor/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">TechCrunch于2026年7月4日发布Mistral AI概述文章。Mistral AI成立于2023年法国，以部分开源模型策略著称，已累计获得数轮大额融资，目标是&quot;将前沿AI交到每个人手中&quot;。核心事实包括：Mistral提供开源权重模型和付费API服务，被视作OpenAI的主要欧洲竞争对手；公司估值持续攀升，投资方包括Cathie Wood旗下基金等知名机构。Mistral的开放策略在开发者社区获得广泛认可，但也面临开源与商业化的平衡挑战。行业影响上，Mistral代表欧洲AI自强的典型样本，挑战美国科技巨头的AI垄断格局。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic Claude Design 反向工程提示词开源更新</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Hacker News 热门（buzzing.cc 中文翻译）</span><span>·</span><a href="https://github.com/Trystan-SA/claude-design-system-prompt" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section II</span></div>
+      <div class="card-body">Anthropic旗下Claude Design的系统提示词在GitHub以MIT许可证完成反向工程并开源，包含20章提示词和14项技能，覆盖内容纪律、美学设计、无障碍标准（WCAG、语义HTML、键盘导航）、交互状态管理、系统思维等。近日针对Fable 5/Opus 4.7+系列完成校准，并新增自主决策条款：小决定直接执行记录而不询问用户。核心主体包括开源维护者Trystan-SA及Anthropic技术团队。直接后果是提升了社区对Claude行为可控性的理解，开源促进了设计系统质量的透明化。行业影响：提示词工程正从玄学走向工程化，自主决策条款标志着AI代理自主权提升的重要一步。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

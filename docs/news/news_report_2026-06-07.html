@@ -8,228 +8,278 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
   
-    <style>
-      /* ========== DESIGN TOKENS (v5.3 Optimized) ========== */
-      :root {
-        --bg: #0a0a12; --bg2: #0f0f1a; --surface: #141422; --card: #181828;
-        --border: #25253a; --border-bright: #363655;
-        --text: #e2e2f0; --text-muted: #7878a8; --text-faint: #4a4a6a;
-        --accent: #ff5c45; --accent-dim: rgba(255,92,69,0.12);
-        --accent2: #d4af5c; --accent3: #5ba3e6; --accent3-dim: rgba(91,163,230,0.10);
-        --white: #f4f4fc;
-        --mono: 'Space Mono', 'Courier New', monospace;
-        --serif: 'Crimson Pro', Georgia, serif;
-        --display: 'Bebas Neue', 'Arial Narrow', sans-serif;
-      }
-      :root.light {
-        --bg: #f5f6fa; --bg2: #fff; --surface: #eceef5; --card: #fff;
-        --border: #d8dbe6; --border-bright: #c0c4d6;
-        --text: #222233; --text-muted: #5c5c75; --text-faint: #9a9ab0;
-        --accent: #e8503a; --accent-dim: rgba(232,80,58,0.08);
-        --accent2: #b88c2a; --accent3: #3a7fbf; --accent3-dim: rgba(74,143,207,0.08);
-        --white: #222233;
-      }
-
-      /* ========== RESET & TYPOGRAPHY ========== */
-      * { box-sizing: border-box; margin: 0; padding: 0; }
-      html { scroll-behavior: smooth; }
-      body {
-        font-family: var(--serif); background: var(--bg); color: var(--text);
-        line-height: 1.8; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
-        transition: background-color 0.3s ease, color 0.3s ease;
-        text-rendering: optimizeLegibility; font-feature-settings: "kern" 1, "liga" 1;
-      }
-      ::selection { background: var(--accent); color: #fff; text-shadow: 0 1px 2px rgba(0,0,0,.2); }
-      
-      /* ========== ACCESSIBILITY ========== */
-      :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 2px; z-index: 10; }
-      :focus:not(:focus-visible) { outline: none; }
-      @media (prefers-reduced-motion: reduce) {
-        *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
-      }
-
-      /* ========== NAV ========== */
-      nav {
-        position: fixed; top: 0; width: 100%; z-index: 200;
-        background: rgba(10,10,18,.92); backdrop-filter: blur(24px);
-        border-bottom: 1px solid var(--border); height: 56px;
-        display: flex; align-items: center; justify-content: space-between;
-        padding: 0 32px; font-family: var(--mono);
-      }
-      .light nav { background: rgba(245,246,250,.92); }
-      .nav-brand {
-        font-size: 0.75rem; font-weight: 700; color: var(--accent); letter-spacing: 3px;
-        text-transform: uppercase; text-decoration: none;
-      }
-      .nav-right { display: flex; gap: 8px; align-items: center; }
-      .nav-pill {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        font-family: var(--mono); font-size: .72rem; font-weight: 500; letter-spacing: 2px;
-        padding: 5px 14px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center;
-      }
-      .nav-pill:hover, .nav-pill:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-      .theme-btn {
-        background: none; border: 1px solid var(--border); color: var(--text-muted);
-        width: 36px; height: 36px; cursor: pointer; display: flex; align-items: center; justify-content: center; font-size: .9rem;
-      }
-      .theme-btn:hover, .theme-btn:focus-visible { border-color: var(--accent); color: var(--accent); background: var(--accent-dim); }
-
-      /* ========== MAIN ========== */
-      .main { max-width: 960px; margin: 0 auto; padding: 80px 32px 60px; }
-      .back-link {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 2px; 
-        color: var(--text-muted); text-decoration: none; text-transform: uppercase;
-        border: 1px solid var(--border); padding: 6px 14px; display: inline-block; margin-bottom: 16px;
-      }
-      .back-link:hover { border-color: var(--accent); color: var(--accent); }
-      .page-eyebrow {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; letter-spacing: 4px; 
-        color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
-        display: flex; align-items: center; gap: 10px;
-      }
-      .page-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--accent); }
-      .page-title {
-        font-family: var(--display); font-size: clamp(2.5rem, 5vw, 3.5rem);
-        letter-spacing: 2px; color: var(--white); margin-bottom: 8px; line-height: 1;
-      }
-      .page-sub {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); letter-spacing: 1.5px; margin-bottom: 24px;
-      }
-      .stats-row {
-        display: flex; gap: 24px; margin-bottom: 24px;
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); flex-wrap: wrap;
-      }
-      .stats-row span { color: var(--accent); font-weight: 700; }
-      
-      /* ========== URGENT BOX ========== */
-      .urgent-box {
-        background: var(--accent-dim); border: 1px solid var(--accent);
-        padding: 20px 24px; margin-bottom: 32px; border-left: 4px solid var(--accent);
-      }
-      .urgent-title {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 700;
-        letter-spacing: 2px; color: var(--accent); text-transform: uppercase; margin-bottom: 12px;
-      }
-      .urgent-item {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500; margin-bottom: 8px;
-        padding-left: 16px; border-left: 2px solid var(--border); color: var(--text-muted);
-      }
-      .urgent-item strong { color: var(--white); }
-      .urgent-type-tag {
-        font-family: var(--mono); font-size: 0.65rem; font-weight: 700; letter-spacing: 1px;
-        color: var(--accent); background: var(--bg); padding: 2px 6px; margin-left: 6px; text-transform: uppercase;
-      }
-      
-      /* ========== CARDS ========== */
-      .card {
-        background: var(--card); border: 1px solid var(--border); padding: 28px; margin-bottom: 16px;
-        transition: border-color .2s, background 0.2s, box-shadow .2s;
-        box-shadow: 0 4px 24px rgba(0,0,0,.15), inset 0 1px 0 rgba(255,255,255,.02);
-      }
-      .card:hover { border-color: var(--accent); }
-      .card-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 14px; gap: 16px; }
-      .card-title {
-        font-family: var(--display); font-size: 1.4rem; letter-spacing: 0.5px; 
-        color: var(--white); line-height: 1.3; flex: 1;
-      }
-      .card-score {
-        font-family: var(--display); font-size: 2.2rem; color: var(--accent);
-        line-height: 1; white-space: nowrap; text-align: right; flex-shrink: 0;
-      }
-      .card-score span {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); display: block; letter-spacing: 1px; margin-top: 4px;
-      }
-      .card-badge {
-        display: inline-block; padding: 3px 8px; font-family: var(--mono); 
-        font-size: 0.65rem; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-        background: var(--accent3-dim); color: var(--accent3); border: 1px solid var(--accent3); margin-left: 8px;
-      }
-      .card-badge.high { background: var(--accent-dim); color: var(--accent); border-color: var(--accent); }
-      .card-meta {
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); letter-spacing: 0.5px; margin-bottom: 16px; 
-        display: flex; gap: 16px; flex-wrap: wrap; align-items: center;
-      }
-      .card-meta a { color: var(--accent2); text-decoration: none; }
-      .card-meta a:hover { text-decoration: underline; }
-      .card-body { font-size: 0.95rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 16px; }
-      .card-implications {
-        font-family: var(--mono); font-size: 0.75rem; font-weight: 500;
-        color: var(--accent2); padding: 12px 16px; background: rgba(212,175,92,0.05);
-        border-left: 3px solid var(--accent2); letter-spacing: 0.3px; margin-bottom: 16px; line-height: 1.7;
-      }
-      .card-footer {
-        display: flex; gap: 12px; flex-wrap: wrap; font-family: var(--mono); 
-        font-size: 0.72rem; font-weight: 500; color: var(--text-faint); letter-spacing: 0.5px;
-        padding-top: 12px; border-top: 1px dashed var(--border);
-      }
-      .card-footer .tag { padding: 3px 8px; background: var(--surface); border-radius: 2px; color: var(--text-muted); }
-      
-      /* ========== COLLAPSED LIST ========== */
-      details { margin: 32px 0; border: 1px solid var(--border); background: var(--card); }
-      summary {
-        padding: 14px 20px; cursor: pointer; font-family: var(--mono); 
-        font-size: 0.72rem; font-weight: 700; letter-spacing: 1px; color: var(--text-muted);
-        background: var(--surface); user-select: none; display: flex; align-items: center; gap: 8px;
-      }
-      summary:hover { color: var(--accent); }
-      details[open] summary { border-bottom: 1px solid var(--border); }
-      .collapsed-list { padding: 16px 20px; }
-      .collapsed-list li { margin-bottom: 10px; font-size: 0.95rem; color: var(--text-muted); }
-      .collapsed-list a { color: var(--text); text-decoration: none; }
-      .collapsed-list a:hover { color: var(--accent); text-decoration: underline; }
-      
-      /* ========== FOOTER ========== */
-      footer {
-        margin-top: 48px; padding-top: 24px; border-top: 1px solid var(--border);
-        font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-muted); letter-spacing: 1px; display: flex; justify-content: space-between;
-      }
-      footer a { color: var(--text-muted); text-decoration: none; }
-      footer a:hover { color: var(--accent); }
-      
-      /* ========== STATUS BAR ========== */
-      .status-bar {
-        position: fixed; bottom: 0; width: 100%; z-index: 200;
-        background: var(--bg); border-top: 1px solid var(--border);
-        padding: 10px 32px; font-family: var(--mono); font-size: 0.72rem; font-weight: 500;
-        color: var(--text-faint); letter-spacing: 2px;
-        display: flex; justify-content: space-between; align-items: center;
-      }
-      .status-dot {
-        display: inline-block; width: 6px; height: 6px; background: var(--accent);
-        border-radius: 50%; margin-right: 8px; animation: pulse 2s infinite;
-      }
-      @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: .2; } }
-
-      /* ========== MOBILE & TOUCH TARGETS ========== */
-      @media (max-width: 768px) {
-        .nav-pill, .theme-btn, .back-link { min-height: 44px; min-width: 44px; display: inline-flex; align-items: center; justify-content: center; }
-      }
-      @media (max-width: 600px) {
-        .main { padding: 70px 16px 60px; }
-        .page-title { font-size: 2.2rem; }
-        .stats-row { flex-direction: row; gap: 16px; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
-      }
-    </style>
+  </style>
 </head>
 <body>
   <nav>
-    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.3</a>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
     <div class="nav-right">
       <a href="../index.html" class="nav-pill">HOME</a>
-      <a href="index.html" class="nav-pill">NEWS</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
       <a href="../academic/" class="nav-pill">PAPERS</a>
       <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
     </div>
   </nav>
 
   <main class="main">
-    <a href="index.html" class="back-link">← BACK TO INDEX</a>
     <div class="page-eyebrow">§ News Radar</div>
     <h1 class="page-title">DAILY INTELLIGENCE</h1>
     <p class="page-sub">2026-06-07 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
@@ -294,10 +344,43 @@
       <div class="card-implications">强力印证【共识牢笼】模型：施密特代表的科技/资本精英试图维持‘AI改变世界、青年须顺势而为’的主流共识，却在仪式性公共场合遭遇集体性破壁——嘘声是共识牢笼在‘被规训者’端的实时塌陷。同时补充【资本驯化AI】：资本代言人直接向劳动力储备军下达‘共建AI秩序’指令，遭拒即揭示驯化话语的失效。亦可作【时间主权】侧写：毕业生以嘘声捍卫其未来生命时间不被预设为AI训练数据清洗工。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (3条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Shape, Symmetries, and Structure: The Changing Role of Mathe</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Gradient</span><span>·</span><a href="https://thegradient.pub/shape-symmetry-structure/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section II (资本驯化AI) 与 Chapter 5, Section III (信号异化与共识牢笼)</span></div>
+      <div class="card-body">The Gradient 刊文《Shape, Symmetries, and Structure: The Changing Role of Mathematics in Machine Learning Research》记录了过去十年机器学习研究范式的根本性转移：早期依赖精心设计、数学原理驱动的架构创新（如群等变网络、几何深度学习）仅带来边际增益；而以海量算力、工程优先、大规模数据扩展为核心的“Scaling First”路线（Transformer、大语言模型）却持续刷新 SOTA。文章指出，数学从“设计时的指导原则”退化为“事后的解释工具”，研究评价体系随之从理论严谨度转向工程基准榜单，导致数学人才流失、理论课程边缘化，学术界与产业界的权力失衡进一步加剧。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">We Need Positive Visions for AI Grounded in Wellbeing</h2>
+        <div class="card-score">4.7<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Gradient</span><span>·</span><a href="https://thegradient.pub/we-need-positive-visions-for-ai-grounded-in-wellbeing/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II（目标函数重置与福祉对齐）</span></div>
+      <div class="card-body">The Gradient 发表观点文章《We Need Positive Visions for AI Grounded in Wellbeing》，主张应以「福祉」为锚点构建积极的 AI 未来图景，而非任由恐惧或盲目乐观主导叙事。文章回顾过去十年生成式 AI 从科幻走入日常（自然对话、生成图像、编写代码、哲学辩论），指出技术已对社会产生实质冲击，但当前公共讨论多陷入「生存风险」与「效率红利」的二元对立，缺乏以人类长期心理、社会与生态福祉为核心的系统性愿景。作者呼吁研究者、政策制定者与公众共同参与「福祉导向的 AI 设计」，将福祉指标纳入模型目标函数、评估基准与治理框架。文中未披露具体实验数据或政策案例，属理论倡议性论述。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Car-GPT: Could LLMs finally make self-driving cars happen?</h2>
+        <div class="card-score">6.3<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>The Gradient</span><span>·</span><a href="https://thegradient.pub/car-gpt/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II (Alignment Fragility in Open Worlds) / Chapter 5, Section III (Dark Time in Embodied AI)</span></div>
+      <div class="card-body">The Gradient 发表深度技术评论，探讨大语言模型（LLM）能否攻克自动驾驶‘长尾难题’。文章回顾了传统感知-规划-控制流水线在稀有边缘案例（edge cases）上失效的困境，分析 LLM 以世界模型、常识推理、语言交互三大能力切入端到端自动驾驶的新范式（如 Waymo 的 EMMA、特斯拉 FSD v12、NVIDIA 的 DriveLM）。核心事实包括：① LLM 能将稀有场景泛化为自然语言推理链，降低标注成本；② 但幻觉、推理延迟（&gt;100ms）、对抗鲁棒性、可解释性缺失仍阻碍 L3/L4 量产；③ 业界正转向‘视觉-语言-动作’（VLA）多模态大模型，试图在仿真与实车闭环中完成对齐。直接后果：重新点燃‘端到端’路线之争，倒逼监管机构制定‘基础模型上路’新标准，并引发保险与责任归属的法律重构。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
-    <span>Renegade AI v5.3 · Brooks Han</span>
+    <span>Renegade AI v5.4 · Brooks Han</span>
     <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
   </footer>
 

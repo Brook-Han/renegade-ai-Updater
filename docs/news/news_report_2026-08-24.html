@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -263,6 +308,30 @@ nav{
       <div class="card-implications">补充资本驯化AI 的算力垄断维度并挑战其稳固性：CUDA 生态是 NVIDIA 驯化 AI 发展路径的最硬杠杆，本文以机制级分析指出智能体推理（长上下文+KV Cache 密集）可能使硬件竞争从训练峰值算力转向推理能效，AMD MI355 首次获得可比较的竞争位——驯化杠杆存在松动空间。同时补充暗时间模型：100 万上下文+子代理 95%+ KV Cache 命中率是暗时间基础设施化的实证指标。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Flock CEO calls for ‘compromise’ as surveillance company fac</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/23/flock-ceo-calls-for-compromise-as-surveillance-company-faces-growing-backlash/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section II</span></div>
+      <div class="card-body">TechCrunch 8 月 23 日报道，美国监控技术公司 Flock Safety（运营覆盖全美的车牌读取器网络）因技术可能被滥用的担忧面临日益增长的公众反对，CEO 公开呼吁与批评者达成&#x27;妥协&#x27;。背景：该公司车牌读取器网络此前已在舆论压力下收紧数据访问权限（8 月 14 日主分析事件），但公众对执法监控扩张的担忧持续发酵，形成第二轮反弹。核心事实：CEO 首次以&#x27;妥协&#x27;框架公开回应，承认需要平衡监控需求与公民隐私关切。直接后果：监控公司在持续舆论压力下转向协商式话语，物理监控层的自我规制从&#x27;暗中收紧&#x27;走向&#x27;公开协商&#x27;，为后续立法博弈设定话语框架。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Is it legal to train AI models on copyrighted books? It’s co</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/08/23/is-it-legal-to-train-ai-models-on-copyrighted-books-its-complicated/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section V</span></div>
+      <div class="card-body">TechCrunch 8 月 23 日发表综述，探讨用受版权保护的书籍训练 AI 模型的法律边界。核心悖论：大多数已出版作者在不知情、未同意的情况下，为威胁其生计的同一批 AI 工具贡献了训练数据。背景：欧美对 AI 训练数据的版权处理路径分歧明显——美国合理使用（fair use）框架相对宽松，欧盟法院立场更严（8 月 2 日 Suno 案德国法院已裁定记忆化输出构成侵权）。核心事实：文章梳理了集体诉讼、版权法与合理使用的判例张力，指出&#x27;是否合法&#x27;高度依赖记忆化程度、输出相似度与管辖地。直接后果：训练数据供应链的法律不确定性持续，作者群体与 AI 公司的博弈从个案诉讼走向规则层面，出版业集体谈判与许可协议成为新常态。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">

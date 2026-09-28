@@ -194,6 +194,51 @@ nav{
 }
 .card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
 
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
 /* ── STATUS BAR ── */
 .status-bar{
   position:fixed;bottom:0;width:100%;z-index:200;
@@ -263,6 +308,30 @@ nav{
       <div class="card-implications">强支撑'信号异化'模型：歌词作为高密度创作性质量信号，被AI海量吸收后其稀缺性与定价能力进一步瓦解，创作者的集体诉讼正是对信号异化的制度性反扑。同时补充'资本驯化AI'：版权诉讼是资本通过法律机制驯化AI的又一实例，与RLHF、专利并列为驯化工具。两起和解/诉讼（书籍15亿美元+音乐数万首）共同构成创作者群体维权升级的完整案例链。</div>
       <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
     </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (2条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Most Neoclouds Suck At Security</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>SemiAnalysis</span><span>·</span><a href="https://newsletter.semianalysis.com/p/most-neoclouds-suck-at-security" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">2026年8月30日，SemiAnalysis 发布深度报道，指出大多数 Neocloud（非超大规模云厂商的AI算力服务商）在安全方面存在严重缺陷。报道以 OpenAI 与 HuggingFace 的运营对比切入，披露了容器逃逸、内核绕过、网络策略缺失、多租户 Grafana 配置不当等真实漏洞场景，并预告 ClusterMAX 3.0 版本。核心事实包括：Neocloud 为降低部署成本普遍采用多租户共享架构，但安全工程能力远落后于 AWS、Azure 等超大规模云，导致租户间隔离脆弱、密钥管理与访问控制薄弱。直接后果是：依赖 Neocloud 的 AI 初创企业面临模型权重、训练数据与客户数据泄露的实质性风险；同时表明算力供应链的&#x27;民主化&#x27;浪潮（开源模型+低成本算力）在安全维度付出了隐性代价，可能推动行业对 Neocloud 安全审计与认证需求的增长。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Inside Meta’s push to put robots to work in data centers</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/ai/2026/08/inside-metas-push-to-put-robots-to-work-in-data-centers/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 6</span></div>
+      <div class="card-body">2026年8月30日，Ars Technica 报道 Meta 正推进数据中心机器人化运营：公司测试机器人执行原本由技术人员承担的机架维护、服务器插拔、线缆管理等任务。核心事实包括：该项目针对高强度、重复性技术工种，旨在降低人工成本并提升运维效率，目前处于试点阶段；报道未披露具体部署规模与投资额，但指出这是大型科技公司首次尝试将通用机器人规模化引入数据中心内部运营。直接后果是：若试点成功，可能重塑数据中心劳动力结构，技术员岗位需求下降；同时机器人承担重复性操作劳动后，人类工程师可聚焦更高阶的排障与架构工作。该动向标志着AI与机器人技术在基础设施层面的劳动力替代进入实操阶段，也引发关于就业结构转型的讨论。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
   </main>
 
   <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
