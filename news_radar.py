@@ -475,7 +475,7 @@ def analyze_news_item(news: dict, model_name: str, client: OpenAI) -> dict:
     
     user_prompt = f"""新闻标题：{title}
 内容摘要：{summary}
-来源：{news.get('source_name', '')} · {news.get('published', '')[:10]}
+来源：{news.get('source_name', '')} · {(news.get('published') or '')[:10]}
 语言：{lang_label}
 
 请按 JSON 格式返回分析结果。"""
@@ -634,7 +634,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
             n, a = d["news"], d["analysis"]
             lines += [
                 f"### {i}. {n['title']}",
-                f"- **来源**: {n.get('source_name', 'Unknown')} · {n.get('published', '')[:10]}",
+                f"- **来源**: {n.get('source_name', 'Unknown')} · {(n.get('published') or '')[:10]}",
                 f"- **相关度**: {a['relevance']}/10 | 案例价值: {a.get('case_value', 'N/A').upper()}",
                 f"- **紧迫度**: {a.get('urgency', 'N/A')} | 更新类型: {a.get('update_type', 'N/A')}",
                 f"- **目标章节**: {a.get('chapter_target', '待定')}",
@@ -664,7 +664,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
                 cat_label = f"[{category}] " if category else ""
                 lines += [
                     f"#### {cat_label}{n['title']}",
-                    f"- **来源**: {src_name} · {n.get('published', '')[:10]}",
+                    f"- **来源**: {src_name} · {(n.get('published') or '')[:10]}",
                     f"- **相关度**: {a.get('relevance', 'N/A')}/10 | 案例价值: {a.get('case_value', 'N/A').upper()}",
                     f"- **链接**: [{n.get('url', '#')}]({n.get('url', '#')})",
                     f"- **事件摘要**: {a.get('summary_cn', n.get('summary', 'N/A'))}",
