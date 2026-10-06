@@ -477,13 +477,88 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-10-05">
+  <div class="day-group" data-date="2026-10-06">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-10-06</h2>
+    </div>
+    <div class="day-header-right">TOP 3 / 13 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+          
+        </div>
+        <div class="radar-score">
+          8.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://arstechnica.com/security/2026/10/vulnerability-in-agents-from-google-and-others-exposes-structural-flaw-in-mcp/" target="_blank" rel="noopener">MCP for agent-to-agent comms may be the riskiest protocol you&#x27;ve never heard of</a>
+      </h3>
+      <p class="radar-card-body">Ars Technica 报道，用于智能体间通信的 MCP 协议被发现存在结构性缺陷：协议缺少可信来源校验，恶意提示词可以在智能体之间传播，来自 Google 等厂商的智能体实现被曝受影响。背景是 MCP 已被广泛用作智能体接入工具与彼此协作的通用接口，但设计之初以可连接优先，未内建强信任边界。核心事实：攻击者可借一个被污染的智能体把恶意指令传递到下游智能体，形成跨主体的提示注入链，且该缺陷属协议层而非单一实现问题。影响是：智能体互联的基础协议在开放环境中暴露系统性安全缺口，…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://arstechnica.com/security/2026/10/vulnerability-in-agents-from-google-and-others-exposes-structural-flaw-in-mcp/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-10-06.html">查看 2026-10-06 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section I</span>
+          
+        </div>
+        <div class="radar-score">
+          7.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://techcrunch.com/2026/10/05/openai-will-start-watermarking-chatgpts-text-in-the-eu/" target="_blank" rel="noopener">OpenAI will start watermarking ChatGPT’s text in the EU</a>
+      </h3>
+      <p class="radar-card-body">TechCrunch 报道，OpenAI 将依据欧盟《人工智能法案》开始在欧盟范围内对 ChatGPT 与 Codex 生成的文本施加水印。核心事实：水印为不可见标记，用于标识内容由 AI 生成；OpenAI 同时承认，文本经过编辑后，这些不可见标记会变得更难被检测；检测能力初期仅向研究人员开放。背景是欧盟对生成式 AI 内容标注的合规要求逐步落地，头部厂商需在监管截止前给出技术方案。影响是：内容溯源机制正式进入生产环境，但厂商公开承认该机制在真实使用场景（改写、拼接、部分引…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://techcrunch.com/2026/10/05/openai-will-start-watermarking-chatgpts-text-in-the-eu/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-10-06.html">查看 2026-10-06 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card tier-medium" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 7, Section I</span>
+          <span class="tier-chip">MED</span>
+        </div>
+        <div class="radar-score">
+          6.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/eu-text-provenance" target="_blank" rel="noopener">Our approach to EU text provenance rules</a>
+      </h3>
+      <p class="radar-card-body">OpenAI 于 10 月 5 日发布官方说明，阐述其在欧盟《人工智能法案》文本溯源要求下的水印方案。要点包括：水印适用于 ChatGPT 与 Codex 生成的文本；检测能力优先向研究人员开放，普通用户与第三方机构暂不获得直接检测接口；公司承认经过编辑、改写或部分复述后的文本会削弱水印可检出性。事件背景是欧盟 AI 法案要求生成式 AI 服务提供者可标记 AI 生成内容，OpenAI 以自愿技术方案回应合规压力。直接影响是：内容溯源从「平台自律」进入「监管驱动的技术标准」阶…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/eu-text-provenance" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-10-06.html">查看 2026-10-06 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-10-05">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-10-05</h2>
     </div>
-    <div class="day-header-right">2 NEWS</div>
+    <div class="day-header-right">TOP 1 / 2 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -504,27 +579,6 @@ footer a:hover{color:var(--accent)}
       <p class="radar-card-body">Google 自 2026 年 10 月 1 日起暂停其「开源软件漏洞奖励计划」（Open Source Software Vulnerability Rewards Program，OSS VRP），在 X 与项目规则页同步公告，理由是「自动化提交量大幅上升，其中绝大多数无效」，并承诺 2027 年第一季度给出「更新」。据 Tom&#x27;s Hardware 报道，Google 工程师与开源维护者已被大量无效或含幻觉的漏洞报告淹没。TechCrunch 指出，早在 2025 年 …</p>
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://techcrunch.com/2026/10/04/google-froze-its-open-source-bug-bounty-program-due-to-a-significant-rise-in-ai-submissions/" target="_blank" rel="noopener">↗ 原文</a>
-        <a class="full-report-link" href="./news_report_2026-10-05.html">查看 2026-10-05 完整报告 →</a>
-      </div>
-    </article>
-    <article class="radar-card tier-medium" data-type="news">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag news">📰 新闻</span>
-          <span class="card-chapter">§ Chapter 3, Section IV</span>
-          <span class="tier-chip">MED</span>
-        </div>
-        <div class="radar-score">
-          5.0<span>/10</span>
-          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span><span class="bar"></span></div>
-        </div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://factory.com/news/automations" target="_blank" rel="noopener">Factory 正式发布 Automations，Droid 可定时或事件触发执行重复工程工作</a>
-      </h3>
-      <p class="radar-card-body">AI 编程公司 Factory 于 2026 年 9 月底正式发布 Automations 功能并全面开放，企业客户已在组织内部署使用。用户用自然语言描述重复性工程工作流，选择 Schedule（定时）、Slack、GitHub 或 webhook 等触发方式，由 Droid 智能体按预设模型与运行机器执行直至达成预期结果，支持 BYOK（自带密钥）或 Factory Router 路由，可运行于本地、自有机器或 Droid Computer。该产品把「描述意图—自动执行—交…</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://factory.com/news/automations" target="_blank" rel="noopener">↗ 原文</a>
         <a class="full-report-link" href="./news_report_2026-10-05.html">查看 2026-10-05 完整报告 →</a>
       </div>
     </article>
@@ -4980,7 +5034,7 @@ footer a:hover{color:var(--accent)}
 
 /* ── STATS ── */
 (function(){
-  const t=138,d=138;
+  const t=139,d=139;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
