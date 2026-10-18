@@ -42844,5 +42844,41 @@
     "relevance": 5,
     "urgency": "next_version",
     "case_value": "medium"
+  },
+  "59752a54ddf6420411b742fe1260493f": {
+    "cached_at": "2026-10-18T09:10:41.756985",
+    "title": "Replit makes OpenAI its default over Anthropic, CEO says",
+    "url": "https://techcrunch.com/2026/10/17/replit-is-no-longer-working-with-anthropic-ceo-says/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "事件起因是 AI 编程平台 Replit 在 TechCrunch Disrupt 舞台上由 CEO Amjad Masad 宣布不再与 Anthropic 合作。核心事实：Replit 今年 8 月已与 OpenAI 达成合作，此次进一步把 OpenAI 的 ChatGPT 设为平台默认模型，Claude 仍可供用户手动选择；Masad 称决策依据是成本、合作关系与性能三项，内部基准与公开基准均显示 OpenAI 的 Sol、Astra 在「从零构建 vibe-coded 应用」上更优，并称 Replit 此前曾是 Anthropic 前五大客户。关键机制在于默认位：多数客户不会主动切换模型，因此改默认即可大幅削减对 Anthropic 的支出。Masad 同时披露收入结构变化——企业客户占比从去年 2% 升至 15%，B2B 已超总收入一半，预计 2027 年企业及政府客户过半。文中亦记载争议：熟悉双方合作的内幕人士否认合作已终止，且 Replit 官网与博客数周前仍在推 Claude Fable 5 系列与 Opus 5.5。Masad 另提出「智能体栖息地」论，认为安全来自编排、错误恢复、沙箱、网络与身份授权等环境工程。",
+      "implications": "主要支持「需求侧规训」并补充「资本驯化 AI」：纪律的实际作用点不在说服用户选择哪个模型，而在默认值——「多数客户沿用默认」意味着选择架构本身就是规训装置，用户的「不选择」被系统默认转化为对某一资本方的持续付费。次要地，Masad 的「智能体栖息地」表述（编排/错误恢复/沙箱/身份授权）把安全责任从模型权重外推到工程环境，与 10-11 Nadella「模型与 harness 分离、控制外部化」构成同一论证链，弱支持「进化对齐脆弱性」。但内幕人士否认合作终止、且平台数周前仍在推 Claude，说明厂商公开叙事本身是竞争工具，可作为「共识牢笼」边缘的注脚：对同一合作状态存在两套互斥叙述。本条为商业竞争事件，无独立量化证据，故定位为案例而非论据。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "56edb897f3c12e7e9908f6847b1791d6": {
+    "cached_at": "2026-10-18T09:10:41.756985",
+    "title": "DeepSeek 开放自研搜索 API",
+    "url": "https://api-docs.deepseek.com/zh-cn/updates/#开放自研搜索-api",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "事件背景是模型厂商开始把检索层纳入自有基础设施。2026 年 10 月 17 日 DeepSeek 更新日志宣布开放自研搜索 API，其网页端与 API 端搜索能力均由自研 DeepSeek 搜索引擎提供底层支持。核心事实与数据：该引擎为 AI 原生通用搜索引擎，索引全球千亿级网页，支持多语言，实时返回高相关、高权威、高时效结果，日均稳定处理来自全球的数亿次搜索请求；官方明确针对 SEO 作弊、GEO（生成式引擎优化）操纵和低质 AIGC 建立「严格的识别机制」进行过滤，目标是向用户与 LLM 同时呈现权威可信信息，使用方式见配套的《网页搜索与抓取指南》。同日 DeepSeek 还发布 V4.1-Flash-1017 模型更新，强调性能与费用同步改善的帕累托改进，并称已针对 DeepSeek Harness、腾讯 CodeBuddy、WorkBuddy 等平台框架做适配优化。直接影响是开发者可在同一 API 内完成「检索—生成」，检索层从第三方搜索或自建爬虫转为厂商托管服务，模型侧对信息源质量的判定权随之集中。",
+      "implications": "支持并推进「信号异化」：GEO 被官方正式列为需过滤的操纵类别，说明信号博弈已从「争夺人类注意力（SEO）」升级为「争夺模型引用权（GEO）」——当输出由 LLM 代读，被引用即等于被看见，质量信号的通胀从人类阅读界面迁移到机器检索界面。更关键的是反制的结构：由模型厂商自建索引、自行定义何为「权威可信」，等于把信号裁判权私有化，反制信号异化的手段本身成为新的认知守门权，与「资本驯化 AI」在此交叉——不是通过 RLHF 规训模型，而是通过控制检索入口规训模型能看见什么。此外检索作为 API 供给，使 RAG 管线中最需要判断力的一环（选源、判权威）被外包，检索决策落入「暗时间」：用户只消费答案，不再观察证据如何被挑出。官方自述无第三方审计，过滤标准与误杀率不可验证，故记为厂商声明而非既成事实。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 7,
+    "urgency": "immediate",
+    "case_value": "high"
   }
 }
