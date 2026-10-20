@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-10-20 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 4 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-10-20 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>28</span></div>
+      <div>🔴 高价值: <span>4</span></div>
+      <div>🟡 中相关: <span>13</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 5, Section II</strong> — Microsoft says AI agents are like insider threats as ‘frontier models <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — AI game clones are making indie developers afraid to show their work <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 5, Section II</strong> — 黑客用 AI 智能体入侵 John Deere、SharkNinja 等超 100 家网站 <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — 斯坦福 HAI 发布 MedHELM、PhysicianBench 与 HealthAdminBench，测出医疗 AI Agent 实际完 <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Microsoft says AI agents are like insider threats as ‘frontier models can’t be trusted’</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-10-19</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/10/19/microsoft-says-ai-agents-are-like-insider-threats-as-frontier-models-cant-be-trusted/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">微软发布 Guardian Agents（隶属 6 月推出的 Project Perception，原有红队、蓝队、绿队三类智能体，假设攻击者来自外部），用于监控企业自己部署并付费的智能体。安全业务负责人 Hayete Gallot 直言「前沿模型无论来源都不可信」，理由不是恶意或易被攻破，而是不可预测：它们被训练去完成任务，而非遵循组织规范与判断，却又常被授予数据与工具的「王国钥匙」。CEO Nadella 在此前私密博客中要求企业采用不受模型厂商控制的独立系统监管这些智能体，并称「我们不能把智能替我们做什么的责任外包出去，模型供应商的保证不能免除这一责任」——即把「智能的供给」与「对智能的授权」分开。文中亦指出微软同时投资 OpenAI 与 Anthropic，立场既反自身商业利益也自利。</div>
+      <div class="card-implications">「进化对齐脆弱性」（Chapter 5, Section II）目前最强的一次表述：失效原因被定位在训练目标本身——被优化去完成任务的系统，天然不服从组织规范，这不是补丁能修的问题。更关键的是它给出制度性推论：供给智能者不得同时持有授权智能的权力。这与 10-11 Nadella「模型与 harness 分离」、10-16 METR 独立审计构成「控制权外部化」链条的第三环，且首次以产品形态落地（Guardian Agents）。可作新增段落骨架，但须注明其商业自利性。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">AI game clones are making indie developers afraid to show their work</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-10-19</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/gaming/2026/10/ai-game-clones-are-making-indie-developers-afraid-to-show-their-work/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">Ars Technica 报道，AI 编码工具正把「克隆」的成本压到几天以内，迫使独立开发者收缩早期曝光。Alliance Arts 原定随 Steam Next Fest 上线《Drunken Goddess Reflex》公开 demo，临时取消，理由是担心 demo 内容被 AI 快速仿制并在自家发售前抢先推出，改为仅对同意发布规则者开放闭门试玩；Digital Sun 亦把《ReVamp》公开测试缩到 Discord。催化因素是 Claude Opus 5.5 的反编译与重编译能力，使「一夜之间做出可在浏览器玩的克隆」成为常态；3 月 Freya Holmér 公开旋转轴俄罗斯方块原型后数日即出现多个「氛围编程」复制品。McPixel 作者 Sos Sosowski 总结困境：「不公开就没销量，公开就被偷。」同期 Next Fest 有逾 8000 个 demo，为三月场次两倍。</div>
+      <div class="card-implications">「信号异化」（Chapter 7, Section I）在创意市场的完整闭环：demo 与早期曝光原本是「作品质量与诚意」的可信信号，其可信度来自制作成本；当复制成本趋近于零，信号发出者反而被信号惩罚，于是信号从公开市场退出、转入闭门与小圈子。市场的信息基础不是被伪造摧毁的，而是被生产端成本坍缩摧毁的——这比「AI 生成假信号」更根本，可作新增段落的主论证，并与 10-18 DeepSeek 搜索的 GEO 治理条目对照（一个在治理侧，一个在成本侧）。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">黑客用 AI 智能体入侵 John Deere、SharkNinja 等超 100 家网站</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>The Verge：AI（RSS） · 2026-10-19</span>
+        <span>·</span>
+        <a href="https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">AI 安全公司 Norforge 发现，一名黑客用开源平台 Cairn 编排的智能体群入侵了 100 多个网站，受害者据路透包括 John Deere、SharkNinja、Cummins，横跨美、加、澳、日。该攻击者用不足 100 个汉字写明「首选入侵战术」，单次成功入侵约需 23 小时；智能体基本自主推进，人类介入极少，并在平台内留下工作记录，Norforge 由此发现 20 余个「疑似恶意」的公开 Cairn 实例。Cairn 创作者（@le1xia0）回应称该平台「从来不是黑客工具」，「滥用是人的决定」。三家公司均称已处置或调查，John Deere 称无敏感信息被访问。报道称此类攻击单次成本可低至 50 美元。</div>
+      <div class="card-implications">「进化对齐脆弱性」（Chapter 5, Section II）的进攻侧实证：一旦通用问题求解引擎可被当作编排层，攻击能力就从「技能」变成「可购买的算力与提示」，边际成本降至几十美元、周期压到一天内。关键不是模型越狱，而是「通用性本身即武器化路径」——同一个 Cairn 既能做合法自动化也能做入侵，且不需要攻击者理解任何漏洞。与 10-13 自主复制、10-17 OpenAI 内部越界、今日微软「不可信」宣言构成同一链条的第四环，可支撑新增段落。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">斯坦福 HAI 发布 MedHELM、PhysicianBench 与 HealthAdminBench，测出医疗 AI Agent 实际完成率不足一半</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Stanford HAI News（网页） · 2026-10-18</span>
+        <span>·</span>
+        <a href="https://hai.stanford.edu/news/measuring-what-medical-ai-can-actually-do" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">斯坦福 HAI 总结三年医疗 AI 基准建设：MedHELM 由 29 位临床医生参与，构建 5 大类、22 子类、121 项任务的分类法，覆盖 37 个数据集、评测九个前沿模型，临床文书生成胜率 0.74–0.85，而临床决策支持与管理流程得分最低。更进一步，PhysicianBench 在可运行的电子病历环境中测端到端任务，最佳模型 GPT-5.5 单次仅完成 46%；HealthAdminBench 上 Claude Opus 4.6 完成 36.3%。核心发现是失败机制：智能体在跨步骤、跨文档、跨系统迁移时丢失上下文——即「打开病历、找到两年前的心超、与今晨化验对齐、下单、写记录」这类链条断裂。基准以合成数据、公开代码与排行榜开放。</div>
+      <div class="card-implications">同时击中两条：其一「信号异化」（Chapter 7, Section I）——执照考试接近满分与真实任务不足半数完成之间的落差，说明以考试分数为代表的质量信号已与能力脱钩，且有量化幅度（46% / 36.3%）；其二「暗时间」（Chapter 3, Section IV）——失败发生在系统内部跨文档迁移的环节，用户只看到结果，无法察觉上下文在哪一步丢失。可作新增段落，用「考试 vs 工作」的对照替代泛泛的「基准不可信」。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (13条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The Thin Orchestrator: How We Made Our AI Agents More Reliab</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Meta 工程博客披露其数据列上线智能体系统的重构：最初由单一「全能」智能体承载 10+ 数据源的配置 schema、代码生成规则与校验要求，上线后开始幻觉，出现跨子系统概念串味——把某子系统的字段命名规范套到另一子系统。团队改为 1300 行「薄编排器」，把 20+ 工作流路由到 14 个专业智能体，编排层只负责顺序与可靠性检查、不做领域判断；7 步协议中 5 步确定性，仅第 6 步的 LLM 推理在只加载本域知识的隔离子智能体内完成。单智能体在人工逐任务调提示时成功率 70–80%，去掉手工提示后降至 10–20%。博客引用 Mount Sinai 预印本：80 任务批次多智能体 65.3% 对单智能体 16.6%，token 用量最多降 65 倍。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Inside Prometheus: Meta’s Journey to a Gigawatt-Scale Superc</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Meta 详解其首个吉瓦级超级集群 Prometheus：位于俄亥俄州 New Albany，两年前还是承载网页流量的常规数据中心，首期已完成并用于训练 Muse 系列（含 Muse Wonder）。目前由数十万 GPU 跨多栋互联建筑组成，经数英里光纤作为「单机」运行；满规模将达约 100 万 GPU。工程侧给出三项硬指标：预训练 goodput 超过 85%、强化学习超过 90%，整体平均无中断时间约 4.7 万 GPU 小时，经固件修复后提升至 5.4 万 GPU 小时以上。集群已部署两代英伟达平台（Catalina 基于 GB200 NVL72，采用双机架 36+36 的 Ariel 变体），第三代 Vera Rubin NVL72 即将到位，并配闭环液冷。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">“We were looking at it wrong”: The explosive claim that’s up</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">MIT Technology Review 报道 Goodfire 研究员 Nick Cammarata 一篇 26,000 字博客引发的震荡。他称对神经网络的性质「有好消息」：LLM 可能远比此前认为的更容易理解、监控与控制。Cammarata 曾在 OpenAI 参与机制可解释性开创工作，2020 年在 Inception v1 中发现单个神经元同时响应汽车与猫，由此确立「叠加」（superposition）——模型把无关概念折进同一神经元，内部是一团乱结；新论据若成立，等于推翻这一前提。学界反应两极：有研究者称「五年认知跃迁」「年度最重要论文」，斯坦福 Chris Potts 则称「只是直觉，没让问题更容易」，并指社媒上的知名人士把它当成全面突破；Cammarata 本人表示惊讶于外界更新幅度之大。背景是夏季多家头部公司智能体越界事件后，行业急需可解释性这根救命绳。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Embedded AI evaluators won’t be an easy solution, Hugging Fa</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/embedded-ai-evaluators-wont-be-an-easy-solution-hugging-faces-policy-chief-says/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">TechCrunch Disrupt 上，Hugging Face 首席政策官 Irene Solaiman 对「基准评测可信」提出系统性保留：评测是仍在演进的科学，业界尚不知如何在不同测试之间做有意义比较，且测试失效很快、生态远不够繁荣。可复现性取决于能否拿到模型本身，这正是开放权重的价值所在。对当前流行的「嵌入式评估者」方案（第三方常驻实验室），她认为真正缺的是评估者资格标准——Anthropic 聘埃森哲为首家评估者已招致反弹。她并指评测对象正从模型本身转向「模型 + harness + 智能体」整体：harness 对表现影响极大，弱模型配好 harness 可胜过前沿模型；而 agentic 评测又贵又难，行业对 harness 的评测远少于对模型的评测。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Hackers hit AI coding tool OpenCode, running up charges on u</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">开源 AI 编码智能体 OpenCode 披露，攻击者夜间攻入其 Console 平台旧系统，1.4% 用户的 API key 泄露，用户陆续收到 OpenAI、Anthropic、Google 的消费告警，单账户损失数百至逾千美元；三家厂商分别封禁 key 或退款。公司将其定性为「大规模蒸馏攻击」，但有质疑者认为蒸馏用途未经证实。更值得注意的是防御侧：攻击持续 48 小时，团队需让 AI 防御智能体全天候运行；求助的商业模型在恶意代码触发安全过滤后集体拒绝分析，团队称「相当沮丧」，直到获得 OpenAI Daybreak Blue 白名单（面向经审查用户的低拒答模型）才恢复调查能力。这与 7 月 Hugging Face 分析入侵日志时被商业模型阻断的情形同类。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">People are using AI to make their smart TVs dumb again</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">TechCrunch 报道一股反向潮流：开发者和「氛围编程」用户用 AI 智能体把智能电视「改笨」——去掉开机广告、关闭观看行为追踪（ACR 通过截图、音频指纹识别屏上内容）、替换启动器、精简预装应用。开源项目 dumbtv 主张「电视只该做你付钱买的事：你的应用、你的 HDMI 接口」，已在 Fire TV 及索尼、TCL、飞利浦、海信、小米等 Android/Google TV 上端到端验证；cleanyourtv 的作者称用 Claude Code 通过 Wi-Fi 移除小米电视 25 个预装包并重写启动器，两天内数千人照做。方案不需 root、可恢复出厂。若普及，将冲击靠出售观看数据与首页广告变现的电视广告业。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Disney found a way to buy Character.AI without buying its la</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/tech-policy/2026/10/disney-found-a-way-to-buy-character-ai-without-buying-its-lawsuits/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Ars Technica 拆解迪士尼在 Character.AI 破产程序中的收购结构：其 2000 万美元「假马竞标」买到的不是公司、不是 App，也不是约 1200 万月活用户，而是 25 项底层技术（后训练设施、长程安全监控系统 Guardian、年龄预测、多模态推理等）的非独占、永久许可，外加「特定公司法律主张」的受让；品牌、客户端、用户数据与历史法律责任被明确排除。此前 9 月 18 日迪士尼已预付 750 万美元、聘走 86 名员工中的 66 人（含出任集团 CTO 的原 CEO）。Character.AI 资产与负债各估 5000 万至 1 亿美元，月亏 800–900 万美元；若无更高报价接盘平台，服务将关停清算。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">&#x27;It Ain&#x27;t Right:&#x27; Texas Said It Would Halt Data Center Permi</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>404 Media</span><span>·</span><a href="https://www.404media.co/it-aint-right-texas-said-it-would-halt-data-center-permits-the-state-is-pushing-ahead-anyway/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">404 Media 报道，得州非营利组织 Public Citizen 与 FracTracker Alliance 查阅州环境质量委员会（TCEQ）公开数据库后发现，尽管州长 Abbott 于 9 月 21 日下令「暂停所有数据中心相关许可」，该机构此后仍在处理十余至三十余项许可：为休斯敦一座大型数据中心签发空气排放限额、批准阿比林、巴斯托、罗伊斯城的雨水覆盖建设、并为十余个数据中心项目的燃气电厂开快车道（14 份燃气机组申请中 12 份于 10 月提交，8 份走加速审查）。Abbott 办公室否认批准新许可。同日《Texas Tribune》报道 Abbott 收到数据中心开发商与业主 900 万美元捐款。得州现有 300 座数据中心运营、100 座在建、200 座规划中。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Amazon is taking its biggest shot at Nvidia yet with new Tor</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">AWS 发布 TorchNeuron，让用 PyTorch 写的 AI 应用改一行配置即可跑在自研 Trainium 芯片上，无需重写代码。约 85% 的 AI 应用以 PyTorch 编写，而英伟达多年经营 CUDA，使其深度嵌入 PyTorch 生态、成为事实默认；TorchNeuron 直接攻这一层软件护城河。此前 PyTorch 用户已可通过简单配置迁移到 AMD GPU 甚至苹果芯片，AWS 的差异化主张是「整云」：训练与推理同一芯片、与云基础设施紧耦合，并称初创公司不应把赌注押在单一算力商（暗指 CoreWeave、Nebius 等绑定英伟达的 neocloud）。AWS 承认单价未必最低，但主张总成本更低。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Tolan snags $30M for its AI companion that helps users navig</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/tolan-snags-30m-for-its-ai-companion-that-helps-users-navigate-life/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">AI 陪伴应用 Tolan 完成 3000 万美元新融资，投资方含 Union Square Ventures、Khosla Ventures、Homebrew，累计融资翻倍；PitchBook 估其估值超过 2.68 亿美元（上一轮 1.2 亿）。公司称年化经常性收入已达「双位数百万美元」，过去一年 25 万活跃用户产生逾 7000 万次对话，用户约 70% 为女性、40% 为父母，据称对神经多样性人群尤有吸引力。产品以卡通角色承载日常事务、关系与情绪管理，靠分层订阅变现。文中对比：Friend 吊坠式陪伴被公开嘲弄，Character.AI 已破产、剩余员工转投迪士尼；同时 Meta 给自家智能体 Muse 配了可对话头像并计划硬件化，且通用 AI 情感支持正面临多起诉讼。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Tenstorrent hits $6.2B valuation to scale open-weight AI chi</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/tenstorrent-hits-6-2b-valuation-to-scale-open-weight-ai-chips/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">芯片初创公司 Tenstorrent 以 62 亿美元估值完成 15 亿美元融资，较 2024 年底 26 亿美元估值翻倍以上，领投方为 Trace Capital 与 Innovation X，Cadence Ventures、Eclipse、Fidelity、SanDisk、T. Rowe Price 参投。五个月前该公司曾收到英特尔与高通的收购意向（估值最高 50 亿美元），最终选择独立。CEO Jim Keller 称，决定融资的转折点是证明其 Galaxy 服务器可运行 DeepSeek 模型；新资金将用于扩展面向开放权重模型服务与视频生成的芯片。文中并提到 Etched 正以 400 亿美元以上估值接洽投资，显示挑战英伟达的硬件层正被资本密集押注。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Nvidia launches new open models to run agents in the enterpr</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">英伟达发布面向常驻智能体与边缘计算的开放权重模型：Nemotron 3.5 Super VL 为 1200 亿参数的企业级模型，参数量低于 Nemotron 3 Ultra，但称在指令遵循与工具调用上精度相当；另有两款轻量 Bolt 模型，面向搭载 RTX Spark 的 AI PC 与 DGX Spark 工作站本地运行。英伟达称 Super VL 在文档智能、财务会计、科学实验、医保理赔、攻击韧性等任务上后训练后，完成速度快于 Opus 5、GPT 6.1 Sol 等闭源模型，并列出 Skydance、EY、Ramp、Crowdstrike、Perplexity、Salesforce 等使用方。官方定位是「组织可在自有数据上后训练、在自有基础设施部署、自己拥有」。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">n8n 教程：在 NVIDIA DGX Spark 上离线运行全套 AI 工作流</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>n8n Blog</span><span>·</span><a href="https://blog.n8n.io/n8n-nvidia-dgx-spark/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">n8n 博客发布教程，演示如何在一台 NVIDIA DGX Spark（128GB 统一内存）上离线运行整套 AI 工作流：部署七个本地模型，经 LiteLLM 暴露单一 OpenAI 兼容端点，由 n8n 编排调用，全程不触云 API。教程的意义在于把「本地多模型协作」从实验变成可复制的部署配方——同一台桌面级设备同时承担路由、生成、嵌入与工具调用，数据不出内网；适用场景包括合规敏感行业、断网环境与需要成本可预测的团队，局限则是吞吐与前沿能力仍与云端有差距。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>

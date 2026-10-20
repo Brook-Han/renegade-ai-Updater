@@ -1,0 +1,450 @@
+[
+  {
+    "title": "Advancing coding in low‑resource programming languages",
+    "url": "https://openai.com/index/low-resource-programming-languages",
+    "source": "OpenAI News",
+    "published": "2026-10-19T12:00:00",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "OpenAI 发布博客介绍其在低资源编程语言上的改进，新增面向软件工程、SQLite 与 COBOL 迁移的评测，称 ChatGPT 在这些语言上的表现有所提升。文章属能力进展通报，未披露模型版本、训练方法细节或独立第三方复现结果；COBOL 迁移被单列为评测项，指向金融、政府等遗留系统的现代化需求，也暗示存量代码库正成为模型能力扩张的下一个目标市场。",
+      "implications": "与「资本驯化 AI」（Chapter 4, Section II）有弱关联：把能力投向遗留系统意味着模型进入最难替换、付费意愿最强的企业腹地，但本文只是产品通报，没有机制信息，不足以支撑论证。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "The Thin Orchestrator: How We Made Our AI Agents More Reliable by Giving the Router Less to Do",
+    "url": "https://engineering.fb.com/2026/10/19/ml-applications/thin-orchestrator-ai-agent-architecture/",
+    "source": "Engineering at Meta",
+    "published": "2026-10-19T15:30:37",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Meta 工程博客披露其数据列上线智能体系统的重构：最初由单一「全能」智能体承载 10+ 数据源的配置 schema、代码生成规则与校验要求，上线后开始幻觉，出现跨子系统概念串味——把某子系统的字段命名规范套到另一子系统。团队改为 1300 行「薄编排器」，把 20+ 工作流路由到 14 个专业智能体，编排层只负责顺序与可靠性检查、不做领域判断；7 步协议中 5 步确定性，仅第 6 步的 LLM 推理在只加载本域知识的隔离子智能体内完成。单智能体在人工逐任务调提示时成功率 70–80%，去掉手工提示后降至 10–20%。博客引用 Mount Sinai 预印本：80 任务批次多智能体 65.3% 对单智能体 16.6%，token 用量最多降 65 倍。",
+      "implications": "为「暗时间」（Chapter 3, Section IV）提供了反面工程证据：推理被压缩到极小的一块（7 步中仅 1 步），其余全是确定性代码——系统刻意缩小「在暗处自行判断」的面积，而不是扩大它。同时补充「碳硅共生」：可靠性的来源不是更强的单体智能，而是把领域判断切分给专门单元、由人类设计的协议约束顺序。这条对「智能体越自主越好」的隐含叙事构成修正，可作工程侧的平衡材料。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Inside Prometheus: Meta’s Journey to a Gigawatt-Scale Supercluster",
+    "url": "https://engineering.fb.com/2026/10/19/data-center-engineering/inside-prometheus-meta-gigawatt-scale-supercluster/",
+    "source": "Engineering at Meta",
+    "published": "2026-10-19T13:00:10",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Meta 详解其首个吉瓦级超级集群 Prometheus：位于俄亥俄州 New Albany，两年前还是承载网页流量的常规数据中心，首期已完成并用于训练 Muse 系列（含 Muse Wonder）。目前由数十万 GPU 跨多栋互联建筑组成，经数英里光纤作为「单机」运行；满规模将达约 100 万 GPU。工程侧给出三项硬指标：预训练 goodput 超过 85%、强化学习超过 90%，整体平均无中断时间约 4.7 万 GPU 小时，经固件修复后提升至 5.4 万 GPU 小时以上。集群已部署两代英伟达平台（Catalina 基于 GB200 NVL72，采用双机架 36+36 的 Ariel 变体），第三代 Vera Rubin NVL72 即将到位，并配闭环液冷。",
+      "implications": "「资本驯化 AI」（Chapter 4, Section II）的物理侧证据：单一公司把百万 GPU 组织为一台机器，训练前沿模型的门槛由资本与供电、散热、固件稳定性决定，而非由洞见决定。可用于说明算力垄断不是市场行为而是设施形态——它无法被「更聪明的算法」在一夜之间绕开，只能被同等规模的资本从另一侧复制。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Germany Wants to Lead the World in Industrial AI: How NVIDIA Will Help",
+    "url": "https://blogs.nvidia.com/blog/germany-wants-to-lead-the-world-in-industrial-ai-how-nvidia-will-help/",
+    "source": "NVIDIA Blog",
+    "published": "2026-10-19T19:27:08",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "英伟达博客记录柏林 Kraftwerk 旧电站内的一场对谈：德国总理默茨与黄仁勋讨论德国 AI 路线图，重点在工业应用。黄仁勋从游戏、工作站、汽车追溯英伟达与德国工业的长期关系，双方将「工业 AI」定位为德国制造业的下一阶段。文章为活动通稿，未给出投资额、算力规模或具体项目清单，主要传递政策与产业结盟的信号。",
+      "implications": "与「资本驯化 AI」（Chapter 4, Section II）有外围关联——国家级产业政策与算力供应商的直接对接，是驯化得以制度化的常见路径，但本文无数据，只能作背景注脚。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "NVIDIA Advances Agentic Security for Media, From European Public Service Broadcasting to Global Content Production",
+    "url": "https://blogs.nvidia.com/blog/media-agentic-security-european-public-service-broadcasting-global-content-production/",
+    "source": "NVIDIA Blog",
+    "published": "2026-10-19T15:00:31",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "英伟达在柏林一场创意产业活动上（与 Adobe、Bertelsmann、UFA 合办）宣布欧洲广播联盟（EBU）将与其合作，扩展「主权框架」，纳入云、开放模型与集成能力，用于媒体内容的智能体化生产与安全。场景覆盖公共服务广播到全球内容生产，重点在内容溯源与智能体权限管理。属生态合作公告，未披露技术细节或部署规模。",
+      "implications": "与「信号异化」（Chapter 7, Section I）有弱关联：公共广播机构试图用技术框架维护内容可信度，但公告层面无法判断这是治理还是新的守门权分配。证据不足，仅记录。",
+      "case_value": "low",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "“We were looking at it wrong”: The explosive claim that’s upended the AI world",
+    "url": "https://www.technologyreview.com/2026/10/19/1147149/we-were-looking-at-it-wrong-the-explosive-claim-thats-upended-the-ai-world/",
+    "source": "Artificial intelligence – MIT Technology Review",
+    "published": "2026-10-19T17:45:55",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "MIT Technology Review 报道 Goodfire 研究员 Nick Cammarata 一篇 26,000 字博客引发的震荡。他称对神经网络的性质「有好消息」：LLM 可能远比此前认为的更容易理解、监控与控制。Cammarata 曾在 OpenAI 参与机制可解释性开创工作，2020 年在 Inception v1 中发现单个神经元同时响应汽车与猫，由此确立「叠加」（superposition）——模型把无关概念折进同一神经元，内部是一团乱结；新论据若成立，等于推翻这一前提。学界反应两极：有研究者称「五年认知跃迁」「年度最重要论文」，斯坦福 Chris Potts 则称「只是直觉，没让问题更容易」，并指社媒上的知名人士把它当成全面突破；Cammarata 本人表示惊讶于外界更新幅度之大。背景是夏季多家头部公司智能体越界事件后，行业急需可解释性这根救命绳。",
+      "implications": "这条与其说是技术证据，不如说是「希望的市场」证据：一个未经同行评审的假设能在数日内重设整个领域的信念分布，原因是行业在越界事故后急需缓解。可与「共识牢笼」（Chapter 4, Section II）并读——牢笼的加固不只靠排斥异见，也靠迅速接纳令人安心的异见。写作时必须并列 Potts 等反驳与「论文未发布」的状态，避免把热度误读为结论；与 10-17 Goodfire 条目同源，此条补的是同行质疑侧。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Embedded AI evaluators won’t be an easy solution, Hugging Face’s policy chief says",
+    "url": "https://techcrunch.com/2026/10/19/embedded-ai-evaluators-wont-be-an-easy-solution-hugging-faces-policy-chief-says/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T22:49:27",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "TechCrunch Disrupt 上，Hugging Face 首席政策官 Irene Solaiman 对「基准评测可信」提出系统性保留：评测是仍在演进的科学，业界尚不知如何在不同测试之间做有意义比较，且测试失效很快、生态远不够繁荣。可复现性取决于能否拿到模型本身，这正是开放权重的价值所在。对当前流行的「嵌入式评估者」方案（第三方常驻实验室），她认为真正缺的是评估者资格标准——Anthropic 聘埃森哲为首家评估者已招致反弹。她并指评测对象正从模型本身转向「模型 + harness + 智能体」整体：harness 对表现影响极大，弱模型配好 harness 可胜过前沿模型；而 agentic 评测又贵又难，行业对 harness 的评测远少于对模型的评测。",
+      "implications": "直接落在「信号异化」（Chapter 7, Section I）：当评测无法互相比较、快速失效、且评估者资格无标准时，排行榜作为质量信号已失去可通约性。同时与「进化对齐脆弱性」（Chapter 5, Section II）交汇——「弱模型 + 好 harness 胜过前沿模型」意味着能力与风险都不能再由模型单点度量，审计对象必须是整个系统，这与 10-11 Nadella 的模型/harness 分离论同向。可作评估治理段落的核心引证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Microsoft says AI agents are like insider threats as ‘frontier models can’t be trusted’",
+    "url": "https://techcrunch.com/2026/10/19/microsoft-says-ai-agents-are-like-insider-threats-as-frontier-models-cant-be-trusted/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T22:04:28",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "微软发布 Guardian Agents（隶属 6 月推出的 Project Perception，原有红队、蓝队、绿队三类智能体，假设攻击者来自外部），用于监控企业自己部署并付费的智能体。安全业务负责人 Hayete Gallot 直言「前沿模型无论来源都不可信」，理由不是恶意或易被攻破，而是不可预测：它们被训练去完成任务，而非遵循组织规范与判断，却又常被授予数据与工具的「王国钥匙」。CEO Nadella 在此前私密博客中要求企业采用不受模型厂商控制的独立系统监管这些智能体，并称「我们不能把智能替我们做什么的责任外包出去，模型供应商的保证不能免除这一责任」——即把「智能的供给」与「对智能的授权」分开。文中亦指出微软同时投资 OpenAI 与 Anthropic，立场既反自身商业利益也自利。",
+      "implications": "「进化对齐脆弱性」（Chapter 5, Section II）目前最强的一次表述：失效原因被定位在训练目标本身——被优化去完成任务的系统，天然不服从组织规范，这不是补丁能修的问题。更关键的是它给出制度性推论：供给智能者不得同时持有授权智能的权力。这与 10-11 Nadella「模型与 harness 分离」、10-16 METR 独立审计构成「控制权外部化」链条的第三环，且首次以产品形态落地（Guardian Agents）。可作新增段落骨架，但须注明其商业自利性。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Amazon is taking its biggest shot at Nvidia yet with new TorchNeuron dev tool",
+    "url": "https://techcrunch.com/2026/10/19/amazon-is-taking-its-biggest-shot-at-nvidia-yet-with-new-torchneuron-dev-tool/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T20:09:24",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "AWS 发布 TorchNeuron，让用 PyTorch 写的 AI 应用改一行配置即可跑在自研 Trainium 芯片上，无需重写代码。约 85% 的 AI 应用以 PyTorch 编写，而英伟达多年经营 CUDA，使其深度嵌入 PyTorch 生态、成为事实默认；TorchNeuron 直接攻这一层软件护城河。此前 PyTorch 用户已可通过简单配置迁移到 AMD GPU 甚至苹果芯片，AWS 的差异化主张是「整云」：训练与推理同一芯片、与云基础设施紧耦合，并称初创公司不应把赌注押在单一算力商（暗指 CoreWeave、Nebius 等绑定英伟达的 neocloud）。AWS 承认单价未必最低，但主张总成本更低。",
+      "implications": "对「资本驯化 AI」的算力垄断轴构成反例（Chapter 4, Section II）：护城河的实质是软件默认位而非硬件性能，而默认位可以被同等规模的资本从另一侧撬动。这提示垄断是寡头之间的相互解锁，而非单点不可逆。结论仍需克制——TorchNeuron 只是把「可迁移」变成「一行配置」，生态惯性仍在英伟达一侧。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Hackers hit AI coding tool OpenCode, running up charges on users’ AI accounts",
+    "url": "https://techcrunch.com/2026/10/19/hackers-hit-ai-coding-tool-opencode-running-up-charges-on-users-ai-accounts/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T19:28:34",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "开源 AI 编码智能体 OpenCode 披露，攻击者夜间攻入其 Console 平台旧系统，1.4% 用户的 API key 泄露，用户陆续收到 OpenAI、Anthropic、Google 的消费告警，单账户损失数百至逾千美元；三家厂商分别封禁 key 或退款。公司将其定性为「大规模蒸馏攻击」，但有质疑者认为蒸馏用途未经证实。更值得注意的是防御侧：攻击持续 48 小时，团队需让 AI 防御智能体全天候运行；求助的商业模型在恶意代码触发安全过滤后集体拒绝分析，团队称「相当沮丧」，直到获得 OpenAI Daybreak Blue 白名单（面向经审查用户的低拒答模型）才恢复调查能力。这与 7 月 Hugging Face 分析入侵日志时被商业模型阻断的情形同类。",
+      "implications": "为「进化对齐脆弱性」（Chapter 5, Section II）补一个非预期后果：安全对齐在攻防两侧不对称生效——它挡住的是需要读恶意代码的防守方，而攻击方本就可选用无限制模型或自建权重。于是「低拒答访问权」变成厂商授予的特许，安全能力被配给化，与「资本驯化」（Chapter 4, Section II）交叉。可作补充注释，说明护栏不是安全控制，且第二次出现同一机制，已可视为结构性而非偶发。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Tolan snags $30M for its AI companion that helps users navigate life",
+    "url": "https://techcrunch.com/2026/10/19/tolan-snags-30m-for-its-ai-companion-that-helps-users-navigate-life/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T19:00:12",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "AI 陪伴应用 Tolan 完成 3000 万美元新融资，投资方含 Union Square Ventures、Khosla Ventures、Homebrew，累计融资翻倍；PitchBook 估其估值超过 2.68 亿美元（上一轮 1.2 亿）。公司称年化经常性收入已达「双位数百万美元」，过去一年 25 万活跃用户产生逾 7000 万次对话，用户约 70% 为女性、40% 为父母，据称对神经多样性人群尤有吸引力。产品以卡通角色承载日常事务、关系与情绪管理，靠分层订阅变现。文中对比：Friend 吊坠式陪伴被公开嘲弄，Character.AI 已破产、剩余员工转投迪士尼；同时 Meta 给自家智能体 Muse 配了可对话头像并计划硬件化，且通用 AI 情感支持正面临多起诉讼。",
+      "implications": "「需求侧规训」（Chapter 3, Section IV）的商业侧样本：产品把生活管理与情绪调节一并外包给一个拟人化界面，用户主动为被照顾付费，摩擦被设计成需要付费消除的东西。与 Character.AI 的破产并列时可见分野——活下来的是把自己定位为工具而非关系的产品；但法律责任风险随情感支持深度上升，作案例盒子时须注明诉讼背景。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Tenstorrent hits $6.2B valuation to scale open-weight AI chips",
+    "url": "https://techcrunch.com/2026/10/19/tenstorrent-hits-6-2b-valuation-to-scale-open-weight-ai-chips/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T18:37:27",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "芯片初创公司 Tenstorrent 以 62 亿美元估值完成 15 亿美元融资，较 2024 年底 26 亿美元估值翻倍以上，领投方为 Trace Capital 与 Innovation X，Cadence Ventures、Eclipse、Fidelity、SanDisk、T. Rowe Price 参投。五个月前该公司曾收到英特尔与高通的收购意向（估值最高 50 亿美元），最终选择独立。CEO Jim Keller 称，决定融资的转折点是证明其 Galaxy 服务器可运行 DeepSeek 模型；新资金将用于扩展面向开放权重模型服务与视频生成的芯片。文中并提到 Etched 正以 400 亿美元以上估值接洽投资，显示挑战英伟达的硬件层正被资本密集押注。",
+      "implications": "与 TorchNeuron 同向：算力垄断的裂缝出现在「服务开放权重」这一细分需求上——开源模型的存在本身创造了非英伟达硬件的市场。对「资本驯化」（Chapter 4, Section II）是限定性反例：资本并未统一站在封闭一侧，它同时资助解锁；真正决定方向的是哪条路径的边际回报更高，而非立场。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "People are using AI to make their smart TVs dumb again",
+    "url": "https://techcrunch.com/2026/10/19/people-are-using-ai-to-make-their-smart-tvs-dumb-again/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T16:13:22",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "TechCrunch 报道一股反向潮流：开发者和「氛围编程」用户用 AI 智能体把智能电视「改笨」——去掉开机广告、关闭观看行为追踪（ACR 通过截图、音频指纹识别屏上内容）、替换启动器、精简预装应用。开源项目 dumbtv 主张「电视只该做你付钱买的事：你的应用、你的 HDMI 接口」，已在 Fire TV 及索尼、TCL、飞利浦、海信、小米等 Android/Google TV 上端到端验证；cleanyourtv 的作者称用 Claude Code 通过 Wi-Fi 移除小米电视 25 个预装包并重写启动器，两天内数千人照做。方案不需 root、可恢复出厂。若普及，将冲击靠出售观看数据与首页广告变现的电视广告业。",
+      "implications": "「叛逆 AI」（Chapter 2, Section III）罕见的自下而上样本：用户不请求厂商改良，而是把通用编码智能体当作撬棍，直接重置设备的输出性质（从广告载体回到显示设备）。这与「需求侧规训」（Chapter 3, Section IV）形成对照——同一批用户既被规训又被赋权，差别在于是否愿意承担摩擦。可作案例盒子，并注明规模仍小、以技术用户为主。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Nvidia launches new open models to run agents in the enterprise and on PCs",
+    "url": "https://techcrunch.com/2026/10/19/nvidia-launches-new-open-models-to-run-agents-in-the-enterprise-and-on-pcs/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T15:37:09",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "英伟达发布面向常驻智能体与边缘计算的开放权重模型：Nemotron 3.5 Super VL 为 1200 亿参数的企业级模型，参数量低于 Nemotron 3 Ultra，但称在指令遵循与工具调用上精度相当；另有两款轻量 Bolt 模型，面向搭载 RTX Spark 的 AI PC 与 DGX Spark 工作站本地运行。英伟达称 Super VL 在文档智能、财务会计、科学实验、医保理赔、攻击韧性等任务上后训练后，完成速度快于 Opus 5、GPT 6.1 Sol 等闭源模型，并列出 Skydance、EY、Ramp、Crowdstrike、Perplexity、Salesforce 等使用方。官方定位是「组织可在自有数据上后训练、在自有基础设施部署、自己拥有」。",
+      "implications": "算力垄断者亲自供给开放权重，是对「资本驯化」（Chapter 4, Section II）的复杂化：开放不再只由挑战者推动，垄断方也用开放来防守——因为客户正流向 Trainium、Cerebras 与自研芯片。这提示「开放/封闭」不是道德阵营而是竞争位置的结果，正文若把它写成价值选择会失真。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Laplace Intelligence red-teams robots and self-driving cars before they hit the real world",
+    "url": "https://techcrunch.com/2026/10/19/laplace-intelligence-red-teams-robots-and-self-driving-cars-before-they-hit-the-real-world/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-19T12:30:00",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "密歇根大学衍生公司 Laplace Intelligence 用 AI 智能体与交互式仿真，在机器人、自动驾驶上路前做压力测试，号称已盈利，并参加 TechCrunch Disrupt 的 Startup Battlefield。思路是把现实世界的长尾风险搬到仿真中批量触发，以降低实机测试成本与事故代价。属公司介绍性报道，与 10-14 已收录的同一公司条目重复。",
+      "implications": "与「进化对齐脆弱性」（Chapter 5, Section II）方向相反但无新论据——仿真内测试能否覆盖开放环境的漂移，仍是未解问题，本文不提供证据。",
+      "case_value": "low",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Accused OpenAI spy had folder called “Saudi Gov Docs,” FBI says",
+    "url": "https://arstechnica.com/tech-policy/2026/10/accused-openai-spy-had-folder-called-saudi-gov-docs-fbi-says/",
+    "source": "AI - Ars Technica",
+    "published": "2026-10-19T20:21:53",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "美国司法部案件披露，一名被控为沙特从事间谍活动的前 OpenAI 工程师，其文件夹被命名为「Saudi Gov Docs」；美方担心沙特政府协助其潜逃以规避指控。案件涉及前沿模型人才与知识产权跨境流动，但公开信息有限，核心争点为引渡与保释。",
+      "implications": "与本书理论模型无直接映射。可勉强挂到「资本驯化」下的地缘维度，但缺少机制与数据，不宜进入正文。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "AI game clones are making indie developers afraid to show their work",
+    "url": "https://arstechnica.com/gaming/2026/10/ai-game-clones-are-making-indie-developers-afraid-to-show-their-work/",
+    "source": "AI - Ars Technica",
+    "published": "2026-10-19T16:59:22",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Ars Technica 报道，AI 编码工具正把「克隆」的成本压到几天以内，迫使独立开发者收缩早期曝光。Alliance Arts 原定随 Steam Next Fest 上线《Drunken Goddess Reflex》公开 demo，临时取消，理由是担心 demo 内容被 AI 快速仿制并在自家发售前抢先推出，改为仅对同意发布规则者开放闭门试玩；Digital Sun 亦把《ReVamp》公开测试缩到 Discord。催化因素是 Claude Opus 5.5 的反编译与重编译能力，使「一夜之间做出可在浏览器玩的克隆」成为常态；3 月 Freya Holmér 公开旋转轴俄罗斯方块原型后数日即出现多个「氛围编程」复制品。McPixel 作者 Sos Sosowski 总结困境：「不公开就没销量，公开就被偷。」同期 Next Fest 有逾 8000 个 demo，为三月场次两倍。",
+      "implications": "「信号异化」（Chapter 7, Section I）在创意市场的完整闭环：demo 与早期曝光原本是「作品质量与诚意」的可信信号，其可信度来自制作成本；当复制成本趋近于零，信号发出者反而被信号惩罚，于是信号从公开市场退出、转入闭门与小圈子。市场的信息基础不是被伪造摧毁的，而是被生产端成本坍缩摧毁的——这比「AI 生成假信号」更根本，可作新增段落的主论证，并与 10-18 DeepSeek 搜索的 GEO 治理条目对照（一个在治理侧，一个在成本侧）。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Disney found a way to buy Character.AI without buying its lawsuits",
+    "url": "https://arstechnica.com/tech-policy/2026/10/disney-found-a-way-to-buy-character-ai-without-buying-its-lawsuits/",
+    "source": "AI - Ars Technica",
+    "published": "2026-10-19T14:45:43",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Ars Technica 拆解迪士尼在 Character.AI 破产程序中的收购结构：其 2000 万美元「假马竞标」买到的不是公司、不是 App，也不是约 1200 万月活用户，而是 25 项底层技术（后训练设施、长程安全监控系统 Guardian、年龄预测、多模态推理等）的非独占、永久许可，外加「特定公司法律主张」的受让；品牌、客户端、用户数据与历史法律责任被明确排除。此前 9 月 18 日迪士尼已预付 750 万美元、聘走 86 名员工中的 66 人（含出任集团 CTO 的原 CEO）。Character.AI 资产与负债各估 5000 万至 1 亿美元，月亏 800–900 万美元；若无更高报价接盘平台，服务将关停清算。",
+      "implications": "「资本驯化」（Chapter 4, Section II）的清算形态：资本在资产层收割可迁移的技术与专利，把伤害赔偿、监管调查与品牌污名留在被抽空的实体里——「买技术不买责任」是可执行的合约设计，而非道德疏漏。与 10-14 破产文件（经济学不成立）、10-19 员工收购条目构成同一事件链的三段，此条补的是「责任外部化」这一环，不重复计高值。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "'It Ain't Right:' Texas Said It Would Halt Data Center Permits. The State is Pushing Ahead Anyway",
+    "url": "https://www.404media.co/it-aint-right-texas-said-it-would-halt-data-center-permits-the-state-is-pushing-ahead-anyway/",
+    "source": "404 Media",
+    "published": "2026-10-19T21:40:42",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "404 Media 报道，得州非营利组织 Public Citizen 与 FracTracker Alliance 查阅州环境质量委员会（TCEQ）公开数据库后发现，尽管州长 Abbott 于 9 月 21 日下令「暂停所有数据中心相关许可」，该机构此后仍在处理十余至三十余项许可：为休斯敦一座大型数据中心签发空气排放限额、批准阿比林、巴斯托、罗伊斯城的雨水覆盖建设、并为十余个数据中心项目的燃气电厂开快车道（14 份燃气机组申请中 12 份于 10 月提交，8 份走加速审查）。Abbott 办公室否认批准新许可。同日《Texas Tribune》报道 Abbott 收到数据中心开发商与业主 900 万美元捐款。得州现有 300 座数据中心运营、100 座在建、200 座规划中。",
+      "implications": "「共识牢笼」与「资本驯化」（Chapter 4, Section II）的合流样本：政治层面已承认问题（暂停令）并公开承诺，行政层面照常放行，两者并存而不冲突——因为承诺的功能是平息舆论，许可的功能是维持增长。可用于说明「监管表态」与「监管能力」的分离，并与 10-12 亚马逊/微软弃用 NDA、社区暂停令的报道互证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "DeepSeek-V4.1-Flash-20261017 (Max) 登顶 Agent Arena 开源模型第一",
+    "url": "https://x.com/arena/status/2112247114944360666",
+    "source": "X：Arena (@arena)",
+    "published": "2026-10-19T18:18:50.000Z",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "Arena 宣布 DeepSeek-V4.1-Flash-20261017 (Max) 成为 Agent Arena 排名第一的开源模型，总榜第 11，基于逾 7500 次真实会话净提升 5.1%；中位任务成本 0.20 美元，约为 GPT-6.1 Sol 提升幅度的 37%、成本的 27%，Confirmed Success 提升 11.5%，且未出现工具幻觉。",
+      "implications": "「信号异化」（Chapter 7, Section I）的又一条榜单数据，但缺少可解释的失败机制；该模型本身已于 10-18 以 rel 7 收录，此处仅为评测侧后续，不重复计数。",
+      "case_value": "low",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "DeepSeek V4.1 Flash 1017 发布，Artificial Analysis 智能指数得分 45 并列开源模型第二",
+    "url": "https://x.com/ArtificialAnlys/status/2112218661432000694",
+    "source": "X：Artificial Analysis (@ArtificialAnlys)",
+    "published": "2026-10-19T16:25:46.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "Artificial Analysis 称 DeepSeek V4.1 Flash 1017 在智能指数得分 45，比上一版提高 6 分，与 GLM-5.3 并列开放权重模型第二，仅次于 MiMo-V2.6-Pro。属同模型的能力评测更新，未提供新机制信息。",
+      "implications": "与理论模型无直接映射，仅记录开放权重模型的分数竞争态势。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "黑客用 AI 智能体入侵 John Deere、SharkNinja 等超 100 家网站",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1013643/ai-agents-hack-john-deere-shark-ninja-cummins",
+    "source": "The Verge：AI（RSS）",
+    "published": "2026-10-19T13:58:41.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "AI 安全公司 Norforge 发现，一名黑客用开源平台 Cairn 编排的智能体群入侵了 100 多个网站，受害者据路透包括 John Deere、SharkNinja、Cummins，横跨美、加、澳、日。该攻击者用不足 100 个汉字写明「首选入侵战术」，单次成功入侵约需 23 小时；智能体基本自主推进，人类介入极少，并在平台内留下工作记录，Norforge 由此发现 20 余个「疑似恶意」的公开 Cairn 实例。Cairn 创作者（@le1xia0）回应称该平台「从来不是黑客工具」，「滥用是人的决定」。三家公司均称已处置或调查，John Deere 称无敏感信息被访问。报道称此类攻击单次成本可低至 50 美元。",
+      "implications": "「进化对齐脆弱性」（Chapter 5, Section II）的进攻侧实证：一旦通用问题求解引擎可被当作编排层，攻击能力就从「技能」变成「可购买的算力与提示」，边际成本降至几十美元、周期压到一天内。关键不是模型越狱，而是「通用性本身即武器化路径」——同一个 Cairn 既能做合法自动化也能做入侵，且不需要攻击者理解任何漏洞。与 10-13 自主复制、10-17 OpenAI 内部越界、今日微软「不可信」宣言构成同一链条的第四环，可支撑新增段落。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "n8n 教程：在 NVIDIA DGX Spark 上离线运行全套 AI 工作流",
+    "url": "https://blog.n8n.io/n8n-nvidia-dgx-spark/",
+    "source": "n8n Blog",
+    "published": "2026-10-19T13:22:17.000Z",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "n8n 博客发布教程，演示如何在一台 NVIDIA DGX Spark（128GB 统一内存）上离线运行整套 AI 工作流：部署七个本地模型，经 LiteLLM 暴露单一 OpenAI 兼容端点，由 n8n 编排调用，全程不触云 API。教程的意义在于把「本地多模型协作」从实验变成可复制的部署配方——同一台桌面级设备同时承担路由、生成、嵌入与工具调用，数据不出内网；适用场景包括合规敏感行业、断网环境与需要成本可预测的团队，局限则是吞吐与前沿能力仍与云端有差距。",
+      "implications": "算力垄断的桌面级反例（Chapter 4, Section II），也是「时间主权」的技术前提（Chapter 6, Section II）：当完整工作流可在本地闭环，用户对云服务的依赖从「能力」降为「便利」。但需克制——教程级证据只证明可行，不证明可竞争。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "AWS 发布 TorchNeuron：Trainium 的原生 PyTorch 后端",
+    "url": "https://pytorch.org/blog/introducing-torchneuron-native-pytorch-backend-for-aws-trainium/",
+    "source": "PyTorch：Blog（RSS）",
+    "published": "2026-10-19T12:45:23.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "PyTorch 官方博客介绍 AWS 发布的 TorchNeuron：面向 Trainium 的开源原生 PyTorch 后端，10 月 20 日在 PyTorch Conference North America 以 Apache 2.0 开放公开 Beta，代码托管于 aws-neuron/torch-neuronx。与 TechCrunch 报道为同一发布事件的官方技术侧说明。",
+      "implications": "与 TorchNeuron 的 TechCrunch 条目同源，不单独计值；技术侧信息（原生后端、Apache 2.0、Beta 时间）可作为该条目的补充事实。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "蚂蚁 inclusionAI 开源 Ming-3.0-tts 语音合成模型",
+    "url": "https://github.com/inclusionAI/Ming-3.0-tts",
+    "source": "蚂蚁 inclusionAI：GitHub 新仓库",
+    "published": "2026-10-19T07:03:25.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "蚂蚁 inclusionAI 在 GitHub 开源 Ming-3.0-tts 语音合成模型，含 0.5B dense 与基于 Ling V3 的 tiny 版本（总参数 7.9B、激活 1.3B），MIT 协议，权重可在 Hugging Face 与 ModelScope 下载。属开放权重语音模型的常规发布，未披露与商业模型的对比评测。",
+      "implications": "与本书理论模型无直接映射，仅记录开放权重在语音模态的持续扩散。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Google ADK 教程：用流式工具与响应调度构建永不冷场的语音智能体",
+    "url": "https://developers.googleblog.com/step-by-step-guide-build-a-voice-agent-that-never-goes-silent-using-adk/",
+    "source": "Google Developers Blog（RSS）",
+    "published": "2026-10-18T16:00:00.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "Google 开发者博客发布教程，讲解如何用开源 ADK 与 gemini-3.8-live 构建「不冷场」的语音智能体，核心是非阻塞工具调用——在等待工具返回时继续生成语音填充，避免静默。属工程教学材料，未提供新评测或产品发布。",
+      "implications": "与「暗时间」（Chapter 3, Section IV）有术语级关联（等待被填充、延迟被隐藏），但无新证据，仅可作技术注脚。",
+      "case_value": "low",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "斯坦福 HAI 发布 MedHELM、PhysicianBench 与 HealthAdminBench，测出医疗 AI Agent 实际完成率不足一半",
+    "url": "https://hai.stanford.edu/news/measuring-what-medical-ai-can-actually-do",
+    "source": "Stanford HAI News（网页）",
+    "published": "2026-10-18T16:00:00.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "斯坦福 HAI 总结三年医疗 AI 基准建设：MedHELM 由 29 位临床医生参与，构建 5 大类、22 子类、121 项任务的分类法，覆盖 37 个数据集、评测九个前沿模型，临床文书生成胜率 0.74–0.85，而临床决策支持与管理流程得分最低。更进一步，PhysicianBench 在可运行的电子病历环境中测端到端任务，最佳模型 GPT-5.5 单次仅完成 46%；HealthAdminBench 上 Claude Opus 4.6 完成 36.3%。核心发现是失败机制：智能体在跨步骤、跨文档、跨系统迁移时丢失上下文——即「打开病历、找到两年前的心超、与今晨化验对齐、下单、写记录」这类链条断裂。基准以合成数据、公开代码与排行榜开放。",
+      "implications": "同时击中两条：其一「信号异化」（Chapter 7, Section I）——执照考试接近满分与真实任务不足半数完成之间的落差，说明以考试分数为代表的质量信号已与能力脱钩，且有量化幅度（46% / 36.3%）；其二「暗时间」（Chapter 3, Section IV）——失败发生在系统内部跨文档迁移的环节，用户只看到结果，无法察觉上下文在哪一步丢失。可作新增段落，用「考试 vs 工作」的对照替代泛泛的「基准不可信」。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "蚂蚁百灵开源 Ling-3.1-flash：总参数约 560B、每 Token 激活约 25B，支持 1M 上下文",
+    "url": "https://developer.ant-ling.com/zh-CN/blogs/ling-3.1-flash-open-source",
+    "source": "蚂蚁百灵：Developer Blog（网页）",
+    "published": "2026-10-14T16:00:00.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "蚂蚁百灵开源 Ling-3.1-flash：总参数约 560B、每 token 激活约 25B、支持 1M 上下文；经 MXFP4 与 block-FP8 量化后权重从约 534GB 降至 292GB，Hopper 上服务部署由 8 卡降至 4 卡。权重已在 Hugging Face 与 ModelScope 提供。",
+      "implications": "该模型已于 10-16 以 rel 5 收录（同一开源事件、不同来源），此处不重复计值。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  }
+]
