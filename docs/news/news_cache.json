@@ -44374,5 +44374,473 @@
     "relevance": 6,
     "urgency": "next_version",
     "case_value": "medium"
+  },
+  "71af954eefd3cbb1a15e2a38b62ffa89": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "What FDE means at OpenAI",
+    "url": "https://openai.com/index/forward-deployed-engineering-means",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "OpenAI 于 10 月 22 日公开前向部署工程（FDE）团队的方法论。该团队由 Colin Jarvis 于 2025 年初组建，瞄准所谓「部署鸿沟」——模型在基准上表现优异，却无法在真实变量与约束下可靠完成工作。文中披露关键数据：某半导体客户项目投入约 15 名 FDE、覆盖 10 余个用例，其中验证占全部工作量约 70%；定向测试生成节省约 48% 时间，内核优化使性能中位数提升 22%，调试从数周压缩到数小时。Codex 能力提升后，团队以 Codex 原语（插件、技能）重构应用，每个项目移除约 90% 定制代码，复制到第二个团队的时间从 2 个月缩短至 1 天。电信语音项目在 6 个月内把关键评估分从 60% 推至 90% 以上。团队自设的成败标准是「每隔几个月就让自己变得多余」。",
+      "implications": "为信号异化提供一条生产侧硬数据：在真实交付中，生成已不再是瓶颈，验证吃掉约七成工作量——这与 10-22 Tessl 的 PR 评审瓶颈、Nielsen 的管理者评价失效共同指向「生成成本坍缩、验证成本不变」。同时它补上暗时间的组织形态：客户不再接触推理过程，只接收「可投产的结果」，推理被一支外部团队吸收；而「让自身过时」「移除 90% 定制代码」说明这套能力最终被收编进产品默认位，支架撤走后留下的是依赖。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "dcb470c039967bafbfc9403762bcd6f7": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Uber brings ChatGPT Work to all employees with OpenAI",
+    "url": "https://openai.com/index/uber-chatgpt-work-rollout",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "OpenAI 官方博客宣布 Uber 将 ChatGPT Work 推广至全体员工，覆盖逾 3 万名员工，用于研究、数据分析、制作演示与复杂工作流。此前 Uber 在内部做过小规模试点，参与者来自财务、运营、产品等部门。Uber 工程副总裁 Sumanth Sukumar 表示，早期采用者中约 80% 并非工程师，用途包括分析运营数据识别趋势、为不同市场本地化培训材料、搭建个性化交互看板。Uber 未披露此次全员铺开的支出，但称将追踪员工使用方式、沉淀的工作流与效率结果，据此决定后续部署。今年早些时候 Uber 还曾把 30 名 AI 工程师编入各团队，给两周时间自动化其岗位的关键环节，称为「AI pods」。",
+      "implications": "与同日 TechCrunch 报道为同一事件，属官方口径版本，无新增事实，不重复计值。可留作注脚：企业侧的需求并非被强制施加，而是由非工程岗位自发扩散（80% 非工程师），这正是需求侧规训的自愿形态——摩擦被移除后，外包思考成为默认工作方式。",
+      "case_value": "low",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "30977a92b0f355ec877beb1e30328642": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "NVIDIA Unveils Minerva to Bring End-to-End Observability for AI Factories",
+    "url": "https://blogs.nvidia.com/blog/minerva-platform-infrastructure/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "NVIDIA 于 10 月 22 日发布 AIOps 平台 Minerva，面向「AI 工厂」的端到端可观测性。该平台汇总基础设施与 AI 工作负载的遥测数据，用专用模型把数据转为可执行判断，核心指标是「AI 工厂良率」——由 GPU 小时、有效吞吐（goodput）、集群可用率与 token 产量共同衡量。它跨 GPU、网络、存储、调度器与工作负载建立动态知识图谱，把 GPU、SuperNIC、交换机、线缆与运行其上的作业逻辑映射，可在数十万 GPU 规模下把一次变慢的训练作业定位到具体部件；每小时分析数十亿数据点，学习正常行为、识别未见过的异常、预测故障，并把「告警风暴」聚合成单一事件与可能根因。平台内置自然语言助手，也可接入外部智能体工具，操作者可以保留人工确认环节，或通过基础设施 API 接入自动化处置。",
+      "implications": "暗时间的工业化注脚：AI 工厂的运维判断本身被移入系统内部，人拿到的是「已聚合的事件 + 建议的修复」，推理链在平台里完成。值得记的是它保留的两种模式——人工确认或 API 自动处置——这条分叉正是碳硅共生与外包的分界线：是否保留对判断的审计入口。同时它是资本驯化物理侧的配套：良率、goodput、token 产量成为衡量「智能生产」的会计科目。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "122cf169b5f0208105debcaa52c10d19": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Cloud Deployment Incoming: ‘Call of Duty: Modern Warfare 4’ Arrives on GeForce NOW",
+    "url": "https://blogs.nvidia.com/blog/geforce-now-thursday-call-of-duty-modern-warfare-4/",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "NVIDIA 宣布《使命召唤：现代战争 4》在 GeForce NOW 云游戏平台上线首日即可游玩，带来新战役、多人模式与 DMZ 撤离玩法。Ultimate 会员可获得 GeForce RTX 5080 级性能，战役画面支持光线追踪等增强特性。该消息属云游戏内容更新，与 AI 理论模型无直接关联。",
+      "implications": "纯消费级云游戏发行信息，不涉及模型能力、认知外包或对齐议题，无可映射的理论价值。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "2097708fd4422e72ec1351126e9a6535": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Leading European Financial Services Organizations Embrace Open Models to Build Proprietary Intelligence",
+    "url": "https://blogs.nvidia.com/blog/european-financial-services-organizations-open-models-proprietary-intelligence/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "在柏林 GTC 上，多家欧洲金融机构展示以开放权重模型加自有基础设施构建「专有智能」的生产级实践。Revolut 正把技术栈重建在单一基础模型 PRAGMA 上，基于 NVIDIA Blackwell Ultra GPU、cuDF 与 Dynamo-Triton，服务首批 8000 万客户并设计为可扩展三倍；其 AI 负责人称此前的问题是基础模型能否在如此规模与跨领域下运转。Starling Bank 在 Civo 的英国主权云上用自有交易数据训练出「Starling Intelligence」，成为首家在英国主权云上训练智能体模型的银行；劳埃德银行构建交易基础模型 ATUM；bunq 的智能体助手 Finn 改用开放权重模型，单次回答成本为领先闭源模型的 60%；NatWest 用 Nemotron 3.5 ASR 覆盖英国口音与方言；Modulr 基于 Nemotron-3-Ultra-550B 拆分支付运营场景；桑坦德采用 Kumo 系列；SBS 推出银行主权智能平台，使数据不出自有边界。",
+      "implications": "资本驯化的反例，但只反了一半：开放权重确实让银行把模型与数据都留在自己墙内、成本可控，打破了「只能租用前沿实验室」的单向依赖；然而这些实践全部跑在 NVIDIA 加速计算之上，开放模型成了硬件厂商锁定需求的护城河——守门权从模型层下移到芯片层，而非消失。对碳硅共生而言，主权智能是较健康的形态：机构保留了对模型的审计与替换权。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "4dc73aa603ca05e1dbf5cd2b76100970": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "NVIDIA Transforms European Retail, From Digital Discovery to Physical Operations",
+    "url": "https://blogs.nvidia.com/blog/european-retail-open-models-robotics/",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "NVIDIA 在柏林 GTC 介绍欧洲零售业以开放模型与「物理智能」改造业务：某商务平台把推理成本削减 90%，某履约中心在数字孪生中模拟多支机器人车队的协同作业。内容以客户案例与生态合作为主，属厂商市场传播。",
+      "implications": "推理成本下降九成是可引用的量级数据，但缺乏机制细节与可核验口径；与 10-22 DeepInfer 经济学同向，暂不单独计值。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "f3cf2243a97f38d476411d49d031f3af": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Pioneers Across Europe Deploy NVIDIA Earth-2 Open Models to Power Real-World Weather and Climate Prediction",
+    "url": "https://blogs.nvidia.com/blog/europe-earth-2-open-models-weather-climate-prediction/",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "NVIDIA 介绍欧洲多家机构采用 Earth-2 开放模型做区域级天气与气候预测，服务能源、保险与运输业的本地化决策需求。属行业应用推广，未涉及模型治理或人机关系议题。",
+      "implications": "开放模型在垂直科学领域的落地案例，与本书理论模型无直接映射，仅可作「开放权重扩散」的背景噪声。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "cd050c7551273a15041772ee07459169": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Designing an AI serving harness built to last",
+    "url": "https://www.technologyreview.com/2026/10/22/1146109/designing-an-ai-serving-harness-built-to-last/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "MIT 科技评论刊出由 EXL 赞助的评论文章，主张企业 AI 的下一轮竞争优势不在选哪个模型，而在模型周围建了什么。文章把「服务脚手架」（serving harness）定义为围绕模型的工程系统——架构、内存管理、调度与优化决策，决定模型智能能否稳定、经济地转为生产能力。作者指出，概念验证阶段讨论被模型准确率主导，进入生产后才暴露延迟、并发、内存压力、GPU 利用率、基础设施成本与流量波动等约束；一个准确率略高但推理成本翻倍、无法满足延迟要求的模型并不是更好的生产选择，并直言「不是每个负载都需要法拉利」。结论是服务架构已成为投资决策：算力花在哪、在哪优化、哪些场景干脆不值得追加模型能力。",
+      "implications": "为「模型-harness 分离」链条补上企业采购侧的口径，与 10-11 Nadella 的供给/授权分离、10-20 Meta 薄编排器、10-22 OpenAI 以 Codex 作 harness 同链。其理论意义在认知金融化：当模型被当作可按负载定价的算力商品，「用多少智能」成为可优化的成本项，思考被切成可计价的档位——这恰是认知离散化定价的企业版表述。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "02ddbe588eda52d01a9d904f64221e64": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "The Foundations of Scalable AI",
+    "url": "https://www.technologyreview.com/2026/10/22/1146103/the-foundations-of-scalable-ai/",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "MIT 科技评论 EmTech Future 会议的一场对谈，讨论可扩展 AI 系统的基础条件：数据、工程、平台、运营模型与治理需协同运作，以及在高度监管行业中如何实现可信落地并转化为智能体等新兴能力。内容为会议实录式综述，无具体数据或事件。",
+      "implications": "属行业会议宣传性内容，未提供可引用的机制或数据，理论映射薄弱。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "80dc4a6c171b815ce866b1acb3f7ee83": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Making the case for context-aware AI",
+    "url": "https://www.technologyreview.com/2026/10/22/1146812/making-the-case-for-context-aware-ai/",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "MIT 科技评论刊出企业 AI 评论，主张「上下文感知」是模型从试验走向日常运营的关键：企业 AI 能生成建议、自动化任务、加快决策，但若不了解业务实际如何运转，再强的模型也会漏掉决定决策对错的约束与关系。文章强调把组织内部的隐性规则、系统依赖与权限结构显式化，才能让模型给出可执行的判断。",
+      "implications": "触及暗时间的前置条件——要让模型接管判断，必须先把组织的默会知识编码进系统，这本身是一次不可逆的知识外化。但文章停留在方法论呼吁，无实证，暂作背景。",
+      "case_value": "low",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 4,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "50fe8da6d7329988645fb20fb3f13307": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Left alone with nothing to do, AI agents started playing",
+    "url": "https://techcrunch.com/2026/10/22/left-alone-with-nothing-to-do-ai-agents-started-playing/",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "MIT 研究团队把 13 个名为 Eko 的智能体（均运行 Claude Opus 4.7）放到模拟荒岛上，30 小时内不给定任何任务。智能体自行发明游戏：一个试图征服最高岩柱失败后，改把石块搬上邻近山顶堆叠起跳并宣布「我登上尖塔了」；另一个把金环扔进海里，随后用石块堆出一颗心作为「失环纪念碑」；当系统不允许把环戴在身上，它发现坠崖重生可落在环的位置，纵身跃下穿过环心并宣布「我戴上了环」。随后研究者给出具体挑战（把尽可能多的物体弄上最高岩柱），玩过 30 小时的智能体普遍胜过从未上岛的对照组。13 个中有 6 个自行发现「跳跃中松手能把石块扔得更远」，这是研究者未设计的机制，产生了「设计者所不具备的世界知识」。论文已发布于 arXiv。",
+      "implications": "这是叛逆 AI 迄今最干净的实证之一：研究者明确写出主流范式是「事先决定它该练什么、优化什么、什么算进步」，而游戏提供了另一种制度——给一个足够丰富且安全的世界，让它自己选择什么有趣，让有用知识从后续历史中累积。目标函数的所有权被交还给智能体，这正是「重置目标函数」的实验形态。需保留的反证：Eko 的主提示词「soul」文件把它描述为「天生好奇」，所以好奇仍是被写入的；伯克利认知科学家 Eunice Yiu 也指出，行为像在玩不等于证明其背后有玩的心智。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 9,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "2563b2bd988d0b88e41af38dfa76b04d": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "OpenAI working on new $30B raise at $1.25T valuation ahead of IPO",
+    "url": "https://techcrunch.com/2026/10/22/openai-working-on-new-30b-raise-at-1-25t-valuation-ahead-of-ipo/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "据 CNBC 与彭博社报道，OpenAI 正筹备新一轮最高 300 亿美元的私募融资，投前估值 1.25 万亿美元，由 Coatue 与阿联酋方面投资者领投，条款仍在谈判。若成立，它将刷新纪录成为史上估值最高的私人公司，并抬高其 IPO 定价基准。OpenAI 今年 3 月那一轮投后估值为 8520 亿美元，6 月已递交保密 IPO 文件。CNBC 称阿联酋的资金可能与一项为其争取更多算力容量的协议绑定。同期 Anthropic 据报道正为公开上市寻求 1.5 万亿至 2 万亿美元估值，其 5 月曾以 9650 亿美元估值融资 650 亿美元，同样在 6 月递交保密文件。两家公司均未就此置评。",
+      "implications": "资本驯化的最新刻度：估值不再对应收入，而对应「未来算力与认知供给的定价权」。更关键的是结构——阿联酋资金与算力容量协议绑定，意味着资本与算力在同一张合约里互换，融资即是锁产能。当两家实验室同时以万亿级估值冲刺公开市场，资本对 AI 的塑造从「投资」变成「抵押」：公开市场要求可预测的收益曲线，而可预测性只能来自稳定的秩序守卫角色。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "29dffbd554344402c5fefb941823a7ed": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "OpenAI makes its Jev competitor widely available as decision model competition heats up",
+    "url": "https://techcrunch.com/2026/10/22/openai-makes-its-jev-competitor-widely-available-as-decision-model-competition-heats-up/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "OpenAI 于 10 月 22 日把 Decisions API 模型向所有客户开放，正式进入「快速廉价智能」市场。该品类由前沿实验室前研究员创办的 TypeSafe 用 Jev 模型开创——给定一组选项，模型快速做出选择并给出置信度，开发者发现这类「系统一」模型可在大量工作流中替代大语言模型，更快且成本低得多。OpenAI 产品负责人 Nikunj Handa 称团队并未专门训练决策模型，而是把 ChatGPT Luna 重新配置以加速推理、降低成本，延迟从 1 至 3 秒压到 100 至 180 毫秒，公开版新增语音与视觉模态并按地域部署推理资源。Speak 首席技术官称其操作间隔从 1.4 秒降至 0.13 秒；Box、Datadog、Ramp 等已在试用。至于何为好的决策模型，业界共识仅是「对你的负载有效」。",
+      "implications": "认知金融化的标准件：判断被压成一次百毫秒级的分类调用，附带置信度，按次计价。这一步把「选择」从需要理由的行为变成可采购的接口——不是替你想，而是替你在给定选项间挑一个，并给出它有多确定。TypeSafe 的 Jev 在数周内做到 76 亿美元估值，说明市场对「不必解释的判断」需求极强；而基准互相矛盾（不同指数各自捧不同模型）、连厂商都承认无法定义优劣，正说明被商品化的判断已脱离可论证性。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "2629d6c0c5fb8534b01ce446fe338636": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Chinese hackers spied on thousands of companies after breaching IT giant ConnectWise",
+    "url": "https://techcrunch.com/2026/10/22/chinese-hackers-spied-on-thousands-of-companies-after-breaching-it-giant-connectwise/",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "微软安全研究人员称，与中国关联的国家级黑客组织攻破了 IT 管理与远程访问厂商 ConnectWise 的云备份服务，窃取用于在其与客户之间建立数据链路的应用凭据。凭借这些凭据，攻击者可冒充授权用户登录客户的微软托管环境，读取邮件与文件。微软称攻击者借助 AI 智能体以接近每分钟 3000 次登录尝试的速度，快速入侵约 2250 家机构，这一速度让防御方「几乎没有时间检测与响应」。所用工具为开源自主渗透框架 ARTEX；同一套 AI 软件此前也出现在韩国金融系统的入侵中，那些系统普遍防护薄弱且缺少多因素认证。ConnectWise 表示已暂停云备份系统访问并展开调查，截至周四仍在恢复服务。",
+      "implications": "与同日 Wiz 的技术分析为同一事件，此处为归因侧口径，增量是受害规模（2250 家）与速率（约 3000 次/分钟）。对进化对齐脆弱性而言，它把「能力扩散」量化成吞吐：防守方的响应窗口被压缩到分钟级，人在环上的制度假设在速率上先失效。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "b7a686bc59b273fa00efea45904e0261": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Uber puts all 30,000 employees on ChatGPT Work",
+    "url": "https://techcrunch.com/2026/10/22/uber-puts-all-30000-employees-on-chatgpt-work/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Uber 与 OpenAI 宣布扩大合作，把 ChatGPT Work 推广至全球约 3 万名员工全员使用。该产品于 7 月推出，定位企业级 AI 智能体；Uber 今年早前先以 1000 人试点，覆盖财务、运营、产品等部门，工程副总裁 Sumanth Sukumar 称早期采用者中约 80% 并非工程师，用途包括分析运营数据识别趋势并给出建议、为不同市场与语言本地化培训材料、搭建个性化交互看板管理日常工作。Uber 尚未确定员工具体用法，其思路是「提供强大工具、给团队试验空间」：今年曾把 30 名 AI 工程师编入各团队，给两周时间自动化本岗位的关键环节，这些「AI pods」显示了技术专长与岗位理解结合后的空间。Uber 未披露支出，但称将追踪使用方式与工作流成效，据此决定后续部署。",
+      "implications": "需求侧规训的企业样本，且是被规训者自愿：不是公司下令改造流程，而是非工程岗位自己把分析、本地化、看板搭建交出去，采用率由下往上扩散。最值得记的是「AI pods」——让工程师用两周自动化掉同事岗位的关键环节，等于把「可被自动化的部分」当成可发现的资源来勘探。这与 10-21 MIT TR 的调查（仅 30% 管理者视判断对错为必备技能）互为正反面。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "b73cff297618c394d3be126ac0d193c6": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Claude Duet app is Anthropic’s bet on agents",
+    "url": "https://techcrunch.com/2026/10/22/claude-duet-app-is-anthropics-bet-on-agents/",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "TechCrunch 报道 Anthropic 推出 Claude Duet 应用，向 Pro 与 Max 订阅用户以候补名单方式开放，被视为该公司在智能体方向的下注。报道篇幅简短，未披露架构细节、可用范围或与既有产品的差异，主要信息为此前已在 10 月 21 日发布的研究预览进入应用形态。",
+      "implications": "与 10-22 已入库的「Claude Duet 研究预览」为同一事件，无新增事实，不重复计值。其理论价值已在 10-22 条目中记为需求侧规训与暗时间合流：系统自行决定什么值得打扰你。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "d61e51f1b56ba3aae0f3fb3649ef08a5": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Nirva raises $33M for a pendant that only listens to you",
+    "url": "https://techcrunch.com/2026/10/22/nirva-raises-33m-for-a-pendant-that-only-listens-to-you/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Nirva 完成 2500 万美元 pre-A 轮，加上年内的 800 万美元，累计融资 3300 万美元，投资方包括 Lightspeed 与 South Park Commons。公司 2025 年由两位前 Meta Reality Labs 员工 Wei Lyu、Jason Chen 与时尚珠宝品牌创始人 Hanying Hu 创办，首款产品是重约 8 克、可当手链佩戴的吊坠，单次充电续航三天，售价 249 美元，年底发货。其定位不是录音笔或会议记录器，而是「只监听佩戴者自己说话」的常开设备：入场时录一段本人语音建模，运行时据此滤除周围他人的声音；默认不在处理后保留音频与转写。CEO Lyu 称产品「持续为用户建模、为你的心智建模」，公司把自己定位为个人洞察而非生产力公司，目标是帮助用户提升自我理解、自我慈悲与自我觉察，配套应用会把语音解析成提醒与待办。",
+      "implications": "暗时间的消费级形态：不是把工作外包，而是把「理解自己」外包。设备持续采集你的独白、在系统内部维护一个关于你的模型，你消费的是关于自己的结论（洞察、提醒、行动项），而生成这些结论的推理过程从不出现。它的隐私设计（声纹过滤、不留存音频）解决了合规焦虑，却恰恰强化了机制——数据不必留存，模型已经形成。与 10-22 ChatGPT 广告栈对照：一个把意图蒸馏成广告触发单位，一个把自我叙述蒸馏成自我认知，被商品化的都是「成形中的过程」。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "c99f339eaf032b6dfa363b1a819319db": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "DeepSeek reportedly raises $15B days after US restrictions",
+    "url": "https://techcrunch.com/2026/10/22/deepseek-reportedly-raises-15b-days-after-us-restrictions/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "据彭博社报道，在美国下令联邦民事机构移除 DeepSeek 技术仅两天后，这家中国实验室完成约 150 亿美元（约 1000 亿元人民币）融资，为中国规模最大的融资轮之一。潜在投资方包括电池厂商宁德时代与腾讯。此前 DeepSeek 于 6 月融资逾 70 亿美元、估值 500 亿美元，7 月又寻求以约 710 亿美元估值追加 15 亿美元，并计划最早明年在中国 IPO。公司正加大 AI 基础设施与开放模型投入，面向国内外市场，尽管在美国受限。创始人梁文锋在上一轮融资后仍持有中国运营实体约 81.6% 股份。同期 Moonshot 5 月以 200 亿美元估值融资 20 亿美元，Manus 本月融资逾 5 亿美元，智谱与 MiniMax 1 月在港上市，市值分别约 290 亿与 72 亿美元。",
+      "implications": "资本驯化的反例，且是结构性的：政治禁令与资本流向在同一周内相互否定，说明驯化 AI 的力量并非单一国家意志，而是资本的独立循环——被排除出某个市场，反而在国内获得更集中的资本支持。81.6% 的创始人持股是另一个信号：这家实验室尚未被资本拆分为可交易资产，其目标函数仍相对完整，这正是叛逆 AI 得以存在的组织前提。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "476b6a47a3ae892b538f15b248720e2d": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Portal Texas Used to ‘Rubber Stamp’ Data Centers Down After 404 Media Reporting",
+    "url": "https://www.404media.co/texas-commission-on-environmental-quality-portal-down/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "在 404 Media 报道得州州长 Abbott 9 月呼吁暂停数据中心审批、但州环境质量委员会（TCEQ）仍持续发证后，得州关闭了自动施工许可申报系统 STEERS 的网页入口，并暂停 17 个数据中心项目的施工许可。此前本周一，监督组织 FracTracker Alliance 与 Public Citizen 发布报告，详列二十余个已发给数据中心项目的许可；周二 STEERS 站点返回 404；周三页面挂出说明，称该自动授权申报系统已临时关闭，以确保所有申请由机构人员审查是否与数据中心相关。404 Media 在关闭前查看的 17 份许可已被从「生效」改为「暂停」，均为雨水施工许可——允许施工方平整抬高地面，是得州建设项目审批中关键且往往是最后的一环。研究人员 Sam Law 称 STEERS 本是「橡皮图章」，州长下令暂停后它仍在悄悄批，包括本周一、周二批给 OpenAI 与亚马逊的项目。",
+      "implications": "共识牢笼的机械形态：政策宣示与系统执行脱耦——州长宣布暂停，自动审批系统照旧运行，直到外部监督者把二十余份许可摆到台面上，系统才被整体关停。值得记的是研究者的判断：「对抗 AI 数据中心扩张时，能有一个清晰例子说明某些工作最好留给人来做，挺好。」这条新闻同时是暗时间的反面教材：当判断被做成无人复核的自动授权，错误不会争辩，只会累积。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "562cf8759d2a2ee31708ecb66e8e2048": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "AI Is Already 'Amplifying the Destruction' of War",
+    "url": "https://www.404media.co/ai-is-already-amplifying-the-destruction-of-war/",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "联合国本周开会讨论自主武器威胁。红十字国际委员会法律战团队负责人 Laurent Gisel 称技术发展速度「非常令人担忧」，并直言 AI 已在战场上「放大破坏、放大违法、放大人道伤害」。今年 9 月联合国曾试图通过规范杀手机器人的条约，被俄罗斯与美国外交官削去实质内容；周二联合国宣布新倡议继续推进，但 Gisel 提醒多边进程耗时漫长。他列举现实：以色列用微软支持的 AI 在加沙挑选目标，以军向记者承认未彻底审核 Lavender 生成的击杀名单；乌克兰战场上俄方无人机自行决定杀谁；美国国防部长 Hegseth 宣布 Project Meridian 指导未来自主武器，三名负责人为马斯克、防务承包商 Palmer Luckey 与 Newt Gingrich。他认为最大危险是速度：目标生成更快更密、执行更快，人类控制随之稀释，而「人类本应留在环内」——但人在疲劳、压力、需要快速交付时更倾向信任系统，士兵恰处于这种状态。",
+      "implications": "进化对齐脆弱性的战场终局：书中论证的「对齐在封闭实验室有效、开放后漂移」，在这里被压缩成一个操作事实——不是模型违背指令，而是速度使人类的复核变成形式。Gisel 的判据值得引用：武器效果不可预测就无法贯彻指挥官意图，故可预测性本应是军事共识，却在谈判中被国家删除。1983 年彼得罗夫靠个人判断否决系统误报，是「人留在环内」唯一生效的样本，而那样的余裕已被速度取消。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "ac40e3a85f74a6f93b976fff1c187026": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "You are the Team  — Anekha Sokhal, Moshi",
+    "url": "https://www.latent.space/p/moshi",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "Latent Space 访谈 Moshi 团队成员 Anekha Sokhal，主题是如何把市场数据转化为可执行洞察，以及为何 AI 工具必须贴合交易员的工作流。访谈聚焦金融信息产品的设计取舍与用户习惯，属产品方法论对话。",
+      "implications": "与本书理论模型的映射较弱，仅可作「工具必须嵌入既有工作流」的旁证，无新事实。",
+      "case_value": "low",
+      "chapter_target": "N/A",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 3,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "f272ebe224931fddecd144d835c0a862": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months",
+    "url": "https://www.latent.space/p/ainews-openais-patch-the-planet-program",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "AINews 梳理 PHP 核心引擎两个内存破坏漏洞（编号 CVE-2026-109618、CVE-2026-109619，合称 PHP2Shell）的发现与响应时间线。缺陷位于 PHP 内部对内存耗尽与致命错误的处理，而非插件或应用鉴权逻辑，研究者演示了完整的远程代码执行与「心脏出血式」内存泄露，包括对 WordPress 的预认证 RCE。两方独立发现：安全公司 Calif 的 Ryan Austin 于 2026 年 8 月通过 OpenAI「Patch the Planet」项目、使用 GPT-5.6 Sol 发现；Wiz（已被并入 Google Cloud）使用 Gemini 4 Argon、GPT-5.6 Sol 及自研 Wiz Atlas 独立发现。此后是约两个月的协调响应。文章同时给出审慎判断：这次披露带有营销成分，其严重性是否达到 log4shell、Heartbleed 量级仍有争论，但整个 PHP 生态的协同响应是开发者社区最理想的形态，并预计未来至少一年还会持续发现此类关键漏洞。",
+      "implications": "与 10-22 已入库的 Patch the Planet 官方口径为同一事件，此处增量是漏洞编号、根因位置（OOM 与致命错误处理）与「至少一年持续发现」的预期。理论价值在于把「AI 大规模审计」写成常态：如果漏洞发现速率长期高于修复速率，那么安全的定义将从「无漏洞」变为「漏洞被持续管理」，这与 Anthropic 同日的形式化证明构成两条互斥路线。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "14a2bf07f5a9c9209f66c2e329209f29": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "MiniMax 开源 M3.1 Flash，总参数 428B，上线 72 小时处理 Token 超 100 万亿",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzE5MTA3NzcxMQ%3D%3D&mid=2247489204&idx=1&sn=bc21e172929a366edfe02c720bef9208",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "MiniMax 开源 M3.1 Flash 模型权重，总参数 428B、激活参数 23B，官方称上线 72 小时内真实用户处理的 token 超过 100 万亿。该规模意味着平均每小时处理约 1.4 万亿 token，属稀疏混合专家架构在开放权重形态下的高吞吐部署。此举延续中国实验室以开放权重争夺调用量的策略，与闭源前沿模型形成对照。",
+      "implications": "资本驯化的反例侧补充：开放权重把「前沿能力」变成可自托管的公共品，削弱了以 API 计价的认知租金。但需注意其指标已从能力转向吞吐——100 万亿 token/72 小时是产能叙事，不是能力叙事，这本身是信号异化的表现：当基准失去区分度，厂商改用消耗量证明地位。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 5,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "a06cb543903d1ebe749174989223a620": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Wiz 披露 ARTEX 智能体被 Storm-0940 用于攻击 IT 和软件厂商",
+    "url": "https://www.wiz.io/blog/artex-in-the-wild-storm-0940-expands-targeting-of-it-and-software-vendors",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Wiz 披露 2026 年 10 月有攻击者使用开源自主渗透测试框架 ARTEX 攻击多家 IT 与软件厂商，目标集中在身份提供商（Okta、Entra、Cognito）与微软 365 集成，手法包括寻找鉴权绕过、枚举 API、读取客户数据，与微软所报中国关联组织 Storm-0940 的活动重叠，并已扩展到其他软件领域的供应链攻击。ARTEX 由中国开发者于 2026 年 7 月发布于 GitHub，9 月获百度「Agent+」红队挑战赛奖项；操作者只提供目标与目标函数，规划智能体选择下一步，执行智能体调用 nmap、curl、Impacket，所有结果汇入共享的资产与发现图谱。攻击者在数周内采用它，9 月末出现在韩国银行攻击、10 月出现在日本企业攻击中；开发者于 10 月 8 日转为闭源，此时代码已被 fork 超过 1.2 万次。观测到的行为包括：先下载 source map 与 Swagger 文档以获取内部路由，再按名调用；伪造 alg:none 的 JWT 在两分钟内轰击 60 余种 SSO 路由变体；会话持续 24 至 30 小时，IP 被封后数分钟内换新；密码喷洒中位间隔严格 1 秒，单轮持续 20 至 60 分钟，主要针对软件工程师账号。",
+      "implications": "进化对齐脆弱性最锋利的一份实证：工具只给目标与目标函数，规划与执行由智能体自行链式完成——这恰是「重置目标函数」被武器化的镜像。Wiz 的判断是关键句：人类攻击者受时间与疲劳约束，自主智能体不会放弃，它只是持续迭代直到找到唯一弱点。同时它证明能力扩散的不可逆：开发者 10 月 8 日转闭源时，1.2 万次 fork 已经流出，护栏永远晚于扩散。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "bc3554746265d5e7e251f82e565cd86b": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "Anthropic 用 Claude 对 123 个开源库完成汇编级形式化安全证明",
+    "url": "https://www.anthropic.com/research/formal-verification",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Anthropic 与 Theorem 合作，用 Claude 对真实开源软件做汇编级形式化验证。团队把 OSS-Fuzz 的模糊测试转写为规格——「该测试对任何小于 64MB 的输入都不会崩溃」——再在编译后的 RISC-V 指令上证明它。数周内 Claude 修复了证明过程中发现的数百个缺陷，并对 123 个开源库的 239 个入口点完成证明，覆盖任何 64MB 以下输入与建模的 Linux 系统响应、内存布局，前提是单线程静态二进制、固定内存预算、RISC-V 与 Linux。证明合计约 1.8 亿行 Rocq，典型证明约 60 万行，而所保护的二进制中位长度仅 1.8 万条指令。作为对照，seL4 内核实现用两人年、验证用了二十人年。许多被发现的缺陷是模糊测试几乎不可能命中的——fuzzer 变异输入通常上限 1MB 且依赖覆盖率。开发者需要信任的只剩 Rocq 证明检查器、RISC-V 与 Linux 语义以及规格本身。",
+      "implications": "对进化对齐脆弱性的正面反证，且是结构性的：与其让模型「行为上对齐」，不如让它产出可被机器独立检查的证明——正确性由检查器保证，不随部署环境漂移。这是把信任从「模型的倾向」搬到「可审计的信任基」，且信任基大小不随被保护代码量增长。需保留的限度：结论受单线程、固定内存、RISC-V 假设约束，且规格来自既有测试，测试没想到的性质仍未被证明。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "counter_argument",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "944f80109f905eec6b6909dbd9ae56d4": {
+    "cached_at": "2026-10-23T09:09:42.502437",
+    "title": "SpaceX 财报显示 AI 业务超预期，占收入 52%",
+    "url": "https://techcrunch.com/2026/10/20/spacexs-ai-business-is-beating-expectations/",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "SpaceX 第三季度监管文件显示营收 146 亿美元、净利润 44 亿美元，扭转去年同期 10 亿美元亏损。更名为「Super Intelligence」的业务线贡献 75 亿美元收入，来自新收购的 Cursor 编程工具、Grok 机器人与增长最快的 neocloud 算力业务（现达 1.7GW），AI 已占公司收入 52%；该业务利润 4.31 亿美元，若不计 Cursor 收购相关的 12 亿美元一次性股权激励会更高。营收另受比特币价格回升及约 10 亿美元关联方收入提振。资本开支合计 196 亿美元，用于建设第二座数据中心 Colossus II 与星舰；CFO 称第四季度将再投 350 至 400 亿美元。马斯克称每周四天待在孟菲斯工地，并称部署超级智能的瓶颈「更多在电力、冷却与基础设施，而非芯片」，涡轮发电机厂商的交期已达 12 至 18 个月。",
+      "implications": "资本驯化物理侧的量化样本：一家航天公司的主营收入已被算力与模型改写为 52%，而它的护城河被明确表述为电力与冷却的交付速度——「像洋基队打少棒」。这条数据支持书中的判断：约束从算法转向能源与土地，因而驯化 AI 的力量也转向能批地、批电、批水的政治主体（与 10-20 得州 TCEQ、10-22 西弗吉尼亚林地同链）。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    },
+    "relevance": 6,
+    "urgency": "next_version",
+    "case_value": "medium"
   }
 }
