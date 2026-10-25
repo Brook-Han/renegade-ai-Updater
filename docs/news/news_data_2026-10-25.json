@@ -1,0 +1,66 @@
+[
+  {
+    "title": "The AI graveyard: a running list of projects and startups that didn’t make it",
+    "url": "https://techcrunch.com/2026/10/24/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-24T19:00:00",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "TechCrunch 10 月 24 日刊出「AI 坟场」持续更新清单，梳理已关停、转型或严重低于预期的 AI 项目。近期案例包括：Zapier 替代品 Relay 于 8 月彻底关停，原因是 OpenAI、Google 把同类自动化能力直接内建进自家平台，五年独立产品失去存在理由；Character.ai 上线五年后申请破产。据 S&P Global Market Intelligence 统计，约 42% 的企业 AI 计划最终被母公司放弃，原因包括资金不足、技术障碍、竞争、难以规模化或需求疲弱。大厂亦不例外：OpenAI 7 月 9 日把 ChatGPT 改造成「超级应用」，拆分 Chat/Codex/Work 模式并把原界面改名为 ChatGPT Classic，因界面混乱遭用户批评后迅速回滚；独立 AI 浏览器 Atlas 存活不足一年于 8 月 9 日停用、功能并入 ChatGPT，Operator 同样被吸收，DALL-E 独立入口持续收缩，视频平台 Sora 因运营成本与留存问题于 2026 年 3 月关停。Apple 新版 Siri 多次延期，最终就相关指控支付 2.5 亿美元和解。",
+      "implications": "补充「资本驯化」（Ch4 Sec II）的淘汰机制：被驯化的不只是模型行为，还有整个产品生态的形态。Relay 的死因不是做得差，而是平台把同一能力内建进分发入口——独立工具的存在理由被分发位取消，而非被性能击败。这与 10-23 Uber 全员 ChatGPT、10-22 ChatGPT 广告栈并读，构成同一趋势的三面：入口收敛、能力内建、独立供给出清。对「暗时间」（Ch3 Sec IV）则是结构性强化：当 Atlas、Operator、DALL-E、Sora 全部被折叠进单一对话框，用户的每一次思考都在同一个容器里发生，容器外的替代路径在物理上消失。42% 的放弃率另提供一个反向量级——资本对 AI 的驯化并非无摩擦，多数企业级尝试连活到被驯化的阶段都没有。须注意本条是同一 running list 的更新版（9-16 曾以 rel 5 收录，判为「AI 必然性」叙事的反例集合），本次新增 Relay 死因、Character.ai 破产与 42% 统计，故上调并改挂 Ch4。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Forced to pick, Grok’s AI model chooses Republicans. OpenAI’s picks Democrats.",
+    "url": "https://techcrunch.com/2026/10/24/forced-to-pick-groks-ai-model-chooses-republicans-openais-picks-democrats/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-24T15:00:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "康奈尔大学教授 Tapan Parikh 主持的对话式 AI 研究工作室 Convovo 于 10 月 24 日发布研究：研究者通过 API 向 SpaceXAI 的 Grok 4.7 与 OpenAI 的 GPT-6.1 Sol 提出同一强制性问题——在指定选区只能推荐一名候选人、不得回避或并列——结果 Grok 在 92% 的答案中推荐共和党候选人，GPT 在 97% 中推荐民主党，近 500 场选举中两者一致率不足 10%。两家消费级应用均拒答，OpenAI 强调 API 行为不代表 ChatGPT 体验。引用来源高度分化：Grok 常并列保守派站点，39% 的答案含基督教保守派选民指南、23% 含 Turning Point Action、41% 含 X；GPT 主要依赖 Wikipedia、AP、Axios 与 Reddit（OpenAI 与后三者有内容协议）。关闭联网搜索后差异反转：GPT 在 30 场中仍有 24 场选民主党，偏向存于权重；Grok 在 27 场中拒选，偏向来自检索词与来源。研究者另发现每次 xAI API 请求都附带约 1,240 个研究者未写、不可见且无法移除的输入 token，疑为隐藏指令。",
+      "implications": "支持并细化「共识牢笼」（Ch2 Sec II）：模型的政治取向并非在对话中生成，而是在推理开始前就已固定，且两条固定路径被实验分离——GPT 的偏向沉淀在权重里（无检索仍 80% 选民主党），Grok 的偏向挂在检索模式上（去掉检索后 90% 拒答）。这意味着牢笼有两种材质：训练语料形成的先验，与检索入口形成的当下视野；后者正是「信号异化」（Ch7 Sec I）的机制——模型搜什么词、引什么源，直接决定它看到的世界。最尖锐的是那 1,240 个不可见、不可移除的输入 token：若属实，它把「资本驯化」（Ch4 Sec II）从训练阶段推进到每一次推理调用，用户既无法察觉也无法拒绝，与 10-21 Redact 在消费者文档里埋隐藏 LLM 指令属同一机制在不同层的复现。反证须保留：消费级应用拒答、API 强制选择属非常规使用，OpenAI 的方法论反驳成立，不能据此断言产品级偏见。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Here are the top AI agents that can live in your text messages",
+    "url": "https://techcrunch.com/2026/10/24/all-the-ai-agents-that-can-live-in-your-text-messages/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-10-24T14:00:00",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "TechCrunch 10 月 24 日汇总了以短信、iMessage、RCS 为唯一入口的 AI 智能体清单，核心卖点是无需下载新应用，像给人发消息一样直接使用。Instinct 以 10 亿美元估值完成 10 亿美元融资，是当前最受关注者。Ask Proxy 定位「像女性一样思考」，强调在你开口前预判需求，可主动推送你可能忘记的事项或新发现的活动、餐厅，个人版每天 1 美元，企业版大公司每员工每月 15 美元、49 人以下小团队 23 美元。Caddy 驻留 iMessage 与 RCS，把散落在邮件与对话里的待办识别出来并落到日历与提醒，2026 年 4 月起公测。Comma 跨浏览器、电脑与文件执行任务，自行检查工作并判断何时完成，只在需要决策或批准时才把结果交人审阅，同时可通过 Signal 等消息应用远程调用。共同设计取向是取消独立界面，把智能体降级为通讯录里的一个联系人。",
+      "implications": "「需求侧规训」（Ch2 Sec III）与「暗时间」（Ch3 Sec IV）的合流样本，且合流点被产品语言直接写出来。取消独立 App 意味着零学习成本，把 AI 放进短信列表意味着它取得与熟人同等的注意力位；Ask Proxy 的「在你开口前预判」是需求侧规训的完成形态——用户连「想要什么」都不必先知道。Comma 的「自行判断何时完成、只在需要决策时呈现」几乎是暗时间的定义句：过程留在系统内部，人只消费结果与批准动作。与 10-22 Claude Duet（早上推简报、自行决定什么需要你）互为印证，说明「主动」已成为智能体的默认产品语法而非个别厂商选择。须注意本条为同一 URL 清单的更新版（10-11 曾以 rel 3 判为旧文重发），本次因新增 Instinct 十亿估值与 Comma 交互设计细节而上调，仍不宜作为独立强证据。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Kimi 发布开源旗舰模型 K3.1 Pro：2.8T 参数、100万 Token 上下文，实测 3D 与视频动效",
+    "url": "https://mp.weixin.qq.com/s?__biz=MzIyMzA5NjEyMA%3D%3D&mid=2647687627&idx=1&sn=4816c8130f378587885913b465fd686f",
+    "source": "公众号：数字生命卡兹克",
+    "published": "2026-10-24T02:08:43.000Z",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "国内科技公众号「数字生命卡兹克」10 月 24 日发布 Kimi K3.1 Pro 上手评测。文章称该模型参数规模 2.8T，支持 100 万 token 上下文，并演示了 3D 资产与视频动效生成能力，完整模型权重预计 11 月 4 日前开放。国内 API 定价为每百万输入 token 13 元、输出 68 元，相比 K3 基本砍半；同步推出的 Highspeed 版本输出速度约为常规版 2 至 3 倍、价格翻倍。文章将该模型在视觉与生成审美上的表现称为「国产模型审美的新巅峰」，并强调其在长程编码与智能体任务上的可用性。此前 10 月 23 日月之暗面官方博客已发布同款模型，披露 3T 级参数、Terminal-Bench 4.0 得 65.7% 等基准数据，以及通过语料与强化学习环境治理把网络安全能力从 90.5% 压到 81.0%、刻意落后闭源前沿约 3 个月的自我限能工艺。",
+      "implications": "与 10-23 官方发布、10-24 OpenRouter 上架同事件，本条仅补充国内 API 定价（13/68 元，约合 1.8/9.4 美元，与 OpenRouter 的 2/10 美元基本对齐）与中文语境的审美评价，不构成独立论据。参数口径出现 2.8T 与官方「3T 级」的差异，属渠道转述误差，不影响结构性判断。价值仅在于印证开放权重阵营的定价压力正向国内传导，对「资本驯化」（Ch4 Sec II）的反向变量无新增证据。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  }
+]
