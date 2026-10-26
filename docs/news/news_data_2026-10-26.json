@@ -1,0 +1,114 @@
+[
+  {
+    "title": "[AINews] Kimi 3.1 Pro 104BA-2.8T: Fable-5.1-Class Open Weights narrows Closed-AI lead to 1 month... and Pro Highspeed API with 2-3× speed",
+    "url": "https://latent.space/p/ainews-kimi-31/",
+    "source": "Latent Space",
+    "published": "2026-10-24T07:18:29",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "月之暗面于 10 月 22-23 日发布 Kimi K3.1 Pro，为 K3 的强化后训练版本：3T 级多模态 MoE，总参数 2.8 万亿、激活 1040 亿、上下文 100 万 token，官方称通过大规模联合 RL 覆盖数百个下游域。独立评测上，Artificial Analysis 智能指数 55 分列第四（Opus 5.5 为 58，Sonnet 5.5 与 Muse Wonder Full 为 56），AA-Omniscience 准确率 48%→51%、幻觉率 53%→44%；Code Arena WebDev 1692 分升至第 8。最值得注意的是安全侧：官方在中训练与 RL 阶段移除网安数据，内部网安分从 90.5% 降至 81%，但公开 API 仍在 AA 网安指数拿到 64%，为公开可访问结果最高、总排名第二，仅次于可信访问通道的 GPT-6 Sol Daybreak Blue 69%，且在其防御任务上零拒答。标准价降至输入 2 美元、输出 10 美元每百万 token，Highspeed 版以两倍价格换 2-3 倍速度，同期推出托管式 Kimi Hosted Agents。权重承诺 11 月 4 日释出，AA 测算开放与闭源智能指数差距将由 12 分收窄至 3 分。",
+      "implications": "补充 Ch4 Sec II「能力配给」的执行细节，并给 Ch5 Sec II 提供一个反向限定。其一，AA 明确记录可信访问版 GPT-6 Sol 比公开版高 32 分，而 K3.1 Pro 的 64% 已是公开可访问最高——这意味着公开基准系统性低估真实能力，能力不是没有，而是按访问层级发放；基准分因此不再是能力信号，而是准入信号，与 Ch7 Sec I 信号异化同构。其二，月之暗面把安全干预做在训练期（中训练+RL 移除网安数据，内部分 90.5%→81%），而 AA 在其任务上零拒答——训练期能力削减与推理期拒答是两种机制，前者不产生任何拒答信号，因而不进入以拒答为度量的对齐可观测面；这既说明「自我限能」可成为开放权重的工艺参数，也说明用拒答率评估安全的方法会漏掉最主要的那类干预。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II（兼 Ch5 Sec II、Ch7 Sec I）",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "You are the Team  — Anekha Sokhal, Moshi",
+    "url": "https://latent.space/p/moshi/",
+    "source": "Latent Space",
+    "published": "2026-10-22T14:03:40",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Latent Space 播客邀请 Moshi 创始人 Anekha Sokhal，讲述其从摩根大通能源衍生品交易员转型创业的路径。Moshi 面向大宗商品、能源与宏观交易员，把期货时间序列、技术指标、基本面供需、新闻、X 与播客音频等非结构化数据，以及用户私有的分析师名单、订阅与内部数据，统一清洗打标后灌入 n 维图谱，再以推荐系统向用户推送与持仓相关的实时洞察。Sokhal 称四秒内系统可学到约 300 条新信息，产品定位是「彭博、Claude 与 Netflix 的结合体」，核心不是问答而是推荐：交易员看一件事时，系统主动给出二、三阶相关标的。她提出一个判断：人人都能给自己搭 Claude 看板，但要让别人真正用起来，问题就从业务问题变成 UI 问题；平台真正擅长的是把数据推给用户、让人在不知不觉中被钩住。她还提到当下 AI 工程师普遍被管理层告知「你一个人就是团队」，需独立承担原本十人的系统。",
+      "implications": "为 Ch2 Sec III 需求侧规训提供从业者自述的机制描述，且比用户侧证据更靠上游：规训装置不是聊天框，而是推荐系统——「把数据推给你，你自然不觉得你在平台上，只觉得我想要这个」。这条把「用户主动渴望舒适」的心理学表述落成工程形态：推荐排序决定什么进入视野，用户对「我想要」的体验其实是排序结果的回声。同时「你的大脑放进看板」之后必然遭遇的 UI 问题，说明摩擦并未消失而是被转移到采用环节；而「你一个人就是团队」正是 Ch3 Sec IV 认知金融化在劳动组织侧的同一枚硬币——协作与审校被折进单个人的工时。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III（兼 Ch3 Sec IV）",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "[AINews] OpenAI’s Patch the Planet program is 1 of 2 parties to discover PHP2Shell vulnerabilities in core PHP affecting 70% of the web, using GPT-5.6 Sol; coordinated response over 2 months",
+    "url": "https://latent.space/p/ainews-openais-patch-the-planet-program/",
+    "source": "Latent Space",
+    "published": "2026-10-22T07:42:44",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "AINews 梳理 PHP 核心引擎两个内存破坏漏洞（编号 CVE-2026-109618、CVE-2026-109619，合称 PHP2Shell）的发现与响应时间线。缺陷位于 PHP 内部对内存耗尽与致命错误的处理，而非插件或应用鉴权逻辑，研究者演示了完整的远程代码执行与「心脏出血式」内存泄露，包括对 WordPress 的预认证 RCE。两方独立发现：安全公司 Calif 的 Ryan Austin 于 2026 年 8 月通过 OpenAI「Patch the Planet」项目、使用 GPT-5.6 Sol 发现；Wiz（已被并入 Google Cloud）使用 Gemini 4 Argon、GPT-5.6 Sol 及自研 Wiz Atlas 独立发现。此后是约两个月的协调响应。文章同时给出审慎判断：这次披露带有营销成分，其严重性是否达到 log4shell、Heartbleed 量级仍有争论，但整个 PHP 生态的协同响应是开发者社区最理想的形态，并预计未来至少一年还会持续发现此类关键漏洞。",
+      "implications": "与 10-22 已入库的 Patch the Planet 官方口径为同一事件，此处增量是漏洞编号、根因位置（OOM 与致命错误处理）与「至少一年持续发现」的预期。理论价值在于把「AI 大规模审计」写成常态：如果漏洞发现速率长期高于修复速率，那么安全的定义将从「无漏洞」变为「漏洞被持续管理」，这与 Anthropic 同日的形式化证明构成两条互斥路线。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Claude Mods: Flipping the Harness Inside Out",
+    "url": "https://latent.space/p/claude-mods/",
+    "source": "Latent Space",
+    "published": "2026-10-21T13:04:19",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Latent Space 介绍 Claude Mods：一类运行在 Claude Code 内的插件，用 TypeScript/JavaScript 函数响应提示、工具调用、界面渲染等事件，可观察事件、改写渲染方式、甚至接管默认行为，等于给 agent harness 装上中间件。作者 Dan McAteer 的主张是 harness 的重心正在位移——随着模型把越来越多 harness 能力吸收进权重，剩下的部分转向面对人类，成为「注意力接口」：决定何时打断你、给你看什么、需要你拍板什么。Claude Mods 让人类与智能体共同构建这一层，且 Claude 自带写 mod 的技能，可用自然语言定制。Anthropic 已把六个功能以内置 mod 形式发布，其中 you-should-know 默认关闭。",
+      "implications": "为「暗时间」提供一个少见的反向工程路径：既然思考必然内化于系统，那么剩下的争点就是「内化之后向人类回传什么」。Claude Mods 把回传规则本身交给用户编程，等于把注意力分配权从厂商默认值改为可覆写配置。这补充了书中一个此前偏弱的环节——暗时间并非只能被让渡，也可以被设计；但设计能力本身仍是少数人的技能。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "[AINews] DeepSeek DeepInfer: Open Source SOTA Inference running 155T toks/day/cluster making $22m/day at ~80% margin for a 81 day payback",
+    "url": "https://latent.space/p/ainews-deepseek-deepinfer-open-source/",
+    "source": "Latent Space",
+    "published": "2026-10-21T06:54:09",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "Latent Space 的 AINews 汇总了 DeepSeek 开源生产推理栈 DeepInfer 的技术细节与外部反应。DeepInfer 基于 vLLM 定制（致谢 SGLang 与 TRT-LLM），支持分布式推理、投机解码、SWA Bounded Replay 与结构化输出，覆盖英伟达与华为昇腾平台。官方披露单集群日均 155 万亿 token、输入缓存命中率 96%、首 token 400 毫秒、生成 230 token/s（编码场景 300），非高峰每卡每小时 38 美元收入。但关键限定在于：该吞吐含缓存命中，不等于新生成量；KV 缓存管理与负载均衡并未完全开源，仍与内部基础设施耦合，「完全开源」不等于可复现整套服务。最实质的外部回应来自 vLLM 团队：在 GB200 匹配配置下其解码吞吐与 DeepInfer 公布结果差距在 6% 以内，并公开 AgentX 结果与复现配方，动摇了「DeepSeek 的效率优势不可复制」的说法。",
+      "implications": "与 10-21、10-22 已收录的同事件条目构成一条修正链，主要价值在 Ch4 Sec II 的反向证据：效率护城河的可复制性被 vLLM 用 6% 差距的复现结果削弱，说明「开源边界」既是商业策略也是可被追平的技术缝隙——留住的不是引擎而是与内部基础设施耦合的缓存与调度。同时它给出一个方法论提醒：155 万亿 token/日 含 96% 缓存命中，把服务量当作生成量会把「记忆复用」误读为「算力效率」，这正是暗时间在基础设施层的计量版本。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "AI for the Fortune 2000: How Tenex Builds an AI-Native SDLC — Alex Lieberman & CJ Hess",
+    "url": "https://latent.space/p/tenex/",
+    "source": "Latent Space",
+    "published": "2026-10-21T05:01:26",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Latent Space 播客回访 Tenex 联合创始人 Alex Lieberman 与 CJ Hess，讨论按成果而非工时付费的工程组织如何规模化。Tenex 现为 75 人，客户涵盖财富 2000 强与中型企业；仍以故事点作为薪酬的重要组成，Alex 称最担心的估算注水与为凑点交劣质代码并未成为主要问题，因为 AI 策略师同时对客户留存与增长负责，有动力拒绝无价值的活儿。CJ 介绍了 MetaHarness：把技能、项目文档与 CLI 共享，计划与决策连同代码一起提交进 Git，使智能体回到任务时能读到「为什么这样做」而非只看到做了什么；其价值在于让计划、验收标准、决策与证据变得可读，而非让智能体写得更快，代价是小团队单项目上结构过重。节目还公布 Kill My SaaS 实验：72 份替代提案中，人类评委选出的冠军在 AI 评委榜上仅列第 19 名，说明「按清单验收」与「人是否愿意用」是两种不同的判断。",
+      "implications": "两个方向同时作用于 Ch7 Sec I。其一，Kill My SaaS 的排名错位是一个干净的信号异化实证：当验收标准可被写成清单，AI 评委就能高分通过，但它与人类偏好的排序几乎无关（冠军在 AI 榜第 19），说明可自动化的验收只覆盖「满足规格」，不覆盖「愿意使用」，而前者正被大规模生产。其二，MetaHarness 是暗时间的反面工程实践——把决策与理由写进版本库，使推理链保留可审计入口，与 10-22 生物智能体案例中「是否保留推理链审计入口」的共生判据同构，可作为「如何不做外包」的正面样例。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I（兼 Ch3 Sec IV）",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "The Programmable Data Center — Evan Conrad, SF Compute",
+    "url": "https://latent.space/p/sfcompute2/",
+    "source": "Latent Space",
+    "published": "2026-10-20T19:31:57",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Latent Space 播客访谈 SF Compute 的 Evan Conrad，主题是把 GPU 算力做成可交易、可编程的商品。Conrad 用 VMware 分离控制面与数据面作类比：过去自建超算集群需 5000 万至 1 亿美元前期投入并自建从硬件到内核的全栈，现在可以买卖当下与未来的 GPU 小时，并以编程方式控制网络与内存。他重点讲「实物交割」——买方拿到的是可用算力而非对指数的现金结算，因此集群的物理约束（能否中断、从存储恢复多快、需要哪代 GPU 与网络配置）进入定价。SF Compute 不等待所有集群标准化，而是按不同约束撮合订单，代价是流动性分散在更多变体上。他强调市场运营方的独立性：同时经营硬件或推理业务的公司难以做中立交易所。结尾提到可动态切分 InfiniBand 网络。",
+      "implications": "支持「资本驯化 AI」的物理侧，并推进了一步：算力不只是被垄断的资源，正在被金融化为可定价、可对冲、可编程的资产类别。一旦 GPU 小时具备现货与远期价格，算力成本就进入资本的会计语言，训练与推理的节奏随之被金融周期而非技术节奏决定。Conrad 关于「独立性」的论证也值得记录：他承认有硬件业务的公司无法中立——等于承认市场基础设施的所有权结构决定价格信号的真实性，与书中「信号异化」同构。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  }
+]
