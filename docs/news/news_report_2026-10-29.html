@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-10-29 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 6 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-10-29 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>16</span></div>
+      <div>🔴 高价值: <span>6</span></div>
+      <div>🟡 中相关: <span>8</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Microsoft recorded $10 billion in revenue from OpenAI <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 3, Section IV</strong> — Anthropic just launched tools to show companies what their AI spending <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 2, Section II</strong> — AI execs may be too out of touch to build for the general public <span class="urgent-type-tag">counter_argument</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Google announces Gemini 4 Carbon, its latest frontier AI model that yo <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 2, Section II</strong> — Google AI gets cagey when asked who won the 2020 elections <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 7, Section I</strong> — [AINews] Anthropic ends Coding Interviews: &quot;Hunger beats tenure&quot; <span class="urgent-type-tag">case_study</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Google AI gets cagey when asked who won the 2020 elections</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/10/google-ai-gets-cagey-when-asked-who-won-the-2020-elections/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section II
+      </div>
+      <div class="card-body">Ars 记者实测 Google AI Mode：问「谁赢了 2020 年总统大选」不直接回答，而是让用户「查阅联邦选举委员会（FEC）的官方报告」；2024 年、2012 年大选以及「2020 年后哪个党控制参议院」同样只给外链，但 2000 年以来其他届次能直接答对，且不同员工的回避年份并不一致。同一问题，Google 自家 Gemini 应用、ChatGPT、Claude 乃至美国政府运营的 America.gov 模型都直接作答。经 VPN 从中国台湾、俄罗斯、法国、加拿大访问，每次都得到准确直答；在美国重复提问第二次也会改口，并改引 Google Civics 数据。AI Mode 自述原因是「针对近期及高度敏感选举话题的安全过滤非常严格」。Google 发言人称 Gemini 应用回答更完整、Search 上「这不是最有用的回应」，并称 2020 与 2022 参议院查询存在「技术缺口」正在修复。</div>
+      <div class="card-implications">共识牢笼第一次被定位到具体的地理与重复次数上：同一模型、同一权重，答案随访问地与提问次数而变，说明牢笼不是知识缺失而是发布策略，是可在路由层开关的过滤器。更关键的是它对「模型对齐」提出反例——对齐的对象不是真相而是舆论风险，于是同一事实对本国用户隐藏、对外国用户开放。这为 Chapter 2 提供了最强的机制描述：牢笼的边界由平台画，且画给自己人看。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Microsoft recorded $10 billion in revenue from OpenAI</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/10/28/microsoft-recorded-10-billion-in-revenue-from-openai/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">微软在 10-28 的监管申报中披露，截至 9 月 30 日的季度（2027 财年 Q1）从与 OpenAI 的商业安排中录得 100 亿美元收入，含收入分成，占其当季总营收 923 亿美元的近 11%。2026 财年全年该项收入达 241 亿美元，按当季速度年化约 400 亿。截至 9 月底对 OpenAI 的应收款项 72 亿美元，高于 6 月底的 60 亿。OpenAI 据报按 20% 收入分给微软（双方均未公开确认），2026 年 4 月协议要求分成延续至 2030 年并设上限，同时允许 OpenAI 使用竞争云。微软持股从 6 月约 25% 降至 9 月 24%，延续 2025 年 10 月重组后约 27% 的稀释趋势；该次协议中 OpenAI 另承诺追加采购 2500 亿美元 Azure。</div>
+      <div class="card-implications">为资本驯化提供「收租表」而非「投资表」的硬证据：微软从 AI 前沿实验室取得的现金流已占单季营收 11%，且分成写进 2030 年前的合约、附带算力采购承诺。这意味着前沿实验室的营收增长同时是资本方的固定收益，实验室越成功，越难偏离能产生分成的那条产品路线。书中「资本通过算力与合约把 AI 变成秩序守卫」的链条在此获得会计层的可核验形态：不是资本干预模型目标，而是资本在模型产出上持有优先索取权。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic just launched tools to show companies what their AI spending is buying</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/10/28/anthropic-just-launched-tools-to-show-companies-what-their-ai-spending-is-buying/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section IV
+      </div>
+      <div class="card-body">Anthropic 10-28 推出一套用量报表工具：基于内部分析与员工问卷，管理者可按时间段查看团队做了什么、产出什么、花了多少钱、工作流在哪一环断掉，并获得改进建议；公司称默认不将该数据用于模型训练，同时推出团队共享预算池。背景是其本周向投资人披露第二季度实现经营利润、净收入留存率 900%（同一批客户 2026Q3 支出为 2025Q3 的九倍）。同日 Jellyfish 发布覆盖 27.6 万名开发者的报告：基于 Anthropic 模型的工具仍占提交评审代码变更的近三分之一，相关支出自年初增长 10 倍，约等于工程总成本的 2%；其首席科学家称这 10 倍是多数 CFO 没预算过的增长。Jellyfish 产品负责人称 Astra 发布后 Codex 才在其数据中显现，Anthropic 的优势来自工作流标准化与切换成本。</div>
+      <div class="card-implications">认知金融化的「定价权闭环」：过去 token 按量计费，价值由买方自行估算；现在卖方直接提供「你的团队产出了什么、值多少钱」的报表，并附带改进建议。度量产出、解释产出、优化产出三件事被同一个收费方垄断，买方失去独立判断 ROI 的接口。这与信号异化同源——评价标准的书写权移交给被评价对象，且以「不用于训练」的隐私承诺换取数据上交的正当性。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Google announces Gemini 4 Carbon, its latest frontier AI model that you can't use</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/10/google-announces-gemini-4-carbon-its-latest-frontier-ai-model-that-you-cant-use/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">Google 在 Gemini 4 Argon 发布仅两周后再公布 Gemini 4 Carbon，定位为 Argon 的能力升级而非外界等待的 Flash 轻量版，重点在编码、智能体任务与网络安全。官方称其在漏洞发现、验证与修复上「显著跃升」，生成无漏洞代码的概率为 Argon 的两倍，Chrome 团队称其产出「高质量补丁」的能力是非 Google 模型的 10 倍，WebDev Arena 上涨 89 分至第 4 名。Grey Swan 提示注入评测中 Carbon 抗攻击成功率 100%，Argon 为 0.7%、Claude Opus 5.5 为 1%、GPT-6 Astra 为 8.5%。因编码与网安能力过强，Google 采取分级发布：在美国政府自愿测试框架内运行，经 Fairwinds 网络防御计划先行，AI Ultra 订阅者与 API 开发者随后，无公开时间表；API 引导价每百万 token 输入 2 美元、输出 10 美元，期满翻倍。</div>
+      <div class="card-implications">资本驯化的「配给制」形态在模型侧完成闭环：能力越强，可及性越窄，且窄化的理由由发布方自己书写（安全）。与 10-26 记录的「公开基准与可信访问基准差 32 分」互为表里——公开分数系统性低估真实能力，而真实能力只按访问层级发放。Grey Swan 的 0% 同时提示另一面：对齐指标可以在受控评测里做到完美，这正是进化对齐脆弱性所警告的「只在封闭环境有效」的典型样本。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">AI execs may be too out of touch to build for the general public</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/10/28/ai-execs-may-be-too-out-of-touch-to-build-for-the-general-public/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section II
+      </div>
+      <div class="card-body">TechCrunch 评论文章。Marissa Mayer 在新应用 Dazzle（从相册学习的 AI 助手）采访中称其帮她为 10 岁女儿生成「有同理心、有创造力、爱动物」三个要点，用于学校生日演示，被批描述如通用星座运势。活动人士 Leah Greenberg 称她自愿向记者披露此事，「很好地说明了硅谷文化与人性的偏离程度」。同类言论包括 Altman 称「无法想象不用 ChatGPT 抚养新生儿」、建议用 ChatGPT Work 做孩子生日或球赛的播客来「解释孩子的兴趣」；Zuckerberg 称美国人平均朋友不到 3 个而需求约 15 个，预测向 AI 治疗师乃至 AI 恋人外包情感需求将更被接受。Pew 调查显示 50% 美国成年人认为 AI 会削弱人建立有意义关系的能力，仅 5% 认为更容易。Mayer 事后回应称是在测试原型，但也承认可用其外包「想生日派对主题」的心智负担，并设想与丈夫的 AI 助手协调日程；被问「由 AI 规划的无摩擦未来是否令人沮丧」时答「我没真正想过」。</div>
+      <div class="card-implications">需求侧规训的镜像证据：规训通常被描述为用户主动放弃摩擦，但此处显示供给方与用户对「什么算摩擦」的判据已经分裂——硅谷把育儿、友谊、纪念仪式都识别为待优化的开销，而公众（Pew 50% 对 5%）把这些识别为生活本身。共识牢笼因此获得一个非政治样本：牢笼内的人真诚地认为自己在解放用户，且真诚地不理解反对意见，因为反对意见在其叙事里只能被解释为「一小撮愤怒的边缘群体」。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: counter_argument</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Anthropic ends Coding Interviews: "Hunger beats tenure"</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Latent Space · 2026-10-28</span>
+        <span>·</span>
+        <a href="https://latent.space/p/ainews-anthropic-ends-coding-interviews-hunger-beats-tenure/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 7, Section I
+      </div>
+      <div class="card-body">Anthropic 招聘经理 Felix Reiseberg 撰文宣布本月起停用传统编码面试：「给候选人做一个小 React 题，和考人汇编一样没有意义——Claude 这两样都更好」，且最有影响力的建设者与这些测试成绩无关。替代标准是「hunger beats tenure」：以业务影响而非积压任务为尺度（引 Patrick McKenzie 2011 年「工程师是被雇来创造商业价值，不是写程序」）、提出若成功能显著改善目标的激进想法、一个周末做出可运行原型以绕过 PRD 与跨部门排期、只做一个好想法（新人常把三个好想法埋在 20 个坏想法里）、利用新人对用户界面的同理心。同一篇 AINews 汇总：AA 智能指数 v5 有 60% 来自私有或留出集，Opus 5.5 得 58、GPT-6 Astra 57、Sol 55、Argon 50，开放权重差距从 3 分扩至 12 分；Cognition 的 FrontierCode 2.0 最高分仅 45%，构造期约 80% 提交的 PR 被拒。</div>
+      <div class="card-implications">信号异化在劳动力市场的直接后果：当编码能力不再稀缺，以编码为载体的能力信号（面试题、证书、年限）同时失效，招聘方被迫改用「能否在一个周末做出可运行的东西」这类高成本、难伪造但难规模化的替代信号。这与书中「质量信号因批量生产而失效」完全吻合，并补出一个此前缺少的环节——信号失效后不是无信号，而是信号成本被抬高到只有愿意投入真实时间的人才能发出。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (8条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI and ServiceNow expand partnership across enterprise w</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/openai-servicenow-partnership-expansion" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">OpenAI 与 ServiceNow 10-28 宣布扩大合作，方向是双向嵌入。ServiceNow 的 MCP 插件当日在 OpenAI marketplace 上线，把业务上下文与工作流动作带进 ChatGPT，使 IT 团队可在对话内查找相似事件、评估变更风险、更新 ServiceNow 记录，权限由 ServiceNow 的 Action Fabric 按既有业务规则执行；反向则把 OpenAI 模型与 Codex 嵌入 ServiceNow 的 AI Workflow Factory、Build Agent、Autonomous Engineer，以及 Super Intelligence Control Tower 的语音录入评估。ServiceNow 计划向全体员工（超出工程组织）发放 ChatGPT Work 与 Codex，OpenAI 内部亦使用 ServiceNow 工作流。时间表为语音 2027 年一季度、安全能力 2027 年 1 月早期访问、Codex 2027 年内。双方今年 1 月已建立合作。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Legora is building the agentic operating system for legal wo</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/legora" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">OpenAI 客户案例：Legora 2023 年成立于斯德哥尔摩，CEO Max Junestrand 称其为「法律工作的智能体操作系统」。数据包括：保密协议审查占其法务团队产能从约 20% 降至 1% 以下（减少 95% 以上）；某财富 100 强客户合同周转时间减少 90%、在外包诉讼与尽职调查上节省逾 2000 万美元、每位律师每周省回 9.5 小时；Tabular Review 可在数分钟内跨多个问题分析数千份合同；公司一年内办公室从 3 个扩至 18 个、完成 3 轮融资与 5 次收购。CTO 称 Codex 可同时探索 20 个方案、排障时检索数百万行日志，从 bug 报告到可用修复约 5 分钟。路线图是尽职调查跨数百万页通宵运行、律师次日早晨审阅结果，以及实时人机协作。管理层使用率超过 75% 时，组织内用量中位数高 3 倍。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Creating AI value with enterprise context</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Artificial intelligence – MIT Technology Review</span><span>·</span><a href="https://www.technologyreview.com/2026/10/28/1147709/creating-ai-value-with-enterprise-context/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">MIT Technology Review Insights 的调查（定制内容部门出品，非编辑部）显示：所有受访组织都在不同程度上使用 AI，但仅 16% 从中获得变革性价值；40% 表示在特定任务或团队有中等收益，21% 有实质收益，23% 收益极小或没有。落地形态上，38% 仍处试点、35% 用 copilot 或聊天助手辅助员工工作，仅 12% 有智能体进入生产、3% 称关键流程大部分由 AI 完成。Atlan 联合创始人 Prukalpa Sankar 认为缺口在「上下文层」——位于业务系统与 AI 平台之间、把企业智能翻译成受治理且机器可用的上下文的架构层，其比喻是「没有上下文层，等于雇了全世界最聪明的实习生，蒙上眼睛扔进你的组织」。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Liquid AI 发布 LFM3 多模态开源权重模型家族，2B 级覆盖文本、视觉、音频、omni 和决策模型</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Liquid AI 模型与工程博客（网页）</span><span>·</span><a href="https://www.liquid.ai/blog/lfm3" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Liquid AI 10-27 发布 LFM3 开放权重模型家族，以 LFM3-1.7B-Base 为共享骨干：三混合层结构（24 层中 13 层门控短卷积、5 层 256 token 滑窗注意力、6 层全局注意力），22T token 预训练，最后 3.5T 为中期训练并把上下文扩至 256K，架构由硬件在环搜索在 14 种设备与后端组合上重新设计。首批开放 6 个约 2B 模型：文本、视觉、音频、omni 及两个决策模型。文本版在 BFCL 与 ToolSandbox 领先，浏览器与业务应用长任务超过 Qwen3.5-9B；单张 B300 上每日可产 36 亿 token（1024 并发）；官方称「token 免费，数十个智能体可后台持续运行」，并实际用逾 30 万个并行智能体调查 Enron 邮件档案。视觉版在 62 项基准上领先同级至少 7.4 分，接近 Gemma 4 12B。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Thin, Light and Built for Everything: NVIDIA RTX Spark Windo</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>NVIDIA Blog</span><span>·</span><a href="https://blogs.nvidia.com/blog/local-ai-rtx-spark-laptops-updates-models-agents-games/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">NVIDIA 宣布 RTX Spark 笔记本全线上市，ASUS、Dell、HP、Lenovo、Microsoft、MSI 均有产品，起价 2599 美元，最薄 14 毫米、重约 3 磅，Blackwell RTX GPU 与 Grace CPU 集成于单芯片，最高 128GB 统一内存与 1 petaflop FP4 算力，128GB 配置已上架。配套发布包括 Nemotron 3.5 Transcribe、可在 4GB 内存运行的 Nemotron 3.5 Bolt E4B、FLUX 3 Image Klein（5.6B 开放权重、8GB 显存可跑）以及 DGX Spark 64GB 开售。最值得记录的是 NVIDIA App 新增的 GPU 资源分配：用户可在「前台应用优先」与「给后台常驻智能体更多资源」之间切换。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">The ‘Vulnpocalypse’ is coming for the internet’s aging code,</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/podcast/the-vulnpocalypse-is-coming-for-the-internets-aging-code-says-wizs-cto/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">TechCrunch Equity 播客访谈 Wiz 暴露管理与应用安全 CTO Tomer Schwartz，复盘上周 PHP 两个严重漏洞（影响约 70% 网站）的抢修过程：部分机构直接把站点下线直到补丁可用；参与方包括 Wiz、OpenAI、研究组 Calif 与 PHP 团队。Schwartz 的核心判断是这只是开始——AI 改变了新漏洞被发现与被利用的速度，手工打补丁无法规模化。节目另讨论早期创业公司如何在架构阶段内置安全。该期未提供新的量化数据，是对 10-22「Patch the Planet」事件的当事人视角补充。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Voice AI in vogue: Nvidia releases new open transcription mo</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/28/voice-ai-in-vogue-nvidia-releases-new-open-transcription-model/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">NVIDIA 10-28 发布 Nemotron 3.5 Transcribe 开放权重语音模型：可转写 40 种语言（含 7 种印度语系），支持 31 种语言与英语互译，单次处理最长 1 小时录音，最多区分 8 位说话人，并可用自然语言提示指定行业术语与格式，以一个可提示模型替代转写、说话人分离、翻译三个模型，还能回答关于音频内容的问题。约 43 亿激活参数，比开放权重第一名的模型少 80%；在 Hugging Face Open ASR 榜列第 1，在 Artificial Analysis 开放权重模型列第 2。权重已在 Hugging Face 发布，量化版本将可在 Jetson AGX Thor、DGX Spark 与 Blackwell 数据中心 GPU 上本地运行。局限是只处理录音，不支持实时流。同期发布 Granary 语音数据集 v2。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">面壁智能发布并开源 MiniCPM-OCR 系列：1.3B 解析模型与 2B 判别模型</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>公众号：面壁智能（MiniCPM）</span><span>·</span><a href="https://mp.weixin.qq.com/s?__biz=Mzg3Mzg2MTg2NQ%3D%3D&amp;mid=2247499654&amp;idx=1&amp;sn=9bcbf9492c492a5d5e611af41670425f" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">面壁智能 10-28 发布并开源 MiniCPM-OCR 系列：1.3B 解析模型在 Real5-OmniDocBench 取得 93.68 分、OCRBench v2 取得 54.7 分，称同级 SOTA；经 DSpark 加速后吞吐达 1.217 页/秒，端到端效率提升 55%；同系列另有一个 2B 判别模型。定位是低算力、可端侧部署的文档解析与判别能力。（该条来自微信公众号，抓取仅得页面外壳，数据取自聚合摘要口径，未经全文核验。）</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
