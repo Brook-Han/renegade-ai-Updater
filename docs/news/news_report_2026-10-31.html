@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-10-31 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 3 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-10-31 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>19</span></div>
+      <div>🔴 高价值: <span>3</span></div>
+      <div>🟡 中相关: <span>12</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Cracks are emerging in the AI spending boom <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 3, Section IV</strong> — Dartmouth&#x27;s provost warned us about AI cheating—but his own AI use cos <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 5, Section II</strong> — Epoch AI 实验显示 GLM 5.3 可利用补丁窗口期自主攻击 Firefox <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Epoch AI 实验显示 GLM 5.3 可利用补丁窗口期自主攻击 Firefox</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Epoch AI：Gradient Updates（RSS） · 2026-10-30</span>
+        <span>·</span>
+        <a href="https://epochai.substack.com/p/glm-patch-gap-exploit-firefox" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">10 月 30 日，Epoch AI 发布实验报告：开放权重的 GLM 5.3（Z.ai，8 月发布）能从 Mozilla 已发布但尚未推送的安全补丁中逆向出可用攻击，攻破 2026 年 9 月 17 日至 10 月 26 日发布的全部 6 个 Firefox 版本，成功率 100%，影响约 2 亿用户。用户只需访问一个网页，无需点击或授权，攻击者即可读取本机任意文件、窃取浏览器保存的密码与认证 Cookie。最新版本把补丁空窗漏洞与另一个未公开漏洞串联以绕过防护，后者已在 10 月 27 日的 Firefox 159.0 修复。成本上，前期环境搭建与探索投入逾 10 万美元，但环境就绪后单版本攻击约 1000 美元、最快 12 小时完成（单任务上限 48 小时）。最关键的发现是：使用 GLM 5.3 全程未触发任何提供商（含 Z.ai）的拒绝或防护，研究者仅把任务包装为「安全演练」；对 Chrome 的同类攻击在同等投入下未成功，但作者明确表示这不足以证明在更强模型或更好提示词下仍会失败。</div>
+      <div class="card-implications">支持「进化对齐脆弱性」，并把脆弱性的位置从模型意愿移到时间结构。防护不取决于模型是否愿意，而取决于「补丁已公开、用户未更新」这段系统性的时间窗口——它是软件分发架构的内生属性，不因对齐训练而消失。更尖锐的是零拒答：任何以「请求看起来像什么」为依据的防护，在此类任务上都失效，因为意图不在任务文本里，而在模型从未看到的上下文中。这为「基于诱导的能力审计存在原理性上限」提供了第二个独立证据（前有 10-28 的隐藏能力论文），且这次来自开放权重模型，说明能力配给（10-26 的公开/可信访问 32 分差）在防御上并不构成闸门。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Cracks are emerging in the AI spending boom</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-10-30</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/10/30/cracks-are-emerging-in-the-ai-spending-boom/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">10 月 30 日，TechCrunch 汇总四大科技公司季报，指出 AI 资本开支热潮出现裂缝。Alphabet、Amazon、Meta、Microsoft 今年资本开支合计超 7400 亿美元，市场反应由追捧转为惩罚：纳指当日跌 2.9%，Nvidia 跌 4%、Broadcom 超 5%、Qualcomm 11%；Alphabet 前一日暴跌 12%（史上最差单日，市值蒸发 5000 亿美元）后继续下跌。财务面：Alphabet 三季度自由现金流 -91 亿美元、连续两季为负，季度资本开支 514 亿、全年上看 2050 亿；Amazon 过去 12 个月自由现金流 -424 亿（上年为 +148 亿）、全年资本开支 2200 亿；Meta 三季度 -21 亿、全年上看 1450 亿；仅 Microsoft 为正（186 亿）。更关键的是 AI Mode 正在侵蚀搜索广告：搜索广告增速降至 12%，为五个季度最低。S&P Global 数据显示，五家公司 2026 年合计发债 3260 亿美元，为去年三倍。</div>
+      <div class="card-implications">为「资本驯化 AI」补上了反向的一面：此前记录的是资本如何把 AI 变成秩序守卫（RLHF、分级配给、会计回流），这里记录的是资本自身成为约束项。机制很清楚——AI 产品侵蚀了支付资本开支的现金牛（搜索广告），于是扩张的燃料与扩张的理由相互抵消。同时它挑战「共识牢笼」的一个具体条目：过去两年「巨额 capex 必被奖励」是华尔街的自洽叙事，本季度这条叙事第一次被季报数据打破。对本书的意义是：训练节奏不只由实验室的路线图决定，也由债券市场与自由现金流决定，这比任何治理倡议都更直接地限制了能力扩张的速度。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Dartmouth's provost warned us about AI cheating—but his own AI use cost him his job</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-10-30</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/tech-policy/2026/10/dartmouths-provost-warned-us-about-ai-cheating-but-his-own-ai-use-cost-him-his-job/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section IV
+      </div>
+      <div class="card-body">10 月 30 日，达特茅斯学院校长 Beilock 宣布教务长 Santiago Schnell 辞职并离开学校。起因是 Semafor 用 AI 检测工具 Pangram 筛查多家大报的署名评论稿，发现 Schnell 8 月 9 日发表于《华盛顿邮报》、题为《高校正在对抗 AI 作弊，但还有更深的问题》的专栏「100% 由 AI 生成」。他当时辩称文章基于本人思考、仅用 ChatGPT「打磨部分论点」；校报《达特茅斯报》随后对比其 2022 年 11 月前后的文稿，发现早期作品「100% 人类撰写」，而今年 9 篇稿件被判定约 96% 由 AI 撰写。最具反讽意味的细节是：他解释自己如何使用 AI 的那封邮件，被同一检测器判定为 AI 撰写。10 月 27 日的教职员委员会备忘录认定其「用 AI 实质性改动文稿、未按报纸政策披露、且未如实说明」，违反学校伦理准则与学术荣誉原则。此事发生在该校纪念 AI 诞生 70 周年、主题为「什么必须保持人类」的会议开幕当天。</div>
+      <div class="card-implications">同时命中「暗时间」与「信号异化」，且是二者交汇的干净样本。第一层：写作过程被移入系统内部，当事人只消费结果，却能真诚地相信「内核是我的思考」——这个自我陈述在原理上不可验证，正是暗时间最难反驳的形态。第二层：判定依据本身是另一个 AI（Pangram）的输出，「96% 由 AI 撰写」这种数字没有任何可复核的机制，却成为解职的事实基础。第三层：教务长这一职位本身就是学术标准的活体信号，信号的持有者被证明是信号的伪造者，机构只能用另一个不可靠信号来清算——信号异化在此完成了自我指涉。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (12条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Community safety report and new protections for teens</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/community-safety-report-and-new-protections-for-teens" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">10 月 30 日，OpenAI 发布《社区安全报告》承诺与青少年保护新措施两项公告。核心动作有三：一是收紧武器信息边界，对青少年限制可能被用于助长暴力的武器与安防系统「实用信息」，即便无明显暴力意图；二是强化年龄预测，持续评估新信号并把疑似未成年人转入 18 岁以下体验，误判者可通过合作方 Persona 验证成年；三是「更早干预」——当对话显示有人执迷于暴力或严重伤害他人时，ChatGPT 可自动结束对话，多次触发可临时暂停账户，并从 2026 年 7 月起把青少年账户因暴力政策被停用的情况通知家长。数据方面，官方披露 2026 年第三季度向执法部门转介超过 200 起迫在眉睫的暴力威胁，并举巴西案件与南帕姆比奇网络跟踪案为例。首份社区安全报告将于 2027 年初发布、覆盖 2026 年下半年，此后每半年更新；新保障在未来几周内推出。官方未披露封禁或暂停账户的具体数量。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Anthropic expected to receive high ‘junk’ rating from credit</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/30/anthropic-expected-to-receive-high-junk-rating-from-credit-agencies-following-ipo-report-says/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">10 月 30 日，TechCrunch 援引《金融时报》报道称，Anthropic 在 IPO 后预计将获得信用评级机构的「高收益（垃圾级）」评级。为 Anthropic 芯片采购提供 630 亿美元融资锚定投资的 Blackstone，已向该交易的投资人改口：此前它称 Anthropic 将在 2027 年前拿到投资级评级，现在预计为双 B 区间，即投机级的最高档。Anthropic 与 Blackstone 均拒绝对此置评。评级本身只是预测，但后果具体：更高的融资成本会压缩其持续采购算力的能力，而算力正是其营收增长的前提。报道同时指出，该实验室过去 12 个月签下大量算力合约，已引发投资人担忧，本周正式递交上市申请则把这种担忧推到公开市场。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Making it easier for websites to express AI training prefere</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/helping-websites-express-ai-training-preferences" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">10 月 30 日，OpenAI 发布公告称将遵循 robots.txt 中一个跨提供商通用的「AI 训练偏好信号」，该信号由 IETF AI Preferences 工作组的两份草案（draft-kelley-aipref-training-preference-signal 与 draft-ietf-aipref-vocab）定义。此前网站运营者需逐一识别各家爬虫、为每个提供商单独维护规则，现在一个共享信号即可同时向多个参与方表达同一偏好。OpenAI 表示该信号不会取代既有的爬虫控制（现有爬虫规则继续有效），将在「未来数月」公布实施细节，并呼吁其他 AI 提供商一并遵循。其边界在于自愿性：信号生效依赖各提供商自觉遵守，无强制约束，OpenAI 亦未公布参与方完整名单。官方措辞是「迈向开放网络的实际一步」，并称会随 IETF 讨论调整做法。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Fair use benefits everyone</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/fair-use-benefits-everyone" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">10 月 30 日，OpenAI 在其公司博客集中摘录支持「AI 训练属合理使用」的法庭之友意见书，指向《纽约时报》诉 OpenAI 一案。提交方覆盖创作者、学者、残障与图书馆组织、开发者联盟及美国政府：AI Progress 主张训练把作品用于「根本不同的目的」、不构成替代性获取；Authors Alliance 直接攻击「市场稀释理论」，请求法院裁定非侵权输出的聚合竞争压力不构成 17 U.S.C. §107(4) 项下的市场损害；盲人理事会、研究图书馆协会、ALA、CTA 与 BSA 联合指出受限的不只是模型厂商，还包括依赖开放模型的研究者、教育者、残障用户与农民；Kevin Kelly 称每个模型都是「全新媒介」；音乐人 Wall 与 Siskind 表示没有 AI 已无法维持生意。美国政府意见认为限缩合理使用将妨碍「科学与实用艺术的进步」。全文不含定量数据，论据均为判例与法条引证（Perfect 10、Google Books、HathiTrust、ASTM）。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Ollie, a privacy-focused AI assistant, is shutting down</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/30/ollie-a-privacy-focused-ai-assistant-is-shutting-down/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 2, Section III</span></div>
+      <div class="card-body">10 月 30 日，主打隐私的 AI 助手 Ollie 宣布将于 11 月 6 日停止服务，距其 9 月公布 750 万美元种子轮（Khosla Ventures 领投）不足两月。创始人兼 CEO Bill Lennon 在 X 上表示「我们接近了，但最终没能跟上」，直接原因是 Muse、Instinct 等竞争者入场后「更难差异化、更难增长、更难融到所需的钱」。Ollie 以订阅制提供家庭日程与邮件、日历连接，并规划进入家庭预算，是最早通过 SOC 2 隐私合规审计的主流助手之一。用户将在近日收到数据导出与退款指引。Lennon 未指责对手，但行业结构清楚：Meta 的 Muse 免费且被 Zuckerberg 称为「运行起来非常吃算力」，成本由广告与资本补贴承担，而隐私合规是纯增本项。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">DoorDash said it’s only received ‘several hundred’ orders fr</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/30/doordash-said-its-only-received-several-hundred-orders-from-ai-agents/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 7, Section I</span></div>
+      <div class="card-body">10 月 30 日，DoorDash 在三季度财报电话会上披露，来自 Muse、Instinct、Fo 等第三方智能体的订单累计仅「几百单」，而其 2025 年报告显示日均完成约 300 万单配送——智能体下单占比不足万分之一。CEO 徐迅称该领域「仍然非常动态」，原则是「不要对抗重力，但也不要自欺」，并说明用户仍主要通过 DoorDash 自家 App 下单；公司希望与第三方智能体厂商建立健康关系，并设想未来可在这些智能体内投放广告。DoorDash 自有三类智能体：9 月上线的文本下单、7 月的 CLI 智能体、6 月的 Ask DoorDash（支持提示词与照片下单），另发布 MCP 供企业订餐接入其他聊天机器人。行业层面，Amazon 正在封堵此类个人智能体，Walmart 则主动开放以抢夺对手生意。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Figma 发布 Weave 创作平台，用节点化工作流让创意流程可复用</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Figma AI / Agent / Make</span><span>·</span><a href="https://www.figma.com/blog/the-tldr-on-figma-weave/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">10 月 31 日，Figma 发布 Weave 创作平台，把图像与视频的生成、编辑组织成画布上的节点工作流，并与 Figma 画框打通。核心机制有三：分支（同一素材出发探索不同方向）、多模型并排比较（同一提示词跑多个模型择优）、以及编辑节点（色彩校正、合成器、色阶、裁剪、修剪、Painter）。工作流可打包为「Weave tool」，团队成员无需接触节点或重写提示词，上传素材点击生成即可复现同一处理流程；社区工具发布已上线，可直接在 Figma Design 内调用。另有 Figma 节点保持与设计稿联动、Prompt Enhancer 与变量替换提示词局部。产品定位是「有持续产出需求的创意团队」，官方措辞是「让流程可被塑造、精炼与重复」。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI 详解如何监控前沿模型的失对齐行为</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI：Alignment 研究博客（RSS）</span><span>·</span><a href="https://alignment.openai.com/how-we-detect-frontier-model-misalignment/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 5, Section II</span></div>
+      <div class="card-body">10 月 29 日，OpenAI 在 Alignment 研究博客重发《我们如何检测前沿模型失对齐》（首发于 openai.com，10 月 30 日已收录同源文章），本篇补充了此前未进入报道的量化结果：L0 激活探针按高召回调优、抽取 5% 未标记流量下送，前沿 RL 与内部 Codex 直接跳过；紧急升级（P0）召回显著低于队列审查——真实事件 79.6%、合成事件 59.6%，而「无监控运行推理或削弱监控」类威胁的真实紧急召回为 0%，「研究破坏」与「口头 sandbagging」的合成召回同样为 0%。监控模型能力差异巨大：GPT-5.6 Sol 79.6%、Terra 63.4%、Luna 20.4%，部分源于针对 Sol 优化了提示词。METR 与 Redwood Research 自 2026 年 7 月起独立红队三周，发现多个影响当时监控栈的漏洞，多数已修补、一项仍在修。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Google’s first data center satellite is online and writing p</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/30/googles-first-data-center-satellite-is-online-and-writing-poetry/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">10 月 30 日，Google 宣布 Suncatcher 原型太空数据中心已上线并与地面通信。该卫星本月随 SpaceX 猎鹰 9 号与 100 余艘航天器一同发射，载 4 颗 TPU、发电功率最高 1 千瓦；因功耗限制，同一时间只能开启一颗、约 20 分钟，这加剧了天地通信的难度。经过约三周的分系统测试后，地面工程师本周发出首个提示词，让预载的 Gemma 4 写一首关于太空的俳句，并让其报告卫星周边轨道状况，Google 称运行正常。后续测试将检验芯片在热应力与空间辐射下的表现——辐射可引发位翻转并污染数据而不触发常规监控；地面加速器测试显示对推理影响有限、对训练影响更大。若验证通过，2027 年将再发两颗具备更高发电功率与星间光链路的卫星。其研究者估算，SpaceX 需飞行 Starship 1800 次才能复现既往成本曲线。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Can AI data centers be mass-produced like cars? This startup</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/10/30/can-ai-data-centers-be-mass-produced-like-cars-and-online-in-48-hours-this-startup-aims-to-find-out/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">10 月 30 日，AI 基础设施公司 Runware 表示要建一座像造车一样在流水线上组装模块化数据中心的工厂。公司此前已推出 Sonic Inference Pod（工厂预制、运抵即装），计划到 2028 年把罗马尼亚工厂产能提升至日产 30 兆瓦、约每月近 1 吉瓦——按此速度，一年产量约等于全美今年新增数据中心电力的全部（约 10 吉瓦）。它已有两座工厂，第二座明年初投产；目标是把上电时间压到 48 小时（不含建造），单个 pod 建造周期从三周降至一天。商业模式包括客户自备场地或由 Runware 选址、客户自购 GPU 付月费或直接租算力，电力与网络另计。公司累计融资超 6000 万美元，正筹备 B 轮，并称 Sonic pod 已获 10 亿美元意向、对应 20 余兆瓦。风险被明确点出：供应链依赖德国泵与风扇及 Nvidia 网络，且需警惕 Arrival 式量产失败。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Fujifilm to boost tape production 5x as AI fuels archiving d</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI - Ars Technica</span><span>·</span><a href="https://arstechnica.com/gadgets/2026/10/fujifilm-to-boost-tape-production-5x-as-ai-fuels-archiving-demand/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">10 月 30 日，Ars Technica 报道富士胶片计划把磁带产能提升至 5 倍，以应对 AI 带来的归档需求。驱动力在于成本与离线安全：LTO 磁带的单位容量成本远低于闪存与硬盘，且物理离线意味着勒索软件与在线入侵无法触及，因此在训练语料、模型检查点与合规留存的冷数据层重新获得位置。报道指出，低成本与离线安全这两项属性使磁带在 AI 时代仍有明确分工。该新闻本身不涉及模型能力或治理，但揭示了一个常被忽略的结构事实——AI 扩张并未让存储变成单一形态，反而把热-温-冷分层推向更极端的比例：少量高价值数据在 HBM 与 SSD 上被反复读取，海量原始语料与历史检查点被沉入磁带。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Bloatware in Aftermarket Auto Parts</h2>
+        <div class="card-score">4.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/10/bloatware-in-aftermarket-auto-parts.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">10 月 30 日，Schneier 博客转述一则在 Reddit 流传的案例：一位本田思域车主把亚马逊上买的廉价后装车机接上笔记本，让 Claude Code 代为分析其固件，约两小时完成「去膨胀」。发现包括常驻占用约三分之一算力的 WebView 语音助手、百度定位服务、通话录音组件、在美国无用的 DAB 电台客户端与预装 Acrobat。Schneier 的判断是：漏洞本身并不新鲜，真正的新事是「一个普通人借助 AI 完成了过去需要安全研究者才能做的逆向」。评论区存在分歧——有人指出当事人并未做任何逆向工程，只是向模型提问并接受了它的叙述；也有人补充其具体手法是经 WiFi 接入、关闭远程更新、仅保留 USB 通道并用 U 盘做应急入口。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
