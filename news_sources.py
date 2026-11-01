@@ -288,37 +288,37 @@ def fetch_rss_feeds(max_entries_per_feed: int = 12) -> List[Dict]:
 
 def fetch_aihot(days_back: int = 7, take: int = 50) -> List[Dict]:
     """
-    从 aihot.virxact.com 获取精选中文 AI 资讯
+    从 aihot.news 获取精选中文 AI 资讯
     - 无需认证，但必须带浏览器 User-Agent（防 403）
-    - 支持 since 时间窗口（服务端限最近 7 天）
+    - 2026-11 接口迁移：/api/public/items -> /api/v1/items
+      旧参数 since/take 已废弃，改为 window/limit + cursor 分页
+      响应结构：items[].{id,title,summary,source:{name},links:{aihot,original},publishedAt,...}
     - 返回标准 News Radar 格式，source="aihot"
     """
     if not getattr(Config, "ENABLE_AIHOT", False):
         logger.info("⏭️  [AI HOT] 未启用，跳过")
         return []
 
-    base_url = "https://aihot.virxact.com/api/public/items"
+    base_url = "https://aihot.news/api/v1/items"
     ua = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
     headers = {"User-Agent": ua, "Accept": "application/json"}
 
-    # 计算 since 时间（ISO 8601，UTC）
-    since_dt = datetime.datetime.now(datetime.timezone.utc) - datetime.timedelta(days=days_back)
-    since_str = since_dt.strftime("%Y-%m-%dT%H:%M:%SZ")
+    # 服务端只接受 window 档位（7d/30d 等），不再支持任意 since
+    window = "7d" if days_back <= 7 else "30d"
 
     params = {
         "mode": "selected",   # 精选模式（默认）
-        "since": since_str,
-        "take": min(take, 100),  # API 上限 100
+        "window": window,
     }
 
     articles: List[Dict] = []
     next_cursor: Optional[str] = None
 
     try:
-        logger.info(f"🔍 [AI HOT] 抓取精选资讯（since={since_str}, take={take}）")
+        logger.info(f"🔍 [AI HOT] 抓取精选资讯（window={window}）")
 
-        # 分页抓取（cursor 机制）
-        for page in range(3):  # 最多 3 页（300 条），防止死循环
+        # 分页抓取（cursor 机制，单页 50 条）
+        for page in range(3):  # 最多 3 页（150 条），防止死循环
             if next_cursor:
                 params["cursor"] = next_cursor
             else:
@@ -334,9 +334,12 @@ def fetch_aihot(days_back: int = 7, take: int = 50) -> List[Dict]:
 
             for item in items:
                 # 格式转换：AI HOT → News Radar 标准格式
-                url = item.get("url", "")
-                title = item.get("title", "").strip()
+                links = item.get("links") or {}
+                url = (links.get("original") or links.get("aihot") or "").strip()
+                title = (item.get("title") or "").strip()
                 summary = (item.get("summary") or "").strip()[:500]
+                src = item.get("source") or {}
+                source_name = (src.get("name") if isinstance(src, dict) else src) or "AI HOT"
 
                 if not title or not url:
                     continue
@@ -351,22 +354,28 @@ def fetch_aihot(days_back: int = 7, take: int = 50) -> List[Dict]:
                     "url": url,
                     "authors": [],  # AI HOT 不提供结构化作者
                     "source": "aihot",
-                    "source_name": item.get("source", "AI HOT"),
+                    "source_name": source_name,
                     # 保留 AI HOT 特有字段
                     "aihot_category": item.get("category"),
                     "aihot_score": item.get("score"),
-                    "title_en": item.get("title_en"),
+                    "aihot_reason": item.get("reason"),
+                    "aihot_url": links.get("aihot"),
+                    "title_original": item.get("originalTitle"),
                 })
 
-            # 检查是否有下一页
-            if not data.get("hasNext", False):
-                break
-            next_cursor = data.get("nextCursor")
-            if not next_cursor:
+                if len(articles) >= take:
+                    break
+
+            if len(articles) >= take:
                 break
 
-            # 重置 params 去掉 cursor（下一页会加回来）
-            params["take"] = min(take, 100)
+            # 检查是否有下一页
+            page_info = data.get("page") or {}
+            if not page_info.get("hasMore", False):
+                break
+            next_cursor = page_info.get("nextCursor")
+            if not next_cursor:
+                break
 
         logger.info(f"   ✅ [AI HOT] 获取 {len(articles)} 条精选资讯")
 
