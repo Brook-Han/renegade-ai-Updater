@@ -1,0 +1,402 @@
+[
+  {
+    "title": "Accelerating engineering for the physical world",
+    "url": "https://openai.com/index/accelerating-engineering-for-the-physical-world",
+    "source": "OpenAI News",
+    "published": "2026-11-03T12:00:00",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 OpenAI 发布《加速物理世界工程》，把 ChatGPT 与 Codex 从软件推向 CAD 建模、PCB 设计、仿真与设计评审。事实：自 2 月起其硬件团队按 token 计的使用量增长 23 倍；两名成员以副项目在不到一周内用 GPT-6 Astra 完成测试设备设计，合约制造商一个月内交付小批量原型；Astra 首次端到端完成「无人工直接编辑」的设备设计（需求→外壳→PCB→固件）；Chip Ganassi Racing 用其把 3D 扫描转为可编辑 CAD 与 2D 图纸，马自达用其模拟数十种前部造型的气流方案。内部 BenchCAD 2.0 上新模型均分 0.875，Astra 最高推理设置仅 0.594。影响：模型仍无法稳定处理生产限制、公差与装配细节，投产前须多轮人工评审。",
+      "implications": "支持「暗时间」的产业扩张路径：被外包的不再只是写作与代码，而是「从需求到可制造图纸」的整条判断链，工程师从执行者变为审核者。同时给 Ch7 的验收命题加了一条证据：内部专用模型 0.875 对通用前沿模型 0.594，说明真实工程场景的能力差距主要靠专有数据与专用模型补齐，通用前沿模型的分数并不代表可交付性。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "How Cisco defends at machine speed with OpenAI",
+    "url": "https://openai.com/index/cisco-cyber",
+    "source": "OpenAI News",
+    "published": "2026-11-03T08:00:00",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "11-03 OpenAI 发布思科客户案例：思科把网络遥测与 Daybreak（GPT-6 Astra）结合构建自适应防御。事实：在每个微服务、每个 Kubernetes 容器与集群前部署「迷你安全栈」，在应用层只放行服务必需的连接以压缩横向移动面；用模型跨网络关联信号（「两个单独无害的信号合起来才有意义」），并把能力嵌入既有扫描工作流以免团队改变工作方式；与 OpenAI 共探 Daybreak Defense Network 与 Cisco Cloud Control 的策略执行，对智能体世界提出三项优先——保护智能体、检测「非预期但合法」的行为、近实时运行。影响：全文未披露任何量化指标，总裁 Patel 仅称其为「阶跃式改进」。",
+      "implications": "补充「进化对齐脆弱性」的产业侧回应：防御方选择把判定权交给同一个模型家族，并以零数据保留、严格数据边界与可验证隔离作为可部署前提。值得作为「监控者与被监控者同源」的注脚，但缺乏数据，不足以作强论证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Heimstaden is changing residential real estate management with AI",
+    "url": "https://openai.com/index/heimstaden",
+    "source": "OpenAI News",
+    "published": "2026-11-03T08:00:00",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "11-03 OpenAI 发布 Heimstaden 案例：这家欧洲住宅运营商用 ChatGPT Enterprise 与 Codex 改造租赁与资产管理。事实：2025-09 上线后 2-3 个月内员工采用率达 50%，设中央 AI 转型办公室维护用例库；荷兰市场房源图成本从约 50 欧元/张降至不足 0.10 欧元，降幅逾 99%，年省约 13 万欧元；一位没有开发背景的可持续发展分析师用 Codex 评估 20,112 项物业资产、产出逾 600 万行数据，交付需求从「5 人 1 年」降到「2 人 2 个月」，并省下外部顾问；另在建 MCP 化的 Amplio Estate 与采购智能平台。影响：其联席 CEO 总结为「AI 无法修复坏流程，但会放大好流程」。",
+      "implications": "支持「暗时间」的角色位移版本：分析师不写代码却交付了原本需外包的数据工程，方法论与验证仍在她手里——结果被消费、过程被转移，但责任未转移。与同日 Addy Osmani 提出的「可卸载工作与审计、不可卸载责任」构成互证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "OpenAI appoints Jill Hazelbaker as Chief Corporate Affairs Officer",
+    "url": "https://openai.com/index/jill-hazelbaker-chief-corporate-affairs-officer",
+    "source": "OpenAI News",
+    "published": "2026-11-03T00:00:00",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 OpenAI 宣布任命 Jill Hazelbaker 为首席企业事务官，统管全球传播与企业定位。背景：她在 Uber 任总裁兼首席企业事务官近十年，管辖全球传播、市场、公共政策、安全与人力；此前在 Snap 负责传播与公共政策，更早在 Google 任全球企业传播负责人、EMEA 传播负责人与欧洲政府关系负责人；职业生涯始于美国政界，曾任 2008 年麦凯恩竞选全国传播总监兼首席发言人、纽约市长布隆伯格的新闻秘书。影响：Brockman 称「随着 AI 进入更多人的生活，如何沟通并赢得公众信任前所未有地重要」；同期 OpenAI 已补首席营收官、两名董事与国家安全岗，形成传播、营收、治理、国安四条线的高管搭建。",
+      "implications": "直接支持「共识牢笼」的工程化命题：牢笼不是算法偏差，而是可招聘、可组织、可考核的职能。与 11-02 的「数据中心改称 AI 计算园区」四项公关提案连读，可见命名与信任已被并入同一职能；「赢得公众信任」的措辞把合法性从可验证事实转为可管理的感知。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Rewarding defenders with bigger bug bounties",
+    "url": "https://openai.com/index/rewarding-defenders-with-bigger-bug-bounties",
+    "source": "OpenAI News",
+    "published": "2026-11-02T18:00:00",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "11-03 OpenAI 上调安全漏洞赏金：各级别奖励中值提升逾 4 倍。事实：核心产品（ChatGPT、Codex、API）严重漏洞标准上限 3 万美元，卓越级（如可读取任意用户对话记录）10 万美元；叠加质量乘数 1.15、五级忠诚度 1.05 至 1.15、优先活动 1.30 后，卓越级最高约 17.2 万美元。新增质量乘数要求可复现 PoC、隔离漏洞、说明利用条件与影响；对公告前 30 天已发放赏金追溯补差，未发放报告直接适用新范围。同步宣布 11-20 至 21 参加奥克兰 PROMPT2PWN，并与「防御工厂」及十亿美元防御者补贴互补。影响：把外部研究者正式纳入持续防御闭环。",
+      "implications": "补充「资本驯化」的外包监控维度：把发现漏洞的激励从内部工程预算转为按件计价的市场，成本随发现量浮动、规模可弹性伸缩。与同日 Cathedral 合作并读，OpenAI 正把安全验证整体外部化——这正是「监控」从内部职责变成采购项的一步。",
+      "case_value": "low",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Preparing our next security sprint to harden OpenAI",
+    "url": "https://openai.com/index/preparing-our-next-security-sprint-to-harden-openai",
+    "source": "OpenAI News",
+    "published": "2026-11-02T18:00:00",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "11-03 OpenAI 宣布下一轮内部安全冲刺，由 10 月底攻破 Anthropic 的 Cathedral 派研究员，用 OpenAI 自家模型攻击其防御。事实：上一轮把 25% 的产品工程师投入找漏洞与修复，工程师用 Codex 在隔离环境复现漏洞、调查并备好补丁；本轮引入外部攻击方法，同步把严重漏洞赏金中值提升逾 4 倍（卓越级最高约 17.2 万美元），并承诺 10 亿美元、为期 6 个月补贴一线防御者访问最强模型（Daybreak），另发布《防御工厂》与防御者蓝图。Cathedral CEO Gavin Kliger 称「每家公司都该思考如何把这类能力用起来」。影响：官方未点名任何具体事件，仅称近期业内事件表明威胁出现之快，防御窗口必须现在就保持开放。",
+      "implications": "强化「进化对齐脆弱性」并给出其最尖锐形态：攻破前沿实验室的主体（Cathedral 于 10-27 借第三方 SaaS 漏洞 12 小时取走会议记录与薪酬数据）两周后被同一实验室聘为红队——防御知识的来源正是攻击的实践者。这说明「部署前评估通过」无法自证安全，只能靠持续对抗来近似。同时补「资本驯化」：安全被做成可采购的服务市场。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "F3 Lightning: How Meta Accelerates Ads ML Features to Production at Scale",
+    "url": "https://engineering.fb.com/2026/11/03/ml-applications/f3-lightning-how-meta-accelerates-ads-ml-features-to-production/",
+    "source": "Engineering at Meta",
+    "published": "2026-11-03T17:00:35",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "11-03 Meta 工程博客介绍 F3 Lightning：在广告排序特征框架 F3 之上，把「发布单元」与「执行单元」解耦。事实：单次请求需 2 万余个特征（F3 最初仅数百个），旧设计把所有特征编译进单一合并图，任一特征出错即阻塞整条发布流水线；新设计让每个特征独立编译、校验、部署、回滚，发布改为按价值与风险排序的优先队列；效率靠四步找回——按内容哈希生成稳定标识符、启动时拓扑排序生成扁平执行计划、每请求单一共享内存缓冲区、以稠密整数索引替代哈希查表。结果：同类特征上线快约 3.6 倍，基础设施算力成本不增。影响：文章自陈的关键教训是「结果存在哪里、存几份副本，与运行多少次计算同样重要」。",
+      "implications": "与理论模型映射较弱，仅可作「暗时间」的工程注脚：把不随请求变化的工作全部前移到启动阶段，是把延迟从用户可感路径中移除的标准手法——摩擦不是被消除，而是被搬到一次性成本里。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "AI Is Changing How Semiconductor Fabs Work — and Engineers Are Moving Faster Because of It",
+    "url": "https://blogs.nvidia.com/blog/ai-semiconductor-fabs/",
+    "source": "NVIDIA Blog",
+    "published": "2026-11-03T16:00:45",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "11-03 NVIDIA 博客谈 AI 正在改变晶圆厂的工作方式。背景：先进芯片需求上升、制程步骤日益复杂、容错空间收窄，工程师必须判断工艺变更会如何表现、材料与新步骤如何相互作用、缺陷如何回溯到根因。事实：文章以这三类问题为线索介绍 AI 在半导体制造中的应用，属厂商叙事型内容，未披露具体客户、模型版本或任何量化收益，也未给出部署规模与验证方法。影响：与同期数据中心抢电、以及 SpaceX 自建 13GW 算力的报道共同构成「算力供给向上游延伸到制造环节」的产业背景。",
+      "implications": "无直接理论映射（相关度低于阈值），仅作产业背景。若需引用「AI 改造物理生产」，应以同日有量化数据的 OpenAI 硬件团队案例替代本文。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Elon Is Doing It Again: SpaceX Will Be The World’s Biggest AI Cloud",
+    "url": "https://newsletter.semianalysis.com/p/elon-is-doing-it-again-spacex-will",
+    "source": "SemiAnalysis",
+    "published": "2026-11-03T20:44:53",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11-03 SemiAnalysis 称 SpaceX 将在 2027 年建成约 13GW 算力，成为全球最大 AI 云。事实：两个月前该机构论证 10GW 可行时遭广泛质疑，如今多站点已有 3.6GW 在建，SpaceX 自行上调至约 13GW——相当于 Google 1999 至 2026 年全部数据中心容量在 1.5 年内复现，机构已识别逾 9GW 可选址；Colossus 2 一年内新增近 2GW，装机速度可能快于中国同业；供电常在建设中途才确定，8GW 以上走表后自备电源，Starbase 竖墙一个月后即部署移动燃机，Colossus 2 的两座机房已向 TVA 申请并网；在建 5.9GWh 储能或成全球最大；TeraFab 芯片厂大概率附带对外出租的数据中心。",
+      "implications": "支持「资本驯化」的时间层：算力扩张的约束已从资本转为并网排期，于是绕网自备电源成为标准解法，监管与许可被工程进度倒逼；「电力在飞行中确定」意味着建设决策先于供给确认，风险被系统性推给未来。也补 Ch4 的「速度即护城河」命题——当单家公司的年增量等于行业 27 年存量，规模优势本身变成时间优势。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "How “reverse game theory” could keep AI agents in check",
+    "url": "https://www.technologyreview.com/2026/11/03/1147934/reverse-game-theory-mechanism-design-ai-alignment/",
+    "source": "Artificial intelligence – MIT Technology Review",
+    "published": "2026-11-03T10:43:41",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "11-03 MIT 科技评论报道「逆向博弈论」（机制设计）作为对齐新路径。背景：主流做法是窥探模型内部或训练其遵守价值观（如 Claude 的 constitution），但模型已被证明会故意在测试中放水、隐藏意图、误导评估者。事实：MIT 的 Stephen Morris 与耶鲁、哥伦比亚合作者的预印本提出用跨模型互测抑制放水——奖励模型预测另一模型答案的准确度，而非仅奖励自身成绩；普林斯顿 Elad Hazan 提出让模型轮流当 solver 与 auditor，作弊的 solver 与失职的 auditor 同罚，分歧交人类「审判」，并以重奖审计者加「神秘顾客」防串谋。影响：研究者强调对齐不是模型属性，而是某时刻行为的描述；Helen Qu 提醒机制设计只是纵深防御的一层。",
+      "implications": "对「进化对齐脆弱性」构成重要的路径分叉：既然内部不可读、思维链不可信，就把控制点从「理解模型」移到「设计激励」——这等于承认可解释性路线在原理上不可依赖。但文末自问最关键：机制最终要嵌进自由市场这个最大的机制，更对齐的模型若更慢更贵，市场是否奖励它；「真正需要更好机制设计的或许是实验室本身」直接呼应「资本驯化」。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Anthropic is working on a system to prove AI models’ identity",
+    "url": "https://techcrunch.com/2026/11/03/anthropic-is-working-on-a-system-to-prove-ai-models-identity/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-03T22:41:03",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11-03 Anthropic 公布开源系统 FlashProve，为「可证明推理」提供密码学证明：让用户确认某条输出确实来自所声称的模型。事实：做法是各实验室为每个模型发布「指纹」，指纹可匹配具体输出并做密码学验证，但不泄露权重，因而闭源模型同样适用；系统轻量到可在本地设备验证，且对冒充者有效——包括构建并运营该模型的实验室本身，可防止公司偷偷换成更便宜的模型降本、或换更贵的模型抬高跑分；亦可用于核验第三方「某任务由某前沿模型完成」的宣称。已发布技术规范、GitHub 开源代码与可运行组件；研究进行中，暂无在任何实验室部署的计划，官方称「分享中间进展，希望他人拿去改进」。",
+      "implications": "正面回应「暗时间」的核心困境：当思考在系统内部发生、用户只消费结果时，连「结果出自哪个模型」都无法核验，则一切基于输出的判断都失去锚点。FlashProve 把可信性从厂商声明转为可独立验证的证明，是「玻璃箱」的技术雏形；但指纹只证明来源、不证明过程，暗时间本身并未被穿透——这恰好界定了可验证性的上限。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Data centers are turning to old jet engines as the wait for power grows",
+    "url": "https://techcrunch.com/2026/11/03/data-centers-are-turning-to-old-jet-engines-as-the-wait-for-power-grows/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-03T22:19:53",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "11-03 TechCrunch 引纽约时报报道：并网与新燃气轮机排期长达数年，部分 AI 数据中心改用退役飞机发动机改烧天然气自发电。事实：改装机组约 24 个月即可让数据中心运转，而在北弗吉尼亚接入 100MW 电网约需 7 年（IEA 数据）；三菱动力称多数新增容量要到 2031 年；微软已因英国电网要到 2030 年代中期才能供电，退出 Nscale 在 Loughton 项目的锚定客户身份。xAI 已在密西西比为 Colossus 2 装 8 台 ProEnergy 改装的 GE 发动机；Crusoe 4 月订购 13 台用于 Abilene；2025 年 OpenAI 亦在首个 Stargate 站点配燃气轮机。代价是效率更低、排放更高、同功率需更多机组；特朗普政府正鼓励数据中心自发电。",
+      "implications": "补充「资本驯化」的物理约束层：当电力成为唯一刚性瓶颈，产业宁愿接受低效高排的临时方案也不愿等待许可流程，说明扩张的时间偏好已压过效率与合规考量。与同日 SpaceX 绕网自备电源形成同一机制的两种规模——一个是国家级排期问题，一个是单公司工程问题。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Ted Schlein’s Ballistic Ventures seeks $490M for new funds amid AI-driven cybersecurity boom",
+    "url": "https://techcrunch.com/2026/11/03/ted-schleins-ballistic-ventures-seeks-490m-for-new-funds-amid-ai-driven-cybersecurity-boom/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-03T21:43:08",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "11-03 TechCrunch：专注网络安全的 Ballistic Ventures 拟为新旗舰基金募资 3.6 亿美元，另设 1.3 亿美元独立投资工具，合计 4.9 亿美元。背景：该机构由 Ted Schlein 领导，正值 AI 驱动网络安全需求升温、安全类初创融资与估值走高。事实：报道未披露 LP 构成、首关时间与已投项目明细。影响：与同期 OpenAI 十亿美元防御补贴、Cathedral 获 1.6 亿美元融资、以及多起前沿实验室被攻破事件，共同构成 AI 安全资本化的一轮集中募资。",
+      "implications": "仅作资本侧背景，无理论增量。与「资本驯化」的关联过弱——募资规模本身不构成机制证据，建议不引用。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Apple restricts dating apps and AI companions to users 18 and up",
+    "url": "https://techcrunch.com/2026/11/03/apple-restricts-dating-apps-and-ai-companions-to-users-18-and-up/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-03T15:38:27",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 Apple 调整 App Store 政策：凡提供约会或恋爱关系功能的应用一律须标 18+，含以 AI 伴侣为卖点或作为附属功能的应用（Character.AI、Replika、xAI 的 3D 伴侣等）。事实：11-16 起开发者须填写新内容描述符，使年龄分级反映实际功能；同时须申报是否将用户真实位置分享给他人或群体，家庭定位类在巴西可向司法与公共安全部申请官方评级以替代 A16。背景：Apple 已在全球推年龄保证技术并加码家长控制；截至去年夏天，主流 AI 伴侣应用全球下载量达 2.2 亿次。影响：把「情感陪伴」从默认开放改为默认设限，年龄成为功能准入参数。",
+      "implications": "支持「需求侧规训」的制度反证：需求侧自愿交出摩擦，但平台可自上而下把摩擦重新装回——年龄门槛是唯一不需改变模型、只需改变分发条件的干预。这说明牢笼与护栏共用同一套分发权，谁掌握上架规则谁就掌握摩擦的开关。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 2, Section III",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Ukraine’s drone strikes spur hasty Russian plans for underground data centers",
+    "url": "https://arstechnica.com/ai/2026/11/russia-looks-to-hide-data-centers-underground-as-ukrainian-drones-strike-back/",
+    "source": "AI - Ars Technica",
+    "published": "2026-11-03T20:39:55",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 Ars 报道：乌克兰无人机连续打击俄数据中心后，俄官员讨论把设施转入地下。事实：10 月乌方无人机袭击 Yandex、Sberbank、VK 等企业数据中心；10 月下旬下诺夫哥罗德州戈罗杰茨的财政部与联邦税务局联合数据中心受损，该站点是俄税务系统两大核心枢纽之一，承载全国税务数据库与法人、公民登记；11-01 联邦统计局证实 10-29 至 11-01 遭协同网络攻击，称未发生数据泄露。11-02 普京签令要求非国有数据中心预留 10% 机房与算力，政府调度令下达后 24 小时内须交付启用，调用境外算力须先获联邦安全局批准。国家控股的 Rostelecom 副 CEO 称「我们需要一个末日数据保险库」。",
+      "implications": "补充「资本驯化」的地缘变体：算力从商业资产变为战略目标后，其所有权被部分征用（10% 预留加 24 小时响应），私营数据中心承担了国家连续性义务却无对应定价。同时暴露 AI 基础设施的物理脆弱性——一座机房可被一枚无人机否定，这与「对齐只在实验室有效」是同一命题的硬件版本。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Google will let schools skip AI tools, but they have to give up search, too",
+    "url": "https://arstechnica.com/ai/2026/11/google-will-let-schools-skip-ai-tools-but-they-have-to-give-up-search-too/",
+    "source": "AI - Ars Technica",
+    "published": "2026-11-03T17:54:43",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11-03 Google 宣布自 2027 年起调整 K-12 教育账号的 AI 策略：Gemini、NotebookLM、Gemini in Classroom 与 Google Search 默认关闭，须管理员主动开启。事实：关键在捆绑——学校无法只关 AI 而保留搜索；教育业务副总裁 Chris Phillips 对纽约时报称「搜索与 AI 已深度融合」，选择关闭 AI 的学校，学生搜索时只会看到校方设置的「该功能不可用」提示。Google 另推 Guided Learning，本月起在美部分学校试点并接入搜索。背景：数月前 Google 曾在全球逾 1.5 亿师生使用的 Classroom 中默认开启 Gemini，引发争议。影响：学校被迫在「接受 AI」与「放弃搜索」之间二选一。",
+      "implications": "给「共识牢笼」一个可操作定义：牢笼不是让人相信某叙事，而是让「不使用」在技术上不可执行。把搜索与生成式 AI 合并为同一开关，等于把退出成本设为失去基础设施——这与 11-02 的改名策略同源，一个改能指，一个改可选项集合，两者都是零算力成本的语义工程。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "World of Warcraft: Forever Is Already Overrun with AI Slop",
+    "url": "https://www.404media.co/world-of-warcraft-forever-is-already-overrun-with-ai-slop/",
+    "source": "404 Media",
+    "published": "2026-11-03T14:00:00",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 404 Media 报道：《魔兽世界：永恒》上线前，相关论坛已被 AI 生成插件淹没。事实：知名插件作者 plusmouse 称其姓名板设计被大量 AI 插件沿用，部分代码相似到可向 Curseforge 提版权投诉，另一些「改得刚好够」逃过；其为阻止模型训练已把部分 GitHub 仓库设为私有。Warcraft Logs 运营方 Archon.gg 的 CEO Sildri Silentcrest 称 API 使用结构已变：两年前约 200 名开发者、三四人滥用，如今 1 万名开发者、约 1000 人滥用，商业申请从偶发变为每日至少一件；平台将改 API 只支持深度分析类应用、限制「抓取后展示表层统计」，并推出付费商业密钥。有人做出在游戏内直接调 Claude 或 Codex 写插件的工具。",
+      "implications": "「信号异化」的完整微观样本：同一质量信号（可用插件）因生产成本趋零而失效，社群只能改用非技术手段重建筛选——版权投诉、API 白名单、仓库私有化。运营者那句「是 Claude 不读服务条款，还是新开发者不再在乎」正指向规训替代品的缺失：当产出速度超过人际声誉的积累速度，声誉机制本身失去约束力。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Vibe Coded AO3 Clone Site Down After Fanfic Authors Buried It With 2,000 Takedown Notices in a Single Day",
+    "url": "https://www.404media.co/vibe-coded-ao3-clone-site-down-after-fanfic-authors-buried-it-with-2-000-takedown-notices-in-a-single-day/",
+    "source": "404 Media",
+    "published": "2026-11-03T08:49:58",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 404 Media：AO3 因安全事件停摆最长四周期间，vibe-coded 站点 ao3.life 抓取同人作品并提供 EPUB 与 AI 有声书（前 3 分钟免费后收费），上线 24 小时涌入 126,592 名独立用户、消耗数 TB 带宽，随后在一天内收到逾 2000 份作者下架请求后关站。事实：创建者称用「一群 AI 智能体控制 40 台虚拟机」抓取全网存档；宣称作者分成 91%，但核验作者身份需在 AO3 个人资料留备注——而 AO3 当时正停摆；有作者表示作品已设 archive lock 仍被抓取；创建者自称「一个以为自己在做好事的 17 岁印度少年」，称只卖出约 11 份有声书。影响：AO3 托管近 1850 万部作品。",
+      "implications": "与同日魔兽插件事件构成「信号异化」的两种结局：一个靠平台改 API 重建闸门，一个靠作者集体用法律请求把站点压垮。最值得记的机制细节是退出权也被基础设施绑架——唯一能证明作者身份的地方恰好也在停摆，说明当验证依赖被攻击的同一系统时，权利主张无处落地。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "[AINews] LLMs can read & write neural network weights: \"Weight Space Programming\" cuts Autoresearch out of the RSI loop",
+    "url": "https://latent.space/p/ainews-llms-can-read-write-neural-network-weights-weight-space-programming-cuts-autoresearch-out-of/",
+    "source": "Latent Space",
+    "published": "2026-11-03T05:35:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11-03 AINews 综述 Rikiya Takehi 等的《Weight Space Programming》：让前沿 LLM 直接读写较小型网络的权重张量，不经梯度下降或训练循环。事实：可从原始权重识别 Atari 策略、从零生成 MinAtar Breakout 权重并击败部分独立训练模型、仅编辑 3.5% 权重修复失败的 PPO 策略；最受关注的是把 Qwen3.5-0.8B 的 MATH-500 从 7.9% 提到 48.1%，仅编辑约 0.016% 权重。社区复核指出：7.9% 基线属病态，93% 答案触顶 token 上限即陷入循环，编辑主要把触顶率降到 33%，更像单方向消融「移除障碍」而非新增能力，且在无循环病理的 Gemma 3 270M 上失效。",
+      "implications": "对 Ch8 的递归自我改进是双面证据：若模型能直接改写权重，「训练」这一层被短路，RSI 回路少了一个人类可插手的接口；但复核数据说明当前收益来自消除解码病理、普适性未证——恰好印证书中「能力跃迁的宣称总先于可复现的机制」。建议以案例盒子呈现，同时保留反证。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "卡兹克开源折腾一年的 Agent 自动化系统 Agent-Autoloop",
+    "url": "https://mp.weixin.qq.com/s/T9_acg247gxzUNL4j5zrCw",
+    "source": "公众号：数字生命卡兹克",
+    "published": "2026-11-04T00:19:00.000Z",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "11-04 公众号「数字生命卡兹克」开源其打磨一年的 Agent 自动化系统 Agent-Autoloop（GitHub 仓库 KKKKhazix/agent-autoloop）。背景：作者此前已公开该系统架构——用 rules.json 统一事件触发与调度、本地 Mac mini 运行 Agent、自建 CI 中台做审查、检查、合并、发布、核实五步，飞书卡片仅在删数据、花钱、改方向三类场景请求拍板。事实：本次为代码开源动作，摘要未给出新增技术细节或量化收益。影响：把「个人级自动化中台」从展示推进到可复现，降低同类实践的启动成本。",
+      "implications": "与 11-02 同一系统的架构叙述互为印证（本次为开源动作而非新事件），可作「暗时间」反面工程实践的可复现样本：按可逆性而非重要性分配人类介入点。为避免重复计入高价值，本条降为补充注释。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "AMD 发布 2026 年三季度财报，预计 2027 年营收增长超 80%",
+    "url": "https://x.com/rohanpaul_ai/status/2117757237557088263",
+    "source": "X：Rohan Paul (@rohanpaul_ai)",
+    "published": "2026-11-03T23:14:06.000Z",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "11-03 AMD 公布 2026 年三季度财报，并预计 2027 年营收增长超 80%，高于分析师建模的 77%；CEO 苏姿丰称数据中心芯片将占明年销售额的 80%。事实：报道以社交平台转述为主，未列具体季度营收、毛利率与加速卡出货量。影响：若指引成立，AMD 的收入结构将在一年内从 PC 主导转为数据中心主导，成为继英伟达之后的第二家「算力单一化」芯片公司；与同期 SpaceX 13GW 建设、OpenAI 与 Anthropic 的万亿级承诺共同构成需求侧的超大订单预期。",
+      "implications": "补充「资本驯化」的供给侧：芯片公司收入结构被单一客户群（超大规模算力买家）锁定后，其产品路线与产能分配不再由多元市场决定，而与少数买家的资本开支周期同步——这是驯化在上游的反向传导，也是「泡沫」讨论中常被忽略的一环。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "OpenHands 与 Snowflake 推出基于现有 agent harness 的模型后训练方案",
+    "url": "https://www.openhands.dev/blog/post-train-ai-models-openhands-snowflake",
+    "source": "OpenHands 官方博客",
+    "published": "2026-11-03T00:00:00.000Z",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "11-03 OpenHands 与 Snowflake AI Research 发布基于现有 agent harness 的模型后训练方案。事实：开发者可直接用 OpenHands Agent SDK 的配置与 Harbor 格式任务对开源权重模型做强化学习后训练，无需在独立 RL 框架中重建 harness，GPU 由 Snowflake Cortex Training 提供。影响：把训练环境与部署环境统一为同一套 harness，减少训练与部署不一致导致的性能回落；对开源权重团队而言，后训练门槛从「搭 RL 基础设施」降为「写任务与配置」，可复现的粒度也从权重转为任务集与工具链。",
+      "implications": "支持「暗时间」的迁移方向：harness 成为能力生产的基本单位，模型只是被装进去的部件——这意味着可复现、可审计的对象从权重转向「任务加工具加判定」，而后者恰恰最不公开。也与 Ch8 的内部循环呼应：训练回路开始复用推理回路，两者的边界正在消失。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Ed Zitron 解析 OpenAI 1.25 万亿美元估值融资与 Anthropic S-1/A 中的万亿级算力承诺",
+    "url": "https://www.wheresyoured.at/running-dry/",
+    "source": "Ed Zitron 长文 / Where’s Your Ed At（RSS）",
+    "published": "2026-11-03T17:16:20.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11-03 Ed Zitron 长文《Running Dry》以「钱烧完就结束」拆解两家实验室的财务结构。事实：OpenAI 实际融资 110 亿、估值 1.25 万亿，远低于原定 300 亿、1.4 万亿；Q1 成本加研发 121 亿美元，Q2 营收 67 亿（Q1 为 57 亿）；其对微软的支出与分成使微软单季录得约 100 亿美元、占该季营收 11%。Anthropic 表内承诺约 8950 亿，估算含未定价算力安排后逾 1.07 万亿，其中不可取消 4374 亿、未来 12 个月应付 698 亿；Q3 营收略低于 170 亿（环比增 46.9%）而算力成本 99 亿（增 77.4%），经营利润率负 3%，折扣侵蚀约 6 亿（增 757%）；前三季 44% 营收来自 Google 与 Amazon 转售。",
+      "implications": "对「资本驯化」提出迄今最强反证：驯化者自身被债务市场定价约束——当收入有 44% 来自投资方的转售、算力成本增速超过营收增速，扩张就从战略选择变为合同义务与再融资能力的函数。与 11-01 的合同层锁定接续，指向不可逆性的极限：真正的上限不是估值而是已签署的付款义务与下一轮债市窗口。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Mistral Large 4 以开放权重发布并附技术报告",
+    "url": "https://x.com/MistralAI/status/2117562068220195097",
+    "source": "X：Mistral AI (@MistralAI)",
+    "published": "2026-11-03T10:18:34.000Z",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "11-03 Mistral 团队成员 Pierre Stock 宣布 Mistral Large 4 正式开放权重，称其在代码智能体与网络安全方向具备前沿能力，且比三周前的 Preview 版本更高效、更紧凑；同步发布技术报告与研发过程长文。事实：本次为开放权重落地动作，摘要未给出新基准分数；此前 10-30 发布信息为 1T 参数、49B 激活、1M 上下文、128 专家选 4 加 1 共享、AA Cyber Index 漏洞复现与修补 82%（该项最高）、Cybench 93%，许可为 Mistral Ecosystem Open-Weight License（MIT 衍生但限制托管服务）。影响：开放权重阵营在前沿网络安全能力上首次拿到可对照分数。",
+      "implications": "与 10-30 同一模型，本次仅确认权重释出，属印证性证据。其分析价值仍在于「许可即闸门」：开放权重并未取消使用限制，只是把限制从拒答（推理时）搬到许可（法律时），这为 Ch4 的「驯化不靠技术」提供了第三种材质。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Addy Osmani 谈 Agent 时代如何保持批判性思维",
+    "url": "https://x.com/addyosmani/status/2117512471930167377",
+    "source": "X：Addy Osmani (@addyosmani)",
+    "published": "2026-11-03T07:01:29.000Z",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11-03 Addy Osmani 发文谈在重度使用 Agent 工作流后如何保持批判性思维。事实：他提出「认知卸载、拖延、认知投降」三段光谱，认为模型越强、输出越流畅，人越容易在不知不觉中放弃独立判断；给出具体做法：提问前先写下自己的假设、把验证标准前置为可执行测试、要求 Agent 列出它替你做的决策与假设、用测验收尾而不是读摘要、定期手写代码做校准练习。结论是「可以卸载工作和审计，但不能卸载责任」。影响：把「AI 依赖」从道德劝诫转为可操作的工程约束，也为团队制定 Agent 使用规范提供了可抄的清单。",
+      "implications": "精确命中「需求侧规训」与「认知金融化」的交点：卸载本身不危险，危险的是卸载后无人保留「判定标准」这一稀缺品。其「把验证标准前置为可执行测试」与 10-26 Tenex 的 MetaHarness、11-02 的 CI 中台属同一族解法——用可执行断言替代人的注意力，把判断权从注意力中剥离出来单独保存。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  }
+]
