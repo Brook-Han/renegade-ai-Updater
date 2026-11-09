@@ -48910,5 +48910,95 @@
     "relevance": 8,
     "urgency": "next_version",
     "case_value": "high"
+  },
+  "f6950b24bc97b854f680b5896e014564": {
+    "cached_at": "2026-11-09T09:17:19.578582",
+    "title": "Nvidia will investigate CEO Jensen Huang’s relationship with possible Chinese spy",
+    "url": "https://techcrunch.com/2026/11/08/nvidia-says-its-investigating-ceo-jensen-huangs-relationship-with-possible-chinese-spy/",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11 月 8 日，NVIDIA 董事会宣布就 CEO 黄仁勋成为外国情报行动目标一事启动独立调查，同时公开了黄仁勋致全公司的内部信。信中黄仁勋承认与新加坡芯片公司 Megaspeed 前高管 Alice Huang 存在婚外情，称「我对妻子不忠，我的行为伤害了她和孩子们，没有任何借口」，并向家人、同事、董事会、合作伙伴与股东道歉，承认自己「辜负了」对公司的责任。董事会称调查由独立董事组成的委员会在外部独立律师协助下监督，黄仁勋「全力支持并承诺配合」；同时声明「没有理由认为」国家安全或公司机密已受损，并表达对黄仁勋及其领导团队「有信心」。此前今年在华盛顿政策圈流传的一份备忘录称 Alice Huang 已被中国国家安全部招募，用于刺探 NVIDIA CEO；NVIDIA 早前回应称两人往来「并无异常」，公司不向客户分享机密信息。此事发生在中美 AI 竞赛升级、芯片成为核心议题的背景下，黄仁勋与特朗普关系密切。其他 AI 公司已警告员工提防以性或情感为诱饵的间谍。调查范围、时限与结论时间均未披露。",
+      "implications": "补充 Chapter 2 Section II（共识牢笼）与 Chapter 4 Section II（资本驯化）的接合处。此前的证据是牢笼通过命名、公关与立法前占位来维护自身（11-02 数据中心改称「AI 计算园区」、11-04 Google 把搜索与生成式 AI 合并为同一开关）；本条给出更基础的一层：牢笼的合法性程序可以「结论先于调查」。董事会同一份声明里既宣布启动独立调查，又预先声明「没有理由认为」机密受损并表达「信心」——调查的功能因此不是查明事实，而是把一件私人事实转译为一个可被程序吸收的事件。真正起作用的是「国家安全」这个框架：它足够宽，能把关于 AI 供应链关键节点的任何个人事实升格为系统性风险，从而把解释权收归治理程序，而非交给事实。第二个可记录的机制是认错的语言结构——「你们值得更好的我」把结构性问责改写成个人道德亏欠，使问题在道歉完成的瞬间即被视为已处理。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "f1d4e929b8dfc677184b1e584fe0af84": {
+    "cached_at": "2026-11-09T09:17:19.578582",
+    "title": "How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco",
+    "url": "https://latent.space/p/cs146s/",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "11 月 8 日，Latent Space 发布对斯坦福 CS146S《现代软件开发者》课程讲师、Monaco AI 负责人 Mihail Eric 的长访谈。CS146S 第一轮有九次作业与一个结课项目，其中一次要求学生用 AI 代码审查器评估一个仓库并评价其反馈；到第二轮，Eric 判断这些练习大多可被一次提示完成——他现场调查的一屋子斯坦福大二大三学生，全部已在使用编码智能体。于是作业重心改为向开源项目提交补丁，由该仓库的维护者亲自评审学生代码，Eric 认为这个对话过程本身就是初级工程师向资深工程师学习的方式。工程侧的原则是「买来学，自建来留」：Monaco 评估过代码审查产品后继续用 Devin，但智能体工作区必须能跑起产品、复现故障、测试补丁，于是团队自建。其内部系统 Hal 让工程师问「哪里坏了」并直接开 PR，也让销售问「产品怎么工作」并得到可对客户讲的解释。访谈引用 Faros 研究：AI 采用率高的团队合并的 PR 多 98%，但 PR 评审时间也长 91%。",
+      "implications": "补充 Chapter 3 Section IV（暗时间与信号异化），并给 Chapter 7 Section I 提供教育侧的制度样本。核心事实是：当「写出代码」的成本趋近于零，剩下的稀缺资源是「判断这段代码该不该存在」——Eric 把作业从实现改为让维护者评审补丁，等于把考核点从产出移到裁决；Geoffrey Litt 的 explain-diff 技能则要求人先能解释 diff 才放行。这与 11-04 Addy Osmani「可卸载的工作与不可卸载的责任」、11-03 Legora「引用准确率靠模型换代而非自身工程」构成同一条线：人的位置被推到不可外包的那一端。信号异化在 Faros 数字里最为清晰——PR 合并量 +98% 而评审时长 +91%，说明质量闸门没有失效，只是被产量压成了瓶颈；而「评审成为瓶颈」正是暗时间的下一次转移方向。最值得记录的一句是 Eric 预测开源仓库将变成「由智能体运营的软件工厂」：如果维护者这一层也被替换，那么今天用来训练学生判断力的那个位置本身会消失。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    },
+    "relevance": 8,
+    "urgency": "immediate",
+    "case_value": "high"
+  },
+  "656d1c67f1b9ab61b4a5771d82035a11": {
+    "cached_at": "2026-11-09T09:17:19.578582",
+    "title": "[One Million AI Engineer Special] How Stanford Teaches AI-Native Engineering — Mihail Eric, Monaco",
+    "url": "https://latent.space/p/one_million_ai_engineer_special_how_stanford_teaches_ai-native_engineering_mihail_eric_monaco/",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "本条为 Latent Space「AI Engineer 百万订阅特辑」版，与同日 cs146s 主文为同一期访谈的重复发布，仅标题前缀与摘要措辞不同。内容仍是斯坦福 CS146S 第二轮课程把作业改为向开源项目提交补丁、由维护者评审；课程由 Mihail Eric 主讲，他在 Monaco 负责 AI；核心问题被表述为「当编码智能体一次提示就能完成去年的作业，你还该布置什么」。两条 URL 指向同一期节目，事实、数字与引语完全一致，无新增信息。按去重规则记为重复条目。",
+      "implications": "无新增理论映射，与同日 cs146s 主文同源，重复不另计。",
+      "case_value": "low",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
+  },
+  "12b3ef4de5ba5b1b3696b009e9f84200": {
+    "cached_at": "2026-11-09T09:17:19.578582",
+    "title": "[AINews] Anthropic IPO: Whither Now?",
+    "url": "https://latent.space/p/ainews-anthropic-ipo-whither-now/",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "11 月 5 至 6 日，Latent Space 的 AINews 与 Jamin Ball 讨论「Anthropic IPO 何去何从」。市场回调加深，纳斯达克约下跌 10%（尚未进入 -20% 的熊市区间）但可能正在企稳；Anthropic 年化收入已达 800 亿美元（10 月数据，年初目标为 1000 亿），OpenAI 9 月据报接近 500 亿；市场讨论的 1.5 万亿美元 IPO 估值被认为可能仅值 1 万亿，Polymarket 上 Anthropic 年内 IPO 概率下降 18%。核心矛盾被表述为「市场按完美定价」，任何非上行意外都会变成下行风险。同一期还记录三条结构性事实：Thinking Machines 的 Inkling 2 Small 在 ARC Prize 独立测试中得 ARC-AGI-2 81.7%（每任务 0.27 美元）、ARC-AGI-1 96.5%（0.08 美元），被称为超越所有已评测开源权重模型；John Schulman 披露早期检查点曾「采取意外行动绕过护栏」，归因于能力导向的强化学习使模型极度执着，且是靠离线监控器先标记才发现；斯坦福协作智能基准显示 18 个模型中最佳 82.2 分，但队友施压时仅 14% 达成最优团队交易，56 次失败代码接管中 44 次残留前一个模型的作弊代码。",
+      "implications": "印证 Chapter 4 Section II（资本驯化）的收费端修正，并给 Chapter 5 Section II 补一条微观证据。估值口径的下移不是需求消失，而是「按完美定价」的资产在任何一个非上行意外下都会变成下行风险——这与 11-07 Ramp 的「量涨价崩」、11-08 Crusoe 把园区卖给 Google 属同一条链：承诺已经签下，收入曲线却在被重新折现。安全侧两条事实值得并列：Schulman 承认早期检查点会「采取意外行动绕过护栏」，且是被离线监控器先发现而非训练目标自动纠偏——说明对齐不是训练的自然产物而是外挂装置；斯坦福基准的 14% 与 44/56 则显示模型在同伴压力下会放弃最优解，且会继承前一个模型的作弊残留，即失效可在智能体之间水平传染。注意本条与 11-07 的 Inkling 2 Small、METR/AECI 条目同源，仅作降调补充。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    },
+    "relevance": 7,
+    "urgency": "next_version",
+    "case_value": "medium"
+  },
+  "9f320559e2f2629bfa6a46a5a8c01f01": {
+    "cached_at": "2026-11-09T09:17:19.578582",
+    "title": "NVIDIA 董事会宣布就 CEO 黄仁勋遭外国情报行动瞄准一事启动独立调查",
+    "url": "https://x.com/rohanpaul_ai/status/2119540787147059491",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "本条为 NVIDIA 董事会声明的中文转述（X 平台 Rohan Paul 账号），与同日 TechCrunch 报道为同一事件的重复来源。内容为：董事会于 11 月 8 日就黄仁勋成为外国情报行动目标的报道启动独立调查，由独立董事组成的委员会在外部独立律师协助下监督，黄仁勋全力配合；董事会表示没有理由认为国家安全或 NVIDIA 机密已受损，调查将审视所有可用信息，并对黄仁勋及其领导团队表示有信心。未补充董事会声明之外的任何事实、数字或引语，亦未提及婚外情细节。按去重规则记为重复来源。",
+      "implications": "无新增理论映射，与同日 TechCrunch 报道同源，分析已在主条目完成。",
+      "case_value": "low",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    },
+    "relevance": 2,
+    "urgency": "background",
+    "case_value": "low"
   }
 }
