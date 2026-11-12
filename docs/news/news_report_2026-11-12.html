@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-11-12 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 6 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-11-12 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>16</span></div>
+      <div>🔴 高价值: <span>6</span></div>
+      <div>🟡 中相关: <span>9</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 5, Section II</strong> — Cogent and OpenAI build cyber defense factories for enterprises <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 2, Section II</strong> — The unfolding Jensen Huang scandal: a timeline <span class="urgent-type-tag">case_study</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — OpenAI’s quarterly revenue reportedly crosses $10B for the first time <span class="urgent-type-tag">counter_argument</span></div><div class="urgent-item">• <strong>Chapter 4, Section II</strong> — Taiwan’s chipmaking giant TSMC to invest $1B in Anthropic, OpenAI <span class="urgent-type-tag">new_evidence</span></div><div class="urgent-item">• <strong>Chapter 8, Section II</strong> — Google DeepMind just mathematically verified key parts of Signal <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Google DeepMind just mathematically verified key parts of Signal</h2>
+        <div class="card-score">9.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-11-11</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/11/signals-encryption-just-passed-an-ai-powered-mathematical-checkup/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section II
+      </div>
+      <div class="card-body">Google DeepMind 发布 AlphaProof Code，由 Gemini 4 Carbon 驱动的多个 Agent 在四周内为 Signal 实际运行的加密实现生成约 650 万行经 Lean 内核机器校验的证明，底层是约 2.6 万行人工审核的形式化规格与 AArch64 指令集语义。验证对象是 libsignal v0.105.4 与 SPQR v1.6.0 的一对一会话代码，覆盖前向保密与认证；规格由 Gemini 4 Carbon 与 Claude Opus 5.5 交叉评审，证明全部由 Agent 生成，五名研究员未写一行证明，仅约 1% 代码库需人工复核。团队还把两个已修复的真实漏洞植回隔离版本，两次都产出机器检查通过的反例证明。边界明确：密钥生成未验证，群聊与密封发送未覆盖，侧信道不在场景内。</div>
+      <div class="card-implications">暗时间拿到最纯粹的一次形态：人类的贡献被压缩为「定义要证什么」，而「证明」整体迁入机器内部，输出不是可读论证而是可机检的证明对象。它同时给出「进化对齐脆弱性」的一条现实出路——不要求理解模型，只要求外部内核能验证结果，并用植入旧漏洞的方式证明验证器不会对错误代码放行。但边界写得很清楚：规格由人写，「安全」的上限仍是人所能表达的性质；且验证停在实现层，密钥生成与群聊协议都在证明范围之外。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Cogent and OpenAI build cyber defense factories for enterprises</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-11-10</span>
+        <span>·</span>
+        <a href="https://openai.com/index/cogent-security" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 5, Section II
+      </div>
+      <div class="card-body">OpenAI 发布企业安全合作案例：Cogent 以「网络防御工厂」把 GPT-6 Astra、GPT-6.1 Sol 与 GPT-5.6 串成从调查到经验证修复的闭环，客户侧关键漏洞平均修复时间（MTTR）下降 75%，漏洞分诊吞吐提升 5 倍。工程上最值得注意的是控制点全部落在模型之外：Context Engine 为每家客户维护资产/漏洞/身份/依赖的知识图谱，TRACE 引擎在工具调用前做确定性策略校验（不消耗额外推理），Agent Gateway 独立复核授权，高风险操作进隔离沙箱。客户可在三档授权中选择——仅委托调查、变更需审批、有边界的自主修复。Cogent CTO 称「好的防御需要好的进攻」，并通过 Daybreak 研究攻击路径。官方未给出补丁耗时绝对值与成本数字。</div>
+      <div class="card-implications">为「进化对齐脆弱性」提供了一条不依赖理解模型的工程出路：把授权与变更范围写进模型之外的确定性策略层，让模型只负责规划与执行、不负责自我裁决。这与 11-10 OpenAI Control Room 的 fail-closed 是同一思路的两种落点（一个是停止开关，一个是变更白名单），并补上 Control Room 缺的一环——后者只管停，前者管「允许做什么」。三档授权也把「人类审批边界」从口号变成可配置参数，代价是审批粒度越细，自主性越薄。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">The unfolding Jensen Huang scandal: a timeline</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-11-11</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 2, Section II
+      </div>
+      <div class="card-body">黄仁勋事件在一周内从私人丑闻升级为公司治理危机。11 月 8 日他致信全员承认对结婚 40 年的妻子不忠，并把此事与「新闻报道提出的国家安全关切」挂钩，NVIDIA 董事会随即启动由独立董事与外部律师监督的调查；11 月 11 日《纽约时报》援引五名在职员工称他还与直接向他汇报的医疗健康业务副总裁 Kimberly Powell 存在婚外关系，黄本人未确认。同日《华尔街日报》报道董事会正准备讨论其去留，盘后股价跌约 8%，五个交易日累计跌 11%。众议院中国委员会主席 Moolenaar 称若其不接受闭门简报将发出传票。背景是 Alice Huang 家族协助采购至少 75 亿美元 NVIDIA 芯片，2026 年春机密备忘录已认定她为中国国安部间谍；黄仁勋约有 60 名直接下属，公司无明确继任计划。</div>
+      <div class="card-implications">共识牢笼的合法性程序在此完成闭环：情报系统在 2025 年秋即掌握线索、2026 年春形成机密结论，但真正的处置发生在媒体曝光之后，且处置对象从「芯片流向」转为「CEO 私德」。更关键的是资本驯化的人事脆弱性——一人直管 60 人、无继任计划，说明这套秩序把全部对外叙事与对华销售策略压在单一节点上，一旦「国家安全」框架启动，公司治理只能以移除该节点来止损。与 11-09「结论先于调查」相比，今天多出的增量是：调查最终指向了调查者自己人。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">OpenAI’s quarterly revenue reportedly crosses $10B for the first time</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI News & Artificial Intelligence | TechCrunch · 2026-11-11</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">彭博社援引匿名消息称 OpenAI 第三季度营收首次突破 100 亿美元，较第二季度的 67 亿美元增长近 50%，显著高于此前一季度到二季度约 18% 的增速；调整后经营利润率从 -150% 收窄至 -109%，年化收入达 500 亿美元。报道把回升归因于更紧的定价、折扣、模型改进以及对企业和 Agent 产品的加码。同期对比：Anthropic 第三季度营收 170 亿美元，截至 10 月底年化收入一个月内增加 100 亿美元至 810 亿美元，并正以每股 70-78 美元、最高 1.4 万亿美元估值推进 IPO。两家公司的年化口径不同——Anthropic 计入云伙伴的销售额，OpenAI 只计自身分成。OpenAI 称用户超过 10 亿，但多数为免费或最低价订阅用户。</div>
+      <div class="card-implications">与 11-07 Ramp「企业 token 支出停滞」构成直接张力：单价在跌、企业人均支出在平，厂商营收反而加速 50%。可能的解释是量增足以抵消价跌，且增量来自 Agent 类长任务而非对话席位——即客户把预算从「多买人」转向「多买任务」。若成立，需求侧规训的结论要修正：用户不是拒绝付费，而是拒绝为不确定的产出付费；这也让 11-07 的「量涨价崩」多出一个前提——崩的是单价，不是总量。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Taiwan’s chipmaking giant TSMC to invest $1B in Anthropic, OpenAI</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>AI - Ars Technica · 2026-11-11</span>
+        <span>·</span>
+        <a href="https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">台积电董事会 11 月 10 日核准在 5 亿美元额度内以 IPO 价格认购 Anthropic 普通股、另在 5 亿美元额度内认购 OpenAI Group 特别股，合计上限 10 亿美元，并另批 5 亿美元设立半导体生态战略投资公司。此举发生在 Anthropic 将 IPO 定价为每股 70-78 美元、寻求最高 1.4 万亿美元估值之际；Anthropic 同时通过私募募资 260 亿美元，参与方包括 Alphabet、NVIDIA、AMD 与微软。台积电上月公布连续第六个季度创纪录获利，预计 2026 年全年营收增长约 44%，并在亚利桑那投入 2650 亿美元建厂、评估得州项目。公司未披露认购股数、最终持股比例与完成时间，也未附带任何芯片采购承诺。</div>
+      <div class="card-implications">资本驯化的循环结构又闭合一层：供应商不再只是收钱交货，而是用同一笔钱买入客户的股权，「产能—订单—估值」被绑进同一张表。值得记下的是台积电刻意只批「额度」不承诺「采购」，说明它既要吃叙事溢价、又要保留叙事破裂时的法律余地——这是 11-01 记下的担保层/融资层/合同层之后的第四层：股权层。同一批主体既是供应商、投资人又是客户，关联交易与循环收入将被长期追问。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">[AINews] Mercor $750m Series D at $20B valuation, $3B run rate</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>Latent Space · 2026-11-11</span>
+        <span>·</span>
+        <a href="https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 3, Section IV
+      </div>
+      <div class="card-body">Latent Space 的 AINews 汇总披露 Mercor 完成 7.5 亿美元 D 轮、估值 200 亿美元，年化收入达 30 亿美元：2 月破 10 亿、6 月破 20 亿、11 月达 30 亿，27 个月内完成三级跳；上一轮为 2025 年 10 月 3.5 亿美元 C 轮、估值 100 亿美元，当时收入不足 5 亿。公司称平台有 500 万名专家，论据是美国有 800 多种职业、每种都包含模型尚未被评测过的工作流。最值得记的运营数字是推理支出已达员工薪资的 3 倍且「能自我回本」。同一汇总还记录 Gemini 4 Carbon 正式开放：CursorBench 60.4%、FrontierCode 2.0 为 40.0%（Argon 26.3%），每任务成本约 0.38 美元起。</div>
+      <div class="card-implications">认知金融化拿到一个刺眼的比值：一家把人类专家判断拆成任务单元出售的公司，花在推理上的钱是花在人身上的三倍。这意味着「人类专家」在这条链上的定价已被压到模型运行成本之下，而模型的「自我回本」正靠这个价差。它给 Token 陷阱补上供给侧证据：不仅用户的思考被外包，供给端的判断也被离散成可计价样本，且样本的价格由算力成本反向锚定。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (9条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">With $720M round, Britain’s Fractile gets a leg up in the ra</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">英国 AI 芯片公司 Fractile 完成 7.2 亿美元 C 轮，由英国主权 AI 基金与 Thrive Capital、Founders Fund、Lightspeed、Redpoint 共同参与，英国政府称估值「超过 50 亿英镑」，FT 与路透援引消息称约 70 亿美元。公司此前经历转型，现以 DRAM 堆叠在芯片之上的设计试图绕开显存容量与带宽之间的传统权衡，并配套自研机器学习编译器，因此把自己定位为前沿 AI 公司而非单纯硬件供应商。CEO Walter Goodwin 称新一轮资金将用于「明年交付首批芯片与系统」。此前 Etched 曾以 400 亿美元估值融资，OLIX、Axelera 同列该赛道。英国政府将其表述为「确保英国在未来经济所依赖的硬件中占有更大份额」。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">AI Engineer Code Summit: OpenAI on New Ways of Working With </h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Latent Space</span><span>·</span><a href="https://latent.space/p/codex-work/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Latent Space 记录 AI Engineer Code Summit 首日 OpenAI 的 Codex 工作坊。两名开发者体验工程师承认 Codex 的云端形态长期是「尴尬的用户体验」，直到 9 月底 DevDay 发布 Codex Cloud v2 才变得可行——环境发布一次即可在隔离实例中复跑多任务，云端与本地「正在合并」为同一背景执行器，本地任务可一句话移交给云端。语音被定位为「控制面」而非输入方式：不是口述当前那一条工作，而是管理线程、查看进度、从其他应用取数据、新建线程。个人 Agent dots 被自家重度用户评价为「用起来有点别扭」，但有三种用途——安全网、委派接收器、无处不在的存在感；有工程师承认很多任务是先跟 dot 说、由它推 PR。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Three People Arrested for AI-Enhanced Impersonation Fraud</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Schneier on Security</span><span>·</span><a href="https://www.schneier.com/blog/archives/2026/11/three-people-arrested-for-ai-enhanced-impersonation-fraud.html" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">施奈尔博客引述纽约南区联邦检察官办公室公告：Jacob Soall、Sharon Hazan 与 Guy Sheetrit 三人因使用 AI 篡改并冒充公司高管与律师的声音与形象被捕，Soall 与 Hazan 于今夏在西班牙落网，Sheetrit 于 9 月在英国落网，作案时间为 2024 至 2026 年。手法是双角色扮演：先以「公司高管」身份联系员工，称需协助处理敏感财务交易，再指示员工联系某大型国际律所的律师，随后冒充该律所律师要求员工电汇大额款项，最终从美国及全球多地公司骗取逾 1.29 亿美元。施奈尔借此重申 AI 安全三分法——AI 自身的安全、用 AI 的安全、免于 AI 的安全，本案属第三类；评论区指出逮捕只是「悬崖底下的救护车」。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Runway 开源 27B 世界动作模型 Praxis-1，权重采用 Apache 2.0 许可</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Runway：News（网页）</span><span>·</span><a href="https://runwayml.com/news/company-news/praxis-1-is-now-available" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">Runway 将世界动作模型 Praxis-1 以 Apache 2.0 开放权重发布，含权重、推理与微调代码，支持全量微调与 LoRA 并允许商用。模型为 27B 参数 MoE 扩散 Transformer，同时预测视频与动作，在 NVIDIA RoboLab-120 榜单以 46.2% 成功率居首，高于 FLUX 3 Action 的 42.9%、Cosmos3 Nano 的 36.8% 与 π0.5 的 28.0%。在未出现在训练数据中的 Google RT-1 机器人上微调后，SimplerEnv 成功率达 80.0%（原策略 52.4%）。官方称网络视频与遥操作机器人视频作预训练数据效果相当，瓶颈因此从「有没有机器人数据」转向「能学多少通用视频」。模型可在 H100/B200 到 RTX 5090、Jetson Thor 上开箱运行。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 new_evidence</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">百度发布 ERNIE 5.5 Flash Preview，权重将于 11 月 25 日前开源</h2>
+        <div class="card-score">7.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>百度文心 ERNIE 官方博客</span><span>·</span><a href="https://ernie.baidu.com/zh/release/ernie-5-5-flash-preview/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">百度发布 ERNIE 5.5 Flash Preview，是 11 月 7 日 Base 模型的首个后训练版本：总参数 280B、激活 14B、支持 1M 上下文，API 已在千帆上线，权重将于 11 月 25 日前开源。官方展示的都是 Agent 框架内端到端完成的成果：11 小时长程任务把跨多代虚幻引擎的素材合入同一 UE 5.8 工程并用 C++ 写完整个游戏，且因是纯文本模型看不到画面，只能把试玩中的人物悬空、跑动方向不一致、相机错位转成可测量的代码测试来迭代；两个 Agent 用 Blender Python API 分别搭建机场与飞机并统一尺度后渲染合成；知识工作侧以 30 万个工作空间、1000 万份参考文件构建训练环境。官方明确这是后训练中间版本。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Singapore Airlines elevates travel &amp; work with OpenAI techno</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>OpenAI News</span><span>·</span><a href="https://openai.com/index/singapore-airlines-travel-work" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">新加坡航空公布与 OpenAI 的生产级部署细节：客户侧 Kris 聊天机器人由传统对话流改为 LLM 驱动，客户满意度（CSAT）翻倍，Flight Recommender 月活一年增长约三倍；坐席侧 AI 辅助工具使平均处理时长下降约 10%；内部 Jarvis 平台由 OpenAI 模型驱动，每月逾 60% 员工使用，支持 PDF/Word/Excel/PPT 的文档总结与轻量知识库；软件开发生命周期在部分环节获得最高 20% 效率提升，覆盖需求澄清、干系人会议分析、规格撰写、边界情况识别、测试用例生成与架构评审，而不只是编码。新航强调以编排层、内部数据管控、验证与人工复核四道机制约束输出，员工角色从「亲手产出每份工件」转为「指导、审查、验证」。官方未披露模型版本、坐席规模与成本。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 案例盒子</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Intelligent Delivery: Making Every Unit of Compute Serve Bet</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Engineering at Meta</span><span>·</span><a href="https://engineering.fb.com/2026/11/11/ml-applications/intelligent-delivery-serve-better-ads/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Meta 工程博客披露广告投放的算力分配系统 Intelligent Delivery：资源核心模型为 60 亿稀疏参数加 2000 万稠密参数，在候选检索前运行一次并被整个漏斗共享，把过去按界面/上下文人工分段的规则重构成「哪些请求最可能从额外算力受益」与「不同配置如何影响结果」两个 ML 问题。决策分三层——区域间流量迁移、工作负载与 SKU 匹配（CPU 与 NVIDIA、AMD、自研 MTIA 多代混布，算力不可互换故需逐组合实测）、主机内按硬性尾部延迟 SLO 做约束优化。官方称该机制自 2017 年至 2026 年上半年贡献约 10% 的增量排序性能；2026 年上半年 AI Agent 贡献约 20% 的优化项，在最高自动化机制上承担约 80% 工程工作量，优化周期从数月缩到数周。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 case_study</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">How backlash and red tape continue to slow data centers post</h2>
+        <div class="card-score">6.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/podcast/how-backlash-and-red-tape-continue-to-slow-data-centers-post-blue-wave/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section III</span></div>
+      <div class="card-body">TechCrunch Equity 播客邀请 Ascend Analytics 市场与战略高级董事总经理 Brent Nelson，讨论数据中心「公告管线」与实际开工之间的落差。核心判断是管线被严重夸大，只有一小部分提案会真正建成，因此在数千亿美元基建投资背景下，区分现实项目与投机项目变得关键；他警告若泡沫破裂，租户结构错误的开发商将陷入严重困境。政策层面他认为民主党应趁现在推动许可改革而非等待更有利的政治时点，并指出能源项目普遍困在许可循环里、两党政府都有责任。技术上他质疑天然气并非开发商以为的可靠兜底，尤其极端冬季；更不显眼但更现实的替代是电池储能配合可在高峰临时限电的并网容量。节目未给出管线折损比例或吉瓦数字。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Claude Code 中如何选择 Fable 5.2 与 Opus 等模型</h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>Claude：YouTube（RSS）</span><span>·</span><a href="https://www.youtube.com/watch?v=C33hJGt-ySg" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 3, Section IV</span></div>
+      <div class="card-body">Claude 官方发布视频教程，讲解在 Claude Code 中如何按任务选择模型：复杂编码与开放式技术工作使用 Fable 5.2 或 Opus 5.5，成本敏感且目标明确的任务降级到 Sonnet 5.5 或 Haiku 5.5，并演示如何把一个任务拆分给多个模型协同完成。视频同时给出在自有任务上测量各模型表现的指南链接，并提示可用性与用量限制因订阅套餐而异。教程未披露任何基准分数或成本对比数据，属于产品使用指导而非能力披露。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 corroboration</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>

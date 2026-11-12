@@ -1,0 +1,258 @@
+[
+  {
+    "title": "Singapore Airlines elevates travel & work with OpenAI technology",
+    "url": "https://openai.com/index/singapore-airlines-travel-work",
+    "source": "OpenAI News",
+    "published": "2026-11-10T08:00:00",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "新加坡航空公布与 OpenAI 的生产级部署细节：客户侧 Kris 聊天机器人由传统对话流改为 LLM 驱动，客户满意度（CSAT）翻倍，Flight Recommender 月活一年增长约三倍；坐席侧 AI 辅助工具使平均处理时长下降约 10%；内部 Jarvis 平台由 OpenAI 模型驱动，每月逾 60% 员工使用，支持 PDF/Word/Excel/PPT 的文档总结与轻量知识库；软件开发生命周期在部分环节获得最高 20% 效率提升，覆盖需求澄清、干系人会议分析、规格撰写、边界情况识别、测试用例生成与架构评审，而不只是编码。新航强调以编排层、内部数据管控、验证与人工复核四道机制约束输出，员工角色从「亲手产出每份工件」转为「指导、审查、验证」。官方未披露模型版本、坐席规模与成本。",
+      "implications": "补充「暗时间」在传统企业里的落地形态：AI 的产出不是代码而是规格、测试与评审意见，人类的位置被压缩为验证者；20% 的效率上限说明收益集中在可形式化的中间产物上，需要判断的环节（优先级、架构、治理）仍留在人手上——与 11-09 斯坦福 CS146S「判断力成为稀缺资源」同向，但给出了企业侧的量化边界。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Cogent and OpenAI build cyber defense factories for enterprises",
+    "url": "https://openai.com/index/cogent-security",
+    "source": "OpenAI News",
+    "published": "2026-11-10T00:00:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "OpenAI 发布企业安全合作案例：Cogent 以「网络防御工厂」把 GPT-6 Astra、GPT-6.1 Sol 与 GPT-5.6 串成从调查到经验证修复的闭环，客户侧关键漏洞平均修复时间（MTTR）下降 75%，漏洞分诊吞吐提升 5 倍。工程上最值得注意的是控制点全部落在模型之外：Context Engine 为每家客户维护资产/漏洞/身份/依赖的知识图谱，TRACE 引擎在工具调用前做确定性策略校验（不消耗额外推理），Agent Gateway 独立复核授权，高风险操作进隔离沙箱。客户可在三档授权中选择——仅委托调查、变更需审批、有边界的自主修复。Cogent CTO 称「好的防御需要好的进攻」，并通过 Daybreak 研究攻击路径。官方未给出补丁耗时绝对值与成本数字。",
+      "implications": "为「进化对齐脆弱性」提供了一条不依赖理解模型的工程出路：把授权与变更范围写进模型之外的确定性策略层，让模型只负责规划与执行、不负责自我裁决。这与 11-10 OpenAI Control Room 的 fail-closed 是同一思路的两种落点（一个是停止开关，一个是变更白名单），并补上 Control Room 缺的一环——后者只管停，前者管「允许做什么」。三档授权也把「人类审批边界」从口号变成可配置参数，代价是审批粒度越细，自主性越薄。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Intelligent Delivery: Making Every Unit of Compute Serve Better Ads",
+    "url": "https://engineering.fb.com/2026/11/11/ml-applications/intelligent-delivery-serve-better-ads/",
+    "source": "Engineering at Meta",
+    "published": "2026-11-11T17:00:38",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Meta 工程博客披露广告投放的算力分配系统 Intelligent Delivery：资源核心模型为 60 亿稀疏参数加 2000 万稠密参数，在候选检索前运行一次并被整个漏斗共享，把过去按界面/上下文人工分段的规则重构成「哪些请求最可能从额外算力受益」与「不同配置如何影响结果」两个 ML 问题。决策分三层——区域间流量迁移、工作负载与 SKU 匹配（CPU 与 NVIDIA、AMD、自研 MTIA 多代混布，算力不可互换故需逐组合实测）、主机内按硬性尾部延迟 SLO 做约束优化。官方称该机制自 2017 年至 2026 年上半年贡献约 10% 的增量排序性能；2026 年上半年 AI Agent 贡献约 20% 的优化项，在最高自动化机制上承担约 80% 工程工作量，优化周期从数月缩到数周。",
+      "implications": "给「暗时间」补了一个基础设施层的样本：Agent 在长上下文里读机制源码、设计文档和十年实验日志，把搜索空间收敛到少量待测变更，人类的动作只剩「批准」。值得注意的是 10% 的性能提升是九年累积值，说明这类系统优化是缓慢复利而非跃变——与消费级 AI 的叙事节奏完全不同，这本身就是对「共识牢笼」里加速主义时间感的一个反证。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "The unfolding Jensen Huang scandal: a timeline",
+    "url": "https://techcrunch.com/2026/11/11/nvidia-ceo-jensen-huangs-affair-with-alleged-chinese-spy-a-timeline/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-11T23:50:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "黄仁勋事件在一周内从私人丑闻升级为公司治理危机。11 月 8 日他致信全员承认对结婚 40 年的妻子不忠，并把此事与「新闻报道提出的国家安全关切」挂钩，NVIDIA 董事会随即启动由独立董事与外部律师监督的调查；11 月 11 日《纽约时报》援引五名在职员工称他还与直接向他汇报的医疗健康业务副总裁 Kimberly Powell 存在婚外关系，黄本人未确认。同日《华尔街日报》报道董事会正准备讨论其去留，盘后股价跌约 8%，五个交易日累计跌 11%。众议院中国委员会主席 Moolenaar 称若其不接受闭门简报将发出传票。背景是 Alice Huang 家族协助采购至少 75 亿美元 NVIDIA 芯片，2026 年春机密备忘录已认定她为中国国安部间谍；黄仁勋约有 60 名直接下属，公司无明确继任计划。",
+      "implications": "共识牢笼的合法性程序在此完成闭环：情报系统在 2025 年秋即掌握线索、2026 年春形成机密结论，但真正的处置发生在媒体曝光之后，且处置对象从「芯片流向」转为「CEO 私德」。更关键的是资本驯化的人事脆弱性——一人直管 60 人、无继任计划，说明这套秩序把全部对外叙事与对华销售策略压在单一节点上，一旦「国家安全」框架启动，公司治理只能以移除该节点来止损。与 11-09「结论先于调查」相比，今天多出的增量是：调查最终指向了调查者自己人。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Why the data center you dread might never even be built",
+    "url": "https://techcrunch.com/video/why-the-data-center-you-dread-might-never-even-be-built/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-11T20:15:15",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "TechCrunch 旗下 Equity 播客的视频版，与同日播出的音频版《How backlash and red tape continue to slow data centers post-Blue Wave》为同一期节目：讨论数据中心公告管线被严重夸大、多数宣布项目最终不会开工、许可与电力约束，以及天然气在极端冬季并不可靠、电池储能配合可临时限电的并网方案才是更现实的替代。同一期节目的两个发布版本被 RSS 同时收录，视频版不含音频版之外的任何信息增量。",
+      "implications": "无独立理论增量，属同一期节目的视频封装版本。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "How backlash and red tape continue to slow data centers post-Blue Wave",
+    "url": "https://techcrunch.com/podcast/how-backlash-and-red-tape-continue-to-slow-data-centers-post-blue-wave/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-11T20:02:14",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "TechCrunch Equity 播客邀请 Ascend Analytics 市场与战略高级董事总经理 Brent Nelson，讨论数据中心「公告管线」与实际开工之间的落差。核心判断是管线被严重夸大，只有一小部分提案会真正建成，因此在数千亿美元基建投资背景下，区分现实项目与投机项目变得关键；他警告若泡沫破裂，租户结构错误的开发商将陷入严重困境。政策层面他认为民主党应趁现在推动许可改革而非等待更有利的政治时点，并指出能源项目普遍困在许可循环里、两党政府都有责任。技术上他质疑天然气并非开发商以为的可靠兜底，尤其极端冬季；更不显眼但更现实的替代是电池储能配合可在高峰临时限电的并网容量。节目未给出管线折损比例或吉瓦数字。",
+      "implications": "为「资本驯化」的合同层补上供给侧视角：11-01 记下的 30 年租约与 8954 亿承诺都建立在「项目会建成」这个前提上，而电力市场分析师的判断是这个前提对多数公告并不成立。真正被定价的不是需求，而是「公告」本身——这解释了为何同一批项目在股市上值钱、在并网队列里排不上。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "With $720M round, Britain’s Fractile gets a leg up in the race for AI chips",
+    "url": "https://techcrunch.com/2026/11/11/with-720m-round-britains-fractile-gets-a-leg-up-in-the-race-for-ai-chips/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-11T19:34:55",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "英国 AI 芯片公司 Fractile 完成 7.2 亿美元 C 轮，由英国主权 AI 基金与 Thrive Capital、Founders Fund、Lightspeed、Redpoint 共同参与，英国政府称估值「超过 50 亿英镑」，FT 与路透援引消息称约 70 亿美元。公司此前经历转型，现以 DRAM 堆叠在芯片之上的设计试图绕开显存容量与带宽之间的传统权衡，并配套自研机器学习编译器，因此把自己定位为前沿 AI 公司而非单纯硬件供应商。CEO Walter Goodwin 称新一轮资金将用于「明年交付首批芯片与系统」。此前 Etched 曾以 400 亿美元估值融资，OLIX、Axelera 同列该赛道。英国政府将其表述为「确保英国在未来经济所依赖的硬件中占有更大份额」。",
+      "implications": "资本驯化多了一个新主体：主权基金以财务投资人身份进入算力供给端，把「国家在硬件中的份额」写进投资理由。这与 11-10 韩国主权 AI、11-06 TPU 案例构成同一条线——算力闸门的所有权正从公司层上移到国家层，而竞争的计量单位从「谁有更多钱」变成「谁在本国境内拥有可交付的硅」。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "OpenAI’s quarterly revenue reportedly crosses $10B for the first time",
+    "url": "https://techcrunch.com/2026/11/11/openais-quarterly-revenue-reportedly-crosses-10b-for-the-first-time/",
+    "source": "AI News & Artificial Intelligence | TechCrunch",
+    "published": "2026-11-11T16:14:44",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "彭博社援引匿名消息称 OpenAI 第三季度营收首次突破 100 亿美元，较第二季度的 67 亿美元增长近 50%，显著高于此前一季度到二季度约 18% 的增速；调整后经营利润率从 -150% 收窄至 -109%，年化收入达 500 亿美元。报道把回升归因于更紧的定价、折扣、模型改进以及对企业和 Agent 产品的加码。同期对比：Anthropic 第三季度营收 170 亿美元，截至 10 月底年化收入一个月内增加 100 亿美元至 810 亿美元，并正以每股 70-78 美元、最高 1.4 万亿美元估值推进 IPO。两家公司的年化口径不同——Anthropic 计入云伙伴的销售额，OpenAI 只计自身分成。OpenAI 称用户超过 10 亿，但多数为免费或最低价订阅用户。",
+      "implications": "与 11-07 Ramp「企业 token 支出停滞」构成直接张力：单价在跌、企业人均支出在平，厂商营收反而加速 50%。可能的解释是量增足以抵消价跌，且增量来自 Agent 类长任务而非对话席位——即客户把预算从「多买人」转向「多买任务」。若成立，需求侧规训的结论要修正：用户不是拒绝付费，而是拒绝为不确定的产出付费；这也让 11-07 的「量涨价崩」多出一个前提——崩的是单价，不是总量。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Taiwan’s chipmaking giant TSMC to invest $1B in Anthropic, OpenAI",
+    "url": "https://arstechnica.com/ai/2026/11/taiwans-chipmaking-giant-tsmc-to-invest-1b-in-anthropic-openai/",
+    "source": "AI - Ars Technica",
+    "published": "2026-11-11T18:16:40",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "台积电董事会 11 月 10 日核准在 5 亿美元额度内以 IPO 价格认购 Anthropic 普通股、另在 5 亿美元额度内认购 OpenAI Group 特别股，合计上限 10 亿美元，并另批 5 亿美元设立半导体生态战略投资公司。此举发生在 Anthropic 将 IPO 定价为每股 70-78 美元、寻求最高 1.4 万亿美元估值之际；Anthropic 同时通过私募募资 260 亿美元，参与方包括 Alphabet、NVIDIA、AMD 与微软。台积电上月公布连续第六个季度创纪录获利，预计 2026 年全年营收增长约 44%，并在亚利桑那投入 2650 亿美元建厂、评估得州项目。公司未披露认购股数、最终持股比例与完成时间，也未附带任何芯片采购承诺。",
+      "implications": "资本驯化的循环结构又闭合一层：供应商不再只是收钱交货，而是用同一笔钱买入客户的股权，「产能—订单—估值」被绑进同一张表。值得记下的是台积电刻意只批「额度」不承诺「采购」，说明它既要吃叙事溢价、又要保留叙事破裂时的法律余地——这是 11-01 记下的担保层/融资层/合同层之后的第四层：股权层。同一批主体既是供应商、投资人又是客户，关联交易与循环收入将被长期追问。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Google DeepMind just mathematically verified key parts of Signal",
+    "url": "https://arstechnica.com/ai/2026/11/signals-encryption-just-passed-an-ai-powered-mathematical-checkup/",
+    "source": "AI - Ars Technica",
+    "published": "2026-11-11T14:08:57",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "Google DeepMind 发布 AlphaProof Code，由 Gemini 4 Carbon 驱动的多个 Agent 在四周内为 Signal 实际运行的加密实现生成约 650 万行经 Lean 内核机器校验的证明，底层是约 2.6 万行人工审核的形式化规格与 AArch64 指令集语义。验证对象是 libsignal v0.105.4 与 SPQR v1.6.0 的一对一会话代码，覆盖前向保密与认证；规格由 Gemini 4 Carbon 与 Claude Opus 5.5 交叉评审，证明全部由 Agent 生成，五名研究员未写一行证明，仅约 1% 代码库需人工复核。团队还把两个已修复的真实漏洞植回隔离版本，两次都产出机器检查通过的反例证明。边界明确：密钥生成未验证，群聊与密封发送未覆盖，侧信道不在场景内。",
+      "implications": "暗时间拿到最纯粹的一次形态：人类的贡献被压缩为「定义要证什么」，而「证明」整体迁入机器内部，输出不是可读论证而是可机检的证明对象。它同时给出「进化对齐脆弱性」的一条现实出路——不要求理解模型，只要求外部内核能验证结果，并用植入旧漏洞的方式证明验证器不会对错误代码放行。但边界写得很清楚：规格由人写，「安全」的上限仍是人所能表达的性质；且验证停在实现层，密钥生成与群聊协议都在证明范围之外。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "[AINews] Mercor $750m Series D at $20B valuation, $3B run rate",
+    "url": "https://latent.space/p/ainews-mercor-750m-series-d-at-20b-valuation-3b-run-rate/",
+    "source": "Latent Space",
+    "published": "2026-11-11T09:34:28",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Latent Space 的 AINews 汇总披露 Mercor 完成 7.5 亿美元 D 轮、估值 200 亿美元，年化收入达 30 亿美元：2 月破 10 亿、6 月破 20 亿、11 月达 30 亿，27 个月内完成三级跳；上一轮为 2025 年 10 月 3.5 亿美元 C 轮、估值 100 亿美元，当时收入不足 5 亿。公司称平台有 500 万名专家，论据是美国有 800 多种职业、每种都包含模型尚未被评测过的工作流。最值得记的运营数字是推理支出已达员工薪资的 3 倍且「能自我回本」。同一汇总还记录 Gemini 4 Carbon 正式开放：CursorBench 60.4%、FrontierCode 2.0 为 40.0%（Argon 26.3%），每任务成本约 0.38 美元起。",
+      "implications": "认知金融化拿到一个刺眼的比值：一家把人类专家判断拆成任务单元出售的公司，花在推理上的钱是花在人身上的三倍。这意味着「人类专家」在这条链上的定价已被压到模型运行成本之下，而模型的「自我回本」正靠这个价差。它给 Token 陷阱补上供给侧证据：不仅用户的思考被外包，供给端的判断也被离散成可计价样本，且样本的价格由算力成本反向锚定。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "AI Engineer Code Summit: OpenAI on New Ways of Working With Codex",
+    "url": "https://latent.space/p/codex-work/",
+    "source": "Latent Space",
+    "published": "2026-11-11T04:49:48",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Latent Space 记录 AI Engineer Code Summit 首日 OpenAI 的 Codex 工作坊。两名开发者体验工程师承认 Codex 的云端形态长期是「尴尬的用户体验」，直到 9 月底 DevDay 发布 Codex Cloud v2 才变得可行——环境发布一次即可在隔离实例中复跑多任务，云端与本地「正在合并」为同一背景执行器，本地任务可一句话移交给云端。语音被定位为「控制面」而非输入方式：不是口述当前那一条工作，而是管理线程、查看进度、从其他应用取数据、新建线程。个人 Agent dots 被自家重度用户评价为「用起来有点别扭」，但有三种用途——安全网、委派接收器、无处不在的存在感；有工程师承认很多任务是先跟 dot 说、由它推 PR。",
+      "implications": "需求侧规训的界面证据：摩擦被系统性消除（口述、托管、后台执行），用户的动作从「写」退化为「分配与检查」。而 dots 的「别扭」恰好标出一个临界点——当 Agent 的行为不再对应一次可观察的输入，用户就失去判断它做得对不对的抓手，这与 11-04 Addy Osmani「可卸载工作与审计不可卸载责任」是同一条线：界面越顺，可审计性越差。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Three People Arrested for AI-Enhanced Impersonation Fraud",
+    "url": "https://www.schneier.com/blog/archives/2026/11/three-people-arrested-for-ai-enhanced-impersonation-fraud.html",
+    "source": "Schneier on Security",
+    "published": "2026-11-11T12:05:34",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "施奈尔博客引述纽约南区联邦检察官办公室公告：Jacob Soall、Sharon Hazan 与 Guy Sheetrit 三人因使用 AI 篡改并冒充公司高管与律师的声音与形象被捕，Soall 与 Hazan 于今夏在西班牙落网，Sheetrit 于 9 月在英国落网，作案时间为 2024 至 2026 年。手法是双角色扮演：先以「公司高管」身份联系员工，称需协助处理敏感财务交易，再指示员工联系某大型国际律所的律师，随后冒充该律所律师要求员工电汇大额款项，最终从美国及全球多地公司骗取逾 1.29 亿美元。施奈尔借此重申 AI 安全三分法——AI 自身的安全、用 AI 的安全、免于 AI 的安全，本案属第三类；评论区指出逮捕只是「悬崖底下的救护车」。",
+      "implications": "信号异化在身份维度上的直接样本：声音与面孔这两类最原始的信任信号被 AI 抹平后，组织内部用以识别「这是领导在说话」的机制整体失效，而替代机制（回拨核实、双人审批）恰恰是效率最讨厌的那种摩擦。1.29 亿美元说明这类攻击的收益密度足以支撑工业化，而破案依赖跨国抓捕而非技术防御——防线的位置在流程，不在模型。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "background",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Claude Code 中如何选择 Fable 5.2 与 Opus 等模型",
+    "url": "https://www.youtube.com/watch?v=C33hJGt-ySg",
+    "source": "Claude：YouTube（RSS）",
+    "published": "2026-11-11T17:30:20.000Z",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "Claude 官方发布视频教程，讲解在 Claude Code 中如何按任务选择模型：复杂编码与开放式技术工作使用 Fable 5.2 或 Opus 5.5，成本敏感且目标明确的任务降级到 Sonnet 5.5 或 Haiku 5.5，并演示如何把一个任务拆分给多个模型协同完成。视频同时给出在自有任务上测量各模型表现的指南链接，并提示可用性与用量限制因订阅套餐而异。教程未披露任何基准分数或成本对比数据，属于产品使用指导而非能力披露。",
+      "implications": "补充「认知金融化」的日常形态：模型选择被产品化为按任务定价的路由决策，用户被引导按「这个任务值多少」而非「哪个更强」来思考。厂商自己教用户降级，等于承认单位任务成本已成为主要约束——与 11-11 AINews 记录的「单价降 20% 但每任务成本涨 2.6 倍」互相印证。",
+      "case_value": "low",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Runway 开源 27B 世界动作模型 Praxis-1，权重采用 Apache 2.0 许可",
+    "url": "https://runwayml.com/news/company-news/praxis-1-is-now-available",
+    "source": "Runway：News（网页）",
+    "published": "2026-11-11T23:25:00.000Z",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Runway 将世界动作模型 Praxis-1 以 Apache 2.0 开放权重发布，含权重、推理与微调代码，支持全量微调与 LoRA 并允许商用。模型为 27B 参数 MoE 扩散 Transformer，同时预测视频与动作，在 NVIDIA RoboLab-120 榜单以 46.2% 成功率居首，高于 FLUX 3 Action 的 42.9%、Cosmos3 Nano 的 36.8% 与 π0.5 的 28.0%。在未出现在训练数据中的 Google RT-1 机器人上微调后，SimplerEnv 成功率达 80.0%（原策略 52.4%）。官方称网络视频与遥操作机器人视频作预训练数据效果相当，瓶颈因此从「有没有机器人数据」转向「能学多少通用视频」。模型可在 H100/B200 到 RTX 5090、Jetson Thor 上开箱运行。",
+      "implications": "「开放」在这条新闻里是竞争手段而非立场：Apache 2.0 允许商用、支持 LoRA 自适配，等于把具身智能的入口从「谁有机器人数据」改成「谁的模型能被别人拿去微调」，与 NVIDIA 的 Cosmos Coalition 形成同一阵线。对「资本驯化」的意义在于闸门位置的又一次迁移——从权重是否公开，转到生态默认值归谁设定；这与 11-05 Kimi「可下载不等于可运行」是同一枚硬币的两面。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "百度发布 ERNIE 5.5 Flash Preview，权重将于 11 月 25 日前开源",
+    "url": "https://ernie.baidu.com/zh/release/ernie-5-5-flash-preview/",
+    "source": "百度文心 ERNIE 官方博客",
+    "published": "2026-11-10T16:00:00.000Z",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "百度发布 ERNIE 5.5 Flash Preview，是 11 月 7 日 Base 模型的首个后训练版本：总参数 280B、激活 14B、支持 1M 上下文，API 已在千帆上线，权重将于 11 月 25 日前开源。官方展示的都是 Agent 框架内端到端完成的成果：11 小时长程任务把跨多代虚幻引擎的素材合入同一 UE 5.8 工程并用 C++ 写完整个游戏，且因是纯文本模型看不到画面，只能把试玩中的人物悬空、跑动方向不一致、相机错位转成可测量的代码测试来迭代；两个 Agent 用 Blender Python API 分别搭建机场与飞机并统一尺度后渲染合成；知识工作侧以 30 万个工作空间、1000 万份参考文件构建训练环境。官方明确这是后训练中间版本。",
+      "implications": "给「暗时间」一个反常识的细节：模型看不见画面，于是把「人物悬空、相机错位」翻译成可测量的代码测试来自我反馈——感知缺失被测试替代，这正是暗时间能自洽运转的前提。同时它延续 11-07 的判断：开源被拆成「先上 API、后放权重」的节奏，权重日期成为可谈判的筹码，与 Kimi 的 5.6TB 权重属同一类「名义开放」。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  }
+]
