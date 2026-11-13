@@ -652,7 +652,7 @@ def generate_news_report(news_data: list[dict], keywords: list[str]) -> Optional
         aihot_medium = [d for d in aihot_items if 4 <= d["analysis"].get("relevance", 0) < 6]
         
         lines.append(f"---\n\n## 🇨🇳 中国 AI 动态（AI HOT 精选）\n")
-        lines.append(f"> 来源：[AI HOT](https://aihot.virxact.com) · 编辑精选中文 AI 资讯\n")
+        lines.append(f"> 来源：[AI HOT](https://aihot.news/) · 编辑精选中文 AI 资讯\n")
         
         if aihot_high:
             aihot_high.sort(key=lambda d: -d["analysis"].get("relevance", 0))
