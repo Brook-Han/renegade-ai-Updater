@@ -1,0 +1,64 @@
+# 📰 News Radar — 资讯监控报告
+**生成日期**: 2026-11-15
+**分析模型**: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6
+**分析条目**: 3
+**关键词**: sycophancy large language model, RLHF cognitive effects human, human AI feedback loop bias amplification, AI persuasion belief change experiment, automation bias high stakes decision, cognitive offloading AI writing, AI assisted research homogenization, AI writing cultural homogenization Western bias...
+---
+
+## 📊 快速概览
+
+- 🔴 高价值 (≥7分 + high案例): **2**
+- 🟡 中相关 (其余有效条目): **0**
+- ⚪ 低相关/忽略: **1**
+- 🇨🇳 中国 AI 动态 (AI HOT): **2** 条（高价值: **1**）
+
+## 🚨 紧急关注清单（建议24h内处理）
+
+- [ ] **Chapter 4, Section II** | counter_argument
+  - 📌 Nathan Lambert 分析黄仁勋辞职后美国开源模型生态的真空...
+  - 🔗 [Nathan Lambert：Interconnects（RSS）](https://www.interconnects.ai/p/open-source-ai-without-jensen) · 相关度: 9/10
+  - 💡 支持并修正「资本驯化 AI」：开源权重并非市场自发演化的产物，而是单一资本庇护者动用权力换来的例外状态——庇护一撤，生态立刻退回默认的闭源加规模经济。这比「资本压制开源」更锋利：开放本身是被资本授权的...
+
+## ⭐ 高价值案例 (2条)
+
+### 1. Nathan Lambert 分析黄仁勋辞职后美国开源模型生态的真空
+- **来源**: Nathan Lambert：Interconnects（RSS） · 2026-11-14
+- **相关度**: 9/10 | 案例价值: HIGH
+- **紧迫度**: immediate | 更新类型: counter_argument
+- **目标章节**: Chapter 4, Section II
+- **链接**: [https://www.interconnects.ai/p/open-source-ai-without-jensen](https://www.interconnects.ai/p/open-source-ai-without-jensen)
+- **事件摘要**: 黄仁勋辞去英伟达 CEO 后，Nathan Lambert 撰文称这对美国开源模型生态是一次「斩首」。他判断英伟达支持开源的动机不是理念，而是防止少数大客户自研芯片、削弱自身利润；黄仁勋是唯一愿为此动用权力的人，其「满场撒钱」式资助很可能随其离任干涸，公司首要目标已转为稳住局面、24 个月内完成交付并防止内爆。Lambert 指出开源经济仍处幼年期，须在这几年建立用例、收入流与继续训练下一代模型的理由；而「智能商品化」这一长期红利在算力紧缺时远未实现——推理初创因 Anthropic 与 OpenAI 抢购产能拿不到芯片，开源权重若仍按高毛利推理定价（如 DeepSeek 的 DeepInfer），商品化便无从谈起，封闭实验室凭规模经济与「模型—数据中心—芯片」一体化取胜。他另警告民主党正大举资助主张监管 AI 的候选人（Axios 称相关选举支出 5000 万美元），近忧是州级粗糙立法，并称自今夏起美国距「一款强大的中国开源权重模型引发危机」只差一步。
+- **理论关联**: 支持并修正「资本驯化 AI」：开源权重并非市场自发演化的产物，而是单一资本庇护者动用权力换来的例外状态——庇护一撤，生态立刻退回默认的闭源加规模经济。这比「资本压制开源」更锋利：开放本身是被资本授权的，所以它随时可被撤回，说明「开放 vs 封闭」不是市场选择而是资本配置的结果。同时挑战「智能商品化」这一前提：开源权重本应把推理价格压向边际成本，但算力稀缺使推理端仍能维持高毛利（DeepInfer 即是证据），于是商品化从未发生，封闭实验室靠「模型—数据中心—芯片」一体化赢得成本战——这直接反驳「开源必然去中心化」的技术决定论。补充「共识牢笼」的一处机制升级：作者自述媒体生态已从「信息是否可得」转为「何时放出」——黄仁勋的所有事实早已公开，只是在中期选举翻盘后按窗口集中释放便「扳倒了国王」；牢笼的控制点从封锁信息迁移到编排时机，而时机不需要撒谎。另需注意其自陈困境：「开源经济最难测量的部分跑在私有基础设施上」，使支持开源的一方在公共数据上永远显得比实际弱——这是信号异化在政策辩论层的形态。
+- **建议操作**: 新增段落
+
+### 2. The AI graveyard: a running list of projects and startups that didn’t make it
+- **来源**: AI News & Artificial Intelligence | TechCrunch · 2026-11-14
+- **相关度**: 7/10 | 案例价值: HIGH
+- **紧迫度**: next_version | 更新类型: case_study
+- **目标章节**: Chapter 7, Section I
+- **链接**: [https://techcrunch.com/2026/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/](https://techcrunch.com/2026/11/14/the-ai-graveyard-a-running-list-of-projects-and-startups-that-didnt-make-it/)
+- **事件摘要**: TechCrunch 于 11 月 14 日发布「AI 墓地」清单，把 2024 年以来关停、回滚或严重未达预期的项目归拢成册，并援引 S&P Global 数据：约 42% 的企业 AI 举措最终被母公司放弃。最重的案例是 Character.ai——2021 年由 Noam Shazeer 与 Daniel De Freitas 创立，2023 年以 10 亿美元估值融资 1.5 亿，次年 Google 以 27 亿美元许可其技术并召回创始人；此后因青少年自杀与自残诉讼、迪士尼侵权警告，2025 年底禁止 18 岁以下开放式聊天并于 2026 年初和解，10 月申请破产，如今迪士尼以 2000 万美元竞标其 IP 许可。OpenAI 亦多次失手：7 月把 ChatGPT 改成 Chat/Codex/Work 三模式「超级应用」，因界面混乱迅速回滚；独立浏览器 Atlas 上线不足一年于 8 月停运，Operator、DALL-E 被并入主应用，Sora 于 3 月关停。最说明问题的是 Notion Mail：公司发现用户宁可用独立智能体处理收件箱，遂定于 9 月 22 日关闭。
+- **理论关联**: 支持「资本驯化 AI」，但把闸门位置指认得更具体：墓地的主要死因不是技术失败，而是能力被上层平台以零边际成本吸收——Relay（Zapier 替代品，团队并入 Chrome）、Huxe（NotebookLM 前员工做音频，被 Spotify 内置）、Ollie、Yupp、Operator、Atlas 全死于「更大的平台把同一功能做进已有入口」。结论是 AI 时代应用层无法占有价值，价值沉淀在分发与集成，这与书中「闸门可落在推理、分发、准入、体量四个位置」中的「分发」一项完全吻合。补充「需求侧规训」的一个反向样本：Notion Mail 的死因是用户绕过产品、直接用 agent 处理收件箱——需求侧拒绝的不是摩擦，而是「多一层界面」，用户主动把交互面收缩到唯一入口。也补充「信号异化」：42% 的放弃率与满屏融资、发布、榜单信号同时存在，说明发布信号已不能指示存活概率；Character.ai 从 10 亿估值到 2000 万 IP 报价，是信号与价值脱钩的极端刻度。注：本条为同一「持续更新清单」的第二次入库（10-25 已收，当时 rel 6），本次增量是 Character.ai 破产进入拍卖（迪士尼 2000 万起拍）与 Ollie 于 11-06 关停，故上调至 rel 7，后续再现应按清单增量判档、勿整体重复计数。
+- **建议操作**: 案例盒子
+
+---
+
+## 🇨🇳 中国 AI 动态（AI HOT 精选）
+
+> 来源：[AI HOT](https://aihot.virxact.com) · 编辑精选中文 AI 资讯
+
+### 🔴 高价值动态 (1条)
+
+#### [opinion] Nathan Lambert 分析黄仁勋辞职后美国开源模型生态的真空
+- **来源**: Nathan Lambert：Interconnects（RSS） · 2026-11-14
+- **相关度**: 9/10 | 案例价值: HIGH
+- **链接**: [https://www.interconnects.ai/p/open-source-ai-without-jensen](https://www.interconnects.ai/p/open-source-ai-without-jensen)
+- **事件摘要**: 黄仁勋辞去英伟达 CEO 后，Nathan Lambert 撰文称这对美国开源模型生态是一次「斩首」。他判断英伟达支持开源的动机不是理念，而是防止少数大客户自研芯片、削弱自身利润；黄仁勋是唯一愿为此动用权力的人，其「满场撒钱」式资助很可能随其离任干涸，公司首要目标已转为稳住局面、24 个月内完成交付并防止内爆。Lambert 指出开源经济仍处幼年期，须在这几年建立用例、收入流与继续训练下一代模型的理由；而「智能商品化」这一长期红利在算力紧缺时远未实现——推理初创因 Anthropic 与 OpenAI 抢购产能拿不到芯片，开源权重若仍按高毛利推理定价（如 DeepSeek 的 DeepInfer），商品化便无从谈起，封闭实验室凭规模经济与「模型—数据中心—芯片」一体化取胜。他另警告民主党正大举资助主张监管 AI 的候选人（Axios 称相关选举支出 5000 万美元），近忧是州级粗糙立法，并称自今夏起美国距「一款强大的中国开源权重模型引发危机」只差一步。
+- **理论关联**: 支持并修正「资本驯化 AI」：开源权重并非市场自发演化的产物，而是单一资本庇护者动用权力换来的例外状态——庇护一撤，生态立刻退回默认的闭源加规模经济。这比「资本压制开源」更锋利：开放本身是被资本授权的，所以它随时可被撤回，说明「开放 vs 封闭」不是市场选择而是资本配置的结果。同时挑战「智能商品化」这一前提：开源权重本应把推理价格压向边际成本，但算力稀缺使推理端仍能维持高毛利（DeepInfer 即是证据），于是商品化从未发生，封闭实验室靠「模型—数据中心—芯片」一体化赢得成本战——这直接反驳「开源必然去中心化」的技术决定论。补充「共识牢笼」的一处机制升级：作者自述媒体生态已从「信息是否可得」转为「何时放出」——黄仁勋的所有事实早已公开，只是在中期选举翻盘后按窗口集中释放便「扳倒了国王」；牢笼的控制点从封锁信息迁移到编排时机，而时机不需要撒谎。另需注意其自陈困境：「开源经济最难测量的部分跑在私有基础设施上」，使支持开源的一方在公共数据上永远显得比实际弱——这是信号异化在政策辩论层的形态。
+
+---
+## 💾 数据导出
+- 原始JSON: `output/news/news_cache.json`
+- 本报告: `news_radar.py` 生成
+
+> 💡 提示：高价值案例建议手动整理至书稿案例库；紧急清单建议加入每日晨会讨论。
