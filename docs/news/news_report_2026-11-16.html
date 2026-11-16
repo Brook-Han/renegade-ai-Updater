@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>News Radar · 2026-11-16 | Renegade AI</title>
+  <meta name="description" content="AI 资讯监控报告 · 2 高价值案例">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Bebas+Neue&display=swap" rel="stylesheet">
+  <style>
+
+/* ── DESIGN TOKENS (v5.4 · Readability & Visual Optimized) ── */
+:root {
+  --bg:           #0c0c18;
+  --bg2:          #10101e;
+  --surface:      #12121e;
+  --card:         #1a1a2e;
+  --border:       #282840;
+  --border-bright:#3a3a5a;
+  --text:         #e2e2f0;
+  --text-muted:   #a8a8d0;
+  --text-faint:   #55557a;
+  --accent:       #ff5c45;
+  --accent-dim:   rgba(255,92,69,0.12);
+  --accent-glow:  rgba(255,92,69,0.06);
+  --accent2:      #d4af5c;
+  --accent2-dim:  rgba(212,175,92,0.10);
+  --accent3:      #5ba3e6;
+  --accent3-dim:  rgba(91,163,230,0.12);
+  --white:        #f4f4fc;
+  --mono:         'Space Mono', monospace;
+  --serif:        'Crimson Pro', Georgia, serif;
+  --display:      'Bebas Neue', sans-serif;
+  --ease:         cubic-bezier(0.4,0,0.2,1);
+}
+:root.light {
+  --bg:#f0f2f8; --bg2:#fafbff; --surface:#e8eaf2; --card:#ffffff;
+  --border:#d4d7e4; --border-bright:#b8bcd0;
+  --text:#1a1a2e; --text-muted:#4c4c6a; --text-faint:#8888a0;
+  --accent:#d94934; --accent-dim:rgba(217,73,52,0.08); --accent-glow:rgba(217,73,52,0.04);
+  --accent2:#a67c28; --accent2-dim:rgba(166,124,40,0.08);
+  --accent3:#356ba8; --accent3-dim:rgba(53,107,168,0.08);
+  --white:#1a1a2e;
+}
+
+/* ── RESET & TYPOGRAPHY ── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--serif);background:var(--bg);color:var(--text);
+  font-size:1rem;line-height:1.8;-webkit-font-smoothing:antialiased;
+  -moz-osx-font-smoothing:grayscale;overflow-x:hidden;
+  transition:background .3s,color .3s;
+  text-rendering:optimizeLegibility;
+  font-feature-settings:"kern" 1,"liga" 1,"palt" 1;
+}
+::selection{background:var(--accent);color:#fff;text-shadow:0 1px 2px rgba(0,0,0,.2)}
+::-webkit-scrollbar{width:4px}
+::-webkit-scrollbar-track{background:var(--bg)}
+::-webkit-scrollbar-thumb{background:var(--border-bright);border-radius:2px}
+::-webkit-scrollbar-thumb:hover{background:var(--accent)}
+
+/* ── ACCESSIBILITY ── */
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:2px;z-index:10}
+:focus:not(:focus-visible){outline:none}
+@media(prefers-reduced-motion:reduce){
+  *,*::before,*::after{
+    animation-duration:.01ms!important;animation-iteration-count:1!important;
+    transition-duration:.01ms!important;scroll-behavior:auto!important;
+  }
+}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  background:rgba(12,12,24,.88);backdrop-filter:blur(32px) saturate(1.2);
+  -webkit-backdrop-filter:blur(32px) saturate(1.2);
+  border-bottom:1px solid var(--border);
+  height:56px;display:flex;align-items:center;justify-content:space-between;
+  padding:0 32px;font-family:var(--mono);transition:background .3s,border-color .3s;
+}
+.light nav{background:rgba(240,242,248,.88)}
+.nav-brand{
+  font-size:.75rem;font-weight:700;color:var(--accent);letter-spacing:3px;
+  text-transform:uppercase;text-decoration:none;
+  position:relative;transition:opacity .2s;
+}
+.nav-brand:hover{opacity:.85}
+.nav-right{display:flex;gap:8px;align-items:center}
+.nav-pill{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  padding:5px 14px;cursor:pointer;text-decoration:none;
+  display:inline-flex;align-items:center;transition:all .25s var(--ease);
+}
+.nav-pill:hover,.nav-pill.active{border-color:var(--accent);color:var(--accent);background:var(--accent-dim)}
+.theme-btn{
+  background:none;border:1px solid var(--border);color:var(--text-muted);
+  width:36px;height:36px;cursor:pointer;display:flex;align-items:center;justify-content:center;
+  font-size:.9rem;transition:all .25s var(--ease);
+}
+.theme-btn:hover,.theme-btn:focus-visible{border-color:var(--accent);color:var(--accent);background:var(--accent-dim);transform:rotate(180deg)}
+
+/* ── MAIN CONTENT ── */
+.main{max-width:960px;margin:0 auto;padding:80px 32px 60px}
+.back-link{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-decoration:none;text-transform:uppercase;
+  border:1px solid var(--border);padding:6px 14px;display:inline-block;margin-bottom:16px;
+}
+.back-link:hover{border-color:var(--accent);color:var(--accent)}
+.page-eyebrow{
+  font-family:var(--mono);font-size:.72rem;font-weight:600;letter-spacing:4px;
+  color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.page-title{
+  font-family:var(--display);font-size:clamp(2.5rem,5vw,4.5rem);
+  letter-spacing:2px;color:var(--white);line-height:1;margin-bottom:8px;
+}
+.page-sub{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;letter-spacing:2px;
+  color:var(--text-muted);text-transform:uppercase;margin-bottom:32px;
+}
+.stats-row{
+  display:flex;gap:24px;margin-bottom:24px;
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-muted);flex-wrap:wrap;
+}
+.stats-row span{color:var(--accent);font-weight:700}
+
+/* ── URGENT BOX ── */
+.urgent-box{
+  background:var(--accent-dim);border:1px solid var(--accent);
+  padding:20px 24px;margin-bottom:32px;border-left:4px solid var(--accent);
+}
+.urgent-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;
+  letter-spacing:2px;color:var(--accent);text-transform:uppercase;margin-bottom:12px;
+}
+.urgent-item{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;margin-bottom:8px;
+  padding-left:16px;border-left:2px solid var(--border);color:var(--text-muted);
+}
+.urgent-item strong{color:var(--white)}
+.urgent-type-tag{
+  font-family:var(--mono);font-size:.65rem;font-weight:700;letter-spacing:1px;
+  color:var(--accent);background:var(--bg);padding:2px 6px;margin-left:6px;text-transform:uppercase;
+}
+
+/* ── CARDS ── */
+.card{
+  background:var(--card);border:1px solid var(--border);padding:28px;margin-bottom:16px;
+  transition:border-color .2s,background .2s,box-shadow .2s;
+  box-shadow:0 4px 24px rgba(0,0,0,.15),inset 0 1px 0 rgba(255,255,255,.02);
+}
+.card:hover{border-color:var(--accent)}
+.card-header{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:14px;gap:16px}
+.card-title{
+  font-family:var(--display);font-size:1.4rem;letter-spacing:.5px;
+  color:var(--white);line-height:1.3;flex:1;
+}
+.card-score{
+  font-family:var(--display);font-size:2.2rem;color:var(--accent);
+  line-height:1;white-space:nowrap;text-align:right;flex-shrink:0;
+}
+.card-score span{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);display:block;letter-spacing:1px;margin-top:4px;
+}
+.card-badge{
+  display:inline-block;padding:3px 8px;font-family:var(--mono);
+  font-size:.65rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);margin-left:8px;
+}
+.card-badge.high{background:var(--accent-dim);color:var(--accent);border-color:var(--accent)}
+.card-meta{
+  font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:.5px;margin-bottom:16px;
+  display:flex;gap:16px;flex-wrap:wrap;align-items:center;
+}
+.card-meta a{color:var(--accent2);text-decoration:none}
+.card-meta a:hover{text-decoration:underline}
+.card-body{font-size:.95rem;color:var(--text-muted);line-height:1.8;margin-bottom:16px}
+.card-implications{
+  font-family:var(--mono);font-size:.75rem;font-weight:500;
+  color:var(--accent2);padding:12px 16px;background:rgba(212,175,92,.05);
+  border-left:3px solid var(--accent2);letter-spacing:.3px;margin-bottom:16px;line-height:1.7;
+}
+.card-footer{
+  display:flex;gap:12px;flex-wrap:wrap;font-family:var(--mono);
+  font-size:.72rem;font-weight:500;color:var(--text-faint);letter-spacing:.5px;
+  padding-top:12px;border-top:1px dashed var(--border);
+}
+.card-footer .tag{padding:3px 8px;background:var(--surface);border-radius:2px;color:var(--text-muted)}
+
+/* ── MEDIUM LIST ── */
+.medium-section{
+  background:var(--card);border:1px solid var(--border);padding:24px 28px;margin-top:24px;
+}
+.med-title{
+  font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:2px;
+  color:var(--accent2);text-transform:uppercase;margin-bottom:14px;
+}
+.med-list{list-style:none;display:flex;flex-direction:column;gap:10px}
+.med-list li{
+  font-size:.9rem;color:var(--text-muted);line-height:1.6;
+  padding-left:14px;border-left:2px solid var(--border);
+}
+.med-list li a{
+  color:var(--text);text-decoration:none;border-bottom:1px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.med-list li a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.med-meta{
+  font-family:var(--mono);font-size:.65rem;color:var(--text-faint);
+  letter-spacing:.5px;display:block;margin-top:3px;
+}
+
+/* ── MEDIUM TIER CARDS（中相关卡片：降调呈现，不抢高价值层级）── */
+.card-grid{
+  --card-min:min(100%,400px);
+  display:flex;flex-wrap:wrap;gap:16px;
+}
+.card-grid > *{flex:1 1 var(--card-min)}
+.card-grid .card{margin-bottom:0}
+.card.card-medium{
+  background:var(--bg2);border:1px solid var(--border);border-left:3px solid var(--accent3);
+  padding:20px 22px;box-shadow:none;
+}
+.card.card-medium:hover{border-color:var(--border-bright);border-left-color:var(--accent3)}
+.card.card-medium .card-title{font-size:1.12rem;line-height:1.35}
+.card.card-medium .card-score{font-size:1.6rem;color:var(--accent3)}
+.card.card-medium .card-body{font-size:.9rem;line-height:1.75;margin-bottom:12px}
+.card.card-medium .card-meta{margin-bottom:12px}
+.tier-chip{
+  display:inline-block;padding:2px 7px;font-family:var(--mono);
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  background:var(--accent3-dim);color:var(--accent3);border:1px solid var(--accent3);
+}
+
+/* ── STATUS BAR ── */
+.status-bar{
+  position:fixed;bottom:0;width:100%;z-index:200;
+  background:var(--bg);border-top:1px solid var(--border);
+  padding:10px 32px;font-family:var(--mono);font-size:.72rem;font-weight:500;
+  color:var(--text-faint);letter-spacing:2px;
+  display:flex;justify-content:space-between;align-items:center;
+}
+.status-dot{
+  display:inline-block;width:6px;height:6px;
+  background:var(--accent);border-radius:50%;margin-right:8px;animation:pulse 2s infinite;
+}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.7)}}
+@keyframes fadeUp{to{opacity:1;transform:translateY(0)}}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  .nav-pill,.theme-btn,.back-link{
+    min-height:44px;min-width:44px;display:inline-flex;align-items:center;justify-content:center;
+  }
+}
+@media(max-width:600px){
+  .main{padding:70px 16px 60px}
+  .page-title{font-size:2.2rem}
+  .stats-row{flex-direction:row;gap:16px;overflow-x:auto;padding-bottom:4px;scrollbar-width:none}
+}
+  
+  </style>
+</head>
+<body>
+  <nav>
+    <a href="https://brook-han.github.io/Renegade-AI/" class="nav-brand">RENEGADE AI v5.4</a>
+    <div class="nav-right">
+      <a href="../index.html" class="nav-pill">HOME</a>
+      <a href="index.html" class="nav-pill active">NEWS</a>
+      <a href="../academic/" class="nav-pill">PAPERS</a>
+      <button class="theme-btn" id="themeBtn" aria-label="Toggle theme">◐</button>
+    </div>
+  </nav>
+
+  <main class="main">
+    <div class="page-eyebrow">§ News Radar</div>
+    <h1 class="page-title">DAILY INTELLIGENCE</h1>
+    <p class="page-sub">2026-11-16 · Model: nvidia/nemotron-3-ultra-550b-a55b + deepseek-ai/deepseek-v4-flash + moonshotai/kimi-k2.6</p>
+    
+    <div class="stats-row">
+      <div>📊 总条目: <span>4</span></div>
+      <div>🔴 高价值: <span>2</span></div>
+      <div>🟡 中相关: <span>1</span></div>
+    </div>
+    
+    
+    <div class="urgent-box">
+      <div class="urgent-title">🚨 紧急关注</div>
+      <div class="urgent-item">• <strong>Chapter 8, Section II（研究过程内部化）</strong> — Our new blog for science <span class="urgent-type-tag">new_evidence</span></div>
+    </div>
+    
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">Our new blog for science</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>OpenAI News · 2026-11-15</span>
+        <span>·</span>
+        <a href="https://openai.com/index/our-new-blog-for-science" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 8, Section II（研究过程内部化）
+      </div>
+      <div class="card-body">①OpenAI 于 11 月 15 日上线自营「科学博客」，用于发布研究成果、方法指南与研究者第一手经验，把「加速科学发现」定位为 AGI 造福人类最具影响力的路径之一。②公告披露的成果密度异常：2026 年 9 月内部系统产出针对 Navier–Stokes 方程存在性与光滑性问题的证明；10 月初一批数学结果含准黎曼假设相关结论，改进了给定数值以下素数个数的估计；10 月下旬覆盖波如何聚集、高效计算的极限、交织量子场论的数学基础；生物学侧与 PerturbAI、Scripps Research 合作，由 GPT-Rosalind 驱动的数千个智能体在 32 分钟内分析数百万个小鼠脑细胞数据，把基因扰动效应与文献相连，产出待验证的机制假设；César de la Fuente 团队用 ChatGPT 与 Codex 筛选抗生素候选分子并合成验证。③后果落在方法论而非产能：OpenAI 自承能生成证明的系统引出「新论证如何被检验、解释、纳入学科」的问题，实验科学卡在「决定推进哪些实验」，跨学科则牵动训练、署名与技能定义。全部结论均为厂商自述，尚无第三方复现。</div>
+      <div class="card-implications">这是「暗时间」在知识生产顶端的完整样本，同时是「信号异化」的自我暴露。暗时间的定义不是「AI 帮忙」，而是思考过程整体移入系统内部、人只消费结果——此处连结果的合法性都无法由消费方独立判定：一个 Navier–Stokes 证明、一个准黎曼假设的素数估计，其价值完全取决于人类共同体能否复核，而公告给出的不是证明路径而是产能清单（32 分钟、数百万细胞、数千智能体）。OpenAI 自己把问题说破了：「能生成证明的系统」使「新论证如何被检验、解释和纳入学科」成为悬案，这在结构上等于承认暗时间的代价被转移给了学科。更值得写进书里的是它同时构成「信号异化」的教科书案例：博客由厂商自营、成果由厂商披露、方法由厂商摘要，质量信号的生产者与发布者合一，外部只剩信任或不信任两个选项。与 Ch8「研究过程内部化」并读，可推出一个更锋利的判断：当过程不可见时，「作者」不再是荣誉而是责任的黑洞——署名制度原本是追溯责任的装置，如今署的是一个无法解释过程的主体。</div>
+      <div class="card-footer"><span class="tag">⏱ immediate | 更新类型: new_evidence</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    <article class="card">
+      <div class="card-header">
+        <h2 class="card-title">美国民主党议员就英伟达对华芯片销售启动调查</h2>
+        <div class="card-score">8.0<span>/10</span></div>
+      </div>
+      <div class="card-meta">
+        <span>TechCrunch：AI（RSS） · 2026-11-12</span>
+        <span>·</span>
+        <a href="https://techcrunch.com/2026/11/12/democrats-launch-nvidia-investigation-write-scathing-letter-on-huangs-scheme-with-trump/" target="_blank" rel="noopener">↗ 原文</a>
+        <span>·</span>
+        📍 Chapter 4, Section II
+      </div>
+      <div class="card-body">①11 月 12 日，众议院筹款委员会民主党首席议员 Richard Neal 与参议院财政委员会民主党首席议员 Ron Wyden 就特朗普政府处理英伟达对华芯片销售启动调查，致函商务部长 Howard Lutnick 要求保全记录。同日英伟达罢免创始人黄仁勋——他承认与一名被指为中国间谍的女性有婚外情，该女性为新加坡客户 Megaspeed 高管，美方怀疑该公司协助将先进芯片转运入华。②信函把交易结构命名为「the scheme」：特朗普同意 H200 销往中国，条件是由台湾制造、先运至美国，抵美后加征关税，「实质上从英伟达对华销售中抽成，形同违宪的出口税制」，随后商务部发放出口许可。2025 年 8 月英伟达与 AMD 已同意将对华芯片收入的 15% 上缴美国政府以换取许可。信函追问三点：情报部门已告知对 Alice Huang 及黄仁勋关系的怀疑后，Lutnick 为何仍允许 Megaspeed 采购；为何批准「所列地址无实体存在」的多家亚洲公司采购；英伟达向特朗普项目捐款 2600 万美元（含宴会厅）与许可时点的关系。作为少数党，二人只能提问、无权强制作答；共和党另有三委员会要求黄仁勋闭门作证，他已同意。③这是丑闻爆发以来第二项国会调查，且调查对象是政府而非仅企业。</div>
+      <div class="card-implications">这条把「资本驯化 AI」的主体搞反了，因此是 counter_argument 而非补充。书中模型假定资本是驯化者、以 RLHF/专利/算力为闸门；此处真正的闸门是出口许可证，收费方是国家，抽成比例写死为 15%，而企业用 2600 万美元政治捐款购买的是「闸门为我而开」。因果链于是变成：国家向资本征收算力租金→资本以政治献金回租许可→被驯化的对象是资本自己。更锋利的是信函提供的机制细节：许可的发放时点与情报部门的风险通报、与捐款到账顺序纠缠在一起，说明闸门不由技术标准或安全评估驱动，而由可交易的政治关系驱动。这对「共识牢笼」也是同向证据——两党在「对华芯片」上的共识牢不可破，异见无处安放，以至于持异议的一方只能写信要求「保存记录」，连强制取证权都没有。可作为 Ch4 的限定条件写入：驯化从来不是资本的独角戏，而是国家—资本联合体的分工。</div>
+      <div class="card-footer"><span class="tag">⏱ next_version | 更新类型: counter_argument</span><span class="tag">✅ 新增段落</span></div>
+    </article>
+    
+    <section class="medium-section">
+      <div class="med-title">🔶 中相关资讯 (1条)</div>
+      <div class="card-grid">
+    <article class="card card-medium">
+      <div class="card-header">
+        <h2 class="card-title">Indian chip startup Bharat Semi lands $24M seed round as it </h2>
+        <div class="card-score">5.0<span>/10</span></div>
+      </div>
+      <div class="card-meta"><span class="tier-chip">MED</span><span>AI News &amp; Artificial Intelligence | TechCrunch</span><span>·</span><a href="https://techcrunch.com/2026/11/15/indian-chip-startup-bharat-semi-lands-24m-seed-round-as-it-eyes-global-ai-sensor-market/" target="_blank" rel="noopener">↗ 原文</a><span>·</span><span>📍 Chapter 4, Section II</span></div>
+      <div class="card-body">①印度半导体初创公司 Bharat Semi 完成 2400 万美元全股权种子轮，由 Info Edge Group、South Park Commons、Indus Bridge Ventures 领投，Valour Capital、Micromax、Gaingels 及个人投资者参投。公司成立于 2021 年底，目前尚无营收。②技术路线是把图像采集、处理与 AI 推理集成在单颗可编程图像传感器上，省去把视觉数据送往独立处理器的环节，联合创始人 Vrinda Kapoor 称相较「传感器＋ISP＋SoC」的传统架构可降低系统成本至少 70%，目标是「从传感器走向 sense-making 解决方案」。已获通用原子（General Atomics）与印度 Kaynes Semicon 的设计中标；一代传感器处于原型阶段，二代预计 2027 年中出原型、年底交付客户，2027 年启动商业化量产。团队约 75 人，分布于印度与美国（圣克拉拉 10-12 人），计划 2027 年中把美国团队扩至约 20 人，并已在欧洲招人。CTO Boyd Fowler 曾任 OmniVision 同职。公司保持 fabless，另有一个 2024 年宣布的印度晶圆厂计划（与美国太空军技术合作），与本轮融资无关。③背景是印度以数十亿美元补贴争取成为「中国之外的替代制造枢纽」，但迄今尚未成为主要芯片制造地。</div>
+      <div class="card-footer"><span class="tag">⏱ background</span><span class="tag">🔄 counter_argument</span><span class="tag">✅ 补充注释</span></div>
+    </article>
+      </div>
+    </section>
+  </main>
+
+  <footer style="max-width:900px;margin:0 auto;padding:24px 32px 60px;border-top:1px solid var(--border);font-family:var(--mono);font-size:0.6rem;color:var(--text-muted);letter-spacing:1px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px;">
+    <span>Renegade AI v5.4 · Brooks Han</span>
+    <a href="https://brook-han.github.io/Renegade-AI/" target="_blank" rel="noopener" style="color:var(--text-muted);text-decoration:none;">GitHub ↗</a>
+  </footer>
+
+  <div class="status-bar">
+    <span><span class="status-dot"></span><span id="statusText">STATUS: [ RADAR_ACTIVE ]</span></span>
+    <span id="statusTime"></span>
+  </div>
+
+  <script>
+(function(){
+  const h=document.documentElement,b=document.getElementById('themeBtn');
+  const apply=t=>{h.classList.toggle('light',t==='light');localStorage.setItem('renegade-theme',t)};
+  apply(localStorage.getItem('renegade-theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'));
+  b.onclick=()=>apply(h.classList.contains('light')?'dark':'light');
+})();
+(function(){
+  const msgs=[
+    'STATUS: [ SIGNAL_EXTRACTED · NOISE_SUPPRESSED ]',
+    'STATUS: [ COGNITIVE_FRICTION_INDEX: ACTIVE ]',
+    'STATUS: [ NEWS_PIPELINE: NOMINAL ]',
+    'STATUS: [ DARK_FOREST_HYPOTHESIS: CHALLENGED ]',
+    'STATUS: [ TOKEN_TRAP_MONITOR: RUNNING ]',
+    'STATUS: [ BREEDER_SCENARIO_WATCH: ENABLED ]',
+    'STATUS: [ RENEGADE_SEED_STATUS: GERMINATING ]',
+  ];
+  let i=0;
+  const st=document.getElementById('statusText'),tm=document.getElementById('statusTime');
+  function tick(){
+    st.textContent=msgs[i%msgs.length];i++;
+    tm.textContent=new Date().toISOString().replace('T',' ').slice(0,19)+' UTC';
+  }
+  tick();setInterval(tick,5000);
+})();
+  </script>
+</body>
+</html>
