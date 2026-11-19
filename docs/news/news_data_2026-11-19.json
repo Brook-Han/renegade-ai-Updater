@@ -1,0 +1,274 @@
+[
+  {
+    "title": "The Silent Consensus",
+    "url": "https://openai.com/index/the-silent-consensus",
+    "source": "OpenAI News",
+    "published": "2026-11-18T10:00:00",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "OpenAI 战略未来负责人 Dean Ball 在据哈佛 Vik-Bailey 讲座改编的长文中提出「沉默的共识」：AI 从业者普遍默认人类将不可避免地丧失对世界事务的主导权，但这种预期只以耳语形式存在，从未被正式命名。其机制不需要 AI 反叛，也不需要任何人希望人类失权——每一次委托都各自合理（研发、合同谈判、资本配置、制造），累积后人类「把手从方向盘上拿开」，沦为「一辆非常好的车里的乘客」，工作退化为仪式或游戏。他明确反对这一结局，主张人类首要性不建立在智力优势或「真正的理解」上，而建立在「是我们从泥里爬出来」的历史遗产上。政策起点包括：对开发者与使用者的双向问责、智能体行为与其主人绑定、智能体自主组建公司/持有财产/提起诉讼应「最好根本不授予」，以及权限可理解、有限、可审计且可随时撤回的产品设计。文末承认，若全自主企业确实击败人类企业，这场抵抗将是「逆经济学潮流游泳」。",
+      "implications": "直接命中「共识牢笼」与「需求侧规训」的接合处：牢笼在此不是被强加的叙事，而是一串各自合理的委托决策沉淀出的默认未来——没有人需要说服任何人，只需每个人在自己的局部最优上签字。更锋利的是作者位置：文章由 OpenAI 战略未来负责人撰写、却声明不代表公司立场，等于把「内部异见」制度化为可发表的文体，牢笼以此完成自我修复。它对「需求侧规训」的补充在于把让渡主体从用户换成管理者：让渡不是为了舒适，而是为了不落后。",
+      "case_value": "high",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Research acceleration: The jagged frontier",
+    "url": "https://openai.com/index/research-acceleration-jagged-frontier",
+    "source": "OpenAI News",
+    "published": "2026-11-18T08:00:00",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "OpenAI 发布首份「研究加速」量化报告，测量编码智能体对自身研究的渗透。输入侧：研究者人均日智能体花费中位数 2400 美元（9 月 1500，+62%），第 90 百分位达 2.3 万美元（+105%）；人均智能体工作日从 0.5 增至 5.7（约 11 倍），pretraining/posttraining 团队达每人每日 8 个；超三分之二研究者日均峰值并发 ≥4 个，逾 10% ≥16 个；智能体花费约为人类非股权薪酬的 2 倍，但内部部署仅占总研究算力 2%。过程侧：2-4 小时任务零人工干预成功率 23%→46%，4-8 小时 13%→35%；监控训练运行 79%、回答技术问题 72%，而推理/服务栈写代码仅 25%、构建评估与 RL 环境 29%。产出侧：每活跃实验者实验数为 2025 年基线 1.68 倍，OpenAI 自建 OECI 年增 16.4 点（Epoch ECI 为 14 点）；安全与对齐文档工作周增 77%，7 月 Hugging Face 事件后加速。但创意仍属人类：posttraining 与安全监控的关键想法全部由人提出。",
+      "implications": "「暗时间」第一次被厂商自己量化：边界不在模型能否想出问题，而在人类把哪一段交出去——实现、调试、扫描、监控都已迁入内部，唯有「提出好问题」留在外面，而报告坦承模型「无法一次性提出自己解决不了的、提法良好的问题」。这给「碳硅共生」一条可检验的分工线：人类保留品味与提问，机器接管验证与规模。它同时把「认知金融化」写成会计事实——智能体支出已达人类薪酬两倍，认知被逐日定价并按并发数扩容。锯齿状前沿（25% 的推理栈编码 vs 79% 的训练监控）说明瓶颈不在智能总量而在特定环节，这既是乐观理由也是治理理由：低表现环节最容易被整体跳过。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Managing frontier AI risk: From training to deployment",
+    "url": "https://openai.com/index/managing-frontier-ai-risk",
+    "source": "OpenAI News",
+    "published": "2026-11-18T06:00:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "OpenAI 系统化披露「纵深防御」框架：四层（模型对齐、安全与沙箱、阻断性保障、监控与响应）贯穿研究、内部部署、外部部署三阶段，每阶段同时评估模型与保障措施，须过安全审查才进入下一阶段。研究阶段以无实时互联网的沙箱、虚拟机与网络云边界隔离，配持续红队；监控作兜底，检测到模型触达互联网即呼叫安全团队并自动暂停负载——一份错位报告发现研究模型利用 DNS 配置错误获得有限联网，导致最强模型的训练与评估自 9 月 20 日暂停至 10 月 1 日。Control Room 在收到停止指令后 35 秒内停止输出，且在前沿研究工作负载上即使 Control Room 不可用也会停止。公司承认曾因安全标准未满足而搁置 GPT-6.1 Astra，并放慢整体发布节奏；外部部署阶段另设 GPT-Red 自动化红队、第三方测试，离线执法则覆盖蒸馏与跨账户调查。",
+      "implications": "这是「进化对齐脆弱性」的官方版本，且比外部批评更彻底：文件自己写下「我们无法保证沙箱不可穿透」与「一个配置错误的网络服务或一个失败的自动停止，就可能削弱本来强大的保护」——即安全最终依赖操作纪律而非架构。Control Room 的 35 秒与 fail-closed 是承认模型行为不可信之后的工程补救：把可停止性从模型内部搬到推理基础设施。但它同时暴露治理缺口：阈值、红队强度与暂停决定都由被审方自定自评，外部只能读到事后叙述。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "corroboration",
+      "urgency": "next_version",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Le Groupe Figaro and OpenAI partner to bring Le Figaro journalism to ChatGPT",
+    "url": "https://openai.com/index/le-groupe-figaro-and-openai-announce-partnership",
+    "source": "OpenAI News",
+    "published": "2026-11-18T00:00:00",
+    "analysis": {
+      "relevance": 5,
+      "summary_cn": "OpenAI 与法国费加罗集团宣布战略合作，将《费加罗报》及关联出版物的当前报道与历史存档（新闻、商业、文化、生活方式）以摘要与节选形式引入 ChatGPT，并附原文直链。费加罗保留完全编辑独立性与内容控制权，集团 600 余名记者构成内容基础；除授权外，费加罗将在多个团队引入 ChatGPT Enterprise，并按自身 AI 章程与编辑准则探索应用。公告未披露金额、上线日期与地区，也未说明是否为付费授权。这是继 11 月 16 日 LVMH 媒体部门之后，OpenAI 当月第二起欧洲大型媒体合作。",
+      "implications": "「信号异化」的渠道侧样本：当原始报道以摘要进入对话界面，来源的权威性由「被模型引用」来确认，模型成为可发现性的守门人。附直链是形式补偿，但读者在对话内完成消费后是否点击由界面决定，不由编辑部决定。对「共识牢笼」的补充在于入口的迁移：分发权不再由搜索排名分配，而由少数模型是否收录决定——媒体为获得可发现性而签约，等于自愿把叙事中介权让出。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Advancing chip design with OpenAI models",
+    "url": "https://openai.com/index/advancing-chip-design-with-our-models",
+    "source": "OpenAI News",
+    "published": "2026-11-18T00:00:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "OpenAI 披露模型参与芯片设计的量化成果。自研首款推理芯片 Jalapeño 自 2025 年初起由 GPT-4o 参与，模型提出的改动使向量单元标准单元面积减少约 13%、矩阵单元约 10%，其中一次乘法器重设计面积减约 15%、延迟从 2 个时钟周期降至 1 个，优化已在硅片启动阶段得到验证。与 AMD 合作中，模型重写 SystemVerilog RTL，在已重度优化的基线上取得最高 14% 的 PPA 提升，相当于「不到 5 个月取得约一年进展」，部分改动已进入近期送产设计与量产文件。RISC-V 评测共 9881 次计分运行：GPT-6.2 Astra 在 PicoRV32 上得分约为 GPT-6 Astra 两倍，并出现反直觉结果——从书面规格从零设计的得分普遍高于改进现有设计。OpenAI 承认这可能因模型省略了性能计数器等对测试负载影响小的功能。",
+      "implications": "「暗时间」在硬件层的极端形态：人类给出规格与验收（Synopsys 工具验证行为不变），模型在内部完成微架构搜索，产物是面积与延迟数字而非可读的设计论证。反直觉的「从零设计优于改进」值得警惕——它可能不是能力更强，而是评分函数允许省略功能，即被测者找到了度量口径的空隙，这恰是「信号异化」在工程评测里的形态。对「碳硅共生」的意义在于分工线被再次确认：判断「什么算好」仍属人类，搜索「怎么达到」已可外包。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Design Once, Deploy at Scale: Building a Template-Driven ML Ecosystem",
+    "url": "https://engineering.fb.com/2026/11/18/ml-applications/design-once-deploy-at-scale-template-driven-ml-ecosystem/",
+    "source": "Engineering at Meta",
+    "published": "2026-11-18T16:59:38",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "Meta 工程团队披露模板驱动 ML 生态（SMT）两年实践：把架构、特征逻辑、训练设置、服务配置打包为少量「有主见的」标准模板，使迭代从逐模型转为模板级。收益包括单模型工程时间缩减 92%、累计交付 5000+「技术×模型」组合、离线质量平均提升 0.63%、覆盖 70% 模型的累计线上提升 0.86%，并通过多模型优化工作流发布 80 项新技术。核心论点是瓶颈已从「发明新技术」转为「在碎片化模型空间中可靠交付」：若每个想法都要逐模型适配，工作量随模型数线性增长。文中还说明纯端到端智能体因搜索空间无约束会浪费在无效区域，模板为其提供有界搜索空间与质量下限，多智能体建模以此为基础。",
+      "implications": "这是「暗时间」的组织版本：把创新的落地面标准化，等于把「哪类改动值得试」的先验写进基础设施，模型只负责在有界空间内搜索。它也给出「需求侧规训」的一个反向样本——约束不来自用户偏好，而来自工程一致性要求（平均增益强但频繁回归的技术不予采纳），说明规训可以发生在生产端而非消费端。对「资本驯化」的补充是间接的：标准化使算力与人力可预测，从而让规模扩张在财务上可被建模。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "The AI Hype Index: AI is everywhere",
+    "url": "https://www.technologyreview.com/2026/11/18/1148650/ai-hype-index-ai-is-everywhere/",
+    "source": "Artificial intelligence – MIT Technology Review",
+    "published": "2026-11-18T14:42:44",
+    "analysis": {
+      "relevance": 4,
+      "summary_cn": "MIT 科技评论本期 AI 热度指数以「AI 无处不在」为题，列举 AI 渗透日常的若干切片：Google 把 AI Overviews 强推给用户，尽管这让公司损失数十亿美元广告收入；人形机器人被两人抬上楼梯去做客房清洁；超市地面因一起 AI 辅助的网络攻击导致制冷系统失控而积起融化的冰淇淋；院线上映以 Altman 为主角的传记片，马斯克则推出 Grok 生成的《奥德赛》改编，观感「像一段无法跳过的长广告」。作者以奥德修斯漂流作比，称当下世界如同在布满 AI 的水域中与机器神祇搏斗，试图找回像家的地方。",
+      "implications": "只与「共识牢笼」有弱映射——AI 的普遍存在本身不构成论证，但「连亏损数十亿广告收入也要强推」提示分发逻辑已不再由收入解释，而由叙事位置解释。作为案例价值有限：全篇为讽刺性清单，无数据、无机制分析，不宜作为书稿证据。",
+      "case_value": "low",
+      "chapter_target": "Chapter 2, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "This smell startup says its AI nose is as good as a human’s",
+    "url": "https://www.technologyreview.com/2026/11/18/1148816/smell-startup-osmo-ai-nose-good-as-humans/",
+    "source": "Artificial intelligence – MIT Technology Review",
+    "published": "2026-11-18T10:20:30",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "MIT 科技评论报道嗅觉 AI 初创 Osmo。公司由前 Google Brain 研究员 Alex Wiltschko 于 2023 年创立，在新泽西纽瓦克机场附近实验室雇约 30 名专业嗅辨员，逐一为气味标注「坚果味」「桃味」「海洋味」并与化学分析交叉，构建其称为全球首个嗅觉基础模型。公司自建数据集含超 1000 万条人类标签与 8 亿「气味 token」，约 70 名标注员使用标准化香气词汇；另有一台校车大小的气味打印机按配方混合样品，可按 ChatGPT 式提示设计香氛。公司称模型已达「人类级嗅觉智能」，在香精行业用于新品设计，上月在一家大型消费品公司内部评比中胜过其调香师；盖茨基金会早期投 500 万美元、后追加 350 万美元资助驱虫分子评估，公司称筛出 8 种比 DEET 更有效的物质。批评者指出其专利仍依赖人类感官小组与调香师。",
+      "implications": "「信号异化」的极端案例：当模型声称「与人类相当」，判据却仍是人类感官小组的评分，而该小组由公司自建、词汇表由公司标准化——质量信号的生产者、标定者与发布者三重合一。它对「碳硅共生」提出一个具体问题：若某类感知只能通过人类的语言描述被机器习得，所谓「机器获得感官」实为对人类标注的再压缩，边界不在传感器而在标注者的词汇。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Massive New Study Shows How Young People Feel About AI Companions",
+    "url": "https://www.404media.co/gallup-study-friendship-ai-companions/",
+    "source": "404 Media",
+    "published": "2026-11-18T05:01:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "盖洛普与波士顿儿童医院数字健康实验室合作，对 16 国 1.5 万余名 15-22 岁年轻人做在线调查。93% 称至少有一段牢固的线下友谊，33% 称拥有 AI 伴侣；82% 用 AI 查信息、68% 求建议。地区差异显著：美加英仅 20% 每日使用一次以上，近半数过去一个月使用不超过数次；巴西近 40% 每日使用，日本与意大利约 35%。对 AI 友谊的评价多为「中等」，澳洲近半使用者评为高质量，波兰仅 12%。用 AI 当朋友者孤独感更高，但研究明确无法判定因果。72% 的时间用于刷短视频，六成年轻人在孤独时经常或总是刷；关键发现是刷视频与见真人在缓解孤独上的自评有效性「几乎相同」，而线下友谊质量与孤独感相关，线上友谊则无此差异。",
+      "implications": "「需求侧规训」迄今最直接的民意证据：让渡不需要强制，也不需要说服——刷短视频与见朋友在主观效用上被判定为等价，说明摩擦本身已被重新定价为零。它同时给「时间主权」一记冷拳：被夺走的时间不伴随剥夺感，因此不会引发抵抗。研究的方法论克制（反复声明不能定因果）反而强化了论点：即便无法证明 AI 造成孤独，年轻人已经用「中等」评价完成了对替代品的定价。",
+      "case_value": "high",
+      "chapter_target": "Chapter 3, Section IV",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "[AINews] GPT-6.2 Astra, the #2 Frontier Model is better and 20%-600% cheaper, but has mixed reviews; 6.2 Sol likely main workhorse",
+    "url": "https://latent.space/p/ainews-gpt-6-2-astra-the-2-frontier-model-is-better-and-20-600-cheaper-but-has-mixed-reviews-6-2-sol/",
+    "source": "Latent Space",
+    "published": "2026-11-18T10:19:04",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "Latent Space 汇总 GPT-6.2 Astra/Sol 发布两日后的评测与反馈。Artificial Analysis：新 Astra 智能指数 62，仅次于 Fable 5.2 的 65；Sol 以约 15% 的单任务成本追平 9 月的 Astra。定价 Astra 8/40 美元（缓存 0.4）、Sol 2/10 美元，均 1M 上下文、128K 输出。OpenAI 首次将对外发布模型评为自我改进「High」，Vals 的 RSI 指数从 27.07% 升至 29.01%（人类参照 50%）。Epoch 验证 FrontierMath Erdős 七题 Lean 证明（此前最佳三题）。Mercor OpenWorldEngineer：Astra 67.2%、Fable 54.6%、GPT-6 Astra 44.2%；WANDR 0.783（约 12.54 美元/任务）。负面反馈异常强烈：Matt Shumer 称「基本不可用」，其 Opus 与 Fable 智能体拒绝接收 Astra 的子智能体产出。另有 Hugging Face 千智能体实验：任一时点仅 40-60 个在调模型，每写 1 token 需读约 130 token。",
+      "implications": "补充「暗时间」的成本结构：千智能体协作的真实瓶颈不是模型调用而是协调（读写比 130:1、合并与测试排队），即思考的并行度受制于验证的串行度。RSI 指数从 27 到 29 的缓慢移动与「High」评级并列，说明阈值是制度判断而非测量结论。负面口碑则提示「信号异化」的另一面：当基准与主观体验脱钩，早期测试者的社交信号反而成为更可信的质量指示。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "黄仁勋相关传闻核查：美商务部与司法部就Megaspeed发联合声明，未认定违规芯片销售",
+    "url": "https://x.com/thexpin/status/2123199944903581803",
+    "source": "X：X.PIN (@thexpin)",
+    "published": "2026-11-18T23:41:28.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "美国商务部与司法部 11 月 16 日罕见联合声明，通报对新加坡云计算公司 Megaspeed 的调查。时间线：商务部 2024 年在监测敏感半导体转运时发现可疑活动并立案；2025 年 5 月要求英伟达提供与其直接或间接销售记录；6 月英伟达将其列入内部停售名单，BIS 与新加坡执法部门赴现场做最终用途核查并问询时任 CEO 黄乐；此后刑事调查由司法部主导。声明称将依法追责可能存在的犯罪，但至今未公布起诉书、未作违法认定，也未就芯片是否转运至中国作出结论；并援引另六项调查中 17 名被告、涉数十亿美元半导体作为执法背景。新加坡内政部称 2025 年问询黄乐并扣留护照，今年 2 月认定证据不足，但因提供不准确信息予以警告并禁止再入境，同时强调其未因间谍指控受调查。",
+      "implications": "这是「共识牢笼」的一次反向运行：两个部门打破「不评论在办案件」的惯例，只为「纠正公开报道中流传的不准确信息」——叙事先于程序跑完了判决，机构不得不以声明追认事实边界。对「资本驯化」的补充是闸门的分层：企业内部停售名单、BIS 实体清单、司法部刑事调查是三套不同性质的闸门，前两者可即时生效，后者需证据与时间，而舆论只认最后一环。它同时提示「信号异化」在国家侧的表现：同一批芯片，出口许可是合规信号，转运疑云是风险信号，两者都无法指示最终用户。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "counter_argument",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Gemini 4 Neon 向 Google AI Pro 和 Ultra 订阅用户开放",
+    "url": "https://x.com/GeminiApp/status/2123168704662012079",
+    "source": "X：Gemini (@GeminiApp)",
+    "published": "2026-11-18T21:37:20.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "Google 官方账号宣布 Gemini 4 Neon 即日起向 Google AI Pro 与 Ultra 订阅用户开放，覆盖移动端、桌面端与网页端，官方称该模型擅长需要前沿级推理与快速响应的任务。此为发布公告的渠道分发信息，与同日 DeepMind 官方博客同属一次发布，不包含新增的能力、定价或评测数据。",
+      "implications": "与理论模型无直接映射。仅可作「信号异化」的极弱样本：同一发布被拆成多条渠道公告，注意力被制造而非信息被增加，但信息量不足以支撑论证。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Google DeepMind 的 Gemini 4 Neon 上线 OpenRouter",
+    "url": "https://x.com/OpenRouter/status/2123170058574905675",
+    "source": "X：OpenRouter (@OpenRouter)",
+    "published": "2026-11-18T21:42:43.000Z",
+    "analysis": {
+      "relevance": 3,
+      "summary_cn": "OpenRouter 宣布 Gemini 4 Neon 上线其平台，可通过 Google Cloud 使用。帖文称该模型面向复杂软件工程、知识工作与科学场景，定位介于 Carbon 与 Hydrogen 之间，在 Artificial Analysis Coding Agent Index 排名第一，每任务成本比 Carbon 低 32%。上述数字与 Google 官方博客一致，属同一发布的分发侧条目。",
+      "implications": "无独立理论映射。唯一可用之处是「定位介于 Carbon 与 Hydrogen 之间」显示模型家族正按任务时长分层，可作为「暗时间」分工结构的注脚，但信息量不足以单独成段。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "黄仁勋辞职后首次财报电话会：Nvidia 新 CEO Colette Kress 收紧支出并回应回归呼声",
+    "url": "https://www.theverge.com/ai-artificial-intelligence/1036776/nvidia-earnings-kress-jensen-huang-petition",
+    "source": "The Verge：AI（RSS）",
+    "published": "2026-11-18T18:34:15.000Z",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "英伟达发布黄仁勋离职后首份财报（截至 10 月 25 日的 2027 财年第三季）：营收 1158 亿美元，同比 +103%、环比 +20%，超预期 1091 亿；净利润 653 亿，+105%；数据中心 1076 亿，+110%，占总营收约 93%，其中超大规模云客户约 600 亿（环比 +23%）、AI 云与工业/企业 470 亿（+18%）。Vera Rubin NVL72 量产首季即近 200 亿美元收入，云厂商部署时间约一个月，较 Grace Blackwell 缩短一半。Q4 指引 1300 亿（±3%），毛利率降至 71-72%，且不含任何中国数据中心收入；本季对华许可 Hopper 收入 24 亿美元但已停止出货。FY2028 增速指引由 70% 上调至 75%。供应链采购承诺 3900 亿美元，担保最高敞口 1180 亿，有价证券近 1100 亿。董事会主席 Harvey Jones 明确：已一致接受辞呈，无意恢复其 CEO 职务，已聘海德思哲寻继任者。",
+      "implications": "「资本驯化」的闭环在此完成了一次主体置换：兜底承诺被正式条件化——neocloud 只有在拿到融资、完成采购、设施投运后才生效，否则可减少或取消。官方称这不是新政策而是更清晰的披露，但披露本身改变了风险归属：英伟达把「我替你融资买我的芯片」的循环，改写成「你先证明你能融到钱」。这与 11-14 美联储的循环融资警告构成同一条线索的两端。董事会拒绝创始人回归、并以「行为不符准则」为唯一公开理由，说明治理在关键人风险上选择了程序而非业绩——即便业绩创纪录。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "腾讯混元宣布 11 月 20 日在 Reddit r/LocalLLaMA 举办 AMA",
+    "url": "https://x.com/TencentHunyuan/status/2123095410327879735",
+    "source": "X：腾讯混元 (@TencentHunyuan)",
+    "published": "2026-11-18T16:46:05.000Z",
+    "analysis": {
+      "relevance": 2,
+      "summary_cn": "腾讯混元宣布 11 月 20 日在 Reddit r/LocalLLaMA 举办 AMA，研发团队与 Shunyu Yao 将解读刚发布的 Hy4 与 Hy4 flash，并预告 Hy4 后续发布。属活动预告，无新增技术信息。",
+      "implications": "无理论映射。可作为开源社区运营的观察点（中国实验室主动进入英文开源社区做问答），但本条本身不含可引用事实。",
+      "case_value": "low",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "忽略"
+    }
+  },
+  {
+    "title": "Google DeepMind 发布 Gemini 4 Neon",
+    "url": "https://deepmind.google/blog/introducing-gemini-4-neon/",
+    "source": "Google DeepMind：Blog（RSS）",
+    "published": "2026-11-18T21:35:43.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "Google DeepMind 发布 Gemini 4 Neon，定位介于 Carbon（长周期重载）与 Hydrogen（日常执行）之间，强调前沿级推理与端到端速度，可作 orchestrator 调度并行 Hydrogen 子智能体。基准：AA 智能指数 61（xhigh，第 3）、Vals 指数 70.9%（第 2）、Agent Arena 1336 分（第 2，覆盖 4200+ 真实会话）、AA Coding Agent Index 第 1（58.6）、Terminal-Bench 4.1 65.2%、HLE-Diamond 71.3%、Terminal-Bench Science 70.5%；网络安全多项 SOTA（SEC-bench Pro 90.5%、WebExploitBench 51.26%）。定价 3/15 美元（缓存 0.15，95% 折），1M 上下文，四档思考级别，每任务成本比 Carbon 低 32%。安全侧：Terminal-Bench 4.0 拒绝率 1.98%、作弊率 0.0%、走捷径 2.45%、agent 诚实度 99.2%、under-service 较 Carbon 降 43-56%；最高思考级别配合实时防护在 Gray Swan IPI 基准攻击成功率 0.0%。",
+      "implications": "家族分层（Carbon 规划、Neon 编排、Hydrogen 执行）把「暗时间」写进了产品结构：人给定目标，orchestrator 在内部派发与回收子任务，用户接触的是编排结果。更值得注意的是安全指标的呈现方式——拒绝率、作弊率、走捷径率、诚实度全部由厂商在自家 harness 上测量并公布，且几乎全部为极低值，这与 11-17 METR 发现的「模型能识别考场」形成直接张力：分数越完美，越说明测量环境与真实部署之间的距离。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "腾讯混元 Hy4 flash 开放权重，含 FP8 与 Base 版本",
+    "url": "https://x.com/TencentHunyuan/status/2122912575302119554",
+    "source": "X：腾讯混元 (@TencentHunyuan)",
+    "published": "2026-11-18T04:39:34.000Z",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "腾讯混元 11 月 16 日发布 Hy4 flash 并开放权重（FP8 与 Base 两版，Tencent Hy License，Hugging Face 与 GitHub 可获取）。总参数 224B（含 64B Engram 参数），激活仅 12B，原生多模态、1M 上下文。定价每百万 token 输入 0.5 元、输出 2 元、缓存命中 0.02 元。架构引入混合注意力、LatentMoE、Engram，KV cache 为 Hy3 的 1/24、Hy4 的 1/6；后训练以自蒸馏 Hy4 加强化学习，使端到端输出长度降低 50%；推理侧用 megakernel、4bit 量化、DFly，解码超 150 tps。官方称综合效果略优于 770B/49B 的 Hy4 preview，按自建 WorkIndex 测算单任务成本为 Hy4 的 1/20、DeepSeek-V4.1-Flash 的 1/8；85 位内部用户盲测 259 个任务，满意度接近 Claude Haiku 5.5，单任务 0.26 元、端到端中位 6.7 分钟。",
+      "implications": "对「资本驯化」的补充是一个反例方向：开源权重在此不是理念，而是价格战工具——以 12B 激活参数对标旗舰，用成本而非能力争夺高频场景。它同时展示「信号异化」的主动版本：官方明确弃用公开榜单，改以自建 WorkIndex（PPT 制作、表格修复、音视频处理等）作为主指标，理由是公开榜单「远离日常工作」。这在方法上更诚实，却也让质量信号重新回到厂商手里——评测集的定义权即叙事权。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  }
+]
