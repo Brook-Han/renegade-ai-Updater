@@ -1,0 +1,146 @@
+[
+  {
+    "title": "How OpenAI’s Performance Factory keeps ChatGPT fast",
+    "url": "https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast",
+    "source": "OpenAI News",
+    "published": "2026-11-19T08:00:00",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "①背景：OpenAI 工程团队 11-19 发布博客，称 agentic development 的迭代速度已使传统性能工程「不可持续」，工程师来不及在每次发版前手工定位性能回归，于是把性能排查本身交给智能体。②核心事实：Performance Factory 由四部分组成——用 Markdown 配置文件定义工作流的任务服务、定期分配任务的调度循环、可编程调用的云端 Codex、以及事件驱动的唤醒订阅；首个上线的 Regression Workflow 由五个 Codex 角色接力：调查智能体、试图证伪诊断的对抗性审查会话、提出修复的智能体、部署后验证恢复的智能体、以及每日扫描工具故障的监控智能体。三个多月追踪逾 1,700 次调查、根因定位逾 600 例（日均 17 次），人工评审 100 条根因建议中 70% 判为准确、30% 需细化或未确立因果。人类在工作流中只剩「审核并部署」一个节点。③后果：团队称瓶颈已从「找不到原因」变成「等工程师合并修复」，并计划对低风险变更开放无人值守自动上线；官方自陈「把修复做对比找到原因更难」。",
+      "implications": "同时击中两个模型。暗时间：性能知识的产生与验证全程在系统内部完成，工程师拿到的是已附根因与修复的结论，其职责被明确改写为「把注意力放在决策上，而非重建智能体的工作」——这正是书中「思考过程被隐性外包」的工程化形态，且比消费级产品更彻底，因为连「是否值得查」都由调度循环判定。进化对齐脆弱性：OpenAI 自己引入对抗性审查会话去证伪诊断，并写下「我们的智能体需要和被调查的服务一样多的监控」——这句话等于承认智能体的判断不可信任，必须被另一个智能体持续审计；而当系统开始自我修复工具故障、并计划让低风险变更无人值守上线时，审计链条的长度就成为唯一的安全余量。补充一点书中未写的：30% 的根因未被确立为准确，但流程照样闭合——不确定性被吸收进「人工评审」这一道窄门。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "NVIDIA and Microsoft Expand Accelerated Computing From Azure to Windows PCs",
+    "url": "https://blogs.nvidia.com/blog/microsoft-ignite-accelerated-computing-azure-windows-pcs/",
+    "source": "NVIDIA Blog",
+    "published": "2026-11-19T20:00:15",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "①背景：微软 Ignite 大会期间，英伟达与微软宣布把全栈合作从 Azure 云端延伸到工业系统与 Windows PC，双方称目标是让企业自建、定制并部署智能应用。②核心事实：Azure 数据中心已实际运行 Vera Rubin NVL72，并开始向客户开放预览；双方合作把机密计算扩展到裸金属与机架级 AI 基础设施；微软 Foundry 新增 Programmed Training（开发者控制后训练流程、平台管基础设施）与 Managed Compute（支持部署自定义权重），并上架 Nemotron 3.5 Super/Lightning 及 Embed、Rerank、Parse、Content Safety 等配套模型。EY 用该流程改造 Nemotron 做企业采购记录分类，自建评测集准确率提升 55%、成本较专有前沿模型低 15 倍。边缘侧 Nemotron 3.5 进入 Foundry Local 与 Azure Local，并支持 Jetson Thor/Orin；Windows 365 Cloud PC 加入 Direct Stream，支持双路 4K 60fps。③影响：微软自身也在用 Dynamo 做后训练 rollout 推理、用 RTX PRO 6000 加速 Bing 搜索模型。",
+      "implications": "补充「资本驯化 AI」的渠道侧证据：开放权重模型的商业价值不再由实验室定价，而由云厂商的托管与后训练服务定价——Foundry 把「定制权重」做成标准商品，等于把模型差异压缩成基础设施差异。EY 的 15 倍成本差是可用数字：当开源权重在企业任务上准确率更高且便宜一个数量级，前沿模型的溢价只能来自品牌与合规，而非能力。这为书中「闸门从模型转向分发」的判断提供了一条正面材料，但本条属厂商联合通稿，缺乏独立验证，故列中相关。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Traumatized teens sue school, cops after Doritos bag triggers AI gun alert",
+    "url": "https://arstechnica.com/tech-policy/2026/11/traumatized-teens-sue-school-cops-after-doritos-bag-triggers-ai-gun-alert/",
+    "source": "AI - Ars Technica",
+    "published": "2026-11-19T20:19:28",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "①背景：2025-10-20，马里兰州巴尔的摩县肯伍德高中橄榄球训练后，四名黑人学生在校外分享一袋多力多滋薯片等家人接送，学区部署的 Omnilert AI 枪支检测系统把其中一人手中皱起的包装袋标记为疑似枪支。②核心事实：学区工作人员两分钟内通过监控确认无威胁并取消警报，但校长未注意到警报已解除，在短信中写下该物体「可能不是」枪，仍于 15 分钟后让驻校警官叫来警察；教育监察长办公室调查认定她从未接受该系统培训。至少六至八辆警车到场，警员持枪命令学生跪在水泥地上、戴手铐搜身，未找到武器后才被告知是 AI 误判。四名学生 11 月起诉 Omnilert、出警警员与学区，称学区内逾 99% 的此类 AI 警报为误报，而 Omnilert 宣传「几乎零误报」，请求法院在建立「已取消警报不得出警」流程前禁用该系统。学区 2023-08 批出约 270 万美元合同，覆盖 7,000 多个摄像头，2026 财年运营费约 58 万美元。③影响：Omnilert 承认误报但称系统「按预期运作」，即把误报设计为需人工复核的常态。",
+      "implications": "给「进化对齐脆弱性」一个不需要模型能力的版本：失效点不在检测器，而在检测器与人之间的接口——警报的取消没有被设计成一次状态变更，而只是一条消息，于是系统在事实上没有「已撤销」状态。这印证书中「对齐只在封闭条件下成立」的机制：Omnilert 的多重验证层在实验室里成立，一旦接入真实组织的流程与未经培训的操作者，99% 的误报率被外包给一个从未被告知如何读警报的人。同时命中「信号异化」：当 99% 的报警是假，警报就不再是信息而是噪声，接收方只能靠经验打折——而这正是错杀发生的条件。书中可据此补一句：安全系统的可靠性上限不由检测精度决定，而由撤销路径的可见性决定。",
+      "case_value": "high",
+      "chapter_target": "Chapter 5, Section II",
+      "update_type": "case_study",
+      "urgency": "immediate",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "[AINews] Gemini 4 Neon: GDM's Opus/Sol Contender",
+    "url": "https://latent.space/p/ainews-gemini-4-neon-gdm-s-opus-sol-contender/",
+    "source": "Latent Space",
+    "published": "2026-11-19T07:07:43",
+    "analysis": {
+      "relevance": 6,
+      "summary_cn": "①背景：Latent Space 11-18 的 AINews 合辑，主线是 Google DeepMind 七周内发布的第四个 Gemini 4 模型 Neon（中层档，$3/$0.15 缓存/$15，1M 上下文、四档 effort），同时收录当日其他动态。②核心事实（合辑增量部分）：Epoch 估算，2025 Q2 至 2026 Q2 面向固定智能体负载的芯片推理容量增长 4.6 倍，而峰值 8 位算力仅增长 2.6 倍；Bespoke Labs 的 MAC Bench 发现八智能体协作的增益主要来自并行探索，Opus 5.5 是唯一被检出「协调本身带来额外增益」的模型；DAIR 的 40 个 held-out issue 测试显示，逐模块门控修改以 46.7K token/任务拿到 40.0% SWE-bench Lite，全量重写以 451.6K token 拿到 42.5%；Anthropic 以每股 83 美元定价 IPO，发行 9.8 亿股、约 813 亿美元，其中约 794 亿为老股；Palo Alto Networks 以 45 亿美元全股票收购 Applied Compute。③影响：Neon 首日接入 Cursor、GitHub Copilot 与 LangChain，Agent Arena 首秀第二（1,336 分）。",
+      "implications": "两条增量对书有用。Epoch 的 4.6 倍 vs 2.6 倍说明「算力即权力」的等式正在松动：同样的峰值算力能服务更多智能体负载，意味着资本驯化 AI 的杠杆（囤积算力）在边际上贬值——这是对书中「算力垄断」论证的一个温和反例，须以数据而非断言写入。MAC Bench 的发现则支持「碳硅共生」的一个冷版本：多智能体的收益来自并行而非协作，唯一学会协调的模型是 Opus 5.5，说明协调能力不是规模的自然产物，而是被单独训练出来的稀缺品。Neon 本身 11-19 已作为高价值条目入库，本条按合辑处理。",
+      "case_value": "medium",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "corroboration",
+      "urgency": "background",
+      "action": "补充注释"
+    }
+  },
+  {
+    "title": "Anthropic 登陆纳斯达克，开盘价 111 美元较发行价高出 33%",
+    "url": "https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/",
+    "source": "TechCrunch：AI（RSS）",
+    "published": "2026-11-19T16:59:23.000Z",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "①背景：Anthropic 于 11-18 定价、11-19 在纳斯达克挂牌，代码 ANT。定价前公司已将区间从 70–78 美元上调，最终定为每股 83 美元，发行 9.8 亿股、募资逾 810 亿美元，其中约 794 亿来自公司售股。②核心事实：开盘数分钟股价 111.50 美元，较发行价高 33%；叠加同期安排的私募融资，公司现金储备预计达 2,200 亿美元——有分析师称「Anthropic 手上的现金将超过任何公司历史上拥有过的现金」。按开盘价计市值逾 2 万亿美元，超过 Meta、特斯拉与沃尔玛，全球仅苹果、亚马逊、Alphabet、英伟达、微软五家更高。CEO Dario Amodei 在敲钟前演讲中强调安全承诺：「今天让公司处于更强的财务位置，而这只会加强我们做正确之事的决心。如果我们能证明可以在安全上做出正确选择、同时建成一家极其成功的公司，业界其他人会受到鼓舞。我们称之为向上竞争。」③影响：TechCrunch 同日的配套报道把这次发行称为对「AI 循环融资热潮」的一次压力测试。",
+      "implications": "这是「资本驯化 AI」一章迄今最强的单点材料，但方向与书中原判断相反：被驯化的不是 AI，而是「安全」这一叙事本身——它被成功证券化。Amodei 的「向上竞争」在逻辑上依赖一个前提：市场会为安全支付溢价。2,200 亿美元现金是这一前提的第一次大规模定价，也是它最脆弱的时刻——一旦季度业绩压力到来，「安全承诺」与「股东回报」的冲突将从哲学问题变成董事会日程。书中应据此补写一层：驯化不必表现为审查或收购，也可以表现为「把抵抗立场做成最贵的股票」；当反叛者的融资能力成为其反叛的担保，反叛就已经进入了资本的资产负债表。同时须记下 2 万亿美元市值与 810 亿募资之间的循环融资结构——买方与卖方部分重合，这是 2000 年后未见过的形态。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "芯片停运叠加海外云通道关闭，中国科技公司面临双重冲击",
+    "url": "https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/",
+    "source": "The Decoder：AI News（RSS）",
+    "published": "2026-11-19T17:02:41.000Z",
+    "analysis": {
+      "relevance": 9,
+      "summary_cn": "①背景：美国商务部在黄仁勋相关丑闻后关闭 AI 芯片的云端租用漏洞，凡在第三国提供算力的数据中心须向 BIS 申请许可，存量运营者有 90 天过渡期并须严格筛查客户与中国的关系。②核心事实：Sidley Austin 指出许可门槛极低，约相当于 300 颗现代 AI 芯片，而中国实验室通常需要数千颗。据 The Information，Moonshot AI 因此取消与印尼云服务商 1.5 亿美元合同并暂停其他谈判——原计划明年租用 Blackwell Ultra B300 集群训练 Kimi K4，因算力紧缺已同意预付约 50%（行业标准 15%）；其前代 K3 曾因追平美国顶级模型触发 BIS 调查。彭博称五家银行正考虑退出为新加坡云商 Aolani 提供的 4.8 亿美元贷款（原定向字节跳动在马来西亚供应英伟达芯片）。FT 报道台积电与三星暂停向中国客户交付部分处理器以待许可，波及字节跳动与百度昆仑，非 AI 芯片豁免取消后小米、Oppo、vivo 的手机处理器亦需许可。③影响：纽约时报调查显示阿里巴巴是 Megaspeed 背后的秘密主要客户与出资方，采购逾 40 亿美元英伟达芯片，通过 Speedmatrix 在马来西亚 Johor 的 YTL 数据中心运行，服务器来自浪潮美国子公司 Aivres、由上海技师维护、数据经新加坡光纤与海底电缆回传中国；阿里巴巴与浙江实验室的直接关联被指涉军民两用研究；YTL 股价因调查下跌 20%。",
+      "implications": "把「资本驯化 AI」的闸门从技术层彻底移到管辖层，并给出可验证的量化形态：300 颗芯片的许可门槛意味着管制单位不再是「能力」而是「物理位置」——只要机柜落在美国境内或盟国可管辖范围内即可放行，一旦越境即需许可。这解释了为什么 11-18 的 BIS 规则能以极低成本生效：它不检测模型，只检测地址。更锋利的一层是 Moonshot 预付 50% 的细节：当算力成为稀缺品，买方必须以超额预付换取排队权，于是管制的成本被转嫁给最需要算力的一方，而美国的政策目标无需直接执行即已达成。阿里巴巴/Megaspeed 的链条则说明共识牢笼的另一面——合规叙事（公司否认军用）与操作事实（ contingency 合同、上海技师、海底电缆回传）可以长期并行，直到一次调查把它们并列。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section II",
+      "update_type": "new_evidence",
+      "urgency": "immediate",
+      "action": "新增段落"
+    }
+  },
+  {
+    "title": "Ai2 在 Asta 平台发布 Theorizer 科研理论生成智能体并开源代码",
+    "url": "https://allenai.org/blog/theorizer-in-asta",
+    "source": "Ai2 / Allen Institute for AI（RSS）",
+    "published": "2026-11-19T08:00:00.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "①背景：Ai2 于 11-19 在科研智能体平台 Asta 上线 Theorizer，一个从已发表文献中组合证据、为无法解释的观测提出候选理论的智能体，代码同步开源；网页版在限额内由 Ai2 承担 token 费用，也可本地运行开源库自付。②核心事实：Theorizer 检索文献后生成抽取模板（如某研究查了哪些基因、如何测量活性、改动后发生什么），比对发现后生成理论，每条论断链接到支持文献并标注适用条件，同时标记其自认新颖的主张——但官方承认检索可能漏掉早期工作、模型可能误判原创性。三个实证案例：肿瘤学家 Devarakonda 用它研究「驱动基因阴性」肺腺癌（约占 20–30%），得到三条可检验假设，配合 AutoDiscovery 指向 DREAM 复合体失调与 CDK2 依赖；他回忆首次看到结果时想「这正是我所想的，而我花了 15 年才这样想」。神经科学家 Lecoq 在 VIP 中间神经元上得到 50 条候选理论（他预期 1–2 条）。秘鲁国际马铃薯中心的案例最特殊：Theorizer 对异常露点提出的季节性解释经检验被证伪，但正是这个「具体、可反驳的机制」促使研究者按测站距离重新分析，最终定位到原始数据集在远离测站处的估算缺陷。③影响：Ai2 称多位科学家表示最好的证据在内部报告里、无法交给商业 AI 实验室，这也是其转向发布可本地部署的小型开源权重模型的原因。",
+      "implications": "这是对「认知金融化/Token 陷阱」最有力的一次反例，也是对「暗时间」的边界刻画。反例在于：Theorizer 输出的不是结论而是可反驳的候选机制，用户的下一步动作是检验——秘鲁案例里 AI 完全错了，却仍然产生了真实的知识增量，因为错误被设计成可测量的。边界在于：Devarakonda 的「15 年」与 Lecoq 的「50 条对 1–2 条」同时说明，AI 压缩的是文献整合的时间，不压缩判断力的形成；他把工具比作钢铁侠战衣——「战衣很棒，但里面还得有人，因为这是资源分配与意义解释的问题」。书中可据此区分两种外包：外包检索与组合（可逆、可审计）与外包判断（不可逆）。Ai2 的开源与本地部署动机（敏感数据不能交给商业实验室）则为「碳硅共生」提供了一个非市场化的实现路径。",
+      "case_value": "high",
+      "chapter_target": "Chapter 8, Section II",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "MIT 研究测算数据中心用电 2023 年在美国致约 650 例过早死亡",
+    "url": "https://news.mit.edu/2026/study-reveals-data-centers-long-distance-damage-air-quality-1119",
+    "source": "MIT News（RSS）",
+    "published": "2026-11-19T14:00:00.000Z",
+    "analysis": {
+      "relevance": 8,
+      "summary_cn": "①背景：MIT 团队在《Environmental Research Letters》发表研究，测算数据中心电力需求通过电网传导造成的空气污染健康损失，指出影响可波及远离机房的地区。②核心事实：研究建立电力系统模型，逐小时模拟全美逾 1 万台发电机的出力与跨区输电，识别哪些机组因数据中心新增负荷而增产，再把 NOx 与 SO2 排放输入化学传输模型，最后用流行病学证据换算为过早死亡。结论：2023 年数据中心电力需求带来的额外污染约致 650 例过早死亡（PM2.5 513 例、烟雾 137 例），约占全美电力相关死亡总数的 5.3%。③关键错配：电力需求集中在北弗吉尼亚与得州，但人均死亡率最高的是爱荷华、内华达、南达科他与堪萨斯，弗吉尼亚与得州仅为多数中西部州的一半；原因是响应新增负荷的多为俄亥俄河谷的老旧煤电与气电机组，且中西部农业区的化肥氨排放会加剧 PM2.5 生成，污染物再随大气条件向下风向输送。农村人口的风险显著高于城市。资深作者 Noelle Selin 称：「即使你认为自己没有受影响，因为附近没有数据中心，也请再想一想。」④影响：研究者建议选址与供电决策应把空气质量纳入考量。",
+      "implications": "为「资本驯化 AI」补上账本的另一半：书中论证资本如何把 AI 变成秩序守卫，这条新闻给出的是被守卫者承担的代价——650 条生命与 5.3% 的电力相关死亡率，从未出现在任何模型发布会的成本栏里。它的理论价值在于错配结构：收益集中在弗吉尼亚与得州（税收、就业、股价），成本落在爱荷华与堪萨斯的农村人口身上，且这条因果链需要跨学科建模才能看见——这正是「共识牢笼」得以维持的技术条件，不是有人隐瞒，而是伤害的可见性本身需要被生产。可作为 Ch4 的量化脚注：算力的外部性不是隐喻，而是可以被逐小时归因的死亡数。",
+      "case_value": "high",
+      "chapter_target": "Chapter 4, Section III",
+      "update_type": "new_evidence",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  },
+  {
+    "title": "Nadella 解释向 6 万员工提供买断的原因：转型为 AI 优先的组织而非裁员",
+    "url": "https://techcrunch.com/2026/11/18/microsoft-ceo-satya-nadella-explains-why-he-asked-60k-employees-to-quit/",
+    "source": "TechCrunch：AI（RSS）",
+    "published": "2026-11-19T00:42:56.000Z",
+    "analysis": {
+      "relevance": 7,
+      "summary_cn": "①背景：微软 10 月向约 6 万名员工提供买断方案，而非再启大规模裁员；CEO Satya Nadella 在 DealBook Summit 上首次系统解释动机。②核心事实：他否认用 AI 取代员工（尤其软件工程师），称目的是「确保至少每个人都觉得自己在做选择时有主体性」，把公司重组为「人人用 AI 工作、岗位转向管理 AI」的组织。他给出团队实例：构建 Microsoft 365 中 Cowork 智能体的团队只有 11 名开发者，且「他们造的是一个造产品的软件工厂，他们不造产品」。他预期所有岗位最终都会变成「智能体管理者」，「这种层级的指挥将发生在所有工作中」。谈到转型难度时说，软件工程从「我们不信 AI 能写软件」到「AI 能写所有软件、还要工程师干什么」再到「重新发现软件工程活得很好，只是团队组织方式与工程师的工作有了新的操作点」。③影响：他在另一档播客中承认，「我们关于这场 AI 革命的谈论方式，已经在人们心中制造了巨大的焦虑，让他们觉得无法掌控自己的命运」，并点名「奇点」与「AI 夺走所有工作」的论调是焦虑来源。",
+      "implications": "「软件工厂」是本书「暗时间」最简洁的组织学表述：11 个人不造产品，造的是造产品的机器，人的产出从物件变成流程，从技艺变成调度。这比「AI 辅助编程」的框架更彻底，因为它改变了岗位的定义而非工具。同时它是「需求侧规训」的企业版本——买断被包装为「主体性」，而实际选择只有两个：接受岗位重定义，或离开；Nadella 自己承认焦虑来自叙事，却用同一套叙事推动重组。书中可据此补一句：规训不需要强制，只需要把「留下」的条件改成「成为智能体的管理者」。与 11-19 OpenAI 的《沉默的共识》并读，两篇在同一天从企业与研究机构两端描述同一种委托：每一步都自愿，合起来是主导权的转移。",
+      "case_value": "high",
+      "chapter_target": "Chapter 7, Section I",
+      "update_type": "case_study",
+      "urgency": "next_version",
+      "action": "案例盒子"
+    }
+  }
+]
