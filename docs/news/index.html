@@ -477,13 +477,88 @@ footer a:hover{color:var(--accent)}
 
 <!-- MAIN -->
 <main class="main">
-  <div class="day-group" data-date="2026-11-20">
+  <div class="day-group" data-date="2026-11-21">
+  <div class="day-header-row">
+    <div class="day-header-left">
+      <div class="day-eyebrow">NEWS · 00:00:00</div>
+      <h2 class="day-date">2026-11-21</h2>
+    </div>
+    <div class="day-header-right">TOP 3 / 8 NEWS</div>
+  </div>
+  <div class="card-grid">
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 4, Section II</span>
+          
+        </div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://openai.com/index/combatting-adversarial-distillation" target="_blank" rel="noopener">Combatting adversarial distillation</a>
+      </h3>
+      <p class="radar-card-body">OpenAI 于 11-20 发布对抗性蒸馏防御说明：蒸馏者用前沿模型输出训练学生模型，能力被复制而安全护栏不被继承，重点针对「受保护推理」（链式思考，含最终答案未写出的信息）。防御分两层：请求层用对抗训练加输入/输出分类器（覆盖助手消息、工具调用参数、流式与非流式响应），API 层把受保护推理绑定到产生它的对话历史，更早消息被改写即丢弃其后推理，并禁止旧模型家族读取 GPT-6.2 的加密推理；活动层每周对协同提取账号执行执法，规模从数千到数万，今夏显著上升，并与同行共享妥…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://openai.com/index/combatting-adversarial-distillation" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-11-21.html">查看 2026-11-21 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 5, Section II</span>
+          
+        </div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://thinkingmachines.ai/news/inkling-2-mini/" target="_blank" rel="noopener">Thinking Machines Lab 发布可跑在笔记本上的开源权重模型 Inkling 2 Mini</a>
+      </h3>
+      <p class="radar-card-body">Thinking Machines Lab 11-20 发布开放权重模型 Inkling 2 Mini：24 层分为四个六层块，中间两块每 token 运行三次、首尾各一次，形成每 token 48 次层应用的循环 Transformer；MoE 总参数 26.4B、激活 3.4B，含循环的权重激活 5.4B，权重以 NVFP4 原生训练与部署、末四层为 MXFP8，总内存约 20GB，可在 32GB 以上内存的 Mac 经 Ollama 本地运行。在 100B 以下开放权重…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://thinkingmachines.ai/news/inkling-2-mini/" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-11-21.html">查看 2026-11-21 完整报告 →</a>
+      </div>
+    </article>
+    <article class="radar-card" data-type="news">
+      <div class="radar-card-top">
+        <div class="radar-card-meta">
+          <span class="type-tag news">📰 新闻</span>
+          <span class="card-chapter">§ Chapter 8, Section II</span>
+          
+        </div>
+        <div class="radar-score">
+          9.0<span>/10</span>
+          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
+        </div>
+      </div>
+      <h3 class="radar-card-title">
+        <a href="https://www.minimax.io/blog/practical-cryptanalysis-with-minimaxs-latest-internal-model" target="_blank" rel="noopener">MiniMax 内部模型 MIM 实现多项密码分析实用攻击并开源验证轨迹</a>
+      </h3>
+      <p class="radar-card-body">MiniMax 11-20 披露用内部研究模型 MIM 做自动化密码分析，称在多个此前无实用攻击的方案上取得首个实用破解。在 CryptanalysisBench（NeurIPS 2026，ETH Zurich 与 Anthropic 等构建）Tier 2 的 135 个无已知实用攻击方案上：Waterfall-256 首次构造碰撞，单核 0.045 秒覆盖所有输出长度；Blender-256 全轮碰撞 0.36–2.3 秒；LOCKER 把求解矩阵由 42 PB 压到 58…</p>
+      <div class="radar-card-footer">
+        <a class="card-source-link" href="https://www.minimax.io/blog/practical-cryptanalysis-with-minimaxs-latest-internal-model" target="_blank" rel="noopener">↗ 原文</a>
+        <a class="full-report-link" href="./news_report_2026-11-21.html">查看 2026-11-21 完整报告 →</a>
+      </div>
+    </article>
+  </div>
+</div>
+
+<div class="day-group" data-date="2026-11-20">
   <div class="day-header-row">
     <div class="day-header-left">
       <div class="day-eyebrow">NEWS · 00:00:00</div>
       <h2 class="day-date">2026-11-20</h2>
     </div>
-    <div class="day-header-right">TOP 3 / 9 NEWS</div>
+    <div class="day-header-right">TOP 1 / 9 NEWS</div>
   </div>
   <div class="card-grid">
     <article class="radar-card" data-type="news">
@@ -504,48 +579,6 @@ footer a:hover{color:var(--accent)}
       <p class="radar-card-body">①背景：Anthropic 于 11-18 定价、11-19 在纳斯达克挂牌，代码 ANT。定价前公司已将区间从 70–78 美元上调，最终定为每股 83 美元，发行 9.8 亿股、募资逾 810 亿美元，其中约 794 亿来自公司售股。②核心事实：开盘数分钟股价 111.50 美元，较发行价高 33%；叠加同期安排的私募融资，公司现金储备预计达 2,200 亿美元——有分析师称「Anthropic 手上的现金将超过任何公司历史上拥有过的现金」。按开盘价计市值逾 2 万亿美元…</p>
       <div class="radar-card-footer">
         <a class="card-source-link" href="https://techcrunch.com/2026/11/19/anthropic-hits-nasdaq-exchanges-at-110-27-above-ipo-price/" target="_blank" rel="noopener">↗ 原文</a>
-        <a class="full-report-link" href="./news_report_2026-11-20.html">查看 2026-11-20 完整报告 →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="news">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag news">📰 新闻</span>
-          <span class="card-chapter">§ Chapter 4, Section II</span>
-          
-        </div>
-        <div class="radar-score">
-          9.0<span>/10</span>
-          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span></div>
-        </div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/" target="_blank" rel="noopener">芯片停运叠加海外云通道关闭，中国科技公司面临双重冲击</a>
-      </h3>
-      <p class="radar-card-body">①背景：美国商务部在黄仁勋相关丑闻后关闭 AI 芯片的云端租用漏洞，凡在第三国提供算力的数据中心须向 BIS 申请许可，存量运营者有 90 天过渡期并须严格筛查客户与中国的关系。②核心事实：Sidley Austin 指出许可门槛极低，约相当于 300 颗现代 AI 芯片，而中国实验室通常需要数千颗。据 The Information，Moonshot AI 因此取消与印尼云服务商 1.5 亿美元合同并暂停其他谈判——原计划明年租用 Blackwell Ultra B300 …</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://the-decoder.com/chinese-tech-firms-face-a-double-hit-as-chip-shipments-stop-and-overseas-cloud-access-disappears/" target="_blank" rel="noopener">↗ 原文</a>
-        <a class="full-report-link" href="./news_report_2026-11-20.html">查看 2026-11-20 完整报告 →</a>
-      </div>
-    </article>
-    <article class="radar-card" data-type="news">
-      <div class="radar-card-top">
-        <div class="radar-card-meta">
-          <span class="type-tag news">📰 新闻</span>
-          <span class="card-chapter">§ Chapter 8, Section II</span>
-          
-        </div>
-        <div class="radar-score">
-          8.0<span>/10</span>
-          <div class="score-bar"><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar filled"></span><span class="bar"></span></div>
-        </div>
-      </div>
-      <h3 class="radar-card-title">
-        <a href="https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast" target="_blank" rel="noopener">How OpenAI’s Performance Factory keeps ChatGPT fast</a>
-      </h3>
-      <p class="radar-card-body">①背景：OpenAI 工程团队 11-19 发布博客，称 agentic development 的迭代速度已使传统性能工程「不可持续」，工程师来不及在每次发版前手工定位性能回归，于是把性能排查本身交给智能体。②核心事实：Performance Factory 由四部分组成——用 Markdown 配置文件定义工作流的任务服务、定期分配任务的调度循环、可编程调用的云端 Codex、以及事件驱动的唤醒订阅；首个上线的 Regression Workflow 由五个 Codex …</p>
-      <div class="radar-card-footer">
-        <a class="card-source-link" href="https://openai.com/index/how-openai-performance-factory-keeps-chatgpt-fast" target="_blank" rel="noopener">↗ 原文</a>
         <a class="full-report-link" href="./news_report_2026-11-20.html">查看 2026-11-20 完整报告 →</a>
       </div>
     </article>
@@ -6486,7 +6519,7 @@ footer a:hover{color:var(--accent)}
 
 /* ── STATS ── */
 (function(){
-  const t=183,d=183;
+  const t=184,d=184;
   document.getElementById('statTotal').textContent=t;
   document.getElementById('statDays').textContent=d;
   document.getElementById('tagTotal').textContent=t+' REPORTS';
